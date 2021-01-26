@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 bg-white py-3">
+            <h5 class="card-title text-center text-primary">
+                ASOCIAR REQUISITOS
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 bg-white px-4 pb-3">
+            <form [formGroup]="asociarRequisitoGroup" (ngSubmit)="saveForm()">
+                <!-- Grupo: Información de Tipo de Avance-->
+                <div class="container">
+                    <!-- Campo: Código Abreviacion, nombre de Tipo de Avance -->
+                    <div class="form-group row">
+                        <div class="col-md-5">
+                            <label>Código de Abreviación</label>
+                            <input type="text" class="form-control" readonly>
+                        </div>
+                        <div class="col-md-7">
+                            <label>Nombre de Tipo de Avance</label>
+                            <input type="text" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <!-- Fin Campo Código Abreviacion, nombre de Tipo de Avance -->
+                    <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
+                    <!-- Campos: Área funcional, fecha -->
+                    <div class="form-group row">
+                        <div class="col-md-9">
+                            <label>Requisitos</label>
+                            <select class="custom-select" formControlName="requisitos" [class.is-invalid]="requisitosInvalid">
+                                <option selected disabled value="">Seleccione...</option>
+                                <option>01</option>
+                                <option>02</option>
+                                <option>03</option>
+                            </select>
+                            <small *ngIf="requisitosInvalid" class="text-danger">Seleccione una opción</small>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary text-white m-0 mt-4">Añadir</button>
+                        </div>
+                    </div>
+                    <!-- Fin Campos Área funcional, fecha -->
+                    <!-- Fin Grupo: Información de Tipo de avance -->
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 bg-white px-4 pb-3">
+            <ngx-general-table [config]="configRequisitos" [datos]="datosRequisitos"></ngx-general-table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Eliminar registros de la tabla -->
+<ng-template #eliminarTipoModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="BorrarTipoModal">Borrar Requisito</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        ¿Desea borrar el requisito?
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="modal.close(true)">Borrar</button>
+    </div>
+</ng-template>
+<!-- Fin Modal -->

@@ -1,0 +1,125 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 bg-white py-3">
+            <h5 class="card-title text-center text-primary">
+                EDITAR TIPO DE AVANCE
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col bg-white">
+            <form [formGroup]="editTipoavanceGroup" (ngSubmit)="saveForm()">
+                <!-- Grupo: Información de Tipo de Avance-->
+                <div class="container p-2">
+                    <!-- Campos: Área funcional, fecha -->
+                    <div class="form-group row p-2">
+                        <div class="col-md-6">
+                            <label>Área Funcional</label>
+                            <select class="custom-select" formControlName="areaFuncional" [class.is-invalid]="areaInvalid">
+                        <option selected disabled value="">Seleccione...</option>
+                        <option>01</option>
+                        <option>02</option>
+                        <option>03</option>
+                    </select>
+                            <small *ngIf="areaInvalid" class="text-danger">Seleccione una opción</small>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Fecha</label>
+                            <div class="input-group">
+                                <input type="date" name="fecha" class="form-control" formControlName="fecha" ngbDatepicker #d="ngbDatepicker">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+                                <i class="fas fa-calendar"></i>
+                            </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Fin Campos Área funcional, fecha -->
+                    <!-- Campo: Código Abreviacion, nombre de Tipo de Avance -->
+                    <div class="form-group row p-2">
+                        <div class="col-md-5">
+                            <label>Código de Abreviación</label>
+                            <input type="text" class="form-control" formControlName="codigoTipo" [class.is-invalid]="codigoTipoInvalid">
+                            <small *ngIf="codigoTipoInvalid" class="text-danger">Ingrese las iniciales del tipo de avance</small>
+                        </div>
+                        <div class="col-md-7">
+                            <label>Nombre de Tipo de Avance</label>
+                            <input type="text" class="form-control" formControlName="nombreTipo" [class.is-invalid]="nombreTipoInvalid">
+                            <small *ngIf="nombreTipoInvalid" class="text-danger">Complete este campo</small>
+                        </div>
+                    </div>
+                    <!-- Fin Campo Código Abreviacion, nombre de Tipo de Avance -->
+                    <!-- Campo: Descripción de Tipo de Avance -->
+                    <div class="form-group row p-2">
+                        <div class="col">
+                            <label>Descripción</label>
+                            <textarea class="form-control" placeholder="Descripción de Tipo de Avance" formControlName="descripcion" rows="1" [class.is-invalid]="descripcionInvalid"></textarea>
+                            <small *ngIf="descripcionInvalid" class="text-danger">Ingrese mínimo 5 caracteres</small>
+                        </div>
+                    </div>
+                    <!-- Fin Campo Descripción de Tipo de Avance -->
+                    <!-- Campos: Estado de tipo avance, enlace a la norma -->
+                    <div class="form-group row p-2">
+                        <div class="col-md-5">
+                            <label>Estado</label>
+                            <select class="custom-select" formControlName="estadoTipo" [class.is-invalid]="estadoTipoInvalid">
+                        <option selected disabled value="">Seleccione...</option>
+                        <option>Activo</option>
+                        <option>Inactivo</option>
+                    </select>
+                            <small *ngIf="estadoTipoInvalid" class="text-danger">Seleccione una opción</small>
+                        </div>
+                        <div class="col-md-7">
+                            <label>Enlace de la Norma</label>
+                            <input type="text" class="form-control" formControlName="nombreTipo" [class.is-invalid]="nombreTipoInvalid">
+                            <small *ngIf="nombreTipoInvalid" class="text-danger">Ingrese números en este campo</small>
+                        </div>
+                    </div>
+                    <!-- Fin Campos Estado de tipo avance, enlace a la norma -->
+                    <!-- Fin Grupo: Información de Tipo de avance -->
+
+                    <!-- Botones: Volver a registro, Siguiente -->
+                    <div class="container">
+                        <div class="row pt-2 text-center">
+                            <div class="col-md-6">
+                                <a routerLink="../../tiposavances/list">
+                                    <button type="button" class="btn btn-primary mb-3 mt-3 text-white">
+                                <div class="d-flex flex-row justify-content-around align-middle">
+                                    <span>Volver</span>
+                                </div>
+                            </button>
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-success text-white m-0 mt-4" data-toggle="modal" data-target="#editarTipoModal">Crear</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Fin Botones: Volver a registro, Siguiente -->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal: Editar Tipo de Avance -->
+<div class="modal fade" id="editarTipoModal" tabindex="-1" aria-labelledby="editarTipoModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editarTipoModal"><i class="fas fa-check text-success"></i>¡Guardado!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="text-center">Se ha editado el tipo de avance {{ codigoTipo }}.</p>
+                <p class="text-center">Estado: {{ estadoTipo }}</p>
+            </div>
+            <div class="modal-footer">
+                <a routerLink="../../tiposavances/list" role="button" class="btn btn-primary" data-dismiss="modal">Aceptar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin Modal Editar Tipo de Avance -->
