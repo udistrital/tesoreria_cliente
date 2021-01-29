@@ -10,7 +10,15 @@ const routes: Routes = [
     component: TableTiposavancesComponent,
   },
   {
-    path: 'crear-modificar',
+    path: 'crear',
+    component: SetTipodeavanceComponent,
+  },
+  {
+    path: 'editar',
+    component: SetTipodeavanceComponent,
+  },
+  {
+    path: 'detalle',
     component: SetTipodeavanceComponent,
   },
   {

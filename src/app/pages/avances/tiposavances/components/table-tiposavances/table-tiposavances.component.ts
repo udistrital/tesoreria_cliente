@@ -5,6 +5,7 @@ import { getFilaSeleccionada, getAccionTabla } from '../../../../../shared/selec
 import { loadTiposAvancesSeleccionado, loadTiposAvances } from '../../actions/tiposavances.actions';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-table-tiposavances',
@@ -14,14 +15,9 @@ import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actio
 export class TableTiposavancesComponent implements OnInit, OnDestroy {
   @ViewChild('eliminarTipoModal', { static: false }) eliminarTipoModal: ElementRef;
 
-  // @ViewChild('asociarRequisitoModal', { static: false }) asociarRequisitoModal: ElementRef;
-
   configuracionTipos: any;
   datosTablaTipos: any;
   subscription$: any;
-  subscriptionEliminarDato$: any;
-
-  // subscriptionAsociarRequisitos$: any;
 
   // Modales
   closeResult = '';
@@ -31,6 +27,7 @@ export class TableTiposavancesComponent implements OnInit, OnDestroy {
 
   constructor (
     private store: Store<any>,
+    private router: Router,
     private modalService: NgbModal
   ) {
     this.datosTablaTipos = DATOS_TABLATIPOS;
@@ -41,41 +38,30 @@ export class TableTiposavancesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((fila: any) => {
-
-      if (fila) {
-
-        this.store.dispatch(loadTiposAvancesSeleccionado(fila.fila));
-      }
-    });
-    this.subscription$ = this.store.select(getAccionTabla).subscribe((accion: any) => {
-
-      this.store.dispatch(loadTiposAvancesSeleccionado(null));
-    });
-    // Eliminar datos que se encuentran en la tabla
-    this.subscriptionEliminarDato$ = this.store.select(getFilaSeleccionada).subscribe((accion) => {
+    this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((accion) => {
       if (accion && accion.accion) {
+        this.store.dispatch(loadTiposAvancesSeleccionado(accion.accion));
+        if (accion.accion.name === 'modificarTipo') {
+          this.router.navigate(['pages/avances/tiposavances/editar']);
+        }
+        if (accion.accion.name === 'verDetalle') {
+          this.router.navigate(['pages/avances/tiposavances/detalle']);
+        }
+        if (accion.accion.name === 'asosiarRequisitos') {
+          this.router.navigate(['pages/avances/tiposavances/asociar-requisito']);
+        }
+        // Eliminar datos que se encuentran en la tabla
         if (accion.accion.name === 'borrarTipo') {
           this.modalEliminar(accion.fila);
         }
       }
     });
 
-    // Asociar requisitos a los tipos de avances
-    // this.subscriptionAsociarRequisitos$ = this.store.select(getFilaSeleccionada).subscribe((accion) => {
-    //   if (accion && accion.accion) {
-    //     if (accion.accion.name === 'asosiarRequisitos') {
-    //       this.modalAsociar(accion.fila);
-    //     }
-    //   }
-    // });
-
   }
 
   ngOnDestroy(): void {
     this.subscription$.unsubscribe();
     this.store.dispatch(LoadFilaSeleccionada(null));
-    this.subscriptionEliminarDato$.unsubscribe();
   }
 
   // Modal acciones sobre la tabla: eliminar registros
@@ -93,15 +79,6 @@ export class TableTiposavancesComponent implements OnInit, OnDestroy {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
-
-  // Modal acciones sobre la tabla: asociar requisitos
-  // modalAsociar(fila: any) {
-  //   this.modalService.open(this.asociarRequisitoModal).result.then((result) => {
-
-  //   }, (reason) => {
-  //     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-  //   });
-  // }
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {

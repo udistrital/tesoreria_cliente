@@ -79,7 +79,7 @@ export const CONFIGURACION_TABLATIPOS: any = {
                 name: 'modificarTipo',
                 icon: 'fas fa-edit',
                 class: 'p-1',
-                title: 'Modificar Tipo de Avance',
+                title: 'Editar Tipo de Avance',
             },
             {
                 name: 'borrarTipo',
@@ -186,6 +186,93 @@ export const CONFIGURACION_REQUISITOS: any = {
     filter: false,
 };
 export const DATOS_REQUISITOS: any = [
+    {
+        codigoAbreviado: 'CTAT',
+        nombreTipo: 'Compra de Tiquetes Aéreos y Terrestres',
+        descripcionTipo: 'Descripción... (Resolución N° 652 de 2015)',
+        estadoTipo: 'Activo',
+        fecha: '2021-20-11T02:18:54Z',
+    },
+    {
+        codigoAbreviado: 'VT',
+        nombreTipo: 'Viáticos',
+        descripcionTipo: 'Descripción...',
+        estadoTipo: 'Inactivo',
+        fecha: '2021-02-10T02:18:54Z',
+    },
+];
+export const CONFIGURACION_REQUISITOSP: any = {
+    showColumnTitle: true,
+    dataConfig: [
+        {
+            key: 'codigoAbreviado',
+            title: {
+                name: 'Código',
+                class: 'text-center',
+            },
+            pipe: {
+                class: '',
+            }
+        },
+        {
+            key: 'nombreRequisito',
+            title: {
+                name: 'Nombre de Tipo',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'descripcionR',
+            title: {
+                name: 'Descripción de Tipo',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-center',
+            }
+        },
+        {
+            key: 'fecha',
+            title: {
+                name: 'Fecha',
+                class: 'text-center',
+            },
+            pipe: {
+                type: 'date',
+                config: [
+                    'shortDate'
+                ],
+                class: 'text-center',
+            }
+        },
+    ],
+    rowActions: {
+        title: {
+            name: 'Acciones',
+            class: 'text-center',
+            actionClass: 'd-flex flex-row justify-content-around align-middle'
+        },
+        actions: [
+            {
+                name: 'borrarTipo',
+                icon: 'fas fa-trash-alt',
+                class: 'p-1',
+                title: 'Borrar Tipo de Avance',
+            },
+        ],
+    },
+    noData: {
+        name: 'No Existen Elementos Asociados',
+        class: 'text-center',
+    },
+    endSubtotal: false,
+    sort: true,
+    filter: false,
+};
+export const DATOS_REQUISITOSP: any = [
     {
         codigoAbreviado: 'CTAT',
         nombreTipo: 'Compra de Tiquetes Aéreos y Terrestres',

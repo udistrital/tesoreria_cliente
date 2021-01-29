@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { DATOS_REQUISITOSP, CONFIGURACION_REQUISITOSP } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'ngx-set-tipodeavance',
@@ -7,13 +9,22 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./set-tipodeavance.component.scss']
 })
 export class SetTipodeavanceComponent implements OnInit {
-
+  tituloAccion: string;
   // Formulario
   editTipoavanceGroup: FormGroup;
   codigoTipo = 'CTAT';
   estadoTipo = 'Activo';
 
-  constructor(private fb: FormBuilder) {
+  configRequisitos: any;
+  datosRequisitos: any;
+
+  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute) {
+
+    this.datosRequisitos = DATOS_REQUISITOSP;
+    this.configRequisitos = CONFIGURACION_REQUISITOSP;
+
+    // Título, editar o crear
+    this.tituloAccion = this.activatedRoute.snapshot.url[0].path;
     this.createForm();
   }
 

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12 bg-white py-3">
             <h5 class="card-title text-center text-primary">
-                EDITAR TIPO DE AVANCE
+                {{ tituloAccion.toUpperCase() }} TIPO DE AVANCE
             </h5>
         </div>
     </div>
@@ -77,13 +77,27 @@
                         </div>
                     </div>
                     <!-- Fin Campos Estado de tipo avance, enlace a la norma -->
+                    <!-- Tabla: Listado de Documentos Agregados-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="collapse" id="collapseDocumentos">
+                    <div class="card card-body">
+                        <!-- Tabla General Adaptada -->
+                        <ngx-general-table [config]="configRequisitos" [datos]="datosRequisitos"></ngx-general-table>
+
+                        <!-- Fin Tabla General Adaptada -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin Tabla: Listado de Documentos Agregados-->
                     <!-- Fin Grupo: Información de Tipo de avance -->
 
                     <!-- Botones: Volver a registro, Siguiente -->
                     <div class="container">
                         <div class="row pt-2 text-center">
                             <div class="col-md-6">
-                                <a routerLink="../../tiposavances/list">
+                                <a routerLink="../list">
                                     <button type="button" class="btn btn-primary mb-3 mt-3 text-white">
                                 <div class="d-flex flex-row justify-content-around align-middle">
                                     <span>Volver</span>
@@ -92,7 +106,7 @@
                                 </a>
                             </div>
                             <div class="col-md-6">
-                                <button type="submit" class="btn btn-success text-white m-0 mt-4" data-toggle="modal" data-target="#editarTipoModal">Crear</button>
+                                <button type="submit" class="btn btn-success text-white m-0 mt-4" data-toggle="modal" data-target="#editarTipoModal">{{ tituloAccion.toUpperCase() }}</button>
                             </div>
                         </div>
                     </div>
@@ -117,7 +131,7 @@
                 <p class="text-center">Estado: {{ estadoTipo }}</p>
             </div>
             <div class="modal-footer">
-                <a routerLink="../../tiposavances/list" role="button" class="btn btn-primary" data-dismiss="modal">Aceptar</a>
+                <a routerLink="../list" role="button" class="btn btn-primary" data-dismiss="modal">Aceptar</a>
             </div>
         </div>
     </div>
