@@ -40,7 +40,6 @@ export class TableTiposavancesComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((accion) => {
       if (accion && accion.accion) {
-        this.store.dispatch(loadTiposAvancesSeleccionado(accion.accion));
         if (accion.accion.name === 'modificarTipo') {
           this.router.navigate(['pages/avances/tiposavances/editar']);
         }
@@ -54,6 +53,7 @@ export class TableTiposavancesComponent implements OnInit, OnDestroy {
         if (accion.accion.name === 'borrarTipo') {
           this.modalEliminar(accion.fila);
         }
+        this.store.dispatch(loadTiposAvancesSeleccionado(accion.accion));
       }
     });
 

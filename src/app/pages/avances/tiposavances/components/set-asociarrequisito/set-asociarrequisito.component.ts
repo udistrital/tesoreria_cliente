@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { getFilaSeleccionada, getAccionTabla } from '../../../../../shared/selectors/shared.selectors';
 import { loadTiposAvancesSeleccionado } from '../../actions/tiposavances.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-set-asociarrequisito',
@@ -13,6 +14,7 @@ import { loadTiposAvancesSeleccionado } from '../../actions/tiposavances.actions
 })
 export class SetAsociarrequisitoComponent implements OnInit {
   @ViewChild('eliminarTipoModal', { static: false }) eliminarTipoModal: ElementRef;
+  @ViewChild('asociarModal', { static: false }) asociarModal: ElementRef;
 
 
   configRequisitos: any;
@@ -25,11 +27,12 @@ export class SetAsociarrequisitoComponent implements OnInit {
 
   // Formulario
   asociarRequisitoGroup: FormGroup;
-  codigoTipo = 'CTAT';
+  codigoTipo = 'CINV';
   estadoTipo = 'Activo';
 
   constructor(private fb: FormBuilder,
     private store: Store<any>,
+    private router: Router,
     private modalService: NgbModal
     ) {
 
@@ -40,25 +43,24 @@ export class SetAsociarrequisitoComponent implements OnInit {
 
   ngOnInit() {
     this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((fila: any) => {
-
       if (fila) {
-
         this.store.dispatch(loadTiposAvancesSeleccionado(fila.fila));
       }
     });
-    this.subscription$ = this.store.select(getAccionTabla).subscribe((accion: any) => {
 
+    this.subscription$ = this.store.select(getAccionTabla).subscribe((accion: any) => {
       this.store.dispatch(loadTiposAvancesSeleccionado(null));
     });
 
     // Eliminar datos que se encuentran en la tabla
     this.subscriptionEliminarDato$ = this.store.select(getFilaSeleccionada).subscribe((accion) => {
       if (accion && accion.accion) {
-        if (accion.accion.name === 'borrarTipo') {
+        if (accion.accion.name === 'borrarRequisito') {
           this.modalEliminar(accion.fila);
         }
       }
     });
+
   }
 
   // Validacion del Formulario
@@ -84,18 +86,32 @@ export class SetAsociarrequisitoComponent implements OnInit {
    // Modal acciones sobre la tabla: eliminar registros
    modalEliminar(fila: any) {
     this.modalService.open(this.eliminarTipoModal).result.then((result) => {
-      // if (`${result}`) {
-      //   this.datosRequisitos.splice(this.datosRequisitos.findIndex(
-      //     (element: any) => element.codigoAbreviado === fila.codigoAbreviado
-      //       && element.nombreTipo === fila.nombreTipo && element.descripcionTipo === fila.descripcionTipo
-      //       && element.estadoTipo === fila.estadoTipo && element.fecha === fila.fecha
-      //   ), 1);
-      //   this.store.dispatch(loadRequisitos({ datosRequisitos: this.datosRequisitos }));
-      // }
+      if (`${result}`) {
+        this.datosRequisitos.splice(this.datosRequisitos.findIndex(
+           (element: any) => element.codigoAbreviado === fila.codigoAbreviado
+             && element.nombreRequisito === fila.nombreRequisito
+             && element.descripcion === fila.descripcion
+             && element.fecha === fila.fecha
+         ), 1);
+         // this.store.dispatch(loadRequisitos({ datosRequisitos: this.datosRequisitos }));
+      }
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
+
+    // Modal acciones sobre la tabla: asociar registros
+    modalGuardar() {
+      if (this.asociarRequisitoGroup.valid) {
+        this.modalService.open(this.asociarModal).result.then((result) => {
+          if (`${result}`) {
+          this.router.navigate(['pages/avances/tiposavances/list']);
+          }
+        }, (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        });
+      } else { this.saveForm(); }
+    }
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
