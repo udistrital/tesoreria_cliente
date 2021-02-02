@@ -1,30 +1,32 @@
 <div class="container bg-white p-5 border rounded">
     <div class="row">
         <div class="col py-2">
-            <h5 class="card-title text-center text-primary text-uppercase">Nueva Solicitud de Devolución</h5>
+            <h5 class="card-title text-center text-primary text-uppercase">
+                NUEVA SOLICITUD DE AVANCE
+            </h5>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <mat-horizontal-stepper linear #stepper>
                 <mat-step [stepControl]="infoFuncionarioGroup">
-                    <ng-template matStepLabel>Solicitud</ng-template>
+                    <ng-template matStepLabel>Inicio</ng-template>
                     <div class="container">
                         <ngx-set-infofuncionario></ngx-set-infofuncionario>
                     </div>
                 </mat-step>
-                <!-- <mat-step [stepControl]="infoSolicitanteGroup">
-                    <ng-template matStepLabel>Datos del Solicitante</ng-template>
+                <mat-step [stepControl]="descripcionGroup">
+                    <ng-template matStepLabel>Descripción</ng-template>
                     <div class="container">
-                        <ngx-set-infosolicitante></ngx-set-infosolicitante>
+                        <ngx-set-descripcion></ngx-set-descripcion>
                     </div>
                 </mat-step>
-                <mat-step [stepControl]="impuestosAnexosGroup">
-                    <ng-template matStepLabel>{{impuestos}} Anexos</ng-template>
+                <mat-step [stepControl]="tipoAvanceGroup">
+                    <ng-template matStepLabel>Tipo de Avance</ng-template>
                     <div class="container">
-                        <ngx-set-anexosimpuestos></ngx-set-anexosimpuestos>
+                        <ngx-set-tipoavance></ngx-set-tipoavance>
                     </div>
-                </mat-step> -->
+                </mat-step>
             </mat-horizontal-stepper>
         </div>
     </div>

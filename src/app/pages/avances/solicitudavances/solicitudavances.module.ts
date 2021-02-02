@@ -9,6 +9,8 @@ import { SharedModule } from '../../../shared/shared.module';
 import { MatStepperModule, MatDividerModule } from '@angular/material';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SetDescripcionComponent } from './components/set-descripcion/set-descripcion.component';
+import { SetTipoavanceComponent } from './components/set-tipoavance/set-tipoavance.component';
 
 
 
@@ -17,6 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [TableSolicitudavancesComponent,
     StepperSolicitudavancesComponent,
     SetInfofuncionarioComponent,
+    SetDescripcionComponent,
+    SetTipoavanceComponent,
   ],
   imports: [
     CommonModule,

@@ -1,32 +1,28 @@
 <form [formGroup]="infoFuncionarioGroup" (ngSubmit)="saveForm()">
-    <!-- Grupo: Información de Solicitud -->
+    <!-- Grupo: Datos del funcionario -->
     <div class="container">
         <div class="row">
             <div class="col">
                 <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
-                    Información de la Solicitud
+                    Datos del Funcionario
                 </h6>
             </div>
         </div>
-        <!-- Campo: Elegir Concepto -->
+        <!-- Campos: Elegir ID, Área Funcional, número de ID -->
         <div class="form-group row">
-            <div class="col">
-                <label>Concepto</label>
-                <select class="custom-select" formControlName="concepto" [class.is-invalid]="conceptoInvalid">
+            <div class="col-md-4">
+                <label>Tipo de ID</label>
+                <select class="custom-select" formControlName="tipoId" [class.is-invalid]="tipoIdInvalid">
                     <option selected disabled value="">Seleccione...</option>
-                    <option>001</option>
-                    <option>012</option>
-                    <option>120</option>
+                    <option>CC</option>
+                    <option>CE</option>
                 </select>
-                <small *ngIf="conceptoInvalid" class="text-danger">Complete este campo</small>
+                <small *ngIf="tipoIdInvalid" class="text-danger">Complete este campo</small>
             </div>
-        </div>
-        <!-- Fin Campo: Elegir Concepto -->
-        <!-- Campos: No. de Solicitud, Área funcional, fecha -->
-        <div class="form-group row">
-            <div class="col-md-3">
-                <label>No. Solicitud</label>
-                <input type="text" class="form-control" formControlName="numeroSolicitud" readonly>
+            <div class="col-md-4">
+                <label>Número de ID</label>
+                <input type="number" class="form-control" formControlName="numeroId" [class.is-invalid]="numeroIdInvalid">
+                <small *ngIf="numeroIdInvalid" class="text-danger">Ingrese números en este campo</small>
             </div>
             <div class="col-md-4">
                 <label>Área Funcional</label>
@@ -34,45 +30,64 @@
                     <option selected disabled value="">Seleccione...</option>
                     <option>01</option>
                     <option>02</option>
-                    <option>03</option>
                 </select>
                 <small *ngIf="areaInvalid" class="text-danger">Complete este campo</small>
             </div>
-            <div class="col-md-5">
-                <label>Fecha de Solicitud</label>
-                <div class="input-group">
-                    <input type="date" name="fechaSolicitud" class="form-control" formControlName="fechaSolicitud" ngbDatepicker #d="ngbDatepicker">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
-                            <i class="fas fa-calendar"></i>
-                        </button>
-                    </div>
-                </div>
+        </div>
+        <!-- Fin Campos: Elegir ID, Área Funcional, número de ID -->
+        <!-- Campos: Nombres, Apellidos, Dirección -->
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label>Nombres</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Apellidos</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Dirección</label>
+                <input value=" " type="text" class="form-control" readonly>
             </div>
         </div>
-        <!-- Fin Campos: No. de Solicitud, Área funcional, fecha -->
-    </div>
-    <!-- Fin Grupo: Información de Solicitud -->
+        <!-- Fin Campos: Nombres, Apellidos, Dirección -->
+        <!-- Campos: Correo, Teléfono móvil y fijo -->
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label>Correo Electrónico</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Teléfono Móvil</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Teléfono Fijo</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+        </div>
+        <!-- Fin Campos: Correo, Teléfono móvil y fijo -->
 
-
-    <!-- Botones: Volver a registro, Siguiente -->
-    <div class="container">
-        <div class="row pt-2 text-center">
-            <div class="col-md-6">
-                <a routerLink="../list">
-                    <button type="button" class="btn btn-primary mb-3 mt-3 text-white">
+        <!-- Botones: Volver a registro, Siguiente -->
+        <div class="container">
+            <div class="row pt-2 text-center">
+                <div class="col-md-6">
+                    <a routerLink="../list">
+                        <button type="button" class="btn btn-primary mb-3 mt-3 text-white">
                             <div class="d-flex flex-row justify-content-around align-middle">
                                 <span>Volver a registros</span>
                             </div>
                         </button>
-                </a>
-            </div>
-            <div class="col-md-6">
-                <button mat-button matStepperNext type="submit" class="btn btn-success m-0 mt-4">
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <button mat-button matStepperNext type="submit" class="btn btn-success m-0 mt-4">
                         Siguiente
                     </button>
+                </div>
             </div>
         </div>
+        <!-- Fin Botones: Volver a registro, Siguiente -->
     </div>
-    <!-- Fin Botones: Volver a registro, Siguiente -->
+    <!-- Fin Datos del funcionario -->
 </form>

@@ -15,37 +15,24 @@ export class SetInfofuncionarioComponent implements OnInit {
     this.createForm();
   }
 
-    // Validacion del Formulario
-    get conceptoInvalid() {
-      return this.infoFuncionarioGroup.get('concepto').invalid && this.infoFuncionarioGroup.get('concepto').touched;
-    }
-    get areaInvalid() {
-      return this.infoFuncionarioGroup.get('areaFuncional').invalid && this.infoFuncionarioGroup.get('areaFuncional').touched;
-    }
-    get tipoIdInvalid() {
-      return this.infoFuncionarioGroup.get('tipoId').invalid && this.infoFuncionarioGroup.get('tipoId').touched;
-    }
-    get numeroIdInvalid() {
-      return this.infoFuncionarioGroup.get('numeroId').invalid && this.infoFuncionarioGroup.get('numeroId').touched;
-    }
-    get cargoInvalid() {
-      return this.infoFuncionarioGroup.get('cargo').invalid && this.infoFuncionarioGroup.get('cargo').touched;
-    }
+  // Validacion del Formulario
+  get tipoIdInvalid() {
+    return this.infoFuncionarioGroup.get('tipoId').invalid && this.infoFuncionarioGroup.get('tipoId').touched;
+  }
+  get numeroIdInvalid() {
+    return this.infoFuncionarioGroup.get('numeroId').invalid && this.infoFuncionarioGroup.get('numeroId').touched;
+  }
+  get areaInvalid() {
+    return this.infoFuncionarioGroup.get('areaFuncional').invalid && this.infoFuncionarioGroup.get('areaFuncional').touched;
+  }
 
   createForm() {
     this.infoFuncionarioGroup = this.fb.group({
-      concepto: ['', Validators.required],
-      numeroSolicitud: ['001'],
-      areaFuncional: ['', Validators.required],
-      fechaSolicitud: [''],
       tipoId: ['', Validators.required],
       numeroId: ['',
         [Validators.required,
         Validators.pattern('^[0-9]*$')]],
-      nombres: [''],
-      apellidos: [''],
-      cargo: ['', Validators.required],
-
+      areaFuncional: ['', Validators.required],
     });
   }
 
