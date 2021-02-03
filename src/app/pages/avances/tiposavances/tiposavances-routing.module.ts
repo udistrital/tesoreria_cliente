@@ -6,7 +6,7 @@ import { SetAsociarrequisitoComponent } from './components/set-asociarrequisito/
 
 const routes: Routes = [
   {
-    path: 'list',
+    path: 'lista',
     component: TableTiposavancesComponent,
   },
   {
