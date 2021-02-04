@@ -9,22 +9,28 @@
     <div class="row">
         <div class="col">
             <mat-horizontal-stepper linear #stepper>
-                <mat-step [stepControl]="infoFuncionarioGroup">
+                <mat-step [stepControl]="infoFuncionarioGroup" optional>
                     <ng-template matStepLabel>Inicio</ng-template>
                     <div class="container">
                         <ngx-set-infofuncionario></ngx-set-infofuncionario>
                     </div>
                 </mat-step>
-                <mat-step [stepControl]="descripcionGroup">
+                <mat-step [stepControl]="descripcionGroup" optional>
                     <ng-template matStepLabel>Descripción</ng-template>
                     <div class="container">
                         <ngx-set-descripcion></ngx-set-descripcion>
                     </div>
                 </mat-step>
-                <mat-step [stepControl]="tipoAvanceGroup">
+                <mat-step [stepControl]="tipoAvanceGroup" optional>
                     <ng-template matStepLabel>Tipo de Avance</ng-template>
                     <div class="container">
                         <ngx-set-tipoavance></ngx-set-tipoavance>
+                    </div>
+                </mat-step>
+                <mat-step [stepControl]="detalleAvanceGroup" optional>
+                    <ng-template matStepLabel>Guardar</ng-template>
+                    <div class="container">
+                        <ngx-show-detalleavance></ngx-show-detalleavance>
                     </div>
                 </mat-step>
             </mat-horizontal-stepper>

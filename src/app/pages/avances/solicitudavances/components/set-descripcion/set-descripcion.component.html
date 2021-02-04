@@ -2,7 +2,7 @@
     <!-- Grupo: Datos del funcionario -->
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col pb-3">
                 <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
                     Descripción de Solicitud
                 </h6>
@@ -87,9 +87,9 @@
         <!-- Fin Campos: Correo, Teléfono móvil y fijo -->
 
         <!-- Campos: Nombres, Apellidos, Dirección -->
-        <div class="form-group row">
+        <div class="form-group row align-items-baseline">
             <div class="col-md-3">
-                <label>Cód. de Convenio</label>
+                <label>Código de Convenio</label>
                 <select class="custom-select" formControlName="codConvenio" [class.is-invalid]="codConvenioInvalid">
                     <option selected disabled value="">Seleccione...</option>
                     <option>Cargo 1</option>
@@ -103,7 +103,7 @@
                 <small *ngIf="convenioInvalid" class="text-danger">Complete este campo</small>
             </div>
             <div class="col-md-3">
-                <label>Cód. Proyecto de Investigación</label>
+                <label class="col-form-label col-form-label-sm">Código Proyecto de Investigación</label>
                 <select class="custom-select" formControlName="codInvestigacion" [class.is-invalid]="codInvestigacionInvalid">
                     <option selected disabled value="">Seleccione...</option>
                     <option>Cargo 1</option>
@@ -112,7 +112,7 @@
                 <small *ngIf="codInvestigacionInvalid" class="text-danger">Complete este campo</small>
             </div>
             <div class="col-md-3">
-                <label>Nombre Proyecto de Investigación</label>
+                <label class="col-form-label col-form-label-sm">Nombre Proyecto de Investigación</label>
                 <input type="text" class="form-control" formControlName="investigacion" [class.is-invalid]="investigacionInvalid">
                 <small *ngIf="investigacionInvalid" class="text-danger">Complete este campo</small>
             </div>

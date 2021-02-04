@@ -3,6 +3,7 @@ import { SetInfofuncionarioComponent } from '../set-infofuncionario/set-infofunc
 import { FormBuilder } from '@angular/forms';
 import { SetDescripcionComponent } from '../set-descripcion/set-descripcion.component';
 import { SetTipoavanceComponent } from '../set-tipoavance/set-tipoavance.component';
+import { ShowDetalleavanceComponent } from '../show-detalleavance/show-detalleavance.component';
 
 @Component({
   selector: 'ngx-stepper-solicitudavances',
@@ -13,6 +14,7 @@ export class StepperSolicitudavancesComponent implements OnInit {
   @ViewChild(SetInfofuncionarioComponent, { static: false }) setInfofuncionarioComponent: SetInfofuncionarioComponent;
   @ViewChild(SetDescripcionComponent, { static: false }) setDescripcionComponent: SetDescripcionComponent;
   @ViewChild(SetTipoavanceComponent, { static: false }) setTipoavanceComponent: SetTipoavanceComponent;
+  @ViewChild(ShowDetalleavanceComponent, { static: false }) showDetalleavanceComponent: ShowDetalleavanceComponent;
 
 
   constructor(private fb: FormBuilder) { }
@@ -28,6 +30,9 @@ export class StepperSolicitudavancesComponent implements OnInit {
   }
   get tipoAvanceGroup() {
     return this.setTipoavanceComponent ? this.setTipoavanceComponent.tipoAvanceGroup : this.fb.group({});
+  }
+  get detalleAvanceGroup() {
+    return this.showDetalleavanceComponent ? this.showDetalleavanceComponent.detalleAvanceGroup : this.fb.group({});
   }
 
 }

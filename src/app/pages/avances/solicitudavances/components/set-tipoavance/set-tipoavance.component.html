@@ -2,7 +2,7 @@
     <!-- Grupo: Datos del funcionario -->
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col pb-3">
                 <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
                     Seleccionar Tipo de Avance
                 </h6>
@@ -19,15 +19,57 @@
                 </select>
                 <small *ngIf="seleccionAvanceInvalid" class="text-danger">Complete este campo</small>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label>Descripción Tipo de Avance</label>
                 <input value=" " type="text" class="form-control" readonly>
+            </div>
+            <div class="col align-self-end">
+                <button type="button" class="btn btn-block btn-primary text-white"><span>Agregar</span></button>
             </div>
         </div>
         <!-- Fin Campos: Nombres, Apellidos, Dirección -->
 
         <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
 
+        <!-- Grupo: Lista de Tipos de Avance -->
+        <div class="container pt-3 ">
+            <div class="row">
+                <div class="col-md-12">
+                    <button #btnTiposAvances class="card-title col-md-12 btn btn-dark text-white" type="button" data-toggle="collapse" data-target="#collapseTiposAvances" aria-expanded="false" aria-controls="collapseTiposAvances" (click)="mostrarOcultarTiposAvances(btnTiposAvances.getAttribute('aria-expanded'))">
+                        <i class="far {{mostrarOcultarIcono}} text-ligth pr-3"></i><span>Tipo de Avance</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Tabla: Listado de Requisitos-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="collapse" id="collapseTiposAvances">
+                        <div class="card card-body">
+                            <!-- Tabla General Adaptada Requisitos -->
+                            <ngx-general-table [config]="configRequisitos" [datos]="datosRequisitos">
+                            </ngx-general-table>
+                            <!-- Tabla General Adaptada Especificaciones-->
+                            <ngx-general-table [config]="configEspecificacion" [datos]="datosEspecificacion">
+                            </ngx-general-table>
+                            <!-- Boton Borrar Tipo de Avance -->
+                            <button type="button" class="btn btn-block btn-danger text-white"><span>Borrar Tipo de Avance</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin Tabla: Listado de Requisitos-->
+        </div>
+        <!-- Fin Grupo: Lista de Tipos de Avance -->
+
+        <!-- Campo: Total Avance -->
+        <div class="form-group row pt-4">
+            <div class="col"></div>
+            <div class="col-md-5">
+                <label>Total Avance Solicitado</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+        </div>
+        <!-- Fin Campo: Total Avance -->
 
         <!-- Botones: Volver a registro, Siguiente -->
         <div class="container">

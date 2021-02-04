@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SetDescripcionComponent } from './components/set-descripcion/set-descripcion.component';
 import { SetTipoavanceComponent } from './components/set-tipoavance/set-tipoavance.component';
+import { ShowDetalleavanceComponent } from './components/show-detalleavance/show-detalleavance.component';
 
 
 
@@ -21,6 +22,7 @@ import { SetTipoavanceComponent } from './components/set-tipoavance/set-tipoavan
     SetInfofuncionarioComponent,
     SetDescripcionComponent,
     SetTipoavanceComponent,
+    ShowDetalleavanceComponent,
   ],
   imports: [
     CommonModule,
