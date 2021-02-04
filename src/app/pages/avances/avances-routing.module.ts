@@ -13,6 +13,11 @@ const routes: Routes = [{
       .then(m => m.TiposavancesModule),
     },
     {
+      path: 'requisitosavances',
+      loadChildren: () => import('./requisitosavances/requisitosavances.module')
+      .then(m => m.RequisitosavancesModule),
+    },
+    {
       path: 'solicitudavances',
       loadChildren: () => import('./solicitudavances/solicitudavances.module')
       .then(m => m.SolicitudavancesModule),
