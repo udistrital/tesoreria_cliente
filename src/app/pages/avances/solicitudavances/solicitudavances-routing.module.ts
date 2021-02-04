@@ -6,7 +6,7 @@ import { StepperSolicitudavancesComponent } from './components/stepper-solicitud
 
 const routes: Routes = [
   {
-    path: 'list',
+    path: 'lista',
     component: TableSolicitudavancesComponent,
   },
   {

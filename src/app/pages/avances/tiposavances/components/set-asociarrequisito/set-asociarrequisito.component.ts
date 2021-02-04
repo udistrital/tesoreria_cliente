@@ -105,7 +105,7 @@ export class SetAsociarrequisitoComponent implements OnInit {
       if (this.asociarRequisitoGroup.valid) {
         this.modalService.open(this.asociarModal).result.then((result) => {
           if (`${result}`) {
-          this.router.navigate(['pages/avances/tiposavances/list']);
+          this.router.navigate(['pages/avances/tiposavances/lista']);
           }
         }, (reason) => {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
