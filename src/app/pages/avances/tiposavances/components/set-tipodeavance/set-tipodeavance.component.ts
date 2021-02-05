@@ -93,7 +93,7 @@ export class SetTipodeavanceComponent implements OnInit {
     if (this.tipoavanceGroup.valid) {
       this.modalService.open(this.guardarModal).result.then((result) => {
         if (`${result}`) {
-          this.router.navigate(['pages/avances/tiposavances/list']);
+          this.router.navigate(['pages/avances/tiposavances/lista']);
         }
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
