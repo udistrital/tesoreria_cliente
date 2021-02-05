@@ -4,6 +4,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { SelectService } from '../../../../../shared/services/select.service';
 import Swal from 'sweetalert2';
+import { environment } from '../../../../../../environments/environment.test';
 
 @Component({
   selector: 'ngx-consulta',
@@ -42,8 +43,7 @@ export class ConsultaComponent implements OnInit, OnDestroy {
     this.datosGuardados = DATOS_CONSULTA;
     this.datosConsulta  = [];
     this.selection.elementosElegidos = [];
-   }
-   
+  }
   ngOnDestroy () {
     if (this.modal !== undefined) {
       this.modal.close();
@@ -68,7 +68,7 @@ export class ConsultaComponent implements OnInit, OnDestroy {
     this.modal = this.modalService.open(content);
   }
 
-  aprobar(){
+  aprobar() {
     Swal.fire({
       type: 'success',
       title: '¡Aprobado!',
@@ -86,11 +86,12 @@ export class ConsultaComponent implements OnInit, OnDestroy {
     this.modal.close();
   }
 
-  consultar(data:any) {
-    
+  consultar(data: any) {
+
   }
 
   generarNecesidad () {
-
+    window.open(environment.NECESIDADES, '_blank');
   }
+
 }
