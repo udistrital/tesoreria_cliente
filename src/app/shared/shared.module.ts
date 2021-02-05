@@ -23,6 +23,7 @@ import { CompoundCellComponent } from './components/compound-cell/compound-cell.
 import { BtnVolverComponent } from './components/btn-volver/btn-volver.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { FileUploadDirective } from './directives/file-upload.directive';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   exports: [
@@ -34,7 +35,8 @@ import { FileUploadDirective } from './directives/file-upload.directive';
     SelectedRowDirective,
     TimeRangePipe,
     BtnVolverComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    TableComponent
   ],
   imports: [
     CommonModule,
@@ -58,7 +60,8 @@ import { FileUploadDirective } from './directives/file-upload.directive';
     CompoundCellComponent,
     BtnVolverComponent,
     FileUploadComponent,
-    FileUploadDirective
+    FileUploadDirective,
+    TableComponent,
   ],
   providers: [
     DatePipe,
