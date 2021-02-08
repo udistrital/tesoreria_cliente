@@ -14,8 +14,8 @@
                 <label>Tipo de Avance</label>
                 <select class="custom-select" formControlName="seleccionAvance" [class.is-invalid]="seleccionAvanceInvalid">
                     <option selected disabled value="">Seleccione...</option>
-                    <option>Cargo 1</option>
-                    <option>Cargo 2</option>
+                    <option>Viáticos</option>
+                    <option>Viáticos a Estudiantes</option>
                 </select>
                 <small *ngIf="seleccionAvanceInvalid" class="text-danger">Complete este campo</small>
             </div>
@@ -67,7 +67,7 @@
             <div class="col"></div>
             <div class="col-md-5">
                 <label>Total Avance Solicitado</label>
-                <input value=" " type="text" class="form-control" readonly>
+                <input value="{{ totalAvance|currency }}" type="text" class="form-control" readonly>
             </div>
         </div>
         <!-- Fin Campo: Total Avance -->
@@ -97,8 +97,12 @@
         </button>
     </div>
     <div class="modal-body">
-        <!-- file-upload -->
-        Cargar Archivo
+        <ngx-file-upload (prepareFilesList)="prepareFileList($event)"></ngx-file-upload>
+        <div class="row">
+            <div class="col-md-6"> {{ archivo?.name }} </div>
+            <div class="col-md-4 text-right"> {{ archivo ? (archivo.size/1024).toFixed(2) + ' Kb' : '' }}</div>
+            <div class="col-md-2"> <button class="btn btn-primary text-white" (click)="archivo = null"><i class="fas fa-trash"></i></button> </div>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cancelar</button>

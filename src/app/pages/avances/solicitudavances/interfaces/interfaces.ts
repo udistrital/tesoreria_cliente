@@ -123,6 +123,8 @@ export const CONFIGURACION_ESPECIFICACIONTIPO: any = {
                 class: 'text-center',
             },
             pipe: {
+                type: 'currency',
+                config: [],
                 class: 'text-center',
             }
         },
@@ -165,12 +167,12 @@ export const DATOS_ESPECIFICACIONTIPO: any = [
     {
         tipoEspecificacion: 'Transporte',
         descripcion: 'Transporte terrestre',
-        valor: '$ 500.000,00',
+        valor: 500000,
     },
     {
         tipoEspecificacion: 'Hospedaje',
         descripcion: 'Hospedaje en la ciudad 1 dia',
-        valor: '$ 500.000,00',
+        valor: 500000,
     },
 ];
 

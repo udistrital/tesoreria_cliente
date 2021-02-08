@@ -27,10 +27,10 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
   mostrarOcultar: string;
   mostrarOcultarIcono: string;
 
-  // Configuracion de la tabla
+  // Configuracion de las tablas
   tiposAvances: any;
+  archivo: any;
 
-  // subscriptionAdjuntarArchivos$: any;
   subscription$: any;
   subscriptionAccion$: any;
 
@@ -48,17 +48,13 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
     this.createForm();
 
     this.subscriptionAccion$ = this.store.select(getAccionTabla).subscribe((accion) => {
-      // console.log('accion');
-      // console.log(accion);
-
       if (accion && accion.titulo && accion.titulo.tabla !== undefined) {
         this.modalEspecificacion(accion);
       }
     });
 
-    // Acciones de especificaciones para requisitos
+    // Acciones de tablas
     this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((accion) => {
-      // console.log(accion);
       if (accion && accion.accion && accion.fila && accion.accion.name && accion.titulo && accion.titulo.tabla !== undefined) {
         switch (accion.accion.name) {
           case 'borrarEspecificacion':
@@ -94,10 +90,13 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
     this.modalEspecificacionGroup = this.fb.group({
       tipoId: ['', Validators.required],
       descripcion: ['', Validators.required],
-      valorSolicitado: ['', Validators.required],
+      valorSolicitado: ['',
+        [Validators.required,
+        Validators.pattern('^[0-9]*$')]],
     });
   }
 
+  // Guardar información de formulario
   saveForm() {
     if (this.tipoAvanceGroup.invalid) {
       return Object.values(this.tipoAvanceGroup.controls).forEach(control => {
@@ -114,6 +113,7 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
       return true;
   }
 
+  // Guardar información de formulario en modal
   saveModalForm() {
     if (this.modalEspecificacionGroup.invalid) {
       return Object.values(this.modalEspecificacionGroup.controls).forEach(control => {
@@ -141,7 +141,6 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
           (element: any) => element.tipoEspecificacion === accion.fila.tipoEspecificacion
             && element.descripcion === accion.fila.descripcion && element.valor === accion.fila.valor
         ), 1);
-        // this.store.dispatch(load({ datosEspecificacion: this.datosEspecificacion }));
       }
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -154,35 +153,47 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
       this.modalEspecificacionGroup.setValue({
         tipoId: accion.fila.tipoEspecificacion,
         descripcion: accion.fila.descripcion,
-        valorSolicitado: accion.fila.valor,      });
+        valorSolicitado: accion.fila.valor,
+      });
     } else {
       this.modalEspecificacionGroup.setValue({
         tipoId: '',
         descripcion: '',
-        valorSolicitado: '',      });
+        valorSolicitado: '',
+      });
     }
     this.agregarRegistroModalRef = this.modalService.open(this.agregarRegistroModal);
     this.agregarRegistroModalRef.result.then((result) => {
       if (`${result}`) {
-
+        this.tiposAvances[accion.titulo.tabla].especificaciones.push(
+          {
+            tipoEspecificacion: this.modalEspecificacionGroup.get('tipoId').value,
+            descripcion: this.modalEspecificacionGroup.get('descripcion').value,
+            valor: this.modalEspecificacionGroup.get('valorSolicitado').value,
+          },
+        );
       }
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
 
-  // Modal acciones sobre la tabla: eliminar registros
+  // Modal acciones sobre la tabla: adjuntar archivos
   modalAdjuntar(accion: any) {
     this.modalService.open(this.adjuntarArchivoModal).result.then((result) => {
       if (`${result}`) {
-        // this.tiposAvances[accion.titulo.tabla].especificaciones.splice(this.tiposAvances[accion.titulo.tabla].especificaciones.findIndex(
-        //   (element: any) => element.tipoEspecificacion === accion.fila.tipoEspecificacion
-        //     && element.descripcion === accion.fila.descripcion && element.valor === accion.fila.valor
-        // ), 1);
+        accion.fila.adjunto = this.archivo.name;
+        accion.fila.archivo = this.archivo;
+        this.archivo = null;
       }
     }, (reason) => {
+      this.archivo = null;
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+  }
+
+  prepareFileList(files: Array<any>) {
+    this.archivo = files[0];
   }
 
   private getDismissReason(reason: any): string {
@@ -203,17 +214,20 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
       configespecificaciones: Object.assign({}, CONFIGURACION_ESPECIFICACIONTIPO)
     };
     tipo.configespecificaciones.title = Object.assign({}, CONFIGURACION_ESPECIFICACIONTIPO.title);
-    tipo.configrequisitos.title =  Object.assign({}, CONFIGURACION_REQUISITOSTIPO.title);
+    tipo.configrequisitos.title = Object.assign({}, CONFIGURACION_REQUISITOSTIPO.title);
     this.tiposAvances.push(tipo);
-    this.tiposAvances.forEach(( tipo, index ) => {
-      tipo.configespecificaciones.title.tabla = index;
-      tipo.configrequisitos.title.tabla = index;
+    this.tiposAvances.forEach((tipoindex, index) => {
+      tipoindex.configespecificaciones.title.tabla = index;
+      tipoindex.configrequisitos.title.tabla = index;
     });
-
   }
 
   borrarTipo(index) {
     this.tiposAvances.splice(index, 1);
+  }
+
+  get totalAvance() {
+    return this.tiposAvances.reduce((a: any, b) => a + b.especificaciones.reduce((c: any, d: { valor: number; }) => c + d.valor, 0), 0);
   }
 
 }
