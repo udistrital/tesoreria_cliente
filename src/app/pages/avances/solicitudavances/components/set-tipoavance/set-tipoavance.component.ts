@@ -23,9 +23,6 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
   agregarRegistroModalRef: any;
   // Modals
   closeResult = '';
-  // Icono en la Lista de documentos
-  mostrarOcultar: string;
-  mostrarOcultarIcono: string;
 
   // Configuracion de las tablas
   tiposAvances: any;
@@ -38,8 +35,6 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder, private modalService: NgbModal, private store: Store<any>) {
 
     // Icono en la Lista de documentos
-    this.mostrarOcultar = 'Mostrar';
-    this.mostrarOcultarIcono = 'fa-plus-square';
     this.tiposAvances = [];
 
   }
@@ -125,11 +120,11 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
   }
 
   // Configuracion de Icono en lista documentos
-  mostrarOcultarTiposAvances(state: string) {
+  mostrarOcultarTiposAvances(state: string, index: number) {
     if (state === 'false') {
-      this.mostrarOcultarIcono = 'fa-minus-square';
+      this.tiposAvances[index].mostrarOcultarIcono = 'fa-minus-square';
     } else {
-      this.mostrarOcultarIcono = 'fa-plus-square';
+      this.tiposAvances[index].mostrarOcultarIcono = 'fa-plus-square';
     }
   }
 
@@ -211,7 +206,9 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
       requisitos: Object.assign([], DATOS_REQUISITOSTIPO),
       configrequisitos: Object.assign({}, CONFIGURACION_REQUISITOSTIPO),
       especificaciones: Object.assign([], DATOS_ESPECIFICACIONTIPO),
-      configespecificaciones: Object.assign({}, CONFIGURACION_ESPECIFICACIONTIPO)
+      configespecificaciones: Object.assign({}, CONFIGURACION_ESPECIFICACIONTIPO),
+      mostrarOcultar: 'Mostrar',
+      mostrarOcultarIcono: 'fa-plus-square',
     };
     tipo.configespecificaciones.title = Object.assign({}, CONFIGURACION_ESPECIFICACIONTIPO.title);
     tipo.configrequisitos.title = Object.assign({}, CONFIGURACION_REQUISITOSTIPO.title);
