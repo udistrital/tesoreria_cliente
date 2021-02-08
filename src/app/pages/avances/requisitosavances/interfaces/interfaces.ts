@@ -91,14 +91,14 @@ export const DATOS_TABLA: any = [
         nombre: 'Carta de Invitación',
         descripcion: 'Carta o documento de invitación al evento',
         estado: 'Activo',
-        fecha: '01-13-2021',
+        fecha: '01-12-2021',
     },
     {
         codigo: 'INS',
         nombre: 'Inscripción',
         descripcion: 'Soporte que evidencie el costo de la inscripción',
         estado: 'Activo',
-        fecha: '01-13-2021',
+        fecha: '01-12-2021',
     },
 ];
 

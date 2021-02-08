@@ -16,6 +16,9 @@ export class SetInfofuncionarioComponent implements OnInit {
   }
 
   // Validacion del Formulario
+  get vigenciaInvalid() {
+    return this.infoFuncionarioGroup.get('vigencia').invalid && this.infoFuncionarioGroup.get('vigencia').touched;
+  }
   get tipoIdInvalid() {
     return this.infoFuncionarioGroup.get('tipoId').invalid && this.infoFuncionarioGroup.get('tipoId').touched;
   }
@@ -28,6 +31,7 @@ export class SetInfofuncionarioComponent implements OnInit {
 
   createForm() {
     this.infoFuncionarioGroup = this.fb.group({
+      vigencia: ['', Validators.required],
       tipoId: ['', Validators.required],
       numeroId: ['',
         [Validators.required,

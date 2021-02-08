@@ -8,6 +8,18 @@
                 </h6>
             </div>
         </div>
+        <!-- Campo: Vigencia -->
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label>Vigencia</label>
+                <select class="custom-select" formControlName="vigencia" [class.is-invalid]="vigenciaInvalid">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>2020</option>
+                    <option>2019</option>
+                </select>
+                <small *ngIf="vigenciaInvalid" class="text-danger">Complete este campo</small>
+            </div>
+        </div>
         <!-- Campos: Elegir ID, Área Funcional, número de ID -->
         <div class="form-group row">
             <div class="col-md-4">

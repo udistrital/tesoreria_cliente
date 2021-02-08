@@ -156,6 +156,7 @@ export const CONFIGURACION_ESPECIFICACIONTIPO: any = {
             title: 'Agregar Especificación',
         }
     ],
+    endSubtotal: false,
     sort: true,
     filter: false,
 };
@@ -227,6 +228,7 @@ export const CONFIGURACION_REQUISITOSTIPO: any = {
             },
         ],
     },
+    endSubtotal: false,
     sort: true,
     filter: false,
 };
