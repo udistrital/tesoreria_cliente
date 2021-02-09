@@ -59,6 +59,7 @@ import { TableComponent } from './components/table/table.component';
     CellViewComponent,
     CompoundCellComponent,
     BtnVolverComponent,
+    TableComponent,
     FileUploadComponent,
     FileUploadDirective,
     TableComponent,
