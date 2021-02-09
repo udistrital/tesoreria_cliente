@@ -22,6 +22,11 @@ const routes: Routes = [{
       loadChildren: () => import('./solicitudavances/solicitudavances.module')
       .then(m => m.SolicitudavancesModule),
     },
+    {
+      path: 'reintegrosavances',
+      loadChildren: () => import('./reintegros/reintegros.module')
+      .then(m => m.ReintegrosModule),
+    },
   ],
 }];
 
