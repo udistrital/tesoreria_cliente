@@ -89,6 +89,78 @@ export const DATOS_TABLASOLICITUD: any = [
     },
 ];
 
+
+export const CONFIGURACION_REQUISITOSTIPO: any = {
+    title: {
+        name: 'REQUISITOS', // name title
+        class: 'text-center', // bootstrap class
+    },
+    showColumnTitle: true,
+    dataConfig: [
+        {
+            key: 'codigoAbreviado',
+            title: {
+                name: 'Código',
+                class: 'text-center',
+            },
+            pipe: {
+                class: '',
+            }
+        },
+        {
+            key: 'nombreRequisito',
+            title: {
+                name: 'Nombre de Requisito',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'adjunto',
+            title: {
+                name: 'Archivo Adjunto',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-center',
+            }
+        },
+    ],
+    rowActions: {
+        title: {
+            name: 'Acciones',
+            class: 'text-center',
+            actionClass: 'd-flex flex-row justify-content-around align-middle'
+        },
+        actions: [
+            {
+                name: 'adjuntarArchivo',
+                icon: 'fas fa-paperclip',
+                class: 'p-1',
+                title: 'Ajuntar Archivo',
+            },
+        ],
+    },
+    endSubtotal: false,
+    sort: true,
+    filter: false,
+};
+
+export const DATOS_REQUISITOSTIPO: any = [
+    {
+        codigoAbreviado: 'CINV',
+        nombreRequisito: 'Carta de Invitación ',
+        adjunto: 'cartainvitacion.pdf'
+    },
+    {
+        codigoAbreviado: 'INS',
+        nombreRequisito: 'Inscripción',
+        adjunto: 'inscripcion.pdf'
+    },
+];
+
 export const CONFIGURACION_ESPECIFICACIONTIPO: any = {
     title: {
         name: 'ESPECIFICACIONES', // name title
@@ -176,18 +248,17 @@ export const DATOS_ESPECIFICACIONTIPO: any = [
     },
 ];
 
-
-export const CONFIGURACION_REQUISITOSTIPO: any = {
+export const CONFIGURACION_ESPECIFICACIONDETALLE: any = {
     title: {
-        name: 'REQUISITOS', // name title
+        name: 'ESPECIFICACIONES', // name title
         class: 'text-center', // bootstrap class
     },
     showColumnTitle: true,
     dataConfig: [
         {
-            key: 'codigoAbreviado',
+            key: 'tipoEspecificacion',
             title: {
-                name: 'Código',
+                name: 'Tipo',
                 class: 'text-center',
             },
             pipe: {
@@ -195,9 +266,9 @@ export const CONFIGURACION_REQUISITOSTIPO: any = {
             }
         },
         {
-            key: 'nombreRequisito',
+            key: 'descripcion',
             title: {
-                name: 'Nombre de Requisito',
+                name: 'Descripción de Especificación',
                 class: 'text-center',
             },
             pipe: {
@@ -205,12 +276,14 @@ export const CONFIGURACION_REQUISITOSTIPO: any = {
             }
         },
         {
-            key: 'adjunto',
+            key: 'valor',
             title: {
-                name: 'Archivo Adjunto',
+                name: 'Valor Solicitado',
                 class: 'text-center',
             },
             pipe: {
+                type: 'currency',
+                config: [],
                 class: 'text-center',
             }
         },
@@ -223,10 +296,16 @@ export const CONFIGURACION_REQUISITOSTIPO: any = {
         },
         actions: [
             {
-                name: 'adjuntarArchivo',
-                icon: 'fas fa-paperclip',
+                name: 'modificarEspecificacion',
+                icon: 'fas fa-edit',
                 class: 'p-1',
-                title: 'Ajuntar Archivo',
+                title: 'Modificar Especificación',
+            },
+            {
+                name: 'borrarEspecificacion',
+                icon: 'fas fa-trash-alt',
+                class: 'p-1',
+                title: 'Borrar Especificación',
             },
         ],
     },
@@ -235,16 +314,15 @@ export const CONFIGURACION_REQUISITOSTIPO: any = {
     filter: false,
 };
 
-export const DATOS_REQUISITOSTIPO: any = [
+export const DATOS_ESPECIFICACIONDETALLE: any = [
     {
-        codigoAbreviado: 'CINV',
-        nombreRequisito: 'Carta de Invitación ',
-        adjunto: 'cartainvitacion.pdf'
-
+        tipoEspecificacion: 'Transporte',
+        descripcion: 'Transporte terrestre',
+        valor: 500000,
     },
     {
-        codigoAbreviado: 'INS',
-        nombreRequisito: 'Inscripción',
-        adjunto: 'inscripcion.pdf'
+        tipoEspecificacion: 'Hospedaje',
+        descripcion: 'Hospedaje en la ciudad 1 dia',
+        valor: 500000,
     },
 ];

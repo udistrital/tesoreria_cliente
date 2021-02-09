@@ -92,29 +92,27 @@
                 <label>Código de Convenio</label>
                 <select class="custom-select" formControlName="codConvenio" [class.is-invalid]="codConvenioInvalid">
                     <option selected disabled value="">Seleccione...</option>
-                    <option>Cargo 1</option>
-                    <option>Cargo 2</option>
+                    <option>210</option>
+                    <option>201</option>
                 </select>
                 <small *ngIf="codConvenioInvalid" class="text-danger">Complete este campo</small>
             </div>
             <div class="col-md-3">
                 <label>Nombre de Convenio</label>
-                <input type="text" class="form-control" formControlName="convenio" [class.is-invalid]="convenioInvalid">
-                <small *ngIf="convenioInvalid" class="text-danger">Complete este campo</small>
+                <input value=" " type="text" class="form-control" readonly>
             </div>
             <div class="col-md-3">
                 <label class="col-form-label col-form-label-sm">Código Proyecto de Investigación</label>
                 <select class="custom-select" formControlName="codInvestigacion" [class.is-invalid]="codInvestigacionInvalid">
                     <option selected disabled value="">Seleccione...</option>
-                    <option>Cargo 1</option>
-                    <option>Cargo 2</option>
+                    <option>120</option>
+                    <option>102</option>
                 </select>
                 <small *ngIf="codInvestigacionInvalid" class="text-danger">Complete este campo</small>
             </div>
             <div class="col-md-3">
                 <label class="col-form-label col-form-label-sm">Nombre Proyecto de Investigación</label>
-                <input type="text" class="form-control" formControlName="investigacion" [class.is-invalid]="investigacionInvalid">
-                <small *ngIf="investigacionInvalid" class="text-danger">Complete este campo</small>
+                <input value=" " type="text" class="form-control" readonly>
             </div>
         </div>
         <!-- Fin Campos: Nombres, Apellidos, Dirección -->

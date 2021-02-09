@@ -40,14 +40,8 @@ export class SetDescripcionComponent implements OnInit {
   get codConvenioInvalid() {
     return this.descripcionGroup.get('codConvenio').invalid && this.descripcionGroup.get('codConvenio').touched;
   }
-  get convenioInvalid() {
-    return this.descripcionGroup.get('convenio').invalid && this.descripcionGroup.get('convenio').touched;
-  }
   get codInvestigacionInvalid() {
     return this.descripcionGroup.get('codInvestigacion').invalid && this.descripcionGroup.get('codInvestigacion').touched;
-  }
-  get investigacionInvalid() {
-    return this.descripcionGroup.get('investigacion').invalid && this.descripcionGroup.get('investigacion').touched;
   }
 
   createForm() {
@@ -60,9 +54,7 @@ export class SetDescripcionComponent implements OnInit {
       facultad: ['', Validators.required],
       proyecto: ['', Validators.required],
       codConvenio: ['', Validators.required],
-      convenio: ['', Validators.required],
       codInvestigacion: ['', Validators.required],
-      investigacion: ['', Validators.required],
     });
   }
 
