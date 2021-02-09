@@ -144,33 +144,63 @@ steps:
     event:
     - push
 
-- name: notify_telegram
-  image: appleboy/drone-telegram
+# - name: notify_telegram
+#   image: appleboy/drone-telegram
+#   settings:
+#     token:
+#       from_secret: telegram_token
+#     to:
+#       from_secret: telegram_to
+#     format: html
+#     message: >
+#       {{#success build.status}}
+#         ✅ <a href="{{build.link}}">SUCCESS</a> <b>Build #{{build.number}}</b> (type: <code>{{ build.event }}</code>)
+#         <b>Repo:</b><code>{{repo.name}}</code> <b>Branch:</b><code>{{commit.branch}}</code>
+#         <b>Commit:</b> <a href="{{commit.link}}">{{truncate commit.sha 7}}</a>
+#         <b>Autor:</b>{{commit.author}} <code>&#128526 </code>
+#       {{else}}
+#         ❌ <a href="{{build.link}}">FAILURE</a> <b>Build #{{build.number}}</b> (type: <code>{{ build.event }}</code>)
+#         <b>Repo:</b><code>{{repo.name}}</code> <b>Branch:</b> <code>{{commit.branch}}</code>
+#         <b>Commit:</b> <a href="{{commit.link}}">{{truncate commit.sha 7}}</a>
+#         <b>Autor:</b>{{commit.author}} <code>&#128549 </code>
+#       {{/success}}
+#   when:
+#     branch:
+#     - develop
+#     - release/*
+#     - master
+#     event:
+#     - push
+#     status:
+#     - failure
+#     - success
+
+- name: notify_slack
+  image: plugins/slack
   settings:
-    token:
-      from_secret: telegram_token
-    to:
-      from_secret: telegram_to
-    format: html
-    message: >
+    webhook:
+      from_secret: slack_webhook
+    channel: deploy
+    template: >
       {{#success build.status}}
-        ✅ <a href="{{build.link}}">SUCCESS</a> <b>Build #{{build.number}}</b> (type: <code>{{ build.event }}</code>)
-        <b>Repo:</b><code>{{repo.name}}</code> <b>Branch:</b><code>{{commit.branch}}</code>
-        <b>Commit:</b> <a href="{{commit.link}}">{{truncate commit.sha 7}}</a>
-        <b>Autor:</b>{{commit.author}} <code>&#128526 </code>
+        :heavy_check_mark:  <{{ build.link }}|SUCCESS> Build #{{build.number}}
+        type: {{ build.event }} - Repo: {{repo.name}}
+        Commit: <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
+        Branch: {{build.branch}} - Autor: {{build.author}}  :sunglasses:
       {{else}}
-        ❌ <a href="{{build.link}}">FAILURE</a> <b>Build #{{build.number}}</b> (type: <code>{{ build.event }}</code>)
-        <b>Repo:</b><code>{{repo.name}}</code> <b>Branch:</b> <code>{{commit.branch}}</code>
-        <b>Commit:</b> <a href="{{commit.link}}">{{truncate commit.sha 7}}</a>
-        <b>Autor:</b>{{commit.author}} <code>&#128549 </code>
+        :x: <{{ build.link }}|FAILURE> Build #{{build.number}}
+        type: {{ build.event }} - Repo: {{repo.name}}
+        Branch: {{build.branch}} - Autor: {{build.author}} :weary:
+        Commit: <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
       {{/success}}
   when:
     branch:
     - develop
-    - release/*
+    - release
     - master
     event:
     - push
     status:
     - failure
     - success
+

@@ -7,6 +7,7 @@ import { ImplicitAutenticationService } from './../@core/utils/implicit_autentic
 import { environment } from '../../environments/environment';
 import Swal from 'sweetalert2';
 import 'style-loader!angular2-toaster/toaster.css';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'ngx-pages',
@@ -31,12 +32,13 @@ export class PagesComponent implements OnInit {
 
   url_presupuesto  = environment.CLIENTE_PRESUPUESTO;
   url_contabilidad = environment.CLIENTE_CONTABILIDAD;
-  application_conf = 'presupuesto_kronos';
+  application_conf = 'tesoreria';
 
   constructor(
     public  menuws: MenuService,
     private translate: TranslateService,
-    private autenticacion: ImplicitAutenticationService
+    private autenticacion: ImplicitAutenticationService,
+    private store: Store<any>
   ) { }
 
   ngOnInit() {
@@ -47,7 +49,7 @@ export class PagesComponent implements OnInit {
         data => {
           this.dataMenu = <any>data;
           this.mapMenuByObjects(this.dataMenu);
-          this.translateMenu();
+          // this.translateMenu();
         },
         (error: HttpErrorResponse) => {
           Swal.fire({
@@ -59,15 +61,15 @@ export class PagesComponent implements OnInit {
             confirmButtonText: this.translate.instant('GLOBAL.aceptar'),
           });
           this.menu = [];
-          this.translateMenu();
+          // this.translateMenu();
         });
     } else {
       this.rol = 'PUBLICO';
       this.menu = [];
-      this.translateMenu();
+      // this.translateMenu();
     }
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => { // Live reload
-      this.translateMenu();
+      // this.translateMenu();
     });
   }
 

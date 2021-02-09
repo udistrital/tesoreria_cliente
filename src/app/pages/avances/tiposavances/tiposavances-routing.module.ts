@@ -6,11 +6,19 @@ import { SetAsociarrequisitoComponent } from './components/set-asociarrequisito/
 
 const routes: Routes = [
   {
-    path: 'list',
+    path: 'lista',
     component: TableTiposavancesComponent,
   },
   {
-    path: 'crear-modificar',
+    path: 'crear',
+    component: SetTipodeavanceComponent,
+  },
+  {
+    path: 'editar',
+    component: SetTipodeavanceComponent,
+  },
+  {
+    path: 'detalle',
     component: SetTipodeavanceComponent,
   },
   {

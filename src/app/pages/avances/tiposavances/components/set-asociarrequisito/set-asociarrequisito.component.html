@@ -37,18 +37,36 @@
                             <small *ngIf="requisitosInvalid" class="text-danger">Seleccione una opción</small>
                         </div>
                         <div class="col-md-3">
-                            <button type="submit" class="btn btn-primary text-white m-0 mt-4">Añadir</button>
+                            <button type="submit" class="btn btn-primary btn-block text-white m-0 mt-4">Añadir</button>
                         </div>
                     </div>
                     <!-- Fin Campos Área funcional, fecha -->
                     <!-- Fin Grupo: Información de Tipo de avance -->
                 </div>
+
+                <div class="row">
+                    <div class="col-md-12 bg-white px-4 pb-3">
+                        <ngx-general-table [config]="configRequisitos" [datos]="datosRequisitos"></ngx-general-table>
+                    </div>
+                </div>
+                <!-- Botones: Volver a registro, Siguiente -->
+                <div class="row pt-2 text-center">
+                    <div class="col-md-6">
+                        <a routerLink="../lista">
+                            <button type="button" class="btn btn-primary mb-3 mt-3 text-white">
+                                <div class="d-flex flex-row justify-content-around align-middle">
+                                    <span>Volver</span>
+                                </div>
+                            </button>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-success mb-3 mt-3 text-white" (click)="modalGuardar()">Asociar Requisitos</button>
+                    </div>
+                </div>
+
+                <!-- Fin Botones: Volver a registro, Siguiente -->
             </form>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 bg-white px-4 pb-3">
-            <ngx-general-table [config]="configRequisitos" [datos]="datosRequisitos"></ngx-general-table>
         </div>
     </div>
 </div>
@@ -67,6 +85,25 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cancelar</button>
         <button type="button" class="btn btn-danger" (click)="modal.close(true)">Borrar</button>
+    </div>
+</ng-template>
+<!-- Fin Modal -->
+
+<!-- Modal: Asociar Requisito de Avance -->
+<ng-template #asociarModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="asociarModal">Asociar Requisitos</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p class="text-center">Se han asociado los requisitos al tipo de avance {{ codigoTipo }}.</p>
+        <p class="text-center">Estado: {{ estadoTipo }}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cancelar</button>
+        <button type="button" class="btn btn-primary text-white" (click)="modal.close(true)">Aceptar</button>
     </div>
 </ng-template>
 <!-- Fin Modal -->
