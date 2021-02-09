@@ -130,7 +130,7 @@
                     <option>Transporte</option>
                     <option>Hospedaje</option>
                 </select>
-                <small *ngIf="seleccionAvanceInvalid" class="text-danger">Complete este campo</small>
+                <small *ngIf="esInvalido('tipoId')" class="text-danger">Complete este campo</small>
             </div>
             <div class="form-group">
                 <label for="descripcion" class="col-form-label">Descripción:</label>

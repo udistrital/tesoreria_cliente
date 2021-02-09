@@ -1,0 +1,95 @@
+<form [formGroup]="infoAfectacionGroup" (ngSubmit)="saveForm()">
+    <!-- Grupo: Datos del funcionario -->
+    <div class="container">
+        <div class="row">
+            <div class="col pb-3">
+                <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
+                    Datos de Orden de Pago
+                </h6>
+            </div>
+        </div>
+        <!-- Campo: Vigencia -->
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label>Vigencia</label>
+                <select class="custom-select" formControlName="vigencia" [class.is-invalid]="esInvalido('vigencia')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>01</option>
+                    <option>02</option>
+                </select>
+                <small *ngIf="esInvalido('vigencia')" class="text-danger">Complete este campo</small>
+            </div>
+            <div class="col-md-4">
+                <label>No. Orden de Pago</label>
+                <input type="number" class="form-control" formControlName="numeroOrdenPago" [class.is-invalid]="esInvalido('numeroOrdenPago')">
+                <small *ngIf="esInvalido('numeroOrdenPago')" class="text-danger">Ingrese números en este campo</small>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-primary btn-block text-white" (click)="archivo = null">
+                    <span>Consultar Orden de Pago</span>
+                </button>
+            </div>
+        </div>
+
+        <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
+
+        <div class="row">
+            <div class="col pb-3">
+                <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
+                    Afectación Presupuestal
+                </h6>
+            </div>
+        </div>
+        <!-- Campos: Elegir ID, Área Funcional, número de ID -->
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label>Código de Rubro</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Nombre de Rubro</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Número de CDP</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label>Código de Fuente</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Nombre de Fuente</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Número de RP</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="form-group row align-items-end">
+            <div class="col-md-4">
+                <label>Valor de Ingreso</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+        </div>
+    </div>
+    <!-- Botones: Volver a registro, Siguiente -->
+    <div class="container">
+        <div class="row pt-2 text-center">
+            <div class="col-md-6">
+                <button mat-button matStepperPrevious type="button" class="btn btn-primary mb-3 mt-3 text-white">
+                    <span>Regresar</span>
+                </button>
+            </div>
+            <div class="col-md-6">
+                <button mat-button matStepperNext type="submit" class="btn btn-success m-0 mt-4">
+                    Siguiente
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Botones: Volver a registro, Siguiente -->
+</form>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CONFIGURACION_LISTA, DATOS_LISTA } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'ngx-table-legalizacion-reintegros',
@@ -11,8 +12,8 @@ export class TableLegalizacionReintegrosComponent implements OnInit {
   datosReintegros: any;
 
   constructor() {
-   // this.datosReintegros = DATOS_TABLASOLICITUD;
-   // this.configReintegros = CONFIGURACION_TABLASOLICITUD;
+    this.datosReintegros = DATOS_LISTA;
+    this.configReintegros = CONFIGURACION_LISTA;
 
    }
 

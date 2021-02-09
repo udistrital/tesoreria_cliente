@@ -1,0 +1,156 @@
+<form [formGroup]="infoReintegroGroup" (ngSubmit)="saveForm()">
+    <!-- Grupo: Datos del funcionario -->
+    <div class="container">
+        <div class="row">
+            <div class="col pb-3">
+                <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
+                    Información de Reintegro
+                </h6>
+            </div>
+        </div>
+        <!-- Campo: Vigencia -->
+        <div class="form-group row">
+            <div class="col-md-3">
+                <label>Área Funcional</label>
+                <select class="custom-select" formControlName="areaFuncional" [class.is-invalid]="esInvalido('areaFuncional')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>01</option>
+                    <option>02</option>
+                </select>
+                <small *ngIf="esInvalido('areaFuncional')" class="text-danger">Complete este campo</small>
+            </div>
+            <div class="col-md-3">
+                <label>Número de Oficio</label>
+                <input type="number" class="form-control" formControlName="numeroOficio" [class.is-invalid]="esInvalido('numeroOficio')">
+                <small *ngIf="esInvalido('numeroOficio')" class="text-danger">Ingrese números en este campo</small>
+            </div>
+            <div class="col-md-3">
+                <label>Fecha de Oficio</label>
+                <div class="input-group">
+                    <input type="date" name="fecha" class="form-control" formControlName="fecha" [class.is-invalid]="esInvalido('fecha')">
+                    <div class="input-group-append">
+                    </div>
+                </div>
+                <small *ngIf="esInvalido('fecha')" class="text-danger">Ingrese números en este campo</small>
+            </div>
+            <div class="col-md-3">
+                <label>Vigencia</label>
+                <select class="custom-select" formControlName="vigencia" [class.is-invalid]="esInvalido('vigencia')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>2019</option>
+                    <option>2020</option>
+                </select>
+                <small *ngIf="esInvalido('vigencia')" class="text-danger">Complete este campo</small>
+            </div>
+        </div>
+        <!-- Campos: Elegir ID, Área Funcional, número de ID -->
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label>Tipo de Acta</label>
+                <select class="custom-select" formControlName="tipoActa" [class.is-invalid]="esInvalido('tipoActa')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>Reembolso de Avances</option>
+                </select>
+                <small *ngIf="esInvalido('tipoActa')" class="text-danger">Complete este campo</small>
+            </div>
+            <div class="col-md-4">
+                <label>Concepto</label>
+                <select class="custom-select" formControlName="concepto" [class.is-invalid]="esInvalido('concepto')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>Reintegro de Avances</option>
+                </select>
+                <small *ngIf="esInvalido('concepto')" class="text-danger">Complete este campo</small>
+            </div>
+            <div class="col-md-4">
+                <label>Causal de Reintegro</label>
+                <select class="custom-select" formControlName="causalReintegro" [class.is-invalid]="esInvalido('causalReintegro')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>Dinero no utilizado</option>
+                </select>
+                <small *ngIf="esInvalido('causalReintegro')" class="text-danger">Complete este campo</small>
+            </div>
+        </div>
+        <!-- Fin Campos: Elegir ID, Área Funcional, número de ID -->
+        <!-- Campos: Nombres, Apellidos, Dirección -->
+        <div class="form-group row">
+
+
+        </div>
+        <!-- Fin Campos: Nombres, Apellidos, Dirección -->
+
+        <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
+
+        <!-- Campos: Correo, Teléfono móvil y fijo -->
+        <div class="form-group row">
+            <div class="col-md-8">
+                <label>Justificación</label>
+                <textarea class="form-control" placeholder="Justificación del Reintegro" formControlName="justificacion" rows="5" [class.is-invalid]="esInvalido('justificacion')"></textarea>
+                <small *ngIf="esInvalido('justificacion')" class="text-danger">Ingrese mínimo 5 caracteres</small>
+            </div>
+            <div class="col-md-4">
+                <div class="row px-3">
+                    <label>Valor de Reintegro</label>
+                    <input type="number" class="form-control" formControlName="valorReintegro" [class.is-invalid]="esInvalido('valorReintegro')">
+                    <small *ngIf="esInvalido('valorReintegro')" class="text-danger">Ingrese números en este campo</small>
+                </div>
+                <div class="row px-3">
+                    <label>No. Recibo de Caja</label>
+                    <input type="number" class="form-control" formControlName="reciboCaja" [class.is-invalid]="esInvalido('reciboCaja')">
+                    <small *ngIf="esInvalido('reciboCaja')" class="text-danger">Ingrese números en este
+                        campo</small>
+                </div>
+                <div class="row px-3">
+                    <button type="button" class="btn btn-success btn-block mb-3 mt-3 text-white">
+                        <div class="d-flex flex-row justify-content-around align-middle">
+                            <span>Consultar Ingreso</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <p class="text-center">Adjuntar consignación de reintegro</p>
+            <div class="row">
+                <div class="col">
+                    <ngx-file-upload (prepareFilesList)="prepareFileList($event)"></ngx-file-upload>
+                </div>
+            </div>
+            <div class="row pt-2 align-items-baseline">
+                <div class="col-md-4">
+                    <input value="{{ archivo?.name }}" type="text" class="form-control" readonly>
+                </div>
+                <div class="col-md-4">
+                    <input value="{{ archivo ? (archivo.size/1024).toFixed(2) + ' Kb' : '' }}" type="text" class="form-control" readonly>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-primary btn-block text-white" (click)="archivo = null">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Fin Campos: Correo, Teléfono móvil y fijo -->
+
+        <!-- Botones: Volver a registro, Siguiente -->
+        <div class="container">
+            <div class="row pt-2 text-center">
+                <div class="col-md-6">
+                    <a routerLink="../lista">
+                        <button type="button" class="btn btn-primary mb-3 mt-3 text-white">
+                            <div class="d-flex flex-row justify-content-around align-middle">
+                                <span>Volver a registros</span>
+                            </div>
+                        </button>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <button mat-button matStepperNext type="submit" class="btn btn-success m-0 mt-4">
+                        Siguiente
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Fin Botones: Volver a registro, Siguiente -->
+    </div>
+    <!-- Fin Datos del funcionario -->
+</form>
