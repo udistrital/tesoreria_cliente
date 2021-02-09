@@ -1,0 +1,77 @@
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body p-5">
+            <div class="row">
+                <div class="col">
+                    <h5 class="card-title text-center text-primary">
+                        CONSULTA DE AVANCES
+                    </h5>
+                </div>
+            </div>
+            <form [formGroup]="consultaForm" (ngSubmit)="consultar(consultaForm.value)">
+                <div class="row py-5">
+                    <div class="col mx-2">
+                        <label for="tipoId">Tipo de ID</label> <br>
+                        <select name="tipoId" id="tipoId" class="form-control" formControlName="tipoId" placeholder="Elegir...">
+                            <option *ngFor="let tipo of tiposDocumento" value={{tipo}}>{{tipo}}</option>
+                        </select>
+                    </div>
+                    <div class="col mx-2">
+                        <label for="numeroId">N° de ID</label> <br>
+                        <input type="text" id="numeroId" class="numeroId" formControlName="numeroId">
+                    </div>
+                    <div class="col mx-2 align-text-bottom">
+                        <button type="submit" class="btn btn-primary px-3 mt-4 text-light" [disabled]="consultaForm.invalid">Consultar </button>
+                    </div>
+                
+                <div class="col mx-2">
+                    <label for="">Área funcional</label> <br>
+                    <select name="" id="">
+                        <option disabled selected>Elegir...</option>
+                        <option *ngFor="let area of areaFuncional" value={{area}}>{{area}}</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+            <ngx-table [titles]="titlesConsulta" [attributes]="attributesConsulta" [list]="datosConsulta" [seleccion]="true"></ngx-table>
+            <div class="row py-5">
+                <div class="col d-flex justify-content-center">
+                    <button type="submit" (click)="open(modal)" [disabled]="selection.elementosElegidos.length === 0" class="btn btn-danger px-3 py-2 my-2 text-light"> Denegar </button>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <button type="button" class="btn btn-success px-3 py-2 my-2 text-light" (click)="aprobar()" [disabled]="selection.elementosElegidos.length === 0"> Aprobar </button>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary px-3 py-2 my-2 text-light" (click)="generarNecesidad()" [disabled]="necesidad"> Generar necesidad </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #modal let-modal>
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="material-icons cerrar align-middle">
+            close
+            </span>
+        <h5 class="modal-title denegar align-middle" id="exampleModalLabel"> Denegar </h5>
+        <button type="button" class="close" (click)="close()" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="justificacionDenegar" (ngSubmit)="crear(justificacionDenegar.value)">
+      <div class="modal-body">
+          <p class="p-3"> Se va a negar la solicitud de avance N° 001</p>
+          <div class="form-group p-3">
+            <label for="justificacion">Justificación:</label>
+            <textarea formControlName="justificacion" class="form-control" id="justificacion" placeholder="Escribir..."></textarea>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light px-3 py-2" (click)="close()">Cancelar</button>
+        <button mat-button type="submit" class="btn btn-success px-3 py-2" [disabled]="justificacionDenegar.invalid">Continuar</button>
+      </div>
+    </form>
+</div> 
+</ng-template>

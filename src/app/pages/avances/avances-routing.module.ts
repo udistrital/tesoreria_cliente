@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AvancesComponent } from './avances.component';
+import { ConsultaModule } from './consulta/consulta.module';
 
 
 const routes: Routes = [{
@@ -13,6 +14,11 @@ const routes: Routes = [{
       .then(m => m.TiposavancesModule),
     },
     {
+      path: 'consultas',
+      loadChildren: () => import('./consulta/consulta.module')
+      .then(m => m.ConsultaModule),
+    },
+    {
       path: 'requisitosavances',
       loadChildren: () => import('./requisitosavances/requisitosavances.module')
       .then(m => m.RequisitosavancesModule),
@@ -21,6 +27,11 @@ const routes: Routes = [{
       path: 'legalizacionavance',
       loadChildren: () => import('./legalizacionavance/legalizacionavance.module')
       .then(m => m.LegalizacionavanceModule),
+    },
+    {
+      path: 'especificacionesavances',
+      loadChildren: () => import('./especificacionesavances/especificacionesavances.module')
+      .then(m => m.EspecificacionesavancesModule),
     }
   ],
 }];
