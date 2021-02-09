@@ -4,7 +4,7 @@ import { DATOS_REQUISITOSTIPO, CONFIGURACION_REQUISITOSTIPO, DATOS_ESPECIFICACIO
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { getFilaSeleccionada } from '../../../../../shared/selectors/shared.selectors';
-import { getAccionTabla } from '../../../../../../../../../CentralCuentas/central_cuentas_cliente/src/app/shared/selectors/shared.selectors';
+import { getAccionTabla } from '../../../../../shared/selectors/shared.selectors';
 import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
 
 @Component({
