@@ -22,6 +22,11 @@ const routes: Routes = [{
       path: 'requisitosavances',
       loadChildren: () => import('./requisitosavances/requisitosavances.module')
       .then(m => m.RequisitosavancesModule),
+    },
+    {
+      path: 'especificacionesavances',
+      loadChildren: () => import('./especificacionesavances/especificacionesavances.module')
+      .then(m => m.EspecificacionesavancesModule),
     }
   ],
 }];
