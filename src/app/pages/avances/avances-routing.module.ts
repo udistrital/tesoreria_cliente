@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AvancesComponent } from './avances.component';
-import { ConsultaModule } from './consulta/consulta.module';
 
 
 const routes: Routes = [{
@@ -22,6 +21,11 @@ const routes: Routes = [{
       path: 'requisitosavances',
       loadChildren: () => import('./requisitosavances/requisitosavances.module')
       .then(m => m.RequisitosavancesModule),
+    },
+    {
+      path: 'solicitudavances',
+      loadChildren: () => import('./solicitudavances/solicitudavances.module')
+      .then(m => m.SolicitudavancesModule),
     },
     {
       path: 'especificacionesavances',
