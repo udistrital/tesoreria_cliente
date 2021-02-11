@@ -31,6 +31,11 @@ const routes: Routes = [{
       path: 'especificacionesavances',
       loadChildren: () => import('./especificacionesavances/especificacionesavances.module')
       .then(m => m.EspecificacionesavancesModule),
+    },
+    {
+      path: 'ejecucion',
+      loadChildren: () => import('./ejecucionavances/ejecucionavances.module')
+      .then(m => m.EjecucionavancesModule),
     }
   ],
 }];
