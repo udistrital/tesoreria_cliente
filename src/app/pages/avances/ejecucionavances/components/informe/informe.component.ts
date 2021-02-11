@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-informe',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InformeComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+  ejecucion() {
+    this.router.navigateByUrl('pages/avances/ejecucion/ejecucion');
+  }
+
+  consolidado() {
+    this.router.navigateByUrl('pages/avances/ejecucion/consolidado');
   }
 
 }
