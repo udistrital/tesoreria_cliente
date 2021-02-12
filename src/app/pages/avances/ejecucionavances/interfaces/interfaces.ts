@@ -1,6 +1,6 @@
-export const DATOS_EJECUCION: any =[
+export const DATOS_EJECUCION: any = [
     {
-        mes: 'abril', 
+        mes: 'abril',
         valorGirado: 65747,
         porcentajeGirado: 13453,
         valorLegalizado: 89045,

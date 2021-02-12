@@ -65,7 +65,6 @@ export class TableComponent implements OnInit {
   get porcentajeLegalizar() {
     return this.list.reduce((a: any, b: { porcentajeLegalizar: number; }) => a + b.porcentajeLegalizar, 0);
   }
-  
   get totalAvances() {
     return this.list.reduce((a: any, b: { totalAvances: number; }) => a + b.totalAvances, 0);
   }

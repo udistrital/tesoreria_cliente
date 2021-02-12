@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { PDFDocumentProxy } from 'ng2-pdf-viewer';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { DATOS_EJECUCION } from '../../interfaces/interfaces'
+import { DATOS_EJECUCION } from '../../interfaces/interfaces';
 @Component({
   selector: 'ngx-consolidado',
   templateUrl: './consolidado.component.html',
@@ -142,7 +142,5 @@ export class ConsolidadoComponent implements OnInit, OnDestroy {
     this.pdf = pdf;
     this.totalPages = pdf.numPages;
   }
-
-
 
 }
