@@ -300,7 +300,7 @@ export const CONFIGURACION_REINTEGRO: any = {
             name: 'nuevoRegistro',
             icon: 'fas fa-plus py-1 px-2',
             class: 'px-2',
-            title: 'Agregar Registro',
+            title: 'Agregar Cuenta',
         }
     ],
 };
@@ -320,3 +320,130 @@ export const DATOS_REINTEGRO: any = [
         credito: '100000',
     },
 ];
+
+export const CONFIGURACION_LEGALIZACION_DETALLE: any = {
+    showColumnTitle: true,
+    dataConfig: [
+        {
+            key: 'secuencia',
+            title: {
+                name: 'Secuencia',
+                class: 'text-center',
+            },
+            pipe: {
+                class: '',
+            }
+        },
+        {
+            key: 'tercero',
+            title: {
+                name: 'ID de Tercero',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'numeroCuenta',
+            title: {
+                name: 'No. de Cuenta',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'debito',
+            title: {
+                name: 'Débito',
+                class: 'text-center',
+            },
+            pipe: {
+                type: 'currency',
+                config: [],
+                class: 'text-center',
+            }
+        },
+        {
+            key: 'credito',
+            title: {
+                name: 'Crédito',
+                class: 'text-center',
+            },
+            pipe: {
+                type: 'currency',
+                config: [],
+                class: 'text-center',
+            }
+        },
+    ],
+    noData: {
+        name: 'No Existen Elementos Asociados',
+        class: 'text-center',
+    },
+};
+export const CONFIGURACION_REINTEGRO_DETALLE: any = {
+    showColumnTitle: true,
+    dataConfig: [
+        {
+            key: 'secuencia',
+            title: {
+                name: 'Secuencia',
+                class: 'text-center',
+            },
+            pipe: {
+                class: '',
+            }
+        },
+        {
+            key: 'tercero',
+            title: {
+                name: 'ID de Tercero',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'numeroCuenta',
+            title: {
+                name: 'No. de Cuenta',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'debito',
+            title: {
+                name: 'Débito',
+                class: 'text-center',
+            },
+            pipe: {
+                type: 'currency',
+                config: [],
+                class: 'text-center',
+            }
+        },
+        {
+            key: 'credito',
+            title: {
+                name: 'Crédito',
+                class: 'text-center',
+            },
+            pipe: {
+                type: 'currency',
+                config: [],
+                class: 'text-center',
+            }
+        },
+    ],
+    noData: {
+        name: 'No Existen Elementos Asociados',
+        class: 'text-center',
+    },
+};

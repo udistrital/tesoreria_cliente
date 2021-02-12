@@ -17,15 +17,13 @@ export class SetContabilizacionComponent implements OnInit {
   @ViewChild('reintegroTab', { static: false }) reintegroTab: ElementRef;
 
   contabilizacionGroup: FormGroup;
-  reintegroGroup: FormGroup;
-  // modalRegistroGroup: FormGroup;
+  modalRegistroGroup: FormGroup;
 
   configLegalizacion: any;
   datosLegalizacion: any;
   configReintegro: any;
   datosReintegro: any;
 
-  sumaCuentas: any;
   // Modales
   closeResult = '';
 
@@ -38,8 +36,6 @@ export class SetContabilizacionComponent implements OnInit {
     this.datosLegalizacion = DATOS_LEGALIZACION;
     this.configReintegro = CONFIGURACION_REINTEGRO;
     this.datosReintegro = DATOS_REINTEGRO;
-
-    this.sumaCuentas = [];
   }
 
   ngOnInit() {
@@ -47,37 +43,34 @@ export class SetContabilizacionComponent implements OnInit {
     // tabla
     this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((accion) => {
       if (accion && accion.accion) {
-        if (accion.accion.name === 'borrarLegalizacion') {
-          //  this.agregarRegistroModal(accion.fila);
+        switch (accion.accion.name) {
+          case 'borrarLegalizacion':
+            this.modalEliminarLegalizacion(accion);
+            break;
+          case 'borrarReintegro':
+            this.modalEliminarReintegro(accion);
+            break;
         }
-
       }
     });
-
   }
 
   createForm() {
     this.contabilizacionGroup = this.fb.group({
-      tipoComprobante: ['', Validators.required],
-      numeroComprobante: ['', Validators.required],
-      consecutivo: ['', Validators.required],
-      concepto: ['', Validators.required],
+      // Campos para comprobante de legalizacion
+      tipoComprobanteL: ['', Validators.required],
+      numeroComprobanteL: ['', Validators.required],
+      consecutivoL: ['', Validators.required],
+      conceptoL: ['', Validators.required],
+      // Campos para comprobante de reintegro
+      tipoComprobanteR: ['', Validators.required],
+      numeroComprobanteR: ['', Validators.required],
+      consecutivoR: ['', Validators.required],
+      conceptoR: ['', Validators.required],
     });
-    this.reintegroGroup = this.fb.group({
-      tipoComprobante: ['', Validators.required],
-      numeroComprobante: ['', Validators.required],
-      consecutivo: ['', Validators.required],
-      concepto: ['', Validators.required],
-    });
-    // this.modalRegistroGroup = this.fb.group({
-    //   idTercero: ['', Validators.required],
-    //   numeroComprobante: ['', Validators.required],
-    //   numeroCuenta: ['', Validators.required],
-    //   concepto: ['', Validators.required],
-    // });
   }
 
-  invalidLegalizacion(nombre: string) {
+  isInvalid(nombre: string) {
     const input = this.contabilizacionGroup.get(nombre);
     if (input)
       return input.invalid && (input.touched || input.dirty);
@@ -85,59 +78,65 @@ export class SetContabilizacionComponent implements OnInit {
       return true;
   }
 
-  invalidReintegro(nombre: string) {
-    const input = this.reintegroGroup.get(nombre);
-    if (input)
-      return input.invalid && (input.touched || input.dirty);
-    else
-      return true;
+  saveFormLegalizacion(touch = true) {
+    let valid = true;
+    const camposL = ['tipoComprobanteL', 'numeroComprobanteL', 'consecutivoL', 'conceptoL'];
+    for (const campo of camposL) {
+      const control = this.contabilizacionGroup.get(campo);
+      if (touch)
+        control.markAsTouched();
+      valid = valid && control.valid;
+    }
+    return valid;
   }
 
-  // invalidRegistro(nombre: string) {
-  //   const input = this.modalRegistroGroup.get(nombre);
-  //   if (input)
-  //     return input.invalid && (input.touched || input.dirty);
-  //   else
-  //     return true;
-  // }
-
-  saveFormLegalizacion() {
+  saveForm() {
     if (this.contabilizacionGroup.invalid) {
+      if (!this.saveFormLegalizacion())
+        this.legalizacionTab.nativeElement.click();
       return Object.values(this.contabilizacionGroup.controls).forEach(control => {
         control.markAsTouched();
       });
     }
   }
 
-  saveFormReintegro() {
-    if (this.reintegroGroup.invalid) {
-      return Object.values(this.reintegroGroup.controls).forEach(control => {
-        control.markAsTouched();
-      });
+  changeLegalizacion() {
+      this.legalizacionTab.nativeElement.click();
+  }
+
+  changeReintegro() {
+    if (this.saveFormLegalizacion()) {
+      this.reintegroTab.nativeElement.click();
     }
   }
 
-  get sumasIguales() {
-    return this.sumaCuentas.reduce((a: any, b) => a + b.valor, 0);
-  }
-
   // Modal acciones sobre la tabla: eliminar registros
-  modalEliminarRegistro(fila: any) {
+  modalEliminarLegalizacion(fila: any) {
     this.modalService.open(this.eliminarRegistroModal).result.then((result) => {
       if (`${result}`) {
         this.datosLegalizacion.splice(this.datosLegalizacion.findIndex(
-          (element: any) => element.codigoAbreviado === fila.codigoAbreviado
-            && element.nombreRequisito === fila.nombreRequisito
-            && element.descripcion === fila.descripcion
-            && element.fecha === fila.fecha
+          (element: any) => element.secuencia === fila.secuencia
+            && element.tercero === fila.tercero
+            && element.numeroCuenta === fila.numeroCuenta
+            && element.debito === fila.debito
+            && element.credito === fila.credito
         ), 1);
       }
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  // Modal acciones sobre la tabla: eliminar registros
+  modalEliminarReintegro(fila: any) {
+    this.modalService.open(this.eliminarRegistroModal).result.then((result) => {
       if (`${result}`) {
         this.datosReintegro.splice(this.datosReintegro.findIndex(
-          (element: any) => element.codigoAbreviado === fila.codigoAbreviado
-            && element.nombreRequisito === fila.nombreRequisito
-            && element.descripcion === fila.descripcion
-            && element.fecha === fila.fecha
+          (element: any) => element.secuencia === fila.secuencia
+            && element.tercero === fila.tercero
+            && element.numeroCuenta === fila.numeroCuenta
+            && element.debito === fila.debito
+            && element.credito === fila.credito
         ), 1);
       }
     }, (reason) => {
@@ -155,14 +154,12 @@ export class SetContabilizacionComponent implements OnInit {
     }
   }
 
-  changeLegalizacion() {
-      this.legalizacionTab.nativeElement.click();
+  modalComprobanteLegalizacion(legalizacionModal) {
+    this.modalService.open(legalizacionModal, { size: 'xl' });
   }
 
-  changeReintegro() {
-    this.saveFormLegalizacion();
-    if (this.contabilizacionGroup.valid) {
-      this.reintegroTab.nativeElement.click();
-    }
+  modalComprobanteReintegro(reintegroModal) {
+    this.modalService.open(reintegroModal, { size: 'xl' });
   }
+
 }

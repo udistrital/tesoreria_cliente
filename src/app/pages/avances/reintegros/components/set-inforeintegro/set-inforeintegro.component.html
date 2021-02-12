@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col pb-3">
-                <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
+                <h6 class="card-title col-md-6 bg-primary text-white text-center py-2 px-2 rounded">
                     Información de Reintegro
                 </h6>
             </div>
@@ -121,7 +121,7 @@
                     <input value="{{ archivo ? (archivo.size/1024).toFixed(2) + ' Kb' : '' }}" type="text" class="form-control" readonly>
                 </div>
                 <div class="col-md-4">
-                    <button class="btn btn-primary btn-block text-white" (click)="archivo = null">
+                    <button class="btn btn-danger btn-block text-white" (click)="archivo = null">
                         <i class="fas fa-trash-alt"></i>
                     </button>
                 </div>

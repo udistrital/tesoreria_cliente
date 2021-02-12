@@ -21,7 +21,7 @@
                         <ngx-set-infoafectacion></ngx-set-infoafectacion>
                     </div>
                 </mat-step>
-                <mat-step [stepControl]="contabilizacionGroup">
+                <mat-step [stepControl]="contabilizacionGroup" optional>
                     <ng-template matStepLabel>Contabilización</ng-template>
                     <div class="container">
                         <ngx-set-contabilizacion></ngx-set-contabilizacion>
@@ -30,7 +30,7 @@
                 <mat-step [stepControl]="detalleReintegroGroup">
                     <ng-template matStepLabel>Guardar</ng-template>
                     <div class="container">
-                        <!-- <ngx-show-detallereintegro></ngx-show-detallereintegro> -->
+                        <ngx-show-detallereintegro></ngx-show-detallereintegro>
                     </div>
                 </mat-step>
             </mat-horizontal-stepper>
