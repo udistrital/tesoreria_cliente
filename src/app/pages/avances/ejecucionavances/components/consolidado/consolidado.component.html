@@ -3,34 +3,43 @@
         <div class="card-body">
             <div class="row">
                 <div class="col py-2">
-                    <h5 class="card-title text-center text-primary">
+                    <h5 class="card-title text-center text-primary my-4">
                         INFORME CONSOLIDADO DE AVANCES
                     </h5>
                 </div>
             </div>   
             <div class="card p-2 m-3">
                 <div class="card-body">
-                    <div class="card-title col-md-4 bg-primary text-light text-center py-1 px-1 rounded">
+                    <div class="card-title informacion col-md-4 bg-primary text-light text-center py-1 px-1 rounded">
                         Información de consulta
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <label for=""> Área funcional </label> <br>
-                            <select name="" id=""></select>
+                    <form>
+                        <div class="row py-3">
+                            <div class="col">
+                                <label for="areaFuncional"> Área funcional </label> <br>
+                                <select name="areaFuncional" id="areaFuncional" placeholder="Elegir...">
+                                    <option *ngFor="let area of areaFuncional" value={{area}}>{{area}}</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="consecutivo"> Consecutivo </label> <br>
+                                <input name="consecutivo" id="consecutivo" type="text">
+                            </div>
+                            <div class="col">
+                                <label for="fecha"> Fecha </label> <br>
+                                <input name="fecha" id="fecha" type="date">
+                            </div>
+                            <div class="col">
+                                <label for="vigencia"> Vigencia </label> <br>
+                                <select name="vigencia" id="vigencia">
+                                    <option *ngFor="let vigencia of vigencias" value={{vigencia}}>{{vigencia}}</option>
+                                </select>
+                            </div>    
                         </div>
-                        <div class="col">
-                            <label for=""> Consecutivo </label> <br>
-                            <input type="text">
-                        </div>
-                        <div class="col">
-                            <label for=""> Fecha </label> <br>
-                            <input type="date">
-                        </div>
-                        <div class="col">
-                            <label for=""> Vigencia </label> <br>
-                            <select name="" id=""></select>
-                        </div>
-                    </div>
+
+                        <hr>
+                        <ngx-table class="py-3" [titles]="titlesConsulta" [attributes]="attributesConsulta" [list]="datosConsulta"> </ngx-table>
+                    </form>
                 </div>
             </div>
             <div class="row text-center pt-3">
@@ -38,9 +47,27 @@
                     <button mat-button type="button" (click)="volver()" class="btn btn-primary px-3 py-2 my-2 text-light"> Volver </button>
                 </div>
                 <div class="col">
-                    <button mat-button type="button" (click)="generar()" class="btn btn-success px-3 py-2 my-2 text-light"> Generar informe </button>
+                    <button mat-button type="button" (click)="open(modal)" class="btn btn-success px-3 py-2 my-2 text-light"> Generar informe </button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<ng-template #modal let-modal>
+    <div class="modal-content">
+        <div class="modal-header">
+            <ngx-pdfview [fileName]="fileName" [currentPage]="pageVariable" [totalPages]="totalPages" [zoomAmt]="zoom" [zoomMax]="zoomMax" [zoomMin]="zoomMin" (setZoom)="setZoom($event)" (download)="download()" (print)="print()"></ngx-pdfview>
+            <button type="button" class="close" (click)="close()" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+        <!-- header part -->
+        
+        <!-- pdf-viewer section -->
+        <div class="output-pdf-viewer">
+            <pdf-viewer [src]="pdfSrc" [(page)]="pageVariable" [show-all]="true" [render-text]="true" [original-size]="true" [fit-to-page]="false" [autoresize]="true" [show-borders]="true" [zoom-scale]="zoomScale" [zoom]="zoom" (after-load-complete)="afterLoadComplete($event)"
+                #pdfViewer></pdf-viewer>
+        </div>
+    </div>
+</ng-template>

@@ -8,14 +8,15 @@ import { InformeComponent } from './components/informe/informe.component';
 import { LayoutEjecucionComponent } from './components/layout-ejecucion/layout-ejecucion.component';
 import { PdfviewComponent } from './components/pdfview/pdfview.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-
+import { SharedModule } from '../../../shared/shared.module';
 
 @NgModule({
   declarations: [ConsolidadoComponent, EjecucionComponent, InformeComponent, LayoutEjecucionComponent, PdfviewComponent],
   imports: [
     CommonModule,
     EjecucionavancesRoutingModule,
-    PdfViewerModule
+    PdfViewerModule,
+    SharedModule
   ]
 })
 export class EjecucionavancesModule { }
