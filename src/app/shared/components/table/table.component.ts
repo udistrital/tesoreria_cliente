@@ -14,6 +14,7 @@ export class TableComponent implements OnInit {
 
   @Input() seleccion: boolean = false;
   @Input() filtro: boolean = false;
+  @Input() total: boolean = false;
 
   elementosElegidos = [];
   row: any;
@@ -39,5 +40,33 @@ export class TableComponent implements OnInit {
       this.elementosElegidos.splice(index);
       this.selection.elementosElegidos = this.elementosElegidos;
     }
+  }
+
+  get valorGirado() {
+    return this.list.reduce((a: any, b: { valorGirado: number; }) => a + b.valorGirado, 0);
+  }
+
+  get porcentajeGirado() {
+    return this.list.reduce((a: any, b: { porcentajeGirado: number; }) => a + b.porcentajeGirado, 0);
+  }
+
+  get valorLegalizado() {
+    return this.list.reduce((a: any, b: { valorLegalizado: number; }) => a + b.valorLegalizado, 0);
+  }
+
+  get porcentajeLegalizado() {
+    return this.list.reduce((a: any, b: { porcentajeLegalizado: number; }) => a + b.porcentajeLegalizado, 0);
+  }
+
+  get valorLegalizar() {
+    return this.list.reduce((a: any, b: { valorLegalizar: number; }) => a + b.valorLegalizar, 0);
+  }
+
+  get porcentajeLegalizar() {
+    return this.list.reduce((a: any, b: { porcentajeLegalizar: number; }) => a + b.porcentajeLegalizar, 0);
+  }
+  
+  get totalAvances() {
+    return this.list.reduce((a: any, b: { totalAvances: number; }) => a + b.totalAvances, 0);
   }
 }
