@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { PDFDocumentProxy } from 'ng2-pdf-viewer';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-
+import { DATOS_EJECUCION } from '../../interfaces/interfaces'
 @Component({
   selector: 'ngx-consolidado',
   templateUrl: './consolidado.component.html',
@@ -29,7 +29,9 @@ export class ConsolidadoComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private modalService: NgbModal,
-  ) {}
+  ) {
+    this.datosEjecucion = DATOS_EJECUCION;
+  }
 
   areaFuncional: String [] = [
     'Servicios',
@@ -42,10 +44,10 @@ export class ConsolidadoComponent implements OnInit, OnDestroy {
     '2021'
   ];
 
-  datosConsulta: any;
+  datosEjecucion: any;
 
-  titlesConsulta: String[] = [ 'Mes', 'Valor girado', 'Porcentaje girado', 'Valor legalizado', 'Porcentaje legalizado', 'Valor por legalizar', 'Total avances por mes'];
-  attributesConsulta: any [] = [['mes'], ['valorGirado'], ['porcentajeGirado'], ['valorLegalizado'], ['porcentajeLegalizado'], ['porcentajeLegalizar'], ['totalAvances']];
+  titlesConsulta: String[] = [ 'Mes', 'Valor girado', 'Porcentaje girado', 'Valor legalizado', 'Porcentaje legalizado', 'Valor por legalizar', 'Porcentaje por legalizar', 'Total avances por mes'];
+  attributesConsulta: any [] = [['mes'], ['valorGirado'], ['porcentajeGirado'], ['valorLegalizado'], ['porcentajeLegalizado'], ['valorLegalizar'], ['porcentajeLegalizar'], ['totalAvances']];
 
   ngOnDestroy () {
     if (this.modal !== undefined) {
