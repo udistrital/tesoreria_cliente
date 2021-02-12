@@ -21,9 +21,6 @@ export class SetInfoafectacionComponent implements OnInit {
     this.infoAfectacionGroup = this.fb.group({
       vigencia: ['', Validators.required],
       numeroOrdenPago: ['', Validators.required],
-      valorIngreso: ['',
-        [Validators.required,
-        Validators.pattern('^[0-9]*$')]],
     });
   }
 

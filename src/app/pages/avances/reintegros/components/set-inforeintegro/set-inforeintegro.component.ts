@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './set-inforeintegro.component.html',
   styleUrls: ['./set-inforeintegro.component.scss']
 })
-export class SetInforeintegroComponent implements OnInit {
+export class SetInforeintegroComponent {
 
   infoReintegroGroup: FormGroup;
   archivo: any;
@@ -15,9 +15,7 @@ export class SetInforeintegroComponent implements OnInit {
     this.createForm();
   }
 
-  ngOnInit() {
-  }
-
+  // Creación de formulario reactivo
   createForm() {
     this.infoReintegroGroup = this.fb.group({
       areaFuncional: ['', Validators.required],
@@ -39,6 +37,7 @@ export class SetInforeintegroComponent implements OnInit {
     });
   }
 
+  // Validar información de formulario
   esInvalido(nombre: string) {
     const input = this.infoReintegroGroup.get(nombre);
     if (input)
@@ -47,10 +46,12 @@ export class SetInforeintegroComponent implements OnInit {
       return true;
   }
 
+  // Adjuntar un archivo
   prepareFileList(files: Array<any>) {
     this.archivo = files[0];
   }
 
+  // Guardar información de formulario
   saveForm() {
     if (this.infoReintegroGroup.invalid) {
       return Object.values(this.infoReintegroGroup.controls).forEach(control => {

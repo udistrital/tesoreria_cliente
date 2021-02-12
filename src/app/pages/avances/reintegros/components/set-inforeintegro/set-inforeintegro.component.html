@@ -1,5 +1,5 @@
 <form [formGroup]="infoReintegroGroup" (ngSubmit)="saveForm()">
-    <!-- Grupo: Datos del funcionario -->
+    <!-- Grupo: Información de Reintegro -->
     <div class="container">
         <div class="row">
             <div class="col pb-3">
@@ -8,11 +8,12 @@
                 </h6>
             </div>
         </div>
-        <!-- Campo: Vigencia -->
+
+        <!-- Campos: Área Funcional, Número de Oficio, fecha de oficio y vigencia -->
         <div class="form-group row">
             <div class="col-md-3">
-                <label>Área Funcional</label>
-                <select class="custom-select" formControlName="areaFuncional" [class.is-invalid]="esInvalido('areaFuncional')">
+                <label for="areaFuncional">Área Funcional</label>
+                <select id="areaFuncional" class="custom-select" formControlName="areaFuncional" [class.is-invalid]="esInvalido('areaFuncional')">
                     <option selected disabled value="">Seleccione...</option>
                     <option>01</option>
                     <option>02</option>
@@ -20,22 +21,22 @@
                 <small *ngIf="esInvalido('areaFuncional')" class="text-danger">Complete este campo</small>
             </div>
             <div class="col-md-3">
-                <label>Número de Oficio</label>
-                <input type="number" class="form-control" formControlName="numeroOficio" [class.is-invalid]="esInvalido('numeroOficio')">
-                <small *ngIf="esInvalido('numeroOficio')" class="text-danger">Ingrese números en este campo</small>
+                <label for="numeroOficio">Número de Oficio</label>
+                <input id="numeroOficio" type="number" class="form-control" formControlName="numeroOficio" [class.is-invalid]="esInvalido('numeroOficio')">
+                <small *ngIf="esInvalido('numeroOficio')" class="text-danger">Complete este campo</small>
             </div>
             <div class="col-md-3">
-                <label>Fecha de Oficio</label>
+                <label for="fecha">Fecha de Oficio</label>
                 <div class="input-group">
-                    <input type="date" name="fecha" class="form-control" formControlName="fecha" [class.is-invalid]="esInvalido('fecha')">
+                    <input id="fecha" type="date" name="fecha" class="form-control" formControlName="fecha" [class.is-invalid]="esInvalido('fecha')">
                     <div class="input-group-append">
                     </div>
                 </div>
-                <small *ngIf="esInvalido('fecha')" class="text-danger">Ingrese números en este campo</small>
+                <small *ngIf="esInvalido('fecha')" class="text-danger">Seleccione una fecha</small>
             </div>
             <div class="col-md-3">
-                <label>Vigencia</label>
-                <select class="custom-select" formControlName="vigencia" [class.is-invalid]="esInvalido('vigencia')">
+                <label for="vigencia">Vigencia</label>
+                <select id="vigencia" class="custom-select" formControlName="vigencia" [class.is-invalid]="esInvalido('vigencia')">
                     <option selected disabled value="">Seleccione...</option>
                     <option>2019</option>
                     <option>2020</option>
@@ -43,59 +44,54 @@
                 <small *ngIf="esInvalido('vigencia')" class="text-danger">Complete este campo</small>
             </div>
         </div>
-        <!-- Campos: Elegir ID, Área Funcional, número de ID -->
+
+        <!-- Campos: Tipo de Acta, concepto y causal de reintegro -->
         <div class="form-group row">
             <div class="col-md-4">
-                <label>Tipo de Acta</label>
-                <select class="custom-select" formControlName="tipoActa" [class.is-invalid]="esInvalido('tipoActa')">
+                <label for="tipoActa">Tipo de Acta</label>
+                <select id="tipoActa" class="custom-select" formControlName="tipoActa" [class.is-invalid]="esInvalido('tipoActa')">
                     <option selected disabled value="">Seleccione...</option>
                     <option>Reembolso de Avances</option>
                 </select>
                 <small *ngIf="esInvalido('tipoActa')" class="text-danger">Complete este campo</small>
             </div>
             <div class="col-md-4">
-                <label>Concepto</label>
-                <select class="custom-select" formControlName="concepto" [class.is-invalid]="esInvalido('concepto')">
+                <label for="concepto">Concepto</label>
+                <select id="concepto" class="custom-select" formControlName="concepto" [class.is-invalid]="esInvalido('concepto')">
                     <option selected disabled value="">Seleccione...</option>
                     <option>Reintegro de Avances</option>
                 </select>
                 <small *ngIf="esInvalido('concepto')" class="text-danger">Complete este campo</small>
             </div>
             <div class="col-md-4">
-                <label>Causal de Reintegro</label>
-                <select class="custom-select" formControlName="causalReintegro" [class.is-invalid]="esInvalido('causalReintegro')">
+                <label for="causalReintegro">Causal de Reintegro</label>
+                <select id="causalReintegro" class="custom-select" formControlName="causalReintegro" [class.is-invalid]="esInvalido('causalReintegro')">
                     <option selected disabled value="">Seleccione...</option>
                     <option>Dinero no utilizado</option>
                 </select>
                 <small *ngIf="esInvalido('causalReintegro')" class="text-danger">Complete este campo</small>
             </div>
         </div>
-        <!-- Fin Campos: Elegir ID, Área Funcional, número de ID -->
-        <!-- Campos: Nombres, Apellidos, Dirección -->
-        <div class="form-group row">
-
-
-        </div>
-        <!-- Fin Campos: Nombres, Apellidos, Dirección -->
 
         <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
 
-        <!-- Campos: Correo, Teléfono móvil y fijo -->
+        <!-- Campos: Justificación, valor de reintegro, no. recibo de caja y botón consultar ingreso -->
         <div class="form-group row">
-            <div class="col-md-8">
-                <label>Justificación</label>
-                <textarea class="form-control" placeholder="Justificación del Reintegro" formControlName="justificacion" rows="5" [class.is-invalid]="esInvalido('justificacion')"></textarea>
-                <small *ngIf="esInvalido('justificacion')" class="text-danger">Ingrese mínimo 5 caracteres</small>
+            <div class="col-md-8 py-2">
+                <label for="justificacion">Justificación</label>
+                <textarea id="justificacion" class="form-control" placeholder="Justificación del Reintegro" formControlName="justificacion" rows="5" [class.is-invalid]="esInvalido('justificacion')"></textarea>
+                <small *ngIf="esInvalido('justificacion')" class="text-danger">Ingrese información en este campo</small>
             </div>
             <div class="col-md-4">
                 <div class="row px-3">
-                    <label>Valor de Reintegro</label>
-                    <input type="number" class="form-control" formControlName="valorReintegro" [class.is-invalid]="esInvalido('valorReintegro')">
-                    <small *ngIf="esInvalido('valorReintegro')" class="text-danger">Ingrese números en este campo</small>
+                    <label for="valorReintegro">Valor de Reintegro</label>
+                    <input id="valorReintegro" type="number" class="form-control" formControlName="valorReintegro" [class.is-invalid]="esInvalido('valorReintegro')">
+                    <small *ngIf="esInvalido('valorReintegro')" class="text-danger">Ingrese números en este
+                        campo</small>
                 </div>
-                <div class="row px-3">
-                    <label>No. Recibo de Caja</label>
-                    <input type="number" class="form-control" formControlName="reciboCaja" [class.is-invalid]="esInvalido('reciboCaja')">
+                <div class="row px-3 py-2">
+                    <label for="reciboCaja">No. Recibo de Caja</label>
+                    <input id="reciboCaja" type="number" class="form-control" formControlName="reciboCaja" [class.is-invalid]="esInvalido('reciboCaja')">
                     <small *ngIf="esInvalido('reciboCaja')" class="text-danger">Ingrese números en este
                         campo</small>
                 </div>
@@ -108,6 +104,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Campo: Adjuntar consignación de reintegro -->
         <div class="container">
             <p class="text-center">Adjuntar consignación de reintegro</p>
             <div class="row">
@@ -115,7 +113,7 @@
                     <ngx-file-upload (prepareFilesList)="prepareFileList($event)"></ngx-file-upload>
                 </div>
             </div>
-            <div class="row pt-2 align-items-baseline">
+            <div class="row py-4 align-items-baseline">
                 <div class="col-md-4">
                     <input value="{{ archivo?.name }}" type="text" class="form-control" readonly>
                 </div>
@@ -129,7 +127,8 @@
                 </div>
             </div>
         </div>
-        <!-- Fin Campos: Correo, Teléfono móvil y fijo -->
+
+        <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
 
         <!-- Botones: Volver a registro, Siguiente -->
         <div class="container">
@@ -150,7 +149,5 @@
                 </div>
             </div>
         </div>
-        <!-- Fin Botones: Volver a registro, Siguiente -->
     </div>
-    <!-- Fin Datos del funcionario -->
 </form>

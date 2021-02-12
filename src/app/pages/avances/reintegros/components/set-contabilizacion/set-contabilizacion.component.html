@@ -1,3 +1,182 @@
-<form [formGroup]="contabilizacionGroup">
+<div class="contanier">
+    <div class="col-md-6">
+        <ul class="nav nav-tabs nav-justified">
+            <li class="nav-item mr-1 active">
+                <a href="#legalizacion" #legalizacionTab class="nav-link bg-secondary text-white my-1 active" data-toggle="tab">Legalización</a>
+            </li>
+            <li class="nav-item mr-1">
+                <a href="#reintegro" #reintegroTab class="nav-link bg-secondary text-white my-1" data-toggle="tab">Reintegro</a>
+            </li>
+        </ul>
+    </div>
 
-</form>
+    <div class="tab-content">
+
+        <div class="tab-pane fade show active" id="legalizacion">
+
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6 p-3">
+                    <h6 class="card-title bg-primary text-white text-center py-2 px-2 rounded align-items-end">
+                        Comprobante de Legalización
+                    </h6>
+                </div>
+            </div>
+
+            <form [formGroup]="contabilizacionGroup" (ngSubmit)="saveFormLegalizacion()">
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label for="tipoComprobante">Tipo de Comprobante</label>
+                        <select id="tipoComprobante" class="custom-select" formControlName="tipoComprobante" [class.is-invalid]="invalidLegalizacion('tipoComprobante')">
+                            <option selected disabled value="">Seleccione...</option>
+                            <option>01</option>
+                            <option>02</option>
+                        </select>
+                        <small *ngIf="invalidLegalizacion('tipoComprobante')" class="text-danger">Complete este
+                            campo</small>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="numeroComprobante">No. de Comprobante</label>
+                        <select id="numeroComprobante" class="custom-select" formControlName="numeroComprobante" [class.is-invalid]="invalidLegalizacion('numeroComprobante')">
+                            <option selected disabled value="">Seleccione...</option>
+                            <option>01</option>
+                            <option>02</option>
+                        </select>
+                        <small *ngIf="invalidLegalizacion('numeroComprobante')" class="text-danger">Complete este
+                            campo</small>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="consecutivo">Consecutivo</label>
+                        <select id="consecutivo" class="custom-select" formControlName="consecutivo" [class.is-invalid]="invalidLegalizacion('consecutivo')">
+                            <option selected disabled value="">Seleccione...</option>
+                            <option>01</option>
+                            <option>02</option>
+                        </select>
+                        <small *ngIf="invalidLegalizacion('consecutivo')" class="text-danger">Complete este
+                            campo</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <label for="concepto">Concepto Contable</label>
+                        <select id="concepto" class="custom-select" formControlName="concepto" [class.is-invalid]="invalidLegalizacion('concepto')">
+                            <option selected disabled value="">Seleccione...</option>
+                            <option>01</option>
+                            <option>02</option>
+                        </select>
+                        <small *ngIf="invalidLegalizacion('concepto')" class="text-danger">Complete este
+                            campo</small>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col bg-white">
+                        <ngx-general-table [config]="configLegalizacion" [datos]="datosLegalizacion">
+                        </ngx-general-table>
+                    </div>
+                </div>
+
+                <!-- Botones: Volver a registro, Siguiente -->
+                <div class="container">
+                    <div class="row pt-2 text-center">
+                        <div class="col-md-6">
+                            <button mat-button matStepperPrevious type="button" class="btn btn-primary mb-3 mt-3 text-white">
+                                <span>Regresar</span>
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-success m-0 mt-4" (click)="changeReintegro()">
+                               Siguiente
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin Botones: Volver a registro, Siguiente -->
+
+            </form>
+        </div>
+
+        <div class="tab-pane fade show" id="reintegro">
+
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6 p-3">
+                    <h6 class="card-title bg-primary text-white text-center py-2 px-2 rounded">
+                        Comprobante de Reintegro
+                    </h6>
+                </div>
+            </div>
+
+            <form [formGroup]="reintegroGroup" (ngSubmit)="saveFormReintegro()">
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label for="tipoComprobante">Tipo de Comprobante</label>
+                        <select id="tipoComprobante" class="custom-select" formControlName="tipoComprobante" [class.is-invalid]="invalidLegalizacion('tipoComprobante')">
+                            <option selected disabled value="">Seleccione...</option>
+                            <option>01</option>
+                            <option>02</option>
+                        </select>
+                        <small *ngIf="invalidLegalizacion('tipoComprobante')" class="text-danger">Complete este
+                            campo</small>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="numeroComprobante">No. de Comprobante</label>
+                        <select id="numeroComprobante" class="custom-select" formControlName="numeroComprobante" [class.is-invalid]="invalidLegalizacion('numeroComprobante')">
+                            <option selected disabled value="">Seleccione...</option>
+                            <option>01</option>
+                            <option>02</option>
+                        </select>
+                        <small *ngIf="invalidLegalizacion('numeroComprobante')" class="text-danger">Complete este
+                            campo</small>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="consecutivo">Consecutivo</label>
+                        <select id="consecutivo" class="custom-select" formControlName="consecutivo" [class.is-invalid]="invalidLegalizacion('consecutivo')">
+                            <option selected disabled value="">Seleccione...</option>
+                            <option>01</option>
+                            <option>02</option>
+                        </select>
+                        <small *ngIf="invalidLegalizacion('consecutivo')" class="text-danger">Complete este
+                            campo</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <label for="concepto">Concepto Contable</label>
+                        <select id="concepto" class="custom-select" formControlName="concepto" [class.is-invalid]="invalidLegalizacion('concepto')">
+                            <option selected disabled value="">Seleccione...</option>
+                            <option>01</option>
+                            <option>02</option>
+                        </select>
+                        <small *ngIf="invalidLegalizacion('concepto')" class="text-danger">Complete este
+                            campo</small>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col bg-white">
+                        <ngx-general-table [config]="configReintegro" [datos]="datosReintegro">
+                        </ngx-general-table>
+                    </div>
+                </div>
+
+                <!-- Botones: Volver a registro, Siguiente -->
+                <div class="container">
+                    <div class="row pt-2 text-center">
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-primary m-0 mt-4" (click)="changeLegalizacion()">
+                                <span>Regresar</span>
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button mat-button matStepperNext type="submit" class="btn btn-success m-0 mt-4">
+                                <span>Siguiente</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin Botones: Volver a registro, Siguiente -->
+            </form>
+        </div>
+    </div>
+</div>

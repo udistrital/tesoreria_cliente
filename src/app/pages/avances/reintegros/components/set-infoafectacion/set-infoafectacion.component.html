@@ -11,8 +11,8 @@
         <!-- Campo: Vigencia -->
         <div class="form-group row">
             <div class="col-md-4">
-                <label>Vigencia</label>
-                <select class="custom-select" formControlName="vigencia" [class.is-invalid]="esInvalido('vigencia')">
+                <label for="vigencia">Vigencia</label>
+                <select id="vigencia" class="custom-select" formControlName="vigencia" [class.is-invalid]="esInvalido('vigencia')">
                     <option selected disabled value="">Seleccione...</option>
                     <option>01</option>
                     <option>02</option>
@@ -20,8 +20,8 @@
                 <small *ngIf="esInvalido('vigencia')" class="text-danger">Complete este campo</small>
             </div>
             <div class="col-md-4">
-                <label>No. Orden de Pago</label>
-                <input type="number" class="form-control" formControlName="numeroOrdenPago" [class.is-invalid]="esInvalido('numeroOrdenPago')">
+                <label for="numeroOrdenPago">No. Orden de Pago</label>
+                <input id="numeroOrdenPago" type="number" class="form-control" formControlName="numeroOrdenPago" [class.is-invalid]="esInvalido('numeroOrdenPago')">
                 <small *ngIf="esInvalido('numeroOrdenPago')" class="text-danger">Ingrese números en este campo</small>
             </div>
             <div class="col-md-4">
@@ -69,9 +69,9 @@
                 <input value=" " type="text" class="form-control" readonly>
             </div>
         </div>
-        <div class="form-group row align-items-end">
-            <div class="col-md-4">
-                <label>Valor de Ingreso</label>
+        <div class="form-group row">
+            <div class="mx-auto col-md-4">
+                <label>Valor de Reintegro</label>
                 <input value=" " type="text" class="form-control" readonly>
             </div>
         </div>
