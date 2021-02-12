@@ -6,13 +6,16 @@ import { ConsolidadoComponent } from './components/consolidado/consolidado.compo
 import { EjecucionComponent } from './components/ejecucion/ejecucion.component';
 import { InformeComponent } from './components/informe/informe.component';
 import { LayoutEjecucionComponent } from './components/layout-ejecucion/layout-ejecucion.component';
+import { PdfviewComponent } from './components/pdfview/pdfview.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 
 @NgModule({
-  declarations: [ConsolidadoComponent, EjecucionComponent, InformeComponent, LayoutEjecucionComponent],
+  declarations: [ConsolidadoComponent, EjecucionComponent, InformeComponent, LayoutEjecucionComponent, PdfviewComponent],
   imports: [
     CommonModule,
-    EjecucionavancesRoutingModule
+    EjecucionavancesRoutingModule,
+    PdfViewerModule
   ]
 })
 export class EjecucionavancesModule { }

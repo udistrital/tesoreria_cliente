@@ -12,4 +12,10 @@ export class ConsolidadoComponent implements OnInit {
   ngOnInit() {
   }
 
+  volver() {
+
+  }
+
+  generar () {}
+
 }
