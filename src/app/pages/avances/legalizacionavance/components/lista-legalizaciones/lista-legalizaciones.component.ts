@@ -29,14 +29,11 @@ export class ListaLegalizacionesComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((accion: any) => {
       if (accion && accion.fila && accion.accion && accion.accion.name) {
-        if (accion.accion.name === 'modificar') {
+        if (accion.accion.name === 'modificar' || accion.accion.name === 'detalle') {
           // this.store.dispatch(loadRequisitoSelecionado({ fila: accion.fila }));
-          // this.router.navigate(['pages/avances/requisitosavances/editar']);
+          this.router.navigate(['pages/avances/requisitosavances/editar']);
         } else if (accion.accion.name === 'borrar')
-          this.modalService.open(this.modalEliminar).result.then((result) => {
-            if (`${result}`)
-              this.borrar(accion.fila);
-          }, () => { });
+          this.borrar(accion.fila);
       }
     });
   }
@@ -46,8 +43,16 @@ export class ListaLegalizacionesComponent implements OnInit, OnDestroy {
     this.store.dispatch(LoadFilaSeleccionada(null));
   }
 
-  borrar(fila) {
-    // TODO
+  borrar(fila: { consecutivo: any; fechaRegistro: any; areaFuncional: any; estado: any; }) {
+    this.modalService.open(this.modalEliminar).result.then((result) => {
+      if (`${result}`)
+        this.datosTabla.splice(this.datosTabla.findIndex(
+          (element: any) => element.consecutivo === fila.consecutivo
+            && element.fechaRegistro === fila.fechaRegistro
+            && element.areaFuncional === fila.areaFuncional
+            && element.estado === fila.estado
+        ), 1);
+    }, () => { });
   }
 
 }

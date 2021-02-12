@@ -1,0 +1,18 @@
+<form [formGroup]="datosResponsable" (ngSubmit)="validarFormulario()">
+    <div class="row">
+        <div class="col-md-4 form-group">
+            <label for="vigencia">Vigencia</label>
+            <select class="form-control" id="vigencia" formControlName="vigencia"
+                [class.is-invalid]="esInvalido('vigencia')">
+                <option>Opcion 1</option>
+                <option>Opcion 2</option>
+                <option>Opcion 3</option>
+            </select>
+        </div>
+        <div class="col-md-4 form-group">
+            <label for="numeroId">No. de ID</label>
+            <input type="number" class="form-control" id="numeroId" formControlName="numeroId"
+                [class.is-invalid]="esInvalido('numeroId')">
+        </div>
+    </div>
+</form>
