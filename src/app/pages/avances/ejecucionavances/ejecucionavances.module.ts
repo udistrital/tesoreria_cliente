@@ -9,6 +9,7 @@ import { LayoutEjecucionComponent } from './components/layout-ejecucion/layout-e
 import { PdfviewComponent } from './components/pdfview/pdfview.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { SharedModule } from '../../../shared/shared.module';
+import { ExporterService } from './services/exporter.service';
 
 @NgModule({
   declarations: [ConsolidadoComponent, EjecucionComponent, InformeComponent, LayoutEjecucionComponent, PdfviewComponent],
@@ -17,6 +18,7 @@ import { SharedModule } from '../../../shared/shared.module';
     EjecucionavancesRoutingModule,
     PdfViewerModule,
     SharedModule
-  ]
+  ],
+  providers: [ExporterService],
 })
 export class EjecucionavancesModule { }

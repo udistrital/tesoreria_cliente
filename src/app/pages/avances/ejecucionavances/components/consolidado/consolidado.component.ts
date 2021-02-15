@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { PDFDocumentProxy } from 'ng2-pdf-viewer';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { DATOS_EJECUCION } from '../../interfaces/interfaces';
+import { ExporterService } from '../../services/exporter.service';
 @Component({
   selector: 'ngx-consolidado',
   templateUrl: './consolidado.component.html',
@@ -29,6 +30,7 @@ export class ConsolidadoComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private modalService: NgbModal,
+    private excelService: ExporterService,
   ) {
     this.datosEjecucion = DATOS_EJECUCION;
   }
@@ -68,6 +70,10 @@ export class ConsolidadoComponent implements OnInit, OnDestroy {
 
   close () {
     this.modal.close();
+  }
+
+  exportExcel(): void {
+    this.excelService.exportToExcel(this.datosEjecucion, 'mi_documento');
   }
 
   setZoom(type: string): void {
