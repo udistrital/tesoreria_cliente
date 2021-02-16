@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PDFDocumentProxy } from 'ng2-pdf-viewer';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { DATOS_TABLA, CONFIGURACION_TABLA } from '../../interfaces/interfaces';
+import { ExporterService } from '../../services/exporter.service';
 @Component({
   selector: 'ngx-ejecucion',
   templateUrl: './ejecucion.component.html',
@@ -24,6 +26,8 @@ export class EjecucionComponent implements OnInit {
   pdf: PDFDocumentProxy; // to access pdf information from the pdf viewer
 
   modal: NgbModalRef;
+  datosEjecucion: any;
+  configuracionTabla: any;
 
   areaFuncional: String [] = [
     'Servicios',
@@ -33,7 +37,11 @@ export class EjecucionComponent implements OnInit {
   constructor(
     private router: Router,
     private modalService: NgbModal,
-  ) { }
+    private excelService: ExporterService,
+  ) {
+    this.datosEjecucion = DATOS_TABLA;
+    this.configuracionTabla = CONFIGURACION_TABLA;
+   }
 
   ngOnInit() {
   }
@@ -48,6 +56,10 @@ export class EjecucionComponent implements OnInit {
 
   close () {
     this.modal.close();
+  }
+
+  exportExcel(): void {
+    this.excelService.exportToExcel(this.datosEjecucion, 'mi_documento');
   }
 
   setZoom(type: string): void {
