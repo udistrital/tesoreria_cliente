@@ -96,7 +96,7 @@
     "typeface-exo": "0.0.22",
     "web-animations-js": "github:angular/web-animations-js#release_pr208",
     "xlsx": "^0.16.9",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-builders/jest": "^8.3.0",
