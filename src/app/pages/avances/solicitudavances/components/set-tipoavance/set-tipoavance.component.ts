@@ -33,7 +33,6 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
 
   constructor(private fb: FormBuilder, private modalService: NgbModal, private store: Store<any>) {
 
-    // Icono en la Lista de documentos
     this.tiposAvances = [];
 
   }
@@ -84,9 +83,7 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
     this.modalEspecificacionGroup = this.fb.group({
       tipoId: ['', Validators.required],
       descripcion: ['', Validators.required],
-      valorSolicitado: ['',
-        [Validators.required,
-        Validators.pattern('^[0-9]*$')]],
+      valorSolicitado: ['', Validators.required],
     });
   }
 
@@ -159,13 +156,19 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
     this.agregarRegistroModalRef = this.modalService.open(this.agregarRegistroModal);
     this.agregarRegistroModalRef.result.then((result) => {
       if (`${result}`) {
-        this.tiposAvances[accion.titulo.tabla].especificaciones.push(
-          {
-            tipoEspecificacion: this.modalEspecificacionGroup.get('tipoId').value,
-            descripcion: this.modalEspecificacionGroup.get('descripcion').value,
-            valor: this.modalEspecificacionGroup.get('valorSolicitado').value,
-          },
-        );
+        if (accion.fila) {
+          accion.fila.tipoEspecificacion = this.modalEspecificacionGroup.get('tipoId').value;
+          accion.fila.descripcion = this.modalEspecificacionGroup.get('descripcion').value;
+          accion.fila.valor = this.modalEspecificacionGroup.get('valorSolicitado').value;
+        } else {
+          this.tiposAvances[accion.titulo.tabla].especificaciones.push(
+            {
+              tipoEspecificacion: this.modalEspecificacionGroup.get('tipoId').value,
+              descripcion: this.modalEspecificacionGroup.get('descripcion').value,
+              valor: this.modalEspecificacionGroup.get('valorSolicitado').value,
+            },
+          );
+        }
       }
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

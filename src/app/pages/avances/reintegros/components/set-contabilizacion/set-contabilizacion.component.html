@@ -236,7 +236,7 @@
 
 <ng-template #legalizacionModal let-modal>
     <div class="modal-header">
-        <h4 class="modal-title">Modal title</h4>
+        <h4 class="modal-title">Descargar Comprobante</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -251,7 +251,7 @@
 
 <ng-template #reintegroModal let-modal>
     <div class="modal-header">
-        <h4 class="modal-title">Modal title</h4>
+        <h4 class="modal-title">Descargar Comprobante</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -261,5 +261,61 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>
+
+<!-- Modal para agregar un nuevo registro a las tablas (formulario) -->
+<ng-template #agregarRegistroModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Agregar Registro</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]='modalRegistroGroup'>
+            <div class="form-group row px-2">
+                <div class="col-md-6">
+                    <label>ID de Tercero</label>
+                    <input type="number" class="form-control" id="idTercero" formControlName="idTercero" [class.is-invalid]="isInvalidModal('idTercero')">
+                    <small *ngIf="isInvalidModal('idTercero')" class="text-danger">Complete este campo</small>
+                </div>
+                <div class="col-md-6">
+                    <label>No. de Cuenta / Impuesto</label>
+                    <input type="number" class="form-control" id="numeroCuenta" formControlName="numeroCuenta" [class.is-invalid]="isInvalidModal('numeroCuenta')">
+                    <small *ngIf="isInvalidModal('numeroCuenta')" class="text-danger">Complete este campo</small>
+                </div>
+            </div>
+            <div class="form-group row px-2">
+                <div class="col">
+                    <label>Número de Cuenta Contable</label>
+                    <input class="form-control" id="nombreCuenta" readonly>
+                </div>
+            </div>
+            <div class="row px-3">
+                <div class="col-sm-6 form-group">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input class="custom-control-input" type="radio" id="credito" name="valorCuenta" formControlName="valorCuenta" value="credito">
+                        <label class="custom-control-label px-2" for="credito">Crédito</label><br>
+                    </div>
+                </div>
+                <div class="col-sm-6 form-group">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input class="custom-control-input" type="radio" id="debito" name="valorCuenta" formControlName="valorCuenta" value="debito">
+                        <label class="custom-control-label px-2" for="debito">Débito</label><br>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row px-2">
+                <div class="col">
+                    <label for="valorNumero" class="col-form-label">Valor</label>
+                    <input currencyMask class="form-control" id="valor" formControlName="valorNumero" [class.is-invalid]="isInvalidModal('valorNumero')">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cancelar</button>
+        <button type="button" class="btn btn-primary text-white" (click)='saveModalForm()'>Aceptar</button>
     </div>
 </ng-template>

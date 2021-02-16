@@ -12,10 +12,16 @@ import { SetInforeintegroComponent } from './components/set-inforeintegro/set-in
 import { SetInfoafectacionComponent } from './components/set-infoafectacion/set-infoafectacion.component';
 import { SetContabilizacionComponent } from './components/set-contabilizacion/set-contabilizacion.component';
 import { ShowDetallereintegroComponent } from './components/show-detallereintegro/show-detallereintegro.component';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 
 @NgModule({
-  declarations: [TableLegalizacionReintegrosComponent, StepperReintegrosComponent, SetInforeintegroComponent, SetInfoafectacionComponent, SetContabilizacionComponent, ShowDetallereintegroComponent],
+  declarations: [TableLegalizacionReintegrosComponent,
+    StepperReintegrosComponent,
+    SetInforeintegroComponent,
+    SetInfoafectacionComponent,
+    SetContabilizacionComponent,
+    ShowDetallereintegroComponent],
   imports: [
     CommonModule,
     ReintegrosRoutingModule,
@@ -25,6 +31,7 @@ import { ShowDetallereintegroComponent } from './components/show-detallereintegr
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
+    CurrencyMaskModule
   ]
 })
 export class ReintegrosModule { }

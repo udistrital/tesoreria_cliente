@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CONFIGURACION_LEGALIZACION, DATOS_LEGALIZACION, CONFIGURACION_REINTEGRO, DATOS_REINTEGRO } from '../../interfaces/interfaces';
 import { Store } from '@ngrx/store';
-import { getFilaSeleccionada } from '../../../../../shared/selectors/shared.selectors';
+import { getAccionTabla, getFilaSeleccionada } from '../../../../../shared/selectors/shared.selectors';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -16,9 +16,12 @@ export class SetContabilizacionComponent implements OnInit {
   @ViewChild('legalizacionTab', { static: true }) legalizacionTab: ElementRef;
   @ViewChild('reintegroTab', { static: false }) reintegroTab: ElementRef;
 
+  // Formularios
   contabilizacionGroup: FormGroup;
   modalRegistroGroup: FormGroup;
+  agregarRegistroModalRef: any;
 
+  // Datos de las tablas
   configLegalizacion: any;
   datosLegalizacion: any;
   configReintegro: any;
@@ -27,7 +30,9 @@ export class SetContabilizacionComponent implements OnInit {
   // Modales
   closeResult = '';
 
+  // Acciones en las tablas
   subscription$: any;
+  subscriptionAccion$: any;
 
   constructor(private fb: FormBuilder, private store: Store<any>, private modalService: NgbModal) {
     this.createForm();
@@ -40,15 +45,28 @@ export class SetContabilizacionComponent implements OnInit {
 
   ngOnInit() {
 
-    // tabla
+    // Crear un nuevo registro en las tablas (cuentas contables)
+    this.subscriptionAccion$ = this.store.select(getAccionTabla).subscribe((accion) => {
+      if (accion && accion.titulo) {
+        this.abrirModalRegistro(accion);
+      }
+    });
+
+    // Acciones por registro en tablas: editar o borrar
     this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((accion) => {
       if (accion && accion.accion) {
         switch (accion.accion.name) {
           case 'borrarLegalizacion':
-            this.modalEliminarLegalizacion(accion);
+            this.modalEliminarLegalizacion(accion.fila);
             break;
           case 'borrarReintegro':
-            this.modalEliminarReintegro(accion);
+            this.modalEliminarReintegro(accion.fila);
+            break;
+          case 'editarReintegro':
+            this.abrirModalRegistro(accion);
+            break;
+          case 'editarLegalizacion':
+            this.abrirModalRegistro(accion);
             break;
         }
       }
@@ -68,6 +86,13 @@ export class SetContabilizacionComponent implements OnInit {
       consecutivoR: ['', Validators.required],
       conceptoR: ['', Validators.required],
     });
+    // Formulario del modal agregar registro en las tablas
+    this.modalRegistroGroup = this.fb.group({
+      idTercero: ['', Validators.required],
+      numeroCuenta: ['', Validators.required],
+      valorCuenta: ['', Validators.required],
+      valorNumero: ['', Validators.required],
+    });
   }
 
   isInvalid(nombre: string) {
@@ -78,6 +103,15 @@ export class SetContabilizacionComponent implements OnInit {
       return true;
   }
 
+  isInvalidModal(nombre: string) {
+    const input = this.modalRegistroGroup.get(nombre);
+    if (input)
+      return input.invalid && (input.touched);
+    else
+      return true;
+  }
+
+  // Valida los datos de la etiqueta "Legalizacion"
   saveFormLegalizacion(touch = true) {
     let valid = true;
     const camposL = ['tipoComprobanteL', 'numeroComprobanteL', 'consecutivoL', 'conceptoL'];
@@ -90,6 +124,7 @@ export class SetContabilizacionComponent implements OnInit {
     return valid;
   }
 
+  // Valida los datos de la etiqueta "Reintegro", solo si se han validado los de "Legalizacion"
   saveForm() {
     if (this.contabilizacionGroup.invalid) {
       if (!this.saveFormLegalizacion())
@@ -100,44 +135,130 @@ export class SetContabilizacionComponent implements OnInit {
     }
   }
 
-  changeLegalizacion() {
-      this.legalizacionTab.nativeElement.click();
+  // Valida información de formulario en modal Agregar Registro
+  saveModalForm() {
+    if (this.modalRegistroGroup.invalid) {
+      return Object.values(this.modalRegistroGroup.controls).forEach(control => {
+        control.markAsTouched();
+      });
+    } else {
+      this.agregarRegistroModalRef.close();
+    }
   }
 
+  // Manejo de las acciones entre etiquetas
+  changeLegalizacion() {
+    this.legalizacionTab.nativeElement.click();
+  }
   changeReintegro() {
     if (this.saveFormLegalizacion()) {
       this.reintegroTab.nativeElement.click();
     }
   }
 
-  // Modal acciones sobre la tabla: eliminar registros
+  // Enumerar registros en tablas "Legalizacion" y "Reintegro"
+  seguirSecuencia() {
+    let numero = 1;
+    for (const registro of this.datosLegalizacion) {
+      registro.secuencia = numero;
+      numero++;
+    }
+    for (const registro of this.datosReintegro) {
+      registro.secuencia = numero;
+      numero++;
+    }
+  }
+
+  // Modal acciones sobre la tabla: eliminar registros de Legalizacion
   modalEliminarLegalizacion(fila: any) {
     this.modalService.open(this.eliminarRegistroModal).result.then((result) => {
       if (`${result}`) {
-        this.datosLegalizacion.splice(this.datosLegalizacion.findIndex(
+        const index = this.datosLegalizacion.findIndex(
           (element: any) => element.secuencia === fila.secuencia
             && element.tercero === fila.tercero
             && element.numeroCuenta === fila.numeroCuenta
             && element.debito === fila.debito
             && element.credito === fila.credito
-        ), 1);
+        );
+        this.datosLegalizacion.splice(index, 1);
+        this.seguirSecuencia();
       }
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
 
-  // Modal acciones sobre la tabla: eliminar registros
+  // Modal acciones sobre la tabla: eliminar registros de Reintegro
   modalEliminarReintegro(fila: any) {
     this.modalService.open(this.eliminarRegistroModal).result.then((result) => {
       if (`${result}`) {
-        this.datosReintegro.splice(this.datosReintegro.findIndex(
+        const index = this.datosReintegro.findIndex(
           (element: any) => element.secuencia === fila.secuencia
             && element.tercero === fila.tercero
             && element.numeroCuenta === fila.numeroCuenta
             && element.debito === fila.debito
             && element.credito === fila.credito
-        ), 1);
+        );
+        this.datosReintegro.splice(index, 1);
+        this.seguirSecuencia();
+      }
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  // Acciones sobre la tabla: agregar registros en las tablas
+  abrirModalRegistro(accion: any) {
+    // Coloca todos los campos con los valores de la fila
+    if (accion.fila) {
+      this.modalRegistroGroup.setValue({
+        idTercero: accion.fila.tercero,
+        numeroCuenta: accion.fila.numeroCuenta,
+        valorCuenta: accion.fila.debito !== '' ? 'debito' : 'credito',
+        valorNumero: accion.fila.debito !== '' ? accion.fila.debito : accion.fila.credito
+      });
+      // Coloca todos los campos vacios
+    } else {
+      this.modalRegistroGroup.setValue({
+        idTercero: '',
+        numeroCuenta: '',
+        valorCuenta: '',
+        valorNumero: '',
+      });
+      Object.values(this.modalRegistroGroup.controls).forEach(control => {
+        control.markAsUntouched();
+      });
+    }
+    // Abrir modal de registro
+    this.agregarRegistroModalRef = this.modalService.open(this.agregarRegistroModal);
+    // Maneja el comportamiento para guardar formulario del modal
+    this.agregarRegistroModalRef.result.then((result) => {
+      if (`${result}`) {
+        const valorNumero = this.modalRegistroGroup.get('valorNumero').value;
+        const valorCuenta = this.modalRegistroGroup.get('valorCuenta').value;
+        if (accion.fila) {
+          accion.fila.tercero = this.modalRegistroGroup.get('idTercero').value;
+          accion.fila.numeroCuenta = this.modalRegistroGroup.get('numeroCuenta').value;
+          accion.fila.debito = valorCuenta === 'debito' ? valorNumero : '';
+          accion.fila.credito = valorCuenta === 'credito' ? valorNumero : '';
+        } else {
+          let tabla = null;
+          const registro = {
+            secuencia: 0,
+            tercero: this.modalRegistroGroup.get('idTercero').value,
+            numeroCuenta: this.modalRegistroGroup.get('numeroCuenta').value,
+            debito: valorCuenta === 'debito' ? valorNumero : '',
+            credito: valorCuenta === 'credito' ? valorNumero : '',
+          };
+          if (accion.titulo.name === 'LEGALIZACIÓN')
+            tabla = this.datosLegalizacion;
+          else if (accion.titulo.name === 'REINTEGRO')
+            tabla = this.datosReintegro;
+          if (tabla) {
+            tabla.push(registro);
+            this.seguirSecuencia();
+          }
+        }
       }
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -154,10 +275,10 @@ export class SetContabilizacionComponent implements OnInit {
     }
   }
 
+  // Funciones para descargar comprobantes contables
   modalComprobanteLegalizacion(legalizacionModal) {
     this.modalService.open(legalizacionModal, { size: 'xl' });
   }
-
   modalComprobanteReintegro(reintegroModal) {
     this.modalService.open(reintegroModal, { size: 'xl' });
   }
