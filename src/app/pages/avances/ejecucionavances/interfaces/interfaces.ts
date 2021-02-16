@@ -143,7 +143,7 @@ export const CONFIGURACION_TABLA: any = {
     },
     endSubtotal: false,
     sort: true,
-    filter: true,
+    filter: false,
 };
 export const DATOS_TABLA: any = [
     {
@@ -170,4 +170,173 @@ export const DATOS_TABLA: any = [
         retraso: 54,
         numeroRetrasos: 2
     },
+];
+export const CONFIGURACION_EJECUCION: any = {
+    showColumnTitle: true,
+    dataConfig: [
+        {
+            key: 'indicadorPuntualidad',
+            title: {
+                name: 'Indicador de puntualidad',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'actaReintegro',
+            title: {
+                name: 'Acta de reintegro',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'estado',
+            title: {
+                name: 'Estado',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-center',
+            }
+        },
+        {
+            key: 'valorLegalizado',
+            title: {
+                name: 'Valor legalizado',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'fechaEvento',
+            title: {
+                name: 'Fecha del evento',
+                class: 'text-center',
+            },
+            pipe: {
+                type: 'date',
+                config: [
+                    'shortDate'
+                ],
+                class: 'text-center',
+            }
+        },
+        {
+            key: 'objetivo',
+            title: {
+                name: 'Objetivo',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'conceptoGeneral',
+            title: {
+                name: 'Concepto general',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'codigoRubro',
+            title: {
+                name: 'Código de rubro',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'rubro',
+            title: {
+                name: 'Rubro',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'codigoFuente',
+            title: {
+                name: 'Código de fuente',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'nombreFuente',
+            title: {
+                name: 'Nombre de fuente',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'correoContacto',
+            title: {
+                name: 'Correo de contacto',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'telefonoContacto',
+            title: {
+                name: 'Teléfono de contacto',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+    ],
+    noData: {
+        name: 'No existen elementos asociados',
+        class: 'text-center',
+    },
+    endSubtotal: false,
+    sort: true,
+};
+export const DATOS_MODAL: any = [
+    {
+        indicadorPuntualidad: 8,
+        actaReintegro: 3,
+        estado: 'Activo',
+        valorLegalizado: 39475201,
+        fechaEvento: '02-04-2020',
+        objetivo: 'Salida',
+        conceptoGeneral: 123,
+        codigoRubro: 123,
+        rubro: 23,
+        codigoFuente: 1,
+        nombreFuente: 'saldo',
+        correoContacto: 'correo@correo.com',
+        telefonoContacto: 1923712,
+    }
+];
+export const DATOS_PRACTICAS: any = [
+    {
+        nombre: 'Artes',
+        codigo: 14,
+        valorAsignado: 1289371,
+    }
 ];

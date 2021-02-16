@@ -10,14 +10,21 @@ import { PdfviewComponent } from './components/pdfview/pdfview.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { SharedModule } from '../../../shared/shared.module';
 import { ExporterService } from './services/exporter.service';
+import { ModalEjecucionComponent } from './components/modal-ejecucion/modal-ejecucion.component';
+import { StoreModule } from '@ngrx/store';
+import * as fromEjecucion from './reducers/ejecucion.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { EjecucionEffects } from './effects/ejecucion.effects';
 
 @NgModule({
-  declarations: [ConsolidadoComponent, EjecucionComponent, InformeComponent, LayoutEjecucionComponent, PdfviewComponent],
+  declarations: [ConsolidadoComponent, EjecucionComponent, InformeComponent, LayoutEjecucionComponent, PdfviewComponent, ModalEjecucionComponent],
   imports: [
     CommonModule,
     EjecucionavancesRoutingModule,
     PdfViewerModule,
-    SharedModule
+    SharedModule,
+    StoreModule.forFeature(fromEjecucion.ejecucionFeatureKey, fromEjecucion.reducer),
+    EffectsModule.forFeature([EjecucionEffects])
   ],
   providers: [ExporterService],
 })

@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { PDFDocumentProxy } from 'ng2-pdf-viewer';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { DATOS_TABLA, CONFIGURACION_TABLA } from '../../interfaces/interfaces';
 import { ExporterService } from '../../services/exporter.service';
+import { SelectService } from '../../../../../shared/services/select.service';
+import { Store } from '@ngrx/store';
+import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
+import { getFilaSeleccionada } from '../../../../../shared/selectors/shared.selectors';
 @Component({
   selector: 'ngx-ejecucion',
   templateUrl: './ejecucion.component.html',
   styleUrls: ['./ejecucion.component.scss']
 })
-export class EjecucionComponent implements OnInit {
+export class EjecucionComponent implements OnInit, OnDestroy {
 
   pdfSrc = 'https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf'; // this sample, dynamic one we will generate with the pdfmake
   pageVariable = 1;
@@ -28,6 +32,7 @@ export class EjecucionComponent implements OnInit {
   modal: NgbModalRef;
   datosEjecucion: any;
   configuracionTabla: any;
+  subscriptionTabla$: any;
 
   areaFuncional: String [] = [
     'Servicios',
@@ -38,12 +43,26 @@ export class EjecucionComponent implements OnInit {
     private router: Router,
     private modalService: NgbModal,
     private excelService: ExporterService,
+    public modalEjecucion: SelectService,
+    private store: Store<any>,
   ) {
     this.datosEjecucion = DATOS_TABLA;
     this.configuracionTabla = CONFIGURACION_TABLA;
    }
 
+  ngOnDestroy() {
+    this.subscriptionTabla$.unsubscribe();
+  }
+
   ngOnInit() {
+    this.subscriptionTabla$ = this.store.select(getFilaSeleccionada).subscribe((accion: any) => {
+      if (accion) {
+        if (Object.keys(accion)[0] !== 'type') {
+          this.modalEjecucion.modalEjecucion = true;
+          this.store.dispatch(LoadFilaSeleccionada(null));
+        }
+      }
+    });
   }
 
   volver() {
