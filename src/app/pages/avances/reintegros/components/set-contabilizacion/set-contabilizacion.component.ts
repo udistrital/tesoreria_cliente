@@ -1,16 +1,17 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CONFIGURACION_LEGALIZACION, DATOS_LEGALIZACION, CONFIGURACION_REINTEGRO, DATOS_REINTEGRO } from '../../interfaces/interfaces';
 import { Store } from '@ngrx/store';
 import { getAccionTabla, getFilaSeleccionada } from '../../../../../shared/selectors/shared.selectors';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { LoadFilaSeleccionada, LoadAccionTabla } from '../../../../../shared/actions/shared.actions';
 
 @Component({
   selector: 'ngx-set-contabilizacion',
   templateUrl: './set-contabilizacion.component.html',
   styleUrls: ['./set-contabilizacion.component.scss']
 })
-export class SetContabilizacionComponent implements OnInit {
+export class SetContabilizacionComponent implements OnInit, OnDestroy {
   @ViewChild('agregarRegistroModal', { static: false }) agregarRegistroModal: ElementRef;
   @ViewChild('eliminarRegistroModal', { static: false }) eliminarRegistroModal: ElementRef;
   @ViewChild('legalizacionTab', { static: true }) legalizacionTab: ElementRef;
@@ -72,6 +73,14 @@ export class SetContabilizacionComponent implements OnInit {
       }
     });
   }
+
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
+    this.subscriptionAccion$.unsubscribe();
+    this.store.dispatch(LoadFilaSeleccionada(null));
+    this.store.dispatch(LoadAccionTabla(null));
+  }
+
 
   createForm() {
     this.contabilizacionGroup = this.fb.group({

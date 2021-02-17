@@ -9,19 +9,19 @@
     <div class="row">
         <div class="col">
             <mat-horizontal-stepper linear #stepper>
-                <mat-step [stepControl]="infoReintegroGroup" optional>
+                <mat-step [stepControl]="infoReintegroGroup">
                     <ng-template matStepLabel>Inicio</ng-template>
                     <div class="container">
                         <ngx-set-inforeintegro></ngx-set-inforeintegro>
                     </div>
                 </mat-step>
-                <mat-step [stepControl]="infoAfectacionGroup" optional>
+                <mat-step [stepControl]="infoAfectacionGroup">
                     <ng-template matStepLabel>Afectación Presupuestal</ng-template>
                     <div class="container">
                         <ngx-set-infoafectacion></ngx-set-infoafectacion>
                     </div>
                 </mat-step>
-                <mat-step [stepControl]="contabilizacionGroup" optional>
+                <mat-step [stepControl]="contabilizacionGroup">
                     <ng-template matStepLabel>Contabilización</ng-template>
                     <div class="container">
                         <ngx-set-contabilizacion></ngx-set-contabilizacion>

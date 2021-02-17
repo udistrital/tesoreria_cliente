@@ -172,7 +172,7 @@ export const CONFIGURACION_LEGALIZACION: any = {
             name: 'nuevoRegistro',
             icon: 'fas fa-plus py-1 px-2',
             class: 'px-2',
-            title: 'Agregar Registro',
+            title: 'Agregar Cuenta',
         }
     ],
 };

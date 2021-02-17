@@ -13,6 +13,9 @@ import { SetInfoafectacionComponent } from './components/set-infoafectacion/set-
 import { SetContabilizacionComponent } from './components/set-contabilizacion/set-contabilizacion.component';
 import { ShowDetallereintegroComponent } from './components/show-detallereintegro/show-detallereintegro.component';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { SetPdfviewComponent } from './components/set-pdfview/set-pdfview.component';
+import { SetDescargarcomprobanteComponent } from './components/set-descargarcomprobante/set-descargarcomprobante.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 
 @NgModule({
@@ -21,6 +24,8 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     SetInforeintegroComponent,
     SetInfoafectacionComponent,
     SetContabilizacionComponent,
+    SetPdfviewComponent,
+    SetDescargarcomprobanteComponent,
     ShowDetallereintegroComponent],
   imports: [
     CommonModule,
@@ -31,6 +36,7 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
+    PdfViewerModule,
     CurrencyMaskModule
   ]
 })

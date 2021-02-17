@@ -35,8 +35,8 @@
                 <small *ngIf="esInvalido('fecha')" class="text-danger">Seleccione una fecha</small>
             </div>
             <div class="col-md-3">
-                <label for="vigencia">Vigencia</label>
-                <select id="vigencia" class="custom-select" formControlName="vigencia" [class.is-invalid]="esInvalido('vigencia')">
+                <label for="vigenciaReintegro">Vigencia</label>
+                <select id="vigenciaReintegro" class="custom-select" formControlName="vigencia" [class.is-invalid]="esInvalido('vigencia')">
                     <option selected disabled value="">Seleccione...</option>
                     <option>2019</option>
                     <option>2020</option>
@@ -78,8 +78,8 @@
         <!-- Campos: Justificación, valor de reintegro, no. recibo de caja y botón consultar ingreso -->
         <div class="form-group row">
             <div class="col-md-8 py-2">
-                <label for="justificacion">Justificación</label>
-                <textarea id="justificacion" class="form-control" placeholder="Justificación del Reintegro" formControlName="justificacion" rows="5" [class.is-invalid]="esInvalido('justificacion')"></textarea>
+                <label for="justificaciontext">Justificación</label>
+                <textarea id="justificaciontext" class="form-control" placeholder="Justificación del Reintegro" formControlName="justificacion" rows="5" [class.is-invalid]="esInvalido('justificacion')"></textarea>
                 <small *ngIf="esInvalido('justificacion')" class="text-danger">Ingrese información en este campo</small>
             </div>
             <div class="col-md-4">
