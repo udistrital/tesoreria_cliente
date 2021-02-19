@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div class="card p-3 m-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+            Contabilización
+        </div>
+        <div class="card-body pt-0">
+            <div class="row my-2">
+                <div class="col py-2">
+                    <label for="tipoComprobante"> Tipo de comprobante </label> <br>
+                    <select name="tipoComprobante" id="tipoComprobante">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div class="col py-2">
+                    <label for="numeroComprobante"> Número de comprobante </label> <br>
+                    <select name="numeroComprobante" id="numeroComprobante">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col py-2">
+                    <label for="consecutivo"> Consecutivo </label> <br>
+                    <select name="consecutivo" id="consecutivo">
+                        <option value=" "></option>
+                    </select>
+                </div>
+                <div class="col py-2">
+                    <label for="conceptoContable"> Concepto contable </label> <br>
+                    <select name="conceptoContable" id="conceptoContable">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <ngx-table class="px-3" [titles]="titles" [attributes]="attributes" [list]="contabilizacion"></ngx-table>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            <button routerLinkActive="active" routerLink="pages/giros/cheques/lista" type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
+                Volver 
+            </button>
+        </div>
+        <div class="col">
+            <button mat-button class="btn btn-success px-3 py-2 my-2 text-light" type="submit">
+                Siguiente
+            </button>
+        </div>
+    </div>
+</div>

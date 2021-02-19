@@ -1,0 +1,109 @@
+<div class="container-fluid">
+    <div class="card p-3 m-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+            Erogación del giro
+        </div>
+        <div class="card-body pt-0">
+            <form action="">
+                <div class="row my-2">
+                    <div class="col">
+                        <label for=""> Banco </label> <br>
+                        <select name="" id="">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for=""> Número de cuenta </label> <br>
+                        <input type="number" name="" id="">
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col">
+                        <label for=""> Nombre de cuenta </label> <br>
+                        <select name="" id="">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for=""> Tipo de cuenta </label> <br>
+                        <input type="text" disabled>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col">
+                        <label for=""> Número de chequera </label> <br>
+                        <select name="" id="">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for=""> Cheques disponibles </label> <br>
+                        <input type="text" disabled>
+                    </div>
+                    <div class="col">
+                        <label for=""> Cheque siguiente </label> <br>
+                        <input type="text" disabled>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="card p-3 m-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+            Detalle del giro
+        </div>
+        <div class="card-body pt-0">
+            <div class="row my-2">
+                <div class="col-4">
+                    <label for=""> Fecha de pago </label> <br>
+                    <input type="text" disabled>
+                </div>
+                <div class="col-4">
+                    <label for=""> Número de cheque </label> <br>
+                    <input type="text" disabled>
+                </div>
+                <div class="col-4">
+                    <label for=""> Valor </label> <br>
+                    <input type="text" disabled>
+                </div>
+            </div>
+            <div class="row my-3">
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="card p-3 m-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+            Datos de beneficiario
+        </div>
+        <div class="card-body pt-0">
+            <div class="row my-3">
+                <div class="col">
+                    <label for=""> Tipo de documento </label> <br>
+                    <input type="text" disabled>
+                </div>
+                <div class="col">
+                    <label for=""> Número de documento </label> <br>
+                    <input type="text" disabled>
+                </div>
+                <div class="col">
+                    <label for=""> Nombre </label> <br>
+                    <input type="text" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            <button routerLinkActive="active" routerLink="pages/giros/cheques/lista" type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
+                Volver 
+            </button>
+        </div>
+        <div class="col">
+            <button mat-button class="btn btn-success px-3 py-2 my-2 text-light" type="submit" >
+                Siguiente
+            </button>
+        </div>
+    </div>
+</div>
