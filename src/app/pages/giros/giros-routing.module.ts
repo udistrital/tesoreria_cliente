@@ -4,7 +4,7 @@ import { GirosComponent } from './giros.component';
 
 
 const routes: Routes = [{
-  path:'',
+  path: '',
   component: GirosComponent,
   children: [
     {
