@@ -10,27 +10,32 @@ const routes: Routes = [{
     {
       path: 'tiposavances',
       loadChildren: () => import('./tiposavances/tiposavances.module')
-      .then(m => m.TiposavancesModule),
+        .then(m => m.TiposavancesModule),
     },
     {
       path: 'consultas',
       loadChildren: () => import('./consulta/consulta.module')
-      .then(m => m.ConsultaModule),
+        .then(m => m.ConsultaModule),
     },
     {
       path: 'requisitosavances',
       loadChildren: () => import('./requisitosavances/requisitosavances.module')
-      .then(m => m.RequisitosavancesModule),
+        .then(m => m.RequisitosavancesModule),
     },
     {
       path: 'solicitudavances',
       loadChildren: () => import('./solicitudavances/solicitudavances.module')
-      .then(m => m.SolicitudavancesModule),
+        .then(m => m.SolicitudavancesModule),
     },
     {
       path: 'especificacionesavances',
       loadChildren: () => import('./especificacionesavances/especificacionesavances.module')
-      .then(m => m.EspecificacionesavancesModule),
+        .then(m => m.EspecificacionesavancesModule),
+    },
+    {
+      path: 'reintegrosavances',
+      loadChildren: () => import('./reintegros/reintegros.module')
+        .then(m => m.ReintegrosModule),
     },
     {
       path: 'ejecucion',

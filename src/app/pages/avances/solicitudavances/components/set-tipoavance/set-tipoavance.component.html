@@ -102,8 +102,8 @@
         <div class="row">
             <div class="col-md-6"> {{ archivo?.name }} </div>
             <div class="col-md-4 text-right"> {{ archivo ? (archivo.size/1024).toFixed(2) + ' Kb' : '' }}</div>
-            <div class="col-md-2"> <button class="btn btn-primary text-white" (click)="archivo = null"><i
-                        class="fas fa-trash"></i></button> </div>
+            <div class="col-md-2"> <button class="btn btn-danger text-white" (click)="archivo = null"><i
+                        class="fas fa-trash-alt"></i></button> </div>
         </div>
     </div>
     <div class="modal-footer">
@@ -130,7 +130,7 @@
                     <option>Transporte</option>
                     <option>Hospedaje</option>
                 </select>
-                <small *ngIf="seleccionAvanceInvalid" class="text-danger">Complete este campo</small>
+                <small *ngIf="esInvalido('tipoId')" class="text-danger">Complete este campo</small>
             </div>
             <div class="form-group">
                 <label for="descripcion" class="col-form-label">Descripción:</label>
@@ -138,7 +138,7 @@
             </div>
             <div class="form-group">
                 <label for="valorSolicitado" class="col-form-label">Valor Solicitado:</label>
-                <input value=" {{ '0.0'|currency }}" type="number" class="form-control" id="valorSolicitado" formControlName="valorSolicitado" [class.is-invalid]="esInvalido('valorSolicitado')">
+                <input type="number" class="form-control" id="valorSolicitado" formControlName="valorSolicitado" [class.is-invalid]="esInvalido('valorSolicitado')">
             </div>
         </form>
     </div>
