@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { DATOS_REQUISITOSTIPO, CONFIGURACION_REQUISITOSTIPO, DATOS_ESPECIFICACIONTIPO, CONFIGURACION_ESPECIFICACIONTIPO } from '../../interfaces/interfaces';
+import { DATOS_REQUISITOSTIPO,
+  CONFIGURACION_REQUISITOSTIPO,
+  DATOS_ESPECIFICACIONTIPO,
+  CONFIGURACION_ESPECIFICACIONTIPO,
+  DATOS_ESPECIFICACIONDETALLE,
+  CONFIGURACION_ESPECIFICACIONDETALLE } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'ngx-show-detalleavance',
@@ -19,6 +24,9 @@ export class ShowDetalleavanceComponent implements OnInit {
   datosRequisitos: any;
   configEspecificacion: any;
   datosEspecificacion: any;
+  // Tabla en detalleavance
+  configDetalle: any;
+  datosDetalle: any;
 
   constructor(private _formBuilder: FormBuilder) {
 
@@ -27,6 +35,8 @@ export class ShowDetalleavanceComponent implements OnInit {
     this.configRequisitos = CONFIGURACION_REQUISITOSTIPO;
     this.datosEspecificacion = DATOS_ESPECIFICACIONTIPO;
     this.configEspecificacion = CONFIGURACION_ESPECIFICACIONTIPO;
+    this.datosDetalle = DATOS_ESPECIFICACIONDETALLE;
+    this.configDetalle = CONFIGURACION_ESPECIFICACIONDETALLE;
 
     // Icono en la Lista de documentos
     this.mostrarOcultar = 'Mostrar';
