@@ -8,4 +8,5 @@ export class SelectService {
   constructor() { }
 
   public elementosElegidos?: Object [];
+  public modalEjecucion?: boolean = false;
 }
