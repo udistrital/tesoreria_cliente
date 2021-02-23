@@ -12,33 +12,25 @@
                     <div class="row my-2">
                         <div class="col py-2">
                             <label for="aFuncional"> Área funcional </label> <br>
-                            <select name="aFuncional" id="aFuncional">
-                                <option value=""></option>
-                            </select>
+                            <input *ngIf="!!dataDetalles" type="text" placeholder="{{dataDetalles.areaFuncional}}" disabled>
                         </div>
                         <div class="col py-2">
                             <label for="consecutivoResumen"> Consecutivo </label> <br>
-                            <select name="consecutivoResumen" id="consecutivoResumen">
-                                <option value=""></option>
-                            </select>
+                            <input *ngIf="!!dataDetalles" type="text" placeholder="{{dataDetalles.numeroOrdenPago}}" disabled>
                         </div>
                         <div class="col py-2">
                             <label for="fechaResumen"> Fecha </label> <br>
-                            <input type="date" name="fechaResumen" id="fechaResumen">
+                            <input *ngIf="!!dataDetalles" type="text" placeholder="{{dataDetalles.fecha}}" name="fechaResumen" id="fechaResumen" disabled>
                         </div>
                     </div>
                     <div class="row my-2">
-                        <div class="col py-2">
+                        <div class="col-4 py-2">
                             <label for="tipoDocumentoResumen">Tipo de documento</label> <br>
-                            <select name="tipoDocumentoResumen" id="tipoDocumentoResumen">
-                                <option value=""></option>
-                            </select>
+                            <input *ngIf="!!dataDetalles" type="text" placeholder="{{dataDetalles.tipoDocumento}}" disabled>
                         </div>
-                        <div class="col py-2">
+                        <div class="col-4 py-2">
                             <label for="tipoGiroResumen"> Tipo de giro </label> <br>
-                            <select name="tipoGiroResumen" id="tipoGiroResumen">
-                                <option value=""></option>
-                            </select>
+                            <input *ngIf="!!dataDetalles" type="text" placeholder="{{dataDetalles.tipoGiro}}" disabled>
                         </div>
                     </div>     
                 </div>
@@ -111,21 +103,17 @@
             <div class="row my-3">
                 <div class="col py-2">
                     <label for="bancoErogacion"> Banco </label> <br>
-                    <select name="bancoErogacion" id="bancoErogacion">
-                        <option value=""></option>
-                    </select>
+                    <input *ngIf="!!dataErogacion" type="text" placeholder="{{dataErogacion.banco}}" disabled>
                 </div>
                 <div class="col py-2">
                     <label for="numeroCuentaErogacion"> Número de cuenta </label> <br>
-                    <input type="number" name="numeroCuentaErogacion" id="numeroCuentaErogacion">
+                    <input disabled>
                 </div>
             </div>
             <div class="row my-3">
                 <div class="col py-2">
                     <label for="nombreCuentaBeneficiario"> Nombre de cuenta </label> <br>
-                    <select name="nombreCuentaBeneficiario" id="nombreCuentaBeneficiario">
-                        <option value=""></option>
-                    </select>
+                    <input *ngIf="!!dataErogacion" type="text" placeholder="{{dataErogacion.nombreCuenta}}" disabled>
                 </div>
                 <div class="col py-2">
                     <label for="tipoCuentaBeneficiario"> Tipo de cuenta </label> <br>
@@ -135,9 +123,7 @@
             <div class="row my-3">
                 <div class="col py-2">
                     <label for="numeroChequeraResumen"> Número de chequera </label> <br>
-                    <select name="numeroChequeraResumen" id="numeroChequeraResumen">
-                        <option value=""></option>
-                    </select>
+                    <input *ngIf="!!dataErogacion" type="text" placeholder="{{dataErogacion.numeroChequera}}" disabled>
                 </div>
                 <div class="col py-2">
                     <label for="chequesDisponiblesResumen"> Cheques disponibles </label> <br>
@@ -154,8 +140,30 @@
         <h6 class="text-white bg-dark p-2 px-4 rounded w-100">
             Contabilización
         </h6>
-        <div class="card-body">
-
+        <div class="card-body px-5">
+            <div class="row my-3">
+                <div class="col py-2">
+                    <label> Consecutivo </label> <br>
+                    <input *ngIf="!!dataContabilizacion" type="text" placeholder="{{dataContabilizacion.consecutivo}}" disabled>
+                </div>
+            </div>
+            <div class="row p-3">
+                <ngx-table class="px-3 w-100" [titles]="titles" [attributes]="attributes" [list]="contabilizacion"></ngx-table>
+            </div>
+            <div class="row px-1 d-flex justify-content-between">
+                <div class="col-md-4 col-lg-2 py-2 px-0 align-items-center">
+                    <label class="px-2" for="valorDebitoResumen">Valor total débito</label>
+                </div>
+                <div class="col-md-8 col-lg-3 py-2 px-0">
+                    <input class="form-control" id="valorDebitoResumen" disabled value="{{totalDebito()|currency}}">
+                </div>
+                <div class="col-md-4 col-lg-2 py-2 px-0">
+                    <label class="px-2 align-items-center" for="valorCreditoResumen">Valor total crédito</label>
+                </div>
+                <div class="col-md-8 col-lg-3 py-2 px-1">
+                    <input class="form-control" id="valorCreditoResumen" disabled value="{{totalCredito()|currency}}">
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -167,7 +175,7 @@
         </button>
     </div>
     <div class="col">
-        <button mat-button class="btn btn-success px-3 py-2 my-2 text-light" type="submit" (ngSubmit)="guardar()">
+        <button mat-button class="btn btn-success px-3 py-2 my-2 text-light" (click)="guardar()">
             Guardar
         </button>
     </div>

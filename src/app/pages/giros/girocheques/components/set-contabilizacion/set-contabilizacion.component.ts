@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DATOS_CONTA} from '../../interfaces/interfaces';
+import { Store } from '@ngrx/store';
+import { cargarTablaContabilizacion } from '../../actions/girocheques.actions';
 
 @Component({
   selector: 'ngx-set-contabilizacion',
@@ -44,6 +46,7 @@ export class SetContabilizacionComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private store: Store<any>,
   ) { this.validarForm = new EventEmitter;
     this.informacionForm = new EventEmitter;
     this.contabilizacion = DATOS_CONTA;
@@ -81,6 +84,7 @@ export class SetContabilizacionComponent implements OnInit {
 
   onSubmit( data: any ) {
     this.informacionForm.emit(data);
+    this.store.dispatch(cargarTablaContabilizacion(this.contabilizacion));
   }
 
 }

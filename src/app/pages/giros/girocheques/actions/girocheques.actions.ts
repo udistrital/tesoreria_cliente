@@ -4,12 +4,22 @@ export const loadGirochequess = createAction(
   '[Girocheques] Load Girochequess'
 );
 
-export const loadGirochequessSuccess = createAction(
-  '[Girocheques] Load Girochequess Success',
-  props<{ data: any }>()
+export const cargarDatosDetalle = createAction(
+  '[GiroCheques] Cargar DatosDetalle',
+  props(),
 );
 
-export const loadGirochequessFailure = createAction(
-  '[Girocheques] Load Girochequess Failure',
-  props<{ error: any }>()
+export const cargarDatosErogacion = createAction(
+  '[GiroCheques] Cargar DatosErogacion',
+  props(),
+);
+
+export const cargarDatosContabilizacion = createAction(
+  '[GiroCheques] Cargar DatosContabilizacion',
+  props(),
+);
+
+export const cargarTablaContabilizacion = createAction(
+  '[GiroCheques] Cargar TablaContabilizacion',
+  props(),
 );

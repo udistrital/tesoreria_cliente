@@ -13,12 +13,8 @@ export class GirochequesEffects {
   loadGirochequess$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(GirochequesActions.loadGirochequess),
-      concatMap(() =>
+      concatMap(() => EMPTY)
         /** An EMPTY observable only emits completion. Replace with your own observable API request */
-        EMPTY.pipe(
-          map(data => GirochequesActions.loadGirochequessSuccess({ data })),
-          catchError(error => of(GirochequesActions.loadGirochequessFailure({ error }))))
-      )
     );
   });
 

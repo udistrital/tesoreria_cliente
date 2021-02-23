@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Store } from '@ngrx/store';
+import { cargarDatosContabilizacion, cargarDatosDetalle, cargarDatosErogacion } from '../../actions/girocheques.actions';
 @Component({
   selector: 'ngx-create-giro',
   templateUrl: './create-giro.component.html',
@@ -11,11 +12,7 @@ export class CreateGiroComponent implements OnInit {
   detallesForm: boolean = false;
   erogacionForm: boolean = false;
 
-  dataContabilizacion: any;
-  dataDetalles: any;
-  dataErogacion: any;
-
-  constructor() { }
+  constructor(private store: Store<any> ) { }
 
   ngOnInit() {
   }
@@ -31,13 +28,13 @@ export class CreateGiroComponent implements OnInit {
   }
 
   informacionContabilizacionForm(data: any) {
-    this.dataContabilizacion = data;
+    this.store.dispatch(cargarDatosContabilizacion(data));
   }
 
   informacionDetallesForm(data: any) {
-    this.dataDetalles = data;
+    this.store.dispatch(cargarDatosDetalle(data));
   }
   informacionErogacionForm(data: any) {
-    this.dataErogacion = data;
+    this.store.dispatch(cargarDatosErogacion(data));
   }
 }
