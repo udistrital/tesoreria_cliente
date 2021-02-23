@@ -1,109 +1,109 @@
 <div class="container-fluid">
-    <div class="card p-3 m-4">
-        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
-            Erogación del giro
-        </div>
-        <div class="card-body pt-0">
-            <form action="">
+    <form [formGroup]="erogacionForm" (ngSubmit)="onSubmit(erogacionForm.value)">
+        <div class="card p-3 m-4">
+            <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+                Erogación del giro
+            </div>
+            <div class="card-body pt-0">
                 <div class="row my-2">
                     <div class="col">
-                        <label for=""> Banco </label> <br>
-                        <select name="" id="">
-                            <option value=""></option>
+                        <label for="banco"> Banco </label> <br>
+                        <select name="banco" id="banco" class="form-control" formControlName="banco">
+                            <option *ngFor="let banco of bancos" value={{banco}}> {{banco}} </option>
                         </select>
                     </div>
                     <div class="col">
-                        <label for=""> Número de cuenta </label> <br>
-                        <input type="number" name="" id="">
-                    </div>
-                </div>
-                <div class="row my-2">
-                    <div class="col">
-                        <label for=""> Nombre de cuenta </label> <br>
-                        <select name="" id="">
-                            <option value=""></option>
-                        </select>
-                    </div>
-                    <div class="col">
-                        <label for=""> Tipo de cuenta </label> <br>
-                        <input type="text" disabled>
+                        <label for="numeroCuenta"> Número de cuenta </label> <br>
+                        <input type="number" name="numeroCuenta" id="numeroCuenta" disabled>
                     </div>
                 </div>
                 <div class="row my-2">
                     <div class="col">
-                        <label for=""> Número de chequera </label> <br>
-                        <select name="" id="">
-                            <option value=""></option>
+                        <label for="nombreCuenta"> Nombre de cuenta </label> <br>
+                        <select name="nombreCuenta" id="nombreCuenta" class="form-control" formControlName="nombreCuenta">
+                            <option *ngFor="let nombreCuenta of nombresCuentas" value={{nombreCuenta}}> {{nombreCuenta}} </option>
                         </select>
                     </div>
                     <div class="col">
-                        <label for=""> Cheques disponibles </label> <br>
-                        <input type="text" disabled>
+                        <label for="tipoCuenta"> Tipo de cuenta </label> <br>
+                        <input name="tipoCuenta" id="tipoCuenta" type="text" disabled>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col">
+                        <label for="numeroChequera"> Número de chequera </label> <br>
+                        <select name="numeroChequera" id="numeroChequera" class="form-control" formControlName="numeroChequera">
+                            <option *ngFor="let numeroChequera of numeroChequeras" value={{numeroChequera}}> {{numeroChequera}} </option>
+                        </select>
                     </div>
                     <div class="col">
-                        <label for=""> Cheque siguiente </label> <br>
-                        <input type="text" disabled>
+                        <label for="chequesDisponibles"> Cheques disponibles </label> <br>
+                        <input name="chequesDisponibles" id="chequesDisponibles" type="text" disabled>
                     </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="card p-3 m-4">
-        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
-            Detalle del giro
-        </div>
-        <div class="card-body pt-0">
-            <div class="row my-2">
-                <div class="col-4">
-                    <label for=""> Fecha de pago </label> <br>
-                    <input type="text" disabled>
-                </div>
-                <div class="col-4">
-                    <label for=""> Número de cheque </label> <br>
-                    <input type="text" disabled>
-                </div>
-                <div class="col-4">
-                    <label for=""> Valor </label> <br>
-                    <input type="text" disabled>
+                    <div class="col">
+                        <label for="chequeSiguiente"> Cheque siguiente </label> <br>
+                        <input name="chequeSiguiente" id="chequeSiguiente" type="text" disabled>
+                    </div>
                 </div>
             </div>
-            <div class="row my-3">
-                
+        </div>
+        <div class="card p-3 m-4">
+            <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+                Detalle del giro
+            </div>
+            <div class="card-body pt-0">
+                <div class="row my-2">
+                    <div class="col-4">
+                        <label for="fechaPago"> Fecha de pago </label> <br>
+                        <input name="fechaPago" id="fechaPago" type="text" disabled>
+                    </div>
+                    <div class="col-4">
+                        <label for="numeroCheque"> Número de cheque </label> <br>
+                        <input name="numeroCheque" id="numeroCheque" type="text" disabled>
+                    </div>
+                    <div class="col-4">
+                        <label for="valorErogacion"> Valor </label> <br>
+                        <input name="valorErogacion" id="valorErogacion" type="text" disabled>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="card p-3 m-4">
-        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
-            Datos de beneficiario
-        </div>
-        <div class="card-body pt-0">
-            <div class="row my-3">
-                <div class="col">
-                    <label for=""> Tipo de documento </label> <br>
-                    <input type="text" disabled>
-                </div>
-                <div class="col">
-                    <label for=""> Número de documento </label> <br>
-                    <input type="text" disabled>
-                </div>
-                <div class="col">
-                    <label for=""> Nombre </label> <br>
-                    <input type="text" disabled>
+        <div class="card p-3 m-4">
+            <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+                Datos de beneficiario
+            </div>
+            <div class="card-body pt-0">
+                <div class="row my-3">
+                    <div class="col">
+                        <label for="tipoDocumentoErogacion"> Tipo de documento </label> <br>
+                        <input name="tipoDocumentoErogacion" id="tipoDocumentoErogacion" type="text" disabled>
+                    </div>
+                    <div class="col">
+                        <label for="numeroDocumentoErogacion"> Número de documento </label> <br>
+                        <input name="numeroDocumentoErogacion" id="numeroDocumentoErogacion" type="text" disabled>
+                    </div>
+                    <div class="col">
+                        <label for="nombreErogacion"> Nombre </label> <br>
+                        <input name="nombreErogacion" id="nombreErogacion" type="text" disabled>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row text-center">
-        <div class="col">
-            <button routerLinkActive="active" routerLink="pages/giros/cheques/lista" type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
-                Volver 
-            </button>
+        <div class="row text-center">
+            <div class="col">
+                <button matStepperPrevious type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
+                    Volver 
+                </button>
+            </div>
+            <div class="col">
+                <button mat-button matStepperNext class="btn btn-success px-3 py-2 my-2 text-light" type="submit" [disabled]="erogacionForm.invalid">
+                    Siguiente
+                </button>
+            </div>
         </div>
-        <div class="col">
-            <button mat-button class="btn btn-success px-3 py-2 my-2 text-light" type="submit" >
-                Siguiente
-            </button>
-        </div>
-    </div>
+    </form>
 </div>

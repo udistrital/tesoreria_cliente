@@ -11,8 +11,7 @@ import * as GirochequesActions from '../actions/girocheques.actions';
 export class GirochequesEffects {
 
   loadGirochequess$ = createEffect(() => {
-    return this.actions$.pipe( 
-
+    return this.actions$.pipe(
       ofType(GirochequesActions.loadGirochequess),
       concatMap(() =>
         /** An EMPTY observable only emits completion. Replace with your own observable API request */

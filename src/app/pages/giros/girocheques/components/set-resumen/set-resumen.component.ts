@@ -12,4 +12,6 @@ export class SetResumenComponent implements OnInit {
   ngOnInit() {
   }
 
+  guardar() {}
+
 }

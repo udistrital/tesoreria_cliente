@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { GirochequesEffects } from './girocheques.effects';
 
 describe('GirochequesEffects', () => {
-  let actions$: Observable<any>;
+  const actions$: Observable<any> = new Observable ();
   let effects: GirochequesEffects;
 
   beforeEach(() => {

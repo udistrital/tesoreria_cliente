@@ -1,3 +1,4 @@
+import { SetDetallegiroComponent } from '../components/set-detallegiro/set-detallegiro.component';
 export const CONFIGURACION_GIROCHEQUES: any = {
     showColumnTitle: true,
     // title: {
@@ -113,4 +114,36 @@ export const DATOS_GIROCHEQUE: any = [
         numeroGiro: 432890,
         numeroCuenta: 89240,
      },
-    ];
+];
+export const DATOS_RUBROS: any = [
+    {
+        numeroRubro: '3.01.001.01.02.05.0001.01',
+        nombreRubro: 'Riesgos laborales docentes',
+        valor: 17329387,
+    },
+    {
+        numeroRubro: '3.01.001.01.02.05.0001.01',
+        nombreRubro: 'ICBF docentes',
+        valor: 17329387,
+    },
+];
+export const DATOS_CONTA: any = [
+    {
+        secuencia: 2,
+        tercero: 12313,
+        numeroCuenta: 17329387,
+        nombreCuenta: 'Occidente',
+        detalle: 'Pago corresponsal',
+        credito: 219823,
+        debito: 0,
+    },
+    {
+        secuencia: 3,
+        tercero: 435123,
+        numeroCuenta: 3745982,
+        nombreCuenta: 'Honorarios',
+        detalle: 'Pago corresponsal',
+        debito: 219823,
+        credito: 0,
+    },
+];
