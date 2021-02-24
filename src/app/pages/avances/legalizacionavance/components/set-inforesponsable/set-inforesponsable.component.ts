@@ -1,18 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
 import { OPCIONES_AREA_FUNCIONAL } from '../../../../../shared/interfaces/interfaces';
-import { loadTipoLegalizacion } from '../../actions/legalizacionavance.actions';
+import { cargarDatosResponsableLegalizacion, loadTipoLegalizacion } from '../../actions/legalizacionavance.actions';
 
 @Component({
   selector: 'ngx-set-inforesponsable',
   templateUrl: './set-inforesponsable.component.html',
   styleUrls: ['./set-inforesponsable.component.scss']
 })
-export class SetInforesponsableComponent implements OnInit, OnDestroy {
+export class SetInforesponsableComponent implements OnInit, OnDestroy, OnDestroy {
   datosResponsable: FormGroup;
   opcionesAreaFuncional: any;
   subTipoInforme$: any;
+  susDatosSolicitante$: any;
 
   constructor(private fb: FormBuilder, private store: Store<any>) {
     this.opcionesAreaFuncional = OPCIONES_AREA_FUNCIONAL;
@@ -20,10 +22,20 @@ export class SetInforesponsableComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.subTipoInforme$ = this.datosResponsable.get('tipoInforme').valueChanges.subscribe(valor => {
+      if (this.datosResponsable.get('tipoInforme').valid)
+        this.store.dispatch(loadTipoLegalizacion({ tipoInforme: valor }));
+    });
+    this.susDatosSolicitante$ = this.datosResponsable.valueChanges.subscribe(valor => {
+      if (this.datosResponsable.valid)
+        this.store.dispatch(cargarDatosResponsableLegalizacion({ datosResponsable: valor }));
+    });
   }
 
   ngOnDestroy() {
     this.subTipoInforme$.unsubscribe();
+    this.susDatosSolicitante$.unsubscribe();
+    this.store.dispatch(LoadFilaSeleccionada(null));
   }
 
   crearFormulario() {
@@ -32,10 +44,6 @@ export class SetInforesponsableComponent implements OnInit, OnDestroy {
       numeroId: ['', Validators.required],
       areaFuncional: ['', Validators.required],
       tipoInforme: ['', Validators.required]
-    });
-    this.subTipoInforme$ = this.datosResponsable.get('tipoInforme').valueChanges.subscribe(valor => {
-      if (this.datosResponsable.get('tipoInforme').valid)
-        this.store.dispatch(loadTipoLegalizacion({ tipoInforme: valor }));
     });
   }
 
