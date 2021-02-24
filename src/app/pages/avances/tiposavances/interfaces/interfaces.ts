@@ -252,3 +252,59 @@ export const DATOS_REQUISITOS: any = [
         fecha: '2021-02-10T02:18:54Z',
     },
 ];
+export const CONFIGURACION_TABLA_NORMA: any = {
+    showColumnTitle: true,
+    dataConfig: [
+        {
+            key: 'enlaceNorma',
+            title: {
+                name: 'Enlace de Norma',
+                class: 'text-center',
+            },
+            pipe: {
+                class: '',
+            }
+        },
+        {
+            key: 'vigencia',
+            title: {
+                name: 'Vigencia',
+                class: 'text-center',
+            },
+            pipe: {
+                class: '',
+            }
+        },
+        {
+            key: 'fechaActualizacion',
+            title: {
+                name: 'Fecha de Actualización',
+                class: 'text-center',
+            },
+            pipe: {
+                type: 'date',
+                config: [
+                    'shortDate'
+                ],
+                class: 'text-center',
+            }
+        },
+    ],
+    noData: {
+        name: 'No existen elementos asociados',
+        class: 'text-center',
+    },
+    sort: true,
+};
+export const DATOS_NORMA: any = [
+    {
+        enlaceNorma: 'enlace1',
+        vigencia: '2019',
+        fechaActualizacion: '2021-20-11T02:18:54Z',
+    },
+    {
+        enlaceNorma: 'enlace2',
+        vigencia: '2020',
+        fechaActualizacion: '2021-20-11T02:18:54Z',
+    }
+];

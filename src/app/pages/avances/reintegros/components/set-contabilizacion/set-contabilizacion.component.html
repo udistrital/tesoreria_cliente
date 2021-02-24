@@ -1,0 +1,336 @@
+<form [formGroup]="contabilizacionGroup" (ngSubmit)="saveForm()">
+
+    <!-- Inicio de tabs "Legalizacion" y "Reintegro" -->
+    <div class="col-md-6">
+        <ul class="nav nav-tabs nav-justified">
+            <li class="nav-item mr-1 active">
+                <a href="#legalizacion" #legalizacionTab class="nav-link bg-primary text-white my-1 active" data-toggle="tab">Legalización</a>
+            </li>
+            <li class="nav-item mr-1">
+                <a href="#reintegro" #reintegroTab class="nav-link bg-primary text-white my-1" data-toggle="tab">Reintegro</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Contenido de los tabs -->
+    <div class="tab-content">
+
+        <!-- Contenido de los tabs: Legalizacion -->
+        <div class="tab-pane fade show active" id="legalizacion">
+
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6 p-3">
+                    <h6 class="card-title bg-secondary text-white text-center py-2 px-2 rounded align-items-end">
+                        Comprobante de Legalización
+                    </h6>
+                </div>
+            </div>
+            <div class="form-group row px-2">
+                <div class="col-md-4">
+                    <label for="tipoComprobanteL">Tipo de Comprobante</label>
+                    <select id="tipoComprobanteL" class="custom-select" formControlName="tipoComprobanteL" [class.is-invalid]="isInvalid('tipoComprobanteL')">
+                        <option selected disabled value="">Seleccione...</option>
+                        <option>01</option>
+                        <option>02</option>
+                    </select>
+                    <small *ngIf="isInvalid('tipoComprobanteL')" class="text-danger">Complete este
+                        campo</small>
+                </div>
+                <div class="col-md-4">
+                    <label for="numeroComprobanteL">No. de Comprobante</label>
+                    <select id="numeroComprobanteL" class="custom-select" formControlName="numeroComprobanteL" [class.is-invalid]="isInvalid('numeroComprobanteL')">
+                        <option selected disabled value="">Seleccione...</option>
+                        <option>01</option>
+                        <option>02</option>
+                    </select>
+                    <small *ngIf="isInvalid('numeroComprobanteL')" class="text-danger">Complete este
+                        campo</small>
+                </div>
+                <div class="col-md-4">
+                    <label for="consecutivoL">Consecutivo</label>
+                    <select id="consecutivoL" class="custom-select" formControlName="consecutivoL" [class.is-invalid]="isInvalid('consecutivoL')">
+                        <option selected disabled value="">Seleccione...</option>
+                        <option>01</option>
+                        <option>02</option>
+                    </select>
+                    <small *ngIf="isInvalid('consecutivoL')" class="text-danger">Complete este
+                        campo</small>
+                </div>
+            </div>
+            <div class="form-group row px-2">
+                <div class="col">
+                    <label for="conceptoL">Concepto Contable</label>
+                    <select id="conceptoL" class="custom-select" formControlName="conceptoL" [class.is-invalid]="isInvalid('conceptoL')">
+                        <option selected disabled value="">Seleccione...</option>
+                        <option>01</option>
+                        <option>02</option>
+                    </select>
+                    <small *ngIf="isInvalid('conceptoL')" class="text-danger">Complete este
+                        campo</small>
+                </div>
+            </div>
+
+            <!-- Tabla de cuentas contables: Legalizacion -->
+            <div class="row py-3">
+                <div class="col bg-white">
+                    <ngx-general-table [config]="configLegalizacion" [datos]="datosLegalizacion">
+                    </ngx-general-table>
+                </div>
+            </div>
+
+            <div class="row py-4">
+                <div class="col-md-4 text-right pt-3">
+                    <label class="text-right">SUMAS IGUALES</label>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" value=" " readonly>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" value=" " readonly>
+                </div>
+            </div>
+
+            <mat-divider class="col-md-12 py-3 border-warning"></mat-divider>
+
+            <!-- Boton para descargar de comprobante contable -->
+            <div class="row py-3 justify-content-center">
+                <button class="btn btn-outline-success mb-2 mr-2" (click)="modalComprobanteLegalizacion(legalizacionModal)">
+                    <i class="fas fa-file-pdf px-3"></i>Descargar Comprobante
+                </button>
+            </div>
+
+            <!-- Botones: Volver a registro, Siguiente -->
+            <div class="container">
+                <div class="row pt-2 text-center">
+                    <div class="col-md-6">
+                        <button mat-button matStepperPrevious type="button" class="btn btn-primary mb-3 mt-3 text-white">
+                            <span>Regresar</span>
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-success m-0 mt-4" (click)="changeReintegro()">
+                            Siguiente
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin Botones: Volver a registro, Siguiente -->
+
+        </div>
+
+        <!-- Contenido de los tabs: Reintegro -->
+        <div class="tab-pane fade show" id="reintegro">
+
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6 p-3">
+                    <h6 class="card-title bg-secondary text-white text-center py-2 px-2 rounded">
+                        Comprobante de Reintegro
+                    </h6>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label for="tipoComprobanteR">Tipo de Comprobante</label>
+                    <select id="tipoComprobanteR" class="custom-select" formControlName="tipoComprobanteR" [class.is-invalid]="isInvalid('tipoComprobanteR')">
+                        <option selected disabled value="">Seleccione...</option>
+                        <option>01</option>
+                        <option>02</option>
+                    </select>
+                    <small *ngIf="isInvalid('tipoComprobanteR')" class="text-danger">Complete este
+                        campo</small>
+                </div>
+                <div class="col-md-4">
+                    <label for="numeroComprobanteR">No. de Comprobante</label>
+                    <select id="numeroComprobanteR" class="custom-select" formControlName="numeroComprobanteR" [class.is-invalid]="isInvalid('numeroComprobanteR')">
+                        <option selected disabled value="">Seleccione...</option>
+                        <option>01</option>
+                        <option>02</option>
+                    </select>
+                    <small *ngIf="isInvalid('numeroComprobanteR')" class="text-danger">Complete este
+                        campo</small>
+                </div>
+                <div class="col-md-4">
+                    <label for="consecutivoR">Consecutivo</label>
+                    <select id="consecutivoR" class="custom-select" formControlName="consecutivoR" [class.is-invalid]="isInvalid('consecutivoR')">
+                        <option selected disabled value="">Seleccione...</option>
+                        <option>01</option>
+                        <option>02</option>
+                    </select>
+                    <small *ngIf="isInvalid('consecutivoR')" class="text-danger">Complete este
+                        campo</small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col">
+                    <label for="conceptoR">Concepto Contable</label>
+                    <select id="conceptoR" class="custom-select" formControlName="conceptoR" [class.is-invalid]="isInvalid('conceptoR')">
+                        <option selected disabled value="">Seleccione...</option>
+                        <option>01</option>
+                        <option>02</option>
+                    </select>
+                    <small *ngIf="isInvalid('conceptoR')" class="text-danger">Complete este
+                        campo</small>
+                </div>
+            </div>
+            <!-- Tabla de cuentas contables: Reintegro -->
+            <div class="row py-3">
+                <div class="col bg-white">
+                    <ngx-general-table [config]="configReintegro" [datos]="datosReintegro">
+                    </ngx-general-table>
+                </div>
+            </div>
+
+            <div class="row py-4">
+                <div class="col-md-4 text-right pt-3">
+                    <label class="text-right">SUMAS IGUALES</label>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" value=" " readonly>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" value=" " readonly>
+                </div>
+            </div>
+
+            <mat-divider class="col-md-12 py-3 border-primary"></mat-divider>
+
+            <!-- Boton de descarga de comprobante contable -->
+            <div class="row py-3 justify-content-center">
+                <button class="btn btn-outline-success mb-2 mr-2" (click)="modalComprobanteReintegro(reintegroModal)">
+                    <i class="fas fa-file-pdf px-3"></i>Descargar Comprobante
+                </button>
+            </div>
+
+            <!-- Botones: Volver a registro, Siguiente -->
+            <div class="container">
+                <div class="row pt-2 text-center">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-primary text-white m-0 mt-4" (click)="changeLegalizacion()">
+                            <span>Regresar</span>
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <button mat-button matStepperNext type="submit" class="btn btn-success m-0 mt-4">
+                            <span>Siguiente</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin Botones: Volver a registro, Siguiente -->
+        </div>
+    </div>
+</form>
+
+<!-- Modal: Eliminar registros de las tablas -->
+<ng-template #eliminarRegistroModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="BorrarTipoModal">Borrar Registro</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        ¿Desea borrar el registro?
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="modal.close(true)">Borrar</button>
+    </div>
+</ng-template>
+<!-- Fin Modal -->
+
+<!-- Modal para descargar pdf de comprobante Legalizacion -->
+<ng-template #legalizacionModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Descargar Comprobante</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <ngx-set-descargarcomprobante></ngx-set-descargarcomprobante>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary text-white" (click)="modal.close('Close click')">Volver</button>
+    </div>
+</ng-template>
+
+<!-- Modal para descargar pdf de comprobante Reintegro -->
+<ng-template #reintegroModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Descargar Comprobante</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <ngx-set-descargarcomprobante></ngx-set-descargarcomprobante>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary text-white" (click)="modal.close('Close click')">Volver</button>
+    </div>
+</ng-template>
+
+<!-- Modal para agregar un nuevo registro a las tablas (formulario) -->
+<ng-template #agregarRegistroModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Agregar Registro</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]='modalRegistroGroup'>
+            <div class="form-group row px-2">
+                <div class="col-md-6">
+                    <label>ID de Tercero</label>
+                    <input type="number" class="form-control" id="idTercero" formControlName="idTercero" [class.is-invalid]="isInvalidModal('idTercero')">
+                    <small *ngIf="isInvalidModal('idTercero')" class="text-danger">Ingrese numeros en este campo</small>
+                </div>
+                <div class="col-md-6">
+                    <label>No. de Cuenta / Impuesto</label>
+                    <input type="number" class="form-control" id="numeroCuenta" formControlName="numeroCuenta" [class.is-invalid]="isInvalidModal('numeroCuenta')">
+                    <small *ngIf="isInvalidModal('numeroCuenta')" class="text-danger">Ingrese numeros en este
+                        campo</small>
+                </div>
+            </div>
+            <div class="form-group row px-2">
+                <div class="col">
+                    <label>Número de Cuenta Contable</label>
+                    <input class="form-control" id="nombreCuenta" readonly>
+                </div>
+            </div>
+            <div class="row text-center px-4 pb-1">
+                <small *ngIf="isInvalidModal('valorCuenta')" class="text-danger">Seleccione un tipo de cuenta</small>
+            </div>
+            <div class="row px-3">
+                <div class="col-sm-6 form-group">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input class="custom-control-input" type="radio" id="credito" name="valorCuenta" formControlName="valorCuenta" value="credito">
+                        <label class="custom-control-label px-2" for="credito">Crédito</label><br>
+                    </div>
+                </div>
+                <div class="col-sm-6 form-group">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input class="custom-control-input" type="radio" id="debito" name="valorCuenta" formControlName="valorCuenta" value="debito">
+                        <label class="custom-control-label px-2" for="debito">Débito</label><br>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row px-2">
+                <div class="col">
+                    <label for="valorNumero" class="col-form-label">Valor</label>
+                    <input currencyMask class="form-control" id="valor" formControlName="valorNumero" [class.is-invalid]="isInvalidModal('valorNumero')">
+                    <small *ngIf="isInvalidModal('valorNumero')" class="text-danger">Ingrese un valor para la cuenta</small>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cancelar</button>
+        <button type="button" class="btn btn-primary text-white" (click)='saveModalForm()'>Aceptar</button>
+    </div>
+</ng-template>

@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { DATOS_REQUISITOS, CONFIGURACION_REQUISITOSDETALLE } from '../../interfaces/interfaces';
+import { DATOS_REQUISITOS, CONFIGURACION_REQUISITOSDETALLE, CONFIGURACION_TABLA_NORMA, DATOS_NORMA } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'ngx-set-tipodeavance',
@@ -21,8 +21,12 @@ export class SetTipodeavanceComponent implements OnInit {
   // Modales
   closeResult = '';
 
+  // Configuracion de tablas
   configRequisitos: any;
   datosRequisitos: any;
+  configTableNorma: any;
+  datosTableNorma: any;
+
   // Icono en la Lista de documentos
   mostrarOcultar: string;
   mostrarOcultarIcono: string;
@@ -34,6 +38,8 @@ export class SetTipodeavanceComponent implements OnInit {
   ) {
     this.configRequisitos = CONFIGURACION_REQUISITOSDETALLE;
     this.datosRequisitos = DATOS_REQUISITOS;
+    this.configTableNorma = CONFIGURACION_TABLA_NORMA;
+    this.datosTableNorma = DATOS_NORMA;
     // Título, editar o crear
     this.tituloAccion = this.activatedRoute.snapshot.url[0].path;
     this.createForm();
