@@ -37,7 +37,7 @@ export class GeneralTableComponent implements OnInit, OnChanges {
   ngOnInit() {
     if (this.config && this.config.endSubtotal && this.config.endSubtotal.last
       && !this.config.endSubtotal.last.length) {
-      if(this.config.endSubtotal.property)
+      if (this.config.endSubtotal.property)
         this.config.endSubtotal.last.property = this.config.endSubtotal.property;
       this.config.endSubtotal.last = [this.config.endSubtotal.last];
     }

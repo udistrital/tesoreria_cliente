@@ -20,7 +20,13 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 
 @NgModule({
-  declarations: [ListaLegalizacionesComponent, SetLegalizacionComponent, SetInforesponsableComponent, SetInfolegalizacionComponent, SetPracticasacademicasComponent, ShowResumenComponent],
+  declarations: [ListaLegalizacionesComponent,
+    SetLegalizacionComponent,
+    SetInforesponsableComponent,
+    SetInfolegalizacionComponent,
+    SetPracticasacademicasComponent,
+    ShowResumenComponent
+  ],
   imports: [
     CommonModule,
     LegalizacionavanceRoutingModule,

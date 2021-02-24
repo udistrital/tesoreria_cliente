@@ -164,14 +164,13 @@ export class SetInfolegalizacionComponent implements OnInit, OnDestroy {
       delete filaC.id; delete filaC.iva; delete filaC.valorTotal;
       delete filaC.renta; delete filaC.ica; delete filaC.reteiva;
       this.datosRegistro.setValue(filaC);
-    }
-    else
+    } else
       Object.values(this.datosRegistro.controls).forEach(control => {
         control.setValue('');
         control.markAsUntouched();
       });
     // Apertura de modal
-    this.registroModal = this.modalService.open(this.modalRegistro, { size: 'lg' })
+    this.registroModal = this.modalService.open(this.modalRegistro, { size: 'lg' });
     this.registroModal.result.then((result) => {
       if (`${result}`) {
         const filaC = Object.assign({}, this.datosRegistro.value);

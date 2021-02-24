@@ -18,7 +18,7 @@ export class SetLegalizacionComponent implements OnInit, OnDestroy {
   subscription$: any;
   tipoLegalizacion: string;
 
-  constructor(private fb: FormBuilder, private store: Store<any>) { 
+  constructor(private fb: FormBuilder, private store: Store<any>) {
     this.subscription$ = this.store.select(selectTipoLegalizacion).subscribe((valor) => {
       if (valor && valor.tipoInforme)
         this.tipoLegalizacion = valor.tipoInforme;
@@ -28,7 +28,7 @@ export class SetLegalizacionComponent implements OnInit, OnDestroy {
   ngOnInit() {
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscription$.unsubscribe();
   }
 

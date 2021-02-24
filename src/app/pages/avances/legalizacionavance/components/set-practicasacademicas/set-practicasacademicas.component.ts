@@ -157,14 +157,13 @@ export class SetPracticasacademicasComponent implements OnInit, OnDestroy {
     if (fila) {
       const filaC = Object.assign({}, fila);
       this.datosEstudiantesGroup.setValue(filaC);
-    }
-    else
+    } else
       Object.values(this.datosEstudiantesGroup.controls).forEach(control => {
         control.setValue('');
         control.markAsUntouched();
       });
     // Apertura de modal
-    this.registroModal = this.modalService.open(this.modalRegistro, { size: 'lg' })
+    this.registroModal = this.modalService.open(this.modalRegistro, { size: 'lg' });
     this.registroModal.result.then((result) => {
       if (`${result}`) {
         const filaC = Object.assign({}, this.datosEstudiantesGroup.value);
@@ -172,7 +171,7 @@ export class SetPracticasacademicasComponent implements OnInit, OnDestroy {
           this.datosEstudiantes[fila.id - 1] = filaC;
         else
           this.datosEstudiantes.push(filaC);
-          this.datosPracticas.get('cantidadEstudiantes').setValue(this.datosEstudiantes.length);
+        this.datosPracticas.get('cantidadEstudiantes').setValue(this.datosEstudiantes.length);
         this.store.dispatch(cargarDatosEstudiantes({ datosEstudiantes: this.datosEstudiantes }));
       }
     }, () => { });
