@@ -1,4 +1,7 @@
-<form [formGroup]="datosResponsable" (ngSubmit)="validarFormulario()">
+<form [formGroup]="datosLegalizacion" (ngSubmit)="validarFormulario()">
+    <h6 class="text-white bg-primary d-inline-block p-2 px-4 rounded">
+        Descripción de Legalización
+    </h6>
     <div class="row">
         <div class="col-md-4 form-group">
             <label for="vigencia">Vigencia</label>
@@ -10,9 +13,237 @@
             </select>
         </div>
         <div class="col-md-4 form-group">
-            <label for="numeroId">No. de ID</label>
-            <input type="number" class="form-control" id="numeroId" formControlName="numeroId"
-                [class.is-invalid]="esInvalido('numeroId')">
+            <label for="numeroOrden">Número Orden de Pago</label>
+            <input type="number" class="form-control" id="numeroOrden" formControlName="numeroOrden"
+                [class.is-invalid]="esInvalido('numeroOrden')">
+        </div>
+        <div class="col-md-4 form-group d-flex align-items-end">
+            <button type="button" class="btn btn-primary text-white w-100">Ver Orden de Pago</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 form-group">
+            <label for="dependencia">Dependencia</label>
+            <select class="form-control" id="dependencia" formControlName="dependencia"
+                [class.is-invalid]="esInvalido('dependencia')">
+                <option>Opcion 1</option>
+                <option>Opcion 2</option>
+                <option>Opcion 3</option>
+            </select>
+        </div>
+        <div class="col-md-4 form-group">
+            <label for="totalAvance">Total Avance Otorgado</label>
+            <input currencyMask class="form-control" id="totalAvance" formControlName="totalAvance"
+                [class.is-invalid]="esInvalido('totalAvance')">
+        </div>
+    </div>
+    <div class="row border-top border-primary mx-1 my-3"></div>
+    <span class="invalid-feedback" [class.d-block]="esInvalido('cantidadRegistros')">Debe agregar al menos un elemento</span>
+    <ngx-general-table [config]="configRegistrosLegalizacion" [datos]="datosRegistrosLegalizacion"></ngx-general-table>
+    <div class="row pb-3">
+        <div class="col">
+            <button #btnHistorial class="btn btn-primary-700 w-100" type="button" data-toggle="collapse"
+                data-target="#collapseHistorialOrdenes" aria-expanded="false" aria-controls="collapseHistorialOrdenes"
+                (click)="mostrarOcultarConsolidado(btnHistorial.getAttribute('aria-expanded'))">
+                <i class="fas {{mostrarOcultarIcono}} px-2"></i>
+                Consolidado de Retenciones
+            </button>
+        </div>
+    </div>
+    <div class="collapse" id="collapseHistorialOrdenes">
+        <div class="container pt-2">
+            <ngx-general-table [config]="configRetenciones" [datos]="datosRetenciones"></ngx-general-table>
+        </div>
+    </div>
+
+    <div class="row justify-content-between">
+        <div class="col-md-2">
+            <button mat-button matStepperPrevious class="btn btn-primary text-white w-100">Anterior</button>
+        </div>
+        <div class="col-md-2 text-right">
+            <button mat-button matStepperNext type="submit" class="btn btn-success w-100">Siguiente</button>
         </div>
     </div>
 </form>
+
+<ng-template #modalEliminar let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Borrar Registro</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        ¿Desea borrar el registro?
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="modal.close(true)">Borrar</button>
+    </div>
+</ng-template>
+
+<ng-template #modalRegistro let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{agregarEditarRegistro}} Registro</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="datosRegistro">
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label for="fecha">Fecha del Evento</label>
+                    <div class="input-group-append">
+                        <input class="form-control" ngbDatepicker #d="ngbDatepicker" id="fecha" formControlName="fecha"
+                            [class.is-invalid]="esInvalidoModal('fecha')">
+                        <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><i
+                                class="fas fa-calendar"></i></button>
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="tipoId">Tipo de ID</label>
+                    <select class="form-control" id="tipoId" formControlName="tipoId"
+                        [class.is-invalid]="esInvalidoModal('tipoId')">
+                        <option>CC</option>
+                        <option>CE</option>
+                        <option>NIT</option>
+                    </select>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="idProveedor">No. de Identificación</label>
+                    <input type="number" class="form-control" id="idProveedor" formControlName="idProveedor"
+                        [class.is-invalid]="esInvalidoModal('idProveedor')">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col form-group">
+                    <label for="nombreProveedor">Nombre del Proveedor</label>
+                    <input type="text" class="form-control" id="nombreProveedor" formControlName="nombreProveedor"
+                        [class.is-invalid]="esInvalidoModal('nombreProveedor')">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label for="idFactura">Número de Factura</label>
+                    <input class="form-control" id="idFactura" formControlName="idFactura"
+                        [class.is-invalid]="esInvalidoModal('idFactura')">
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="trm">T.R.M (fecha de compra)</label>
+                    <input currencyMask class="form-control" id="trm" formControlName="trm"
+                        [class.is-invalid]="esInvalidoModal('trm')">
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="subtotal">Subtotal de Compra</label>
+                    <input currencyMask class="form-control" id="subtotal" formControlName="subtotal"
+                        [class.is-invalid]="esInvalidoModal('subtotal')">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label for="ivaPorcentaje">IVA (porcentaje)</label>
+                    <select class="form-control" id="ivaPorcentaje" formControlName="ivaPorcentaje"
+                        [class.is-invalid]="esInvalidoModal('ivaPorcentaje')">
+                        <option value="0">0%</option>
+                        <option value="19">19%</option>
+                        <option>Otra opción</option>
+                    </select>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="ivaValor">IVA (valor)</label>
+                    <input class="form-control" id="ivaValor" disabled value="{{ ivaValor | currency }}">
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="valorTotal">Total de Compra (Subtotal + IVA)</label>
+                    <input class="form-control" id="valorTotal" disabled value="{{ valorTotal | currency }}">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <span class="bg-dark text-white p-1 px-3 rounded">Consolidado de Retenciones</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label for="rentaPorcentaje">Renta</label>
+                    <i class="fas fa-question-circle m-2" data-toggle="tooltip" data-placement="bottom"
+                        data-toggle="modal" data-target="#retencionesModal" type="button"
+                        title="Según conceptos de retención anuales"></i>
+                    <select class="form-control" id="rentaPorcentaje" formControlName="rentaPorcentaje"
+                        [class.is-invalid]="esInvalidoModal('rentaPorcentaje')">
+                        <option value="0">0%</option>
+                        <option value="19">19%</option>
+                        <option>Otra opción</option>
+                    </select>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="icaPorcentaje">ICA</label>
+                    <i class="fas fa-question-circle m-2" data-toggle="tooltip" data-placement="bottom"
+                        data-toggle="modal" data-target="#retencionesModal" type="button"
+                        title="Según conceptos de retención anuales"></i>
+                    <select class="form-control" id="icaPorcentaje" formControlName="icaPorcentaje"
+                        [class.is-invalid]="esInvalidoModal('icaPorcentaje')">
+                        <option value="0">0%</option>
+                        <option value="19">19%</option>
+                        <option>Otra opción</option>
+                    </select>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="reteIvaPorcentaje">Rete IVA</label>
+                    <i class="fas fa-question-circle m-2" data-toggle="tooltip" data-placement="bottom"
+                        data-toggle="modal" data-target="#retencionesModal" type="button"
+                        title="Según conceptos de retención anuales"></i>
+                    <select class="form-control" id="reteIvaPorcentaje" formControlName="reteIvaPorcentaje"
+                        [class.is-invalid]="esInvalidoModal('reteIvaPorcentaje')">
+                        <option value="0">0%</option>
+                        <option value="19">19%</option>
+                        <option>Otra opción</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label for="renta">Valor</label>
+                    <input class="form-control" id="renta" disabled value="{{ renta | currency }}">
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="ica">Valor</label>
+                    <input class="form-control" id="ica" disabled value="{{ ica | currency }}">
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="reteIva">Valor</label>
+                    <input class="form-control" id="reteIva" disabled value="{{ reteIva | currency }}">
+                </div>
+            </div>
+            <!-- Modal: TODO: Se debe mostrar un pdf, imagen, enlace etc.
+                con la información para ayudar al usuario a seleccionar el
+                porcentaje correcto en cada retención.
+                Esta información cambia anualmente (Conceptos de retención)
+            -->
+            <div class="modal fade" id="retencionesModal" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Conceptos de retención</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancelar</button>
+        <button type="button" class="btn btn-primary text-white" (click)="guardarModalForm()">Aceptar</button>
+    </div>
+</ng-template>
