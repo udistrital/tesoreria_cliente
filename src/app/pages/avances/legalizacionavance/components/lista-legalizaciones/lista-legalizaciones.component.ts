@@ -30,8 +30,7 @@ export class ListaLegalizacionesComponent implements OnInit, OnDestroy {
     this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((accion: any) => {
       if (accion && accion.fila && accion.accion && accion.accion.name) {
         if (accion.accion.name === 'modificar' || accion.accion.name === 'detalle') {
-          // this.store.dispatch(loadRequisitoSelecionado({ fila: accion.fila }));
-          this.router.navigate(['pages/avances/requisitosavances/editar']);
+          this.router.navigate(['pages/avances/legalizacionavance/editar']);
         } else if (accion.accion.name === 'borrar')
           this.borrar(accion.fila);
       }
