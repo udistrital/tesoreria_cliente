@@ -12,7 +12,7 @@ export class GeneralTableComponent implements OnInit, OnChanges {
   @Input() config: any;
   @Input() datos: any;
   @Output() selectedAction: EventEmitter<any>;
-  Subtotal: any;
+  Subtotal: any[];
   stringBusqueda: string;
   datosPrueba: any[];
   rowspanTitle: number;
@@ -26,6 +26,7 @@ export class GeneralTableComponent implements OnInit, OnChanges {
     this.stringBusqueda = '';
     this.selectedAction = new EventEmitter<any>();
     this.rowspanTitle = 1;
+    this.Subtotal = [];
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes) {
@@ -34,21 +35,33 @@ export class GeneralTableComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    if (this.config && this.config.endSubtotal && this.config.endSubtotal.last
+      && !this.config.endSubtotal.last.length) {
+      if(this.config.endSubtotal.property)
+        this.config.endSubtotal.last.property = this.config.endSubtotal.property;
+      this.config.endSubtotal.last = [this.config.endSubtotal.last];
+    }
     this.ConfiguracionTabla();
   }
 
   ConfiguracionTabla() {
     if (this.config.endSubtotal) {
-      if (!this.config.endSubtotal.last.name) {
-        const arraySubtotal: any[] = [];
-        if (Object.keys(this.datos).length !== 0) {
-          this.datos.forEach((element: any) => {
-            if (element.compound) {
-              this.rowspanTitle = 2;
-            }
-            arraySubtotal.push(parseFloat(element[this.config.endSubtotal.property]));
-          });
-          this.Subtotal = arraySubtotal.reduce((accumulator, currentValue) => accumulator + currentValue);
+      for (let index = 0; index < this.config.endSubtotal.last.length; index++) {
+        if (!this.config.endSubtotal.last[index].name) {
+          const arraySubtotal: any[] = [];
+          if (Object.keys(this.datos).length !== 0) {
+            this.datos.forEach((element: any) => {
+              if (element.compound) {
+                this.rowspanTitle = 2;
+              }
+              arraySubtotal.push(parseFloat(element[this.config.endSubtotal.last[index].property]));
+            });
+            const subTotal = arraySubtotal.reduce((accumulator, currentValue) => accumulator + currentValue);
+            if (index < this.Subtotal.length)
+              this.Subtotal[index] = subTotal;
+            else
+              this.Subtotal.push(subTotal);
+          }
         }
       }
     }

@@ -5,7 +5,7 @@
         <input type="text" class="form-control py-2" id="buscador-tabla" aria-describedby="search-table"
           placeholder="Campo de Busqueda" [(ngModel)]="stringBusqueda">
       </div>
-      <div class="table-responsive">
+      <div class="table-responsive" [style.max-height.px]=config.maxHeight>
         <table class="table table-bordered table-hover">
           <thead class="bg-primary text-white">
             <!-- Titulo General -->
@@ -99,15 +99,21 @@
                     {{subsection.name}}
                   </th>
                 </ng-container>
-                <ng-container *ngIf="config.endSubtotal.last.name">
-                  <th scope="col" colspan="100" [class]="config.endSubtotal.last.class">
-                    {{ config.endSubtotal.last.name | multiPipe:config.endSubtotal.last.pipe.type:config.endSubtotal.last.pipe.config }}
-                  </th>
-                </ng-container>
-                <ng-container *ngIf="!config.endSubtotal.last.name">
-                  <th scope="col" colspan="100" [class]="config.endSubtotal.last.class">
-                    {{ Subtotal | multiPipe:config.endSubtotal.last.pipe.type:config.endSubtotal.last.pipe.config }}
-                  </th>
+                <ng-container *ngFor="let last of config.endSubtotal.last; index as i">
+                  <ng-container *ngIf="last.name">
+                    <th scope="col"
+                      [attr.colspan]="last.colspan ? last.colspan : (i + 1 === config.endSubtotal.last.length ? '100' : '1')"
+                      [class]="last.class">
+                      {{ last.name | multiPipe:last.pipe.type:last.pipe.config }}
+                    </th>
+                  </ng-container>
+                  <ng-container *ngIf="!last.name">
+                    <th scope="col"
+                      [attr.colspan]="last.colspan ? last.colspan : (i + 1 === config.endSubtotal.last.length ? '100' : '1')"
+                      [class]="last.class">
+                      {{ Subtotal[i] | multiPipe:last.pipe.type:last.pipe.config }}
+                    </th>
+                  </ng-container>
                 </ng-container>
               </tr>
             </ng-container>
