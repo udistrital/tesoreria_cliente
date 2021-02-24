@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col">
             <mat-horizontal-stepper linear #stepper>
-                <mat-step [stepControl]="infoResponsableGroup" optional>
+                <mat-step [stepControl]="infoResponsableGroup">
                     <ng-template matStepLabel>Inicio</ng-template>
                     <div class="container">
                         <ngx-set-inforesponsable></ngx-set-inforesponsable>
@@ -19,8 +19,7 @@
                         <ngx-set-infolegalizacion></ngx-set-infolegalizacion>
                     </div>
                 </mat-step>
-                <!-- <mat-step *ngIf="tipoLegalizacion === 'practicas'" [stepControl]="infoPracticasAcademicasGroup"> -->
-                <mat-step *ngIf="tipoLegalizacion === 'practicas'">
+                <mat-step *ngIf="tipoLegalizacion === 'practicas'" [stepControl]="infoPracticasAcademicasGroup">
                     <ng-template matStepLabel>Prácticas Académicas</ng-template>
                     <div class="container">
                         <ngx-set-practicasacademicas></ngx-set-practicasacademicas>
