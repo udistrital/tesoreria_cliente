@@ -17,6 +17,11 @@ const routes: Routes = [{
       loadChildren: () => import('./avances/avances.module')
       .then(m => m.AvancesModule),
     },
+    {
+      path: 'giros',
+      loadChildren: () => import('./giros/giros.module')
+      .then(m => m.GirosModule),
+    }
   ],
 }];
 

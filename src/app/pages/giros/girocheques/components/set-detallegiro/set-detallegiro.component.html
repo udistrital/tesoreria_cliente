@@ -1,0 +1,140 @@
+<div class="container-fluid">
+    <form [formGroup]="giroCheque" (ngSubmit)="onSubmit(giroCheque.value)">
+        <div class="card p-3 m-4">
+            <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+                Detalle del giro
+            </div>
+            <div class="card-body pt-0">
+                <div class="row my-2">
+                    <div class="col py-2">
+                        <label for="areaFuncional"> Área funcional </label> <br>
+                        <select name="areaFuncional" id="areaFuncional" class="form-control" formControlName="areaFuncional">
+                            <option *ngFor="let area of areaFuncional" value={{area}}> {{area}} </option>
+                        </select>
+                    </div>
+                    <div class="col py-2">
+                        <label for="fecha"> Fecha </label> <br>
+                        <input type="date" name="fecha" id="fecha" class="form-control" formControlName="fecha">
+                    </div>
+                    <div class="col py-2">
+                        <label for="tipoDocumento"> Tipo de documento </label> <br>
+                        <select name="tipoDocumento" id="tipoDocumento" class="form-control" formControlName="tipoDocumento">
+                            <option *ngFor="let tipoDocumento of tiposDocumentos" value="{{tipoDocumento}}"> {{tipoDocumento}} </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col py-2">
+                        <label for="tipoGiro">Tipo de giro</label> <br>
+                        <select name="tipoGiro" id="tipoGiro" class="form-control" formControlName="tipoGiro">
+                            <option *ngFor="let tipoGiro of tiposGiro" value="{{tipoGiro}}"> {{tipoGiro}} </option>
+                        </select>
+                    </div>
+                    <div class="col py-2">
+                        <label for="vigencia"> Vigencia </label> <br>
+                        <select name="vigencia" id="vigencia" class="form-control" formControlName="vigencia">
+                            <option *ngFor="let vigencia of vigencias" value="{{vigencia}}"> {{vigencia}} </option>
+                        </select>
+                    </div>
+                    <div class="col py-2">
+                        <label for="numeroOrden"> Número de orden de pago </label> <br>
+                        <input type="number" name="numeroOrden" id="numeroOrden" class="form-control" formControlName="numeroOrdenPago">
+                    </div>
+                </div>     
+            </div>
+        </div>
+        <div class="card p-3 m-4">
+            <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+                Datos presupuestales
+            </div>
+            <div class="card-body pt-0">
+                <div class="row my-2">
+                    <div class="col-4 py-2">
+                        <label for="cdp"> CDP </label> <br>
+                        <input name="cdp" id="cdp" type="text" disabled>
+                    </div>
+                    <div class="col-4 py-2">
+                        <label for="rp"> RP</label> <br>
+                        <input name="rp" id="rp" type="text" disabled>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <label class="px-3" for="rubrosPresupuestales"> Rubros presupuestales </label> <br>
+                </div>
+                <div class="row">
+                    <ngx-table class="px-3" [titles]="titles" [attributes]="attributes" [list]="rubros"></ngx-table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card p-3 m-4">
+            <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+                Datos de egreso
+            </div>
+            <div class="card-body pt-0">
+                <div class="row my-3">
+                    <div class="col py-2">
+                        <label for="vigenciaEgreso"> Vigencia </label> <br>
+                        <input name="vigenciaEgreso" id="vigenciaEgreso" type="text" disabled>
+                    </div>
+                    <div class="col py-2">
+                        <label for="envio"> Envío </label> <br>
+                        <input name="envio" id="envio" type="text" disabled>
+                    </div>
+                    <div class="col py-2">
+                        <label for="consecutivoDetalle"> Consecutivo </label> <br>
+                        <input name="consecutivoDetalle" id="consecutivoDetalle" type="text" disabled>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col py-2">
+                        <label for="tipoDocumentoEgreso"> Tipo de documento </label> <br>
+                        <input name="tipoDocumentoEgreso" id="tipoDocumentoEgreso" type="text" disabled>
+                    </div>
+                    <div class="col py-2">
+                        <label for="formaPago"> Forma de pago </label> <br>
+                        <input name="formaPago" id="formaPago" type="text" disabled>
+                    </div>
+                    <div class="col py-2">
+                        <label for="valor"> Valor </label> <br>
+                        <input name="valor" id="valor" type="text" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card p-3 m-4">
+            <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+                Datos de beneficiario
+            </div>
+            <div class="card-body pt-0">
+                <div class="row my-3">
+                    <div class="col py-2">
+                        <label for="tDocumentoBeneficiario"> Tipo de documento </label> <br>
+                        <input name="tDocumentoBeneficiario" id="tDocumentoBeneficiario" type="text" disabled>
+                    </div>
+                    <div class="col py-2">
+                        <label for="numeroDocumento"> Número de documento </label> <br>
+                        <input name="numeroDocumento" id="numeroDocumento" type="text" disabled>
+                    </div>
+                    <div class="col py-2">
+                        <label for="nombre"> Nombre </label> <br>
+                        <input name="nombre" id="nombre" type="text" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col">
+                <button routerLinkActive="active" routerLink="pages/giros/cheques/lista" type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
+                    Volver al registro
+                </button>
+            </div>
+            <div class="col">
+                <button mat-button matStepperNext class="btn btn-success px-3 py-2 my-2 text-light" type="submit" [disabled]="giroCheque.invalid">
+                    Siguiente
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
