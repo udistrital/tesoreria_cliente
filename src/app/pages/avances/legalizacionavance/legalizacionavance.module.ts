@@ -15,6 +15,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { LegalizacionavanceEffects } from './effects/legalizacionavance.effects';
 import { StoreModule } from '@ngrx/store';
 import * as fromLegalizacionavance from './reducers/legalizacionavance.reducer';
+import { NgbDateAdapter, NgbDateNativeAdapter, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 
 @NgModule({
@@ -26,8 +28,14 @@ import * as fromLegalizacionavance from './reducers/legalizacionavance.reducer';
     MatStepperModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbModule,
+    CurrencyMaskModule,
     EffectsModule.forFeature([LegalizacionavanceEffects]),
     StoreModule.forFeature(fromLegalizacionavance.legalizacionavanceFeatureKey, fromLegalizacionavance.reducer),
-  ]
+  ],
+  providers: [{
+    provide: NgbDateAdapter,
+    useClass: NgbDateNativeAdapter
+  }]
 })
 export class LegalizacionavanceModule { }
