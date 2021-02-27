@@ -1,0 +1,37 @@
+<div class="container bg-white p-3 border rounded">
+    <div class="row">
+        <div class="col py-2">
+            <h5 class="card-title text-center text-primary text-uppercase">Legalización de avance</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-horizontal-stepper linear #stepper>
+                <mat-step [stepControl]="infoResponsableGroup">
+                    <ng-template matStepLabel>Inicio</ng-template>
+                    <div class="container">
+                        <ngx-set-inforesponsable></ngx-set-inforesponsable>
+                    </div>
+                </mat-step>
+                <mat-step [stepControl]="infoLegalizacionGroup">
+                    <ng-template matStepLabel>Legalización</ng-template>
+                    <div class="container">
+                        <ngx-set-infolegalizacion></ngx-set-infolegalizacion>
+                    </div>
+                </mat-step>
+                <mat-step *ngIf="tipoLegalizacion === 'practicas'" [stepControl]="infoPracticasAcademicasGroup">
+                    <ng-template matStepLabel>Prácticas Académicas</ng-template>
+                    <div class="container">
+                        <ngx-set-practicasacademicas></ngx-set-practicasacademicas>
+                    </div>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel>Guardar</ng-template>
+                    <div class="container">
+                        <ngx-show-resumen></ngx-show-resumen>
+                    </div>
+                </mat-step>
+            </mat-horizontal-stepper>
+        </div>
+    </div>
+</div>
