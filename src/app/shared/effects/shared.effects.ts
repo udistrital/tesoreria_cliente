@@ -6,6 +6,7 @@ import { EMPTY, of } from 'rxjs';
 
 import * as SharedActions from '../actions/shared.actions';
 import { SharedService } from '../services/shared.service';
+import { Store } from '@ngrx/store';
 import { selectVigencias } from '../selectors/shared.selectors';
 
 
@@ -15,6 +16,7 @@ export class SharedEffects {
   constructor(
     private actions$: Actions,
     private sharedService: SharedService,
+    private store: Store<any>
   ) { }
 
 
