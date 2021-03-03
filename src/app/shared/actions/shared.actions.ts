@@ -81,3 +81,14 @@ export const LoadModalidadesSeleccion = createAction(
   '[Shared] Load Modalidad Seleccion',
   props()
 );
+
+// Vigencias
+
+export const getVigencias = createAction(
+  '[Shared] Get Vigencias'
+);
+
+export const loadVigencias = createAction(
+  '[Shared] Load Vigencias',
+  props()
+);
