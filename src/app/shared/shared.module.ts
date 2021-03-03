@@ -24,6 +24,8 @@ import { BtnVolverComponent } from './components/btn-volver/btn-volver.component
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { FileUploadDirective } from './directives/file-upload.directive';
 import { TableComponent } from './components/table/table.component';
+import * as fromAvances from './reducers/avances.reducer';
+import { AvancesEffects } from './effects/avances.effects';
 
 @NgModule({
   exports: [
@@ -44,7 +46,8 @@ import { TableComponent } from './components/table/table.component';
     ReactiveFormsModule,
     NbTreeGridModule,
     StoreModule.forFeature(fromShared.sharedFeatureKey, fromShared.reducer),
-    EffectsModule.forFeature([SharedEffects])
+    StoreModule.forFeature(fromAvances.avancesFeatureKey, fromAvances.reducer),
+    EffectsModule.forFeature([SharedEffects, AvancesEffects])
   ],
   declarations: [
     GeneralTableComponent,
