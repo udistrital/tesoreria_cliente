@@ -28,6 +28,11 @@ const routes: Routes = [{
         .then(m => m.SolicitudavancesModule),
     },
     {
+      path: 'legalizacionavance',
+      loadChildren: () => import('./legalizacionavance/legalizacionavance.module')
+      .then(m => m.LegalizacionavanceModule),
+    },
+    {
       path: 'especificacionesavances',
       loadChildren: () => import('./especificacionesavances/especificacionesavances.module')
         .then(m => m.EspecificacionesavancesModule),

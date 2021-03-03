@@ -1,0 +1,150 @@
+<form [formGroup]="datosPracticas" (ngSubmit)="validarFormulario()">
+    <h6 class="text-white bg-primary d-inline-block p-2 px-4 rounded">
+        Información de Prácticas
+    </h6>
+    <div class="row">
+        <div class="col-md-3 form-group">
+            <label for="fecha">Fecha de la práctica</label>
+            <div class="input-group-append">
+                <input class="form-control" ngbDatepicker #d="ngbDatepicker" id="fecha" formControlName="fecha"
+                    [class.is-invalid]="esInvalido('fecha')">
+                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><i
+                        class="fas fa-calendar"></i></button>
+            </div>
+        </div>
+        <div class="col-md-4 form-group">
+            <label for="destinoPractica">Destino de la Práctica</label>
+            <select class="form-control" id="destinoPractica" formControlName="destinoPractica"
+                [class.is-invalid]="esInvalido('destinoPractica')">
+                <option>Opcion 1</option>
+                <option>Opcion 2</option>
+                <option>Opcion 3</option>
+            </select>
+        </div>
+        <div class="col-md-5 form-group">
+            <label for="proyectoCurricular">Proyecto Curricular</label>
+            <select class="form-control" id="proyectoCurricular" formControlName="proyectoCurricular"
+                [class.is-invalid]="esInvalido('proyectoCurricular')">
+                <option>Opcion 1</option>
+                <option>Opcion 2</option>
+                <option>Opcion 3</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 form-group">
+            <label for="correoResponsable">Correo del Responsable</label>
+            <input class="form-control" id="correoResponsable" disabled>
+        </div>
+        <div class="col-md-3 form-group">
+            <label for="telefonoResponsable">Teléfono del Responsable</label>
+            <input class="form-control" id="telefonoResponsable" disabled>
+        </div>
+        <div class="col-md-3 form-group">
+            <label for="valorAvance">Valor del Avance</label>
+            <input currencyMask class="form-control" id="valorAvance" formControlName="valorAvance"
+                [class.is-invalid]="esInvalido('valorAvance')">
+        </div>
+        <div class="col-md-3 form-group">
+            <label for="valorReintegro">Valor del Reintegro</label>
+            <input currencyMask class="form-control" id="valorReintegro" formControlName="valorReintegro"
+                [class.is-invalid]="esInvalido('valorReintegro')">
+        </div>
+    </div>
+    <h6 class="text-white bg-primary d-inline-block p-2 px-4 rounded">
+        Información de Estudiantes
+    </h6>
+    <div class="row d-flex justify-content-center">
+        <p>Adjuntar los archivos de asistencia de los estudiantes (firma de asistencia, notas de la práctica)</p>
+    </div>
+    <ngx-file-upload (prepareFilesList)="prepareFilesList($event)"></ngx-file-upload>
+    <span class="invalid-feedback" [class.d-block]="esInvalido('cantidadAnexos')">Debe agregar al menos un elemento</span>
+    <ngx-general-table [config]="configAnexos" [datos]="datosAnexos"></ngx-general-table>
+    <div class="row border-top border-primary mx-1 my-3"></div>
+    <span class="invalid-feedback" [class.d-block]="esInvalido('cantidadEstudiantes')">Debe agregar al menos un elemento</span>
+    <ngx-general-table [config]="configEstudiantes" [datos]="datosEstudiantes"></ngx-general-table>
+
+    <div class="row justify-content-between">
+        <div class="col-md-2">
+            <button mat-button matStepperPrevious class="btn btn-primary text-white w-100">Anterior</button>
+        </div>
+        <div class="col-md-2 text-right">
+            <button mat-button matStepperNext type="submit" class="btn btn-success w-100">Siguiente</button>
+        </div>
+    </div>
+</form>
+
+<ng-template #modalEliminar let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Borrar Registro</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        ¿Desea borrar el registro?
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="modal.close(true)">Borrar</button>
+    </div>
+</ng-template>
+
+<ng-template #modalRegistro let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{agregarEditarRegistro}} Registro</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="datosEstudiantesGroup">
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label for="codigo">Código del Estudiante</label>
+                    <select class="form-control" id="codigo" formControlName="codigo"
+                        [class.is-invalid]="esInvalidoModal('codigo')">
+                        <option>Opción 1</option>
+                        <option>Opción 2</option>
+                        <option>Opción 3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col form-group">
+                    <label for="nombreEstudiante">Nombre del Estudiante</label>
+                    <input class="form-control" id="nombreEstudiante" disabled
+                        value="{{ datosEstudiantesGroup.get('nombreEstudiante').value }}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="tipoId">Tipo ID</label>
+                    <input class="form-control" id="tipoId" disabled
+                        value="{{ datosEstudiantesGroup.get('tipoId').value }}">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="identificacion">No. ID</label>
+                    <input class="form-control" id="identificacion" disabled
+                        value="{{ datosEstudiantesGroup.get('identificacion').value }}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="valorRecibido">Valor Recibido</label>
+                    <input currencyMask class="form-control" id="valorRecibido" formControlName="valorRecibido"
+                        [class.is-invalid]="esInvalidoModal('valorRecibido')">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="dias">No. de Días</label>
+                    <input type="numer" class="form-control" id="dias" formControlName="dias"
+                        [class.is-invalid]="esInvalidoModal('dias')">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancelar</button>
+        <button type="button" class="btn btn-primary text-white" (click)="guardarModalForm()">Aceptar</button>
+    </div>
+</ng-template>
