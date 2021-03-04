@@ -66,6 +66,7 @@ export class SetTipodeavanceComponent implements OnInit, OnDestroy {
     // Título, editar o crear
     this.tituloAccion = this.activatedRoute.snapshot.url[0].path;
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.clearStore();
     if (this.id)
       this.store.dispatch(obtenerTiposAvances({ id: this.id }));
     this.createForm();
@@ -135,19 +136,18 @@ export class SetTipodeavanceComponent implements OnInit, OnDestroy {
         this.store.dispatch(obtenerNormas({ query: { Vigencia: vigencia.valor, Activo: true, TipoAvanceId: this.id } }));
     });
 
-    this.susNormas$ = this.store.select(seleccionarNormas)
-      .subscribe((accion) => {
-        if (accion && accion.normas && accion.normas.length) {
-          this.datosTableNorma = accion.normas;
-          if (this.tipoavanceGroup.get('vigencia').valid && accion.normas[0].LinkNorma) {
-            this.idNorma = accion.normas[0].Id;
-            this.tipoavanceGroup.get('normaTipo').setValue(accion.normas[0].LinkNorma);
-          } else {
-            this.tipoavanceGroup.get('normaTipo').setValue('');
-            this.idNorma = null;
-          }
+    this.susNormas$ = this.store.select(seleccionarNormas).subscribe((accion) => {
+      if (accion && accion.normas && accion.normas.length) {
+        this.datosTableNorma = accion.normas;
+        if (this.tipoavanceGroup.get('vigencia').valid && accion.normas[0].LinkNorma) {
+          this.idNorma = accion.normas[0].Id;
+          this.tipoavanceGroup.get('normaTipo').setValue(accion.normas[0].LinkNorma);
+        } else {
+          this.tipoavanceGroup.get('normaTipo').setValue('');
+          this.idNorma = null;
         }
-      });
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -156,6 +156,10 @@ export class SetTipodeavanceComponent implements OnInit, OnDestroy {
     this.susVigencia$.unsubscribe();
     this.susNormas$.unsubscribe();
     this.vigenciaActual$.unsubscribe();
+    this.clearStore();
+  }
+
+  clearStore() {
     this.store.dispatch(cargarTiposAvances(null));
   }
 
