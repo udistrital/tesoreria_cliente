@@ -31,6 +31,7 @@ export class SetRequisitoavancesComponent implements OnInit, OnDestroy {
     this.opcionesAreaFuncional = OPCIONES_AREA_FUNCIONAL;
     this.tituloAccion = this.activatedRoute.snapshot.url[0].path;
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.store.dispatch(cargarRequisitos(null));
     if (this.id)
       this.store.dispatch(obtenerRequisitos({ id: this.id }));
   }

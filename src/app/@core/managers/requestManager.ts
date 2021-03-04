@@ -108,6 +108,7 @@ export class RequestManager {
   put(endpoint, element, id) {
     this.initHttpOptions();
     return this.http.put<any>(`${this.path}${endpoint}${id}`, JSON.stringify(element), this.httpOptions).pipe(
+      map((res) => res && res.hasOwnProperty('Body') && res['Type'] !== 'error' ? res['Body'] : res),
       catchError(this.errManager.handleError),
     );
   }
@@ -139,6 +140,7 @@ export class RequestManager {
       }),
     };
     return this.http.delete<any>(`${this.path}${endpoint}/${id}`, this.httpOptions).pipe(
+      map((res) => res && res.hasOwnProperty('Body') && res['Type'] !== 'error' ? res['Body'] : res),
       catchError(this.errManager.handleError),
     );
   }

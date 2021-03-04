@@ -75,7 +75,7 @@ export class SetTipodeavanceComponent implements OnInit, OnDestroy {
     // Título, editar o crear
     this.tituloAccion = this.activatedRoute.snapshot.url[0].path;
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.limpiarStore();
+    this.clearStore();
     if (this.id) {
       this.store.dispatch(obtenerTiposAvances({ id: this.id }));
       this.store.dispatch(obtenerRequisitoTipoAvances({ idTipoAvance: this.id }));
@@ -148,19 +148,18 @@ export class SetTipodeavanceComponent implements OnInit, OnDestroy {
         this.store.dispatch(obtenerNormas({ query: { Vigencia: vigencia.valor, Activo: true, TipoAvanceId: this.id } }));
     });
 
-    this.susNormas$ = this.store.select(seleccionarNormas)
-      .subscribe((accion) => {
-        if (accion && accion.normas && accion.normas.length) {
-          this.datosTableNorma = accion.normas;
-          if (this.tipoavanceGroup.get('vigencia').valid && accion.normas[0].LinkNorma) {
-            this.idNorma = accion.normas[0].Id;
-            this.tipoavanceGroup.get('normaTipo').setValue(accion.normas[0].LinkNorma);
-          } else {
-            this.tipoavanceGroup.get('normaTipo').setValue('');
-            this.idNorma = null;
-          }
+    this.susNormas$ = this.store.select(seleccionarNormas).subscribe((accion) => {
+      if (accion && accion.normas && accion.normas.length) {
+        this.datosTableNorma = accion.normas;
+        if (this.tipoavanceGroup.get('vigencia').valid && accion.normas[0].LinkNorma) {
+          this.idNorma = accion.normas[0].Id;
+          this.tipoavanceGroup.get('normaTipo').setValue(accion.normas[0].LinkNorma);
+        } else {
+          this.tipoavanceGroup.get('normaTipo').setValue('');
+          this.idNorma = null;
         }
-      });
+      }
+    });
 
     // Suscripción para requisitos
     this.subscriptionRequisitos$ = combineLatest([
@@ -186,10 +185,10 @@ export class SetTipodeavanceComponent implements OnInit, OnDestroy {
     this.susNormas$.unsubscribe();
     this.vigenciaActual$.unsubscribe();
     this.subscriptionRequisitos$.unsubscribe();
-    this.limpiarStore();
+    this.clearStore();
   }
 
-  limpiarStore() {
+  clearStore() {
     this.store.dispatch(cargarTiposAvances(null));
     this.store.dispatch(cargarRequisitos(null));
     this.store.dispatch(cargarRequisitoTipoAvances(null));
