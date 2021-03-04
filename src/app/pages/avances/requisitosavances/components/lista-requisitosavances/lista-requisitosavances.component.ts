@@ -28,6 +28,7 @@ export class ListaRequisitosavancesComponent implements OnInit, OnDestroy {
   ) {
     this.datosTabla = [];
     this.configuracionTabla = CONFIGURACION_TABLA;
+    this.clearStore();
     this.store.dispatch(obtenerRequisitos({}));
   }
 
@@ -71,6 +72,10 @@ export class ListaRequisitosavancesComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription$.unsubscribe();
     this.subscriptionRequisitos$.unsubscribe();
+    this.clearStore();
+  }
+
+  clearStore(){
     this.store.dispatch(LoadFilaSeleccionada(null));
     this.store.dispatch(cargarRequisitos(null));
   }

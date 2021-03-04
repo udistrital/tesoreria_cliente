@@ -136,7 +136,7 @@ export class AvancesEffects {
     return this.actions$.pipe(
       ofType(AvancesActions.obtenerRequisitos),
       mergeMap((accion) => {
-        return this.avancesService.getRequisitos(accion && accion.id ? accion.id : null)
+        return this.avancesService.getRequisitos(accion && accion.id ? accion.id : null, accion && accion.query ? accion.query : null)
           .pipe(map(data => AvancesActions.cargarRequisitos({ requisitos: (data && data.Data ? data.Data : data) })),
             catchError(data => of(SharedActions.CatchError(data))));
       })
