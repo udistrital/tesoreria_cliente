@@ -22,7 +22,7 @@ const routes: Routes = [
     component: SetTipodeavanceComponent,
   },
   {
-    path: 'asociar-requisito',
+    path: 'asociar-requisito/:id',
     component: SetAsociarrequisitoComponent,
   }
 ];

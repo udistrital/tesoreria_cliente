@@ -102,7 +102,7 @@ export const CONFIGURACION_REQUISITOSDETALLE: any = {
     showColumnTitle: true,
     dataConfig: [
         {
-            key: 'codigoAbreviado',
+            key: 'CodigoAbreviacion',
             title: {
                 name: 'Código',
                 class: 'text-center',
@@ -112,7 +112,7 @@ export const CONFIGURACION_REQUISITOSDETALLE: any = {
             }
         },
         {
-            key: 'nombreRequisito',
+            key: 'Nombre',
             title: {
                 name: 'Nombre de Requisito',
                 class: 'text-center',
@@ -122,7 +122,7 @@ export const CONFIGURACION_REQUISITOSDETALLE: any = {
             }
         },
         {
-            key: 'descripcion',
+            key: 'Descripcion',
             title: {
                 name: 'Descripción de Requisito',
                 class: 'text-center',
@@ -132,7 +132,7 @@ export const CONFIGURACION_REQUISITOSDETALLE: any = {
             }
         },
         {
-            key: 'fecha',
+            key: 'FechaModificacion',
             title: {
                 name: 'Fecha',
                 class: 'text-center',
@@ -154,7 +154,7 @@ export const CONFIGURACION_REQUISITOS: any = {
     showColumnTitle: true,
     dataConfig: [
         {
-            key: 'codigoAbreviado',
+            key: 'CodigoAbreviacion',
             title: {
                 name: 'Código',
                 class: 'text-center',
@@ -164,7 +164,7 @@ export const CONFIGURACION_REQUISITOS: any = {
             }
         },
         {
-            key: 'nombreRequisito',
+            key: 'Nombre',
             title: {
                 name: 'Nombre de Requisito',
                 class: 'text-center',
@@ -174,7 +174,7 @@ export const CONFIGURACION_REQUISITOS: any = {
             }
         },
         {
-            key: 'descripcion',
+            key: 'Descripcion',
             title: {
                 name: 'Descripción de Requisito',
                 class: 'text-center',
@@ -184,7 +184,7 @@ export const CONFIGURACION_REQUISITOS: any = {
             }
         },
         {
-            key: 'fecha',
+            key: 'FechaModificacion',
             title: {
                 name: 'Fecha',
                 class: 'text-center',
@@ -220,22 +220,6 @@ export const CONFIGURACION_REQUISITOS: any = {
     sort: true,
     filter: false,
 };
-export const DATOS_REQUISITOS: any = [
-    {
-        codigoAbreviado: 'CINV',
-        nombreRequisito: 'Carta de Invitación ',
-        descripcion: 'Carta o documento de invitación al evento',
-        estadoTipo: 'Activo',
-        fecha: '2021-20-11T02:18:54Z',
-    },
-    {
-        codigoAbreviado: 'INS',
-        nombreRequisito: 'Inscripción',
-        descripcion: 'Soporte que evidencie el costo de la inscripción',
-        estadoTipo: 'Inactivo',
-        fecha: '2021-02-10T02:18:54Z',
-    },
-];
 export const CONFIGURACION_TABLA_NORMA: any = {
     showColumnTitle: true,
     dataConfig: [

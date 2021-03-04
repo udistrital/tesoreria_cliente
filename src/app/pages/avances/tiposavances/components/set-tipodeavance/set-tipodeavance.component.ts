@@ -4,12 +4,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { combineLatest } from 'rxjs';
-import { actualizarNorma, actualizarTipoAvance, cargarTiposAvances, crearNorma, crearTipoAvance, obtenerNormas, obtenerTiposAvances } from '../../../../../shared/actions/avances.actions';
+import {
+  actualizarNorma, actualizarTipoAvance, cargarRequisitos,
+  cargarRequisitoTipoAvances, cargarTiposAvances, crearNorma,
+  crearTipoAvance, obtenerNormas, obtenerRequisitos,
+  obtenerRequisitoTipoAvances, obtenerTiposAvances
+} from '../../../../../shared/actions/avances.actions';
 import { GetVigenciaActual, getVigencias } from '../../../../../shared/actions/shared.actions';
 import { OPCIONES_AREA_FUNCIONAL } from '../../../../../shared/interfaces/interfaces';
-import { seleccionarNormas, seleccionarTiposAvances } from '../../../../../shared/selectors/avances.selectors';
+import {
+  seleccionarNormas, seleccionarRequisitos,
+  seleccionarRequisitoTipoAvances, seleccionarTiposAvances
+} from '../../../../../shared/selectors/avances.selectors';
 import { getVigenciaActual, selectVigencias } from '../../../../../shared/selectors/shared.selectors';
-import { DATOS_REQUISITOS, CONFIGURACION_REQUISITOSDETALLE, CONFIGURACION_TABLA_NORMA } from '../../interfaces/interfaces';
+import { CONFIGURACION_REQUISITOSDETALLE, CONFIGURACION_TABLA_NORMA } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'ngx-set-tipodeavance',
@@ -50,6 +58,7 @@ export class SetTipodeavanceComponent implements OnInit, OnDestroy {
   susNormas$: any;
   susVigencia$: any;
   vigenciaActual$: any;
+  subscriptionRequisitos$: any;
 
   constructor(private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -59,15 +68,19 @@ export class SetTipodeavanceComponent implements OnInit, OnDestroy {
   ) {
     this.vigencias = [];
     this.configRequisitos = CONFIGURACION_REQUISITOSDETALLE;
-    this.datosRequisitos = DATOS_REQUISITOS;
+    this.datosRequisitos = [];
     this.configTableNorma = CONFIGURACION_TABLA_NORMA;
     this.datosTableNorma = [];
     this.opcionesAreaFuncional = OPCIONES_AREA_FUNCIONAL;
     // Título, editar o crear
     this.tituloAccion = this.activatedRoute.snapshot.url[0].path;
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    if (this.id)
+    this.limpiarStore();
+    if (this.id) {
       this.store.dispatch(obtenerTiposAvances({ id: this.id }));
+      this.store.dispatch(obtenerRequisitoTipoAvances({ idTipoAvance: this.id }));
+    }
+    this.store.dispatch(obtenerRequisitos({}));
     this.createForm();
     // Icono en la Lista de documentos
     this.mostrarOcultar = 'Mostrar';
@@ -148,6 +161,22 @@ export class SetTipodeavanceComponent implements OnInit, OnDestroy {
           }
         }
       });
+
+    // Suscripción para requisitos
+    this.subscriptionRequisitos$ = combineLatest([
+      this.store.select(seleccionarRequisitos),
+      this.store.select(seleccionarRequisitoTipoAvances)
+    ]).subscribe(([accionRequisitos, accionAsociaciones]) => {
+      if (accionRequisitos && accionRequisitos.requisitos &&
+        accionAsociaciones && accionAsociaciones.datos &&
+        accionRequisitos.requisitos.length && accionRequisitos.requisitos[0].Id &&
+        accionAsociaciones.datos.length && accionAsociaciones.datos[0].Id
+      )
+        this.datosRequisitos = accionRequisitos.requisitos.filter((requisito: any) =>
+          accionAsociaciones.datos.some((asociacion: any) =>
+            requisito.Id === asociacion.RequisitoAvanceId));
+    });
+
   }
 
   ngOnDestroy() {
@@ -156,7 +185,14 @@ export class SetTipodeavanceComponent implements OnInit, OnDestroy {
     this.susVigencia$.unsubscribe();
     this.susNormas$.unsubscribe();
     this.vigenciaActual$.unsubscribe();
+    this.subscriptionRequisitos$.unsubscribe();
+    this.limpiarStore();
+  }
+
+  limpiarStore() {
     this.store.dispatch(cargarTiposAvances(null));
+    this.store.dispatch(cargarRequisitos(null));
+    this.store.dispatch(cargarRequisitoTipoAvances(null));
   }
 
   // Validacion del Formulario

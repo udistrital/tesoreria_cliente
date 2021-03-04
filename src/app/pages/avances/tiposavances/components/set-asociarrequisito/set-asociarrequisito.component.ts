@@ -1,55 +1,101 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { DATOS_REQUISITOS, CONFIGURACION_REQUISITOS } from '../../interfaces/interfaces';
+import { CONFIGURACION_REQUISITOS } from '../../interfaces/interfaces';
 import { Store } from '@ngrx/store';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { getFilaSeleccionada, getAccionTabla } from '../../../../../shared/selectors/shared.selectors';
-import { loadTiposAvancesSeleccionado } from '../../actions/tiposavances.actions';
-import { Router } from '@angular/router';
+import { getFilaSeleccionada } from '../../../../../shared/selectors/shared.selectors';
+import { ActivatedRoute } from '@angular/router';
+import {
+  asociarRequisitoTipoAvance, cargarRequisitos, cargarRequisitoTipoAvances,
+  cargarTiposAvances, desasociarRequisitoTipoAvance,
+  obtenerRequisitos, obtenerRequisitoTipoAvances, obtenerTiposAvances
+} from '../../../../../shared/actions/avances.actions';
+import { seleccionarRequisitos, seleccionarRequisitoTipoAvances, seleccionarTiposAvances } from '../../../../../shared/selectors/avances.selectors';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'ngx-set-asociarrequisito',
   templateUrl: './set-asociarrequisito.component.html',
   styleUrls: ['./set-asociarrequisito.component.scss']
 })
-export class SetAsociarrequisitoComponent implements OnInit {
+export class SetAsociarrequisitoComponent implements OnInit, OnDestroy {
   @ViewChild('eliminarTipoModal', { static: false }) eliminarTipoModal: ElementRef;
-  @ViewChild('asociarModal', { static: false }) asociarModal: ElementRef;
 
 
   configRequisitos: any;
   datosRequisitos: any;
-  subscription$: any;
+  subscriptionRequisitos$: any;
   subscriptionEliminarDato$: any;
+  subscriptionTipoAvance$: any;
+  requisitos: any;
+  requisitosCompletos: any;
 
   // Modales
   closeResult = '';
 
   // Formulario
   asociarRequisitoGroup: FormGroup;
-  codigoTipo = 'CINV';
-  estadoTipo = 'Activo';
+  codigoTipo: string;
+  nombreTipo: string;
+  id: any;
 
   constructor(private fb: FormBuilder,
     private store: Store<any>,
-    private router: Router,
-    private modalService: NgbModal
-    ) {
+    private modalService: NgbModal,
+    private activatedRoute: ActivatedRoute,
+  ) {
 
-    this.datosRequisitos = DATOS_REQUISITOS;
+    this.datosRequisitos = [];
+    this.requisitos = [];
+    this.requisitosCompletos = [];
     this.configRequisitos = CONFIGURACION_REQUISITOS;
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.createForm();
+    this.limpiarStore();
+    if (this.id) {
+      this.store.dispatch(obtenerTiposAvances({ id: this.id }));
+      this.store.dispatch(obtenerRequisitoTipoAvances({ idTipoAvance: this.id }));
+    }
+    this.store.dispatch(obtenerRequisitos({}));
   }
 
   ngOnInit() {
-    this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((fila: any) => {
-      if (fila) {
-        this.store.dispatch(loadTiposAvancesSeleccionado(fila.fila));
+    // Carga tipo de avance seleccionado
+    this.subscriptionTipoAvance$ = this.store.select(seleccionarTiposAvances).subscribe((accion: any) => {
+      if (accion && accion.tiposAvances && accion.tiposAvances.Id) {
+        this.codigoTipo = accion.tiposAvances.CodigoAbreviacion;
+        this.nombreTipo = accion.tiposAvances.Nombre;
       }
     });
 
-    this.subscription$ = this.store.select(getAccionTabla).subscribe((accion: any) => {
-      this.store.dispatch(loadTiposAvancesSeleccionado(null));
+    // Carga requisitos
+    this.subscriptionRequisitos$ = combineLatest([
+      this.store.select(seleccionarRequisitos),
+      this.store.select(seleccionarRequisitoTipoAvances)
+    ]).subscribe(([accionRequisitos, accionAsociaciones]) => {
+      if (accionRequisitos && accionRequisitos.requisitos &&
+        accionAsociaciones && accionAsociaciones.datos) {
+        if (accionRequisitos.requisitos.length && accionRequisitos.requisitos[0].Id)
+          this.requisitosCompletos = accionRequisitos.requisitos;
+        if (accionAsociaciones.datos.length && accionAsociaciones.datos[0].Id) {
+          // Carga requisitos completos y asigna idAsociacion a los que se asocian con el tipo de avance
+          this.requisitosCompletos.forEach((requisito: any) => {
+            const asociacion = accionAsociaciones.datos.find((aso: any) =>
+              requisito.Id === aso.RequisitoAvanceId);
+            requisito.idAsociacion = asociacion ? asociacion.Id : null;
+          });
+        } else if (accionAsociaciones.datos.idEliminado) {
+          const requisito = this.requisitosCompletos.find((element: any) =>
+            element.idAsociacion === accionAsociaciones.datos.idEliminado);
+          delete requisito.idAsociacion;
+        } else if (accionAsociaciones.datos.elementoCreado) {
+          this.asociarRequisitoGroup.get('requisitos').setValue('');
+          const requisito = this.requisitosCompletos.find((element: any) =>
+            element.Id === accionAsociaciones.datos.elementoCreado.RequisitoAvanceId);
+          requisito.idAsociacion = accionAsociaciones.datos.elementoCreado.Id;
+        }
+        this.ajustarRequisitos();
+      }
     });
 
     // Eliminar datos que se encuentran en la tabla
@@ -61,6 +107,27 @@ export class SetAsociarrequisitoComponent implements OnInit {
       }
     });
 
+  }
+
+  private ajustarRequisitos() {
+    // Se define la lista de requisitos y la tabla de requisitos
+    this.requisitos = this.requisitosCompletos
+      .filter((requisito: any) => !requisito.idAsociacion);
+    this.datosRequisitos = this.requisitosCompletos
+      .filter((requisito: any) => requisito.idAsociacion);
+  }
+
+  ngOnDestroy() {
+    this.subscriptionTipoAvance$.unsubscribe();
+    this.subscriptionEliminarDato$.unsubscribe();
+    this.subscriptionRequisitos$.unsubscribe();
+    this.limpiarStore();
+  }
+
+  limpiarStore() {
+    this.store.dispatch(cargarTiposAvances(null));
+    this.store.dispatch(cargarRequisitos(null));
+    this.store.dispatch(cargarRequisitoTipoAvances(null));
   }
 
   // Validacion del Formulario
@@ -83,35 +150,28 @@ export class SetAsociarrequisitoComponent implements OnInit {
     }
   }
 
-   // Modal acciones sobre la tabla: eliminar registros
-   modalEliminar(fila: any) {
+  // Modal acciones sobre la tabla: eliminar registros
+  modalEliminar(fila: any) {
     this.modalService.open(this.eliminarTipoModal).result.then((result) => {
-      if (`${result}`) {
-        this.datosRequisitos.splice(this.datosRequisitos.findIndex(
-           (element: any) => element.codigoAbreviado === fila.codigoAbreviado
-             && element.nombreRequisito === fila.nombreRequisito
-             && element.descripcion === fila.descripcion
-             && element.fecha === fila.fecha
-         ), 1);
-         // this.store.dispatch(loadRequisitos({ datosRequisitos: this.datosRequisitos }));
-      }
+      if (`${result}`)
+        this.store.dispatch(desasociarRequisitoTipoAvance({ id: fila.idAsociacion }));
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
 
-    // Modal acciones sobre la tabla: asociar registros
-    modalGuardar() {
-      if (this.asociarRequisitoGroup.valid) {
-        this.modalService.open(this.asociarModal).result.then((result) => {
-          if (`${result}`) {
-          this.router.navigate(['pages/avances/tiposavances/lista']);
-          }
-        }, (reason) => {
-          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        });
-      } else { this.saveForm(); }
-    }
+  asociarRequisito() {
+    if (this.asociarRequisitoGroup.get('requisitos').valid)
+      this.store.dispatch(asociarRequisitoTipoAvance({
+        element: {
+          'TipoAvanceId': { 'Id': Number(this.id) },
+          'RequisitoAvanceId': Number(this.asociarRequisitoGroup.get('requisitos').value.Id),
+          'Activo': true
+        }
+      }));
+    else
+      this.saveForm();
+  }
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {

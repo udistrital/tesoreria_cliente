@@ -51,7 +51,7 @@ export class TableTiposavancesComponent implements OnInit, OnDestroy {
           this.router.navigate(['pages/avances/tiposavances/detalle/' + accion.fila.Id]);
         }
         if (accion.accion.name === 'asosiarRequisitos') {
-          this.router.navigate(['pages/avances/tiposavances/asociar-requisito']);
+          this.router.navigate(['pages/avances/tiposavances/asociar-requisito/' + accion.fila.Id]);
         }
         // Eliminar datos que se encuentran en la tabla
         if (accion.accion.name === 'borrarTipo') {
