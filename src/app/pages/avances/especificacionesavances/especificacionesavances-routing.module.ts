@@ -14,7 +14,7 @@ const routes: Routes = [
     component: SetEspecificacionavancesComponent,
   },
   {
-    path: 'editar',
+    path: 'editar/:id',
     component: SetEspecificacionavancesComponent,
   }
 ];
