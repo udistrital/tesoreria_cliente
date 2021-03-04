@@ -13,7 +13,7 @@ export const cargarTiposAvances = createAction(
 
 export const obtenerTiposAvances = createAction(
   '[Avances] Obtener tipos de avances del back',
-  props<{ id?: any }>()
+  props<{ id?: any, query?: any }>()
 );
 
 export const crearTipoAvance = createAction(
@@ -55,5 +55,5 @@ export const actualizarNorma = createAction(
 
 export const eliminarNorma = createAction(
   '[Avances] Eliminar una norma existente en back',
-  props<{ id: any, element: any }>()
+  props<{ id: any }>()
 );

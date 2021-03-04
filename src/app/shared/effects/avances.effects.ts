@@ -7,7 +7,6 @@ import { EMPTY, of } from 'rxjs';
 import * as AvancesActions from '../actions/avances.actions';
 import * as SharedActions from '../actions/shared.actions';
 import { AvancesService } from '../services/avances.service';
-import { Store } from '@ngrx/store';
 import { PopUpManager } from '../../@core/managers/popUpManager';
 
 
@@ -37,7 +36,7 @@ export class AvancesEffects {
     return this.actions$.pipe(
       ofType(AvancesActions.obtenerTiposAvances),
       mergeMap((accion) => {
-        return this.avancesService.getTiposAvances(accion && accion.id ? accion.id : null)
+        return this.avancesService.getTiposAvances(accion && accion.id ? accion.id : null, accion && accion.query ? accion.query : null)
           .pipe(map(data => AvancesActions.cargarTiposAvances({ tiposAvances: (data && data.Data ? data.Data : data) })),
             catchError(data => of(SharedActions.CatchError(data))));
       })
@@ -119,9 +118,9 @@ export class AvancesEffects {
     return this.actions$.pipe(
       ofType(AvancesActions.actualizarNorma),
       mergeMap((accion) => {
-        this.popupManager.showSuccessAlert('Guardado exitoso');
         return this.avancesService.updateNorma(accion.id, accion.element)
           .pipe(map(() => {
+            this.popupManager.showSuccessAlert('Guardado exitoso');
             return AvancesActions.cargarNormas({
               normas: { idActualizado: accion.id }
             });
