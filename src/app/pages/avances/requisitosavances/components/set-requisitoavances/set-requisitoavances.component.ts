@@ -3,8 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
+import { actualizarRequisito, cargarRequisitos, crearRequisito, obtenerRequisitos } from '../../../../../shared/actions/avances.actions';
 import { OPCIONES_AREA_FUNCIONAL } from '../../../../../shared/interfaces/interfaces';
-import { getRequisitoSeleccionado } from '../../selectors/requisitosavances.selectors';
+import { seleccionarRequisitos } from '../../../../../shared/selectors/avances.selectors';
 
 @Component({
   selector: 'ngx-set-requisitoavances',
@@ -17,6 +18,8 @@ export class SetRequisitoavancesComponent implements OnInit, OnDestroy {
   opcionesAreaFuncional: Array<any>;
   tituloAccion: string;
   subscription$: any;
+  id: string;
+  fechaCreacion: string;
 
   constructor(
     private fb: FormBuilder,
@@ -27,44 +30,36 @@ export class SetRequisitoavancesComponent implements OnInit, OnDestroy {
   ) {
     this.opcionesAreaFuncional = OPCIONES_AREA_FUNCIONAL;
     this.tituloAccion = this.activatedRoute.snapshot.url[0].path;
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    if (this.id)
+      this.store.dispatch(obtenerRequisitos({ id: this.id }));
   }
 
   ngOnInit() {
     this.crearFormulario();
-    if (this.tituloAccion === 'editar') {
-      this.subscription$ = this.store.select(getRequisitoSeleccionado).subscribe((accion: any) => {
-        if (accion && accion.fila)
-          this.llenarDatosEditables(accion.fila);
-      });
-    }
+    this.subscription$ = this.store.select(seleccionarRequisitos).subscribe((accion: any) => {
+      if (accion && accion.requisitos)
+        if (accion.requisitos.Id) {
+          this.datosRequisito.setValue({
+            codigoAbreviacion: accion.requisitos.CodigoAbreviacion,
+            nombreRequisito: accion.requisitos.Nombre,
+            descripcion: accion.requisitos.Descripcion,
+            estado: accion.requisitos.Activo
+          });
+          this.fechaCreacion = accion.requisitos.FechaCreacion;
+        } else if (accion.requisitos.idCreado || accion.requisitos.idActualizado) {
+          this.router.navigate(['pages/avances/requisitosavances/lista']);
+        }
+    });
   }
 
   ngOnDestroy() {
-    if (this.subscription$ != null)
-      this.subscription$.unsubscribe();
-  }
-
-  llenarDatosEditables(fila: { fecha: string; codigo: any; nombre: any; descripcion: any; estado: any; }) {
-    // TODO
-    const dateArray = fila.fecha.split('-');
-    this.datosRequisito.setValue({
-      areaFuncional: null,
-      fecha: {
-        year: parseInt(dateArray[2], 10),
-        month: parseInt(dateArray[0], 10),
-        day: parseInt(dateArray[1], 10)
-      },
-      codigoAbreviacion: fila.codigo,
-      nombreRequisito: fila.nombre,
-      descripcion: fila.descripcion,
-      estado: fila.estado
-    });
+    this.subscription$.unsubscribe();
+    this.store.dispatch(cargarRequisitos(null));
   }
 
   crearFormulario() {
     this.datosRequisito = this.fb.group({
-      areaFuncional: ['', Validators.required],
-      fecha: ['', Validators.required],
       codigoAbreviacion: ['', Validators.required],
       nombreRequisito: ['', Validators.required],
       descripcion: ['', Validators.required],
@@ -92,7 +87,18 @@ export class SetRequisitoavancesComponent implements OnInit, OnDestroy {
     if (this.datosRequisito.valid)
       this.modalService.open(this.modalGuardar).result.then((result) => {
         if (`${result}`) {
-          this.router.navigate(['pages/avances/requisitosavances/lista']);
+          const requisito = {
+            'CodigoAbreviacion': this.datosRequisito.get('codigoAbreviacion').value,
+            'Nombre': this.datosRequisito.get('nombreRequisito').value,
+            'Descripcion': this.datosRequisito.get('descripcion').value,
+            'Activo': String(this.datosRequisito.get('estado').value) === 'true'
+          };
+          if (this.fechaCreacion)
+            requisito['FechaCreacion'] = this.fechaCreacion.split(' ')[0]
+          if (this.id)
+            this.store.dispatch(actualizarRequisito({ id: this.id, element: requisito }));
+          else
+            this.store.dispatch(crearRequisito({ element: requisito }));
         }
       }, () => { });
     else
