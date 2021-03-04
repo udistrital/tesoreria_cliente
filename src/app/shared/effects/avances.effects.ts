@@ -119,11 +119,56 @@ export class AvancesEffects {
     return this.actions$.pipe(
       ofType(AvancesActions.actualizarNorma),
       mergeMap((accion) => {
-        this.popupManager.showSuccessAlert('Guardado exitoso');
         return this.avancesService.updateNorma(accion.id, accion.element)
-          .pipe(map(() => {
+        .pipe(map(() => {
+            this.popupManager.showSuccessAlert('Guardado exitoso');
             return AvancesActions.cargarNormas({
               normas: { idActualizado: accion.id }
+            });
+          }),
+            catchError(data => of(SharedActions.CatchError(data))));
+      })
+    );
+  });
+
+  // Requisitos
+
+  getRequisitos$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AvancesActions.obtenerRequisitos),
+      mergeMap((accion) => {
+        return this.avancesService.getRequisitos(accion && accion.id ? accion.id : null)
+          .pipe(map(data => AvancesActions.cargarRequisitos({ requisitos: (data && data.Data ? data.Data : data) })),
+            catchError(data => of(SharedActions.CatchError(data))));
+      })
+    );
+  });
+
+  createRequisito$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AvancesActions.crearRequisito),
+      mergeMap((accion) => {
+        return this.avancesService.createRequisito(accion.element)
+          .pipe(map(data => {
+            this.popupManager.showSuccessAlert('Requisito creado');
+            return AvancesActions.cargarRequisitos({
+              requisitos: { idCreado: data && data.Data && data.Data.Id ? data.Data.Id : data }
+            });
+          }),
+            catchError(data => of(SharedActions.CatchError(data))));
+      })
+    );
+  });
+
+  updateRequisito$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AvancesActions.actualizarRequisito),
+      mergeMap((accion) => {
+        return this.avancesService.updateRequisito(accion.id, accion.element)
+          .pipe(map(() => {
+            this.popupManager.showSuccessAlert('Requisito actualizado');
+            return AvancesActions.cargarRequisitos({
+              requisitos: { idActualizado: accion.id }
             });
           }),
             catchError(data => of(SharedActions.CatchError(data))));

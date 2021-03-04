@@ -6,11 +6,13 @@ export const avancesFeatureKey = 'avances';
 export interface State {
   tiposAvances: any;
   normas: any;
+  requisitos: any;
 }
 
 export const initialState: State = {
   tiposAvances: null,
   normas: null,
+  requisitos: null,
 };
 
 const avancesReducer = createReducer(
@@ -22,6 +24,9 @@ const avancesReducer = createReducer(
   })),
   on(AvancesActions.cargarNormas, (state, action) => ({
     ...state, normas: state.normas = action
+  })),
+  on(AvancesActions.cargarRequisitos, (state, action) => ({
+    ...state, requisitos: state.requisitos = action
   })),
 
 );

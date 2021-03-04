@@ -57,3 +57,25 @@ export const eliminarNorma = createAction(
   '[Avances] Eliminar una norma existente en back',
   props<{ id: any, element: any }>()
 );
+
+// Requisitos
+
+export const cargarRequisitos = createAction(
+  '[Avances] Carga requisitos al store',
+  props()
+);
+
+export const obtenerRequisitos = createAction(
+  '[Avances] Obtener requisitos del back',
+  props<{ id?: any, query?: any }>()
+);
+
+export const crearRequisito = createAction(
+  '[Avances] Crear y guardar un nuevo requisito en back',
+  props<{ element: any }>()
+);
+
+export const actualizarRequisito = createAction(
+  '[Avances] Actualizar y guardar un requisito existente en back',
+  props<{ id: any, element: any }>()
+);

@@ -56,4 +56,27 @@ export class AvancesService {
     return this.rqManager.delete('norma/', id);
   }
 
+  // Requisitos
+
+  public getRequisitos(id?: number) {
+    this.rqManager.setPath('PARAMETROS_CRUD_SERVICE');
+    return this.rqManager.get('parametro/' + (id ? '/' + id : ''), {
+      query: 'ParametroPadreId:324'
+    });
+  }
+
+  public createRequisito(element: any) {
+    this.rqManager.setPath('PARAMETROS_CRUD_SERVICE');
+    element['TipoParametroId'] = { 'Id': 18 };
+    element['ParametroPadreId'] = { 'Id': 324 };
+    return this.rqManager.post('parametro/', element);
+  }
+
+  public updateRequisito(id: number, element: any) {
+    this.rqManager.setPath('PARAMETROS_CRUD_SERVICE');
+    element['TipoParametroId'] = { 'Id': 18 };
+    element['ParametroPadreId'] = { 'Id': 324 };
+    return this.rqManager.put('parametro/', element, id);
+  }
+
 }
