@@ -38,6 +38,7 @@ export class TableTiposavancesComponent implements OnInit, OnDestroy {
 
     this.stringBusqueda = '';
     this.selectedAction = new EventEmitter<any>();
+    this.clearStore();
     this.store.dispatch(obtenerTiposAvances({}));
   }
 
@@ -78,6 +79,10 @@ export class TableTiposavancesComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription$.unsubscribe();
     this.subTiposAvances$.unsubscribe();
+    this.clearStore();
+  }
+
+  clearStore() {
     this.store.dispatch(LoadFilaSeleccionada(null));
     this.store.dispatch(cargarTiposAvances(null));
   }
