@@ -94,7 +94,7 @@ export class SetRequisitoavancesComponent implements OnInit, OnDestroy {
             'Activo': String(this.datosRequisito.get('estado').value) === 'true'
           };
           if (this.fechaCreacion)
-            requisito['FechaCreacion'] = this.fechaCreacion.split(' ')[0]
+            requisito['FechaCreacion'] = this.fechaCreacion.split(' ')[0];
           if (this.id)
             this.store.dispatch(actualizarRequisito({ id: this.id, element: requisito }));
           else

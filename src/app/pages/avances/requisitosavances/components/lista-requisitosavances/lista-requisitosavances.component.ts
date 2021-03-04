@@ -59,7 +59,7 @@ export class ListaRequisitosavancesComponent implements OnInit, OnDestroy {
         } else if (accion.requisitos.idActualizado) {
           const requisito = this.datosTabla[this.datosTabla.findIndex(
             (element: any) => element.Id === accion.requisitos.idActualizado)];
-          if(requisito){
+          if (requisito) {
             requisito.Activo = !requisito.Activo;
             requisito.estado = requisito.Activo ? 'Activo' : 'Inactivo';
           }
