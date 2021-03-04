@@ -17,6 +17,13 @@ export class RequestManager {
   private path: string;
   public httpOptions: any;
   constructor(private http: HttpClient, private errManager: HttpErrorManager) {
+    this.initHttpOptions();
+  }
+
+  /**
+   * Set http options to initial state
+   */
+  private initHttpOptions(){
     this.httpOptions = {
       headers: new HttpHeaders({
         'Accept': 'application/json',
@@ -76,6 +83,7 @@ export class RequestManager {
    * @returns Observable<any>
    */
   post(endpoint, element) {
+    this.initHttpOptions();
     return this.http.post<any>(`${this.path}${endpoint}`, element, this.httpOptions).pipe(
       catchError(this.errManager.handleError),
       map(
@@ -98,6 +106,7 @@ export class RequestManager {
    * @returns Observable<any>
    */
   put(endpoint, element, id) {
+    this.initHttpOptions();
     return this.http.put<any>(`${this.path}${endpoint}${id}`, JSON.stringify(element), this.httpOptions).pipe(
       catchError(this.errManager.handleError),
     );
@@ -110,6 +119,7 @@ export class RequestManager {
    * @returns Observable<any>
    */
   putParams(endpoint, element) {
+    this.initHttpOptions();
     return this.http.put<any>(`${this.path}${endpoint}`, element, this.httpOptions).pipe(
       catchError(this.errManager.handleError),
     );
