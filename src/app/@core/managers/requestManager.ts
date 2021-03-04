@@ -23,7 +23,7 @@ export class RequestManager {
   /**
    * Set http options to initial state
    */
-  private initHttpOptions(){
+  private initHttpOptions() {
     this.httpOptions = {
       headers: new HttpHeaders({
         'Accept': 'application/json',
