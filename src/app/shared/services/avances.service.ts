@@ -89,11 +89,14 @@ export class AvancesService {
 
   // Especificaciones
 
-  public getEspecificaciones(id?: number) {
+  public getEspecificaciones(id?: number, query?: any) {
     this.rqManager.setPath('PARAMETROS_CRUD_SERVICE');
-    return this.rqManager.get('parametro/' + (id ? '/' + id : ''), {
-      query: 'ParametroPadreId:325'
-    });
+    let queryParams = 'ParametroPadreId:325,';
+    if (query)
+      for (const [key, value] of Object.entries(query))
+        queryParams += `${key}:${value},`;
+    queryParams = queryParams.substr(0, queryParams.length - 1);
+    return this.rqManager.get('parametro/' + (id ? '/' + id : ''), { query: queryParams });
   }
 
   public createEspecificacion(element: any) {

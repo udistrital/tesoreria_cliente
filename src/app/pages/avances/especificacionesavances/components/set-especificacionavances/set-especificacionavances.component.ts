@@ -32,6 +32,7 @@ export class SetEspecificacionavancesComponent implements OnInit, OnDestroy {
     this.opcionesAreaFuncional = OPCIONES_AREA_FUNCIONAL;
     this.tituloAccion = this.activatedRoute.snapshot.url[0].path;
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.store.dispatch(cargarEspecificaciones(null));
     if (this.id)
       this.store.dispatch(obtenerEspecificaciones({ id: this.id }));
   }

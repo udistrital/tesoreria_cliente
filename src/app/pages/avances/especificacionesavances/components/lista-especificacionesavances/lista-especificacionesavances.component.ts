@@ -28,6 +28,7 @@ export class ListaEspecificacionesavancesComponent implements OnInit, OnDestroy 
   ) {
     this.datosTabla = [];
     this.configuracionTabla = CONFIGURACION_TABLA;
+    this.clearStore();
     this.store.dispatch(obtenerEspecificaciones({}));
   }
 
@@ -71,6 +72,10 @@ export class ListaEspecificacionesavancesComponent implements OnInit, OnDestroy 
   ngOnDestroy() {
     this.subscription$.unsubscribe();
     this.subscriptionEspecificaciones$.unsubscribe();
+    this.clearStore();
+  }
+
+  clearStore(){
     this.store.dispatch(LoadFilaSeleccionada(null));
     this.store.dispatch(cargarEspecificaciones(null));
   }
