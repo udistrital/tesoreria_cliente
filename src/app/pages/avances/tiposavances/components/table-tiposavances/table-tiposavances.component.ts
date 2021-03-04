@@ -6,7 +6,7 @@ import { loadTiposAvancesSeleccionado, loadTiposAvances } from '../../actions/ti
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
 import { Router } from '@angular/router';
-import { eliminarTipoAvance, obtenerTiposAvances } from '../../../../../shared/actions/avances.actions';
+import { cargarTiposAvances, eliminarTipoAvance, obtenerTiposAvances } from '../../../../../shared/actions/avances.actions';
 import { seleccionarTiposAvances } from '../../../../../shared/selectors/avances.selectors';
 
 @Component({
@@ -79,6 +79,7 @@ export class TableTiposavancesComponent implements OnInit, OnDestroy {
     this.subscription$.unsubscribe();
     this.subTiposAvances$.unsubscribe();
     this.store.dispatch(LoadFilaSeleccionada(null));
+    this.store.dispatch(cargarTiposAvances(null));
   }
 
   // Modal acciones sobre la tabla: eliminar registros

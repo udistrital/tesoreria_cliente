@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { combineLatest } from 'rxjs';
-import { actualizarNorma, actualizarTipoAvance, crearNorma, crearTipoAvance, obtenerNormas, obtenerTiposAvances } from '../../../../../shared/actions/avances.actions';
+import { actualizarNorma, actualizarTipoAvance, cargarTiposAvances, crearNorma, crearTipoAvance, obtenerNormas, obtenerTiposAvances } from '../../../../../shared/actions/avances.actions';
 import { GetVigenciaActual, getVigencias } from '../../../../../shared/actions/shared.actions';
 import { OPCIONES_AREA_FUNCIONAL } from '../../../../../shared/interfaces/interfaces';
 import { seleccionarNormas, seleccionarTiposAvances } from '../../../../../shared/selectors/avances.selectors';
@@ -156,6 +156,7 @@ export class SetTipodeavanceComponent implements OnInit, OnDestroy {
     this.susVigencia$.unsubscribe();
     this.susNormas$.unsubscribe();
     this.vigenciaActual$.unsubscribe();
+    this.store.dispatch(cargarTiposAvances(null));
   }
 
   // Validacion del Formulario
@@ -209,7 +210,7 @@ export class SetTipodeavanceComponent implements OnInit, OnDestroy {
   modalGuardar() {
     if (this.tipoavanceGroup.valid) {
       this.codigoTipo = this.tipoavanceGroup.get('codigoTipo').value;
-      this.estadoTipo = this.tipoavanceGroup.get('estadoTipo').value === 'true' ? 'Activo' : 'Inactivo';
+      this.estadoTipo = String(this.tipoavanceGroup.get('estadoTipo').value) === 'true' ? 'Activo' : 'Inactivo';
       this.modalService.open(this.guardarModal).result.then((result) => {
         if (`${result}`) {
           const tipo = {
@@ -217,7 +218,7 @@ export class SetTipodeavanceComponent implements OnInit, OnDestroy {
             'AreaFuncional': this.tipoavanceGroup.get('areaFuncional').value.Id,
             'Nombre': this.tipoavanceGroup.get('nombreTipo').value,
             'Descripcion': this.tipoavanceGroup.get('descripcion').value,
-            'Activo': this.tipoavanceGroup.get('estadoTipo').value === 'true'
+            'Activo': String(this.tipoavanceGroup.get('estadoTipo').value) === 'true'
           };
           if (this.id)
             this.store.dispatch(actualizarTipoAvance({ id: this.id, element: tipo }));
