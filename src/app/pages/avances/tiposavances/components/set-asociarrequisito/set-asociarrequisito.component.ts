@@ -12,6 +12,7 @@ import {
 } from '../../../../../shared/actions/avances.actions';
 import { seleccionarRequisitos, seleccionarRequisitoTipoAvances, seleccionarTiposAvances } from '../../../../../shared/selectors/avances.selectors';
 import { combineLatest } from 'rxjs';
+import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
 
 @Component({
   selector: 'ngx-set-asociarrequisito',
@@ -89,7 +90,9 @@ export class SetAsociarrequisitoComponent implements OnInit, OnDestroy {
             element.idAsociacion === accionAsociaciones.datos.idEliminado);
           delete requisito.idAsociacion;
         } else if (accionAsociaciones.datos.elementoCreado) {
-          this.asociarRequisitoGroup.get('requisitos').setValue('');
+          const control = this.asociarRequisitoGroup.get('requisitos');
+          control.setValue('');
+          control.markAsUntouched();
           const requisito = this.requisitosCompletos.find((element: any) =>
             element.Id === accionAsociaciones.datos.elementoCreado.RequisitoAvanceId);
           requisito.idAsociacion = accionAsociaciones.datos.elementoCreado.Id;
@@ -128,6 +131,7 @@ export class SetAsociarrequisitoComponent implements OnInit, OnDestroy {
     this.store.dispatch(cargarTiposAvances(null));
     this.store.dispatch(cargarRequisitos(null));
     this.store.dispatch(cargarRequisitoTipoAvances(null));
+    this.store.dispatch(LoadFilaSeleccionada(null));
   }
 
   // Validacion del Formulario
