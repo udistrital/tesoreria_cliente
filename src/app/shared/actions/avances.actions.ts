@@ -100,7 +100,7 @@ export const asociarRequisitoTipoAvance = createAction(
 export const desasociarRequisitoTipoAvance = createAction(
   '[Avances] Eliminar una asociacion de requisito con tipo avance existente en back',
   props<{ id: any }>()
-)
+);
 // Especificaciones
 
 export const cargarEspecificaciones = createAction(
