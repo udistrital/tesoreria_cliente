@@ -130,6 +130,51 @@ export class AvancesEffects {
     );
   });
 
+  // Especificaciones
+
+  getEspecificaciones$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AvancesActions.obtenerEspecificaciones),
+      mergeMap((accion) => {
+        return this.avancesService.getEspecificaciones(accion && accion.id ? accion.id : null, accion && accion.query ? accion.query : null)
+          .pipe(map(data => AvancesActions.cargarEspecificaciones({ especificaciones: (data && data.Data ? data.Data : data) })),
+            catchError(data => of(SharedActions.CatchError(data))));
+      })
+    );
+  });
+
+  createEspecificaciones$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AvancesActions.crearEspecificacion),
+      mergeMap((accion) => {
+        return this.avancesService.createEspecificacion(accion.element)
+          .pipe(map(data => {
+            this.popupManager.showSuccessAlert('Especificacion creada');
+            return AvancesActions.cargarEspecificaciones({
+              especificaciones: { idCreado: data && data.Data && data.Data.Id ? data.Data.Id : data }
+            });
+          }),
+            catchError(data => of(SharedActions.CatchError(data))));
+      })
+    );
+  });
+
+  updateEspecificaciones$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AvancesActions.actualizarEspecificacion),
+      mergeMap((accion) => {
+        return this.avancesService.updateEspecificacion(accion.id, accion.element)
+          .pipe(map(() => {
+            this.popupManager.showSuccessAlert('Especificación actualizada');
+            return AvancesActions.cargarEspecificaciones({
+              especificaciones: { idActualizado: accion.id }
+            });
+          }),
+            catchError(data => of(SharedActions.CatchError(data))));
+      })
+    );
+  });
+
   // Requisitos
 
   getRequisitos$ = createEffect(() => {
