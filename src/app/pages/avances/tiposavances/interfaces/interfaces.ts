@@ -2,7 +2,7 @@ export const CONFIGURACION_TABLATIPOS: any = {
     showColumnTitle: true,
     dataConfig: [
         {
-            key: 'codigoAbreviado',
+            key: 'CodigoAbreviacion',
             title: {
                 name: 'Código',
                 class: 'text-center',
@@ -12,7 +12,7 @@ export const CONFIGURACION_TABLATIPOS: any = {
             }
         },
         {
-            key: 'nombreTipo',
+            key: 'Nombre',
             title: {
                 name: 'Nombre de Tipo',
                 class: 'text-center',
@@ -22,7 +22,7 @@ export const CONFIGURACION_TABLATIPOS: any = {
             }
         },
         {
-            key: 'descripcionTipo',
+            key: 'Descripcion',
                 title: {
                 name: 'Descripción de Tipo',
                 class: 'text-center',
@@ -42,7 +42,7 @@ export const CONFIGURACION_TABLATIPOS: any = {
             }
         },
         {
-            key: 'fecha',
+            key: 'FechaModificacion',
             title: {
                 name: 'Fecha',
                 class: 'text-center',
@@ -97,22 +97,6 @@ export const CONFIGURACION_TABLATIPOS: any = {
     sort: true,
     filter: true,
 };
-export const DATOS_TABLATIPOS: any = [
-    {
-        codigoAbreviado: 'CTAT',
-        nombreTipo: 'Compra de Tiquetes Aéreos y Terrestres',
-        descripcionTipo: 'Descripción... (Resolución N° 652 de 2015)',
-        estadoTipo: 'Activo',
-        fecha: '2021-20-11T02:18:54Z',
-    },
-    {
-        codigoAbreviado: 'VT',
-        nombreTipo: 'Viáticos',
-        descripcionTipo: 'Descripción...',
-        estadoTipo: 'Inactivo',
-        fecha: '2021-02-10T02:18:54Z',
-    },
-];
 
 export const CONFIGURACION_REQUISITOSDETALLE: any = {
     showColumnTitle: true,
@@ -256,7 +240,7 @@ export const CONFIGURACION_TABLA_NORMA: any = {
     showColumnTitle: true,
     dataConfig: [
         {
-            key: 'enlaceNorma',
+            key: 'LinkNorma',
             title: {
                 name: 'Enlace de Norma',
                 class: 'text-center',
@@ -266,7 +250,7 @@ export const CONFIGURACION_TABLA_NORMA: any = {
             }
         },
         {
-            key: 'vigencia',
+            key: 'Vigencia',
             title: {
                 name: 'Vigencia',
                 class: 'text-center',
@@ -276,7 +260,7 @@ export const CONFIGURACION_TABLA_NORMA: any = {
             }
         },
         {
-            key: 'fechaActualizacion',
+            key: 'FechaModificacion',
             title: {
                 name: 'Fecha de Actualización',
                 class: 'text-center',
@@ -296,15 +280,3 @@ export const CONFIGURACION_TABLA_NORMA: any = {
     },
     sort: true,
 };
-export const DATOS_NORMA: any = [
-    {
-        enlaceNorma: 'enlace1',
-        vigencia: '2019',
-        fechaActualizacion: '2021-20-11T02:18:54Z',
-    },
-    {
-        enlaceNorma: 'enlace2',
-        vigencia: '2020',
-        fechaActualizacion: '2021-20-11T02:18:54Z',
-    }
-];

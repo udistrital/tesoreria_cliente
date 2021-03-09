@@ -17,9 +17,7 @@
                             <label>Área Funcional</label>
                             <select class="custom-select" formControlName="areaFuncional" [class.is-invalid]="areaInvalid">
                                 <option selected disabled value="">Seleccione...</option>
-                                <option>01</option>
-                                <option>02</option>
-                                <option>03</option>
+                                <option [ngValue]="opcion" *ngFor="let opcion of opcionesAreaFuncional">{{opcion?.label}}</option>
                             </select>
                             <small *ngIf="areaInvalid" class="text-danger">Seleccione una opción</small>
                         </div>
@@ -50,8 +48,8 @@
                             <label>Estado</label>
                             <select class="custom-select" formControlName="estadoTipo" [class.is-invalid]="estadoTipoInvalid">
                                 <option selected disabled value="">Seleccione...</option>
-                                <option>Activo</option>
-                                <option>Inactivo</option>
+                                <option value="true">Activo</option>
+                                <option value="false">Inactivo</option>
                             </select>
                             <small *ngIf="estadoTipoInvalid" class="text-danger">Seleccione una opción</small>
                         </div>
@@ -74,17 +72,16 @@
                     <div class="form-group row px-5">
                         <div class="col-md-7">
                             <label>Enlace de la Norma</label>
-                            <input type="text" class="form-control" formControlName="normaTipo" [class.is-invalid]="nombreTipoInvalid">
-                            <small *ngIf="nombreTipoInvalid" class="text-danger">Ingrese números en este campo</small>
+                            <input type="text" class="form-control" formControlName="normaTipo" [class.is-invalid]="normaTipoInvalid">
+                            <small *ngIf="normaTipoInvalid" class="text-danger">Complete este campo</small>
                         </div>
                         <div class="col-md-5">
                             <label>Vigencia</label>
-                            <select class="custom-select" formControlName="estadoTipo" [class.is-invalid]="estadoTipoInvalid">
+                            <select class="custom-select" formControlName="vigencia" [class.is-invalid]="vigenciaInvalid">
                                 <option selected disabled value="">Seleccione...</option>
-                                <option>2019</option>
-                                <option>2020</option>
+                                <option [ngValue]="vigencia" *ngFor="let vigencia of vigencias">{{vigencia?.valor}}</option>
                             </select>
-                            <small *ngIf="estadoTipoInvalid" class="text-danger">Seleccione una opción</small>
+                            <small *ngIf="vigenciaInvalid" class="text-danger">Seleccione una opción</small>
                         </div>
                     </div>
                     <!-- Fin Campos Estado de tipo avance, enlace a la norma -->
@@ -97,33 +94,33 @@
                         <div class="row pt-2">
                             <div class="col-md-4">
                                 <label>Área Funcional</label>
-                                <input type="text" class="form-control" value="" readonly>
+                                <input type="text" class="form-control" value="{{tipoavanceGroup.get('areaFuncional')?.value?.label}}" readonly>
                             </div>
                             <div class="col-md-4">
                                 <label>Fecha</label>
-                                <input type="text" class="form-control" value="" readonly>
+                                <input type="text" class="form-control" value="{{tipoavanceGroup.get('fecha')?.value}}" readonly>
                             </div>
                             <div class="col-md-4">
                                 <label>Estado</label>
-                                <input type="text" class="form-control" value="" readonly>
+                                <input type="text" class="form-control" value="{{tipoavanceGroup.get('estadoTipo')?.value ? 'Activo' : 'Inactivo'}}" readonly>
                             </div>
                         </div>
                         <div class="row pt-2">
                             <div class="col-md-6">
                                 <label>Descripción</label>
-                                <textarea class="form-control" rows="3" readonly></textarea>
+                                <textarea class="form-control" rows="3" readonly value="{{tipoavanceGroup.get('descripcion')?.value}}"></textarea>
                             </div>
                             <div class="col-md-6">
                                 <div class="row">
                                     <div class="col">
                                         <label>Cód. de Abreviación</label>
-                                        <input type="text" class="form-control" value="" readonly>
+                                        <input type="text" class="form-control" value="{{tipoavanceGroup.get('codigoTipo')?.value}}" readonly>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <label>Nombre de Tipo de Avance</label>
-                                        <input type="text" class="form-control" value="" readonly>
+                                        <input type="text" class="form-control" value="{{tipoavanceGroup.get('nombreTipo')?.value}}" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -167,7 +164,7 @@
                 <!-- Botones: Volver a registro, Siguiente -->
                 <div class="row pt-2 text-center">
                     <div class="col-md-6">
-                        <a routerLink="../lista">
+                        <a href="#/pages/avances/tiposavances/lista">
                             <button type="button" class="btn btn-primary mb-3 mt-3 text-white">
                                 <div class="d-flex flex-row justify-content-around align-middle">
                                     <span>Volver</span>
@@ -189,13 +186,13 @@
 <!-- Modal: Guardar Tipo de Avance -->
 <ng-template #guardarModal let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="guardarModal">¡Guardado!</h4>
+        <h4 class="modal-title" id="guardarModal">Guardar</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
-        <p class="text-center">Se ha editado el tipo de avance {{ codigoTipo }}.</p>
+        <p class="text-center">Guardar el tipo de avance {{ codigoTipo }}</p>
         <p class="text-center">Estado: {{ estadoTipo }}</p>
     </div>
     <div class="modal-footer">
