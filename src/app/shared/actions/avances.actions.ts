@@ -26,11 +26,6 @@ export const actualizarTipoAvance = createAction(
   props<{ id: any, element: any }>()
 );
 
-export const eliminarTipoAvance = createAction(
-  '[Avances] Eliminar un tipo de avance existente en back',
-  props<{ id: any }>()
-);
-
 // Normas
 
 export const cargarNormas = createAction(
@@ -51,11 +46,6 @@ export const crearNorma = createAction(
 export const actualizarNorma = createAction(
   '[Avances] Actualizar y guardar una norma existente en back',
   props<{ id: any, element: any }>()
-);
-
-export const eliminarNorma = createAction(
-  '[Avances] Eliminar una norma existente en back',
-  props<{ id: any }>()
 );
 
 // Requisitos
@@ -94,12 +84,12 @@ export const obtenerRequisitoTipoAvances = createAction(
 
 export const asociarRequisitoTipoAvance = createAction(
   '[Avances] Crear y guardar una asociacion de requisito con tipo avance en back',
-  props<{ element: any }>()
+  props<{ element: any, id?: number }>()
 );
 
 export const desasociarRequisitoTipoAvance = createAction(
-  '[Avances] Eliminar una asociacion de requisito con tipo avance existente en back',
-  props<{ id: any }>()
+  '[Avances] Desactivar una asociacion de requisito con tipo avance existente en back',
+  props<{ id: number, element: any }>()
 );
 // Especificaciones
 

@@ -78,9 +78,11 @@ export class SetTipodeavanceComponent implements OnInit, OnDestroy {
     this.clearStore();
     if (this.id) {
       this.store.dispatch(obtenerTiposAvances({ id: this.id }));
-      this.store.dispatch(obtenerRequisitoTipoAvances({ idTipoAvance: this.id }));
+      this.store.dispatch(obtenerRequisitoTipoAvances({
+        idTipoAvance: this.id, query: { Activo: true }
+      }));
     }
-    this.store.dispatch(obtenerRequisitos({}));
+    this.store.dispatch(obtenerRequisitos({ query: { Activo: true } }));
     this.createForm();
     // Icono en la Lista de documentos
     this.mostrarOcultar = 'Mostrar';

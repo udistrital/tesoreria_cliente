@@ -69,22 +69,6 @@ export class AvancesEffects {
     );
   });
 
-  deleteTipoAvance$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(AvancesActions.eliminarTipoAvance),
-      mergeMap((accion) => {
-        return this.avancesService.deleteTipoAvance(accion.id)
-          .pipe(map(() => {
-            this.popupManager.showSuccessAlert('Tipo de avance eliminado');
-            return AvancesActions.cargarTiposAvances({
-              tiposAvances: { idEliminado: accion.id }
-            });
-          }),
-            catchError(data => of(SharedActions.CatchError(data))));
-      })
-    );
-  });
-
   // Normas
 
   getNormas$ = createEffect(() => {
@@ -235,17 +219,36 @@ export class AvancesEffects {
     );
   });
 
+  private updateRequisitoTipoAvance(id: number, elemento: any, activo: boolean) {
+    const element = Object.assign({}, elemento);
+    element['Activo'] = activo;
+    return this.avancesService.updateRequisitoTipoAvance(id, element)
+      .pipe(map(data => {
+        this.popupManager.showSuccessAlert('Asociación actualizada');
+        return AvancesActions.cargarRequisitoTipoAvances({
+          datos: { elementoActualizado: data && data.Data && data.Data ? data.Data : data }
+        });
+      }), catchError(data => of(SharedActions.CatchError(data))));
+  }
+
   createRequisitoTipoAvance$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AvancesActions.asociarRequisitoTipoAvance),
-      mergeMap((accion) =>
-        this.avancesService.createRequisitoTipoAvance(accion.element)
-          .pipe(map(data => {
-            this.popupManager.showSuccessAlert('Asociación creada');
-            return AvancesActions.cargarRequisitoTipoAvances({
-              datos: { elementoCreado: data && data.Data && data.Data ? data.Data : data }
-            });
-          }), catchError(data => of(SharedActions.CatchError(data)))))
+      mergeMap((accion) => {
+        const element = Object.assign({}, accion.element);
+        element['Activo'] = true;
+        if (accion.id)
+          return this.updateRequisitoTipoAvance(accion.id, accion.element, true);
+        else {
+          return this.avancesService.createRequisitoTipoAvance(element)
+            .pipe(map(data => {
+              this.popupManager.showSuccessAlert('Asociación creada');
+              return AvancesActions.cargarRequisitoTipoAvances({
+                datos: { elementoCreado: data && data.Data && data.Data ? data.Data : data }
+              });
+            }), catchError(data => of(SharedActions.CatchError(data))));
+        }
+      })
     );
   });
 
@@ -253,13 +256,8 @@ export class AvancesEffects {
     return this.actions$.pipe(
       ofType(AvancesActions.desasociarRequisitoTipoAvance),
       mergeMap((accion) =>
-        this.avancesService.deleteRequisitoTipoAvance(accion.id)
-          .pipe(map(() => {
-            this.popupManager.showSuccessAlert('Asociación eliminada');
-            return AvancesActions.cargarRequisitoTipoAvances({
-              datos: { idEliminado: accion.id }
-            });
-          }), catchError(data => of(SharedActions.CatchError(data)))))
+        this.updateRequisitoTipoAvance(accion.id, accion.element, false)
+      )
     );
   });
 

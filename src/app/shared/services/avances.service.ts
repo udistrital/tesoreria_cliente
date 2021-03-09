@@ -29,11 +29,6 @@ export class AvancesService {
     return this.rqManager.put('tipo_avance/', element, id);
   }
 
-  public deleteTipoAvance(id: number) {
-    this.rqManager.setPath('AVANCES_CRUD');
-    return this.rqManager.delete('tipo_avance/', id);
-  }
-
   // Normas
 
   public getNormas(id?: number, query?: any) {
@@ -54,11 +49,6 @@ export class AvancesService {
   public updateNorma(id: number, element: any) {
     this.rqManager.setPath('AVANCES_CRUD');
     return this.rqManager.put('norma/', element, id);
-  }
-
-  public deleteNorma(id: number) {
-    this.rqManager.setPath('AVANCES_CRUD');
-    return this.rqManager.delete('norma/', id);
   }
 
   // Requisitos
@@ -104,9 +94,9 @@ export class AvancesService {
     return this.rqManager.post('requisito_tipo_avance/', element);
   }
 
-  public deleteRequisitoTipoAvance(id: number) {
+  public updateRequisitoTipoAvance(id: number, element: any) {
     this.rqManager.setPath('AVANCES_CRUD');
-    return this.rqManager.delete('requisito_tipo_avance/', id);
+    return this.rqManager.put('requisito_tipo_avance/', element, id);
   }
 
   // Especificaciones
