@@ -12,13 +12,35 @@ import { SetResumenComponent } from './components/set-resumen/set-resumen.compon
 import { SetContabilizacionComponent } from './components/set-contabilizacion/set-contabilizacion.component';
 import { SetErogacioncontabilizacionComponent } from './components/set-erogacioncontabilizacion/set-erogacioncontabilizacion.component';
 import { SetResumencontabilizacionComponent } from './components/set-resumencontabilizacion/set-resumencontabilizacion.component';
+import { SharedModule } from '../../../shared/shared.module';
+import { MatStepperModule } from '@angular/material';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import * as fromGirosProveedores from './reducers/giros-proveedores.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { GirosProveedoresEffects } from './effects/giros-proveedores.effects';
 
 
 @NgModule({
-  declarations: [LayoutGiroproveedoresComponent, ListComponent, CreateGiroComponent, SetInformationComponent, SetOrdenpagoComponent, SetErogacionComponent, SetResumenComponent, SetContabilizacionComponent, SetErogacioncontabilizacionComponent, SetResumencontabilizacionComponent],
+  declarations: [LayoutGiroproveedoresComponent,
+    ListComponent,
+    CreateGiroComponent,
+    SetInformationComponent,
+    SetOrdenpagoComponent,
+    SetErogacionComponent,
+    SetResumenComponent,
+    SetContabilizacionComponent,
+    SetErogacioncontabilizacionComponent,
+    SetResumencontabilizacionComponent],
   imports: [
+    SharedModule,
     CommonModule,
-    GirosproveedoresRoutingModule
+    MatStepperModule,
+    FormsModule,
+    ReactiveFormsModule,
+    GirosproveedoresRoutingModule,
+    StoreModule.forFeature(fromGirosProveedores.girosProveedoresFeatureKey, fromGirosProveedores.reducer),
+    EffectsModule.forFeature([GirosProveedoresEffects])
   ]
 })
 export class GirosproveedoresModule { }

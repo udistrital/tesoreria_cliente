@@ -1,1 +1,20 @@
-<p>create-giro works!</p>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col py-2">
+                    <h5 class="card-title text-center text-primary">
+                        CREAR NUEVO GIRO A PROVEEDORES
+                    </h5>
+                </div>
+            </div>
+            <mat-horizontal-stepper linear #stepper>
+                <mat-step>
+                    <ng-template matStepLabel> Inicio </ng-template>
+                    <ngx-set-information></ngx-set-information>
+                </mat-step>
+                
+            </mat-horizontal-stepper>  
+        </div>
+    </div>
+</div>
