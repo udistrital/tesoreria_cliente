@@ -55,4 +55,5 @@ export const environment = {
         SIGN_OUT_REDIRECT_URL: 'http://localhost:4200/',
     },
     AVANCES_CRUD: 'http://127.0.0.1:8080/v1/',
+    PARAMETROS_CRUD_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/parametros/',
 };

@@ -14,3 +14,8 @@ export const seleccionarNormas = createSelector(
   selectAvancesState,
   (state: fromAvances.State) => state.normas
 );
+
+export const seleccionarRequisitos = createSelector(
+  selectAvancesState,
+  (state: fromAvances.State) => state.requisitos
+);
