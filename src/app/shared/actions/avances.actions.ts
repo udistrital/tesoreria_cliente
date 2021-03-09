@@ -79,3 +79,25 @@ export const actualizarRequisito = createAction(
   '[Avances] Actualizar y guardar un requisito existente en back',
   props<{ id: any, element: any }>()
 );
+
+// Especificaciones
+
+export const cargarEspecificaciones = createAction(
+  '[Avances] Carga especificaciones al store',
+  props()
+);
+
+export const obtenerEspecificaciones = createAction(
+  '[Avances] Obtener especificaciones del back',
+  props<{ id?: any, query?: any }>()
+);
+
+export const crearEspecificacion = createAction(
+  '[Avances] Crear y guardar una nueva especificacion en back',
+  props<{ element: any }>()
+);
+
+export const actualizarEspecificacion = createAction(
+  '[Avances] Actualizar y guardar una especificacion existente en back',
+  props<{ id: any, element: any }>()
+);

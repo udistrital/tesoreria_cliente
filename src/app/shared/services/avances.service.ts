@@ -87,4 +87,30 @@ export class AvancesService {
     return this.rqManager.put('parametro/', element, id);
   }
 
+  // Especificaciones
+
+  public getEspecificaciones(id?: number, query?: any) {
+    this.rqManager.setPath('PARAMETROS_CRUD_SERVICE');
+    let queryParams = 'ParametroPadreId:325,';
+    if (query)
+      for (const [key, value] of Object.entries(query))
+        queryParams += `${key}:${value},`;
+    queryParams = queryParams.substr(0, queryParams.length - 1);
+    return this.rqManager.get('parametro/' + (id ? '/' + id : ''), { query: queryParams });
+  }
+
+  public createEspecificacion(element: any) {
+    this.rqManager.setPath('PARAMETROS_CRUD_SERVICE');
+    element['TipoParametroId'] = { 'Id': 18 };
+    element['ParametroPadreId'] = { 'Id': 325 };
+    return this.rqManager.post('parametro/', element);
+  }
+
+  public updateEspecificacion(id: number, element: any) {
+    this.rqManager.setPath('PARAMETROS_CRUD_SERVICE');
+    element['TipoParametroId'] = { 'Id': 18 };
+    element['ParametroPadreId'] = { 'Id': 325 };
+    return this.rqManager.put('parametro/', element, id);
+  }
+
 }

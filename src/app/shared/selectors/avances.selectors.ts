@@ -19,3 +19,8 @@ export const seleccionarRequisitos = createSelector(
   selectAvancesState,
   (state: fromAvances.State) => state.requisitos
 );
+
+export const seleccionarEspecificaciones = createSelector(
+  selectAvancesState,
+  (state: fromAvances.State) => state.especificaciones
+);
