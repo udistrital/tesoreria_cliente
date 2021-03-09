@@ -6,8 +6,9 @@ import { loadTiposAvancesSeleccionado, loadTiposAvances } from '../../actions/ti
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
 import { Router } from '@angular/router';
-import { cargarTiposAvances, eliminarTipoAvance, obtenerTiposAvances } from '../../../../../shared/actions/avances.actions';
+import { actualizarTipoAvance, cargarTiposAvances, obtenerTiposAvances } from '../../../../../shared/actions/avances.actions';
 import { seleccionarTiposAvances } from '../../../../../shared/selectors/avances.selectors';
+import { PopUpManager } from '../../../../../@core/managers/popUpManager';
 
 @Component({
   selector: 'ngx-table-tiposavances',
@@ -31,7 +32,8 @@ export class TableTiposavancesComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<any>,
     private router: Router,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private popupManager: PopUpManager
   ) {
     this.datosTablaTipos = [];
     this.configuracionTipos = CONFIGURACION_TABLATIPOS;
@@ -69,9 +71,14 @@ export class TableTiposavancesComponent implements OnInit, OnDestroy {
           this.datosTablaTipos.forEach(element => {
             element.estadoTipo = element.Activo ? 'Activo' : 'Inactivo';
           });
-        } else if (accion.tiposAvances.idEliminado)
-          this.datosTablaTipos.splice(this.datosTablaTipos.findIndex(
-            (element: any) => element.Id === accion.tiposAvances.idEliminado), 1);
+        } else if (accion.tiposAvances.idActualizado) {
+          const tipoAvance = this.datosTablaTipos.find((element: any) =>
+            element.Id === accion.tiposAvances.idActualizado);
+          if (tipoAvance) {
+            tipoAvance.estadoTipo = 'Inactivo';
+            this.popupManager.showSuccessAlert('Tipo de avance desactivado');
+          }
+        }
       }
     });
   }
@@ -90,8 +97,11 @@ export class TableTiposavancesComponent implements OnInit, OnDestroy {
   // Modal acciones sobre la tabla: eliminar registros
   modalEliminar(fila: any) {
     this.modalService.open(this.eliminarTipoModal).result.then((result) => {
-      if (`${result}`)
-        this.store.dispatch(eliminarTipoAvance({ id: fila.Id }));
+      if (`${result}`) {
+        const tipoAvance = Object.assign({}, fila);
+        tipoAvance.Activo = false;
+        this.store.dispatch(actualizarTipoAvance({ id: fila.Id, element: tipoAvance }));
+      }
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });

@@ -30,6 +30,7 @@ export class SetAsociarrequisitoComponent implements OnInit, OnDestroy {
   subscriptionTipoAvance$: any;
   requisitos: any;
   requisitosCompletos: any;
+  asociacionesRequisitos: any;
 
   // Modales
   closeResult = '';
@@ -49,6 +50,7 @@ export class SetAsociarrequisitoComponent implements OnInit, OnDestroy {
     this.datosRequisitos = [];
     this.requisitos = [];
     this.requisitosCompletos = [];
+    this.asociacionesRequisitos = [];
     this.configRequisitos = CONFIGURACION_REQUISITOS;
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.createForm();
@@ -57,7 +59,7 @@ export class SetAsociarrequisitoComponent implements OnInit, OnDestroy {
       this.store.dispatch(obtenerTiposAvances({ id: this.id }));
       this.store.dispatch(obtenerRequisitoTipoAvances({ idTipoAvance: this.id }));
     }
-    this.store.dispatch(obtenerRequisitos({}));
+    this.store.dispatch(obtenerRequisitos({ query: { Activo: true } }));
   }
 
   ngOnInit() {
@@ -79,25 +81,20 @@ export class SetAsociarrequisitoComponent implements OnInit, OnDestroy {
         if (accionRequisitos.requisitos.length && accionRequisitos.requisitos[0].Id)
           this.requisitosCompletos = accionRequisitos.requisitos;
         if (accionAsociaciones.datos.length && accionAsociaciones.datos[0].Id) {
+          // Carga las asociaciones completas
+          this.asociacionesRequisitos = accionAsociaciones.datos;
           // Carga requisitos completos y asigna idAsociacion a los que se asocian con el tipo de avance
           this.requisitosCompletos.forEach((requisito: any) => {
             const asociacion = accionAsociaciones.datos.find((aso: any) =>
               requisito.Id === aso.RequisitoAvanceId);
             requisito.idAsociacion = asociacion ? asociacion.Id : null;
+            requisito.activoAsociacion = asociacion ? asociacion.Activo : null;
           });
-        } else if (accionAsociaciones.datos.idEliminado) {
-          const requisito = this.requisitosCompletos.find((element: any) =>
-            element.idAsociacion === accionAsociaciones.datos.idEliminado);
-          delete requisito.idAsociacion;
-        } else if (accionAsociaciones.datos.elementoCreado) {
-          const control = this.asociarRequisitoGroup.get('requisitos');
-          control.setValue('');
-          control.markAsUntouched();
-          const requisito = this.requisitosCompletos.find((element: any) =>
-            element.Id === accionAsociaciones.datos.elementoCreado.RequisitoAvanceId);
-          requisito.idAsociacion = accionAsociaciones.datos.elementoCreado.Id;
-        }
-        this.ajustarRequisitos();
+        } else if (accionAsociaciones.datos.elementoActualizado)
+          this.ajustarAsociacionesyRequisitos(accionAsociaciones.datos.elementoActualizado);
+        else if (accionAsociaciones.datos.elementoCreado)
+          this.ajustarAsociacionesyRequisitos(accionAsociaciones.datos.elementoCreado);
+        this.ajustarAsociacionesyRequisitos();
       }
     });
 
@@ -112,12 +109,33 @@ export class SetAsociarrequisitoComponent implements OnInit, OnDestroy {
 
   }
 
-  private ajustarRequisitos() {
+  private ajustarAsociacionesyRequisitos(asociacion?: any) {
+    const control = this.asociarRequisitoGroup.get('requisitos');
+    control.setValue('');
+    control.markAsUntouched();
+    if (asociacion) {
+      // Asociación
+      const asociacionIndex = this.asociacionesRequisitos.findIndex((element: any) =>
+        element.Id === asociacion.Id);
+      if (asociacionIndex > 0)
+        this.asociacionesRequisitos[asociacionIndex] = asociacion;
+      else
+        this.asociacionesRequisitos.push(asociacion);
+      // Requisito
+      const requisito = this.requisitosCompletos.find((element: any) =>
+        element.Id === asociacion.RequisitoAvanceId);
+      if (asociacion.Activo) {
+        requisito.idAsociacion = asociacion.Id;
+        requisito.activoAsociacion = asociacion.Activo;
+      } else {
+        delete requisito.activoAsociacion;
+      }
+    }
     // Se define la lista de requisitos y la tabla de requisitos
     this.requisitos = this.requisitosCompletos
-      .filter((requisito: any) => !requisito.idAsociacion);
+      .filter((requisito: any) => !requisito.activoAsociacion);
     this.datosRequisitos = this.requisitosCompletos
-      .filter((requisito: any) => requisito.idAsociacion);
+      .filter((requisito: any) => requisito.idAsociacion && requisito.activoAsociacion);
   }
 
   ngOnDestroy() {
@@ -157,23 +175,30 @@ export class SetAsociarrequisitoComponent implements OnInit, OnDestroy {
   // Modal acciones sobre la tabla: eliminar registros
   modalEliminar(fila: any) {
     this.modalService.open(this.eliminarTipoModal).result.then((result) => {
-      if (`${result}`)
-        this.store.dispatch(desasociarRequisitoTipoAvance({ id: fila.idAsociacion }));
+      if (`${result}`) {
+        const asociacion = this.asociacionesRequisitos.find((aso: any) =>
+          aso.Id === Number(fila.idAsociacion));
+        this.store.dispatch(desasociarRequisitoTipoAvance({ id: asociacion.Id, element: asociacion }));
+      }
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
 
   asociarRequisito() {
-    if (this.asociarRequisitoGroup.get('requisitos').valid)
+    if (this.asociarRequisitoGroup.get('requisitos').valid) {
+      const tipoAvanceId = Number(this.id);
+      const requisitoAvanceId = Number(this.asociarRequisitoGroup.get('requisitos').value.Id);
+      const asociacion = this.asociacionesRequisitos.find((aso) =>
+        aso.TipoAvanceId.Id === tipoAvanceId && aso.RequisitoAvanceId === requisitoAvanceId);
       this.store.dispatch(asociarRequisitoTipoAvance({
+        id: asociacion ? asociacion.Id : null,
         element: {
           'TipoAvanceId': { 'Id': Number(this.id) },
           'RequisitoAvanceId': Number(this.asociarRequisitoGroup.get('requisitos').value.Id),
-          'Activo': true
         }
       }));
-    else
+    } else
       this.saveForm();
   }
 
