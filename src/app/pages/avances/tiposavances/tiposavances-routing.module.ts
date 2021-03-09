@@ -14,15 +14,15 @@ const routes: Routes = [
     component: SetTipodeavanceComponent,
   },
   {
-    path: 'editar',
+    path: 'editar/:id',
     component: SetTipodeavanceComponent,
   },
   {
-    path: 'detalle',
+    path: 'detalle/:id',
     component: SetTipodeavanceComponent,
   },
   {
-    path: 'asociar-requisito',
+    path: 'asociar-requisito/:id',
     component: SetAsociarrequisitoComponent,
   }
 ];

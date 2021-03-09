@@ -2,10 +2,12 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
+import { actualizarRequisito, cargarRequisitos, obtenerRequisitos } from '../../../../../shared/actions/avances.actions';
 import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
+import { seleccionarRequisitos } from '../../../../../shared/selectors/avances.selectors';
 import { getFilaSeleccionada } from '../../../../../shared/selectors/shared.selectors';
 import { loadRequisitoSelecionado } from '../../actions/requisitosavances.actions';
-import { DATOS_TABLA, CONFIGURACION_TABLA } from '../../interfaces/interfaces';
+import { CONFIGURACION_TABLA } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'ngx-lista-requisitosavances',
@@ -17,14 +19,17 @@ export class ListaRequisitosavancesComponent implements OnInit, OnDestroy {
   configuracionTabla: any;
   datosTabla: any;
   subscription$: any;
+  subscriptionRequisitos$: any;
 
   constructor(
     private store: Store<any>,
     private router: Router,
     private modalService: NgbModal
   ) {
-    this.datosTabla = DATOS_TABLA;
+    this.datosTabla = [];
     this.configuracionTabla = CONFIGURACION_TABLA;
+    this.clearStore();
+    this.store.dispatch(obtenerRequisitos({}));
   }
 
   ngOnInit() {
@@ -32,27 +37,47 @@ export class ListaRequisitosavancesComponent implements OnInit, OnDestroy {
       if (accion && accion.fila && accion.accion && accion.accion.name) {
         if (accion.accion.name === 'modificar') {
           this.store.dispatch(loadRequisitoSelecionado({ fila: accion.fila }));
-          this.router.navigate(['pages/avances/requisitosavances/editar']);
+          this.router.navigate(['pages/avances/requisitosavances/editar/' + accion.fila.Id]);
         } else if (accion.accion.name === 'cambiarEstado')
           this.modalService.open(this.modalEliminar).result.then((result) => {
-            if (`${result}`)
-              this.cambiarEstado(accion.fila);
+            const requisito = Object.assign({}, accion.fila);
+            const id = requisito.Id;
+            if (`${result}`) {
+              requisito.Activo = !requisito.Activo; delete requisito.estado;
+              delete requisito.Id;
+              this.store.dispatch(actualizarRequisito({ id: id, element: requisito }));
+            }
           }, () => { });
+      }
+    });
+    this.subscriptionRequisitos$ = this.store.select(seleccionarRequisitos).subscribe((accion) => {
+      if (accion && accion.requisitos) {
+        if (accion.requisitos.length && accion.requisitos[0].Id) {
+          this.datosTabla = accion.requisitos;
+          this.datosTabla.forEach(element => {
+            element.estado = element.Activo ? 'Activo' : 'Inactivo';
+          });
+        } else if (accion.requisitos.idActualizado) {
+          const requisito = this.datosTabla[this.datosTabla.findIndex(
+            (element: any) => element.Id === accion.requisitos.idActualizado)];
+          if (requisito) {
+            requisito.Activo = !requisito.Activo;
+            requisito.estado = requisito.Activo ? 'Activo' : 'Inactivo';
+          }
+        }
       }
     });
   }
 
   ngOnDestroy() {
     this.subscription$.unsubscribe();
-    this.store.dispatch(LoadFilaSeleccionada(null));
+    this.subscriptionRequisitos$.unsubscribe();
+    this.clearStore();
   }
 
-  cambiarEstado(fila) {
-    // TODO
-    if (fila.estado === 'Activo')
-      fila.estado = 'Inactivo';
-    else if (fila.estado === 'Inactivo')
-      fila.estado = 'Activo';
+  clearStore() {
+    this.store.dispatch(LoadFilaSeleccionada(null));
+    this.store.dispatch(cargarRequisitos(null));
   }
 
 }

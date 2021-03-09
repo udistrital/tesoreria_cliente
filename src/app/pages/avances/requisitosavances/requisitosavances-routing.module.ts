@@ -14,7 +14,7 @@ const routes: Routes = [
     component: SetRequisitoavancesComponent,
   },
   {
-    path: 'editar',
+    path: 'editar/:id',
     component: SetRequisitoavancesComponent,
   }
 ];

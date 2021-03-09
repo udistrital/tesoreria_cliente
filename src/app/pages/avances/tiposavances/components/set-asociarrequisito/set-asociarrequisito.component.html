@@ -8,18 +8,18 @@
     </div>
     <div class="row">
         <div class="col-md-12 bg-white px-4 pb-3">
-            <form [formGroup]="asociarRequisitoGroup" (ngSubmit)="saveForm()">
+            <form [formGroup]="asociarRequisitoGroup">
                 <!-- Grupo: Información de Tipo de Avance-->
                 <div class="container">
                     <!-- Campo: Código Abreviacion, nombre de Tipo de Avance -->
                     <div class="form-group row">
                         <div class="col-md-5">
                             <label>Código de Abreviación</label>
-                            <input type="text" class="form-control" readonly>
+                            <input type="text" class="form-control" readonly value="{{codigoTipo}}">
                         </div>
                         <div class="col-md-7">
                             <label>Nombre de Tipo de Avance</label>
-                            <input type="text" class="form-control" readonly>
+                            <input type="text" class="form-control" readonly value="{{nombreTipo}}">
                         </div>
                     </div>
                     <!-- Fin Campo Código Abreviacion, nombre de Tipo de Avance -->
@@ -30,14 +30,12 @@
                             <label>Requisitos</label>
                             <select class="custom-select" formControlName="requisitos" [class.is-invalid]="requisitosInvalid">
                                 <option selected disabled value="">Seleccione...</option>
-                                <option>01</option>
-                                <option>02</option>
-                                <option>03</option>
+                                <option [ngValue]="requisito" *ngFor="let requisito of requisitos">{{requisito?.CodigoAbreviacion}} - {{requisito?.Nombre}}</option>
                             </select>
                             <small *ngIf="requisitosInvalid" class="text-danger">Seleccione una opción</small>
                         </div>
                         <div class="col-md-3">
-                            <button type="submit" class="btn btn-primary btn-block text-white m-0 mt-4">Añadir</button>
+                            <button type="submit" class="btn btn-primary btn-block text-white m-0 mt-4" (click)="asociarRequisito()">Añadir</button>
                         </div>
                     </div>
                     <!-- Fin Campos Área funcional, fecha -->
@@ -52,7 +50,7 @@
                 <!-- Botones: Volver a registro, Siguiente -->
                 <div class="row pt-2 text-center">
                     <div class="col-md-6">
-                        <a routerLink="../lista">
+                        <a href="#/pages/avances/tiposavances/lista">
                             <button type="button" class="btn btn-primary mb-3 mt-3 text-white">
                                 <div class="d-flex flex-row justify-content-around align-middle">
                                     <span>Volver</span>
@@ -61,7 +59,8 @@
                         </a>
                     </div>
                     <div class="col-md-6">
-                        <button type="button" class="btn btn-success mb-3 mt-3 text-white" (click)="modalGuardar()">Asociar Requisitos</button>
+                        <a rol="button" class="btn btn-success mb-3 mt-3 text-white"
+                            href="#/pages/avances/tiposavances/lista">Aceptar</a>
                     </div>
                 </div>
 
@@ -85,25 +84,6 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cancelar</button>
         <button type="button" class="btn btn-danger" (click)="modal.close(true)">Borrar</button>
-    </div>
-</ng-template>
-<!-- Fin Modal -->
-
-<!-- Modal: Asociar Requisito de Avance -->
-<ng-template #asociarModal let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="asociarModal">Asociar Requisitos</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <p class="text-center">Se han asociado los requisitos al tipo de avance {{ codigoTipo }}.</p>
-        <p class="text-center">Estado: {{ estadoTipo }}</p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cancelar</button>
-        <button type="button" class="btn btn-primary text-white" (click)="modal.close(true)">Aceptar</button>
     </div>
 </ng-template>
 <!-- Fin Modal -->

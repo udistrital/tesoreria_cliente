@@ -1,11 +1,14 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { DATOS_TABLATIPOS, CONFIGURACION_TABLATIPOS } from '../../interfaces/interfaces';
+import { CONFIGURACION_TABLATIPOS } from '../../interfaces/interfaces';
 import { getFilaSeleccionada, getAccionTabla } from '../../../../../shared/selectors/shared.selectors';
 import { loadTiposAvancesSeleccionado, loadTiposAvances } from '../../actions/tiposavances.actions';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
 import { Router } from '@angular/router';
+import { actualizarTipoAvance, cargarTiposAvances, obtenerTiposAvances } from '../../../../../shared/actions/avances.actions';
+import { seleccionarTiposAvances } from '../../../../../shared/selectors/avances.selectors';
+import { PopUpManager } from '../../../../../@core/managers/popUpManager';
 
 @Component({
   selector: 'ngx-table-tiposavances',
@@ -18,6 +21,7 @@ export class TableTiposavancesComponent implements OnInit, OnDestroy {
   configuracionTipos: any;
   datosTablaTipos: any;
   subscription$: any;
+  subTiposAvances$: any;
 
   // Modales
   closeResult = '';
@@ -25,29 +29,32 @@ export class TableTiposavancesComponent implements OnInit, OnDestroy {
   @Output() selectedAction: EventEmitter<any>;
   stringBusqueda: string;
 
-  constructor (
+  constructor(
     private store: Store<any>,
     private router: Router,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private popupManager: PopUpManager
   ) {
-    this.datosTablaTipos = DATOS_TABLATIPOS;
+    this.datosTablaTipos = [];
     this.configuracionTipos = CONFIGURACION_TABLATIPOS;
 
     this.stringBusqueda = '';
     this.selectedAction = new EventEmitter<any>();
+    this.clearStore();
+    this.store.dispatch(obtenerTiposAvances({}));
   }
 
   ngOnInit() {
     this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((accion) => {
-      if (accion && accion.accion) {
+      if (accion && accion.accion && accion.fila) {
         if (accion.accion.name === 'modificarTipo') {
-          this.router.navigate(['pages/avances/tiposavances/editar']);
+          this.router.navigate(['pages/avances/tiposavances/editar/' + accion.fila.Id]);
         }
         if (accion.accion.name === 'verDetalle') {
-          this.router.navigate(['pages/avances/tiposavances/detalle']);
+          this.router.navigate(['pages/avances/tiposavances/detalle/' + accion.fila.Id]);
         }
         if (accion.accion.name === 'asosiarRequisitos') {
-          this.router.navigate(['pages/avances/tiposavances/asociar-requisito']);
+          this.router.navigate(['pages/avances/tiposavances/asociar-requisito/' + accion.fila.Id]);
         }
         // Eliminar datos que se encuentran en la tabla
         if (accion.accion.name === 'borrarTipo') {
@@ -57,23 +64,43 @@ export class TableTiposavancesComponent implements OnInit, OnDestroy {
       }
     });
 
+    this.subTiposAvances$ = this.store.select(seleccionarTiposAvances).subscribe((accion) => {
+      if (accion && accion.tiposAvances) {
+        if (accion.tiposAvances.length && accion.tiposAvances[0].Id) {
+          this.datosTablaTipos = accion.tiposAvances;
+          this.datosTablaTipos.forEach(element => {
+            element.estadoTipo = element.Activo ? 'Activo' : 'Inactivo';
+          });
+        } else if (accion.tiposAvances.idActualizado) {
+          const tipoAvance = this.datosTablaTipos.find((element: any) =>
+            element.Id === accion.tiposAvances.idActualizado);
+          if (tipoAvance) {
+            tipoAvance.estadoTipo = 'Inactivo';
+            this.popupManager.showSuccessAlert('Tipo de avance desactivado');
+          }
+        }
+      }
+    });
   }
 
   ngOnDestroy(): void {
     this.subscription$.unsubscribe();
+    this.subTiposAvances$.unsubscribe();
+    this.clearStore();
+  }
+
+  clearStore() {
     this.store.dispatch(LoadFilaSeleccionada(null));
+    this.store.dispatch(cargarTiposAvances(null));
   }
 
   // Modal acciones sobre la tabla: eliminar registros
   modalEliminar(fila: any) {
     this.modalService.open(this.eliminarTipoModal).result.then((result) => {
       if (`${result}`) {
-        this.datosTablaTipos.splice(this.datosTablaTipos.findIndex(
-          (element: any) => element.codigoAbreviado === fila.codigoAbreviado
-            && element.nombreTipo === fila.nombreTipo && element.descripcionTipo === fila.descripcionTipo
-            && element.estadoTipo === fila.estadoTipo && element.fecha === fila.fecha
-        ), 1);
-        this.store.dispatch(loadTiposAvances({ datosTablaTipos: this.datosTablaTipos }));
+        const tipoAvance = Object.assign({}, fila);
+        tipoAvance.Activo = false;
+        this.store.dispatch(actualizarTipoAvance({ id: fila.Id, element: tipoAvance }));
       }
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
