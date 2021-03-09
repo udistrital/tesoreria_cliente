@@ -75,7 +75,7 @@ export class ListaRequisitosavancesComponent implements OnInit, OnDestroy {
     this.clearStore();
   }
 
-  clearStore(){
+  clearStore() {
     this.store.dispatch(LoadFilaSeleccionada(null));
     this.store.dispatch(cargarRequisitos(null));
   }

@@ -7,6 +7,7 @@ export interface State {
   tiposAvances: any;
   normas: any;
   requisitos: any;
+  requisitosTipoAvances: any;
   especificaciones: any;
 }
 
@@ -14,6 +15,7 @@ export const initialState: State = {
   tiposAvances: null,
   normas: null,
   requisitos: null,
+  requisitosTipoAvances: null,
   especificaciones: null,
 };
 
@@ -30,10 +32,12 @@ const avancesReducer = createReducer(
   on(AvancesActions.cargarRequisitos, (state, action) => ({
     ...state, requisitos: state.requisitos = action
   })),
+  on(AvancesActions.cargarRequisitoTipoAvances, (state, action) => ({
+    ...state, requisitosTipoAvances: state.requisitosTipoAvances = action
+  })),
   on(AvancesActions.cargarEspecificaciones, (state, action) => ({
     ...state, especificaciones: state.especificaciones = action
   })),
-
 );
 
 export function reducer(state: State | undefined, action: Action) {

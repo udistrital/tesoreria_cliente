@@ -87,6 +87,28 @@ export class AvancesService {
     return this.rqManager.put('parametro/', element, id);
   }
 
+  // Requisito tipo avance (solo relación)
+
+  public getRequisitoTipoAvance(id?: number, query?: any, idTipoAvance?: number) {
+    this.rqManager.setPath('AVANCES_CRUD');
+    let queryParams = idTipoAvance ? `TipoAvanceId:${idTipoAvance},` : '';
+    if (query)
+      for (const [key, value] of Object.entries(query))
+        queryParams += `${key}:${value},`;
+    queryParams = queryParams.substr(0, queryParams.length - 1);
+    return this.rqManager.get('requisito_tipo_avance/' + (id ? '/' + id : ''), { query: queryParams });
+  }
+
+  public createRequisitoTipoAvance(element: any) {
+    this.rqManager.setPath('AVANCES_CRUD');
+    return this.rqManager.post('requisito_tipo_avance/', element);
+  }
+
+  public deleteRequisitoTipoAvance(id: number) {
+    this.rqManager.setPath('AVANCES_CRUD');
+    return this.rqManager.delete('requisito_tipo_avance/', id);
+  }
+
   // Especificaciones
 
   public getEspecificaciones(id?: number, query?: any) {
@@ -114,3 +136,4 @@ export class AvancesService {
   }
 
 }
+

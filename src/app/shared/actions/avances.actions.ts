@@ -80,6 +80,27 @@ export const actualizarRequisito = createAction(
   props<{ id: any, element: any }>()
 );
 
+// Asociación requisito tipo avance
+
+export const cargarRequisitoTipoAvances = createAction(
+  '[Avances] Carga asociaciones de requisitos con tipos de avance al store',
+  props()
+);
+
+export const obtenerRequisitoTipoAvances = createAction(
+  '[Avances] Obtener asociaciones de requisitos con tipos de avance del back',
+  props<{ id?: any, query?: any, idTipoAvance?: number }>()
+);
+
+export const asociarRequisitoTipoAvance = createAction(
+  '[Avances] Crear y guardar una asociacion de requisito con tipo avance en back',
+  props<{ element: any }>()
+);
+
+export const desasociarRequisitoTipoAvance = createAction(
+  '[Avances] Eliminar una asociacion de requisito con tipo avance existente en back',
+  props<{ id: any }>()
+);
 // Especificaciones
 
 export const cargarEspecificaciones = createAction(
