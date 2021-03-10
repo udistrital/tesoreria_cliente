@@ -7,6 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SetErogacionComponent implements OnInit {
 
+  cuentas: String [] = [
+    'Opcion 1',
+    'Opcion 2',
+    'Opcion 3'
+  ];
+
+  bancos: String [] = [
+    'Banco de Bogotá',
+    'Banco de Occidente',
+    'BBVA'
+  ];
+
   constructor() { }
 
   ngOnInit() {

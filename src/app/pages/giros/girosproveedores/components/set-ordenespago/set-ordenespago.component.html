@@ -1,0 +1,27 @@
+<div class="container-fluid">
+    <div class="card p-3 m-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+            Órdenes de pago radicadas
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <p> Seleccione el rango de las órdenes de pago a girar: </p>
+                </div>
+                <div class="col">
+                    <label for=""> Consecutivo desde: </label>
+                    <input class="mx-2" type="number">
+                    <label for=""> hasta: </label>
+                    <input class="mx-2" type="number">
+                    <button  (click)="agregar()" class="btn btn-primary px-3 py-2 my-2 text-light"> Agregar + </button>
+                </div>
+            </div>
+
+            <ngx-general-table [config]="configuration" [datos]="datosGiroOrdenesPago"></ngx-general-table>
+
+            <div *ngIf="datosSeleccionados.length !== 0">
+                <ngx-general-table [config]="configuration" [datos]="datosGiroOrdenesPago"></ngx-general-table>
+            </div>
+        </div>
+    </div>
+</div>

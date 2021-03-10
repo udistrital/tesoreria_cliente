@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'ngx-create-giro',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateGiroComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private store : Store <any>,
+  ) { }
 
   ngOnInit() {
   }
+
+  datosInformacionForm(data: any) {
+    
+  }
+
 
 }

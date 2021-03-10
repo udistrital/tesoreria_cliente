@@ -1,1 +1,19 @@
-<p>set-ordenpago works!</p>
+<div class="container-fluid">
+    <div class="card p-3 m-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+            Órdenes de pago radicadas
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <p> Seleccione la orden de pago a girar: </p>
+                </div>
+            </div>
+        </div>
+        <ngx-general-table [config]="configuration" [datos]="datosGiroOrdenPago"></ngx-general-table>
+
+        <div *ngIf="datoSeleccionado.length !== 0">
+            <ngx-general-table [config]="configuration" [datos]="datosGiroOrdenPago"></ngx-general-table>
+        </div>
+    </div>
+</div>

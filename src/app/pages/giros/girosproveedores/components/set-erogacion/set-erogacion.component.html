@@ -1,1 +1,41 @@
-<p>set-erogacion works!</p>
+<div class="container-fluid">
+    <div class="card p-3 m-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+            Erogación del giro
+        </div>
+        <div class="card-body pt-0">
+            <div class="row my-2">
+                <div class="col py-2">
+                    <label for="banco"> Banco </label> <br>
+                        <select name="banco" id="banco" class="form-control" >
+                            <option *ngFor="let banco of bancos" value={{banco}}> {{banco}} </option>
+                        </select>
+                </div>
+                <div class="col py-2">
+                    <label for="nombreCuenta"> Nombre de la cuenta </label> <br>
+                        <select name="nombreCuenta" id="nombreCuenta" class="form-control" >
+                            <option *ngFor="let cuenta of cuentas" value={{cuenta}}> {{cuenta}} </option>
+                        </select>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col py-2">
+                    <label for="numeroCuenta"> Número de cuenta </label> <br>
+                    <input type="text" name="numeroCuenta" id="numeroCuenta" placeholder="" disabled>
+                </div>
+                <div class="col py-2">
+                    <label for="tipoCuenta"> Tipo de cuenta </label> <br>
+                    <input type="text" name="tipoCuenta" id="tipoCuenta" placeholder="" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card p-3 m-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+            Datos de los beneficiarios
+        </div>
+        <div class="card-body pt-0">
+
+        </div>
+    </div>
+</div>

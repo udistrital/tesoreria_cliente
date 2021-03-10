@@ -4,26 +4,22 @@
             <div class="row">
                 <div class="col py-2">
                     <h5 class="card-title text-center text-primary">
-                        CREAR NUEVO GIRO A PROVEEDORES
+                        CONTABILIACIÓN DEL GIRO
                     </h5>
                 </div>
             </div>
             <mat-horizontal-stepper linear #stepper>
                 <mat-step>
                     <ng-template matStepLabel> Inicio </ng-template>
-                    <ngx-set-information></ngx-set-information>
+                    <ngx-set-contabilizacion></ngx-set-contabilizacion>
                 </mat-step>
                 <mat-step>
-                    <ng-template matStepLabel> Órdenes de pago </ng-template>
-                    <ngx-set-ordenespago></ngx-set-ordenespago>
-                </mat-step>
-                <mat-step>
-                    <ng-template matStepLabel> Erogación y detalles del giro </ng-template>
-                    <ngx-set-erogacion></ngx-set-erogacion>
+                    <ng-template matStepLabel> Erogación del acreedor y detalles </ng-template>
+                    <ngx-set-erogacioncontabilizacion></ngx-set-erogacioncontabilizacion>
                 </mat-step>
                 <mat-step>
                     <ng-template matStepLabel> Resumen </ng-template>
-                    <ngx-set-resumen></ngx-set-resumen>
+                    <ngx-set-resumencontabilizacion></ngx-set-resumencontabilizacion>
                 </mat-step>
             </mat-horizontal-stepper>  
         </div>

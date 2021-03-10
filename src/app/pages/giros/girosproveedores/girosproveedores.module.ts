@@ -19,6 +19,8 @@ import { StoreModule } from '@ngrx/store';
 import * as fromGirosProveedores from './reducers/giros-proveedores.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { GirosProveedoresEffects } from './effects/giros-proveedores.effects';
+import { SetOrdenespagoComponent } from './components/set-ordenespago/set-ordenespago.component';
+import { ContabilizacionComponent } from './components/contabilizacion/contabilizacion.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { GirosProveedoresEffects } from './effects/giros-proveedores.effects';
     SetResumenComponent,
     SetContabilizacionComponent,
     SetErogacioncontabilizacionComponent,
-    SetResumencontabilizacionComponent],
+    SetResumencontabilizacionComponent,
+    SetOrdenespagoComponent,
+    ContabilizacionComponent],
   imports: [
     SharedModule,
     CommonModule,
