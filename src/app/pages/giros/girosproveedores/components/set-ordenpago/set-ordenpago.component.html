@@ -10,10 +10,23 @@
                 </div>
             </div>
         </div>
-        <ngx-general-table [config]="configuration" [datos]="datosGiroOrdenPago"></ngx-general-table>
+        <ngx-general-table [config]="configurationPlus" [datos]="datosGiroOrdenPago"></ngx-general-table>
 
-        <div *ngIf="datoSeleccionado.length !== 0">
-            <ngx-general-table [config]="configuration" [datos]="datosGiroOrdenPago"></ngx-general-table>
+        <div class="mt-4" *ngIf="datoSeleccionado.length !== 0">
+            <p> Orden de pago seleccionada: </p>
+            <ngx-general-table [config]="configurationMin" [datos]="datoSeleccionado"></ngx-general-table>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            <button type="button" matStepperPrevious class="btn btn-primary px-3 py-2 my-2 text-light">
+                Volver al registro
+            </button>
+        </div>
+        <div class="col">
+            <button (click)="guardar()" matStepperNext class="btn btn-success px-3 py-2 my-2 text-light" [disabled]="datoSeleccionado.length === 0">
+                Siguiente
+            </button>
         </div>
     </div>
 </div>

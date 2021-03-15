@@ -194,6 +194,192 @@ export const CONF_ORDENPAGO: any = {
                 icon: 'fas fa-eye',
                 class: 'p-2',
                 title: 'Ver Solicitud',
+            }
+        ],
+    },
+    noData: {
+        name: 'No existen elementos asociados',
+        class: 'text-center',
+    },
+    sort: true,
+    filter: true,
+};
+export const CONF_MINORDENPAGO: any = {
+    showColumnTitle: true,
+    // title: {
+    //     name: 'Actividades Asociadas',
+    //     class: 'text-center text-light',
+    // },
+    dataConfig: [
+        {
+            key: 'consecutivo',
+            title: {
+                name: 'Consecutivo',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'vigencia',
+            title: {
+                name: 'Vigencia',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'tipoOrdenPago',
+            title: {
+                name: 'Tipo orden de pago',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'formaPago',
+            title: {
+                name: 'Forma de pago',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'tipoId',
+            title: {
+                name: 'Tipo ID',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'numeroId',
+            title: {
+                name: 'N° ID',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+    ],
+    rowActions: {
+        title: {
+            name: 'Acciones',
+            class: 'text-center',
+            actionClass: 'd-flex flex-row justify-content-around align-middle'
+        },
+        actions: [
+            {
+                name: 'ver',
+                icon: 'fas fa-eye',
+                class: 'p-2',
+                title: 'Ver Solicitud',
+            },
+            {
+                name: 'eliminar',
+                icon:  'fas fa-minus',
+                class: 'p-2',
+                title: 'Eliminar'
+            }
+        ],
+    },
+    noData: {
+        name: 'No existen elementos asociados',
+        class: 'text-center',
+    },
+    sort: true,
+    filter: true,
+};
+export const CONF_ADDORDENPAGO: any = {
+    showColumnTitle: true,
+    // title: {
+    //     name: 'Actividades Asociadas',
+    //     class: 'text-center text-light',
+    // },
+    dataConfig: [
+        {
+            key: 'consecutivo',
+            title: {
+                name: 'Consecutivo',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'vigencia',
+            title: {
+                name: 'Vigencia',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'tipoOrdenPago',
+            title: {
+                name: 'Tipo orden de pago',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'formaPago',
+            title: {
+                name: 'Forma de pago',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'tipoId',
+            title: {
+                name: 'Tipo ID',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'numeroId',
+            title: {
+                name: 'N° ID',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+    ],
+    rowActions: {
+        title: {
+            name: 'Acciones',
+            class: 'text-center',
+            actionClass: 'd-flex flex-row justify-content-around align-middle'
+        },
+        actions: [
+            {
+                name: 'ver',
+                icon: 'fas fa-eye',
+                class: 'p-2',
+                title: 'Ver Solicitud',
             },
             {
                 name: 'agregar',
@@ -210,21 +396,185 @@ export const CONF_ORDENPAGO: any = {
     sort: true,
     filter: true,
 };
+export const CONF_BENEFICIARIO: any = {
+    showColumnTitle: true,
+    // title: {
+    //     name: 'Actividades Asociadas',
+    //     class: 'text-center text-light',
+    // },
+    dataConfig: [
+        {
+            key: 'consecutivo',
+            title: {
+                name: 'Consecutivo',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'envio',
+            title: {
+                name: 'Envio',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'tipoId',
+            title: {
+                name: 'Tipo ID',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'numeroId',
+            title: {
+                name: 'ID',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'nombre',
+            title: {
+                name: 'Nombre',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'valor',
+            title: {
+                name: 'Valor',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+    ],
+    rowActions: {
+        title: {
+            name: 'Acciones',
+            class: 'text-center',
+            actionClass: 'd-flex flex-row justify-content-around align-middle'
+        },
+        actions: [
+            {
+                name: 'ver',
+                icon: 'fas fa-eye',
+                class: 'p-2',
+                title: 'Ver Solicitud',
+            },
+        ],
+    },
+    noData: {
+        name: 'No existen elementos asociados',
+        class: 'text-center',
+    },
+    sort: true,
+    filter: true,
+};
 export const DATOS_GIRO_ORDEN: any = [
     {
+        id: 12,
         consecutivo: 1,
         vigencia: 2020,
         tipoOrdenPago: '',
         formaPago: 'efectivo',
         tipoId: 'CC',
         numeroId: 123234,
+        numeroEnvio: 123,
+        nombre: 'Esteban Ayala',
+        valor: 12830123,
+        banco: 'Banco de Bogotá',
+        numeroCuenta: '230-213132',
+        clase: 'ahorros',
     },
     {
+        id: 23,
         consecutivo: 2,
         vigencia: 2020,
         tipoOrdenPago: '',
         formaPago: 'efectivo',
         tipoId: 'CC',
-        numeroId: 786868,
-     },
+        numeroId: 7613287,
+        numeroEnvio: 98,
+        nombre: 'David Castellanos',
+        valor: 9871273,
+        banco: 'Banco de occidente',
+        numeroCuenta: '98-12312-1',
+        clase: 'corriente',
+    },
+    {
+        id: 123,
+        consecutivo: 3,
+        vigencia: 2020,
+        tipoOrdenPago: '',
+        formaPago: 'efectivo',
+        tipoId: 'CC',
+        numeroId: 80123123,
+        numeroEnvio: 32,
+        nombre: 'Hernan Arias',
+        valor: 81972312,
+        banco: 'Bancolombia',
+        numeroCuenta: '192-34545',
+        clase: 'ahorros',
+    },
+    {
+        id: 1897,
+        consecutivo: 4,
+        vigencia: 2020,
+        tipoOrdenPago: '',
+        formaPago: 'efectivo',
+        tipoId: 'CC',
+        numeroId: 7123990,
+        numeroEnvio: 56,
+        nombre: 'Juliana Vargas',
+        valor: 16391723,
+        banco: 'Banco del norte',
+        numeroCuenta: '012-324231',
+        clase: 'corriente',
+    },
+    {
+        id: 979,
+        consecutivo: 5,
+        vigencia: 2020,
+        tipoOrdenPago: '',
+        formaPago: 'efectivo',
+        tipoId: 'CC',
+        numeroId: 517308,
+        numeroEnvio: 78,
+        nombre: 'Kevin Limas',
+        valor: 89127396,
+        banco: 'BBVA',
+        numeroCuenta: '8713-768-123',
+        clase: 'ahorros',
+    },
+    {
+        id: 9283,
+        consecutivo: 6,
+        vigencia: 2020,
+        tipoOrdenPago: '',
+        formaPago: 'efectivo',
+        tipoId: 'CC',
+        numeroId: 8712937,
+        numeroEnvio: 67,
+        nombre: 'Cristian Mana',
+        valor: 8912712,
+        banco: 'Banco de Bogotá',
+        numeroCuenta: '8768-23-234',
+        clase: 'ahorros',
+    },
 ];

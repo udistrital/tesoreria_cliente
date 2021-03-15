@@ -4,12 +4,17 @@ export const loadGirosProveedoress = createAction(
   '[GirosProveedores] Load GirosProveedoress'
 );
 
-export const loadGirosProveedoressSuccess = createAction(
-  '[GirosProveedores] Load GirosProveedoress Success',
-  props<{ data: any }>()
+export const cargarDatosInformacion = createAction(
+  '[GirosProveedores] Cargar DatosInformacion',
+  props(),
 );
 
-export const loadGirosProveedoressFailure = createAction(
-  '[GirosProveedores] Load GirosProveedoress Failure',
-  props<{ error: any }>()
+export const cargarDatosOrdenPago = createAction(
+  '[GirosProveedores] Cargar DatosOrdenPago',
+  props(),
+);
+
+export const cargarDatosOrdenesPago = createAction(
+  '[GirosProveedores] Cargar DatosOrdenesPago',
+  props(),
 );

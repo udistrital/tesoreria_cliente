@@ -11,11 +11,12 @@
             <mat-horizontal-stepper linear #stepper>
                 <mat-step>
                     <ng-template matStepLabel> Inicio </ng-template>
-                    <ngx-set-information></ngx-set-information>
+                    <ngx-set-information (informacionForm)="datosInformacionForm($event)"></ngx-set-information>
                 </mat-step>
                 <mat-step>
                     <ng-template matStepLabel> Órdenes de pago </ng-template>
-                    <ngx-set-ordenespago></ngx-set-ordenespago>
+                    <ngx-set-ordenpago *ngIf="orden" (validarOrden)="guardarOrden($event)"></ngx-set-ordenpago>
+                    <ngx-set-ordenespago *ngIf="!orden" (validarOrdenes)="guardarOrdenes($event)"></ngx-set-ordenespago>
                 </mat-step>
                 <mat-step>
                     <ng-template matStepLabel> Erogación y detalles del giro </ng-template>

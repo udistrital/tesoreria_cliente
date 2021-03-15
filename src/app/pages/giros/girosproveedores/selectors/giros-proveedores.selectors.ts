@@ -4,3 +4,15 @@ import * as fromGirosProveedores from '../reducers/giros-proveedores.reducer';
 export const selectGirosProveedoresState = createFeatureSelector<fromGirosProveedores.State>(
   fromGirosProveedores.girosProveedoresFeatureKey
 );
+
+export const getDatosInformacion = createSelector (
+  selectGirosProveedoresState,
+  (state: fromGirosProveedores.State) => state.DatosInformacion);
+
+export const getDatosOrdenPago = createSelector (
+  selectGirosProveedoresState,
+  (state: fromGirosProveedores.State) => state.DatosOrdenPago);
+
+export const getDatosOrdenesPago = createSelector (
+  selectGirosProveedoresState,
+  (state: fromGirosProveedores.State) => state.DatosOrdenesPago);

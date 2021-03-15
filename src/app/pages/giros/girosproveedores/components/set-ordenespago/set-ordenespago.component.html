@@ -9,19 +9,43 @@
                     <p> Seleccione el rango de las órdenes de pago a girar: </p>
                 </div>
                 <div class="col">
-                    <label for=""> Consecutivo desde: </label>
-                    <input class="mx-2" type="number">
-                    <label for=""> hasta: </label>
-                    <input class="mx-2" type="number">
-                    <button  (click)="agregar()" class="btn btn-primary px-3 py-2 my-2 text-light"> Agregar + </button>
+                    <form [formGroup]="consecutivos" (ngSubmit)="onSubmit(consecutivos.value)">
+                        <label for="desde"> Consecutivo desde: </label>
+                        <input name="desde" id="desde" class="mx-2" type="number" formControlName="desde">
+                        <label for="hasta"> hasta: </label>
+                        <input name="hasta" id="hasta" class="mx-2" type="number" formControlName="hasta">
+                        <button type="submit" class="btn btn-primary px-3 py-2 my-2 text-light" [disabled]="agregarConsecutivos"> Agregar + </button>
+                        <div *ngIf="validarConsecutivo" class="row">
+                            <small class="message"> Lista a consultar inválida* </small>
+                        </div>
+                        <div *ngIf="validar" class="row">
+                            <small class="message"> Requeridos* </small>
+                        </div>
+                    </form>
                 </div>
             </div>
 
             <ngx-general-table [config]="configuration" [datos]="datosGiroOrdenesPago"></ngx-general-table>
 
-            <div *ngIf="datosSeleccionados.length !== 0">
-                <ngx-general-table [config]="configuration" [datos]="datosGiroOrdenesPago"></ngx-general-table>
+            <div class="mt-4" *ngIf="datosSeleccionados.length !== 0">
+                <div class="d-flex">
+                    <p class="mr-auto align-text-bottom"> Órdenes de pago seleccionadas: </p>
+                    <button (click)="remove()" class="btn btn-primary px-3 py-2 my-2 text-light"> Quitar todos - </button>
+                </div>
+                <ngx-general-table [config]="configurationMin" [datos]="datosSeleccionados"></ngx-general-table>
             </div>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            <button matStepperPrevious type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
+                Volver al registro
+            </button>
+        </div>
+        <div class="col">
+            <button matStepperNext class="btn btn-success px-3 py-2 my-2 text-light" [disabled]="datosSeleccionados.length === 0">
+                Siguiente
+            </button>
         </div>
     </div>
 </div>
