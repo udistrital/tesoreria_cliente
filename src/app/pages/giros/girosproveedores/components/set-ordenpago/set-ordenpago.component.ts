@@ -4,6 +4,7 @@ import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actio
 import { getFilaSeleccionada } from '../../../../../shared/selectors/shared.selectors';
 import { Store } from '@ngrx/store';
 import Swal from 'sweetalert2';
+import { SharedService } from '../../../../../shared/services/shared.service';
 @Component({
   selector: 'ngx-set-ordenpago',
   templateUrl: './set-ordenpago.component.html',
@@ -22,6 +23,7 @@ export class SetOrdenpagoComponent implements OnInit {
 
   constructor(
     private store: Store<any>,
+    private sharedService: SharedService
   ) {
     this.configurationPlus = CONF_ADDORDENPAGO;
     this.datosGiroOrdenPago = DATOS_GIRO_ORDEN;
@@ -32,7 +34,8 @@ export class SetOrdenpagoComponent implements OnInit {
 
   ngOnInit() {
     this.subscriptionTabla$ = this.store.select(getFilaSeleccionada).subscribe((action: any) => {
-      if (action && action.accion && action.fila) {
+      if (this.sharedService.IfStore(action)) {
+        console.log(action, this.datoSeleccionado);
         if (action.accion.name === 'agregar') {
           if (this.datoSeleccionado.length === 0) {
             this.datoSeleccionado.push(action.fila);

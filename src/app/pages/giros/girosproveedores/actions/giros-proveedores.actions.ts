@@ -18,3 +18,9 @@ export const cargarDatosOrdenesPago = createAction(
   '[GirosProveedores] Cargar DatosOrdenesPago',
   props(),
 );
+
+export const cargarDatosBeneficiarios = createAction(
+  '[GirosProveedores] Cargar DatosBeneficiarios',
+  props(),
+);
+

@@ -472,10 +472,16 @@ export const CONF_BENEFICIARIO: any = {
         },
         actions: [
             {
-                name: 'ver',
+                name: 'verDetalles',
                 icon: 'fas fa-eye',
                 class: 'p-2',
-                title: 'Ver Solicitud',
+                title: 'Ver detalles',
+            },
+            {
+                name: 'remover',
+                icon: 'fas fa-times',
+                class: 'p-2',
+                title: 'Quitar pago',
             },
         ],
     },
@@ -485,6 +491,71 @@ export const CONF_BENEFICIARIO: any = {
     },
     sort: true,
     filter: true,
+};
+export const CONF_DETALLES: any = {
+    showColumnTitle: true,
+    // title: {
+    //     name: 'Actividades Asociadas',
+    //     class: 'text-center text-light',
+    // },
+    dataConfig: [
+        {
+            key: 'consecutivo',
+            title: {
+                name: 'Consecutivo',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'envio',
+            title: {
+                name: 'Envio',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'banco',
+            title: {
+                name: 'Banco',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'numeroCuenta',
+            title: {
+                name: 'N° cuenta',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'clase',
+            title: {
+                name: 'Clase',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        }
+    ],
+    noData: {
+        name: 'No existen elementos asociados',
+        class: 'text-center',
+    },
+    sort: true,
+    filter: false,
 };
 export const DATOS_GIRO_ORDEN: any = [
     {

@@ -11,3 +11,26 @@ select{
 .card-title{
     margin-top: -2rem;
 }
+
+.modal-content{
+    width: 100%;
+}
+
+.informacion {
+    margin-top: -2.1rem;
+}
+
+.area{
+    width: 90%;
+    height: 5rem;
+}
+
+.message {
+    color: red;
+}
+
+@media (min-width: 960px) {
+    .modal-content{
+        width: 120%;
+    }
+}

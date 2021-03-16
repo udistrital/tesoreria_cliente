@@ -5,14 +5,18 @@ export const selectGirosProveedoresState = createFeatureSelector<fromGirosProvee
   fromGirosProveedores.girosProveedoresFeatureKey
 );
 
-export const getDatosInformacion = createSelector (
+export const getDatosInformacion = createSelector(
   selectGirosProveedoresState,
   (state: fromGirosProveedores.State) => state.DatosInformacion);
 
-export const getDatosOrdenPago = createSelector (
+export const getDatosOrdenPago = createSelector(
   selectGirosProveedoresState,
   (state: fromGirosProveedores.State) => state.DatosOrdenPago);
 
-export const getDatosOrdenesPago = createSelector (
+export const getDatosOrdenesPago = createSelector(
   selectGirosProveedoresState,
   (state: fromGirosProveedores.State) => state.DatosOrdenesPago);
+
+export const getDatosBeneficiarios = createSelector(
+  selectGirosProveedoresState,
+  (state: fromGirosProveedores.State) => state.DatosBeneficiarios);

@@ -15,8 +15,8 @@
                 </mat-step>
                 <mat-step>
                     <ng-template matStepLabel> Órdenes de pago </ng-template>
-                    <ngx-set-ordenpago *ngIf="orden" (validarOrden)="guardarOrden($event)"></ngx-set-ordenpago>
-                    <ngx-set-ordenespago *ngIf="!orden" (validarOrdenes)="guardarOrdenes($event)"></ngx-set-ordenespago>
+                    <ngx-set-ordenpago *ngIf="tipoTramite === 'giroUnico'" (validarOrden)="guardarOrden($event)"></ngx-set-ordenpago>
+                    <ngx-set-ordenespago *ngIf="tipoTramite === 'giroRango'" (validarOrdenes)="guardarOrdenes($event)"></ngx-set-ordenespago>
                 </mat-step>
                 <mat-step>
                     <ng-template matStepLabel> Erogación y detalles del giro </ng-template>

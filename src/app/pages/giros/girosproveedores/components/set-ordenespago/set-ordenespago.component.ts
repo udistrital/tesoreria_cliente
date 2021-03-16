@@ -1,15 +1,16 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { DATOS_GIRO_ORDEN, CONF_ORDENPAGO, CONF_MINORDENPAGO } from '../../interfaces/interfaces';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { getFilaSeleccionada} from '../../../../../shared/selectors/shared.selectors';
 import { LoadFilaSeleccionada} from '../../../../../shared/actions/shared.actions';
+import { SharedService } from '../../../../../shared/services/shared.service';
 @Component({
   selector: 'ngx-set-ordenespago',
   templateUrl: './set-ordenespago.component.html',
   styleUrls: ['./set-ordenespago.component.scss']
 })
-export class SetOrdenespagoComponent implements OnInit {
+export class SetOrdenespagoComponent implements OnInit, OnDestroy {
 
   @Output() validarOrdenes: EventEmitter<any>;
 
@@ -26,6 +27,7 @@ export class SetOrdenespagoComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private store: Store<any>,
+    private sharedService: SharedService
   ) {
     this.datosSeleccionados = [];
     this.validarOrdenes = new EventEmitter;
@@ -38,7 +40,26 @@ export class SetOrdenespagoComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.subscription$.unsubscribe();
+  }
+
   ngOnInit() {
+    this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((action) => {
+      if (this.sharedService.IfStore(action)) {
+        if (action.accion.name === 'eliminar') {
+          if (this.datosSeleccionados.length === 1) {
+            this.agregarConsecutivos = false;
+          }
+          this.datosSeleccionados.splice(this.datosSeleccionados.findIndex(
+            (element: any) => {
+              element.consecutivo ===  action.fila.consecutivo;
+            }
+          ), 1);
+        }
+        this.store.dispatch(LoadFilaSeleccionada(null));
+      }
+    });
     this.changes();
   }
 
@@ -66,22 +87,7 @@ export class SetOrdenespagoComponent implements OnInit {
               this.datosSeleccionados.push(result);
             }
           });
-        }
-        this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((action) => {
-          if ( action && action.accion && action.fila) {
-            if (action.accion.name === 'eliminar') {
-              if (this.datosSeleccionados.length === 1) {
-                this.agregarConsecutivos = false;
-              }
-              this.datosSeleccionados.splice(this.datosSeleccionados.findIndex(
-                (element: any) => {
-                  element.consecutivo ===  action.fila.consecutivo;
-                }
-              ), 1);
-            }
-            this.store.dispatch(LoadFilaSeleccionada(null));
-          }
-        });
+        }        
       }
     } else {
       this.validar = true;

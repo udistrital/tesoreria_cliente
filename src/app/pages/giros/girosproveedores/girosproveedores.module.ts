@@ -22,7 +22,6 @@ import { GirosProveedoresEffects } from './effects/giros-proveedores.effects';
 import { SetOrdenespagoComponent } from './components/set-ordenespago/set-ordenespago.component';
 import { ContabilizacionComponent } from './components/contabilizacion/contabilizacion.component';
 
-
 @NgModule({
   declarations: [LayoutGiroproveedoresComponent,
     ListComponent,
@@ -35,7 +34,7 @@ import { ContabilizacionComponent } from './components/contabilizacion/contabili
     SetErogacioncontabilizacionComponent,
     SetResumencontabilizacionComponent,
     SetOrdenespagoComponent,
-    ContabilizacionComponent],
+    ContabilizacionComponent,],
   imports: [
     SharedModule,
     CommonModule,
