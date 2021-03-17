@@ -1,1 +1,71 @@
-<p>set-contabilizacion works!</p>
+<div class="container-fluid">
+    <div class="card mt-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+            Contabilización
+        </div>
+        <div class="card-body pt-0">
+            <div class="row mt-2">
+                <div class="col py-2">
+                    <label for=""> Concepto </label> <br>
+                    <select> </select>
+                </div>
+                <div class="col py-2">
+                    <label for=""> Código </label> <br>
+                    <select> </select>
+                </div>
+                <div class="col py-2">
+                    <label for=""> Tipo comprobante </label> <br>
+                    <select> </select>
+                </div>
+                <div class="col py-2">
+                    <label for=""> Consecutivo </label> <br>
+                    <input type="text" disabled>
+                </div>
+            </div>
+            <div class="my-2 row">
+                <div class="col py-2">
+                    <label for=""> ID </label> <br>
+                    <input type="text" disabled>
+                </div>
+                <div class="col py-2">
+                    <label for=""> Nombre </label> <br>
+                    <input type="text" disabled>
+                </div>
+            </div>
+
+            <ngx-general-table [config]="configuration" [datos]="datosProveedores"> </ngx-general-table>
+            
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            <button matStepperPrevious type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
+                Volver al registro
+            </button>
+        </div>
+        <div class="col">
+            <button matStepperNext class="btn btn-success px-3 py-2 my-2 text-light">
+                Siguiente
+            </button>
+        </div>
+    </div>
+</div>

@@ -13,7 +13,7 @@ import { SetContabilizacionComponent } from './components/set-contabilizacion/se
 import { SetErogacioncontabilizacionComponent } from './components/set-erogacioncontabilizacion/set-erogacioncontabilizacion.component';
 import { SetResumencontabilizacionComponent } from './components/set-resumencontabilizacion/set-resumencontabilizacion.component';
 import { SharedModule } from '../../../shared/shared.module';
-import { MatStepperModule } from '@angular/material';
+import { MatDialogModule, MatStepperModule } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import * as fromGirosProveedores from './reducers/giros-proveedores.reducer';
@@ -39,6 +39,7 @@ import { ContabilizacionComponent } from './components/contabilizacion/contabili
     SharedModule,
     CommonModule,
     MatStepperModule,
+    MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
     GirosproveedoresRoutingModule,

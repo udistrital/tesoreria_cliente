@@ -113,6 +113,9 @@
             </button>
         </div>
     </div>
+    <div *ngIf="modalProveedor.modalProveedores">
+        <ngx-contabilizacion></ngx-contabilizacion>
+    </div>
 </div>
 <ng-template #modalCancelar>
     <div class="modal-content">

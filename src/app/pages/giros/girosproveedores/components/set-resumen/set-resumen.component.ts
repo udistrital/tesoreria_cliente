@@ -6,6 +6,7 @@ import { CONF_BENEFICIARIORESUMEN, DATOS_GIROPROVEEDORES } from '../../interface
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SelectService } from '../../../../../shared/services/select.service';
 
 @Component({
   selector: 'ngx-set-resumen',
@@ -41,7 +42,8 @@ export class SetResumenComponent implements OnInit, OnDestroy {
   constructor(private store: Store<any>,
     private sharedService: SharedService,
     private route: Router,
-    private modalService: NgbModal, ) {
+    private modalService: NgbModal,
+    public modalProveedor: SelectService ) {
     this.datosBeneficiarios = [];
     this.consecutivo = [];
     this.configuration = CONF_BENEFICIARIORESUMEN;
@@ -120,7 +122,9 @@ export class SetResumenComponent implements OnInit, OnDestroy {
     this.modal.close();
   }
 
-  contabilizacion() { }
+  contabilizacion() {
+    this.modalProveedor.modalProveedores = true;
+   }
 
   girar() { }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CONF_PROVEEDORES } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'ngx-set-contabilizacion',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SetContabilizacionComponent implements OnInit {
 
-  constructor() { }
+  configuration: any;
+  datosProveedores: any;
+
+  constructor() {
+    this.configuration = CONF_PROVEEDORES;
+    this.datosProveedores = [];
+   }
 
   ngOnInit() {
   }

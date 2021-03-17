@@ -632,6 +632,91 @@ export const CONF_DETALLES: any = {
     sort: true,
     filter: false,
 };
+export const CONF_PROVEEDORES: any = {
+    showColumnTitle: true,
+    // title: {
+    //     name: 'Actividades Asociadas',
+    //     class: 'text-center text-light',
+    // },
+    dataConfig: [
+        {
+            key: 'secuencia',
+            title: {
+                name: 'Secuencia',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'tercero',
+            title: {
+                name: 'Tercero',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'numeroCuenta',
+            title: {
+                name: 'N° de la cuenta',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'nombreCuenta',
+            title: {
+                name: 'Nombre de la cuenta',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'detalle',
+            title: {
+                name: 'Detalle',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'debito',
+            title: {
+                name: 'Débito',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'credito',
+            title: {
+                name: 'Crédito',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        }
+    ],
+    noData: {
+        name: 'No existen elementos asociados',
+        class: 'text-center',
+    },
+    sort: true,
+    filter: false,
+};
 export const DATOS_GIRO_ORDEN: any = [
     {
         id: 12,
