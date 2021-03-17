@@ -40,7 +40,7 @@
                 <ngx-general-table [config]="configuration" [datos]="datosBeneficiarios"></ngx-general-table>
                 <div class="row justify-content-md-center">
                     <label class="mx-2 p-2 font-weight-bold" for="valorTotal"> Valor total a girar: </label> <br>
-                    <input class="form-control" id="valorTotal" disabled value="{{totalGasto()|currency}}">
+                    <input class="form-control" id="valorTotal" disabled value="{{totalGasto() | currency}}">
                 </div>
             </div>
         </div>

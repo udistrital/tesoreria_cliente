@@ -34,7 +34,7 @@ import { ContabilizacionComponent } from './components/contabilizacion/contabili
     SetErogacioncontabilizacionComponent,
     SetResumencontabilizacionComponent,
     SetOrdenespagoComponent,
-    ContabilizacionComponent,],
+    ContabilizacionComponent, ],
   imports: [
     SharedModule,
     CommonModule,

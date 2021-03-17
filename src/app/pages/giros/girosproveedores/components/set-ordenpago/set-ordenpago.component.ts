@@ -35,7 +35,6 @@ export class SetOrdenpagoComponent implements OnInit {
   ngOnInit() {
     this.subscriptionTabla$ = this.store.select(getFilaSeleccionada).subscribe((action: any) => {
       if (this.sharedService.IfStore(action)) {
-        console.log(action, this.datoSeleccionado);
         if (action.accion.name === 'agregar') {
           if (this.datoSeleccionado.length === 0) {
             this.datoSeleccionado.push(action.fila);

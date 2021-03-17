@@ -4,7 +4,7 @@ import { getDatosOrdenesPago, getDatosOrdenPago, getDatosInformacion } from '../
 import { CONF_BENEFICIARIO, CONF_DETALLES } from '../../interfaces/interfaces';
 import { getFilaSeleccionada } from '../../../../../shared/selectors/shared.selectors';
 import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
-import { cargarDatosBeneficiarios } from '../../actions/giros-proveedores.actions';
+import { cargarDatosBeneficiarios, cargarDatosBancoProveedores } from '../../actions/giros-proveedores.actions';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SharedService } from '../../../../../shared/services/shared.service';
@@ -21,8 +21,6 @@ export class SetErogacionComponent implements OnInit, OnDestroy {
   @ViewChild('modalDetalles', { static: false }) modalContenido: any;
   @ViewChild('modalJustificacion', { static: false }) modalJustificacion: any;
 
-  subscriptionOrden$: any;
-  subscriptionOrdenes$: any;
   subscriptionInformacion$: any;
   subscriptionDetalles$: any;
   datosDetalle: any;
@@ -57,7 +55,7 @@ export class SetErogacionComponent implements OnInit, OnDestroy {
   constructor(private store: Store<any>,
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
-    private sharedService: SharedService,) {
+    private sharedService: SharedService, ) {
     this.configuration = CONF_BENEFICIARIO;
     this.datosBeneficiarios = [];
     this.abrirModal = new EventEmitter;
@@ -68,19 +66,20 @@ export class SetErogacionComponent implements OnInit, OnDestroy {
     });
     this.bancoForm = this.formBuilder.group({
       banco: ['', Validators.required],
-      nombreCuenta: ['', Validators.required],
-      /* numeroCuenta: ['', Validators.required],
-      tipoCuenta: ['', Validators.required], */
-    })
+      nombreCuenta: ['', Validators.required]
+    });
   }
 
   ngOnDestroy() {
-    this.subscriptionOrden$.unsubscribe();
-    this.subscriptionOrdenes$.unsubscribe();
     this.subscriptionInformacion$.unsubscribe();
     this.subscriptionDetalles$.unsubscribe();
+    if (this.modal !== undefined) {
+      this.modal.close();
+    }
+    if (this.modalRemover !== undefined) {
+      this.modalRemover.close();
+    }
   }
-
   ngOnInit() {
     this.subscriptionInformacion$ = combineLatest([
       this.store.select(getDatosInformacion),
@@ -109,8 +108,7 @@ export class SetErogacionComponent implements OnInit, OnDestroy {
       } else {
         this.datosBeneficiarios = [];
       }
-    })
-  
+    });
     this.subscriptionDetalles$ = this.store.select(getFilaSeleccionada).subscribe(
       (action: any) => {
         if (this.sharedService.IfStore(action)) {
@@ -129,9 +127,8 @@ export class SetErogacionComponent implements OnInit, OnDestroy {
   }
 
   changes() {
-    this.bancoForm.valueChanges.subscribe(data => console.log(data));
+    this.bancoForm.valueChanges.subscribe(data => {});
   }
-
   abrirJustificacion() {
     this.modalRemover = this.modalService.open(this.modalJustificacion);
   }
@@ -167,13 +164,12 @@ export class SetErogacionComponent implements OnInit, OnDestroy {
   guardarBeneficiarios() {
     if (this.bancoForm.valid) {
       this.validarBanco = false;
-      this.store.dispatch(cargarDatosBeneficiarios(this.datosBeneficiarios));  
+      this.store.dispatch(cargarDatosBeneficiarios(this.datosBeneficiarios));
+      this.store.dispatch(cargarDatosBancoProveedores(this.bancoForm.value));
     } else {
       this.validarBanco = true;
     }
-    
   }
-
   totalGasto() {
     return this.totalGirar = this.datosBeneficiarios.reduce((a: any, b: { valor: number; }) => a + b.valor, 0);
   }

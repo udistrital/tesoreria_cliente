@@ -87,7 +87,7 @@ export class SetOrdenespagoComponent implements OnInit, OnDestroy {
               this.datosSeleccionados.push(result);
             }
           });
-        }        
+        }
       }
     } else {
       this.validar = true;

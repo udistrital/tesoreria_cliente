@@ -492,6 +492,81 @@ export const CONF_BENEFICIARIO: any = {
     sort: true,
     filter: true,
 };
+export const CONF_BENEFICIARIORESUMEN: any = {
+    showColumnTitle: true,
+    // title: {
+    //     name: 'Actividades Asociadas',
+    //     class: 'text-center text-light',
+    // },
+    dataConfig: [
+        {
+            key: 'consecutivo',
+            title: {
+                name: 'Consecutivo',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'envio',
+            title: {
+                name: 'Envio',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'tipoId',
+            title: {
+                name: 'Tipo ID',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'numeroId',
+            title: {
+                name: 'ID',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'nombre',
+            title: {
+                name: 'Nombre',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'valor',
+            title: {
+                name: 'Valor',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+    ],
+    noData: {
+        name: 'No existen elementos asociados',
+        class: 'text-center',
+    },
+    sort: true,
+    filter: true,
+};
 export const CONF_DETALLES: any = {
     showColumnTitle: true,
     // title: {

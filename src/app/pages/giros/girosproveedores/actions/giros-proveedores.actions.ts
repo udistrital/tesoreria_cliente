@@ -24,3 +24,7 @@ export const cargarDatosBeneficiarios = createAction(
   props(),
 );
 
+export const cargarDatosBancoProveedores = createAction(
+  '[GirosProveedores] Cargar DatosBancoProveedores',
+  props(),
+);
