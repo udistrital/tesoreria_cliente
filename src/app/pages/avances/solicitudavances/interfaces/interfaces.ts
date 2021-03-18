@@ -12,7 +12,7 @@ export const CONFIGURACION_TABLASOLICITUD: any = {
             }
         },
         {
-            key: 'numeroSolicitud',
+            key: 'Id',
             title: {
                 name: 'Número de Solicitud',
                 class: 'text-center',
@@ -32,7 +32,7 @@ export const CONFIGURACION_TABLASOLICITUD: any = {
             }
         },
         {
-            key: 'fecha',
+            key: 'FechaRadicacion',
             title: {
                 name: 'Fecha',
                 class: 'text-center',
@@ -74,20 +74,6 @@ export const CONFIGURACION_TABLASOLICITUD: any = {
     sort: true,
     filter: true,
 };
-export const DATOS_TABLASOLICITUD: any = [
-    {
-        areaFuncional: '01',
-        numeroSolicitud: '001',
-        estadoSolicitud: 'Elaborado',
-        fecha: '2021-20-11T02:18:54Z',
-    },
-    {
-        areaFuncional: '01',
-        numeroSolicitud: '002',
-        estadoSolicitud: 'Elaborado',
-        fecha: '2021-02-10T02:18:54Z',
-    },
-];
 
 
 export const CONFIGURACION_REQUISITOSTIPO: any = {
