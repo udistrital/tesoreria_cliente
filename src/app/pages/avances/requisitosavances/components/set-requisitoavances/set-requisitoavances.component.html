@@ -1,0 +1,66 @@
+<div class="container bg-white p-4 border rounded">
+    <h5 class="py-4 text-center text-primary">{{ tituloAccion.toUpperCase() }} REQUISITO DE AVANCE</h5>
+    <form [formGroup]="datosRequisito" (ngSubmit)="validarFormulario()">
+        <h6 class="text-white bg-primary d-inline-block p-2 px-4 rounded">
+            Información de Solicitud
+        </h6>
+        <div class="row">
+            <div class="col-md-5 form-group">
+                <label for="codigoAbreviacion">Código de Abreviación</label>
+                <input class="form-control" id="codigoAbreviacion" formControlName="codigoAbreviacion"
+                    [class.is-invalid]="esInvalido('codigoAbreviacion')">
+            </div>
+            <div class="col-md-7 form-group">
+                <label for="nombreRequisito">Nombre del Requisito</label>
+                <input class="form-control" id="nombreRequisito" formControlName="nombreRequisito"
+                    [class.is-invalid]="esInvalido('nombreRequisito')">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea class="form-control" id="descripcion" formControlName="descripcion"
+                    [class.is-invalid]="esInvalido('descripcion')"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 form-group">
+                <label for="estado">Estado</label>
+                <select class="form-control" id="estado" formControlName="estado"
+                    [class.is-invalid]="esInvalido('estado')">
+                    <option value="true">Activo</option>
+                    <option value="false">Inactivo</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row justify-content-between">
+            <div class="col-md-2">
+                <a href="#/pages/avances/requisitosavances/lista" role="button" class="btn btn-primary text-white w-100">
+                    Volver
+                </a>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-success w-100" (click)="guardar()">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<ng-template #modalGuardar let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Guardar</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        ¿Desea guardar los cambios?
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancelar</button>
+        <button type="button" class="btn btn-primary text-white" (click)="modal.close(true)">Guardar</button>
+    </div>
+</ng-template>

@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col py-2">
+                    <h5 class="card-title text-center text-primary">
+                        CREAR GIRO - ORDEN DE PAGO EN CHEQUE
+                    </h5>
+                </div>
+            </div>
+            <mat-horizontal-stepper linear #stepper>
+                <mat-step [completed]="detallesForm">
+                    <ng-template matStepLabel> Detalle </ng-template>
+                    <ngx-set-detallegiro (validarForm)="validarDetallesForm($event)" (informacionForm)="informacionDetallesForm($event)"></ngx-set-detallegiro>
+                </mat-step>
+                <mat-step [completed]="erogacionForm">
+                    <ng-template matStepLabel> Erogación </ng-template>
+                    <ngx-set-erogacion (validarForm)="validarErogacionForm($event)" (informacionForm)="informacionErogacionForm($event)"> </ngx-set-erogacion>
+                </mat-step>
+                <mat-step [completed]="contabilizacionForm">
+                    <ng-template matStepLabel> Contabilización </ng-template>
+                    <ngx-set-contabilizacion (validarForm)="validarContabilizacionForm($event)" (informacionForm)="informacionContabilizacionForm($event)"> </ngx-set-contabilizacion>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel> Guardar </ng-template>    
+                    <ngx-set-resumen></ngx-set-resumen>
+                </mat-step>
+            </mat-horizontal-stepper>  
+        </div>
+    </div>
+</div>

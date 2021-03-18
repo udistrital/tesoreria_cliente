@@ -1,0 +1,74 @@
+<form [formGroup]="datosResponsable" (ngSubmit)="validarFormulario()">
+    <h6 class="text-white bg-primary d-inline-block p-2 px-4 rounded">
+        Datos del Responsable
+    </h6>
+    <div class="row">
+        <div class="col-md-4 form-group">
+            <label for="tipoId">Tipo de ID</label>
+            <select class="form-control" id="tipoId" formControlName="tipoId" [class.is-invalid]="esInvalido('tipoId')">
+                <option>CC</option>
+                <option>CE</option>
+                <option>NIT</option>
+            </select>
+        </div>
+        <div class="col-md-4 form-group">
+            <label for="numeroId">No. de ID</label>
+            <input type="number" class="form-control" id="numeroId" formControlName="numeroId"
+                [class.is-invalid]="esInvalido('numeroId')">
+        </div>
+        <div class="col-md-4 form-group">
+            <label for="areaFuncional">Área Funcional</label>
+            <select class="form-control" id="areaFuncional" formControlName="areaFuncional"
+                [class.is-invalid]="esInvalido('areaFuncional')">
+                <option [ngValue]="opcion" *ngFor="let opcion of opcionesAreaFuncional">{{opcion?.label}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 form-group">
+            <label for="nombres">Nombres</label>
+            <input class="form-control" id="nombres" disabled>
+        </div>
+        <div class="col-md-4 form-group">
+            <label for="apellidos">Apellidos</label>
+            <input class="form-control" id="apellidos" disabled>
+        </div>
+        <div class="col-md-4 form-group">
+            <label for="telefono">Teléfono Móvil</label>
+            <input class="form-control" id="telefono" disabled>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 form-group">
+            <span>Tipo de Informe</span>
+            <div class="invalid-feedback" [class.d-block]="esInvalido('tipoInforme')">Complete este campo</div>
+        </div>
+        <div class="col-md-2 form-group">
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="tipoInforme1" name="tipoInforme" class="custom-control-input"
+                    formControlName="tipoInforme" value="normal">
+                <label class="custom-control-label" for="tipoInforme1">Normal</label>
+            </div>
+        </div>
+        <div class="col-md-3 form-group">
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="tipoInforme2" name="tipoInforme" class="custom-control-input"
+                    formControlName="tipoInforme" value="practicas">
+                <label class="custom-control-label" for="tipoInforme2">Prácticas Académicas</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-between">
+        <div class="col-md-2">
+            <a routerLink="../lista" role="button" class="btn btn-primary text-white w-100">
+                Volver
+            </a>
+        </div>
+        <div class="col-md-2 text-right">
+            <button mat-button matStepperNext type="submit" class="btn btn-success w-100">
+                Siguiente
+            </button>
+        </div>
+    </div>
+</form>

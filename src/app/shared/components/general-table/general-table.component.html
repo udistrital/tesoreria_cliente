@@ -1,11 +1,27 @@
 <div class="container-fluid" *ngIf="config && datos && rowspanTable">
   <div class="row">
-    <div class="col-12">
+    <div class="col">
       <div class="form-group mt-3" *ngIf="config.filter">
         <input type="text" class="form-control py-2" id="buscador-tabla" aria-describedby="search-table"
-          placeholder="Campo de Busqueda" [(ngModel)]="stringBusqueda">
+          placeholder="Campo de búsqueda" [(ngModel)]="stringBusqueda">
       </div>
-      <div class="table-responsive">
+    </div>
+    <div class="col">
+      <div *ngIf="config.tableActions" class="col-12 d-flex justify-content-around">
+        <ng-container *ngFor="let allAction of config.tableActions">
+          <button type="button" class="btn btn-primary px-3 py-2 m-2 text-light" (click)="SelectedAllAction(allAction)">
+            <div class="d-flex flex-row justify-content-around align-middle" >
+              <i [class]="allAction.icon"></i>
+              <span [class]="allAction.class">{{allAction.title}}</span>
+            </div>
+          </button>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="table-responsive" [style.max-height.px]=config.maxHeight>
         <table class="table table-bordered table-hover">
           <thead class="bg-primary text-white">
             <!-- Titulo General -->
@@ -99,32 +115,27 @@
                     {{subsection.name}}
                   </th>
                 </ng-container>
-                <ng-container *ngIf="config.endSubtotal.last.name">
-                  <th scope="col" colspan="100" [class]="config.endSubtotal.last.class">
-                    {{ config.endSubtotal.last.name | multiPipe:config.endSubtotal.last.pipe.type:config.endSubtotal.last.pipe.config }}
-                  </th>
-                </ng-container>
-                <ng-container *ngIf="!config.endSubtotal.last.name">
-                  <th scope="col" colspan="100" [class]="config.endSubtotal.last.class">
-                    {{ Subtotal | multiPipe:config.endSubtotal.last.pipe.type:config.endSubtotal.last.pipe.config }}
-                  </th>
+                <ng-container *ngFor="let last of config.endSubtotal.last; index as i">
+                  <ng-container *ngIf="last.name">
+                    <th scope="col"
+                      [attr.colspan]="last.colspan ? last.colspan : (i + 1 === config.endSubtotal.last.length ? '100' : '1')"
+                      [class]="last.class">
+                      {{ last.name | multiPipe:last.pipe.type:last.pipe.config }}
+                    </th>
+                  </ng-container>
+                  <ng-container *ngIf="!last.name">
+                    <th scope="col"
+                      [attr.colspan]="last.colspan ? last.colspan : (i + 1 === config.endSubtotal.last.length ? '100' : '1')"
+                      [class]="last.class">
+                      {{ Subtotal[i] | multiPipe:last.pipe.type:last.pipe.config }}
+                    </th>
+                  </ng-container>
                 </ng-container>
               </tr>
             </ng-container>
           </tbody>
         </table>
       </div>
-    </div>
-    <div *ngIf="config.tableActions" class="col-12 d-flex justify-content-around">
-      <ng-container *ngFor="let allAction of config.tableActions">
-        <button type="button" class="btn btn-primary px-3 py-2 m-2 text-light" (click)="SelectedAllAction(allAction)">
-          <div class="d-flex flex-row justify-content-around align-middle" >
-            <i [class]="allAction.icon"></i>
-            <span [class]="allAction.class">{{allAction.title}}</span>
-          </div>
-        </button>
-      </ng-container>
-
     </div>
   </div>
 </div>

@@ -12,6 +12,16 @@ const routes: Routes = [{
       loadChildren: () => import('./primer-modulo/primer-modulo.module')
       .then(m => m.PrimerModuloModule),
     },
+    {
+      path: 'avances',
+      loadChildren: () => import('./avances/avances.module')
+      .then(m => m.AvancesModule),
+    },
+    {
+      path: 'giros',
+      loadChildren: () => import('./giros/giros.module')
+      .then(m => m.GirosModule),
+    }
   ],
 }];
 

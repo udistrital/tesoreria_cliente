@@ -17,6 +17,13 @@ export class RequestManager {
   private path: string;
   public httpOptions: any;
   constructor(private http: HttpClient, private errManager: HttpErrorManager) {
+    this.initHttpOptions();
+  }
+
+  /**
+   * Set http options to initial state
+   */
+  private initHttpOptions() {
     this.httpOptions = {
       headers: new HttpHeaders({
         'Accept': 'application/json',
@@ -42,10 +49,10 @@ export class RequestManager {
    * @returns Observable<any>
    */
   get(endpoint, params?) {
-    const queryParams = new HttpParams();
+    let queryParams = new HttpParams();
     if (params) {
       for (const [key, value] of Object.entries(params)) {
-        queryParams.append(key, value + '');
+        queryParams = queryParams.append(key, value + '');
       }
 
     }
@@ -76,6 +83,7 @@ export class RequestManager {
    * @returns Observable<any>
    */
   post(endpoint, element) {
+    this.initHttpOptions();
     return this.http.post<any>(`${this.path}${endpoint}`, element, this.httpOptions).pipe(
       catchError(this.errManager.handleError),
       map(
@@ -98,7 +106,9 @@ export class RequestManager {
    * @returns Observable<any>
    */
   put(endpoint, element, id) {
+    this.initHttpOptions();
     return this.http.put<any>(`${this.path}${endpoint}${id}`, JSON.stringify(element), this.httpOptions).pipe(
+      map((res) => res && res.hasOwnProperty('Body') && res['Type'] !== 'error' ? res['Body'] : res),
       catchError(this.errManager.handleError),
     );
   }
@@ -110,6 +120,7 @@ export class RequestManager {
    * @returns Observable<any>
    */
   putParams(endpoint, element) {
+    this.initHttpOptions();
     return this.http.put<any>(`${this.path}${endpoint}`, element, this.httpOptions).pipe(
       catchError(this.errManager.handleError),
     );
@@ -129,6 +140,7 @@ export class RequestManager {
       }),
     };
     return this.http.delete<any>(`${this.path}${endpoint}/${id}`, this.httpOptions).pipe(
+      map((res) => res && res.hasOwnProperty('Body') && res['Type'] !== 'error' ? res['Body'] : res),
       catchError(this.errManager.handleError),
     );
   }
