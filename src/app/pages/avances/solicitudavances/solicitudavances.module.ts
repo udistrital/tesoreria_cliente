@@ -12,7 +12,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SetDescripcionComponent } from './components/set-descripcion/set-descripcion.component';
 import { SetTipoavanceComponent } from './components/set-tipoavance/set-tipoavance.component';
 import { ShowDetalleavanceComponent } from './components/show-detalleavance/show-detalleavance.component';
-
+import { StoreModule } from '@ngrx/store';
+import * as fromSolicitudesAvance from './reducers/solicitudavances.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { SolicitudAvancesEffects } from './effects/solicitudavances.effects';
 
 
 
@@ -32,7 +35,9 @@ import { ShowDetalleavanceComponent } from './components/show-detalleavance/show
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    SolicitudavancesRoutingModule
+    SolicitudavancesRoutingModule,
+    StoreModule.forFeature(fromSolicitudesAvance.solicitudavancesFeatureKey, fromSolicitudesAvance.reducer),
+    EffectsModule.forFeature([SolicitudAvancesEffects])
   ]
 })
 export class SolicitudavancesModule { }

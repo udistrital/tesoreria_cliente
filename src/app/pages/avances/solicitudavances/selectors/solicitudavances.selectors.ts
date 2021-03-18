@@ -8,4 +8,9 @@ export const selectSolicitudavancesState = createFeatureSelector<fromSolicitudav
 export const getAdjuntarRequisitos = createSelector(
     selectSolicitudavancesState,
     (state: fromSolicitudavances.State) => state.AdjuntarRequisitos
-  );
+);
+
+export const seleccionarSolicitudesAvance = createSelector(
+    selectSolicitudavancesState,
+    (state: fromSolicitudavances.State) => state.solicitudesAvance
+);
