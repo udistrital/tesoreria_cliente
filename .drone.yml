@@ -11,6 +11,7 @@ steps:
     - develop
     - feature/*
     - release/*
+    - release
     event:
     - push
 
@@ -23,6 +24,7 @@ steps:
     - develop
     - feature/*
     - release/*
+    - release
     event:
     - push
 
@@ -35,6 +37,7 @@ steps:
     - develop
     - feature/*
     - release/*
+    - release
     event:
     - push
 
@@ -68,6 +71,7 @@ steps:
     - develop
     - feature/*
     - release/*
+    - release
     event:
     - push
 
@@ -81,6 +85,7 @@ steps:
   when:
     branch:
     - release/*
+    - release
     event:
     - push
 
@@ -111,6 +116,7 @@ steps:
   when:
     branch:
     - release/*
+    - release
     event:
     - push
 
@@ -157,6 +163,7 @@ steps:
     - develop
     - release/*
     - master
+    - release
     event:
     - push
     status:
