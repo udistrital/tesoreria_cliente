@@ -47,10 +47,11 @@
                         placeholder={{vigencia}} disabled>
                 </div>
                 <div class="col py-2">
-                    <label for="girosTramiteResumen"> Giros a tramitar </label> <br>
-                    <input *ngIf="!!giroTramite" type="text" name="girosTramiteResumen" id="girosTramiteResumen"
-                        placeholder={{giroTramite}} disabled>
+                    <label for="conceptoResumen"> Concepto </label> <br>
+                    <input *ngIf="!!concepto" type="text" name="conceptoResumen" id="conceptoResumen"
+                        placeholder={{concepto}} disabled>
                 </div>
+                
             </div>
             <div class="row my-2">
                 <div class="col py-2">
@@ -113,9 +114,9 @@
             </button>
         </div>
     </div>
-    <!-- <div *ngIf="modalProveedor.modalProveedores">
+    <div *ngIf="modalNomina.modalNomina">
         <ngx-contabilizacion></ngx-contabilizacion>
-    </div> -->
+    </div>
 </div>
 <ng-template #modalCancelar>
     <div class="modal-content">

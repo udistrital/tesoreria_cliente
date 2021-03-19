@@ -339,7 +339,7 @@ export const CONF_BENEFICIARIO: any = {
             }
         },
         {
-            key: 'numeroId',
+            key: 'id',
             title: {
                 name: 'ID',
                 class: 'text-center',

@@ -22,6 +22,7 @@ import { CONF_BENEFICIARIO,
 export class SetErogacionComponent implements OnInit {
 
   @Output() informacionBanco: EventEmitter<any>;
+  @Output() informacionBeneficiarios: EventEmitter<any>;
   @ViewChild('modalDetalles', { static: false }) modalContenido: any;
 
   subscriptionDetalles$: any;
@@ -68,6 +69,7 @@ export class SetErogacionComponent implements OnInit {
     private formBuilder: FormBuilder,
     private sharedService: SharedService, ) {
       this.informacionBanco = new EventEmitter;
+      this.informacionBeneficiarios = new EventEmitter;
       this.configuration = CONF_BENEFICIARIO;
       this.configurationDetalles = CONF_DETALLES;
       this.configurationRubro = CONF_RUBROS;
@@ -107,6 +109,7 @@ export class SetErogacionComponent implements OnInit {
 
   guardar() {
     this.informacionBanco.emit(this.bancoForm.value);
+    this.informacionBeneficiarios.emit(this.datosBeneficiarios);
   }
 
   cerrar () {

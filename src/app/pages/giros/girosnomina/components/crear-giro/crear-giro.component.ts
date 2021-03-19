@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { cargarDatosInformacion, cargarDatosBancoNomina, cargarDatosRelacion } from '../../actions/girosnomina.actions';
+import { cargarDatosInformacion, cargarDatosBancoNomina, cargarDatosRelacion, cargarDatosBeneficiarios } from '../../actions/girosnomina.actions';
 
 @Component({
   selector: 'ngx-crear-giro',
@@ -26,6 +26,10 @@ export class CrearGiroComponent implements OnInit {
 
   datosBancoForm(data: any) {
     this.store.dispatch(cargarDatosBancoNomina(data));
+  }
+
+  datosBeneficiarios(data: any) {
+    this.store.dispatch(cargarDatosBeneficiarios(data));
   }
 
 }

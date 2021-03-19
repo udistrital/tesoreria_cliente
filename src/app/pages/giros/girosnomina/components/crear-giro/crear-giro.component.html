@@ -19,7 +19,7 @@
                 </mat-step>
                 <mat-step>
                     <ng-template matStepLabel> Erogación y detalles del giro </ng-template>
-                    <ngx-set-erogacion (informacionBanco)="datosBancoForm($event)"></ngx-set-erogacion>
+                    <ngx-set-erogacion (informacionBanco)="datosBancoForm($event)" (informacionBeneficiarios)="datosBeneficiarios($event)"></ngx-set-erogacion>
                 </mat-step>
                 <mat-step>
                     <ng-template matStepLabel> Resumen </ng-template>

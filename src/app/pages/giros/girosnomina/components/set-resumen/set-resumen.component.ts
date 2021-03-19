@@ -5,12 +5,14 @@ import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SelectService } from '../../../../../shared/services/select.service';
 import { SharedService } from '../../../../../shared/services/shared.service';
 import { Store } from '@ngrx/store';
+import { getDatosBanco, getDatosInformacion, getDatosBeneficiarios } from '../../selectors/girosnomina.selectors';
+import { CONF_BENEFICIARIO } from '../../interfaces/interfaces';
 @Component({
   selector: 'ngx-set-resumen',
   templateUrl: './set-resumen.component.html',
   styleUrls: ['./set-resumen.component.scss']
 })
-export class SetResumenComponent implements OnInit {
+export class SetResumenComponent implements OnInit, OnDestroy {
 
   @ViewChild('modalCancelar', { static: false }) modalCancelar: any;
 
@@ -28,21 +30,65 @@ export class SetResumenComponent implements OnInit {
   tipoDocumento: any;
   consecutivo: any;
   vigencia: any;
-  giroTramite: any;
   banco: any;
   nombreCuenta: any;
   numeroCuenta: any;
   tipoCuenta: any;
+  concepto: any;
 
   modal: NgbModalRef;
+
+  ngOnDestroy() {
+
+  }
 
   constructor(private store: Store<any>,
     private sharedService: SharedService,
     private route: Router,
     private modalService: NgbModal,
-    public modalProveedor: SelectService ) { }
+    public modalNomina: SelectService ) {
+      this.configuration = CONF_BENEFICIARIO;
+      this.tipoDocumento = 'Relación de autorización';
+      this.centroGestor = 230;
+      this.numeroCuenta = '230-981-23';
+      this.tipoCuenta = 'Ahorros';
+      this.datosBeneficiarios = [];
+      this.consecutivo = [];
+     }
 
   ngOnInit() {
+    this.subscriptionBanco$ = this.store.select(getDatosBanco).subscribe(
+      (data: any) => {
+        if(this.sharedService.IfStore(data)) {
+          this.banco = data.banco;
+          this.nombreCuenta = data.nombreCuenta;
+          this.concepto = data.concepto;
+        }
+      }
+    );
+    this.subscriptionInformacion$ = this.store.select(getDatosInformacion).subscribe(
+      (data: any) => {
+        if(this.sharedService.IfStore(data)) {
+          this.areaFuncional = data.areaFuncional;
+          this.tipoGiro = data.tipoGiro;
+          this.fecha = data.fecha;
+          this.vigencia = data.vigencia;
+        }
+      }
+    );
+    this.subscription$ = this.store.select(getDatosBeneficiarios).subscribe(
+      (data: any) => {
+        if(this.sharedService.IfStore(data)) {
+          let i = 0;
+          while (data[i] !== undefined) {
+            this.datosBeneficiarios.push(data[i]);
+            this.consecutivo.push(data[i].consecutivo);
+            i++;
+          }
+        }
+      }
+    );
+
   }
 
   cancelar() {
@@ -58,7 +104,15 @@ export class SetResumenComponent implements OnInit {
     this.modal.close();
   }
 
-  guardar() {}
+  guardar() {
+    Swal.fire({
+      type: 'success',
+      title: '¡Guardado!',
+      html: 'Se ha creado el giro con consecutivo: ' + this.consecutivo + '<br> Estado: Pendiente',
+      confirmButtonText: 'Aceptar',
+    });
+    this.route.navigateByUrl('/pages/giros/nomina/lista');
+  }
 
   contabilizacion() {
     
