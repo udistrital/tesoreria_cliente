@@ -12,6 +12,11 @@ const routes: Routes = [{
       loadChildren: () => import('./girocheques/girocheques.module')
       .then(m => m.GirochequesModule),
     },
+    {
+      path: 'reversar',
+      loadChildren: () => import('./reversar/reversar.module')
+      .then(m => m.ReversarModule),
+    },
   ],
 }];
 
