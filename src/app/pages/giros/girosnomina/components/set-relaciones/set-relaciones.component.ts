@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { SharedService } from '../../../../../shared/services/shared.service';
 import { Store } from '@ngrx/store';
 import { CONF_ADDRELACION, CONF_MINRELACION, DATOS_RELACION } from '../../interfaces/interfaces';
@@ -10,7 +10,9 @@ import Swal from 'sweetalert2';
   templateUrl: './set-relaciones.component.html',
   styleUrls: ['./set-relaciones.component.scss']
 })
-export class SetRelacionesComponent implements OnInit {
+export class SetRelacionesComponent implements OnInit, OnDestroy {
+
+  @Output() informacionRelaciones: EventEmitter<any>;
 
   configurationPlus: any;
   configurationMin: any;
@@ -27,7 +29,12 @@ export class SetRelacionesComponent implements OnInit {
     this.configurationMin = CONF_MINRELACION;
     this.datoSeleccionado = [];
     this.datosGiroRelacion = DATOS_RELACION;
+    this.informacionRelaciones = new EventEmitter;
    }
+  
+  ngOnDestroy() {
+    this.subscriptionTabla$.unsubscribe();
+  }
 
   ngOnInit() {
     this.subscriptionTabla$ = this.store.select(getFilaSeleccionada).subscribe((action: any) => {
@@ -56,6 +63,8 @@ export class SetRelacionesComponent implements OnInit {
     });
   }
 
-  guardar() {}
+  guardar() {
+    this.informacionRelaciones.emit(this.datoSeleccionado);    
+  }
 
 }

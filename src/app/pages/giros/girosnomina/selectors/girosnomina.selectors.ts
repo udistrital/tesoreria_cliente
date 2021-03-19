@@ -16,3 +16,7 @@ export const getDatosBeneficiarios = createSelector(
 export const getDatosBanco = createSelector(
   selectGirosnominaState,
   (state: fromGirosnomina.State) => state.DatosBancoNomina);
+
+export const getDatosRelacion = createSelector(
+  selectGirosnominaState,
+  (state: fromGirosnomina.State) => state.DatosRelacion);

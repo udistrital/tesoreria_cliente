@@ -7,6 +7,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class SetInformacionComponent implements OnInit {
 
+  @Output () informacionForm: EventEmitter <any>;
+
   giroNomina: FormGroup;
 
   areaFuncional: String [] = [
@@ -28,7 +30,9 @@ export class SetInformacionComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder
-  ) { }
+  ) {
+    this.informacionForm = new EventEmitter;
+   }
 
   ngOnInit() {
     this.giroNomina = this.formBuilder.group({
@@ -40,7 +44,7 @@ export class SetInformacionComponent implements OnInit {
   }
 
   onSubmit (data: any) {
-    
+    this.informacionForm.emit(data);  
   }
 
 }

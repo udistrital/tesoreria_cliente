@@ -22,7 +22,9 @@
                 <div class="row my-2">
                     <div class="col-6">
                         <label for="concepto">Concepto</label> <br>
-                        <select></select>
+                        <select name="concepto" id="concepto" class="form-control" formControlName="concepto">
+                            <option *ngFor="let concepto of conceptos" value={{concepto}}> {{concepto}} </option>
+                        </select>
                     </div>
                 </div>
                 <div class="row my-2">
@@ -89,12 +91,28 @@
         </div>
         <div class="modal-body">
             <div class="card my-4">
-                <div class="card-body">
-                    <div class="card-title informacion col-md-4 bg-primary text-light text-center py-1 px-1 rounded">
-                        Detalles beneficiario
-                    </div>
+                <div class="card-title informacion col-md-4 bg-primary text-light text-center py-1 px-1 rounded">
+                    Detalles de la cuenta
                 </div>
-                <ngx-general-table [config]="configurationDetalles" [datos]="datosDetalle"></ngx-general-table>
+                <div class="card-body">
+                    <ngx-general-table [config]="configurationDetalles" [datos]="datosDetalle"></ngx-general-table>    
+                </div>                
+            </div>
+            <div class="card my-4">
+                <div class="card-title informacion col-md-4 bg-primary text-light text-center py-1 px-1 rounded">
+                    Descuentos
+                </div>
+                <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <ngx-general-table [config]="configurationDevengo" [datos]="datosDevengo"></ngx-general-table>
+                    </div>
+                    <div class="col">
+                        <ngx-general-table [config]="configurationDescuento" [datos]="datosDescuento"></ngx-general-table>
+                    </div>
+                </div>    
+                </div>
+                
             </div>
         </div>
         <div class="modal-footer">

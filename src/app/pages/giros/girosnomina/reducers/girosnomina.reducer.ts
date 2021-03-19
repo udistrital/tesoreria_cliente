@@ -30,6 +30,9 @@ const girosnominaReducer = createReducer(
   on(GirosnominaActions.cargarDatosBancoNomina, (state, action) => ({
     ...state, DatosBancoNomina: state.DatosBancoNomina = action
   })),
+  on(GirosnominaActions.cargarDatosRelacion, (state, action) => ({
+    ...state, DatosRelacion: state.DatosRelacion = action
+  })),
 
 );
 

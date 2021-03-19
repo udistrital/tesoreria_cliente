@@ -9,6 +9,11 @@ export const cargarDatosInformacion = createAction(
   props(),
 );
 
+export const cargarDatosRelacion = createAction(
+  '[Girosnomina] Cargar DatosRelacion',
+  props(),
+);
+
 export const cargarDatosBeneficiarios = createAction(
   '[Girosnomina] Cargar DatosBeneficiarios',
   props(),

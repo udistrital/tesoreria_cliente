@@ -91,7 +91,7 @@ export const CONF_GIRONOMINA: any = {
             },
             {
                 name: 'editar',
-                icon: 'fas fa-eye',
+                icon: 'fas fa-edit',
                 class: 'p-2',
                 title: 'Editar giro',
             }
@@ -450,7 +450,7 @@ export const CONF_DETALLES: any = {
             }
         },
         {
-            key: 'tipoDocumento',
+            key: 'tipoId',
             title: {
                 name: 'Tipo de documento',
                 class: 'text-center',
@@ -470,7 +470,7 @@ export const CONF_DETALLES: any = {
             }
         },
         {
-            key: 'numeroEnvio',
+            key: 'envio',
             title: {
                 name: 'N° envío',
                 class: 'text-center',
@@ -757,7 +757,7 @@ export const DATOS_RELACION: any = [
         vigencia: 2021,
         consecutivo: 345,
         mes: 'mayo',
-        formaPago: 'transferencia'
+        formaPago: 'transferencia',
     },
     {
         numero: 534,
@@ -775,4 +775,74 @@ export const DATOS_RELACION: any = [
         mes: 'junio',
         formaPago: 'transferencia'
      }
+];
+export const DATOS_BENEFICIARIOS: any = [
+    {
+        consecutivo: 23,
+        envio: 567,
+        tipoId: 'CC',
+        id: 127358,
+        nombre: 'Ana Miranda',
+        valor: 897231,
+        vigencia: 2021,
+        banco: 'Banco de occidente',
+        numeroCuenta: '230-123-345',
+        clase: 'ahorros'
+    },
+    {
+        consecutivo: 67,
+        envio: 342,
+        tipoId: 'CC',
+        id: 87234,
+        nombre: 'Kevin Arias',
+        valor: 729873,
+        vigencia: 2021,
+        banco: 'BBVA',
+        numeroCuenta: '192-123-345',
+        clase: 'ahorros'
+     },
+     {
+        consecutivo: 8734,
+        envio: 897,
+        tipoId: 'CC',
+        id: 92374,
+        nombre: 'Cristian Luis',
+        valor: 34508121,
+        vigencia: 2021,
+        banco: 'Banco de Bogotá',
+        numeroCuenta: '0-123124-345',
+        clase: 'corriente'
+     }
+];
+export const DATOS_DEVENGO: any = [
+    {
+        devengo: 'Sueldos',
+        valorDevengo: 17312,
+    },
+    {
+        devengo: 'Bonificación',
+        valorDevengo: 6345,
+     },
+];
+export const DATOS_DESCUENTO: any = [
+    {
+        descuento: 'Retención en la fuente',
+        valorDescuento: 7123
+    },
+    {
+        descuento: 'Fondo de empleados',
+        valorDescuento: 4563
+    },
+    {
+        descuento: 'SINTRA-UD',
+        valorDescuento: 37458
+    },
+    {
+        descuento: 'Régimen de salud',
+        valorDescuento: 12354
+    },
+    {
+        descuento: 'Sistema general de pensión',
+        valorDescuento: 7126
+    },
 ];

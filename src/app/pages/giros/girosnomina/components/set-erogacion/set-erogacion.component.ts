@@ -1,11 +1,19 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { getFilaSeleccionada } from '../../../../../shared/selectors/shared.selectors';
 import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SharedService } from '../../../../../shared/services/shared.service';
 import { Store } from '@ngrx/store';
-import { CONF_BENEFICIARIO, CONF_DETALLES, CONF_RUBROS, DATOS_RUBROS } from '../../interfaces/interfaces';
+import { DATOS_BENEFICIARIOS } from '../../interfaces/interfaces';
+import { CONF_BENEFICIARIO,
+  CONF_DETALLES,
+  CONF_RUBROS,
+  DATOS_RUBROS,
+  CONF_DESCUENTOS,
+  CONF_DEVENGO,
+  DATOS_DESCUENTO,
+  DATOS_DEVENGO } from '../../interfaces/interfaces';
 @Component({
   selector: 'ngx-set-erogacion',
   templateUrl: './set-erogacion.component.html',
@@ -13,6 +21,7 @@ import { CONF_BENEFICIARIO, CONF_DETALLES, CONF_RUBROS, DATOS_RUBROS } from '../
 })
 export class SetErogacionComponent implements OnInit {
 
+  @Output() informacionBanco: EventEmitter<any>;
   @ViewChild('modalDetalles', { static: false }) modalContenido: any;
 
   subscriptionDetalles$: any;
@@ -22,15 +31,24 @@ export class SetErogacionComponent implements OnInit {
   datosBeneficiarios: any;
   datosDetalle: any;
   datosRubros: any;
+  datosDescuento: any;
+  datosDevengo: any;
   
   configuration: any;
   configurationDetalles: any;
   configurationRubro: any;
+  configurationDescuento: any;
+  configurationDevengo: any;
   
   validarBanco: boolean = false;
 
   totalGirar: any;
   cuentas: String[] = [
+    'Opcion 1',
+    'Opcion 2',
+    'Opcion 3'
+  ];
+  conceptos: String[] = [
     'Opcion 1',
     'Opcion 2',
     'Opcion 3'
@@ -49,15 +67,22 @@ export class SetErogacionComponent implements OnInit {
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
     private sharedService: SharedService, ) {
+      this.informacionBanco = new EventEmitter;
       this.configuration = CONF_BENEFICIARIO;
       this.configurationDetalles = CONF_DETALLES;
       this.configurationRubro = CONF_RUBROS;
+      this.configurationDescuento = CONF_DESCUENTOS;
+      this.configurationDevengo = CONF_DEVENGO;
+      this.datosDescuento = DATOS_DESCUENTO;
+      this.datosDevengo = DATOS_DEVENGO;
       this.datosDetalle = [];
-      this.datosBeneficiarios = [];
+      this.datosBeneficiarios = DATOS_BENEFICIARIOS;
       this.datosRubros = DATOS_RUBROS;
+
       this.bancoForm = this.formBuilder.group({
         banco: ['', Validators.required],
-        nombreCuenta: ['', Validators.required] 
+        nombreCuenta: ['', Validators.required],
+        concepto: ['', Validators.required],
       }); 
      }
 
@@ -81,7 +106,7 @@ export class SetErogacionComponent implements OnInit {
   }
 
   guardar() {
-
+    this.informacionBanco.emit(this.bancoForm.value);
   }
 
   cerrar () {
