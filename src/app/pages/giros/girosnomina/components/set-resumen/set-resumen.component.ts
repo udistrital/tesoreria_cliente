@@ -39,7 +39,9 @@ export class SetResumenComponent implements OnInit, OnDestroy {
   modal: NgbModalRef;
 
   ngOnDestroy() {
-
+    this.subscription$.unsubscribe();
+    this.subscriptionInformacion$.unsubscribe();
+    this.subscriptionBanco$.unsubscribe();
   }
 
   constructor(private store: Store<any>,
@@ -115,7 +117,7 @@ export class SetResumenComponent implements OnInit, OnDestroy {
   }
 
   contabilizacion() {
-    
+    this.modalNomina.modalNomina = true;
   }
 
   girar() { }

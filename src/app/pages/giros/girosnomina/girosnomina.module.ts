@@ -11,8 +11,8 @@ import { SetResumenComponent } from './components/set-resumen/set-resumen.compon
 import { ContabilizacionComponent } from './components/contabilizacion/contabilizacion.component';
 import { SetContabilizacionComponent } from './components/set-contabilizacion/set-contabilizacion.component';
 import { SetErogacioncontabilizacionComponent } from './components/set-erogacioncontabilizacion/set-erogacioncontabilizacion.component';
-import { SetErogresumenabilizacionComponent } from './components/set-erogresumenabilizacion/set-erogresumenabilizacion.component';
 import { LayoutGironominaComponent } from './components/layout-gironomina/layout-gironomina.component';
+import { SetResumenContabilizacionComponent } from './components/set-resumen-contabilizacion/set-resumen-contabilizacion.component';
 import { SharedModule } from '../../../shared/shared.module';
 import { MatDialogModule, MatStepperModule } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -20,6 +20,7 @@ import { StoreModule } from '@ngrx/store';
 import * as fromGirosnomina from './reducers/girosnomina.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { GirosnominaEffects } from './effects/girosnomina.effects';
+
 
 
 @NgModule({
@@ -32,8 +33,8 @@ import { GirosnominaEffects } from './effects/girosnomina.effects';
     ContabilizacionComponent,
     SetContabilizacionComponent,
     SetErogacioncontabilizacionComponent,
-    SetErogresumenabilizacionComponent,
-    LayoutGironominaComponent ],
+    LayoutGironominaComponent,
+    SetResumenContabilizacionComponent ],
   imports: [
     CommonModule,
     SharedModule,

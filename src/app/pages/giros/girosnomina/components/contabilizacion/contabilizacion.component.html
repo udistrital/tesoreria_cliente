@@ -1,1 +1,35 @@
-<p>contabilizacion works!</p>
+<ng-template #modalNomina>
+    <mat-dialog-content class="mat-typography">
+    <!-- <div class="modal-dialog modal-dialog-centered modal-xl"> -->
+        <!-- <div class="modal-content"> -->
+            <div class="container">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col py-2">
+                                <h5 class="card-title text-center text-primary">
+                                    CONTABILIZACIÓN DEL GIRO
+                                </h5>
+                            </div>
+                        </div>
+                        <mat-horizontal-stepper linear #stepper>
+                            <mat-step>
+                                <ng-template matStepLabel> Inicio </ng-template>
+                                <ngx-set-contabilizacion></ngx-set-contabilizacion>
+                            </mat-step>
+                            <mat-step>
+                                <ng-template matStepLabel> Erogación del acreedor y detalles </ng-template>
+                                <ngx-set-erogacioncontabilizacion></ngx-set-erogacioncontabilizacion>
+                            </mat-step>
+                            <mat-step>
+                                <ng-template matStepLabel> Resumen </ng-template>
+                                <ngx-set-resumen-contabilizacion></ngx-set-resumen-contabilizacion>
+                            </mat-step>
+                        </mat-horizontal-stepper>  
+                    </div>
+                </div>
+            </div>
+        </mat-dialog-content>
+        <!-- </div> -->
+    <!-- </div> -->
+</ng-template>
