@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'ngx-set-informacion',
   templateUrl: './set-informacion.component.html',
@@ -7,9 +7,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SetInformacionComponent implements OnInit {
 
-  constructor() { }
+  giroNomina: FormGroup;
+
+  areaFuncional: String [] = [
+    'Servicios',
+    'Pagos',
+    'Formatos'
+  ];
+
+  tiposGiros: String [] = [
+    'Abono en cuenta',
+    'Nota débito',
+    'Efectivo'
+  ];
+
+  vigencias: any [] = [
+    2020,
+    2021
+  ];
+
+  constructor(
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit() {
+    this.giroNomina = this.formBuilder.group({
+      areaFuncional: ['', Validators.required],
+      fecha: ['', Validators.required],
+      tipoGiro: ['', Validators.required],
+      vigencia: ['', Validators.required],
+    });
+  }
+
+  onSubmit (data: any) {
+    
   }
 
 }
