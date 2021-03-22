@@ -26,8 +26,11 @@ export const environment = {
     CLIENTE_ID: 'Vp8iPJl5TtB7fbPokSmVRc2mj9ca',
     RESPONSE_TYPE: 'id_token token',
     SCOPE: 'openid email role',
-    REDIRECT_URL: 'http://10.20.0.254/presupuesto/',
+    // REDIRECT_URL: 'http://10.20.0.254/presupuesto/',
+    // SIGN_OUT_URL: 'https://autenticacion.portaloas.udistrital.edu.co/oidc/logout',
+    // SIGN_OUT_REDIRECT_URL: 'http://10.20.0.254/presupuesto/',
+    REDIRECT_URL: 'https://pruebastesoreria.portaloas.udistrital.edu.co',
     SIGN_OUT_URL: 'https://autenticacion.portaloas.udistrital.edu.co/oidc/logout',
-    SIGN_OUT_REDIRECT_URL: 'http://10.20.0.254/presupuesto/',
+    SIGN_OUT_REDIRECT_URL: 'https://pruebastesoreria.portaloas.udistrital.edu.co',
   },
 };
