@@ -1,1 +1,62 @@
-<p>set-informacion works!</p>
+<div class="container-fluid">
+    <form [formGroup]="giroSeguridad" (ngSubmit)="onSubmit(giroSeguridad.value)">
+        <div class="card p-3 m-4">
+            <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+                Información del giro
+            </div>
+            <div class="card-body pt-0">
+                <div class="row my-2">
+                    <div class="col-6 py-2">
+                        <label for="tipoDocumento"> Tipo de documento </label> <br>
+                        <input type="text" name="tipoDocumento" id="tipoDocumento" placeholder="Relación de autorización seguridad social" disabled>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col py-2">
+                        <label for="areaFuncional"> Área funcional </label> <br>
+                        <select name="areaFuncional" id="areaFuncional" class="form-control" formControlName="areaFuncional">
+                            <option *ngFor="let area of areaFuncional" value={{area}}> {{area}} </option>
+                        </select>
+                    </div>
+                    <div class="col py-2">
+                        <label for="fecha"> Fecha </label> <br>
+                        <input type="date" name="fecha" id="fecha" class="form-control" formControlName="fecha">
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col py-2">
+                        <label for="tipoGiro"> Tipo de giro </label> <br>
+                        <select name="tipoGiro" id="tipoGiro" class="form-control" formControlName="tipoGiro">
+                            <option *ngFor="let tipoGiro of tiposGiros" value="{{tipoGiro}}"> {{tipoGiro}} </option>
+                        </select>
+                    </div>
+                    <div class="col py-2">
+                        <label for="centroGestor">Centro gestor</label> <br>
+                        <input type="text" name="centroGestor" id="centroGestor" placeholder="230" disabled>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-6 py-2">
+                        <label for="vigencia"> Vigencia </label> <br>
+                        <select name="vigencia" id="vigencia" class="form-control" formControlName="vigencia">
+                            <option *ngFor="let vigencia of vigencias" value="{{vigencia}}"> {{vigencia}} </option>
+                        </select>
+                    </div>
+                </div>
+                
+            </div>
+        </div>                         
+        <div class="row text-center">
+            <div class="col">
+                <button routerLinkActive="active" routerLink="pages/giros/seguridad/lista" type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
+                    Volver al registro
+                </button>
+            </div>
+            <div class="col">
+                <button mat-button matStepperNext class="btn btn-success px-3 py-2 my-2 text-light" type="submit" [disabled]="giroSeguridad.invalid">
+                    Siguiente
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

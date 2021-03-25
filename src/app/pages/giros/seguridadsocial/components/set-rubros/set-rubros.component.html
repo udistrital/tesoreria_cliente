@@ -1,1 +1,64 @@
-<p>set-rubros works!</p>
+<div class="container-fluid">
+    <div class="card p-3 m-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+            Rubros
+        </div>
+        <div class="card-body pt-0">
+            <div class="row my-2">
+                <div class="col py-2">
+                    <label for="cdp"> CDP </label> <br>
+                    <input name="cdp" id="cdp" type="text" placeholder="9999" disabled>
+                </div>
+                <div class="col py-2">
+                    <label for="rp"> RP </label> <br>
+                    <input name="rp" id="rp" type="text" placeholder="9999" disabled>
+                </div>
+            </div>
+            <div class="row my-2 justify-content-center">
+                <ngx-general-table class="mt-3" [config]="configurationRubro" [datos]="datosRubros"></ngx-general-table>
+            </div>
+        </div>
+    </div>
+    <div class="card p-3 m-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+            Conceptos
+        </div>
+        <div class="card-body pt-0">
+            <form [formGroup]="conceptoForm">
+                <div class="row my-2">
+                    <div class="col py-2">
+                        <label for="numeroConcepto"> N° de concepto </label>
+                        <input class="form-control concepto" type="number" formControlName="numeroConcepto"
+                            name="numeroConcepto" id="numeroConcepto">
+                    </div>
+                    <div class="col py-2">
+                        <label for="conceptoRA"> Concepto RA </label>
+                        <input class="form-control" type="text" name="conceptoRA" id="conceptoRA" value="ICBF" disabled>
+                    </div>
+                    <div class="col py-2">
+                        <button (click)="agregar()" class="btn btn-primary px-3 py-2 mt-4 text-light"> Añadir + </button>
+                    </div>
+                </div>
+                <div class="row my-2 justify-content-center">
+                    <ngx-general-table class="mt-3" [config]="configurationConcepto" [datos]="datosConceptos"></ngx-general-table>
+                </div>
+            </form>
+            <div class="row my-2 justify-content-center">
+                <label class="mx-2 p-2 font-weight-bold" for="valorTotal"> Valor total: </label> <br>
+                <input class="form-control" id="valorTotal" disabled value="{{totalGasto() | currency}}">
+            </div>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            <button matStepperPrevious type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
+                Volver
+            </button>
+        </div>
+        <div class="col">
+            <button matStepperNext class="btn btn-success px-3 py-2 my-2 text-light">
+                Siguiente
+            </button>
+        </div>
+    </div>
+</div>

@@ -14,7 +14,10 @@ import { StoreModule } from '@ngrx/store';
 import * as fromSeguridadSocial from './reducers/seguridad-social.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { SeguridadSocialEffects } from './effects/seguridad-social.effects';
-
+import { SharedModule } from '../../../shared/shared.module';
+import { MatDialogModule, MatStepperModule } from '@angular/material';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { SetResumenComponent } from './components/set-resumen/set-resumen.component';
 
 @NgModule({
   declarations: [ContabilizacionComponent,
@@ -24,10 +27,16 @@ import { SeguridadSocialEffects } from './effects/seguridad-social.effects';
     SetRelacionesComponent,
     SetRubrosComponent,
     SetErogacionComponent,
-    ListaSeguridadComponent ],
+    ListaSeguridadComponent,
+    SetResumenComponent ],
   imports: [
     CommonModule,
     SeguridadsocialRoutingModule,
+    SharedModule,
+    MatStepperModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
     StoreModule.forFeature(fromSeguridadSocial.seguridadSocialFeatureKey, fromSeguridadSocial.reducer),
     EffectsModule.forFeature([SeguridadSocialEffects])
   ]

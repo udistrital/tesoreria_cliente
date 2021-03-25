@@ -1,1 +1,90 @@
-<p>set-erogacion works!</p>
+<div class="container-fluid">
+    <form [formGroup]="bancoForm">
+        <div class="card p-3 m-4">
+            <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+                Erogación del giro
+            </div>
+            <div class="card-body pt-0">
+                <div class="row my-2">
+                    <div class="col py-2">
+                        <label for="banco"> Banco </label> <br>
+                            <select name="banco" id="banco" class="form-control" formControlName="banco">
+                                <option *ngFor="let banco of bancos" value={{banco}}> {{banco}} </option>
+                            </select>
+                    </div>
+                    <div class="col py-2">
+                        <label for="nombreCuenta"> Nombre de la cuenta </label> <br>
+                            <select name="nombreCuenta" id="nombreCuenta" class="form-control" formControlName="nombreCuenta">
+                                <option *ngFor="let cuenta of cuentas" value={{cuenta}}> {{cuenta}} </option>
+                            </select>
+                    </div>
+                </div>
+                <small class="message" *ngIf="validarBanco"> Requerido* </small> 
+                <div class="row my-2">
+                    <div class="col py-2">
+                        <label for="numeroCuenta"> Número de cuenta </label> <br>
+                        <input class="form-control" type="text" name="numeroCuenta" id="numeroCuenta" value={{cuenta}} placeholder={{cuenta}} disabled>
+                    </div>
+                    <div class="col py-2">
+                        <label for="tipoCuenta"> Tipo de cuenta </label> <br>
+                        <input class="form-control" type="text" name="tipoCuenta" id="tipoCuenta" value={{tipo}} placeholder={{tipo}} disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card p-3 m-4">
+            <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+                Datos de los beneficiarios
+            </div>
+            <div class="card-body pt-0">
+                <ngx-general-table [config]="configurationEntidades" [datos]="datosEntidades"></ngx-general-table>
+                <div class="row my-2 justify-content-md-center">
+                    <label class="mx-2 p-2 font-weight-bold" for="valorTotal"> Valor total a girar: </label> <br>
+                    <input class="form-control" id="valorTotal" disabled value="{{totalGasto() | currency}}">
+                </div>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col">
+                <button matStepperPrevious type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
+                    Volver al registro
+                </button>
+            </div>
+            <div class="col">
+                <button matStepperNext (click)="guardar()" class="btn btn-success px-3 py-2 my-2 text-light" [disabled]="datosEntidades.length === 0 || bancoForm.invalid">
+                    Siguiente
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<ng-template #modalDetalles>
+    <mat-dialog-content>
+        <div class="card my-4">
+            <div class="card-title informacion col-md-4 bg-primary text-light text-center py-1 px-1 rounded">
+                {{nombreTercero}}
+            </div>
+            <div class="card-body">
+                <ngx-general-table [config]="configurationBeneficiarios" [datos]="datosBeneficiarios"></ngx-general-table>    
+                <div class="row my-2">
+                    <div class="col py-2" align="center">
+                        <label class="font-weight-bold m-2" for="totalEmpleado">Total aporte empleado: </label> <br>
+                        <input name="totalEmpleado" id="totalEmpleado" class="form-control total m-2" disabled value="{{totalEmpleado() | currency}}">
+                    </div>
+                    <div class="col py-2" align="center">
+                        <label class="font-weight-bold m-2" for="totalPatronal">Total aporte patronal: </label> <br>
+                        <input name="totalPatronal" id="totalPatronal" class="form-control m-2 total" disabled value="{{totalPatronal() | currency}}">
+                    </div>
+                </div>
+                <div class="row my-2 justify-content-center">
+                    <label class="font-weight-bold m-2" for="valorNeto"> Valor neto: </label> <br>
+                    <input name="valorNeto" id="valorNeto" class="form-control total m-2" disabled value="{{totalValor() | currency}}">
+                </div>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button class="btn btn-success px-3 py-2 mt-1 text-light" mat-button mat-dialog-close> Cerrar </button>
+      </mat-dialog-actions>
+</ng-template>
