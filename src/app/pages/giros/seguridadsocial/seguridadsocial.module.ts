@@ -13,7 +13,14 @@ import { ListaSeguridadComponent } from './components/lista-seguridad/lista-segu
 
 
 @NgModule({
-  declarations: [ContabilizacionComponent, CrearGiroComponent, LayoutSeguridadsocialComponent, SetInformacionComponent, SetRelacionesComponent, SetRubrosComponent, SetErogacionComponent, ListaSeguridadComponent],
+  declarations: [ContabilizacionComponent,
+    CrearGiroComponent,
+    LayoutSeguridadsocialComponent,
+    SetInformacionComponent,
+    SetRelacionesComponent,
+    SetRubrosComponent,
+    SetErogacionComponent,
+    ListaSeguridadComponent ],
   imports: [
     CommonModule,
     SeguridadsocialRoutingModule
