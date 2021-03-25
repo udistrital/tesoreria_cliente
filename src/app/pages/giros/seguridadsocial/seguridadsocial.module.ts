@@ -10,6 +10,10 @@ import { SetRelacionesComponent } from './components/set-relaciones/set-relacion
 import { SetRubrosComponent } from './components/set-rubros/set-rubros.component';
 import { SetErogacionComponent } from './components/set-erogacion/set-erogacion.component';
 import { ListaSeguridadComponent } from './components/lista-seguridad/lista-seguridad.component';
+import { StoreModule } from '@ngrx/store';
+import * as fromSeguridadSocial from './reducers/seguridad-social.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { SeguridadSocialEffects } from './effects/seguridad-social.effects';
 
 
 @NgModule({
@@ -23,7 +27,9 @@ import { ListaSeguridadComponent } from './components/lista-seguridad/lista-segu
     ListaSeguridadComponent ],
   imports: [
     CommonModule,
-    SeguridadsocialRoutingModule
+    SeguridadsocialRoutingModule,
+    StoreModule.forFeature(fromSeguridadSocial.seguridadSocialFeatureKey, fromSeguridadSocial.reducer),
+    EffectsModule.forFeature([SeguridadSocialEffects])
   ]
 })
 export class SeguridadsocialModule { }
