@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { CONF_BENEFICIARIO,
@@ -9,14 +9,16 @@ import { getFilaSeleccionada } from '../../../../../shared/selectors/shared.sele
 import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
 import { Store } from '@ngrx/store';
 import { SharedService } from '../../../../../shared/services/shared.service';
+import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'ngx-set-erogacion',
   templateUrl: './set-erogacion.component.html',
   styleUrls: ['./set-erogacion.component.scss']
 })
-export class SetErogacionComponent implements OnInit {
+export class SetErogacionComponent implements OnInit, OnDestroy {
 
   @ViewChild('modalDetalles', { static: false }) modalContenido: any;
+  @ViewChild('modalJustificacion', { static: false }) modalJustificacion: any;
 
   nombreTercero: any;
   datosBeneficiarios: any;
@@ -26,6 +28,8 @@ export class SetErogacionComponent implements OnInit {
   configurationEntidades: any;
 
   bancoForm: FormGroup;
+
+  modalRemover: NgbModalRef;
 
   cuentas: String[] = [
     'Opcion 1',
@@ -50,6 +54,10 @@ export class SetErogacionComponent implements OnInit {
 
   subscription$: any;
 
+  justificacionRemover: FormGroup;
+  validarJustificacion: boolean = false;
+  id: any;
+
   gasto: any;
   patronal: any;
   empleado: any;
@@ -59,7 +67,8 @@ export class SetErogacionComponent implements OnInit {
     private formBuilder: FormBuilder,
     private store: Store<any>,
     public dialog: MatDialog,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private modalService: NgbModal,
   ) {
     this.configurationBeneficiarios = CONF_BENEFICIARIO;
     this.configurationEntidades = CONF_ENTIDADES;
@@ -69,6 +78,15 @@ export class SetErogacionComponent implements OnInit {
       banco: ['', Validators.required],
       nombreCuenta: ['', Validators.required]
     });
+    this.justificacionRemover = this.formBuilder.group({
+      justificacion: ['', Validators.required]
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.modalRemover !== undefined) {
+      this.modalRemover.close();
+    }
   }
 
    ngOnInit() {
@@ -79,11 +97,8 @@ export class SetErogacionComponent implements OnInit {
             this.open(action.fila);
           }
           if (action.accion.name === 'eliminar') {
-            this.datosEntidades.splice(this.datosEntidades.findIndex(
-              (element: any) => {
-                element.id ===  action.fila.id;
-              }
-            ), 1);
+            this.id = action.fila.id;
+            this.abrirJustificacion();
           }
           this.store.dispatch(LoadFilaSeleccionada(null));
         }
@@ -96,7 +111,9 @@ export class SetErogacionComponent implements OnInit {
     const dialogRef = this.dialog.open(this.modalContenido);
   }
 
-  cerrar() {}
+  abrirJustificacion() {
+    this.modalRemover = this.modalService.open(this.modalJustificacion);
+  }
 
   totalGasto() {
     return this.gasto = this.datosEntidades.reduce((a: any, b: { valorNeto: number; }) => a + b.valorNeto, 0);
@@ -114,6 +131,22 @@ export class SetErogacionComponent implements OnInit {
     return this.valorNeto = this.datosBeneficiarios.reduce((a: any, b: { valorNeto: number; }) => a + b.valorNeto, 0);
   }
 
-  guardar() {}
+  cerrarJustificacion() {
+    this.modalRemover.close();
+  }
+
+  guardar() {
+    if (this.justificacionRemover.valid) {
+      this.validarJustificacion = false;
+      this.datosEntidades.splice(this.datosEntidades.findIndex(
+        (element: any) => {
+          element.id ===  this.id;
+        }
+      ), 1);
+      this.cerrarJustificacion();
+    } else {
+      this.validarJustificacion = true;
+    }
+  }
 
 }

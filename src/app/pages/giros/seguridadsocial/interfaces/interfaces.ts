@@ -745,3 +745,41 @@ export const DATOS_CONCEPTOS: any = [
         valorTotal: 56534
     }
 ];
+export const DATOS_CONT: any = [
+    {
+        secuencia: 1,
+        tercero: 71236,
+        numeroCuenta: 1233,
+        nombreCuenta: 'Occidente proveedores',
+        detalle: 'Pago enero-remuneración',
+        debito: 0,
+        credito: 785013400,
+    },
+    {
+        secuencia: 2,
+        tercero: 873182,
+        numeroCuenta: 34358,
+        nombreCuenta: 'Protección S.A.',
+        detalle: 'Pago enero-remuneración',
+        debito: 54749000,
+        credito: 0,
+    },
+    {
+        secuencia: 3,
+        tercero: 18741,
+        numeroCuenta: 87312,
+        nombreCuenta: 'Colpensiones',
+        detalle: 'Pago enero-remuneración',
+        debito: 730264400,
+        credito: 0,
+    },
+    {
+        secuencia: 4,
+        tercero: 81723,
+        numeroCuenta: 1823,
+        nombreCuenta: 'Sura',
+        detalle: 'Pago enero-remuneración',
+        debito: 1000000,
+        credito: 0,
+    }
+];
