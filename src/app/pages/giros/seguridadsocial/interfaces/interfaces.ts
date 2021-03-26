@@ -397,6 +397,96 @@ export const CONF_ENTIDADES: any = {
     sort: true,
     filter: true,
 };
+export const CONF_ENTIDADES_ELEGIDAS: any = {
+    showColumnTitle: true,
+    // title: {
+    //     name: 'Actividades Asociadas',
+    //     class: 'text-center text-light',
+    // },
+    dataConfig: [
+        {
+            key: 'consecutivo',
+            title: {
+                name: 'Consecutivo',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'tipoId',
+            title: {
+                name: 'Tipo ID',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'id',
+            title: {
+                name: 'ID',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'nombreTercero',
+            title: {
+                name: 'Nombre tercero',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'fechaPago',
+            title: {
+                name: 'Fecha de pago',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'valorNeto',
+            title: {
+                name: 'Valor neto',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+    ],
+    rowActions: {
+        title: {
+            name: 'Acciones',
+            class: 'text-center',
+            actionClass: 'd-flex flex-row justify-content-around align-middle'
+        },
+        actions: [
+            {
+                name: 'verDetalles',
+                icon: 'fas fa-eye',
+                class: 'p-2',
+                title: 'Ver detalles',
+            }
+        ],
+    },
+    noData: {
+        name: 'No existen elementos asociados',
+        class: 'text-center',
+    },
+    sort: true,
+    filter: true,
+};
 export const CONF_RUBROS: any = {
     showColumnTitle: true,
     // title: {

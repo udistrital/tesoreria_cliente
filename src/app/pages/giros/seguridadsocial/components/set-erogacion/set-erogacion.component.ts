@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { CONF_BENEFICIARIO,
@@ -19,6 +19,9 @@ export class SetErogacionComponent implements OnInit, OnDestroy {
 
   @ViewChild('modalDetalles', { static: false }) modalContenido: any;
   @ViewChild('modalJustificacion', { static: false }) modalJustificacion: any;
+
+  @Output() informacionBeneficiarios: EventEmitter<any>;
+  @Output() informacionBancos: EventEmitter<any>;
 
   nombreTercero: any;
   datosBeneficiarios: any;
@@ -81,6 +84,8 @@ export class SetErogacionComponent implements OnInit, OnDestroy {
     this.justificacionRemover = this.formBuilder.group({
       justificacion: ['', Validators.required]
     });
+    this.informacionBancos = new EventEmitter;
+    this.informacionBeneficiarios = new EventEmitter;
   }
 
   ngOnDestroy() {
@@ -147,6 +152,11 @@ export class SetErogacionComponent implements OnInit, OnDestroy {
     } else {
       this.validarJustificacion = true;
     }
+  }
+
+  enviar() {
+    this.informacionBeneficiarios.emit(this.datosEntidades);
+    this.informacionBancos.emit(this.bancoForm.value);
   }
 
 }

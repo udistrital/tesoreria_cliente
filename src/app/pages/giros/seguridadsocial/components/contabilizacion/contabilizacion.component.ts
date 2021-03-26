@@ -61,8 +61,8 @@ export class ContabilizacionComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   abrir() {
-    this.dialogRef = this.dialog.open(this.modalConta).afterClosed().subscribe(result =>{
-      this.modalSeguridad.modalSeguridad = false
+    this.dialogRef = this.dialog.open(this.modalConta).afterClosed().subscribe(result => {
+      this.modalSeguridad.modalSeguridad = false;
     });
   }
 
@@ -86,8 +86,6 @@ export class ContabilizacionComponent implements OnInit, AfterViewInit, OnDestro
         confirmButtonText: 'Aceptar',
       });
     }
-    
-    
   }
 
   guardar() {
