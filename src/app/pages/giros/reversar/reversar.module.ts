@@ -7,13 +7,18 @@ import { ListaComponent } from './components/lista/lista.component';
 import { CrearReversarComponent } from './components/crear-reversar/crear-reversar.component';
 import { SetGirosComponent } from './components/set-giros/set-giros.component';
 import { SetDetallesComponent } from './components/set-detalles/set-detalles.component';
-
+import { SharedModule } from '../../../shared/shared.module';
 
 @NgModule({
-  declarations: [LayoutReversarComponent, ListaComponent, CrearReversarComponent, SetGirosComponent, SetDetallesComponent],
+  declarations: [LayoutReversarComponent,
+    ListaComponent,
+    CrearReversarComponent,
+    SetGirosComponent,
+    SetDetallesComponent],
   imports: [
     CommonModule,
-    ReversarRoutingModule
+    ReversarRoutingModule,
+    SharedModule
   ]
 })
 export class ReversarModule { }
