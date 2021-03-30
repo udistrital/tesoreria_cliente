@@ -1,0 +1,166 @@
+<form [formGroup]="inversionInicialGroup" (ngSubmit)="saveForm()">
+    <div class="container">
+        <div class="row">
+            <div class="col pb-3">
+                <h6 class="card-title col-md-6 bg-primary text-white text-center py-2 px-2 rounded">
+                    Datos Generales - Inversión Inicial
+                </h6>
+            </div>
+        </div>
+        <div class="from-group row">
+            <div class="col-md-4">
+                <label for="numeroOperacion">Número de la Operación</label>
+                <input type="number" id="numeroOperacion" class="form-control" formControlName="numeroOperacion" [class.is-invalid]="isInvalid('numeroOperacion')">
+                <small *ngIf="isInvalid('numeroOperacion')" class="text-danger">Ingrese números en este campo</small>
+            </div>
+            <div class="col-md-4"></div>
+            <div class=" col-md-4">
+                <label for="fechaDocumento">Fecha del Documento</label>
+                <div class="input-group">
+                    <input type="date" name="fecha" id="fechaDocumento" class="form-control" formControlName="fechaDocumento" [class.is-invalid]="isInvalid('fechaDocumento')">
+                    <div class="input-group-append">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-3">
+                <label for="fechaAdquisicion">Fecha de Adquisición</label>
+                <div class="input-group">
+                    <input type="date" name="fecha" id="fechaAdquisicion" class="form-control" formControlName="fechaAdquisicion" [class.is-invalid]="isInvalid('fechaAdquisicion')">
+                    <div class="input-group-append">
+                    </div>
+                </div>
+            </div>
+            <div class=" col-md-3">
+                <label for="fechaVencimiento">Fecha de Vencimiento</label>
+                <div class="input-group">
+                    <input type="date" name="fecha" id="fechaVencimiento" class="form-control" formControlName="fechaVencimiento" [class.is-invalid]="isInvalid('fechaVencimiento')">
+                    <div class="input-group-append">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="termino">Término</label>
+                <input type="number" id="termino" class="form-control" formControlName="termino" [class.is-invalid]="isInvalid('termino')">
+                <small *ngIf="isInvalid('termino')" class="text-danger">Ingrese números en este campo</small>
+            </div>
+            <div class="col-md-3">
+                <label for="tasa">Tasa Rep. del Mercado</label>
+                <input type="number" id="tasa" class="form-control" formControlName="tasa" [class.is-invalid]="isInvalid('tasa')">
+                <small *ngIf="isInvalid('tasa')" class="text-danger">Ingrese números en este campo</small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-7">
+                <label for="rendimientos">Rendimientos</label>
+                <textarea class="form-control" id="rendimientos" formControlName="rendimientos" rows="1" [class.is-invalid]="isInvalid('rendimientos')"></textarea>
+                <small *ngIf="isInvalid('rendimientos')" class="text-danger">Ingrese mínimo 5 caracteres</small>
+            </div>
+            <div class="col-md-5">
+                <label for="valorRendimientos">Valor de Rendimientos</label>
+                <input type="number" id="valorRendimientos" class="form-control" formControlName="valorRendimientos" [class.is-invalid]="isInvalid('valorRendimientos')">
+                <small *ngIf="isInvalid('valorRendimientos')" class="text-danger">Ingrese números en este campo</small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col">
+                <label for="otros">Otros</label>
+                <textarea class="form-control" id="otros" formControlName="otros" rows="1" [class.is-invalid]="isInvalid('otros')"></textarea>
+                <small *ngIf="isInvalid('otros')" class="text-danger">Ingrese mínimo 5 caracteres</small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col">
+                <label for="observaciones">Observaciones</label>
+                <textarea class="form-control" id="observaciones" formControlName="observaciones" rows="1" [class.is-invalid]="isInvalid('observaciones')"></textarea>
+                <small *ngIf="isInvalid('observaciones')" class="text-danger">Ingrese mínimo 5 caracteres</small>
+            </div>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="row">
+            <div class="col pb-3">
+                <h6 class="card-title col-md-6 bg-primary text-white text-center py-2 px-2 rounded">
+                    Información Presupuestal
+                </h6>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-6 py-4">
+                <p class="text-center">Seleccione el rubro para continuar</p>
+                <div class="row px-2 py-2 justify-content-md-center">
+                    <button type="button" class="btn btn-primary text-white" data-toggle="modal" data-target="#ModalRubro">
+                        <i class="fas fa-plus pr-3"></i>
+                        <span>Seleccionar Rubro</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="row px-3 py-3">
+                    <label>Código del Rubro</label>
+                    <input type="text" class="form-control" formControlName="rubroSeleccionado" [class.is-invalid]="isInvalid('rubroSeleccionado')" readonly>
+                    <small *ngIf="isInvalid('rubroSeleccionado')" class="text-danger">Debe seleccionar un rubro</small>
+                </div>
+                <div class="row px-3">
+                    <label>Nombre del Rubro</label>
+                    <span class="form-control overflow">
+                    </span>
+                </div>
+                <div class="row px-3">
+                    <label for="valorNumero">Valor en Números</label>
+                    <input currencyMask min="0.0" class="form-control" formControlName="valorNumero" [class.is-invalid]="isInvalid('valorNumero')">
+                    <small *ngIf="isInvalid('valorNumero')" class="text-danger">Ingrese números en este campo</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botones: Volver a registro, Siguiente -->
+        <div class="container">
+            <div class="row pt-2 text-center">
+                <div class="col-md-6">
+                    <a routerLink="../lista">
+                        <button type="button" class="btn btn-primary mb-3 mt-3 text-white">
+                            <div class="d-flex flex-row justify-content-around align-middle">
+                                <span>Volver a registros</span>
+                            </div>
+                        </button>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <button mat-button matStepperNext type="submit" class="btn btn-success m-0 mt-4">
+                        Siguiente
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Fin Botones: Volver a registro, Siguiente -->
+    </div>
+</form>
+
+<!-- Modal: Seleccionar Rubro -->
+<div class="modal fade" id="ModalRubro" tabindex="-1" role="dialog" aria-labelledby="ModalRubroLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalRubroLabel">Seleccionar Rubro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ngx-arbol-rubro></ngx-arbol-rubro>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary mr-auto" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary text-white" data-dismiss="modal">Continuar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin Modal: Seleccionar Rubro -->
