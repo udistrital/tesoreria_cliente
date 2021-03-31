@@ -1,1 +1,23 @@
-<p>crear-reversar works!</p>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col py-2">
+                    <h5 class="card-title text-center text-primary">
+                        REVERSAR GIRO RADICADO
+                    </h5>
+                </div>
+            </div>
+            <mat-horizontal-stepper linear #stepper>
+                <mat-step [completed]="giros">
+                    <ng-template matStepLabel> Elegir giro a reversar </ng-template>
+                    <ngx-set-giros (validarGiro)="validarGiro($event, stepper)"></ngx-set-giros>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel> Detalles de la reversión </ng-template>
+                    <ngx-set-detalles></ngx-set-detalles>
+                </mat-step>
+            </mat-horizontal-stepper>  
+        </div>
+    </div>
+</div>

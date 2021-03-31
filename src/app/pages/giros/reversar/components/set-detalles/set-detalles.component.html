@@ -1,1 +1,96 @@
-<p>set-detalles works!</p>
+<div class="container-fluid">
+    <div class="card p-3 m-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+            Detalles del giro
+        </div>
+        <div class="card-body pt-0">
+            <div class="row my-2">
+                <div class="col py-2">
+                    <label for="numeroArchivo"> Número del archivo </label> <br>
+                    <input name="numeroArchivo" id="numeroArchivo" type="text" placeholder="12734" disabled>
+                </div>
+                <div class="col py-2">
+                    <label for="numeroCuenta"> Número de cuenta </label> <br>
+                    <input name="numeroCuenta" id="numeroCuenta" type="text" placeholder="230-12-23" disabled>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col py-2">
+                    <label for="banco"> Banco </label> <br>
+                    <input name="banco" id="banco" type="text" placeholder="BBVA" disabled>
+                </div>
+                <div class="col py-2">
+                    <label for="tipoCuenta"> Tipo de cuenta </label> <br>
+                    <input name="tipoCuenta" id="tipoCuenta" type="text" placeholder="Ahorros" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card p-3 m-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+            Detalles de la reversión
+        </div>
+        <ngx-general-table [config]="configurationBeneficiarios" [datos]="datosBeneficiarios"></ngx-general-table>
+        <div class="row mt-3 justify-content-md-center">
+            <label class="mx-2 p-2 font-weight-bold" for="valorTotal"> Valor total a reversar: </label> <br>
+            <input class="form-control" id="valorTotal" disabled value="{{total() | currency}}">
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            <button type="button" matStepperPrevious class="btn btn-primary px-3 py-2 my-2 text-light">
+                Volver
+            </button>
+        </div>
+        <div class="col">
+            <button (click)="reversar()" matStepperNext class="btn btn-success px-3 py-2 my-2 text-light">
+                Reversar
+            </button>
+        </div>
+    </div>
+</div>
+
+<ng-template #modalDetalles>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title text-center text-primary my-2">Beneficiario</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)=" cerrar()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="card my-4">
+                <div class="card-body">
+                    <div class="card-title informacion col-md-4 bg-primary text-light text-center py-1 px-1 rounded">
+                        Detalles beneficiario
+                    </div>
+                </div>
+                <ngx-general-table [config]="configurationDetalles" [datos]="datosDetalles"></ngx-general-table>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button mat-button type="button" (click)="cerrar()" class="btn btn-primary px-3 py-2 my-2 text-light"> Volver </button>
+        </div>
+    </div>      
+</ng-template>
+
+<ng-template #modalJustificacion>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title text-center text-primary my-2">Retirar beneficiario de la lista</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)=" cerrarJustificacion()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form [formGroup]="justificacionRemover" (ngSubmit)="guardar()">
+            <div class="modal-body m-3">
+                <label for="justificar"> Justificación </label>
+                <input class="form-control area p-1" placeholder="Escribir..." name="justificar" id="justificar" type="text" formControlName="justificacion"> <br>
+                <small class="message" *ngIf="validarJustificacion"> La justificación es requerida y debe tener al menos 10 caracteres* </small> 
+            </div>
+            <div class="modal-footer">
+                <button mat-button type="submit" class="btn btn-success px-3 py-2 my-2 text-light"> Aceptar </button>
+            </div>
+        </form>
+    </div>
+</ng-template>

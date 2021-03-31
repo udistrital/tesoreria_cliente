@@ -8,6 +8,8 @@ import { CrearReversarComponent } from './components/crear-reversar/crear-revers
 import { SetGirosComponent } from './components/set-giros/set-giros.component';
 import { SetDetallesComponent } from './components/set-detalles/set-detalles.component';
 import { SharedModule } from '../../../shared/shared.module';
+import { MatDialogModule, MatStepperModule } from '@angular/material';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [LayoutReversarComponent,
@@ -18,6 +20,10 @@ import { SharedModule } from '../../../shared/shared.module';
   imports: [
     CommonModule,
     ReversarRoutingModule,
+    MatStepperModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
     SharedModule
   ]
 })
