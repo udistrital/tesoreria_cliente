@@ -446,7 +446,7 @@ export const CONF_BENEFICIARIO: any = {
             pipe: {
                 type: 'currency',
                 config: [],
-                class: 'text-justify',
+                class: 'text-center',
             }
         },
     ],
