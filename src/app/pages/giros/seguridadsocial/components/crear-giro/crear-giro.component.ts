@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatStepper } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { cargarDatosInformacion, cargarDatosRelacion, cargarDatosBeneficiarios, cargarDatosBanco } from '../../actions/seguridad-social.actions';
 
@@ -9,6 +10,10 @@ import { cargarDatosInformacion, cargarDatosRelacion, cargarDatosBeneficiarios, 
 })
 export class CrearGiroComponent implements OnInit {
 
+  informacion: boolean = false;
+  relaciones: boolean = false;
+  erogacion: boolean = false;
+
   constructor(
     private store: Store <any>,
   ) { }
@@ -16,20 +21,35 @@ export class CrearGiroComponent implements OnInit {
   ngOnInit() {
   }
 
-  guardarInformacion(data: any) {
+  guardarInformacion(data: any, stepper: MatStepper) {
     this.store.dispatch(cargarDatosInformacion(data));
+    stepper.next();
   }
 
-  guardarRelacion(data: any) {
+  validarInformacion(data: any) {
+    this.informacion = data;
+  }
+
+  guardarRelacion(data: any, stepper: MatStepper) {
     this.store.dispatch(cargarDatosRelacion(data));
+    stepper.next();
   }
 
-  guardarBeneficiarios(data: any) {
+  validarRelaciones(data: any) {
+    this.relaciones = data;
+  }
+
+  guardarBeneficiarios(data: any, stepper: MatStepper) {
     this.store.dispatch(cargarDatosBeneficiarios(data));
+    stepper.next();
   }
 
   guardarBanco(data: any) {
     this.store.dispatch(cargarDatosBanco(data));
+  }
+
+  validarErogacion(data: any) {
+    this.erogacion = data;
   }
 
 }

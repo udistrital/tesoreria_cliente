@@ -18,6 +18,7 @@ export class SetRubrosComponent implements OnInit {
 
   totalGirar: any;
 
+  mensaje: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,6 +29,7 @@ export class SetRubrosComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.mensaje = false;
     this.configurationRubro = CONF_RUBROS;
     this.configurationConcepto = CONF_CONCEPTOS;
     this.datosRubros = DATOS_RUBROS;
@@ -36,11 +38,14 @@ export class SetRubrosComponent implements OnInit {
 
   agregar() {
     if (this.conceptoForm.valid) {
+      this.mensaje = false;
       DATOS_CONCEPTOS.push({
         numeroConcepto: this.conceptoForm.value.numeroConcepto,
         concepto: 'ICBF',
         valorTotal: 273478
       });
+    } else {
+      this.mensaje = true;
     }
   }
 

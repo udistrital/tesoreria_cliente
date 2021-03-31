@@ -15,6 +15,7 @@ import Swal from 'sweetalert2';
 export class SetRelacionesComponent implements OnInit, OnDestroy {
 
   @Output() informacionRelaciones: EventEmitter<any>;
+  @Output() statusRelaciones: EventEmitter<any>;
 
   configurationPlus: any;
   configurationMin: any;
@@ -22,6 +23,8 @@ export class SetRelacionesComponent implements OnInit, OnDestroy {
 
   datoSeleccionado: any;
   subscriptionTabla$: any;
+
+  mensaje: boolean;
 
   constructor(
     private store: Store<any>,
@@ -32,14 +35,17 @@ export class SetRelacionesComponent implements OnInit, OnDestroy {
     this.datoSeleccionado = [];
     this.datosGiroRelacion = DATOS_RELACION;
     this.informacionRelaciones = new EventEmitter;
+    this.statusRelaciones = new EventEmitter;
    }
 
   ngOnInit() {
+    this.mensaje = false;
     this.subscriptionTabla$ = this.store.select(getFilaSeleccionada).subscribe((action: any) => {
       if (this.sharedService.IfStore(action)) {
         if (action.accion.name === 'agregar') {
           if (this.datoSeleccionado.length === 0) {
             this.datoSeleccionado.push(action.fila);
+            this.statusRelaciones.emit(true);
           } else {
             Swal.fire({
               type: 'error',
@@ -47,9 +53,10 @@ export class SetRelacionesComponent implements OnInit, OnDestroy {
               text: 'Sólo es posible elegir una relación de autorización',
               confirmButtonText: 'Aceptar',
             });
+            this.statusRelaciones.emit(false);
           }
         }
-        if (action.accion.name === 'eliminar') {
+        if (action.accion.name === 'quitar') {
           this.datoSeleccionado.splice( this.datoSeleccionado.findIndex(
             (element: any) => {
               element.consecutivo ===  action.fila.consecutivo;
@@ -66,7 +73,13 @@ export class SetRelacionesComponent implements OnInit, OnDestroy {
   }
 
   guardar() {
-    this.informacionRelaciones.emit(this.datoSeleccionado);
+    if (this.datoSeleccionado.length === 0) {
+      this.statusRelaciones.emit(false);
+      this.mensaje = true;
+    } else {
+      this.informacionRelaciones.emit(this.datoSeleccionado);
+      this.mensaje = false;
+    }
   }
 
 }

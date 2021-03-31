@@ -80,6 +80,7 @@
         <div class="card-body pt-0">
             <ngx-general-table [config]="configurationEntidades" [datos]="datosEntidades"></ngx-general-table>
         </div>
+        <small align="end" class="message" *ngIf="mensaje"> Es necesario aprobar la contabilidad para girar* </small> 
     </div>
     <div class="row text-center">
         <div class="col">
@@ -103,13 +104,13 @@
             </button>
         </div>
         <div class="col">
-            <button (click)="girar()" class="btn btn-success px-3 py-2 my-2 text-light">
+            <button (click)="girar()" class="btn btn-success px-3 py-2 my-2 text-light" [disabled]="mensaje">
                 Girar
             </button>
         </div>
     </div>
     <div *ngIf="modalSeguridad.modalSeguridad">
-        <ngx-contabilizacion></ngx-contabilizacion>
+        <ngx-contabilizacion (aprobacion)="guardarAprobacion($event)"></ngx-contabilizacion>
     </div>
 </div>
 <ng-template #modalCancelar>

@@ -10,6 +10,7 @@ import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actio
 import { Store } from '@ngrx/store';
 import { SharedService } from '../../../../../shared/services/shared.service';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'ngx-set-erogacion',
   templateUrl: './set-erogacion.component.html',
@@ -22,6 +23,7 @@ export class SetErogacionComponent implements OnInit, OnDestroy {
 
   @Output() informacionBeneficiarios: EventEmitter<any>;
   @Output() informacionBancos: EventEmitter<any>;
+  @Output() statusErogacion: EventEmitter<any>;
 
   nombreTercero: any;
   datosBeneficiarios: any;
@@ -86,6 +88,7 @@ export class SetErogacionComponent implements OnInit, OnDestroy {
     });
     this.informacionBancos = new EventEmitter;
     this.informacionBeneficiarios = new EventEmitter;
+    this.statusErogacion = new EventEmitter;
   }
 
   ngOnDestroy() {
@@ -106,6 +109,19 @@ export class SetErogacionComponent implements OnInit, OnDestroy {
             this.abrirJustificacion();
           }
           this.store.dispatch(LoadFilaSeleccionada(null));
+        }
+      }
+    );
+    this.handleChanges();
+  }
+
+  handleChanges() {
+    this.bancoForm.statusChanges.subscribe(
+      result => {
+        if (result === 'VALID' && this.datosEntidades.length !== 0) {
+          this.statusErogacion.emit(true);
+        } else {
+          this.statusErogacion.emit(false);
         }
       }
     );
@@ -154,9 +170,40 @@ export class SetErogacionComponent implements OnInit, OnDestroy {
     }
   }
 
+  esInvalido(nombre: string) {
+    const input = this.bancoForm.get(nombre);
+    if (input)
+      return input.invalid && (input.touched || input.dirty);
+    else
+      return true;
+  }
+
+  validarFormulario() {
+    if (this.bancoForm.invalid) {
+      return Object.values(this.bancoForm.controls).forEach(control => {
+        control.markAsDirty();
+      });
+    }
+  }
+
   enviar() {
-    this.informacionBeneficiarios.emit(this.datosEntidades);
-    this.informacionBancos.emit(this.bancoForm.value);
+    if (this.bancoForm.valid) {
+      this.validarBanco = false;
+      if (this.datosEntidades.length !== 0) {
+        this.informacionBeneficiarios.emit(this.datosEntidades);
+        this.informacionBancos.emit(this.bancoForm.value);
+      } else {
+        Swal.fire({
+          type: 'error',
+          title: '¡Error!',
+          text: 'Debe elegir al menos un beneficiario',
+          confirmButtonText: 'Aceptar',
+        });
+      }
+    } else {
+      this.validarFormulario();
+      this.validarBanco = true;
+    }
   }
 
 }

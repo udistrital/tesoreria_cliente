@@ -2,7 +2,7 @@
     <mat-dialog-content>
         <div class="container-fluid">
             <div class="row">
-                <div class="col py-2">
+                <div class="col py-2 mt-4">
                     <h5 class="card-title text-center text-primary">
                         CONTABILIZACIÓN DEL GIRO
                     </h5>
@@ -17,19 +17,19 @@
                         <div class="row">
                             <div class="col">
                                 <label for="conceptoResumen"> Concepto </label> <br>
-                                <select name="conceptoResumen" id="conceptoResumen" class="form-control" formControlName="concepto"> 
+                                <select name="conceptoResumen" id="conceptoResumen" class="form-control" formControlName="concepto" [class.is-invalid]="esInvalido('concepto')"> 
                                     <option *ngFor="let concepto of conceptos" value={{concepto}}> {{concepto}} </option>
                                 </select>
                             </div>
                             <div class="col">
                                 <label for="codigoResumen"> Código </label> <br>
-                                <select class="form-control" name="codigoResumen" id="codigoResumen" formControlName="codigo"> 
+                                <select class="form-control" name="codigoResumen" id="codigoResumen" formControlName="codigo" [class.is-invalid]="esInvalido('codigo')"> 
                                     <option *ngFor="let codigo of codigos" value={{codigo}}> {{codigo}} </option>
                                 </select>
                             </div>
                             <div class="col">
                                 <label for="tipoComprobante"> Tipo de comprobante </label> <br>
-                                <select name="tipoComprobante" id="tipoComprobante" class="form-control" formControlName="tipoComprobante">
+                                <select name="tipoComprobante" id="tipoComprobante" class="form-control" formControlName="tipoComprobante" [class.is-invalid]="esInvalido('tipoComprobante')">
                                     <option *ngFor="let tipo of tiposComprobante" value={{tipo}}> {{tipo}} </option>
                                 </select>
                             </div>
@@ -38,6 +38,7 @@
                                 <input name="consecutivoResumen" id="consecutivoResumen" class="form-control" type="text" disabled>
                             </div>
                         </div>
+                        <small class="message m-3" *ngIf="mensaje"> Los campos en rojo son requeridos* </small> 
                     </form>
                 </div>
                 <ngx-general-table [config]="configurationConta" [datos]="datosConta"></ngx-general-table>

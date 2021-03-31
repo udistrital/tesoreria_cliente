@@ -195,7 +195,7 @@ export const CONF_MINRELACION: any = {
                 title: 'Ver documento',
             },
             {
-                name: 'eliminar',
+                name: 'quitar',
                 icon: 'fas fa-minus',
                 class: 'p-2',
                 title: 'Eliminar'
@@ -365,7 +365,9 @@ export const CONF_ENTIDADES: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                type: 'currency',
+                config: [],
+                class: 'text-center',
             }
         },
     ],
@@ -461,7 +463,9 @@ export const CONF_ENTIDADES_ELEGIDAS: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                type: 'currency',
+                config: [],
+                class: 'text-center',
             }
         },
     ],
@@ -521,7 +525,9 @@ export const CONF_RUBROS: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                type: 'currency',
+                config: [],
+                class: 'text-center',
             }
         }
     ],
@@ -562,7 +568,9 @@ export const CONF_CONCEPTOS: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                type: 'currency',
+                config: [],
+                class: 'text-center',
             }
         }
     ],
@@ -613,7 +621,9 @@ export const CONF_BENEFICIARIO: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                type: 'currency',
+                config: [],
+                class: 'text-center',
             }
         },
         {
@@ -623,7 +633,9 @@ export const CONF_BENEFICIARIO: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                type: 'currency',
+                config: [],
+                class: 'text-center',
             }
         },
         {
@@ -633,7 +645,9 @@ export const CONF_BENEFICIARIO: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                type: 'currency',
+                config: [],
+                class: 'text-center',
             }
         }
     ],
@@ -701,7 +715,9 @@ export const CONF_CONT: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                type: 'currency',
+                config: [],
+                class: 'text-center',
             }
         },
         {
@@ -711,7 +727,9 @@ export const CONF_CONT: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                type: 'currency',
+                config: [],
+                class: 'text-center',
             }
         }
     ],

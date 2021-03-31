@@ -30,6 +30,7 @@
                         <label for="numeroConcepto"> N° de concepto </label>
                         <input class="form-control concepto" type="number" formControlName="numeroConcepto"
                             name="numeroConcepto" id="numeroConcepto">
+                        <small class="message" *ngIf="mensaje"> Campo obligatorio* </small> 
                     </div>
                     <div class="col py-2">
                         <label for="conceptoRA"> Concepto RA </label>

@@ -42,6 +42,7 @@ export class SetResumenComponent implements OnInit, OnDestroy {
   subscriptionBanco$: any;
 
   subscriptionBeneficiarios$: any;
+  mensaje: boolean = true;
 
   constructor(
     private modalService: NgbModal,
@@ -98,6 +99,10 @@ export class SetResumenComponent implements OnInit, OnDestroy {
     );
   }
 
+  guardarAprobacion(data: any) {
+    this.mensaje = data;
+  }
+
   cerrar() {
     this.modal.close();
   }
@@ -125,6 +130,23 @@ export class SetResumenComponent implements OnInit, OnDestroy {
     this.modalSeguridad.modalSeguridad = true;
   }
 
-  girar() { }
+  girar() {
+    if (this.datosEntidades.length === 0) {
+      Swal.fire({
+        type: 'error',
+        title: '¡Error!',
+        text: 'No hay beneficiarios asociados',
+        confirmButtonText: 'Aceptar',
+      });
+    } else {
+      Swal.fire({
+        type: 'success',
+        title: '¡Guardado!',
+        html: 'Se ha creado el giro con consecutivo: ' + this.consecutivo + '<br> Estado: Radicado',
+        confirmButtonText: 'Aceptar',
+      });
+      this.route.navigateByUrl('/pages/giros/seguridad/lista');
+    }
+  }
 
 }
