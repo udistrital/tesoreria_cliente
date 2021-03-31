@@ -28,7 +28,7 @@ import * as fromAvances from './reducers/avances.reducer';
 import { AvancesEffects } from './effects/avances.effects';
 import { DescargarcomprobanteComponent } from './components/descargarcomprobante/descargarcomprobante.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-import { PdfviewComponent } from './components/pdfview/pdfview.component';
+import { PdfviewsharedComponent } from './components/pdfviewshared/pdfviewshared.component';
 
 
 @NgModule({
@@ -39,7 +39,7 @@ import { PdfviewComponent } from './components/pdfview/pdfview.component';
     MouseOverDirective,
     ArbolRubroComponent,
     DescargarcomprobanteComponent,
-    PdfviewComponent,
+    PdfviewsharedComponent,
     SelectedRowDirective,
     TimeRangePipe,
     BtnVolverComponent,
@@ -64,7 +64,7 @@ import { PdfviewComponent } from './components/pdfview/pdfview.component';
     MouseOverDirective,
     ArbolRubroComponent,
     DescargarcomprobanteComponent,
-    PdfviewComponent,
+    PdfviewsharedComponent,
     SelectedRowDirective,
     MultiPipePipe,
     TimeRangePipe,

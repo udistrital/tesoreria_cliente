@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PdfviewComponent } from './pdfview.component';
+import { PdfviewsharedComponent } from './pdfviewshared.component';
 
-describe('PdfviewComponent', () => {
-  let component: PdfviewComponent;
-  let fixture: ComponentFixture<PdfviewComponent>;
+describe('PdfviewsharedComponent', () => {
+  let component: PdfviewsharedComponent;
+  let fixture: ComponentFixture<PdfviewsharedComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PdfviewComponent ]
+      declarations: [ PdfviewsharedComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PdfviewComponent);
+    fixture = TestBed.createComponent(PdfviewsharedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

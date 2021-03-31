@@ -13,6 +13,7 @@ import { SetInfoinversioninicialComponent } from './components/set-infoinversion
 import { SetContabilizacionComponent } from './components/set-contabilizacion/set-contabilizacion.component';
 import { ShowDetalleadquisicionComponent } from './components/show-detalleadquisicion/show-detalleadquisicion.component';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
+    RxReactiveFormsModule,
     CurrencyMaskModule
   ]
 })

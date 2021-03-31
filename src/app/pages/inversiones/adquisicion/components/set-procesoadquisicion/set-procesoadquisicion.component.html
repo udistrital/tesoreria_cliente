@@ -78,7 +78,7 @@
             </div>
             <div class="col-md-6">
                 <label for="valorInversion">Valor de la Inversión</label>
-                <input currencyMask min="0.0" class="form-control" id="valorInversion" formControlName="valorInversion" [class.is-invalid]="isInvalid('valorInversion')">
+                <input currencyMask class="form-control" id="valorInversion" formControlName="valorInversion" [class.is-invalid]="isInvalid('valorInversion')">
                 <small *ngIf="isInvalid('valorInversion')" class="text-danger">Ingrese números en este campo</small>
             </div>
         </div>

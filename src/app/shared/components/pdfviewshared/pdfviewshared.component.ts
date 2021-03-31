@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'ngx-pdfview',
-  templateUrl: './pdfview.component.html',
-  styleUrls: ['./pdfview.component.scss']
+  selector: 'ngx-pdfviewshared',
+  templateUrl: './pdfviewshared.component.html',
+  styleUrls: ['./pdfviewshared.component.scss']
 })
-export class PdfviewComponent implements OnInit {
+export class PdfviewsharedComponent implements OnInit {
 
   @Input() fileName = '';
   @Input() currentPage: number;

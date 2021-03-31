@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
 
 @Component({
   selector: 'ngx-set-procesoadquisicion',
@@ -29,7 +30,7 @@ export class SetProcesoadquisicionComponent implements OnInit {
       fechaFinal: ['', Validators.required],
       valorInversion: ['', [
         Validators.required,
-        Validators.pattern('^[1-9]*\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$')
+        RxwebValidators.numeric({allowDecimal: true})
       ]]
     });
   }

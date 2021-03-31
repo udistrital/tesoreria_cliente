@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { getNodoSeleccionado } from '../../../../../shared/selectors/shared.selectors';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
 
 @Component({
   selector: 'ngx-set-infoinversioninicial',
@@ -56,13 +57,13 @@ export class SetInfoinversioninicialComponent implements OnInit {
       rendimientos: ['', Validators.required],
       valorRendimientos: ['', [
         Validators.required,
-        Validators.pattern('^[1-9]*\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$')
+        RxwebValidators.numeric({allowDecimal: true})
       ]],
       otros: ['', Validators.required],
       observaciones: ['', Validators.required],
       valorNumero: ['', [
         Validators.required,
-        Validators.pattern('^[1-9]*\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$')
+        RxwebValidators.numeric({allowDecimal: true})
       ]]
     });
   }
