@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CONFIGURACION_CONTABILIZACION, DATOS_CONTABILIZACION } from '../../interfaces/interfaces';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'ngx-set-contabilizacion',
@@ -9,9 +11,54 @@ import { FormGroup } from '@angular/forms';
 export class SetContabilizacionComponent implements OnInit {
 
   causacionInicialGroup: FormGroup;
-  constructor() { }
+  // Datos de las tablas
+  configCausacionInicial: any;
+  datosCausacionInicial: any;
+
+  constructor(private fb: FormBuilder, private modalService: NgbModal) {
+    this.createForm();
+
+    this.configCausacionInicial = CONFIGURACION_CONTABILIZACION;
+    this.datosCausacionInicial = DATOS_CONTABILIZACION;
+  }
 
   ngOnInit() {
+  }
+
+  createForm() {
+    this.causacionInicialGroup = this.fb.group({
+      tipoComprobante: ['', Validators.required],
+      numeroComprobante: ['', [
+        Validators.required,
+        Validators.pattern('^[0-9]*$')
+      ]],
+      consecutivo: ['', [
+        Validators.required,
+        Validators.pattern('^[0-9]*$')
+      ]],
+      concepto: ['', Validators.required],
+    });
+  }
+
+  isInvalid(nombre: string) {
+    const input = this.causacionInicialGroup.get(nombre);
+    if (input)
+      return input.invalid && (input.touched || input.dirty);
+    else
+      return true;
+  }
+
+  saveForm() {
+    if (this.causacionInicialGroup.invalid) {
+      return Object.values(this.causacionInicialGroup.controls).forEach(control => {
+        control.markAsTouched();
+      });
+    }
+  }
+
+ // Funciones para descargar comprobantes contables
+ modalComprobante(contabilizacionModal) {
+   this.modalService.open(contabilizacionModal, { size: 'xl' });
   }
 
 }

@@ -12,8 +12,7 @@ import { SetProcesoadquisicionComponent } from './components/set-procesoadquisic
 import { SetInfoinversioninicialComponent } from './components/set-infoinversioninicial/set-infoinversioninicial.component';
 import { SetContabilizacionComponent } from './components/set-contabilizacion/set-contabilizacion.component';
 import { ShowDetalleadquisicionComponent } from './components/show-detalleadquisicion/show-detalleadquisicion.component';
-
-
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 @NgModule({
   declarations: [
@@ -32,7 +31,8 @@ import { ShowDetalleadquisicionComponent } from './components/show-detalleadquis
     MatDividerModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CurrencyMaskModule
   ]
 })
 export class AdquisicionModule { }

@@ -29,7 +29,8 @@ export class SetProcesoadquisicionComponent implements OnInit {
       fechaFinal: ['', Validators.required],
       valorInversion: ['', [
         Validators.required,
-        Validators.pattern('^[0-9]*$')]],
+        Validators.pattern('^[1-9]*\d{0,7}(?:\.\d{1,4})?|\.\d{1,4}$')
+      ]]
     });
   }
 
