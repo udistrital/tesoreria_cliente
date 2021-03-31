@@ -26,6 +26,10 @@ import { FileUploadDirective } from './directives/file-upload.directive';
 import { TableComponent } from './components/table/table.component';
 import * as fromAvances from './reducers/avances.reducer';
 import { AvancesEffects } from './effects/avances.effects';
+import { DescargarcomprobanteComponent } from './components/descargarcomprobante/descargarcomprobante.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { PdfviewComponent } from './components/pdfview/pdfview.component';
+
 
 @NgModule({
   exports: [
@@ -34,6 +38,8 @@ import { AvancesEffects } from './effects/avances.effects';
     DatosGeneralesInicialesComponent,
     MouseOverDirective,
     ArbolRubroComponent,
+    DescargarcomprobanteComponent,
+    PdfviewComponent,
     SelectedRowDirective,
     TimeRangePipe,
     BtnVolverComponent,
@@ -44,6 +50,7 @@ import { AvancesEffects } from './effects/avances.effects';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    PdfViewerModule,
     NbTreeGridModule,
     StoreModule.forFeature(fromShared.sharedFeatureKey, fromShared.reducer),
     StoreModule.forFeature(fromAvances.avancesFeatureKey, fromAvances.reducer),
@@ -56,6 +63,8 @@ import { AvancesEffects } from './effects/avances.effects';
     DatosGeneralesInicialesComponent,
     MouseOverDirective,
     ArbolRubroComponent,
+    DescargarcomprobanteComponent,
+    PdfviewComponent,
     SelectedRowDirective,
     MultiPipePipe,
     TimeRangePipe,
