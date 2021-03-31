@@ -23,6 +23,7 @@ export class SetErogacionComponent implements OnInit {
 
   @Output() informacionBanco: EventEmitter<any>;
   @Output() informacionBeneficiarios: EventEmitter<any>;
+  @Output() statusErogacion: EventEmitter<any>;
   @ViewChild('modalDetalles', { static: false }) modalContenido: any;
 
   subscriptionDetalles$: any;
@@ -70,6 +71,7 @@ export class SetErogacionComponent implements OnInit {
     private sharedService: SharedService, ) {
       this.informacionBanco = new EventEmitter;
       this.informacionBeneficiarios = new EventEmitter;
+      this.statusErogacion = new EventEmitter;
       this.configuration = CONF_BENEFICIARIO;
       this.configurationDetalles = CONF_DETALLES;
       this.configurationRubro = CONF_RUBROS;
@@ -99,6 +101,19 @@ export class SetErogacionComponent implements OnInit {
         }
       }
     );
+    this.handleChanges();
+  }
+
+  handleChanges() {
+    this.bancoForm.statusChanges.subscribe(
+      result => {
+        if (result === 'VALID') {
+          this.statusErogacion.emit(true);
+        } else {
+          this.statusErogacion.emit(false);
+        }
+      }
+    )
   }
 
   abrir(datos: any) {
@@ -108,8 +123,30 @@ export class SetErogacionComponent implements OnInit {
   }
 
   guardar() {
-    this.informacionBanco.emit(this.bancoForm.value);
-    this.informacionBeneficiarios.emit(this.datosBeneficiarios);
+    if (this.bancoForm.valid) {
+      this.validarBanco = false;
+      this.informacionBanco.emit(this.bancoForm.value);
+      this.informacionBeneficiarios.emit(this.datosBeneficiarios);
+    } else {
+      this.validarBanco = true;
+      this.validarFormulario();
+    }
+  }
+
+  esInvalido(nombre: string) {
+    const input = this.bancoForm.get(nombre);
+    if (input)
+      return input.invalid && (input.touched || input.dirty);
+    else
+      return true;
+  }
+
+  validarFormulario() {
+    if (this.bancoForm.invalid) {
+      return Object.values(this.bancoForm.controls).forEach(control => {
+        control.markAsDirty();
+      });
+    }
   }
 
   cerrar () {

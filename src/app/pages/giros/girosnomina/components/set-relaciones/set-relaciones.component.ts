@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 export class SetRelacionesComponent implements OnInit, OnDestroy {
 
   @Output() informacionRelaciones: EventEmitter<any>;
+  @Output() statusRelacion: EventEmitter<any>;
 
   configurationPlus: any;
   configurationMin: any;
@@ -20,6 +21,7 @@ export class SetRelacionesComponent implements OnInit, OnDestroy {
 
   datoSeleccionado: any;
   subscriptionTabla$: any;
+  mensaje: boolean;
 
   constructor(
     private store: Store<any>,
@@ -30,6 +32,7 @@ export class SetRelacionesComponent implements OnInit, OnDestroy {
     this.datoSeleccionado = [];
     this.datosGiroRelacion = DATOS_RELACION;
     this.informacionRelaciones = new EventEmitter;
+    this.statusRelacion = new EventEmitter;
    }
   
   ngOnDestroy() {
@@ -37,18 +40,21 @@ export class SetRelacionesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.mensaje = false;
     this.subscriptionTabla$ = this.store.select(getFilaSeleccionada).subscribe((action: any) => {
       if (this.sharedService.IfStore(action)) {
         if (action.accion.name === 'agregar') {
           if (this.datoSeleccionado.length === 0) {
             this.datoSeleccionado.push(action.fila);
+            this.statusRelacion.emit(true);
           } else {
             Swal.fire({
               type: 'error',
               title: '¡Error!',
-              text: 'Sólo es posible elegir una orden de pago',
+              text: 'Sólo es posible elegir una relación de autorización',
               confirmButtonText: 'Aceptar',
             });
+            this.statusRelacion.emit(false);
           }
         }
         if (action.accion.name === 'eliminar') {
@@ -64,7 +70,14 @@ export class SetRelacionesComponent implements OnInit, OnDestroy {
   }
 
   guardar() {
-    this.informacionRelaciones.emit(this.datoSeleccionado);    
+    if (this.datoSeleccionado.length === 0) {
+      this.statusRelacion.emit(false);
+      this.mensaje = true;
+    } else {
+      this.informacionRelaciones.emit(this.datoSeleccionado);
+      this.mensaje = false;  
+    }
+
   }
 
 }

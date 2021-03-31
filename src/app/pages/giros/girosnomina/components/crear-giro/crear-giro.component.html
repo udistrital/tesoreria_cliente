@@ -9,17 +9,17 @@
                 </div>
             </div>
             <mat-horizontal-stepper linear #stepper>
-                <mat-step>
+                <mat-step [completed]="informacion">
                     <ng-template matStepLabel> Inicio </ng-template>
-                    <ngx-set-informacion (informacionForm)="datosInformacionForm($event)"></ngx-set-informacion>
+                    <ngx-set-informacion (statusForm)="validarInformacion($event)" (informacionForm)="datosInformacionForm($event, stepper)"></ngx-set-informacion>
                 </mat-step>
-                <mat-step>
+                <mat-step [completed]="relacion">
                     <ng-template matStepLabel> Relación de Autorización </ng-template>
-                    <ngx-set-relaciones (informacionRelaciones)="datosInformacionRelacion($event)"></ngx-set-relaciones>
+                    <ngx-set-relaciones (statusRelacion)="validarRelacion($event)" (informacionRelaciones)="datosInformacionRelacion($event, stepper)"></ngx-set-relaciones>
                 </mat-step>
-                <mat-step>
+                <mat-step [completed]="erogacion">
                     <ng-template matStepLabel> Erogación y detalles del giro </ng-template>
-                    <ngx-set-erogacion (informacionBanco)="datosBancoForm($event)" (informacionBeneficiarios)="datosBeneficiarios($event)"></ngx-set-erogacion>
+                    <ngx-set-erogacion (statusErogacion)="validarErogacion($event)" (informacionBanco)="datosBancoForm($event)" (informacionBeneficiarios)="datosBeneficiarios($event, stepper)"></ngx-set-erogacion>
                 </mat-step>
                 <mat-step>
                     <ng-template matStepLabel> Resumen </ng-template>

@@ -9,20 +9,20 @@
                 <div class="row my-2">
                     <div class="col py-2">
                         <label for="cdp"> CDP </label> <br>
-                        <input name="cdp" id="cdp" type="text" placeholder="9999" disabled>
+                        <input class="form-control" name="cdp" id="cdp" type="text" placeholder="9999" disabled>
                     </div>
                     <div class="col py-2">
                         <label for="rp"> RP </label> <br>
-                        <input name="rp" id="rp" type="text" placeholder="9999" disabled>
+                        <input class="form-control" name="rp" id="rp" type="text" placeholder="9999" disabled>
                     </div>
                 </div>
-                <div class="row my-2">
-                    <ngx-general-table [config]="configurationRubro" [datos]="datosRubros"></ngx-general-table>
+                <div class="row my-2 justify-content-center">
+                    <ngx-general-table class="mt-2" [config]="configurationRubro" [datos]="datosRubros"></ngx-general-table>
                 </div>
                 <div class="row my-2">
                     <div class="col-6">
                         <label for="concepto">Concepto</label> <br>
-                        <select name="concepto" id="concepto" class="form-control" formControlName="concepto">
+                        <select name="concepto" id="concepto" class="form-control" formControlName="concepto" [class.is-invalid]="esInvalido('concepto')">
                             <option *ngFor="let concepto of conceptos" value={{concepto}}> {{concepto}} </option>
                         </select>
                     </div>
@@ -30,26 +30,26 @@
                 <div class="row my-2">
                     <div class="col py-2">
                         <label for="banco"> Banco </label> <br>
-                            <select name="banco" id="banco" class="form-control" formControlName="banco">
+                            <select name="banco" id="banco" class="form-control" formControlName="banco" [class.is-invalid]="esInvalido('banco')">
                                 <option *ngFor="let banco of bancos" value={{banco}}> {{banco}} </option>
                             </select>
                     </div>
                     <div class="col py-2">
                         <label for="nombreCuenta"> Nombre de la cuenta </label> <br>
-                            <select name="nombreCuenta" id="nombreCuenta" class="form-control" formControlName="nombreCuenta">
+                            <select name="nombreCuenta" id="nombreCuenta" class="form-control" formControlName="nombreCuenta" [class.is-invalid]="esInvalido('nombreCuenta')">
                                 <option *ngFor="let cuenta of cuentas" value={{cuenta}}> {{cuenta}} </option>
                             </select>
                     </div>
                 </div>
-                <small class="message" *ngIf="validarBanco"> Requerido* </small> 
+                <small class="message" *ngIf="validarBanco"> Los campos en color rojo son requeridos* </small> 
                 <div class="row my-2">
                     <div class="col py-2">
                         <label for="numeroCuenta"> Número de cuenta </label> <br>
-                        <input type="text" name="numeroCuenta" id="numeroCuenta" value={{cuenta}} placeholder={{cuenta}} disabled>
+                        <input type="text" class="form-control" name="numeroCuenta" id="numeroCuenta" value={{cuenta}} placeholder={{cuenta}} disabled>
                     </div>
                     <div class="col py-2">
                         <label for="tipoCuenta"> Tipo de cuenta </label> <br>
-                        <input type="text" name="tipoCuenta" id="tipoCuenta" value={{tipo}} placeholder={{tipo}} disabled>
+                        <input class="form-control" type="text" name="tipoCuenta" id="tipoCuenta" value={{tipo}} placeholder={{tipo}} disabled>
                     </div>
                 </div>
             </div>
@@ -59,7 +59,9 @@
                 Datos de los beneficiarios
             </div>
             <div class="card-body pt-0">
-                <ngx-general-table [config]="configuration" [datos]="datosBeneficiarios"></ngx-general-table>
+                <div class="row justify-content-center">
+                    <ngx-general-table [config]="configuration" [datos]="datosBeneficiarios"></ngx-general-table>
+                </div>
                 <div class="row justify-content-md-center">
                     <label class="mx-2 p-2 font-weight-bold" for="valorTotal"> Valor total a girar: </label> <br>
                     <input class="form-control" id="valorTotal" disabled value="{{totalGasto() | currency}}">
@@ -69,11 +71,11 @@
         <div class="row text-center">
             <div class="col">
                 <button matStepperPrevious type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
-                    Volver al registro
+                    Volver
                 </button>
             </div>
             <div class="col">
-                <button matStepperNext (click)="guardar()" class="btn btn-success px-3 py-2 my-2 text-light" [disabled]="datosBeneficiarios.length === 0 || bancoForm.invalid">
+                <button (click)="guardar()" class="btn btn-success px-3 py-2 my-2 text-light">
                     Siguiente
                 </button>
             </div>
