@@ -49,7 +49,7 @@ export class SetGirosComponent implements OnInit, OnDestroy {
             Swal.fire({
               type: 'error',
               title: '¡Error!',
-              text: 'Sólo es posible elegir una orden de pago',
+              text: 'Sólo es posible elegir un giro',
               confirmButtonText: 'Aceptar',
             });
           }
