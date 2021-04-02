@@ -53,7 +53,6 @@ export class SetRelacionesComponent implements OnInit, OnDestroy {
               text: 'Sólo es posible elegir una relación de autorización',
               confirmButtonText: 'Aceptar',
             });
-            this.statusRelaciones.emit(false);
           }
         }
         if (action.accion.name === 'quitar') {
