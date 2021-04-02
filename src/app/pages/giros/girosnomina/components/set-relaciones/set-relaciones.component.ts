@@ -34,7 +34,6 @@ export class SetRelacionesComponent implements OnInit, OnDestroy {
     this.informacionRelaciones = new EventEmitter;
     this.statusRelacion = new EventEmitter;
    }
-  
   ngOnDestroy() {
     this.subscriptionTabla$.unsubscribe();
   }
@@ -75,7 +74,7 @@ export class SetRelacionesComponent implements OnInit, OnDestroy {
       this.mensaje = true;
     } else {
       this.informacionRelaciones.emit(this.datoSeleccionado);
-      this.mensaje = false;  
+      this.mensaje = false;
     }
 
   }

@@ -23,3 +23,8 @@ export const cargarDatosBancoNomina = createAction(
   '[Girosnomina] Cargar DatosBancoProveedores',
   props(),
 );
+
+export const cargarDatosTercero = createAction(
+  '[Girosnomina] Cargar DatosTercero',
+  props(),
+);

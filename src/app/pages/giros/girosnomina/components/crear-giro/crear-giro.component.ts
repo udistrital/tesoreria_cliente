@@ -14,9 +14,7 @@ export class CrearGiroComponent implements OnInit {
   relacion: boolean = false;
   erogacion: boolean = false;
 
-  constructor(private store: Store <any>,) {
-    
-   }
+  constructor(private store: Store <any>, ) {}
 
   ngOnInit() {
   }

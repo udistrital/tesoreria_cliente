@@ -365,7 +365,9 @@ export const CONF_BENEFICIARIO: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                type: 'currency',
+                config: [],
+                class: 'text-center',
             }
         },
     ],
@@ -384,6 +386,83 @@ export const CONF_BENEFICIARIO: any = {
             }
         ],
     },
+    noData: {
+        name: 'No existen elementos asociados',
+        class: 'text-center',
+    },
+    sort: true,
+    filter: true,
+};
+export const CONF_BENEFICIARIO_BANCO: any = {
+    showColumnTitle: true,
+    // title: {
+    //     name: 'Actividades Asociadas',
+    //     class: 'text-center text-light',
+    // },
+    dataConfig: [
+        {
+            key: 'consecutivo',
+            title: {
+                name: 'Consecutivo',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'envio',
+            title: {
+                name: 'Envio',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'tipoId',
+            title: {
+                name: 'Tipo ID',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'id',
+            title: {
+                name: 'ID',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'nombre',
+            title: {
+                name: 'Nombre',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'valor',
+            title: {
+                name: 'Valor',
+                class: 'text-center',
+            },
+            pipe: {
+                type: 'currency',
+                config: [],
+                class: 'text-center',
+            }
+        },
+    ],
     noData: {
         name: 'No existen elementos asociados',
         class: 'text-center',
@@ -497,7 +576,7 @@ export const CONF_DETALLES: any = {
             },
             pipe: {
                 class: 'text-justify',
-            }   
+            }
         },
         {
             key: 'clase',
@@ -509,7 +588,6 @@ export const CONF_DETALLES: any = {
                 class: 'text-justify',
             }
         }
-        
     ],
     sort: true,
     filter: false,
@@ -538,7 +616,9 @@ export const CONF_DESCUENTOS: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                type: 'currency',
+                config: [],
+                class: 'text-center',
             }
         }
     ],
@@ -569,7 +649,9 @@ export const CONF_DEVENGO: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                type: 'currency',
+                config: [],
+                class: 'text-center',
             }
         }
     ],
@@ -713,7 +795,9 @@ export const CONF_ACREEDOR: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                type: 'currency',
+                config: [],
+                class: 'text-center',
             }
         }
     ],
@@ -814,35 +898,142 @@ export const DATOS_BENEFICIARIOS: any = [
         clase: 'corriente'
      }
 ];
+export const DATOS_BENEFICIARIOS_BANCO: any = [
+    {
+        consecutivo: 382,
+        tipoId: 'CC',
+        id: 34567,
+        nombre: 'Banco Davivienda',
+        fechaPago: '',
+        valor: 823123,
+    },
+    {
+        consecutivo: 383,
+        tipoId: 'CC',
+        id: 34587,
+        nombre: 'Banco Davivienda',
+        fechaPago: '',
+        valor: 345328,
+     }
+];
 export const DATOS_DEVENGO: any = [
     {
         devengo: 'Sueldos',
-        valorDevengo: 17312,
+        valorDevengo: 4382108,
     },
     {
         devengo: 'Bonificación',
-        valorDevengo: 6345,
+        valorDevengo: 306748,
      },
 ];
 export const DATOS_DESCUENTO: any = [
     {
         descuento: 'Retención en la fuente',
-        valorDescuento: 7123
+        valorDescuento: 52585,
     },
     {
         descuento: 'Fondo de empleados',
-        valorDescuento: 4563
+        valorDescuento: 22000,
     },
     {
         descuento: 'SINTRA-UD',
-        valorDescuento: 37458
+        valorDescuento: 131463,
     },
     {
         descuento: 'Régimen de salud',
-        valorDescuento: 12354
+        valorDescuento: 525853,
     },
     {
         descuento: 'Sistema general de pensión',
-        valorDescuento: 7126
+        valorDescuento: 775722,
     },
+];
+export const DATOS_CONTABILIDAD: any = [
+    {
+        secuencia: 1,
+        tercero: 79355747,
+        numeroCuenta: 271863,
+        nombreCuenta: 'Proveedores',
+        detalle: 'Nómina del mes de julio',
+        debito: 0,
+        credito: 1264304,
+    },
+    {
+        secuencia: 2,
+        tercero: 79355747,
+        numeroCuenta: 712361,
+        nombreCuenta: 'Honorarios',
+        detalle: 'Nómina del mes de julio',
+        debito: 0,
+        credito: 2893934,
+    },
+    {
+        secuencia: 3,
+        tercero: 79355747,
+        numeroCuenta: 728612,
+        nombreCuenta: 'Reteica',
+        detalle: 'Nómina del mes de julio',
+        debito: 0,
+        credito: 10449,
+    },
+    {
+        secuencia: 4,
+        tercero: 79355747,
+        numeroCuenta: 123786,
+        nombreCuenta: 'Estampilla pro cultura',
+        detalle: 'Nómina del mes de julio',
+        debito: 0,
+        credito: 6588,
+    },
+    {
+        secuencia: 5,
+        tercero: 79355747,
+        numeroCuenta: 789123,
+        nombreCuenta: 'Estampilla pro adulto',
+        detalle: 'Nómina del mes de julio',
+        debito: 0,
+        credito: 23354,
+    },
+    {
+        secuencia: 6,
+        tercero: 79355747,
+        numeroCuenta: 4234768,
+        nombreCuenta: 'Libranzas',
+        detalle: 'Nómina del mes de julio',
+        debito: 22874645,
+        credito: 0,
+    }
+];
+export const DATOS_CONTABILIDAD_TERCERO: any = [
+    {
+        secuencia: 1,
+        tercero: 3458,
+        numeroCuenta: 3457934,
+        nombreCuenta: 'Occidente Proveedores',
+        detalle: 'Endoso Cesar Salamanca',
+        debito: 0,
+        credito: 819237,
+    },
+    {
+        secuencia: 2,
+        tercero: 871239,
+        numeroCuenta: 178231,
+        nombreCuenta: 'Fondo de empleados',
+        detalle: 'Endoso Cesar Salamanca',
+        debito: 819237,
+        credito: 0,
+    }
+];
+export const DATOS_ACREEDOR: any = [
+    {
+        codigo: 2,
+        codigoConcepto: 79,
+        concepto: 'Banco Davivienda',
+        valor: 0,
+    },
+    {
+        numeroDocumento: 783123,
+        nombre: 'Cesar Salamanca',
+        valor: 10000,
+    }
 ];

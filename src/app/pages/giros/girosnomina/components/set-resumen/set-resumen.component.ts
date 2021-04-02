@@ -37,6 +37,7 @@ export class SetResumenComponent implements OnInit, OnDestroy {
   concepto: any;
 
   modal: NgbModalRef;
+  mensaje: boolean = true;
 
   ngOnDestroy() {
     this.subscription$.unsubscribe();
@@ -61,7 +62,7 @@ export class SetResumenComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscriptionBanco$ = this.store.select(getDatosBanco).subscribe(
       (data: any) => {
-        if(this.sharedService.IfStore(data)) {
+        if (this.sharedService.IfStore(data)) {
           this.banco = data.banco;
           this.nombreCuenta = data.nombreCuenta;
           this.concepto = data.concepto;
@@ -70,7 +71,7 @@ export class SetResumenComponent implements OnInit, OnDestroy {
     );
     this.subscriptionInformacion$ = this.store.select(getDatosInformacion).subscribe(
       (data: any) => {
-        if(this.sharedService.IfStore(data)) {
+        if (this.sharedService.IfStore(data)) {
           this.areaFuncional = data.areaFuncional;
           this.tipoGiro = data.tipoGiro;
           this.fecha = data.fecha;
@@ -80,7 +81,7 @@ export class SetResumenComponent implements OnInit, OnDestroy {
     );
     this.subscription$ = this.store.select(getDatosBeneficiarios).subscribe(
       (data: any) => {
-        if(this.sharedService.IfStore(data)) {
+        if (this.sharedService.IfStore(data)) {
           let i = 0;
           while (data[i] !== undefined) {
             this.datosBeneficiarios.push(data[i]);
@@ -120,6 +121,18 @@ export class SetResumenComponent implements OnInit, OnDestroy {
     this.modalNomina.modalNomina = true;
   }
 
-  girar() { }
+  guardarAprobacion(data: any) {
+    this.mensaje = data;
+  }
+
+  girar() {
+    Swal.fire({
+      type: 'success',
+      title: '¡Guardado!',
+      html: 'Se ha creado el giro con consecutivo: ' + this.consecutivo + '<br> Estado: Radicado',
+      confirmButtonText: 'Aceptar',
+    });
+    this.route.navigateByUrl('/pages/giros/nomina/lista');
+   }
 
 }

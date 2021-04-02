@@ -20,3 +20,7 @@ export const getDatosBanco = createSelector(
 export const getDatosRelacion = createSelector(
   selectGirosnominaState,
   (state: fromGirosnomina.State) => state.DatosRelacion);
+
+export const getDatosTercero = createSelector(
+  selectGirosnominaState,
+  (state: fromGirosnomina.State) => state.DatosTercero);

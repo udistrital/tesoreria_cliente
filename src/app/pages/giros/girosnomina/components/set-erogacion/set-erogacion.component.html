@@ -1,4 +1,3 @@
-
 <div class="container-fluid">
     <form [formGroup]="bancoForm">
         <div class="card p-3 m-4">
@@ -84,24 +83,25 @@
 </div>
 
 <ng-template #modalDetalles>
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title text-center text-primary my-2">Beneficiario</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)=" cerrar()">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="card my-4">
-                <div class="card-title informacion col-md-4 bg-primary text-light text-center py-1 px-1 rounded">
+    <mat-dialog-content>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col py-2 mt-4">
+                    <h5 class="card-title text-center text-primary">
+                        BENEFICIARIO
+                    </h5>
+                </div>
+            </div>
+            <div class="card p-3 m-4">
+                <div class="card-title col-md-4 bg-primary text-light text-center py-1 px-1 rounded">
                     Detalles de la cuenta
                 </div>
                 <div class="card-body">
                     <ngx-general-table [config]="configurationDetalles" [datos]="datosDetalle"></ngx-general-table>    
                 </div>                
             </div>
-            <div class="card my-4">
-                <div class="card-title informacion col-md-4 bg-primary text-light text-center py-1 px-1 rounded">
+            <div class="card p-3 m-4">
+                <div class="card-title col-md-4 bg-primary text-light text-center py-1 px-1 rounded">
                     Descuentos
                 </div>
                 <div class="card-body">
@@ -114,11 +114,25 @@
                     </div>
                 </div>    
                 </div>
-                
+                <div class="row m-2">
+                    <div class="col p-2">
+                        <label class="p-2 font-weight-bold" for="valorDevengo"> Total devengos: </label> <br>
+                        <input class="form-control" id="valorDevengo" disabled value="{{totalDevengo() | currency}}">
+                    </div>
+                    <div class="col p-2">
+                        <label class="p-2 font-weight-bold" for="valorDescuentos"> Total descuentos: </label> <br>
+                        <input class="form-control" id="valorDescuentos" disabled value="{{totalDescuento() | currency}}">
+                    </div>
+                </div>
+                <div class="row m-2 justify-content-center">
+                    <label class="mx-2 p-2 font-weight-bold" for="valorNeto"> Neto a pagar: </label> <br>
+                    <input class="form-control" id="valorNeto" disabled value="{{totalNeto() | currency}}">
+                </div>
             </div>
         </div>
-        <div class="modal-footer">
-            <button mat-button type="button" (click)="cerrar()" class="btn btn-primary px-3 py-2 my-2 text-light"> Volver </button>
-        </div>
-    </div>      
+    </mat-dialog-content>
+    <mat-dialog-actions align="center">
+        <button class="btn btn-success px-3 py-2 m-3 text-ligth" mat-button mat-dialog-close> Aceptar </button>
+    </mat-dialog-actions>
 </ng-template>
+

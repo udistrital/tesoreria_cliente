@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { getFilaSeleccionada } from '../../../../../shared/selectors/shared.selectors';
 import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SharedService } from '../../../../../shared/services/shared.service';
 import { Store } from '@ngrx/store';
@@ -14,12 +13,13 @@ import { CONF_BENEFICIARIO,
   CONF_DEVENGO,
   DATOS_DESCUENTO,
   DATOS_DEVENGO } from '../../interfaces/interfaces';
+import { MatDialog } from '@angular/material';
 @Component({
   selector: 'ngx-set-erogacion',
   templateUrl: './set-erogacion.component.html',
   styleUrls: ['./set-erogacion.component.scss']
 })
-export class SetErogacionComponent implements OnInit {
+export class SetErogacionComponent implements OnInit, OnDestroy {
 
   @Output() informacionBanco: EventEmitter<any>;
   @Output() informacionBeneficiarios: EventEmitter<any>;
@@ -27,21 +27,18 @@ export class SetErogacionComponent implements OnInit {
   @ViewChild('modalDetalles', { static: false }) modalContenido: any;
 
   subscriptionDetalles$: any;
-  modal: NgbModalRef;
+  modal: any;
   bancoForm: FormGroup;
-  
   datosBeneficiarios: any;
   datosDetalle: any;
   datosRubros: any;
   datosDescuento: any;
   datosDevengo: any;
-  
   configuration: any;
   configurationDetalles: any;
   configurationRubro: any;
   configurationDescuento: any;
   configurationDevengo: any;
-  
   validarBanco: boolean = false;
 
   totalGirar: any;
@@ -65,8 +62,12 @@ export class SetErogacionComponent implements OnInit {
   cuenta = '230-981-23';
   tipo = 'Ahorros';
 
+  devengo: any;
+  descuento: any;
+  neto: any;
+
   constructor(private store: Store<any>,
-    private modalService: NgbModal,
+    public dialog: MatDialog,
     private formBuilder: FormBuilder,
     private sharedService: SharedService, ) {
       this.informacionBanco = new EventEmitter;
@@ -87,8 +88,11 @@ export class SetErogacionComponent implements OnInit {
         banco: ['', Validators.required],
         nombreCuenta: ['', Validators.required],
         concepto: ['', Validators.required],
-      }); 
+      });
      }
+  ngOnDestroy() {
+    this.subscriptionDetalles$.unsubscribe();
+  }
 
   ngOnInit() {
     this.subscriptionDetalles$ = this.store.select(getFilaSeleccionada).subscribe(
@@ -113,13 +117,13 @@ export class SetErogacionComponent implements OnInit {
           this.statusErogacion.emit(false);
         }
       }
-    )
+    );
   }
 
   abrir(datos: any) {
     this.datosDetalle = [];
     this.datosDetalle.push(datos);
-    this.modal = this.modalService.open(this.modalContenido);
+    this.modal = this.dialog.open(this.modalContenido);
   }
 
   guardar() {
@@ -149,12 +153,20 @@ export class SetErogacionComponent implements OnInit {
     }
   }
 
-  cerrar () {
-    this.modal.close();
-  }
-
   totalGasto() {
     return this.totalGirar = this.datosBeneficiarios.reduce((a: any, b: { valor: number; }) => a + b.valor, 0);
+  }
+
+  totalDevengo() {
+    return this.devengo = this.datosDevengo.reduce((a: any, b: { valorDevengo: number; }) => a + b.valorDevengo, 0);
+  }
+
+  totalDescuento() {
+    return this.descuento = this.datosDescuento.reduce((a: any, b: { valorDescuento: number; }) => a + b.valorDescuento, 0);
+  }
+
+  totalNeto() {
+    return this.neto = this.devengo - this.descuento;
   }
 
 }

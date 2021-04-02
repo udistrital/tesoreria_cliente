@@ -8,13 +8,15 @@ export interface State {
   DatosRelacion: any;
   DatosBeneficiarios: any;
   DatosBancoNomina: any;
+  DatosTercero: any;
 }
 
 export const initialState: State = {
   DatosInformacion: null,
   DatosRelacion: null,
   DatosBeneficiarios: null,
-  DatosBancoNomina: null
+  DatosBancoNomina: null,
+  DatosTercero: null
 };
 
 const girosnominaReducer = createReducer(
@@ -33,7 +35,9 @@ const girosnominaReducer = createReducer(
   on(GirosnominaActions.cargarDatosRelacion, (state, action) => ({
     ...state, DatosRelacion: state.DatosRelacion = action
   })),
-
+  on(GirosnominaActions.cargarDatosTercero, (state, action) => ({
+    ...state, DatosTercero: state.DatosTercero = action
+  })),
 );
 
 export function reducer(state: State | undefined, action: Action) {

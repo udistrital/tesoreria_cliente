@@ -1,1 +1,79 @@
-<p>set-contabilizacion works!</p>
+<div class="container-fluid">
+    <div class="card p-2 my-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+            Contabilización
+        </div>
+        <div class="card-body">
+            <form [formGroup]="contabilizacionForm">
+                <div class="row m-1">
+                    <div class="col py-1">
+                        <label for="conceptoResumen"> Concepto </label> <br>
+                        <select name="conceptoResumen" id="conceptoResumen" class="form-control" formControlName="concepto" [class.is-invalid]="esInvalido('concepto')"> 
+                            <option *ngFor="let concepto of conceptos" value={{concepto}}> {{concepto}} </option>
+                        </select>
+                    </div>
+                    <div class="col py-1">
+                        <label for="codigoResumen"> Código </label> <br>
+                        <select class="form-control" name="codigoResumen" id="codigoResumen" formControlName="codigo" [class.is-invalid]="esInvalido('codigo')"> 
+                            <option *ngFor="let codigo of codigos" value={{codigo}}> {{codigo}} </option>
+                        </select>
+                    </div>
+                    <div class="col py-1">
+                        <label for="tipoComprobante"> Tipo de comprobante </label> <br>
+                        <select name="tipoComprobante" id="tipoComprobante" class="form-control" formControlName="tipoComprobante" [class.is-invalid]="esInvalido('tipoComprobante')">
+                            <option *ngFor="let tipo of tiposComprobante" value={{tipo}}> {{tipo}} </option>
+                        </select>
+                    </div>
+                    <div class="col py-1">
+                        <label for="consecutivo"> Consecutivo </label> <br>
+                        <input name="consecutivoResumen" id="consecutivoResumen" class="form-control" type="text" placeholder={{consecutivo}} disabled>
+                    </div>
+                </div>
+                <small class="message m-3" *ngIf="mensaje"> Los campos en rojo son requeridos* </small> 
+            </form>
+            <div class="row m-1">
+                <div class="col-3 py-1">
+                    <label for="id"> ID </label> <br>
+                    <input class="form-control" type="text" name="id" id="id" placeholder={{id}}
+                        disabled>
+                </div>
+                <div class="col py-1">
+                    <label for="nombre"> Nombre </label> <br>
+                    <input class="form-control" type="text" name="nombre" id="nombre" placeholder={{nombre}}
+                        disabled>
+                </div>
+            </div>
+        </div>
+        <ngx-general-table [config]="configurationContabilidad" [datos]="datosContabilidad"></ngx-general-table>
+        <div class="row my-2">
+            <div class="col py-2" align="center">
+                <label class="font-weight-bold m-2" for="sumaDebito">Suma débito: </label>
+                <input name="sumaDebito" id="sumaDebito" class="form-control total m-2" disabled value="{{totalDebito() | currency}}">
+            </div>
+            <div class="col py-2" align="center">
+                <label class="font-weight-bold m-2" for="sumaCredito">Suma crédito: </label>
+                <input name="sumaCredito" id="sumaCredito" class="form-control m-2 total" disabled value="{{totalCredito() | currency}}">
+            </div>
+        </div>
+        <nav class="mt-2">
+            <ul class="pagination justify-content-end" *ngIf="datosBeneficiarios.length !== 0">
+                <p class="p-2 mx-2">Beneficiario: </p>
+                <li class="page-item"><a class="page-link text-dark" (click)="anterior()"> Anterior </a></li>
+                <li *ngFor="let beneficiario of datosBeneficiarios; index as x" class="page-item" (click)="elegir(x)"><a class="page-link text-dark"> {{x+1}}</a></li>
+                <li class="page-item"><a class="page-link text-dark" (click)="siguiente()">Siguiente</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            <button (click)="cerrar()" type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
+                Atrás
+            </button>
+        </div>
+        <div class="col">
+            <button (click)="guardar()" class="btn btn-success px-3 py-2 my-2 text-light">
+                Siguiente
+            </button>
+        </div>
+    </div>
+</div>

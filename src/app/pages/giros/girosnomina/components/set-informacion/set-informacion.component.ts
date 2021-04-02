@@ -85,7 +85,6 @@ export class SetInformacionComponent implements OnInit {
       this.validarFormulario();
       this.mensaje = true;
     }
-    
   }
 
 }
