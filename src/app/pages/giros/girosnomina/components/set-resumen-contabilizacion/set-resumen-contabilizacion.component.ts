@@ -6,6 +6,7 @@ import { DATOS_CONTABILIDAD_TERCERO,
   DATOS_ACREEDOR,
   CONF_ACREEDOR,
   CONF_CONT } from '../../interfaces/interfaces';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'ngx-set-resumen-contabilizacion',
@@ -91,6 +92,12 @@ export class SetResumenContabilizacionComponent implements OnInit, OnDestroy {
 
   guardar() {
     this.informacionResumen.emit(false);
+    Swal.fire({
+      type: 'success',
+      title: '¡Aprobado!',
+      html: 'Se aprobó la contabilidad',
+      confirmButtonText: 'Aceptar',
+    });
   }
 
   totalGasto() {

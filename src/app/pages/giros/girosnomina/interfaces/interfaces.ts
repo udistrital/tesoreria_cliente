@@ -504,7 +504,9 @@ export const CONF_RUBROS: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                type: 'currency',
+                config: [],
+                class: 'text-center',
             }
         }
     ],
@@ -718,7 +720,9 @@ export const CONF_CONT: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                type: 'currency',
+                config: [],
+                class: 'text-center',
             }
         },
         {
@@ -728,7 +732,9 @@ export const CONF_CONT: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                type: 'currency',
+                config: [],
+                class: 'text-center',
             }
         }
     ],
