@@ -13,6 +13,11 @@ const routes: Routes = [{
       .then(m => m.GirochequesModule),
     },
     {
+      path: 'reversar',
+      loadChildren: () => import('./reversar/reversar.module')
+      .then(m => m.ReversarModule),
+    },
+    {
       path: 'bancos',
       loadChildren: () => import('./bancos/bancos.module')
       .then(m => m.BancosModule),
