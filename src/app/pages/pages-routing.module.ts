@@ -21,6 +21,11 @@ const routes: Routes = [{
       path: 'giros',
       loadChildren: () => import('./giros/giros.module')
       .then(m => m.GirosModule),
+    },
+    {
+      path: 'declaracionretenciones',
+      loadChildren: () => import('./declaracion-retenciones/declaracion-retenciones.module')
+      .then(m => m.DeclaracionRetencionesModule),
     }
   ],
 }];
