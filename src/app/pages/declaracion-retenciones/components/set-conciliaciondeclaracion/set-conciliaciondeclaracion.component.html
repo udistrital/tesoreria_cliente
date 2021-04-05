@@ -1,0 +1,133 @@
+<div class="container bg-white p-5 border rounded">
+    <div class="row">
+        <div class="col py-2">
+            <h5 class="card-title text-center text-primary text-uppercase">
+                DECLARACIÓN DE RETENCIÓN
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form [formGroup]="conciliacionGroup" (ngSubmit)="saveForm()">
+                <div class="container">
+                    <div class="row">
+                        <div class="col pb-3">
+                            <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
+                                Conciliación
+                            </h6>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="codigoCuenta">Código de Cuenta</label>
+                            <select class="custom-select" id="codigoCuenta" formControlName="codigoCuenta" [class.is-invalid]="isInvalid('codigoCuenta')">
+                                <option selected disabled value="">Seleccione...</option>
+                                <option>243608</option>
+                                <option>243605</option>
+                            </select>
+                            <small *ngIf="isInvalid('codigoCuenta')" class="text-danger">Complete este campo</small>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Descripción de la Cuenta</label>
+                            <input value=" " type="text" class="form-control" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="valorCuenta">Valor de Cuenta</label>
+                            <input currencyMask class="form-control" id="valorCuenta" formControlName="valorCuenta" [class.is-invalid]="isInvalid('valorCuenta')">
+                            <small *ngIf="isInvalid('valorCuenta')" class="text-danger">Ingrese un valor
+                                numérico</small>
+                        </div>
+                    </div>
+                    <div class="row px-3 pb-3">
+                        <div class="col-md-8 form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="otrosPagos">
+                            <label class="form-check-label" for="otrosPagos">Otros pagos sujetos a retención</label>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-block btn-primary text-white" (click)='agregarCuenta()'><span>Agregar</span></button>
+                        </div>
+                    </div>
+
+                    <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
+
+                    <!-- Se muestran las cuentas contables seleccionadas y agregadas -->
+                    <div class="row">
+                        <!-- Tabla General Adaptada para cada cuenta (ejemplo: compras 3,5% No declarantes y 2,5% Declarantes...)-->
+                        <ngx-general-table [config]="configConciliacion" [datos]="datosConciliacion">
+                        </ngx-general-table>
+                    </div>
+                    <!-- Tabla adicional para el ejemple, al dar funcionalidad no es necesario -->
+                    <div class="row">
+                        <div class="col pt-3">
+                            <h6 class="card-title col-md-12 bg-dark text-white text-center py-2 px-2 rounded">
+                                Otros pagos sujetos a retención
+                            </h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <ngx-general-table [config]="configConciliacion" [datos]="datosOtrosPagos">
+                        </ngx-general-table>
+                    </div>
+                </div>
+
+                <!-- Botones: Volver a registro, Siguiente -->
+                <div class="container">
+                    <div class="row pt-2 text-center">
+                        <div class="col-md-6">
+                            <a routerLink="../lista" class="btn btn-primary col-5 text-white m-0 mt-4">Volver a registros</a>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <button class="btn btn-success col-5 text-white m-0 mt-4" (click)="open(guardarDefinitivo)">
+                                Guardar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Guardar-->
+<ng-template #guardarDefinitivo let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title text-success" id="guardarDefinitivo">GUARDAR DEFINITIVO</h5>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p class="text-center">Se guardará la declaración de retención No. (consecutivo).</p>
+        <p class="text-center">Estado: Definitivo</p>
+        <br>
+        <p class="text-center"><small>Nota: Recuerde generar la solicitud de giro en el módulo de Giros.</small></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary text-secondary" data-dismiss="modal" (click)="modal.close('Close click')">Cerrar</button>
+        <a routerLink="../lista" class="btn btn-primary text-light" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
+            Aceptar
+        </a>
+    </div>
+</ng-template>
+<!-- Fin Modal Guardar-->
+<!-- Modal Guardar-->
+<ng-template #corregirDefinitivo let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title text-danger" id="corregirDefinitivo">AVISO</h5>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p class="text-center">La conciliación no es Equivalente.</p>
+        <p class="text-center">Estado: Corregir</p>
+        <p class="text-center"><small>Nota: Se deben corregir los valores para continuar el proceso.</small></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary text-secondary" data-dismiss="modal" (click)="modal.close('Close click')">Cerrar</button>
+        <a routerLink="../lista" class="btn btn-primary text-light" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
+            Aceptar
+        </a>
+    </div>
+</ng-template>
+<!-- Fin Modal Guardar-->

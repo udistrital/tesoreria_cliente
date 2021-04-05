@@ -1,0 +1,170 @@
+<form [formGroup]="resumenDeclaracionGroup">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h6 class="card-title col-md-7 bg-primary text-white text-center py-2 px-2 rounded">
+                    Resumen Registro de Adquisición
+                </h6>
+            </div>
+        </div>
+        <!-- Se muestran los datos que se han agregado en el proceso -->
+        <div class="row">
+            <div class="col pt-3">
+                <h6 class="card-title col-md-12 bg-dark text-white text-center py-2 px-2 rounded">
+                    Datos Generales
+                </h6>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label>Área Funcional</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Centro Gestor</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Fecha</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col">
+                <label>Rendimientos</label>
+                <textarea id="justificacion" class="form-control" rows="1" readonly></textarea>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label>Presentación</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Entidad</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Tipo de Declaración</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+        <div class="row py-3">
+            <div class="col-md-4 ">
+                <label>Vigencia</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Fecha Inicio</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Fecha Final</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+        <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
+        <div class="row pt-2">
+            <div class="col-md-6">
+                <label>Nombre del Responsable</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-6">
+                <label>Cargo</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+
+        <div class="row pt-2">
+            <div class="col pt-3">
+                <h6 class="card-title col-md-12 bg-dark text-white text-center py-2 px-2 rounded">
+                    Detalle de Cuentas
+                </h6>
+            </div>
+        </div>
+        <div class="row pt-2 justify-content-center align-items-center">
+            <!-- Tabla General Adaptada Cuentas -->
+            <ngx-general-table [config]="configDetalleCuentas" [datos]="datosDetalleCuentas">
+            </ngx-general-table>
+        </div>
+
+        <div class="row pt-2">
+            <div class="col pt-3">
+                <h6 class="card-title col-md-12 bg-dark text-white text-center py-2 px-2 rounded">
+                    Bases y retenciones aproximadas al mil más cercano
+                </h6>
+            </div>
+        </div>
+        <div class="row pt-2 justify-content-center align-items-center">
+            <!-- Tabla General Adaptada Cuentas -->
+            <ngx-general-table [config]="configDetalleCuentas" [datos]="datosDetalleCuentas">
+            </ngx-general-table>
+        </div>
+
+        <mat-divider class="col-md-12 py-3 border-warning"></mat-divider>
+
+        <!-- Botones: Regresar, Siguiente -->
+        <div class="container">
+            <div class="row pt-2 text-center">
+                <div class="col-md-6">
+                    <button mat-button matStepperPrevious class="btn btn-primary text-white m-0 mt-4">Regresar</button>
+                </div>
+                <div class="col-md-6 form-group">
+                    <button class="btn btn-success text-white m-0 mt-4" (click)="open(modalGuardar)">
+                        GUARDAR BORRADOR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Modal Guardar-->
+<ng-template #modalGuardar let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title text-success" id="modalGuardar">GUARDAR BORRADOR</h5>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p class="text-center">Se guardará la declaración de retención No. (consecutivo).</p>
+        <p class="text-center">Estado: Borrador</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary text-light" data-dismiss="modal" (click)="modal.close('Close click')">Cerrar</button>
+        <a data-dismiss="modal" (click)="modal.dismiss('Cross click')">
+            <button type="button" class="btn btn-success text-white" data-dismiss="modal" (click)="open(modalDefinitivo)">
+                Guardar
+            </button>
+        </a>
+    </div>
+</ng-template>
+<!-- Fin Modal Guardar-->
+
+<!-- Modal Definitivo-->
+<ng-template #modalDefinitivo let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title text-primary" id="modalDefinitivo">AVISO</h5>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p class="text-center">¿Desea continuar con el proceso y generar el documento definitivo?</p>
+        <p class="text-center"><small>Si no desea continuar, seleccione "Volver"</small></p>
+    </div>
+    <div class="modal-footer">
+        <a routerLink="../lista" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
+            <button class="btn btn-primary text-light" data-dismiss="modal" (click)="modal.close('Close click')">
+                Volver a registros
+            </button>
+        </a>
+        <a routerLink="../definitivo" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
+            <button class="btn btn-success text-light" data-dismiss="modal" (click)="modal.close('Close click')">
+                Continuar
+            </button>
+        </a>
+    </div>
+</ng-template>
+<!-- Fin Modal Definitivo -->
