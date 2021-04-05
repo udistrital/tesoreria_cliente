@@ -18,6 +18,26 @@ const routes: Routes = [{
       loadChildren: () => import('./girosnomina/girosnomina.module')
       .then(m => m.GirosnominaModule),
     },
+    {
+      path: 'reversar',
+      loadChildren: () => import('./reversar/reversar.module')
+      .then(m => m.ReversarModule),
+    },
+    {
+      path: 'bancos',
+      loadChildren: () => import('./bancos/bancos.module')
+      .then(m => m.BancosModule),
+    },
+    {
+      path: 'sucursales',
+      loadChildren: () => import('./sucursales/sucursales.module')
+      .then(m => m.SucursalesModule),
+    },
+    {
+      path: 'seguridad',
+      loadChildren: () => import('./seguridadsocial/seguridadsocial.module')
+      .then(m => m.SeguridadsocialModule),
+    },
   ],
 }];
 
