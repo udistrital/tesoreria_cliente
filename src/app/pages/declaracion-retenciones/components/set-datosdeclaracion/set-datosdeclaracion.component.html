@@ -1,0 +1,124 @@
+<form [formGroup]="datosDeclaracionGroup" (ngSubmit)="saveForm()">
+    <div class="container">
+        <div class="row">
+            <div class="col pb-3">
+                <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
+                    Datos Generales
+                </h6>
+            </div>
+        </div>
+        <!-- Seleccionar el area funcional -->
+        <div class="form-group row">
+            <div class="col-md-5">
+                <label for="areaFuncional">Área Funcional</label>
+                <select class="custom-select" id="areaFuncional" formControlName="areaFuncional" [class.is-invalid]="isInvalid('areaFuncional')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>01</option>
+                    <option>02</option>
+                </select>
+                <small *ngIf="isInvalid('areaFuncional')" class="text-danger">Seleccione una opción</small>
+            </div>
+        </div>
+        <!-- Escribir una descripcion del tipo de declaracion, elegir el tipo de documento -->
+        <div class="form-group row">
+            <div class="col">
+                <label for="descripcion">Descripción</label>
+                <textarea class="form-control" id="descripcion" formControlName="descripcion" rows="1" [class.is-invalid]="isInvalid('descripcion')"></textarea>
+                <small *ngIf="isInvalid('descripcion')" class="text-danger">Se requiere completar este campo</small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label for="presentacion">Presentación</label>
+                <select class="custom-select" id="presentacion" formControlName="presentacion" [class.is-invalid]="isInvalid('presentacion')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>Borrador</option>
+                    <option>Definitivo</option>
+                </select>
+                <small *ngIf="isInvalid('presentacion')" class="text-danger">Seleccione una opción</small>
+            </div>
+            <div class="col-md-4">
+                <label for="entidad">Entidad</label>
+                <select class="custom-select" id="entidad" formControlName="entidad" [class.is-invalid]="isInvalid('entidad')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>DIAN</option>
+                    <option>SHD</option>
+                </select>
+                <small *ngIf="isInvalid('entidad')" class="text-danger">Seleccione una opción</small>
+            </div>
+            <div class="col-md-4">
+                <label for="tipoDeclaracion">Tipo de Declaración</label>
+                <select class="custom-select" id="tipoDeclaracion" formControlName="tipoDeclaracion" [class.is-invalid]="isInvalid('tipoDeclaracion')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>Renta</option>
+                    <option>...</option>
+                </select>
+                <small *ngIf="isInvalid('tipoDeclaracion')" class="text-danger">Seleccione una opción</small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label for="vigencia">Vigencia</label>
+                <select class="custom-select" id="vigencia" formControlName="vigencia" [class.is-invalid]="isInvalid('vigencia')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>2019</option>
+                    <option>2020</option>
+                </select>
+                <small *ngIf="isInvalid('vigencia')" class="text-danger">Seleccione una opción</small>
+            </div>
+            <div class="col-md-4">
+                <label for="fechaInicial">Fecha de Inicial</label>
+                <div class="input-group">
+                    <input type="date" name="fechaInicial" id="fechaInicial" class="form-control" formControlName="fechaInicial" [class.is-invalid]="isInvalid('fechaInicial')">
+                    <div class="input-group-append">
+                    </div>
+                </div>
+            </div>
+            <div class=" col-md-4">
+                <label for="fechaFinal">Fecha de Final</label>
+                <div class="input-group">
+                    <input type="date" name="fechaFinal" id="fechaFinal" class="form-control" formControlName="fechaFinal" [class.is-invalid]="isInvalid('fechaFinal')">
+                    <div class="input-group-append">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-5">
+                <label for="cargoResponsable">Cargo del Responsable</label>
+                <select class="custom-select" id="cargoResponsable" formControlName="cargoResponsable" [class.is-invalid]="isInvalid('cargoResponsable')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>Vicerrector</option>
+                    <option>...</option>
+                </select>
+                <small *ngIf="isInvalid('cargoResponsable')" class="text-danger">Seleccione una opción</small>
+            </div>
+            <div class="col-md-7">
+                <label>Nombre del Responsable</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+        </div>
+
+        <!-- <mat-divider class="col-md-12 py-2 border-warning"></mat-divider> -->
+
+        <!-- Botones: Volver a registro, Siguiente -->
+        <div class="container">
+            <div class="row pt-2 text-center">
+                <div class="col-md-6">
+                    <a routerLink="../lista">
+                        <button type="button" class="btn btn-primary mb-3 mt-3 text-white">
+                            <div class="d-flex flex-row justify-content-around align-middle">
+                                <span>Volver a registros</span>
+                            </div>
+                        </button>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <button mat-button matStepperNext type="submit" class="btn btn-success m-0 mt-4">
+                        Siguiente
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
