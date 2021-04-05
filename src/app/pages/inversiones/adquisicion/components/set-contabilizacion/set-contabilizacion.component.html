@@ -1,0 +1,116 @@
+<form [formGroup]="causacionInicialGroup" (ngSubmit)="saveForm()">
+    <div class="container">
+        <div class="row">
+            <div class="col pb-3">
+                <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
+                    Contabilización
+                </h6>
+            </div>
+        </div>
+        <!-- Seleccionar los campos del comprobante contable para traer la cuentas que se afectan -->
+        <div class="form-group row px-2">
+            <div class="col-md-4">
+                <label for="tipoComprobante">Tipo de Comprobante</label>
+                <select id="tipoComprobante" class="custom-select" formControlName="tipoComprobante" [class.is-invalid]="isInvalid('tipoComprobante')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>01</option>
+                    <option>02</option>
+                </select>
+                <small *ngIf="isInvalid('tipoComprobante')" class="text-danger">Complete este
+                    campo</small>
+            </div>
+            <div class="col-md-4">
+                <label for="numeroComprobante">No. de Comprobante</label>
+                <select id="numeroComprobante" class="custom-select" formControlName="numeroComprobante" [class.is-invalid]="isInvalid('numeroComprobante')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>01</option>
+                    <option>02</option>
+                </select>
+                <small *ngIf="isInvalid('numeroComprobante')" class="text-danger">Complete este
+                    campo</small>
+            </div>
+            <div class="col-md-4">
+                <label for="consecutivo">Consecutivo</label>
+                <select id="consecutivo" class="custom-select" formControlName="consecutivo" [class.is-invalid]="isInvalid('consecutivo')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>01</option>
+                    <option>02</option>
+                </select>
+                <small *ngIf="isInvalid('consecutivo')" class="text-danger">Complete este
+                    campo</small>
+            </div>
+        </div>
+        <div class="form-group row px-2">
+            <div class="col">
+                <label for="concepto">Concepto Contable</label>
+                <select id="concepto" class="custom-select" formControlName="concepto" [class.is-invalid]="isInvalid('concepto')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>01</option>
+                    <option>02</option>
+                </select>
+                <small *ngIf="isInvalid('concepto')" class="text-danger">Complete este
+                    campo</small>
+            </div>
+        </div>
+
+        <!-- Tabla de cuentas contables -->
+        <div class="row">
+            <div class="col bg-white">
+                <ngx-general-table [config]="configCausacionInicial" [datos]="datosCausacionInicial">
+                </ngx-general-table>
+            </div>
+        </div>
+
+        <div class="row py-4">
+            <div class="col-md-4 text-right pt-3">
+                <label class="text-right">SUMAS IGUALES</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+
+        <mat-divider class="col-md-12 py-3 border-warning"></mat-divider>
+
+        <!-- Boton para descargar de comprobante contable -->
+        <div class="row py-3 justify-content-center">
+            <button class="btn btn-outline-success mb-2 mr-2" (click)="modalComprobante(contabilizacionModal)">
+                <i class="fas fa-file-pdf px-3"></i>Descargar Comprobante
+            </button>
+        </div>
+        <!-- Botones: Volver a registro, Siguiente -->
+        <div class="container">
+            <div class="row pt-2 text-center">
+                <div class="col-md-6">
+                    <button mat-button matStepperPrevious type="submit" class="btn btn-primary text-white m-0 mt-4">
+                        Volver
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <button mat-button matStepperNext type="submit" class="btn btn-success m-0 mt-4">
+                        Siguiente
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Modal para descargar pdf de comprobante -->
+<ng-template #contabilizacionModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Descargar Comprobante</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <ngx-descargarcomprobante></ngx-descargarcomprobante>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary text-white" (click)="modal.close('Close click')">Volver</button>
+    </div>
+</ng-template>

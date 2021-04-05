@@ -1,0 +1,248 @@
+<form [formGroup]="detalleAdquisicionGroup">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h6 class="card-title col-md-7 bg-primary text-white text-center py-2 px-2 rounded">
+                    Resumen Registro de Adquisición
+                </h6>
+            </div>
+        </div>
+        <!-- Se muestran los datos que se han agregado en el proceso -->
+        <div class="row">
+            <div class="col pt-3">
+                <h6 class="card-title col-md-12 bg-dark text-white text-center py-2 px-2 rounded">
+                    Datos Generales - Inversión Inicial
+                </h6>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label>Área Funcional</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Centro Gestor</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Fecha</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label>NIT</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-8">
+                <label>Entidad Bancaria</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label>Recursos de la Compra</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Tipo de Título Valor</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Valor de la Inversión</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+        <div class="row py-3">
+            <div class="col-md-4 ">
+                <div class="row px-3 align-items-center justify-content-center">
+                    <label>Vigencia de la Tasa</label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label>Desde</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Hasta</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+        <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label>No. de la Operación</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Fecha del Documento</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Tasa Rep. del Mercado</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label>Fecha de Adquisición</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Fecha de Vencimiento</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Término</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-7">
+                <label>Rendimientos</label>
+                <textarea id="justificacion" class="form-control" rows="1" readonly></textarea>
+            </div>
+            <div class="col-md-5">
+                <label>Valor de Rendimientos</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-6">
+                <label>Otros</label>
+                <textarea id="justificacion" class="form-control" rows="3" readonly></textarea>
+            </div>
+            <div class="col-md-6">
+                <label>Observaciones</label>
+                <textarea id="justificacion" class="form-control" rows="3" readonly></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col">
+                <h6 class="card-title col-md-12 bg-dark text-white text-center py-2 px-2 rounded">
+                    Afectación Presupuestal
+                </h6>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label>Código de Rubro</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Nombre de Rubro</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Valor</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+    </div>
+
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col">
+                <h6 class="card-title col-md-12 bg-dark text-white text-center py-2 px-2 rounded">
+                    Contabilización
+                </h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button #btnContabilizacion class="card-title col-md-12 btn btn-secondary text-white" type="button" data-toggle="collapse" data-target="#collapseContabilizacion" aria-expanded="false" aria-controls="collapseContabilizacion" (click)="mostrarOcultarTablas(btnContabilizacion.getAttribute('aria-expanded'))">
+                    <i class="far {{mostrarOcultarIcono}} text-ligth pr-3"></i><span>Causación Inversión Inicial</span>
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="collapse" id="collapseContabilizacion">
+                    <div class="card card-body">
+                        <div class="row pt-2">
+                            <div class="col-md-4">
+                                <label>Tipo de Comprobante</label>
+                                <input type="text" class="form-control" value=" " readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label>No. de Comprobante</label>
+                                <input type="text" class="form-control" value=" " readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Consecutivo</label>
+                                <input type="text" class="form-control" value=" " readonly>
+                            </div>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col">
+                                <label>Concepto Contable</label>
+                                <input type="text" class="form-control" value=" " readonly>
+                            </div>
+                        </div>
+                        <!-- Tabla General Adaptada Contabilizacion -->
+                        <div class="row pt-2">
+                            <div class="col">
+                                <ngx-general-table [config]="configContabilizacion" [datos]="datosContabilizacion">
+                                </ngx-general-table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row pt-2 pb-3">
+            <div class="col-md-4 text-right pt-3">
+                <label class="text-right">SUMAS IGUALES</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+    </div>
+
+    <mat-divider class="col-md-12 py-3 border-warning"></mat-divider>
+
+    <!-- Botones: Regresar, Siguiente -->
+    <div class="container">
+        <div class="row pt-2 text-center">
+            <div class="col-md-6">
+                <button mat-button matStepperPrevious class="btn btn-primary text-white m-0 mt-4">Regresar</button>
+            </div>
+            <div class="col-md-6 form-group">
+                <button type="button" class="btn btn-success text-white m-0 mt-4" data-toggle="modal" data-target="#modalGuardar">
+                    GUARDAR</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Modal: Solicitud Guardada -->
+<div class="modal fade" id="modalGuardar" tabindex="-1" aria-labelledby="modalGuardar" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalGuardar"><i class="fas fa-check text-success"></i>¡Guardado!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="text-center">Se ha guardado el registro de adquisición de inversión No. (consecutivo).</p>
+                <p class="text-center">Estado: Compra</p>
+            </div>
+            <div class="modal-footer">
+                <a routerLink="../lista" class="btn btn-primary" data-dismiss="modal">
+                    Aceptar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin Modal: Solicitud Guardada -->
