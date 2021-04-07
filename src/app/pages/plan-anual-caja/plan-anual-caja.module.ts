@@ -2,13 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PlanAnualCajaRoutingModule } from './plan-anual-caja-routing.module';
+import { PlanAnualCajaComponent } from './plan-anual-caja.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    PlanAnualCajaComponent,
+  ],
   imports: [
     CommonModule,
-    PlanAnualCajaRoutingModule
+    PlanAnualCajaRoutingModule,
   ]
 })
 export class PlanAnualCajaModule { }
