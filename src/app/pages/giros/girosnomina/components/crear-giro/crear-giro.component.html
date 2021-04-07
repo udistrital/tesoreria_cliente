@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col py-2">
+                    <h5 class="card-title text-center text-primary">
+                        CREAR NUEVO GIRO DE NÓMINA
+                    </h5>
+                </div>
+            </div>
+            <mat-horizontal-stepper linear #stepper>
+                <mat-step [completed]="informacion">
+                    <ng-template matStepLabel> Inicio </ng-template>
+                    <ngx-set-informacion (statusForm)="validarInformacion($event)" (informacionForm)="datosInformacionForm($event, stepper)"></ngx-set-informacion>
+                </mat-step>
+                <mat-step [completed]="relacion">
+                    <ng-template matStepLabel> Relación de Autorización </ng-template>
+                    <ngx-set-relaciones (statusRelacion)="validarRelacion($event)" (informacionRelaciones)="datosInformacionRelacion($event, stepper)"></ngx-set-relaciones>
+                </mat-step>
+                <mat-step [completed]="erogacion">
+                    <ng-template matStepLabel> Erogación y detalles del giro </ng-template>
+                    <ngx-set-erogacion (statusErogacion)="validarErogacion($event)" (informacionBanco)="datosBancoForm($event)" (informacionBeneficiarios)="datosBeneficiarios($event, stepper)"></ngx-set-erogacion>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel> Resumen </ng-template>
+                    <ngx-set-resumen></ngx-set-resumen>
+                </mat-step>
+            </mat-horizontal-stepper>  
+        </div>
+    </div>
+</div>
