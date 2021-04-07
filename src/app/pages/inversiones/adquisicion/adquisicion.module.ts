@@ -14,6 +14,7 @@ import { SetContabilizacionComponent } from './components/set-contabilizacion/se
 import { ShowDetalleadquisicionComponent } from './components/show-detalleadquisicion/show-detalleadquisicion.component';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { RendimientosComponent } from './components/rendimientos/rendimientos.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
     SetProcesoadquisicionComponent,
     SetInfoinversioninicialComponent,
     SetContabilizacionComponent,
-    ShowDetalleadquisicionComponent
+    ShowDetalleadquisicionComponent,
+    RendimientosComponent
   ],
   imports: [
     CommonModule,

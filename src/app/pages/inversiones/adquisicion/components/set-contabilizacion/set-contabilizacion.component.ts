@@ -10,7 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class SetContabilizacionComponent implements OnInit {
 
-  causacionInicialGroup: FormGroup;
+  contabilizacionGroup: FormGroup;
   // Datos de las tablas
   configCausacionInicial: any;
   datosCausacionInicial: any;
@@ -26,7 +26,7 @@ export class SetContabilizacionComponent implements OnInit {
   }
 
   createForm() {
-    this.causacionInicialGroup = this.fb.group({
+    this.contabilizacionGroup = this.fb.group({
       tipoComprobante: ['', Validators.required],
       numeroComprobante: ['', [
         Validators.required,
@@ -41,7 +41,7 @@ export class SetContabilizacionComponent implements OnInit {
   }
 
   isInvalid(nombre: string) {
-    const input = this.causacionInicialGroup.get(nombre);
+    const input = this.contabilizacionGroup.get(nombre);
     if (input)
       return input.invalid && (input.touched || input.dirty);
     else
@@ -49,8 +49,8 @@ export class SetContabilizacionComponent implements OnInit {
   }
 
   saveForm() {
-    if (this.causacionInicialGroup.invalid) {
-      return Object.values(this.causacionInicialGroup.controls).forEach(control => {
+    if (this.contabilizacionGroup.invalid) {
+      return Object.values(this.contabilizacionGroup.controls).forEach(control => {
         control.markAsTouched();
       });
     }

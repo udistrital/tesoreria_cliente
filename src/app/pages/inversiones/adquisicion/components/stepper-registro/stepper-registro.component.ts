@@ -4,6 +4,8 @@ import { SetInfoinversioninicialComponent } from '../set-infoinversioninicial/se
 import { SetContabilizacionComponent } from '../set-contabilizacion/set-contabilizacion.component';
 import { ShowDetalleadquisicionComponent } from '../show-detalleadquisicion/show-detalleadquisicion.component';
 import { FormBuilder } from '@angular/forms';
+import { selectRendimientos } from '../../selectors/adquisicion.selectors';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'ngx-stepper-registro',
@@ -15,9 +17,15 @@ export class StepperRegistroComponent implements OnInit {
   @ViewChild(SetInfoinversioninicialComponent, { static: false }) setInfoinversioninicialComponent: SetInfoinversioninicialComponent;
   @ViewChild(SetContabilizacionComponent, { static: false }) setContabilizacionComponent: SetContabilizacionComponent;
   @ViewChild(ShowDetalleadquisicionComponent, { static: false }) showDetalleadquisicionComponent: ShowDetalleadquisicionComponent;
+  subscription$: any;
+  Rendimientos: string;
 
-
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private store: Store<any>) { 
+    this.subscription$ = this.store.select(selectRendimientos).subscribe((valor) => {
+      if (valor && valor.inversionstate)
+        this.Rendimientos = valor.inversionstate;
+    });
+  }
 
   ngOnInit() {
   }
@@ -28,8 +36,8 @@ export class StepperRegistroComponent implements OnInit {
   get inversionInicialGroup() {
     return this.setInfoinversioninicialComponent ? this.setInfoinversioninicialComponent.inversionInicialGroup : this.fb.group({});
   }
-  get causacionInicialGroup() {
-    return this.setContabilizacionComponent ? this.setContabilizacionComponent.causacionInicialGroup : this.fb.group({});
+  get contabilizacionGroup() {
+    return this.setContabilizacionComponent ? this.setContabilizacionComponent.contabilizacionGroup : this.fb.group({});
   }
   get detalleAdquisicionGroup() {
     return this.showDetalleadquisicionComponent ? this.showDetalleadquisicionComponent.detalleAdquisicionGroup : this.fb.group({});
