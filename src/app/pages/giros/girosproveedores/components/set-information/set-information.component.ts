@@ -29,6 +29,8 @@ export class SetInformationComponent implements OnInit {
     2021
   ];
 
+  mensaje: boolean;
+
   constructor(private formBuilder: FormBuilder) {
     this.validarForm = new EventEmitter;
     this.informacionForm = new EventEmitter;
@@ -57,8 +59,30 @@ export class SetInformationComponent implements OnInit {
     );
   }
 
+  esInvalido(nombre: string) {
+    const input = this.giroProveedor.get(nombre);
+    if (input)
+      return input.invalid && (input.touched || input.dirty);
+    else
+      return true;
+  }
+
+  validarFormulario() {
+    if (this.giroProveedor.invalid) {
+      return Object.values(this.giroProveedor.controls).forEach(control => {
+        control.markAsDirty();
+      });
+    }
+  }
+
   onSubmit (data: any) {
-    this.informacionForm.emit(data);
+    if (this.giroProveedor.valid) {
+      this.informacionForm.emit(data);
+      this.mensaje = false;
+    } else {
+      this.validarFormulario();
+      this.mensaje = true;
+    }
   }
 
 }

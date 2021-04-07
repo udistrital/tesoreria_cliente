@@ -38,6 +38,7 @@ export class SetResumenComponent implements OnInit, OnDestroy {
   tipoCuenta: any;
 
   modal: NgbModalRef;
+  mensaje: boolean = true;
 
   constructor(private store: Store<any>,
     private sharedService: SharedService,
@@ -56,6 +57,7 @@ export class SetResumenComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscriptionInformacion$.unsubscribe();
     this.subscription$.unsubscribe();
+    this.subscriptionBanco$.unsubscribe();
     if (this.modal !== undefined) {
       this.modal.close();
     }
@@ -124,8 +126,20 @@ export class SetResumenComponent implements OnInit, OnDestroy {
 
   contabilizacion() {
     this.modalProveedor.modalProveedores = true;
-   }
+  }
 
-  girar() { }
+  guardarAprobacion(data: any) {
+    this.mensaje = data;
+  }
+
+  girar() {
+    Swal.fire({
+      type: 'success',
+      title: '¡Guardado!',
+      html: 'Se ha creado el giro con consecutivo: ' + this.consecutivo + '<br> Estado: Radicado',
+      confirmButtonText: 'Aceptar',
+    });
+    this.route.navigateByUrl('/pages/giros/proveedores/lista');
+  }
 
 }

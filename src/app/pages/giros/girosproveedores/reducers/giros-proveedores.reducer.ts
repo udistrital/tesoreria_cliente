@@ -9,6 +9,7 @@ export interface State {
   DatosOrdenesPago: any;
   DatosBeneficiarios: any;
   DatosBancoProveedores: any;
+  DatosTercero: any;
 }
 
 export const initialState: State = {
@@ -16,7 +17,8 @@ export const initialState: State = {
   DatosOrdenPago: null,
   DatosOrdenesPago: null,
   DatosBeneficiarios: null,
-  DatosBancoProveedores: null
+  DatosBancoProveedores: null,
+  DatosTercero: null
 };
 
 const girosProveedoresReducer = createReducer(
@@ -37,6 +39,9 @@ const girosProveedoresReducer = createReducer(
   })),
   on(GirosProveedoresActions.cargarDatosBancoProveedores, (state, action) => ({
     ...state, DatosBancoProveedores:  state.DatosBancoProveedores = action
+  })),
+  on(GirosProveedoresActions.cargarDatosTercero, (state, action) => ({
+    ...state, DatosTercero:  state.DatosTercero = action
   })),
 
 );

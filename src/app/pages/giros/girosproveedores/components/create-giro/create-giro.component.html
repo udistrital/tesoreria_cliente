@@ -9,18 +9,18 @@
                 </div>
             </div>
             <mat-horizontal-stepper linear #stepper>
-                <mat-step>
+                <mat-step [completed]="informacion">
                     <ng-template matStepLabel> Inicio </ng-template>
-                    <ngx-set-information (informacionForm)="datosInformacionForm($event)"></ngx-set-information>
+                    <ngx-set-information (validarForm)="validarInformacion($event)" (informacionForm)="datosInformacionForm($event, stepper)"></ngx-set-information>
                 </mat-step>
-                <mat-step>
+                <mat-step [completed]="orden">
                     <ng-template matStepLabel> Órdenes de pago </ng-template>
-                    <ngx-set-ordenpago *ngIf="tipoTramite === 'giroUnico'" (validarOrden)="guardarOrden($event)"></ngx-set-ordenpago>
-                    <ngx-set-ordenespago *ngIf="tipoTramite === 'giroRango'" (validarOrdenes)="guardarOrdenes($event)"></ngx-set-ordenespago>
+                    <ngx-set-ordenpago *ngIf="tipoTramite === 'giroUnico'" (validarOrden)="guardarOrden($event, stepper)" (statusOrden)="validarOrden($event)"></ngx-set-ordenpago>
+                    <ngx-set-ordenespago *ngIf="tipoTramite === 'giroRango'" (validarOrdenes)="guardarOrdenes($event, stepper)" (statusOrdenes)="validarOrden($event)"></ngx-set-ordenespago>
                 </mat-step>
-                <mat-step>
+                <mat-step [completed]="erogacion">
                     <ng-template matStepLabel> Erogación y detalles del giro </ng-template>
-                    <ngx-set-erogacion></ngx-set-erogacion>
+                    <ngx-set-erogacion (statusErogacion)="validarErogacion($event)" (informacionBanco)="datosBancoForm($event)" (informacionBanco)="datosBancoForm($event)" (informacionBeneficiarios)="datosBeneficiarios($event, stepper)"></ngx-set-erogacion>
                 </mat-step>
                 <mat-step>
                     <ng-template matStepLabel> Resumen </ng-template>

@@ -9,6 +9,7 @@
                     <p> Seleccione la orden de pago a girar: </p>
                 </div>
             </div>
+            <small class="message" *ngIf="mensaje"> Debe elegir una orden de pago* </small>
         </div>
         <ngx-general-table [config]="configurationPlus" [datos]="datosGiroOrdenPago"></ngx-general-table>
 
@@ -20,11 +21,11 @@
     <div class="row text-center">
         <div class="col">
             <button type="button" matStepperPrevious class="btn btn-primary px-3 py-2 my-2 text-light">
-                Volver al registro
+                Volver
             </button>
         </div>
         <div class="col">
-            <button (click)="guardar()" matStepperNext class="btn btn-success px-3 py-2 my-2 text-light" [disabled]="datoSeleccionado.length === 0">
+            <button (click)="guardar()" class="btn btn-success px-3 py-2 my-2 text-light">
                 Generar detalles del giro
             </button>
         </div>

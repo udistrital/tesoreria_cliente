@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { MatStepper } from '@angular/material';
 import { Store } from '@ngrx/store';
-import { cargarDatosInformacion, cargarDatosOrdenPago, cargarDatosOrdenesPago } from '../../actions/giros-proveedores.actions';
+import { cargarDatosInformacion, cargarDatosOrdenPago, cargarDatosOrdenesPago, cargarDatosBancoProveedores, cargarDatosBeneficiarios } from '../../actions/giros-proveedores.actions';
 import { getDatosInformacion, getDatosOrdenPago } from '../../selectors/giros-proveedores.selectors';
 
 @Component({
@@ -13,6 +14,10 @@ export class CreateGiroComponent implements OnInit, OnDestroy {
   subscriptionInformacion$: any;
   subscription$: any;
   tipoTramite: any;
+
+  informacion: boolean = false;
+  orden: boolean = false;
+  erogacion: boolean = false;
 
   constructor(
     private store: Store <any>,
@@ -34,18 +39,40 @@ export class CreateGiroComponent implements OnInit, OnDestroy {
     );
   }
 
-  datosInformacionForm(data: any) {
+  datosInformacionForm(data: any, stepper: MatStepper) {
     this.store.dispatch(cargarDatosInformacion(data));
+    stepper.next();
   }
 
-  guardarOrden(data: any) {
-    /* this.store.dispatch(cargarDatosOrdenPago(null)); */
+  validarInformacion(data: any) {
+    this.informacion = data;
+  }
+
+  guardarOrden(data: any, stepper: MatStepper) {
     this.store.dispatch(cargarDatosOrdenPago(data));
+    stepper.next();
   }
 
-  guardarOrdenes(data: any) {
-    /* this.store.dispatch(cargarDatosOrdenesPago(null)); */
+  guardarOrdenes(data: any, stepper: MatStepper) {
     this.store.dispatch(cargarDatosOrdenesPago(data));
+    stepper.next();
+  }
+
+  validarOrden(data: any) {
+    this.orden = data;
+  }
+
+  datosBancoForm(data: any) {
+    this.store.dispatch(cargarDatosBancoProveedores(data));
+  }
+
+  datosBeneficiarios(data: any, stepper: MatStepper) {
+    this.store.dispatch(cargarDatosBeneficiarios(data));
+    stepper.next();
+  }
+
+  validarErogacion(data: any) {
+    this.erogacion = data;
   }
 
 }

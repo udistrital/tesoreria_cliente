@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CONFIGURACION_GIROPROVEEDORES, DATOS_GIROPROVEEDORES } from '../../interfaces/interfaces';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -11,7 +11,7 @@ import { LoadAccionTabla } from '../../../../../shared/actions/shared.actions';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, OnDestroy {
 
   configuration: any;
   datosGiroProveedores: any;
@@ -23,6 +23,10 @@ export class ListComponent implements OnInit {
   ) {
     this.configuration = CONFIGURACION_GIROPROVEEDORES;
     this.datosGiroProveedores = DATOS_GIROPROVEEDORES;
+  }
+
+  ngOnDestroy() {
+    this.subscriptionTabla$.unsubscribe();
   }
 
   ngOnInit() {

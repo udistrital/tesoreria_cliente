@@ -13,6 +13,7 @@ import { SharedService } from '../../../../../shared/services/shared.service';
 export class SetOrdenespagoComponent implements OnInit, OnDestroy {
 
   @Output() validarOrdenes: EventEmitter<any>;
+  @Output() statusOrdenes: EventEmitter<any>;
 
   configuration: any;
   configurationMin: any;
@@ -24,6 +25,7 @@ export class SetOrdenespagoComponent implements OnInit, OnDestroy {
   datosSeleccionados: any;
   validarConsecutivo: boolean = false;
   validar: boolean = false;
+  mensaje: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private store: Store<any>,
@@ -31,6 +33,7 @@ export class SetOrdenespagoComponent implements OnInit, OnDestroy {
   ) {
     this.datosSeleccionados = [];
     this.validarOrdenes = new EventEmitter;
+    this.statusOrdenes = new EventEmitter;
     this.configuration = CONF_ORDENPAGO;
     this.datosGiroOrdenesPago = DATOS_GIRO_ORDEN;
     this.configurationMin = CONF_MINORDENPAGO;
@@ -81,6 +84,7 @@ export class SetOrdenespagoComponent implements OnInit, OnDestroy {
       } else {
         this.validarConsecutivo = false;
         this.agregarConsecutivos = true;
+        this.statusOrdenes.emit(true);
         for (let i = data.desde; i <= data.hasta; i++) {
           this.datosGiroOrdenesPago.filter((result: any) => {
             if (result.consecutivo === i) {
@@ -90,7 +94,24 @@ export class SetOrdenespagoComponent implements OnInit, OnDestroy {
         }
       }
     } else {
+      this.validarFormulario();
       this.validar = true;
+    }
+  }
+
+  esInvalido(nombre: string) {
+    const input = this.consecutivos.get(nombre);
+    if (input)
+      return input.invalid && (input.touched || input.dirty);
+    else
+      return true;
+  }
+
+  validarFormulario() {
+    if (this.consecutivos.invalid) {
+      return Object.values(this.consecutivos.controls).forEach(control => {
+        control.markAsDirty();
+      });
     }
   }
 
@@ -100,7 +121,13 @@ export class SetOrdenespagoComponent implements OnInit, OnDestroy {
   }
 
   guardar() {
-    this.validarOrdenes.emit(this.datosSeleccionados);
+    if (this.datosSeleccionados.length === 0) {
+      this.statusOrdenes.emit(false);
+      this.mensaje = true;
+    } else {
+      this.mensaje = false;
+      this.validarOrdenes.emit(this.datosSeleccionados);
+    }
   }
 
 }

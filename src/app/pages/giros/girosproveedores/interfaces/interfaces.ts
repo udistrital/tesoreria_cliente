@@ -460,7 +460,9 @@ export const CONF_BENEFICIARIO: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                type: 'currency',
+                config: [],
+                class: 'text-center',
             }
         },
     ],
@@ -556,7 +558,9 @@ export const CONF_BENEFICIARIORESUMEN: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                type: 'currency',
+                config: [],
+                class: 'text-center',
             }
         },
     ],
@@ -696,7 +700,9 @@ export const CONF_PROVEEDORES: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                type: 'currency',
+                config: [],
+                class: 'text-center',
             }
         },
         {
@@ -706,7 +712,9 @@ export const CONF_PROVEEDORES: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                type: 'currency',
+                config: [],
+                class: 'text-center',
             }
         }
     ],
@@ -717,6 +725,198 @@ export const CONF_PROVEEDORES: any = {
     sort: true,
     filter: false,
 };
+export const CONF_BANCO: any = {
+    showColumnTitle: true,
+    // title: {
+    //     name: 'Actividades Asociadas',
+    //     class: 'text-center text-light',
+    // },
+    dataConfig: [
+        {
+            key: 'consecutivo',
+            title: {
+                name: 'Consecutivo',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'tipoId',
+            title: {
+                name: 'Tipo ID',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'id',
+            title: {
+                name: 'ID',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'nombre',
+            title: {
+                name: 'Nombre',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'valor',
+            title: {
+                name: 'Valor',
+                class: 'text-center',
+            },
+            pipe: {
+                type: 'currency',
+                config: [],
+                class: 'text-center',
+            }
+        }
+    ],
+    noData: {
+        name: 'No existen elementos asociados',
+        class: 'text-center',
+    },
+    sort: true,
+    filter: false,
+};
+export const CONF_ACREEDOR: any = {
+    showColumnTitle: true,
+    dataConfig: [
+        {
+            key: 'codigo',
+            title: {
+                name: 'Código',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'codigoConcepto',
+            title: {
+                name: 'Código del concepto',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'concepto',
+            title: {
+                name: 'Concepto',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'numeroDocumento',
+            title: {
+                name: 'Número de documento',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'nombre',
+            title: {
+                name: 'Nombre',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'valor',
+            title: {
+                name: 'Valor',
+                class: 'text-center',
+            },
+            pipe: {
+                type: 'currency',
+                config: [],
+                class: 'text-center',
+            }
+        }
+    ],
+    sort: true,
+    filter: false,
+};
+export const DATOS_CONTABILIDAD: any = [
+    {
+        secuencia: 1,
+        tercero: 79355747,
+        numeroCuenta: 271863,
+        nombreCuenta: 'Proveedores',
+        detalle: 'Nómina del mes de julio',
+        debito: 0,
+        credito: 1264304,
+    },
+    {
+        secuencia: 2,
+        tercero: 79355747,
+        numeroCuenta: 712361,
+        nombreCuenta: 'Honorarios',
+        detalle: 'Nómina del mes de julio',
+        debito: 0,
+        credito: 2893934,
+    },
+    {
+        secuencia: 3,
+        tercero: 79355747,
+        numeroCuenta: 728612,
+        nombreCuenta: 'Reteica',
+        detalle: 'Nómina del mes de julio',
+        debito: 0,
+        credito: 10449,
+    },
+    {
+        secuencia: 4,
+        tercero: 79355747,
+        numeroCuenta: 123786,
+        nombreCuenta: 'Estampilla pro cultura',
+        detalle: 'Nómina del mes de julio',
+        debito: 0,
+        credito: 6588,
+    },
+    {
+        secuencia: 5,
+        tercero: 79355747,
+        numeroCuenta: 789123,
+        nombreCuenta: 'Estampilla pro adulto',
+        detalle: 'Nómina del mes de julio',
+        debito: 0,
+        credito: 23354,
+    },
+    {
+        secuencia: 6,
+        tercero: 79355747,
+        numeroCuenta: 4234768,
+        nombreCuenta: 'Libranzas',
+        detalle: 'Nómina del mes de julio',
+        debito: 22874645,
+        credito: 0,
+    }
+];
 export const DATOS_GIRO_ORDEN: any = [
     {
         id: 12,
@@ -808,4 +1008,55 @@ export const DATOS_GIRO_ORDEN: any = [
         numeroCuenta: '8768-23-234',
         clase: 'ahorros',
     },
+];
+export const DATOS_CONTABILIDAD_TERCERO: any = [
+    {
+        secuencia: 1,
+        tercero: 3458,
+        numeroCuenta: 3457934,
+        nombreCuenta: 'Occidente Proveedores',
+        detalle: 'Endoso Cesar Salamanca',
+        debito: 0,
+        credito: 819237,
+    },
+    {
+        secuencia: 2,
+        tercero: 871239,
+        numeroCuenta: 178231,
+        nombreCuenta: 'Fondo de empleados',
+        detalle: 'Endoso Cesar Salamanca',
+        debito: 819237,
+        credito: 0,
+    }
+];
+export const DATOS_BENEFICIARIOS_BANCO: any = [
+    {
+        consecutivo: 382,
+        tipoId: 'CC',
+        id: 34567,
+        nombre: 'Banco Davivienda',
+        fechaPago: '',
+        valor: 823123,
+    },
+    {
+        consecutivo: 383,
+        tipoId: 'CC',
+        id: 34587,
+        nombre: 'Banco Davivienda',
+        fechaPago: '',
+        valor: 345328,
+     }
+];
+export const DATOS_ACREEDOR: any = [
+    {
+        codigo: 2,
+        codigoConcepto: 79,
+        concepto: 'Banco Davivienda',
+        valor: 0,
+    },
+    {
+        numeroDocumento: 783123,
+        nombre: 'Cesar Salamanca',
+        valor: 10000,
+    }
 ];

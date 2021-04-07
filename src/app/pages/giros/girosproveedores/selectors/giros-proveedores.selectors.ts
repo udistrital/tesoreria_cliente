@@ -21,7 +21,12 @@ export const getDatosBeneficiarios = createSelector(
   selectGirosProveedoresState,
   (state: fromGirosProveedores.State) => state.DatosBeneficiarios);
 
-  export const getDatosBancoProveedores = createSelector(
-    selectGirosProveedoresState,
-    (state: fromGirosProveedores.State) => state.DatosBancoProveedores);
+export const getDatosBancoProveedores = createSelector(
+  selectGirosProveedoresState,
+  (state: fromGirosProveedores.State) => state.DatosBancoProveedores);
+
+export const getDatosTercero = createSelector(
+  selectGirosProveedoresState,
+  (state: fromGirosProveedores.State) => state.DatosTercero);
+
 

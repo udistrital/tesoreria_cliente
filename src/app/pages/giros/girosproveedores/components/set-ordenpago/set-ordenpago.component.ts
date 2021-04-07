@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, OnDestroy } from '@angular/core';
 import { DATOS_GIRO_ORDEN, CONF_ORDENPAGO, CONF_MINORDENPAGO, CONF_ADDORDENPAGO } from '../../interfaces/interfaces';
 import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
 import { getFilaSeleccionada } from '../../../../../shared/selectors/shared.selectors';
@@ -10,9 +10,10 @@ import { SharedService } from '../../../../../shared/services/shared.service';
   templateUrl: './set-ordenpago.component.html',
   styleUrls: ['./set-ordenpago.component.scss']
 })
-export class SetOrdenpagoComponent implements OnInit {
+export class SetOrdenpagoComponent implements OnInit, OnDestroy {
 
   @Output() validarOrden: EventEmitter<any>;
+  @Output() statusOrden: EventEmitter<any>;
 
   configurationPlus: any;
   configurationMin: any;
@@ -20,6 +21,7 @@ export class SetOrdenpagoComponent implements OnInit {
 
   datoSeleccionado: any;
   subscriptionTabla$: any;
+  mensaje: boolean;
 
   constructor(
     private store: Store<any>,
@@ -30,7 +32,12 @@ export class SetOrdenpagoComponent implements OnInit {
     this.datoSeleccionado = [];
     this.configurationMin = CONF_MINORDENPAGO;
     this.validarOrden = new EventEmitter;
+    this.statusOrden = new EventEmitter;
    }
+
+  ngOnDestroy() {
+    this.subscriptionTabla$.unsubscribe();
+  }
 
   ngOnInit() {
     this.subscriptionTabla$ = this.store.select(getFilaSeleccionada).subscribe((action: any) => {
@@ -38,6 +45,7 @@ export class SetOrdenpagoComponent implements OnInit {
         if (action.accion.name === 'agregar') {
           if (this.datoSeleccionado.length === 0) {
             this.datoSeleccionado.push(action.fila);
+            this.statusOrden.emit(true);
           } else {
             Swal.fire({
               type: 'error',
@@ -60,6 +68,12 @@ export class SetOrdenpagoComponent implements OnInit {
   }
 
   guardar() {
-    this.validarOrden.emit(this.datoSeleccionado);
+    if (this.datoSeleccionado.length === 0) {
+      this.statusOrden.emit(false);
+      this.mensaje = true;
+    } else {
+      this.validarOrden.emit(this.datoSeleccionado);
+      this.mensaje = false;
+    }
   }
 }

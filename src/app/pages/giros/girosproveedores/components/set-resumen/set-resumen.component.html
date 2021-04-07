@@ -7,72 +7,72 @@
             <div class="row my-2">
                 <div class="col py-2">
                     <label for="areaFuncionalResumen"> Área funcional </label> <br>
-                    <input *ngIf="!!areaFuncional" type="text" name="areaFuncionalResumen" id="areaFuncionalResumen"
+                    <input class="form-control" *ngIf="!!areaFuncional" type="text" name="areaFuncionalResumen" id="areaFuncionalResumen"
                         placeholder={{areaFuncional}} disabled>
                 </div>
                 <div class="col py-2">
                     <label for="fechaResumen"> Fecha </label> <br>
-                    <input *ngIf="!!fecha" type="text" name="fechaResumen" id="fechaResumen" placeholder={{fecha}}
+                    <input class="form-control" *ngIf="!!fecha" type="text" name="fechaResumen" id="fechaResumen" placeholder={{fecha}}
                         disabled>
                 </div>
             </div>
             <div class="row my-2">
                 <div class="col py-2">
                     <label for="tipoGiroResumen"> Tipo de giro </label> <br>
-                    <input *ngIf="!!tipoGiro" type="text" name="tipoGiroResumen" id="tipoGiroResumen"
+                    <input class="form-control" *ngIf="!!tipoGiro" type="text" name="tipoGiroResumen" id="tipoGiroResumen"
                         placeholder={{tipoGiro}} disabled>
                 </div>
                 <div class="col py-2">
                     <label for="centroGestorResumen"> Centro gestor </label> <br>
-                    <input type="text" name="centroGestorResumen" id="centroGestorResumen" placeholder={{centroGestor}}
+                    <input class="form-control" type="text" name="centroGestorResumen" id="centroGestorResumen" placeholder={{centroGestor}}
                         disabled>
                 </div>
             </div>
             <div class="row my-2">
                 <div class="col py-2">
                     <label for="tipoDocumentoResumen"> Tipo de documento </label> <br>
-                    <input type="text" name="tipoDocumentoResumen" id="tipoDocumentoResumen"
+                    <input class="form-control" type="text" name="tipoDocumentoResumen" id="tipoDocumentoResumen"
                         placeholder={{tipoDocumento}} disabled>
                 </div>
                 <div class="col py-2">
                     <label for="consecutivoResumen"> Consecutivo </label> <br>
-                    <input *ngIf="!!consecutivo" type="text" name="consecutivoResumen" id="consecutivoResumen"
+                    <input class="form-control" *ngIf="!!consecutivo" type="text" name="consecutivoResumen" id="consecutivoResumen"
                         placeholder={{consecutivo}} disabled>
                 </div>
             </div>
             <div class="row my-2">
                 <div class="col py-2">
                     <label for="vigenciaResumen"> Vigencia </label> <br>
-                    <input *ngIf="!!vigencia" type="text" name="vigenciaResumen" id="vigenciaResumen"
+                    <input class="form-control" *ngIf="!!vigencia" type="text" name="vigenciaResumen" id="vigenciaResumen"
                         placeholder={{vigencia}} disabled>
                 </div>
                 <div class="col py-2">
                     <label for="girosTramiteResumen"> Giros a tramitar </label> <br>
-                    <input *ngIf="!!giroTramite" type="text" name="girosTramiteResumen" id="girosTramiteResumen"
+                    <input class="form-control" *ngIf="!!giroTramite" type="text" name="girosTramiteResumen" id="girosTramiteResumen"
                         placeholder={{giroTramite}} disabled>
                 </div>
             </div>
             <div class="row my-2">
                 <div class="col py-2">
                     <label for="bancoResumen"> Banco </label> <br>
-                    <input *ngIf="!!banco" type="text" name="bancoResumen" id="bancoResumen" placeholder={{banco}}
+                    <input class="form-control" *ngIf="!!banco" type="text" name="bancoResumen" id="bancoResumen" placeholder={{banco}}
                         disabled>
                 </div>
                 <div class="col py-2">
                     <label for="nombreCuentaResumen"> Nombre de la cuenta </label> <br>
-                    <input *ngIf="!!nombreCuenta" type="text" name="nombreCuentaResumen" id="nombreCuentaResumen"
+                    <input class="form-control" *ngIf="!!nombreCuenta" type="text" name="nombreCuentaResumen" id="nombreCuentaResumen"
                         placeholder={{nombreCuenta}} disabled>
                 </div>
             </div>
             <div class="row my-2">
                 <div class="col py-2">
                     <label for="numeroCuentaResumen"> Número de la cuenta </label> <br>
-                    <input *ngIf="!!numeroCuenta" type="text" name="numeroCuentaResumen" id="numeroCuentaResumen"
+                    <input class="form-control" *ngIf="!!numeroCuenta" type="text" name="numeroCuentaResumen" id="numeroCuentaResumen"
                         placeholder={{numeroCuenta}} disabled>
                 </div>
                 <div class="col py-2">
                     <label for="tipoCuentaResumen"> Tipo de cuenta </label> <br>
-                    <input *ngIf="!!tipoCuenta" type="text" name="tipoCuentaResumen" id="tipoCuentaResumen"
+                    <input class="form-control" *ngIf="!!tipoCuenta" type="text" name="tipoCuentaResumen" id="tipoCuentaResumen"
                         placeholder={{tipoCuenta}} disabled>
                 </div>
             </div>
@@ -85,6 +85,7 @@
         <div class="card-body pt-0">
             <ngx-general-table [config]="configuration" [datos]="datosBeneficiarios"></ngx-general-table>
         </div>
+        <small align="end" class="message" *ngIf="mensaje"> Es necesario aprobar la contabilidad para girar* </small> 
     </div>
     <div class="row text-center">
         <div class="col">
@@ -108,13 +109,13 @@
             </button>
         </div>
         <div class="col">
-            <button (click)="girar()" class="btn btn-success px-3 py-2 my-2 text-light">
+            <button (click)="girar()" class="btn btn-success px-3 py-2 my-2 text-light" [disabled]="mensaje">
                 Girar
             </button>
         </div>
     </div>
     <div *ngIf="modalProveedor.modalProveedores">
-        <ngx-contabilizacion></ngx-contabilizacion>
+        <ngx-contabilizacion (validacionContabilidad)="guardarAprobacion($event)"></ngx-contabilizacion>
     </div>
 </div>
 <ng-template #modalCancelar>

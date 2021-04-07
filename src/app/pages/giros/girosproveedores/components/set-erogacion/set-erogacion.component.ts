@@ -9,6 +9,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SharedService } from '../../../../../shared/services/shared.service';
 import { combineLatest } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'ngx-set-erogacion',
@@ -17,7 +18,10 @@ import { combineLatest } from 'rxjs';
 })
 export class SetErogacionComponent implements OnInit, OnDestroy {
 
-  @Output() abrirModal: EventEmitter<any>;
+  @Output() statusErogacion: EventEmitter<any>;
+  @Output() informacionBeneficiarios: EventEmitter<any>;
+  @Output() informacionBanco: EventEmitter<any>;
+
   @ViewChild('modalDetalles', { static: false }) modalContenido: any;
   @ViewChild('modalJustificacion', { static: false }) modalJustificacion: any;
 
@@ -58,7 +62,9 @@ export class SetErogacionComponent implements OnInit, OnDestroy {
     private sharedService: SharedService, ) {
     this.configuration = CONF_BENEFICIARIO;
     this.datosBeneficiarios = [];
-    this.abrirModal = new EventEmitter;
+    this.statusErogacion = new EventEmitter;
+    this.informacionBeneficiarios = new EventEmitter;
+    this.informacionBanco = new EventEmitter;
     this.configurationDetalles = CONF_DETALLES;
     this.datosDetalle = [];
     this.justificacionRemover = this.formBuilder.group({
@@ -122,13 +128,22 @@ export class SetErogacionComponent implements OnInit, OnDestroy {
           this.store.dispatch(LoadFilaSeleccionada(null));
         }
       });
-
-      this.changes();
+    this.changes();
   }
 
   changes() {
-    this.bancoForm.valueChanges.subscribe(data => {});
+    this.bancoForm.statusChanges.subscribe(data => {
+      if (data === 'VALID') {
+        this.statusErogacion.emit(true);
+        if (this.datosBeneficiarios.length === 0) {
+          this.statusErogacion.emit(false);
+        }
+      } else {
+        this.statusErogacion.emit(false);
+      }
+    });
   }
+
   abrirJustificacion() {
     this.modalRemover = this.modalService.open(this.modalJustificacion);
   }
@@ -147,6 +162,9 @@ export class SetErogacionComponent implements OnInit, OnDestroy {
           element.consecutivo === this.consecutivo;
         }
       ), 1);
+      if (this.datosBeneficiarios.length === 0) {
+        this.statusErogacion.emit(false);
+      }
       this.cerrarJustificacion();
     } else {
       this.validarJustificacion = true;
@@ -161,15 +179,42 @@ export class SetErogacionComponent implements OnInit, OnDestroy {
     this.modal.close();
   }
 
+  esInvalido(nombre: string) {
+    const input = this.bancoForm.get(nombre);
+    if (input)
+      return input.invalid && (input.touched || input.dirty);
+    else
+      return true;
+  }
+
+  validarFormulario() {
+    if (this.bancoForm.invalid) {
+      return Object.values(this.bancoForm.controls).forEach(control => {
+        control.markAsDirty();
+      });
+    }
+  }
+
   guardarBeneficiarios() {
     if (this.bancoForm.valid) {
       this.validarBanco = false;
-      this.store.dispatch(cargarDatosBeneficiarios(this.datosBeneficiarios));
-      this.store.dispatch(cargarDatosBancoProveedores(this.bancoForm.value));
+      if (this.datosBeneficiarios.length !== 0) {
+        this.informacionBeneficiarios.emit(this.datosBeneficiarios);
+        this.informacionBanco.emit(this.bancoForm.value);
+      } else {
+        Swal.fire({
+          type: 'error',
+          title: '¡Error!',
+          text: 'Debe elegir al menos un beneficiario',
+          confirmButtonText: 'Aceptar',
+        });
+      }
     } else {
+      this.validarFormulario();
       this.validarBanco = true;
     }
   }
+
   totalGasto() {
     return this.totalGirar = this.datosBeneficiarios.reduce((a: any, b: { valor: number; }) => a + b.valor, 0);
   }

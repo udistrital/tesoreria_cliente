@@ -4,33 +4,38 @@
             Órdenes de pago radicadas
         </div>
         <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <p> Seleccione el rango de las órdenes de pago a girar: </p>
+            <form [formGroup]="consecutivos" (ngSubmit)="onSubmit(consecutivos.value)">
+                <div class="row">
+                    <div class="col">
+                        <p> Seleccione el rango de las órdenes de pago a girar: </p>
+                    </div>
+                    <div class="col d-flex flex-row align-middle">
+                        <label class="pt-2" for="desde"> Consecutivo desde: </label>
+                        <input name="desde" id="desde" class="mx-2 form-control" type="number" formControlName="desde"
+                            [class.is-invalid]="esInvalido('desde')">
+                        <label class="pt-2" for="hasta"> hasta: </label>
+                        <input name="hasta" id="hasta" class="mx-2 form-control" type="number" formControlName="hasta"
+                            [class.is-invalid]="esInvalido('hasta')">
+                        <button type="submit" class="btn btn-primary px-3 py-2 my-0 text-light"
+                            [disabled]="agregarConsecutivos"> Agregar + </button>
+                    </div>
                 </div>
-                <div class="col">
-                    <form [formGroup]="consecutivos" (ngSubmit)="onSubmit(consecutivos.value)">
-                        <label for="desde"> Consecutivo desde: </label>
-                        <input name="desde" id="desde" class="mx-2" type="number" formControlName="desde">
-                        <label for="hasta"> hasta: </label>
-                        <input name="hasta" id="hasta" class="mx-2" type="number" formControlName="hasta">
-                        <button type="submit" class="btn btn-primary px-3 py-2 my-2 text-light" [disabled]="agregarConsecutivos"> Agregar + </button>
-                        <div *ngIf="validarConsecutivo" class="row">
-                            <small class="message"> Lista a consultar inválida* </small>
-                        </div>
-                        <div *ngIf="validar" class="row">
-                            <small class="message"> Requeridos* </small>
-                        </div>
-                    </form>
+            </form>
+            <div class="d-flex flex-row-reverse my-2">
+                <div *ngIf="validarConsecutivo">
+                    <small class="message mr-4 pr-4"> Lista a consultar inválida* </small>
                 </div>
+                <div *ngIf="validar">
+                    <small class="message mr-4 pr-4"> Requeridos* </small>
+                </div>
+                <small class="message mr-4 pr-4" *ngIf="mensaje"> Debe elegir al menos una orden de pago* </small>
             </div>
-
             <ngx-general-table [config]="configuration" [datos]="datosGiroOrdenesPago"></ngx-general-table>
-
             <div class="mt-4" *ngIf="datosSeleccionados.length !== 0">
                 <div class="d-flex">
                     <p class="mr-auto align-text-bottom"> Órdenes de pago seleccionadas: </p>
-                    <button (click)="remove()" class="btn btn-primary px-3 py-2 my-2 text-light"> Quitar todos - </button>
+                    <button (click)="remove()" class="btn btn-primary px-3 py-2 my-2 text-light"> Quitar todos -
+                    </button>
                 </div>
                 <ngx-general-table [config]="configurationMin" [datos]="datosSeleccionados"></ngx-general-table>
             </div>
@@ -39,11 +44,11 @@
     <div class="row text-center">
         <div class="col">
             <button matStepperPrevious type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
-                Volver al registro
+                Volver
             </button>
         </div>
         <div class="col">
-            <button matStepperNext (click)="guardar()" class="btn btn-success px-3 py-2 my-2 text-light" [disabled]="datosSeleccionados.length === 0">
+            <button (click)="guardar()" class="btn btn-success px-3 py-2 my-2 text-light">
                 Generar detalle del giro
             </button>
         </div>
