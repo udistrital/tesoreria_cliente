@@ -1,0 +1,111 @@
+<form [formGroup]="infoRegistroGroup" (ngSubmit)="saveForm()">
+    <div class="container">
+        <div class="row">
+            <div class="col pb-3">
+                <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
+                    Elegir Proceso
+                </h6>
+            </div>
+        </div>
+        <!-- Seleccion Area Funcional -->
+        <div class="form-group row">
+            <div class="col-md-5">
+                <label for="areaFuncional">Área Funcional</label>
+                <select class="custom-select" id="areaFuncional" formControlName="areaFuncional" [class.is-invalid]="isInvalid('areaFuncional')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>2020</option>
+                    <option>2019</option>
+                </select>
+                <small *ngIf="isInvalid('areaFuncional')" class="text-danger">Seleccione una opción</small>
+            </div>
+        </div>
+        <!-- Seleccionar proceso -->
+        <div class="row  pt-2">
+            <div class="col-md-4 form-group">
+                <span>Seleccionar proceso:</span>
+                <div class="invalid-feedback" [class.d-block]="isInvalid('proceso')">Complete este campo</div>
+            </div>
+            <div class="col-md-4 form-group">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="procesoV" name="proceso" class="custom-control-input" formControlName="proceso" value="valorizacion">
+                    <label class="custom-control-label" for="procesoV">Valorización</label>
+                </div>
+            </div>
+            <div class="col-md-4 form-group">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="procesoD" name="proceso" class="custom-control-input" formControlName="proceso" value="desvalorizacion">
+                    <label class="custom-control-label" for="procesoD">Desvalorización</label>
+                </div>
+            </div>
+        </div>
+
+        <mat-divider class="col-md-12 py-3 border-primary"></mat-divider>
+
+        <div class="row">
+            <div class="col pb-3">
+                <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
+                    Detalle de Inversión
+                </h6>
+            </div>
+        </div>
+
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label>NIT</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Nombre de la Entidad</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Fecha de Adquisición</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label>Tipo de Documento</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Número de Documento</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Valor Nominal</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label>Participación Nominal</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Valor de la Inversión</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Valor de las Acciones</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+        </div>
+
+        <!-- Botones: Volver a registro, Siguiente -->
+        <div class="container">
+            <div class="row pt-2 text-center">
+                <div class="col-md-6">
+                    <a routerLink="../lista" class="btn btn-primary text-white m-0 mt-4">
+                        Volver a registros
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <button mat-button matStepperNext class="btn btn-success text-white m-0 mt-4">
+                        Siguiente
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

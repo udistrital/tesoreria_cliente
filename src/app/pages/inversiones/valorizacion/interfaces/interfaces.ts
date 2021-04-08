@@ -143,7 +143,7 @@ export const DATOS_TABLA_OTRASENTIDADES: any = [
 
 export const CONFIGURACION_CONTABILIZACION: any = {
     title: {
-        name: 'CAUSACIÓN INVERSIÓN INICIAL',
+        name: 'REGISTRO DE PROCESO',
         class: 'text-center',
         actionClass: 'd-flex flex-row justify-content-around align-middle'
     },
