@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { DATOS_TABLA_OTRASENTIDADES, CONFIGURACION_TABLA_OTRASENTIDADES } from '../../interfaces/interfaces';
 
 @Component({
-  selector: 'ngx-table-otrasentidaes',
-  templateUrl: './table-otrasentidaes.component.html',
-  styleUrls: ['./table-otrasentidaes.component.scss']
+  selector: 'ngx-table-otrasentidades',
+  templateUrl: './table-otrasentidades.component.html',
+  styleUrls: ['./table-otrasentidades.component.scss']
 })
-export class TableOtrasentidaesComponent implements OnInit {
+export class TableOtrasentidadesComponent implements OnInit {
 
   configValorizacion: any;
   datosValorizacion: any;

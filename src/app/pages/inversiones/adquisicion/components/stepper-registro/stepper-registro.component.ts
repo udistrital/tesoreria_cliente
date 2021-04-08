@@ -20,7 +20,7 @@ export class StepperRegistroComponent implements OnInit {
   subscription$: any;
   Rendimientos: string;
 
-  constructor(private fb: FormBuilder, private store: Store<any>) { 
+  constructor(private fb: FormBuilder, private store: Store<any>) {
     this.subscription$ = this.store.select(selectRendimientos).subscribe((valor) => {
       if (valor && valor.inversionstate)
         this.Rendimientos = valor.inversionstate;

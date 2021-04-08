@@ -1,17 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TableOtrasentidaesComponent } from './components/table-otrasentidaes/table-otrasentidaes.component';
+import { TableOtrasentidadesComponent } from './components/table-otrasentidades/table-otrasentidades.component';
 import { RegistroinicialComponent } from './components/registroinicial/registroinicial.component';
+import { StepperValorizacionComponent } from './components/stepper-valorizacion/stepper-valorizacion.component';
 
 
 const routes: Routes = [
   {
     path: 'lista',
-    component: TableOtrasentidaesComponent,
+    component: TableOtrasentidadesComponent,
   },
   {
     path: 'registro',
     component: RegistroinicialComponent,
+  },
+  {
+    path: 'proceso',
+    component: StepperValorizacionComponent,
   },
 
 ];

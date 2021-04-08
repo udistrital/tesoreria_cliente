@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'ngx-registroinicial',
@@ -9,8 +11,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class RegistroinicialComponent implements OnInit {
 
   infoRegistroGroup: FormGroup;
+  closeResult: string;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.createForm();
@@ -23,13 +26,24 @@ export class RegistroinicialComponent implements OnInit {
         Validators.required,
         Validators.pattern('^[0-9]*$')
       ]],
-      recursosCompra: ['', Validators.required],
-      tipoTitulo: ['', Validators.required],
-      fechaIncial: ['', Validators.required],
-      fechaFinal: ['', Validators.required],
+      tipoDocumento: ['', Validators.required],
+      fechaAdquisicion: ['', Validators.required],
+      numeroDocumento: ['', [
+        Validators.required,
+        Validators.pattern('^[0-9]*$')
+      ]],
+      valorNominal: ['', [
+        Validators.required,
+        RxwebValidators.numeric({ allowDecimal: true })
+      ]],
+      participacion: ['', Validators.required],
       valorInversion: ['', [
         Validators.required,
-        // RxwebValidators.numeric({allowDecimal: true})
+        RxwebValidators.numeric({ allowDecimal: true })
+      ]],
+      valorAcciones: ['', [
+        Validators.required,
+        RxwebValidators.numeric({ allowDecimal: true })
       ]]
     });
   }
@@ -47,6 +61,24 @@ export class RegistroinicialComponent implements OnInit {
       return Object.values(this.infoRegistroGroup.controls).forEach(control => {
         control.markAsTouched();
       });
+    }
+  }
+
+  open(modalGuardar) {
+    this.modalService.open(modalGuardar, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
     }
   }
 

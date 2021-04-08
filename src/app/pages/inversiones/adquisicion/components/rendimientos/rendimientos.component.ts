@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { DATOS_TABLARENDIMIENTOS, CONFIGURACION_TABLARENDIMIENTOS } from '../../interfaces/interfaces';
 import { SetContabilizacionComponent } from '../set-contabilizacion/set-contabilizacion.component';
 
@@ -13,7 +13,6 @@ export class RendimientosComponent implements OnInit {
 
 
   causacionResumenGroup: FormGroup;
-  // contabilizacionGroup: FormGroup;
   guardarRendimientoGroup: FormGroup;
 
   configRendimientos: any;
@@ -27,7 +26,6 @@ export class RendimientosComponent implements OnInit {
    }
 
   ngOnInit() {
-    // this.createForm();
     this.causacionResumenGroup = this.fb.group({
     });
     this.guardarRendimientoGroup = this.fb.group({

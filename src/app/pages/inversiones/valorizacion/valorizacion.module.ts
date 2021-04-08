@@ -2,18 +2,31 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ValorizacionRoutingModule } from './valorizacion-routing.module';
-import { TableOtrasentidaesComponent } from './components/table-otrasentidaes/table-otrasentidaes.component';
-// import { StepperRegistroComponent } from './components/stepper-registro/stepper-registro.component';
+import { TableOtrasentidadesComponent } from './components/table-otrasentidades/table-otrasentidades.component';
 import { SharedModule } from '../../../shared/shared.module';
 import { MatStepperModule, MatDividerModule } from '@angular/material';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistroinicialComponent } from './components/registroinicial/registroinicial.component';
-
+import { StepperValorizacionComponent } from './components/stepper-valorizacion/stepper-valorizacion.component';
+import { SetInforegistroComponent } from './components/set-inforegistro/set-inforegistro.component';
+import { SetDatosvalorizacionComponent } from './components/set-datosvalorizacion/set-datosvalorizacion.component';
+import { SetContabilizacionComponent } from './components/set-contabilizacion/set-contabilizacion.component';
+import { ShowDetallevalorizacionComponent } from './components/show-detallevalorizacion/show-detallevalorizacion.component';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { RxReactiveFormsModule, RxwebValidators } from '@rxweb/reactive-form-validators';
 
 
 @NgModule({
-  declarations: [TableOtrasentidaesComponent, RegistroinicialComponent],
+  declarations: [
+    TableOtrasentidadesComponent,
+    RegistroinicialComponent,
+    StepperValorizacionComponent,
+    SetInforegistroComponent,
+    SetDatosvalorizacionComponent,
+    SetContabilizacionComponent,
+    ShowDetallevalorizacionComponent
+  ],
   imports: [
     CommonModule,
     ValorizacionRoutingModule,
@@ -22,7 +35,9 @@ import { RegistroinicialComponent } from './components/registroinicial/registroi
     MatDividerModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RxReactiveFormsModule,
+    CurrencyMaskModule
   ]
 })
 export class ValorizacionModule { }
