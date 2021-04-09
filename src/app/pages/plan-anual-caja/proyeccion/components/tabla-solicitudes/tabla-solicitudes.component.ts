@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { LoadAreaFuncional, LoadCentroGestor, LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
 import { getFilaSeleccionada } from '../../../../../shared/selectors/shared.selectors';
 import { SharedService } from '../../../../../shared/services/shared.service';
 import { CONFIGURACION_TABLA_SOLICITUDES_PAC, DATOS_SOLICITUDES_PAC } from '../../interfaces/interfaces';
@@ -23,10 +25,19 @@ export class TablaSolicitudesComponent implements OnInit {
     private store: Store<any>,
     private matDialog: MatDialog,
     private sharedService: SharedService,
+    private route: Router,
   ) {
     this.configuracion = CONFIGURACION_TABLA_SOLICITUDES_PAC;
     this.datos = DATOS_SOLICITUDES_PAC;
     this.title = 'PROYECCION PLAN ANUAL DE CAJA';
+    this.store.dispatch(LoadCentroGestor({
+      CentroGestor: 230,
+    }));
+    this.store.dispatch(LoadAreaFuncional({
+      Id: 1,
+      Nombre: 'Rector',
+      label: '01 - Rector',
+    }));
   }
 
   ngOnInit() {
@@ -38,10 +49,12 @@ export class TablaSolicitudesComponent implements OnInit {
           });
         }
         if (data.accion.title === 'Ver Proyeccion') {
-
+          this.route.navigate(['pages/plan-anual-caja/proyeccion/form-rubro-pac']);
+          this.store.dispatch(LoadFilaSeleccionada(null));
         }
         if (data.accion.title === 'Ver Tabla Proyeccion') {
-
+          this.route.navigate(['pages/plan-anual-caja/proyeccion/tabla-proyeccion']);
+          this.store.dispatch(LoadFilaSeleccionada(null));
         }
       }
     });
