@@ -69,6 +69,7 @@
                         </ngx-general-table>
                     </div>
                 </div>
+                <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
                 <!-- Botones: Volver a registro, Siguiente -->
                 <div class="container">
                     <div class="row pt-2 text-center">
@@ -80,8 +81,11 @@
                             </a>
                         </div>
                         <div class="col-md-6 form-group">
-                            <button class="btn btn-success col-7 text-white m-0 mt-4" (click)="open(guardarDefinitivo)">
-                                Guardar
+                            <button *ngIf="diferencia === true" class="btn btn-outline-danger col-7 text-danger m-0 mt-4" (click)="compararValores(corregirDefinitivo)">
+                                GUARDAR
+                            </button>
+                            <button *ngIf="diferencia === false" class="btn btn-success col-7 text-white m-0 mt-4" (click)="guardar(guardarDefinitivo)">
+                                GUARDAR
                             </button>
                         </div>
                     </div>

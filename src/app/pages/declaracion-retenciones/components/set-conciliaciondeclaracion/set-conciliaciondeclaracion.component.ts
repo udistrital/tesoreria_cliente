@@ -22,6 +22,8 @@ export class SetConciliaciondeclaracionComponent implements OnInit {
   mostrarOcultar: string;
   mostrarOcultarIcono: string;
 
+  diferencia: boolean;
+
   closeResult = '';
 
   constructor(private fb: FormBuilder, private modalService: NgbModal) {
@@ -33,6 +35,9 @@ export class SetConciliaciondeclaracionComponent implements OnInit {
     // Icono en la Lista de documentos
     this.mostrarOcultar = 'Mostrar';
     this.mostrarOcultarIcono = 'fa-plus-square';
+
+    // Existe diferencia en los valores
+    this.diferencia = true;
   }
 
   ngOnInit() {
@@ -80,19 +85,28 @@ export class SetConciliaciondeclaracionComponent implements OnInit {
     }
   }
 
-  open(guardarDefinitivo, corregirDefinitivo) {
-    if (guardarDefinitivo)
-    this.modalService.open(guardarDefinitivo, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-    if (corregirDefinitivo)
+  compararValores(corregirDefinitivo) {
+    if (this.conciliacionGroup.valid) {
     this.modalService.open(corregirDefinitivo, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+  } else {
+    this.saveForm();
+  }
+  }
+
+  guardar(guardarDefinitivo) {
+    if (this.conciliacionGroup.valid) {
+    this.modalService.open(guardarDefinitivo, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  } else {
+    this.saveForm();
+  }
   }
 
   getDismissReason(reason: any): string {
