@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { combineLatest } from 'rxjs';
-import { GetVigenciaActual, LoadAreaFuncional, LoadCentroGestor } from '../../../../../shared/actions/shared.actions';
-import { getAreaFuncional, getVigenciaActual } from '../../../../../shared/selectors/shared.selectors';
-import { ProyeccionServiceService } from '../../services/proyeccion-service.service';
+import { LoadCentroGestor, LoadAreaFuncional, GetVigenciaActual } from '../../../../../shared/actions/shared.actions';
+import { getVigenciaActual, getAreaFuncional } from '../../../../../shared/selectors/shared.selectors';
+import { ProyeccionServiceService } from '../../../proyeccion/services/proyeccion-service.service';
 
 @Component({
-  selector: 'ngx-form-fuentes',
-  templateUrl: './form-fuentes.component.html',
-  styleUrls: ['./form-fuentes.component.scss']
+  selector: 'ngx-form-aprobacion-fuentes',
+  templateUrl: './form-aprobacion-fuentes.component.html',
+  styleUrls: ['./form-aprobacion-fuentes.component.scss']
 })
-export class FormFuentesComponent implements OnInit {
+export class FormAprobacionFuentesComponent implements OnInit {
 
   FuenteFinanciamientoForm: FormGroup;
   FuentesFinanciamiento: any;
@@ -89,4 +89,5 @@ export class FormFuentesComponent implements OnInit {
       this.MostrarFuentes = false;
     }
   }
+
 }
