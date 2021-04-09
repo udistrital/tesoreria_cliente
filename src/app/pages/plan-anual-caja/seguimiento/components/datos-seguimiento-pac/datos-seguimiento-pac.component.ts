@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   templateUrl: './datos-seguimiento-pac.component.html',
   styleUrls: ['./datos-seguimiento-pac.component.scss']
 })
-export class DatosSeguimientoPacComponent implements OnInit {
+export class DatosSeguimientoPacComponent implements OnInit, OnChanges {
 
   @Input() Fuentes: any;
   DatosPACForm: FormGroup;
