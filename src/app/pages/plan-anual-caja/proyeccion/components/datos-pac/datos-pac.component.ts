@@ -16,7 +16,7 @@ export class DatosPacComponent implements OnInit, OnChanges {
   constructor(
     private fb: FormBuilder,
   ) { }
-  
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.Fuentes && this.DatosPACForm) {
       this.DatosPACForm.get('ApropiacionPresupuestal').setValue(this.ValorFuentes(this.Fuentes));

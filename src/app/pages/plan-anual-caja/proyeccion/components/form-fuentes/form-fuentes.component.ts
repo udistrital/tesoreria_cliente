@@ -65,7 +65,9 @@ export class FormFuentesComponent implements OnInit {
     this.Fuentes = fuente;
   }
   QuitarFuente(index: any) {
-    this.Fuentes.splice(index, 1);
+    const fuente = JSON.parse(JSON.stringify(this.Fuentes));
+    fuente.splice(index, 1);
+    this.Fuentes = fuente;
     if (Object.keys(this.Fuentes).length === 0) {
       this.MostrarFuentes = false;
     }

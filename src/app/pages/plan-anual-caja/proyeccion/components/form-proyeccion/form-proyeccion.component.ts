@@ -11,15 +11,17 @@ export class FormProyeccionComponent implements OnInit {
 
   ProyeccionMensualForm: FormGroup;
   Meses: any;
+  TotalDistribuido: any;
 
   constructor(
     private fb: FormBuilder,
   ) {
+    this.TotalDistribuido = 0;
     this.Meses = MESES;
   }
 
   ngOnInit() {
-    this.CrearProyeccionMensualForm()
+    this.CrearProyeccionMensualForm();
   }
 
   CrearProyeccionMensualForm() {
@@ -36,6 +38,12 @@ export class FormProyeccionComponent implements OnInit {
       Octubre: [0, [Validators.required]],
       Noviembre: [0, [Validators.required]],
       Diciembre: [0, [Validators.required]],
+    });
+    this.ProyeccionMensualForm.valueChanges.subscribe((data: any) => {
+      this.TotalDistribuido = 0;
+      MESES.forEach((mes: any) => {
+        this.TotalDistribuido += data[mes];
+      });
     });
   }
 
