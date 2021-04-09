@@ -22,15 +22,15 @@ export class FormSolicitudPacComponent implements OnInit {
     private matDialogRef: MatDialogRef<FormSolicitudPacComponent>,
   ) {
     this.titulo = 'Crear Nueva Solicitud PAC';
-    this.CrearPACForm(data)
+    this.CrearPACForm(data);
   }
 
   ngOnInit() {
-    
+
   }
 
   CrearPACForm(plan?: any) {
-    console.log(plan)
+
     if (plan) {
       this.titulo = 'Editar Solicitud Pac';
       this.boton = 'Editar';
@@ -52,7 +52,7 @@ export class FormSolicitudPacComponent implements OnInit {
         FechaModificacion: ['', []],
         Id: [null, []],
         Descripcion: ['', [Validators.required]],
-        Vigencia: ["2020", [Validators.required]],
+        Vigencia: ['2020', [Validators.required]],
         Aprobado: [false, []]
       });
     }

@@ -14,7 +14,7 @@ import { FormSolicitudPacComponent } from '../form-solicitud-pac/form-solicitud-
 })
 export class TablaSolicitudesComponent implements OnInit {
 
-  configuracion: any
+  configuracion: any;
   datos: any[];
   title: any;
   subscription$: any;
@@ -38,13 +38,13 @@ export class TablaSolicitudesComponent implements OnInit {
           });
         }
         if (data.accion.title === 'Ver Proyeccion') {
-          
+
         }
         if (data.accion.title === 'Ver Tabla Proyeccion') {
-          
+
         }
       }
-    })
+    });
   }
 
   OnCreate() {

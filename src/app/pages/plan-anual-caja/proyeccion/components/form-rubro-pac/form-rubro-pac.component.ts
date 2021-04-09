@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-rubro-pac.component.scss']
 })
 export class FormRubroPacComponent implements OnInit {
-  
+
   title: string;
 
   constructor() {

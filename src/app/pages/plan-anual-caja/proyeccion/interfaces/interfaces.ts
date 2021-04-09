@@ -113,26 +113,41 @@ export const CONFIGURACION_TABLA_SOLICITUDES_PAC: any = {
 export const DATOS_SOLICITUDES_PAC = [
     {
         Id: 1,
-        Descripcion: "aasdas",
-        Vigencia: "2020",
-        FechaCreacion: "2021-04-07T20:04:07Z",
-        FechaModificacion: "2021-04-07T20:04:07Z",
+        Descripcion: 'aasdas',
+        Vigencia: '2020',
+        FechaCreacion: '2021-04-07T20:04:07Z',
+        FechaModificacion: '2021-04-07T20:04:07Z',
         Aprobado: true,
     },
     {
         Id: 2,
-        Descripcion: "aasdas",
-        Vigencia: "2020",
-        FechaCreacion: "2021-04-07T20:04:07Z",
-        FechaModificacion: "2021-04-07T20:04:07Z",
+        Descripcion: 'aasdas',
+        Vigencia: '2020',
+        FechaCreacion: '2021-04-07T20:04:07Z',
+        FechaModificacion: '2021-04-07T20:04:07Z',
         Aprobado: false,
     },
     {
         Id: 3,
-        Descripcion: "aasdas",
-        Vigencia: "2020",
-        FechaCreacion: "2021-04-07T20:04:07Z",
-        FechaModificacion: "2021-04-07T20:04:07Z",
+        Descripcion: 'aasdas',
+        Vigencia: '2020',
+        FechaCreacion: '2021-04-07T20:04:07Z',
+        FechaModificacion: '2021-04-07T20:04:07Z',
         Aprobado: true,
     }
-]
+];
+
+export const MESES = [
+    'Enero',
+    'Febrero',
+    'Marzo',
+    'Abril',
+    'Mayo',
+    'Junio',
+    'Julio',
+    'Agosto',
+    'Septiembre',
+    'Octubre',
+    'Noviembre',
+    'Diciembre',
+];

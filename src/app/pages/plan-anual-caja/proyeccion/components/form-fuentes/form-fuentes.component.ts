@@ -34,17 +34,17 @@ export class FormFuentesComponent implements OnInit {
       label: '01 - Rector',
     }));
     this.store.dispatch(GetVigenciaActual({ offset: 0 }));
-    this.CreatFuenteFinanciamientoForm()
+    this.CreatFuenteFinanciamientoForm();
   }
   ngOnInit() {
     this.subscription$ = combineLatest([
       this.store.select(getVigenciaActual),
       this.store.select(getAreaFuncional),
     ]).subscribe(([vigencia, area]) => {
-      console.log(vigencia, area)
+
       if (vigencia && area) {
         const query = {
-          Vigencia:  vigencia[0].valor,
+          Vigencia: vigencia[0].valor,
           UnidadEjecutora: area.Id,
         };
         this.proyeccionService.getFuentesFinanciamiento(null, query).subscribe((fuentesAsociadas: any) => {
