@@ -1,0 +1,92 @@
+<form [formGroup]="infoNuevasolicitudGroup" (ngSubmit)="saveForm()">
+    <div class="container">
+        <div class="row">
+            <div class="col pb-3">
+                <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
+                    Información del Solicitante
+                </h6>
+            </div>
+        </div>
+        <!-- Escribir el código del estudiante para traer su información -->
+        <div class="form-group row">
+            <div class="col-md-6">
+                <label for="codigoEstudiante">Código del Estudiante</label>
+                <input type="number" id="codigoEstudiante" class="form-control" formControlName="codigoEstudiante" [class.is-invalid]="isInvalid('codigoEstudiante')">
+                <small *ngIf="isInvalid('codigoEstudiante')" class="text-danger">Ingrese números en este campo</small>
+            </div>
+        </div>
+        <!-- Los datos se traen a modo de lectura -->
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label>Tipo de ID</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Número de ID</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Nombre Completo</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-6">
+                <label>Programa</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-6">
+                <label>Facultad</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-6">
+                <label>Modalidad</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-6">
+                <label>Estado</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+        </div>
+        <mat-divider class="col-md-12 py-3 border-primary"></mat-divider>
+        <!-- Seleccionar tipo de certificación -->
+        <div class="row  pt-2">
+            <div class="col-md-4 form-group">
+                <span>Tipo de Solicitud:</span>
+                <div class="invalid-feedback" [class.d-block]="isInvalid('solicitud')">Complete este campo</div>
+            </div>
+            <!-- Solicitud1 = Certificado de Reintegro -->
+            <div class="col-md-4 form-group">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="solicitud1" name="solicitud" class="custom-control-input" formControlName="solicitud" value="Certificado de Reintegro">
+                    <label class="custom-control-label" for="solicitud1">Certificado de Reintegro</label>
+                </div>
+            </div>
+            <!-- Solicitud2 = Certificado de Pagos -->
+            <div class="col-md-4 form-group">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="solicitud2" name="solicitud" class="custom-control-input" formControlName="solicitud" value="Certificado de Pagos">
+                    <label class="custom-control-label" for="solicitud2">Certificado de Pagos</label>
+                </div>
+            </div>
+        </div>
+        <mat-divider class="col-md-12 py-3 border-primary"></mat-divider>
+        <!-- Botones: Volver a registro, Siguiente -->
+        <div class="container">
+            <div class="row pt-2 text-center">
+                <div class="col-md-6">
+                    <a routerLink="../lista" class="btn btn-primary text-white m-0 mt-4">
+                        Volver a registros
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <button mat-button matStepperNext class="btn btn-success text-white m-0 mt-4">
+                        Siguiente
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
