@@ -7,14 +7,24 @@ import { FormRubroPacComponent } from './components/form-rubro-pac/form-rubro-pa
 import { FormSolicitudPacComponent } from './components/form-solicitud-pac/form-solicitud-pac.component';
 import { SharedModule } from '../../../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule, MatSelectModule } from '@angular/material';
+import { FormFuentesComponent } from './components/form-fuentes/form-fuentes.component';
+import { FormProyeccionComponent } from './components/form-proyeccion/form-proyeccion.component';
+import { SeleccionRubroComponent } from './components/seleccion-rubro/seleccion-rubro.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { DatosPacComponent } from './components/datos-pac/datos-pac.component';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 @NgModule({
   declarations: [
     TablaSolicitudesComponent,
     TablaProyeccionComponent,
     FormRubroPacComponent,
-    FormSolicitudPacComponent
+    FormSolicitudPacComponent,
+    FormFuentesComponent,
+    FormProyeccionComponent,
+    SeleccionRubroComponent,
+    DatosPacComponent
   ],
   imports: [
     CommonModule,
@@ -23,6 +33,9 @@ import { MatDialogModule } from '@angular/material';
     ReactiveFormsModule,
     ProyeccionRoutingModule,
     MatDialogModule,
+    CurrencyMaskModule,
+    ScrollingModule,
+    MatSelectModule,
   ],
   entryComponents: [
     FormSolicitudPacComponent,
