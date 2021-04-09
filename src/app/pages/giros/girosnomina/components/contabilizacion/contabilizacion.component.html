@@ -1,0 +1,31 @@
+<ng-template #modalNomina>
+    <mat-dialog-content>
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col py-2">
+                            <h5 class="card-title text-center text-primary">
+                                CONTABILIZACIÓN DEL GIRO
+                            </h5>
+                        </div>
+                    </div>
+                    <mat-horizontal-stepper linear #stepperModal>
+                        <mat-step [completed]="informacion">
+                            <ng-template matStepLabel> Inicio </ng-template>
+                            <ngx-set-contabilizacion (statusContable)="validarContabilidad($event)" (informacionContable)="informacionContable($event, stepperModal)" (cerrarModal)="cerrar($event)"></ngx-set-contabilizacion>
+                        </mat-step>
+                        <mat-step [completed]="erogacion">
+                            <ng-template matStepLabel> Erogación del acreedor y detalles </ng-template>
+                            <ngx-set-erogacioncontabilizacion (statusErogacion)="validarErogacion($event)" (informacionErogacion)="informacionErogacion($event, stepperModal)"></ngx-set-erogacioncontabilizacion>
+                        </mat-step>
+                        <mat-step>
+                            <ng-template matStepLabel> Resumen </ng-template>
+                            <ngx-set-resumen-contabilizacion (informacionResumen)="informacionResumen($event)"></ngx-set-resumen-contabilizacion>
+                        </mat-step>
+                    </mat-horizontal-stepper>
+                </div>
+            </div>
+        </div>
+    </mat-dialog-content>
+</ng-template>

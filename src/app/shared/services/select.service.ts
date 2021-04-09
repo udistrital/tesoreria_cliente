@@ -9,4 +9,7 @@ export class SelectService {
 
   public elementosElegidos?: Object [];
   public modalEjecucion?: boolean = false;
+  public modalNomina?: boolean = false;
+  public modalSeguridad?: boolean = false;
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { OPCIONES_AREA_FUNCIONAL } from '../../../../../shared/interfaces/interfaces';
@@ -12,7 +12,7 @@ import { seleccionarSolicitudesAvance } from '../../selectors/solicitudavances.s
   templateUrl: './table-solicitudavances.component.html',
   styleUrls: ['./table-solicitudavances.component.scss']
 })
-export class TableSolicitudavancesComponent implements OnInit {
+export class TableSolicitudavancesComponent implements OnInit, OnDestroy {
 
   configSolicitudes: any;
   datosSolicitudes: any;
@@ -46,9 +46,9 @@ export class TableSolicitudavancesComponent implements OnInit {
           this.datosSolicitudes = accion.solicitudesAvance;
           this.datosSolicitudes.forEach(element => {
             element.estadoSolicitud = element.EstadoTipoSolicitud.EstadoId.Nombre;
-            const area = this.areasFuncionales.find(area =>
+            let area = this.areasFuncionales.find(area =>
               area.Id === element.AreaFuncionalId);
-            element.areaFuncional = area.Id + " - " + area.Nombre
+            element.areaFuncional = area.Id + ' - ' + area.Nombre;
           });
         } /*else if (accion.tiposAvances.idActualizado) {
           const tipoAvance = this.datosTablaTipos.find((element: any) =>

@@ -1,0 +1,39 @@
+<div class="container bg-white p-5 border rounded">
+    <div class="row">
+        <div class="col py-2">
+            <h5 class="card-title text-center text-primary text-uppercase">
+                REGISTRAR NUEVA ADQUISICIÓN
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-horizontal-stepper linear #stepper>
+                <mat-step [stepControl]="infoAdquisicionGroup">
+                    <ng-template matStepLabel>Inicio</ng-template>
+                    <div class="container">
+                        <ngx-set-procesoadquisicion></ngx-set-procesoadquisicion>
+                    </div>
+                </mat-step>
+                <mat-step [stepControl]="inversionInicialGroup">
+                    <ng-template matStepLabel>Datos Generales</ng-template>
+                    <div class="container">
+                        <ngx-set-infoinversioninicial></ngx-set-infoinversioninicial>
+                    </div>
+                </mat-step>
+                <mat-step [stepControl]="causacionInicialGroup">
+                    <ng-template matStepLabel>Contabilización</ng-template>
+                    <div class="container">
+                        <ngx-set-contabilizacion></ngx-set-contabilizacion>
+                    </div>
+                </mat-step>
+                <mat-step [stepControl]="detalleAdquisicionGroup">
+                    <ng-template matStepLabel>Guardar</ng-template>
+                    <div class="container">
+                        <ngx-show-detalleadquisicion></ngx-show-detalleadquisicion>
+                    </div>
+                </mat-step>
+            </mat-horizontal-stepper>
+        </div>
+    </div>
+</div>

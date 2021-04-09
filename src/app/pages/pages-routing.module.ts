@@ -23,10 +23,15 @@ const routes: Routes = [{
       .then(m => m.GirosModule),
     },
     {
+      path: 'inversiones',
+      loadChildren: () => import('./inversiones/inversiones.module')
+      .then(m => m.InversionesModule),
+    },
+    {
       path: 'declaracionretenciones',
       loadChildren: () => import('./declaracion-retenciones/declaracion-retenciones.module')
       .then(m => m.DeclaracionRetencionesModule),
-    }
+    },
   ],
 }];
 
