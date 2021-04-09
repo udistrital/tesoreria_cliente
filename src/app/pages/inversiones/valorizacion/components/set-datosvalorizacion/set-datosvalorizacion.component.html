@@ -7,8 +7,7 @@
                 </h6>
             </div>
         </div>
-
-        <!-- Seleccion de Recursos de compra y tipo de titulo valor -->
+        <!-- Escribir el precio de cierre en bolsa -->
         <div class="form-group row">
             <div class="col-md-4">
                 <label for="precioCierre">Precio - Cierre en Bolsa</label>
@@ -16,39 +15,43 @@
                 <small *ngIf="isInvalid('precioCierre')" class="text-danger">Ingrese un monto en este
                     campo</small>
             </div>
+            <!-- Se calcula luego del campo anterior (preguntar por la fórmula) -->
             <div class="col-md-4">
                 <label>Valor de las Acciones</label>
                 <input currencyMask value="$ " class="form-control" readonly>
             </div>
+            <!-- Se calcula luego del campo anterior (preguntar por la fórmula) -->
             <div class="col-md-4">
                 <label>Valor de Acciones en Libro</label>
                 <input currencyMask value="$ " class="form-control" readonly>
             </div>
         </div>
-        <!-- Selecion de fecha inicial y final de la inversion, valor de la inversion -->
+        <!-- Se calcula luego del campo anterior (consultar la fórmula) -->
         <div class="form-group row">
             <div class="col-md-4">
                 <label>Valorización de las Acciones</label>
                 <input currencyMask value="$ " class="form-control" readonly>
             </div>
+            <!-- Se escribe el valor del registro en valorización -->
             <div class="col-md-4">
                 <label for="registroValorizacion">Registro en Valorización</label>
                 <input currencyMask class="form-control" id="registroValorizacion" formControlName="registroValorizacion" [class.is-invalid]="isInvalid('registroValorizacion')">
                 <small *ngIf="isInvalid('registroValorizacion')" class="text-danger">Ingrese un monto en este
                     campo</small>
             </div>
+            <!-- Se calcula a patir de los campos anteriores (consultar fórmula) -->
             <div class="col-md-4">
                 <label>Ajuste</label>
                 <input currencyMask value="$ " class="form-control" readonly>
             </div>
         </div>
+        <!-- El campo está opcional -->
         <div class="form-group row">
             <div class="col">
                 <label for="observaciones">Observaciones</label>
                 <textarea class="form-control" id="observaciones" formControlName="observaciones"></textarea>
             </div>
         </div>
-
         <!-- Botones: Volver a registro, Siguiente -->
         <div class="container">
             <div class="row pt-2 text-center">

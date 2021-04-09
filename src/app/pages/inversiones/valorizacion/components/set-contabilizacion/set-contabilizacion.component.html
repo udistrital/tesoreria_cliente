@@ -52,7 +52,6 @@
                     campo</small>
             </div>
         </div>
-
         <!-- Tabla de cuentas contables -->
         <div class="row">
             <div class="col bg-white">
@@ -60,7 +59,7 @@
                 </ngx-general-table>
             </div>
         </div>
-
+        <!-- Se hace la suma de las cuentas contables en debito y credito, deben sumar lo mismo -->
         <div class="row py-4">
             <div class="col-md-4 text-right pt-3">
                 <label class="text-right">SUMAS IGUALES</label>
@@ -72,9 +71,7 @@
                 <input type="text" class="form-control" value=" " readonly>
             </div>
         </div>
-
         <mat-divider class="col-md-12 py-3 border-warning"></mat-divider>
-
         <!-- Boton para descargar de comprobante contable -->
         <div class="row py-3 justify-content-center">
             <button class="btn btn-outline-success mb-2 mr-2" (click)="modalComprobante(contabilizacionModal)">

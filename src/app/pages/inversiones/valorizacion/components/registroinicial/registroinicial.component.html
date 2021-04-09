@@ -34,7 +34,7 @@
                             <input value=" " type="text" class="form-control" readonly>
                         </div>
                     </div>
-                    <!-- Seleccion de Recursos de compra y tipo de titulo valor -->
+                    <!-- Seleccion de Fecha de adquisición de la inversion, el tipo de documento y número -->
                     <div class="form-group row">
                         <div class="col-md-4">
                             <label for="fechaAdquisicion">Fecha de Adquisición</label>
@@ -44,7 +44,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-md-4">
                             <label for="tipoDocumento">Tipo de Documento</label>
                             <select class="custom-select" id="tipoDocumento" formControlName="tipoDocumento" [class.is-invalid]="isInvalid('tipoDocumento')">
@@ -54,7 +53,6 @@
                             </select>
                             <small *ngIf="isInvalid('tipoDocumento')" class="text-danger">Seleccione una opción</small>
                         </div>
-
                         <div class="col-md-4">
                             <label for="numeroDocumento">Número de Documento</label>
                             <input type="number" class="form-control" id="numeroDocumento" formControlName="numeroDocumento" [class.is-invalid]="isInvalid('numeroDocumento')">
@@ -62,8 +60,7 @@
                                 campo</small>
                         </div>
                     </div>
-
-                    <!-- Selecion de fecha inicial y final de la inversion, valor de la inversion -->
+                    <!-- Valor nominal, porcentaje o participación -->
                     <div class="form-group row">
                         <div class="col-md-6">
                             <label for="valorNominal">Valor Nominal</label>
@@ -71,6 +68,7 @@
                             <small *ngIf="isInvalid('valorNominal')" class="text-danger">Ingrese números en este
                                 campo</small>
                         </div>
+                        <!-- Corresponde al porcentaje del patrimonio -->
                         <div class="col-md-6">
                             <label for="participacion">Participación Patrimonial</label>
                             <input type="text" class="form-control" id="participacion" formControlName="participacion" [class.is-invalid]="isInvalid('participacion')">
@@ -78,7 +76,7 @@
                                 campo</small>
                         </div>
                     </div>
-                    <!-- Selecion de fecha inicial y final de la inversion, valor de la inversion -->
+                    <!-- Valor de la inversión y de las acciones -->
                     <div class="form-group row">
                         <div class="col-md-6">
                             <label for="valorInversion">Valor de la Inversión</label>
@@ -100,17 +98,18 @@
                                 <a routerLink="../lista">
                                     <button type="button" class="btn btn-primary mb-3 mt-3 text-white">
                                         <div class="d-flex flex-row justify-content-around align-middle">
-                                            <span>Volver a registros</span>
+                                            Volver a registros
                                         </div>
                                     </button>
                                 </a>
                             </div>
                             <div class="col-md-6 form-group">
-                                <button *ngIf="infoRegistroGroup.valid" type="button" class="btn btn-success text-white m-0 mt-4" (click)="open(modalGuardar)">GUARDAR</button>
+                                <button *ngIf="infoRegistroGroup.valid" type="button" class="btn btn-success text-white m-0 mt-4" (click)="open(modalGuardar)">
+                                    GUARDAR
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <!-- Fin Botones: Volver a registro, Siguiente -->
                 </div>
             </form>
         </div>

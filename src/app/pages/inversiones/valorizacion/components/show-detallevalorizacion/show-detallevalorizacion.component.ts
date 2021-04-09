@@ -22,7 +22,7 @@ export class ShowDetallevalorizacionComponent implements OnInit {
     this.configContabilizacion = CONFIGURACION_DETALLE;
     this.datosContabilizacion = DATOS_CONTABILIZACION;
 
-    // Icono en la Lista de documentos
+    // Icono en la Lista de cuentas
     this.mostrarOcultar = 'Mostrar';
     this.mostrarOcultarIcono = 'fa-plus-square';
 
@@ -33,7 +33,7 @@ export class ShowDetallevalorizacionComponent implements OnInit {
     });
   }
 
-  // Configuracion de Icono en lista documentos
+  // Configuracion de Icono en lista cuentas
   mostrarOcultarTablas(state: string) {
     if (state === 'false') {
       this.mostrarOcultarIcono = 'fa-minus-square';

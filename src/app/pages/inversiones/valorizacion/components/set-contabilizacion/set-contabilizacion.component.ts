@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CONFIGURACION_CONTABILIZACION } from '../../../valorizacion/interfaces/interfaces';
-import { DATOS_CONTABILIZACION } from '../../../valorizacion/interfaces/interfaces';
+import { CONFIGURACION_CONTABILIZACION, DATOS_CONTABILIZACION } from '../../../valorizacion/interfaces/interfaces';
 
 @Component({
   selector: 'ngx-set-contabilizacion',
