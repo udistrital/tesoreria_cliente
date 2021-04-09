@@ -11,7 +11,7 @@
             <form [formGroup]="conciliacionGroup" (ngSubmit)="saveForm()">
                 <div class="container">
                     <div class="row">
-                        <div class="col pb-3">
+                        <div class="col py-3">
                             <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
                                 Conciliación
                             </h6>
@@ -38,25 +38,25 @@
                                 numérico</small>
                         </div>
                     </div>
-                    <div class="row px-3 pb-3">
+                    <div class="row pl-3 pb-3">
                         <div class="col-md-8 form-group form-check">
                             <input type="checkbox" class="form-check-input" id="otrosPagos">
                             <label class="form-check-label" for="otrosPagos">Otros pagos sujetos a retención</label>
                         </div>
                         <div class="col-md-4">
-                            <button type="button" class="btn btn-block btn-primary text-white" (click)='agregarCuenta()'><span>Agregar</span></button>
+                            <button type="button" class="btn col-md btn-primary text-white" (click)='agregarCuenta()'>
+                                <span>Agregar</span>
+                            </button>
                         </div>
                     </div>
-
                     <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
-
                     <!-- Se muestran las cuentas contables seleccionadas y agregadas -->
                     <div class="row">
                         <!-- Tabla General Adaptada para cada cuenta (ejemplo: compras 3,5% No declarantes y 2,5% Declarantes...)-->
                         <ngx-general-table [config]="configConciliacion" [datos]="datosConciliacion">
                         </ngx-general-table>
                     </div>
-                    <!-- Tabla adicional para el ejemple, al dar funcionalidad no es necesario -->
+                    <!-- Tabla adicional para el ejemplo, al dar funcionalidad no es necesario -->
                     <div class="row">
                         <div class="col pt-3">
                             <h6 class="card-title col-md-12 bg-dark text-white text-center py-2 px-2 rounded">
@@ -69,15 +69,18 @@
                         </ngx-general-table>
                     </div>
                 </div>
-
                 <!-- Botones: Volver a registro, Siguiente -->
                 <div class="container">
                     <div class="row pt-2 text-center">
                         <div class="col-md-6">
-                            <a routerLink="../lista" class="btn btn-primary col-5 text-white m-0 mt-4">Volver a registros</a>
+                            <a routerLink="../lista">
+                                <button class="btn btn-primary col-md-7 text-white m-0 mt-4">
+                                    Volver a registros
+                                </button>
+                            </a>
                         </div>
                         <div class="col-md-6 form-group">
-                            <button class="btn btn-success col-5 text-white m-0 mt-4" (click)="open(guardarDefinitivo)">
+                            <button class="btn btn-success col-7 text-white m-0 mt-4" (click)="open(guardarDefinitivo)">
                                 Guardar
                             </button>
                         </div>
@@ -88,7 +91,7 @@
     </div>
 </div>
 
-<!-- Modal Guardar-->
+<!-- Modal Guardar Definitivo-->
 <ng-template #guardarDefinitivo let-modal>
     <div class="modal-header">
         <h5 class="modal-title text-success" id="guardarDefinitivo">GUARDAR DEFINITIVO</h5>
@@ -109,8 +112,8 @@
         </a>
     </div>
 </ng-template>
-<!-- Fin Modal Guardar-->
-<!-- Modal Guardar-->
+
+<!-- Modal Estado Corregir Definitivo -->
 <ng-template #corregirDefinitivo let-modal>
     <div class="modal-header">
         <h5 class="modal-title text-danger" id="corregirDefinitivo">AVISO</h5>
@@ -130,4 +133,4 @@
         </a>
     </div>
 </ng-template>
-<!-- Fin Modal Guardar-->
+<!-- Fin Modal -->

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CONFIGURACION_CONCILIACION, DATOS_CONCILIACION, DATOS_OTROSPAGOS } from '../../interfaces/interfaces';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-// import { RxwebValidators } from '@rxweb/reactive-form-validators';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -59,7 +59,7 @@ export class SetConciliaciondeclaracionComponent implements OnInit {
       ]],
       valorCuenta: ['', [
         Validators.required,
-        // RxwebValidators.numeric({allowDecimal: true})
+        RxwebValidators.numeric({allowDecimal: true})
       ]]
     });
   }
@@ -80,8 +80,15 @@ export class SetConciliaciondeclaracionComponent implements OnInit {
     }
   }
 
-  open(guardarDefinitivo) {
+  open(guardarDefinitivo, corregirDefinitivo) {
+    if (guardarDefinitivo)
     this.modalService.open(guardarDefinitivo, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+    if (corregirDefinitivo)
+    this.modalService.open(corregirDefinitivo, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

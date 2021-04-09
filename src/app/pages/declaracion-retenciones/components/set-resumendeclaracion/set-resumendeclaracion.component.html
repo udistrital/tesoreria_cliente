@@ -74,7 +74,6 @@
                 <input type="text" class="form-control" value=" " readonly>
             </div>
         </div>
-
         <div class="row pt-2">
             <div class="col pt-3">
                 <h6 class="card-title col-md-12 bg-dark text-white text-center py-2 px-2 rounded">
@@ -87,7 +86,6 @@
             <ngx-general-table [config]="configDetalleCuentas" [datos]="datosDetalleCuentas">
             </ngx-general-table>
         </div>
-
         <div class="row pt-2">
             <div class="col pt-3">
                 <h6 class="card-title col-md-12 bg-dark text-white text-center py-2 px-2 rounded">
@@ -100,18 +98,18 @@
             <ngx-general-table [config]="configDetalleCuentas" [datos]="datosDetalleCuentas">
             </ngx-general-table>
         </div>
-
         <mat-divider class="col-md-12 py-3 border-warning"></mat-divider>
-
         <!-- Botones: Regresar, Siguiente -->
         <div class="container">
             <div class="row pt-2 text-center">
                 <div class="col-md-6">
-                    <button mat-button matStepperPrevious class="btn btn-primary text-white m-0 mt-4">Regresar</button>
+                    <button mat-button matStepperPrevious class="btn btn-primary col-md-7 text-white m-0 mt-4">
+                        Regresar
+                    </button>
                 </div>
                 <div class="col-md-6 form-group">
-                    <button class="btn btn-success text-white m-0 mt-4" (click)="open(modalGuardar)">
-                        GUARDAR BORRADOR
+                    <button class="btn btn-success col-md-7 text-white m-0 mt-4" (click)="open(modalGuardar)">
+                        Guardar Borrador
                     </button>
                 </div>
             </div>
@@ -119,7 +117,7 @@
     </div>
 </form>
 
-<!-- Modal Guardar-->
+<!-- Modal Guardar Resumen-->
 <ng-template #modalGuardar let-modal>
     <div class="modal-header">
         <h5 class="modal-title text-success" id="modalGuardar">GUARDAR BORRADOR</h5>
@@ -142,7 +140,7 @@
 </ng-template>
 <!-- Fin Modal Guardar-->
 
-<!-- Modal Definitivo-->
+<!-- Modal Continuar con Proceso Definitivo-->
 <ng-template #modalDefinitivo let-modal>
     <div class="modal-header">
         <h5 class="modal-title text-primary" id="modalDefinitivo">AVISO</h5>

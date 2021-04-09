@@ -25,9 +25,7 @@
                 <button type="button" class="btn btn-block btn-primary text-white" (click)='agregarCuenta()'><span>Agregar</span></button>
             </div>
         </div>
-
         <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
-
         <!-- Se muestran las cuentas contables seleccionadas y agregadas -->
         <div class="container pt-3 ">
             <div class="row">
@@ -102,15 +100,18 @@
             </div>
         </div>
         <!-- FIN : Bloque de codigo opcional -->
-
         <!-- Botones: Volver a registro, Siguiente -->
         <div class="container">
             <div class="row text-center">
                 <div class="col-6">
-                    <button mat-button matStepperPrevious class="btn btn-primary m-0 mt-4 text-white" type="button">Regresar</button>
+                    <button mat-button matStepperPrevious class="btn btn-primary col-md-7 m-0 mt-4 text-white" type="button">
+                        Regresar
+                    </button>
                 </div>
                 <div class="form-group col-6">
-                    <button mat-button matStepperNext type="submit" class="btn btn-success m-0 mt-4">Siguiente</button>
+                    <button mat-button matStepperNext type="submit" class="btn btn-success col-md-7 m-0 mt-4">
+                        Siguiente
+                    </button>
                 </div>
             </div>
         </div>

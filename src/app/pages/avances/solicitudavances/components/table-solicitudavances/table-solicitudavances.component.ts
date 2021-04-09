@@ -46,7 +46,7 @@ export class TableSolicitudavancesComponent implements OnInit, OnDestroy {
           this.datosSolicitudes = accion.solicitudesAvance;
           this.datosSolicitudes.forEach(element => {
             element.estadoSolicitud = element.EstadoTipoSolicitud.EstadoId.Nombre;
-            let area = this.areasFuncionales.find(area =>
+            const area = this.areasFuncionales.find(area =>
               area.Id === element.AreaFuncionalId);
             element.areaFuncional = area.Id + ' - ' + area.Nombre;
           });

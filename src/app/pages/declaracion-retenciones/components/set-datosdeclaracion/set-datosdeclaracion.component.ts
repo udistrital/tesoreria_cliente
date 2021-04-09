@@ -27,10 +27,6 @@ export class SetDatosdeclaracionComponent implements OnInit {
       fechaInicial: ['', Validators.required],
       fechaFinal: ['', Validators.required],
       cargoResponsable: ['', Validators.required],
-      // valorInversion: ['', [
-        // Validators.required,
-        // RxwebValidators.numeric({allowDecimal: true})
-      // ]]
     });
   }
 

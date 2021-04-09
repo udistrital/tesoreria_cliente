@@ -12,7 +12,9 @@ import { MatStepperModule, MatDividerModule } from '@angular/material';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SetConciliaciondeclaracionComponent } from './components/set-conciliaciondeclaracion/set-conciliaciondeclaracion.component';
-// import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { SetConciliaciondeclaracionComponent } from './components/set-conciliaci
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    // RxReactiveFormsModule
+    RxReactiveFormsModule,
+    CurrencyMaskModule
   ]
 })
 export class DeclaracionRetencionesModule { }
