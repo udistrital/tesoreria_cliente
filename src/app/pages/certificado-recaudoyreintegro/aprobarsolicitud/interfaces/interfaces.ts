@@ -45,6 +45,26 @@ export const CONFIGURACION_TABLA_APROBACION: any = {
                 class: 'text-justify',
             }
         },
+        {
+            key: 'tipoSolicitud',
+            title: {
+                name: 'Tipo de Solicitud',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'estado',
+            title: {
+                name: 'Estado',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
     ],
     rowActions: {
         title: {
@@ -76,12 +96,16 @@ export const DATOS_TABLA_APROBACION: any = [
         solicitante: 'Daniel Carvajal',
         codigo: '20192020015',
         periodo: '2019-2',
+        tipoSolicitud: 'Certificado de Reintegro',
+        estado: 'Aprobado'
     },
     {
         fechaSolicitud: '2019-06-30T23:00:00Z',
         solicitante: 'Daniel Carvajal',
         codigo: '20192020015',
         periodo: '2019-2',
+        tipoSolicitud: 'Certificado de Recaudo',
+        estado: 'Denegado'
     },
 ];
 

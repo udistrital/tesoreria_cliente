@@ -17,6 +17,11 @@ const routes: Routes = [{
       loadChildren: () => import('./aprobarsolicitud/aprobarsolicitud.module')
         .then(m => m.AprobarsolicitudModule),
     },
+    {
+      path: 'generarcertificado',
+      loadChildren: () => import('./certificados/certificados.module')
+        .then(m => m.CertificadosModule),
+    },
   ],
 }];
 
