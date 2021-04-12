@@ -64,7 +64,7 @@ export class SetConciliaciondeclaracionComponent implements OnInit {
       ]],
       valorCuenta: ['', [
         Validators.required,
-        RxwebValidators.numeric({allowDecimal: true})
+        RxwebValidators.numeric({ allowDecimal: true })
       ]]
     });
   }
@@ -87,26 +87,26 @@ export class SetConciliaciondeclaracionComponent implements OnInit {
 
   compararValores(corregirDefinitivo) {
     if (this.conciliacionGroup.valid) {
-    this.modalService.open(corregirDefinitivo, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  } else {
-    this.saveForm();
-  }
+      this.modalService.open(corregirDefinitivo, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    } else {
+      this.saveForm();
+    }
   }
 
   guardar(guardarDefinitivo) {
     if (this.conciliacionGroup.valid) {
-    this.modalService.open(guardarDefinitivo, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  } else {
-    this.saveForm();
-  }
+      this.modalService.open(guardarDefinitivo, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    } else {
+      this.saveForm();
+    }
   }
 
   getDismissReason(reason: any): string {

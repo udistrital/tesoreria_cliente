@@ -2,27 +2,13 @@
     <div class="row">
         <div class="col-md-12 bg-white py-3">
             <h5 class="card-title text-center text-primary">
-                SOLCITUD DE REINTEGRO Y CERTIFICADOS
+                LISTA DE SOLICITUDES
             </h5>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12 bg-white px-5 d-flex flex-row justify-content-end">
-            <a routerLink="../crear">
-                <button type="button" class="btn btn-primary mb-3 mt-3 text-white">
-                    <div class="d-flex flex-row justify-content-around align-middle">
-                        <i class="fas fa-plus py-1 px-2"></i>
-                        <span>
-                            Nueva Solicitud
-                        </span>
-                    </div>
-                </button>
-            </a>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-md-12 bg-white px-4 pb-3">
-            <ngx-general-table [config]="configSolicitud" [datos]="datosSolicitud"></ngx-general-table>
+            <ngx-general-table [config]="configAprobaciones" [datos]="datosAprobaciones"></ngx-general-table>
         </div>
     </div>
 </div>

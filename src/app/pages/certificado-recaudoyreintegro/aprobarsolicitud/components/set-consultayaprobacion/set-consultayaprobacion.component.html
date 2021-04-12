@@ -1,1 +1,150 @@
-<p>set-consultayaprobacion works!</p>
+<div class="container bg-white p-5 border rounded">
+    <div class="row">
+        <div class="col py-2">
+            <h5 class="card-title text-center text-primary text-uppercase">
+                CONSULTA DE SOLICITUD
+            </h5>
+        </div>
+    </div>
+    <div class="container py-2">
+        <div class="row">
+            <div class="col-md-12">
+                <h6 class="card-title col-md-7 bg-primary text-white text-center py-2 px-2 rounded">
+                    Información de la Solicitud
+                </h6>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label>Tipo de ID</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Número de ID</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Código del Estudiante</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label>Nombre Completo</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Proyecto</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Facultad</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label>Modalidad</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Estado</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Tipo de Solicitud</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md">
+                <label>Justificación</label>
+                <textarea class="form-control" rows="2" readonly></textarea>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md">
+                <label>Observaciones</label>
+                <textarea class="form-control" rows="1" readonly></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-is-center py-3">
+        <!-- Tabla General Adaptada Anexos -->
+        <ngx-general-table [config]="configAnexos" [datos]="datosAnexos">
+        </ngx-general-table>
+    </div>
+    <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
+
+    <!-- Botones: Volver a registro, Siguiente -->
+    <div class="container">
+        <div class="row pt-2 text-center">
+            <div class="col-md-4">
+                <a routerLink="../lista" class="btn btn-primary col-md-10 text-white m-0 mt-4">
+                    Volver
+                </a>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-danger col-md-10 text-white m-0 mt-4" (click)="denegar(denegarModal)">
+                    Denegar Resolución
+                </button>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-success col-md-10 text-white m-0 mt-4" (click)="generar(generarModal)">
+                    Generar Resolución
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Guardar Definitivo-->
+<ng-template #denegarModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title text-danger" id="guardarDefinitivo">DENEGADO</h5>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p class="text-center">Se denegó la resolución para la solicitud.</p>
+        <br>
+        <form [formGroup]="justificacionGroup" (ngSubmit)="saveForm()">
+            <div class="form-group row">
+                <div class="col-md p-2">
+                    <label for="justificacion">Justificación</label>
+                    <textarea id="justificacion" class="form-control" placeholder="Justificación" formControlName="justificacion" rows="2" [class.is-invalid]="isInvalid('justificacion')"></textarea>
+                    <small *ngIf="isInvalid('justificacion')" class="text-danger">Ingrese información en este campo</small>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary text-secondary" data-dismiss="modal" (click)="modal.close('Close click')">
+            Cerrar
+        </button>
+        <a routerLink="../lista" class="btn btn-danger text-light" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
+            Aceptar
+        </a>
+    </div>
+</ng-template>
+
+<!-- Modal Estado Corregir Definitivo -->
+<ng-template #generarModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title text-success" id="corregirDefinitivo">APROBADO</h5>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p class="text-center">Se aprobó la generación de la resolución.</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary text-secondary" data-dismiss="modal" (click)="modal.close('Close click')">Cerrar</button>
+        <a routerLink="../lista" class="btn btn-primary text-light" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
+            Aceptar
+        </a>
+    </div>
+</ng-template>
+<!-- Fin Modal -->
