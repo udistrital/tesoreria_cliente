@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SetContabilizacionComponent } from './set-contabilizacion.component';
+import { SetAnexosComponent } from './set-anexos.component';
 
-describe('SetContabilizacionComponent', () => {
-  let component: SetContabilizacionComponent;
-  let fixture: ComponentFixture<SetContabilizacionComponent>;
+describe('SetAnexosComponent', () => {
+  let component: SetAnexosComponent;
+  let fixture: ComponentFixture<SetAnexosComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SetContabilizacionComponent ]
+      declarations: [ SetAnexosComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SetContabilizacionComponent);
+    fixture = TestBed.createComponent(SetAnexosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -9,7 +9,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 export class SetNuevasolicitudComponent implements OnInit {
 
   infoNuevasolicitudGroup: FormGroup;
-  
+
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -18,8 +18,12 @@ export class SetNuevasolicitudComponent implements OnInit {
 
   createForm() {
     this.infoNuevasolicitudGroup = this.fb.group({
-      proceso: ['', Validators.required],
-      areaFuncional: ['', Validators.required],
+      codigoEstudiante: ['', [
+        Validators.required,
+        Validators.pattern('^[0-9]*$')
+      ]],
+      solicitud: ['', Validators.required],
+
     });
   }
 

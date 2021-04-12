@@ -1,0 +1,127 @@
+<form [formGroup]="anexosGroup" (ngSubmit)="saveForm()">
+    <div class="container">
+        <div class="row">
+            <div class="col pb-3">
+                <h6 class="card-title col-md-7 bg-primary text-white text-center py-2 px-2 rounded">
+                    Detalles de la Solicitud
+                </h6>
+            </div>
+        </div>
+        <!-- Campos: Justificación -->
+        <div class="form-group row">
+            <div class="col-md py-2">
+                <label for="justificacion">Justificación</label>
+                <textarea id="justificacion" class="form-control" placeholder="Justificación" formControlName="justificacion" rows="2" [class.is-invalid]="isInvalid('justificacion')"></textarea>
+                <small *ngIf="isInvalid('justificacion')" class="text-danger">Ingrese información en este campo</small>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col pb-2">
+                <h6 class="card-title col-md-8 bg-primary text-white text-center py-2 px-2 rounded">
+                    Anexos Comprobantes de Pago
+                </h6>
+            </div>
+        </div>
+        <div class="row py-3 px-3">
+            <small class="text-center">En caso de una solicitud de constancia de pagos, es opcional</small>
+        </div>
+        <!-- Tabla: Anexos de Comprobantes de Pago-->
+        <div class="row justify-content-is-center">
+            <!-- Tabla General Adaptada Requisitos -->
+            <ngx-general-table [config]="configAnexos" [datos]="datosAnexos">
+            </ngx-general-table>
+        </div>
+    </div>
+
+    <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
+
+    <!-- Botones: Volver a registro, Siguiente -->
+    <div class="container">
+        <div class="row pt-2 text-center">
+            <div class="col-md-6">
+                <button mat-button matStepperPrevious class="btn btn-primary col-md-7 text-white m-0 mt-4">
+                    Volver
+                </button>
+            </div>
+            <div class="col-md-6">
+                <button mat-button matStepperNext class="btn btn-success col-md-7 text-white m-0 mt-4">
+                    Siguiente
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Modal: Adjuntar requisitos -->
+<ng-template #adjuntarArchivoModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="adjuntarArchivoModal">Anexar Comprobante</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <ngx-file-upload (prepareFilesList)="prepareFileList($event)"></ngx-file-upload>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- {{ archivo?.name }}  -->
+            </div>
+            <div class="col-md-4 text-right">
+                <!-- {{ archivo ? (archivo.size/1024).toFixed(2) + ' Kb' : '' }} -->
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-danger text-white" (click)="archivo = null">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </div>
+        </div>
+        <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
+        <div class="row">
+            <form [formGroup]="modalAnexosGroup" (ngSubmit)="saveForm()">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label for="fechaPago" class="col-form-label">Fecha de Pago</label>
+                        <input type="number" class="form-control" id="fechaPago" formControlName="fechaPago" [class.is-invalid]="isInvalid('fechaPago')">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="numeroComprobante" class="col-form-label">No. Comprobante</label>
+                        <input type="number" class="form-control" id="numeroComprobante" formControlName="numeroComprobante" [class.is-invalid]="isInvalid('numeroComprobante')">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label for="periodo" class="col-form-label">Periodo</label>
+                        <input type="number" class="form-control" id="periodo" formControlName="periodo" [class.is-invalid]="isInvalid('periodo')">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="valorPagado" class="col-form-label">Valor Pagado</label>
+                        <input type="number" class="form-control" id="valorPagado" formControlName="valorPagado" [class.is-invalid]="isInvalid('valorPagado')">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="modal.close(true)">Aceptar</button>
+    </div>
+</ng-template>
+<!-- Fin Modal -->
+
+<!-- Modal: Eliminar registros de la tabla -->
+<ng-template #eliminarArchivoModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="eliminarArchivoModal">Borrar Archivo</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        ¿Desea borrar el archivo anexado?
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="modal.close(true)">Borrar</button>
+    </div>
+</ng-template>
+<!-- Fin Modal -->

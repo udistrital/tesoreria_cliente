@@ -1,1 +1,176 @@
-<p>show-detallesolicitud works!</p>
+<form [formGroup]="detalleSolicitudGroup">
+    <div class="row">
+        <div class="col-md-12">
+            <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
+                Resumen de la Solicitud
+            </h6>
+        </div>
+    </div>
+    <!-- Grupo: Datos del Solicitante -->
+    <div class="container">
+        <div class="row">
+            <div class="col pt-3">
+                <h6 class="card-title col-md-12 bg-dark text-white text-center py-2 px-2 rounded">
+                    Datos del Solicitante
+                </h6>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label>Área Funcional</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Centro Gestor</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Fecha de Solicitud</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label>Tipo de ID</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Número de ID</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Código del Estudiante</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label>Nombre Completo</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Proyecto</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Facultad</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label>Modalidad</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Estado</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Tipo de Solicitud</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+    </div>
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <button #btnRecibos class="card-title col-md-12 btn btn-secondary text-white" type="button" data-toggle="collapse" data-target="#collapseRecibos" aria-expanded="false" aria-controls="collapseRecibos" (click)="mostrarOcultarDocs(btnRecibos.getAttribute('aria-expanded'))">
+                    <i class="far {{mostrarOcultarIcono}} text-ligth pr-3"></i><span>Registro de Recibos de Pago</span>
+                </button>
+            </div>
+        </div>
+        <!-- Tabla: Listado de Recibos-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="collapse" id="collapseRecibos">
+                    <div class="card card-body">
+                        <!-- Tabla General Adaptada Recibos -->
+                        <ngx-general-table [config]="configDetalleRecibos" [datos]="datosRecibos">
+                        </ngx-general-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col">
+                <h6 class="card-title col-md-12 bg-dark text-white text-center py-2 px-2 rounded">
+                    Descripción de la Solicitud
+                </h6>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md">
+                <label>Justificación</label>
+                <textarea class="form-control" rows="2" readonly></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <button #btnAnexos class="card-title col-md-12 btn btn-secondary text-white" type="button" data-toggle="collapse" data-target="#collapseAnexos" aria-expanded="false" aria-controls="collapseAnexos" (click)="mostrarOcultarDocs(btnAnexos.getAttribute('aria-expanded'))">
+                    <i class="far {{mostrarOcultarIcono}} text-ligth pr-3"></i><span>Anexos Comprobantes de Pago</span>
+                </button>
+            </div>
+        </div>
+        <!-- Tabla: Listado de Anexos-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="collapse" id="collapseAnexos">
+                    <div class="card card-body">
+                        <!-- Tabla General Adaptada Anexos -->
+                        <ngx-general-table [config]="configDetalleAnexos" [datos]="datosAnexos">
+                        </ngx-general-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
+
+    <!-- Botones: Regresar, Siguiente -->
+    <div class="container">
+        <div class="row pt-2 text-center">
+            <div class="col-md-6">
+                <button mat-button matStepperPrevious class="btn btn-primary col-md-7 text-white m-0 mt-4">
+                    Regresar
+                </button>
+            </div>
+            <div class="col-md-6 form-group">
+                <button type="button" class="btn btn-success col-md-7 text-white m-0 mt-4" data-toggle="modal" data-target="#guardarModal">
+                    GUARDAR
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<!-- Modal: Solicitud Guardada -->
+<div class="modal fade" id="guardarModal" tabindex="-1" aria-labelledby="guardarModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="guardarModal"><i class="fas fa-check text-success"></i>¡Guardado!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="text-center">Se ha guardado la solicitud para (tipo de solicitud).</p>
+                <p class="text-center">Se ha enviado para su revisión</p>
+            </div>
+            <div class="modal-footer">
+                <a routerLink="../lista" role="button" class="btn btn-primary" data-dismiss="modal">
+                    Aceptar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin Modal: Solicitud Guardada -->

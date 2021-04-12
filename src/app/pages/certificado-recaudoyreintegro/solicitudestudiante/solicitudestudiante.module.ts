@@ -10,7 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SetNuevasolicitudComponent } from './components/set-nuevasolicitud/set-nuevasolicitud.component';
 import { SetDatosgeneralesComponent } from './components/set-datosgenerales/set-datosgenerales.component';
-import { SetContabilizacionComponent } from './components/set-contabilizacion/set-contabilizacion.component';
+import { SetAnexosComponent } from './components/set-anexos/set-anexos.component';
 import { ShowDetallesolicitudComponent } from './components/show-detallesolicitud/show-detallesolicitud.component';
 
 
@@ -20,7 +20,7 @@ import { ShowDetallesolicitudComponent } from './components/show-detallesolicitu
     StepperNuevasolicitudComponent,
     SetNuevasolicitudComponent,
     SetDatosgeneralesComponent,
-    SetContabilizacionComponent,
+    SetAnexosComponent,
     ShowDetallesolicitudComponent],
   imports: [
     CommonModule,
