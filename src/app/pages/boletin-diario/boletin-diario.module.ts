@@ -13,6 +13,8 @@ import { FirmasComponent } from './components/firmas/firmas.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { PdfviewComponent } from './components/pdfview/pdfview.component';
+import * as fromBoletinDiario from './reducers/boletin-diario.reducer';
+import { BoletinDiarioEffects } from './effects/boletin-diario.effects';
 
 @NgModule({
   declarations: [ListComponent,
@@ -27,6 +29,8 @@ import { PdfviewComponent } from './components/pdfview/pdfview.component';
   imports: [
     CommonModule,
     BoletinDiarioRoutingModule,
+    StoreModule.forFeature(fromBoletinDiario.boletinDiarioFeatureKey, fromBoletinDiario.reducer),
+    EffectsModule.forFeature([BoletinDiarioEffects]),
   ]
 })
 export class BoletinDiarioModule { }
