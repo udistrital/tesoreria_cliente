@@ -32,6 +32,9 @@ export class CellViewComponent implements OnInit {
       index: index,
     }));
   }
+  asIsOrder(a: any, b: any) {
+    return 1;
+  }
 
 
 }
