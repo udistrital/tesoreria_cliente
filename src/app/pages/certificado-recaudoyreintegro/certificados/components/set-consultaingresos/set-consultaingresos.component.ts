@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CONFIGURACION_COMPROBANTES, DATOS_COMPROBANTES } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'ngx-set-consultaingresos',
@@ -8,11 +9,46 @@ import { FormBuilder } from '@angular/forms';
 })
 export class SetConsultaingresosComponent implements OnInit {
 
-  consultaIngresosGroup: FormBuilder;
+  consultaIngresosGroup: FormGroup;
 
-  constructor() { }
+  configComprobante: any;
+  datosComprobante: any;
+
+  constructor(private fb: FormBuilder) {
+    this.configComprobante = CONFIGURACION_COMPROBANTES;
+    this.datosComprobante = DATOS_COMPROBANTES;
+   }
 
   ngOnInit() {
+    this.createForm();
+  }
+
+  createForm() {
+    this.consultaIngresosGroup = this.fb.group({
+      areaFuncional: ['', Validators.required],
+      tipoComprobante: ['', Validators.required],
+      numeroComprobante: ['', Validators.required],
+      fechaComprobante: ['', Validators.required],
+      cuentaContable: ['', Validators.required],
+      banco: ['', Validators.required],
+      cuentaBancaria: ['', Validators.required],
+    });
+  }
+
+  isInvalid(nombre: string) {
+    const input = this.consultaIngresosGroup.get(nombre);
+    if (input)
+      return input.invalid && (input.touched || input.dirty);
+    else
+      return true;
+  }
+
+  saveForm() {
+    if (this.consultaIngresosGroup.invalid) {
+      return Object.values(this.consultaIngresosGroup.controls).forEach(control => {
+        control.markAsTouched();
+      });
+    }
   }
 
 }

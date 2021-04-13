@@ -1,1 +1,90 @@
-<p>set-generarcertificado works!</p>
+<form [formGroup]="consultaRecibosGroup" (ngSubmit)="saveForm()">
+    <div class="container">
+        <div class="row">
+            <div class="col pb-3">
+                <h6 class="card-title col-md-7 bg-primary text-white text-center py-2 px-2 rounded">
+                    Consulta de Recibos
+                </h6>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label for="codigo">Código del Estudiante</label>
+                <input type="number" class="form-control" id="codigo" formControlName="codigo" [class.is-invalid]="isInvalid('codigo')">
+                <small *ngIf="isInvalid('codigo')" class="text-danger">Ingrese un valor
+                    numérico</small>
+            </div>
+            <div class="col-md-4">
+                <label>Tipo de ID</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Número de ID</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+        <div class="row py-3">
+            <div class="col-md-4">
+                <label>Nombre Completo</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Proyecto</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Facultad</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+
+        <mat-divider class="col-md-12 py-3 border-primary"></mat-divider>
+
+        <div class="row justify-content-center">
+            <ngx-general-table [config]="configConsultaRecibos" [datos]="datosConsultaRecibos"></ngx-general-table>
+        </div>
+
+        <!-- Botones: Volver a registro, Siguiente -->
+        <div class="container">
+            <div class="row pt-2 text-center">
+                <div class="col-md-6">
+                    <a routerLink="../lista">
+                        <button class="btn btn-primary col-md-7 m-0 mt-4 text-white">
+                                Volver a registros
+                        </button>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <button mat-button matStepperNext class="btn btn-success col-md-7 text-white m-0 mt-4">
+                        Siguiente
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Modal para visualizar más información -->
+<ng-template #verInfoAdicionalModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title text-primary">DETALLES RECIBO DE PAGO</h5>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 px-3 pb-3">
+                <h6 class="card-title col-md-3 bg-primary text-white text-center py-2 px-2 rounded">
+                    Información Adicional
+                </h6>
+            </div>
+        </div>
+        <div class="row">
+            <ngx-general-table [config]="configConsultaRecibos" [datos]="datosConsultaRecibos"></ngx-general-table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary text-white" (click)="modal.close('Close click')">Volver</button>
+    </div>
+</ng-template>

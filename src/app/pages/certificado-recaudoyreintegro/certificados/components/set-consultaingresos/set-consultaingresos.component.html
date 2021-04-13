@@ -1,1 +1,104 @@
-<p>set-consultaingresos works!</p>
+<form [formGroup]="consultaIngresosGroup" (ngSubmit)="saveForm()">
+    <div class="container">
+        <div class="row">
+            <div class="col pb-3">
+                <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
+                    Consulta de Ingresos
+                </h6>
+            </div>
+        </div>
+        <!-- Seleccionar el area funcional -->
+        <div class="form-group row">
+            <div class="col-md-5">
+                <label for="areaFuncional">Área Funcional</label>
+                <select class="custom-select" id="areaFuncional" formControlName="areaFuncional" [class.is-invalid]="isInvalid('areaFuncional')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>01</option>
+                    <option>02</option>
+                </select>
+                <small *ngIf="isInvalid('areaFuncional')" class="text-danger">Seleccione una opción</small>
+            </div>
+        </div>
+        <!-- Escribir una descripcion del tipo de declaracion, elegir el tipo de documento -->
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label for="tipoComprobante">Tipo de Comprobante</label>
+                <select class="custom-select" id="tipoComprobante" formControlName="tipoComprobante" [class.is-invalid]="isInvalid('tipoComprobante')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>01</option>
+                    <option>02</option>
+                </select>
+                <small *ngIf="isInvalid('tipoComprobante')" class="text-danger">Seleccione una opción</small>
+            </div>
+            <div class="col-md-4">
+                <label for="numeroComprobante">No. de Comprobante</label>
+                <select class="custom-select" id="numeroComprobante" formControlName="numeroComprobante" [class.is-invalid]="isInvalid('numeroComprobante')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>87</option>
+                    <option>65</option>
+                </select>
+                <small *ngIf="isInvalid('numeroComprobante')" class="text-danger">Seleccione una opción</small>
+            </div>
+            <div class="col-md-4">
+                <label for="fechaComprobante">Fecha del Comprobante</label>
+                <div class="input-group">
+                    <input type="date" name="fechaComprobante" id="fechaComprobante" class="form-control" formControlName="fechaComprobante" [class.is-invalid]="isInvalid('fechaComprobante')">
+                    <div class="input-group-append">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label for="cuentaContable">Cuenta Contable</label>
+                <select class="custom-select" id="cuentaContable" formControlName="cuentaContable" [class.is-invalid]="isInvalid('cuentaContable')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>1265</option>
+                    <option>7865</option>
+                </select>
+                <small *ngIf="isInvalid('cuentaContable')" class="text-danger">Seleccione una opción</small>
+            </div>
+            <div class="col-md-4">
+                <label for="banco">Banco</label>
+                <select class="custom-select" id="banco" formControlName="banco" [class.is-invalid]="isInvalid('banco')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>Banco de Bogotá</option>
+                    <option>Colpatria</option>
+                </select>
+                <small *ngIf="isInvalid('banco')" class="text-danger">Seleccione una opción</small>
+            </div>
+            <div class="col-md-4">
+                <label for="cuentaBancaria">Cuenta Bancaria</label>
+                <select class="custom-select" id="cuentaBancaria" formControlName="cuentaBancaria" [class.is-invalid]="isInvalid('cuentaBancaria')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>123456</option>
+                    <option>987654</option>
+                </select>
+                <small *ngIf="isInvalid('cuentaBancaria')" class="text-danger">Seleccione una opción</small>
+            </div>
+        </div>
+
+        <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <ngx-general-table [config]="configComprobante" [datos]="datosComprobante"></ngx-general-table>
+            </div>
+        </div>
+        <!-- Botones: Volver a registro, Siguiente -->
+        <div class="container">
+            <div class="row pt-2 text-center">
+                <div class="col-md-6">
+                    <button mat-button matStepperPrevious class="btn btn-primary text-white col-md-7 m-0 mt-4">
+                        Volver
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <button mat-button matStepperNext class="btn btn-success col-md-7 m-0 mt-4">
+                        Siguiente
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
