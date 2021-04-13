@@ -1,13 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { LoadAccionTabla } from '../../actions/shared.actions';
+
 
 @Component({
   selector: 'ngx-tabla-reporte-mensual-pac',
   templateUrl: './tabla-reporte-mensual-pac.component.html',
   styleUrls: ['./tabla-reporte-mensual-pac.component.scss']
 })
-export class TablaReporteMensualPacComponent implements OnInit {
+export class TablaReporteMensualPacComponent implements OnInit, OnChanges {
 
   @Input() config: any;
   @Input() datos: any;

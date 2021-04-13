@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+/* tslint:disable:component-selector */
 @Component({
   selector: '[ngx-tabla-reporte-rubros]',
   templateUrl: './tabla-reporte-rubros.component.html',
@@ -17,7 +18,7 @@ export class TablaReporteRubrosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
+
   }
 
 

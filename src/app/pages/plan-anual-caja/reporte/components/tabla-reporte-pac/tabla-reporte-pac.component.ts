@@ -12,7 +12,7 @@ export class TablaReportePacComponent implements OnInit {
   configuracion: any;
 
   constructor() {
-    this.configuracion = CONFIGURACION_TABLA_REPORTE
+    this.configuracion = CONFIGURACION_TABLA_REPORTE;
     this.datos = (DATOS_TABLA_REPORTE as any[]).map((element: any) => {
       return {
         Rubros : element.Rubros.map((element2: any) => {

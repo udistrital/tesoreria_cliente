@@ -44,7 +44,7 @@ export class CierrePacComponent implements OnInit {
   }
 
   GenerarReporte() {
-    this.route.navigate(['pages/plan-anual-caja/reporte/tabla-reporte-pac'])
+    this.route.navigate(['pages/plan-anual-caja/reporte/tabla-cierre-pac']);
   }
 
 }

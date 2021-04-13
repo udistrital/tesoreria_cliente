@@ -239,7 +239,7 @@ export const DATOS_TABLA_REPORTE = [
                     Ejecutado: 669473383,
                     Porcentaje: 1,
                 },
-                
+
             },
         ],
     },
@@ -433,7 +433,7 @@ export const DATOS_TABLA_REPORTE = [
                     Apropiaciones: true
                 },
                 Fuentes: [
-                    
+
                 ],
                 ApropiacionInicial: 9468710000,
                 Modificaciones: 0,
@@ -516,7 +516,7 @@ export const DATOS_TABLA_REPORTE = [
                     Apropiaciones: true
                 },
                 Fuentes: [
-                    
+
                 ],
                 ApropiacionInicial: 9468710000,
                 Modificaciones: 0,
@@ -599,7 +599,7 @@ export const DATOS_TABLA_REPORTE = [
                     Apropiaciones: true
                 },
                 Fuentes: [
-                    
+
                 ],
                 ApropiacionInicial: 9468710000,
                 Modificaciones: 0,
@@ -682,7 +682,7 @@ export const DATOS_TABLA_REPORTE = [
                     Apropiaciones: true
                 },
                 Fuentes: [
-                    
+
                 ],
                 ApropiacionInicial: 9468710000,
                 Modificaciones: 0,
