@@ -26,6 +26,11 @@ const routes: Routes = [{
       path: 'inversiones',
       loadChildren: () => import('./inversiones/inversiones.module')
       .then(m => m.InversionesModule),
+    },
+    {
+      path: 'boletin',
+      loadChildren: () => import('./boletin-diario/boletin-diario.module')
+      .then(m => m.BoletinDiarioModule),
     }
   ],
 }];
