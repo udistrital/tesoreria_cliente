@@ -15,6 +15,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { PdfviewComponent } from './components/pdfview/pdfview.component';
 import * as fromBoletinDiario from './reducers/boletin-diario.reducer';
 import { BoletinDiarioEffects } from './effects/boletin-diario.effects';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [ListComponent,
@@ -29,6 +30,7 @@ import { BoletinDiarioEffects } from './effects/boletin-diario.effects';
   imports: [
     CommonModule,
     BoletinDiarioRoutingModule,
+    SharedModule,
     StoreModule.forFeature(fromBoletinDiario.boletinDiarioFeatureKey, fromBoletinDiario.reducer),
     EffectsModule.forFeature([BoletinDiarioEffects]),
   ]
