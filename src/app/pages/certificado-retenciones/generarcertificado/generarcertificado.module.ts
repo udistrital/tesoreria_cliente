@@ -5,13 +5,27 @@ import { GenerarcertificadoRoutingModule } from './generarcertificado-routing.mo
 import { TableConsultainformeComponent } from './components/table-consultainforme/table-consultainforme.component';
 import { SetConsultasolicitanteComponent } from './components/set-consultasolicitante/set-consultasolicitante.component';
 import { SetGenerarcertificadoComponent } from './components/set-generarcertificado/set-generarcertificado.component';
+import { SharedModule } from '../../../shared/shared.module';
+import { MatStepperModule, MatDividerModule } from '@angular/material';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [TableConsultainformeComponent, SetConsultasolicitanteComponent, SetGenerarcertificadoComponent],
+  declarations: [
+    TableConsultainformeComponent,
+    SetConsultasolicitanteComponent,
+    SetGenerarcertificadoComponent
+  ],
   imports: [
     CommonModule,
-    GenerarcertificadoRoutingModule
+    GenerarcertificadoRoutingModule,
+    SharedModule,
+    MatStepperModule,
+    MatDividerModule,
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class GenerarcertificadoModule { }

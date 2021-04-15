@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TableConsultainformeComponent } from './components/table-consultainforme/table-consultainforme.component';
 import { SetConsultasolicitanteComponent } from './components/set-consultasolicitante/set-consultasolicitante.component';
+import { SetGenerarcertificadoComponent } from './components/set-generarcertificado/set-generarcertificado.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,10 @@ const routes: Routes = [
   },
   {
     path: 'generar',
+    component: SetGenerarcertificadoComponent,
+  },
+  {
+    path: 'consultar',
     component: SetConsultasolicitanteComponent,
   },
 

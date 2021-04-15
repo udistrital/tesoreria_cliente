@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CONFIGURACION_TABLARENDIMIENTOS, DATOS_TABLARENDIMIENTOS } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'ngx-table-retenciones',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableRetencionesComponent implements OnInit {
 
-  constructor() { }
+  configRetenciones: any;
+  datosRetenciones: any;
+
+  constructor() {
+    this.configRetenciones = CONFIGURACION_TABLARENDIMIENTOS;
+    this.datosRetenciones = DATOS_TABLARENDIMIENTOS;
+  }
 
   ngOnInit() {
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CONFIGURACION_TABLAINFORMES, DATOS_TABLAINFORMES } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'ngx-table-consultainforme',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableConsultainformeComponent implements OnInit {
 
-  constructor() { }
+  configGenerarCertificado: any;
+  datosGenerarCertificado: any;
+
+  constructor() {
+    this.configGenerarCertificado = CONFIGURACION_TABLAINFORMES;
+    this.datosGenerarCertificado = DATOS_TABLAINFORMES;
+  }
 
   ngOnInit() {
   }
