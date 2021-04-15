@@ -179,6 +179,7 @@ export const DATOS_TABLA_REPORTE = [
                 Modificaciones: 0,
                 Aprobado: 9468710000,
                 Rezago: 0,
+                NoEjecutado: 669473383,
                 Enero: {
                     Proyectado: 669473383,
                     Ejecutado: 669473383,
@@ -269,6 +270,7 @@ export const DATOS_TABLA_REPORTE = [
                 Modificaciones: 0,
                 Aprobado: 9468710000,
                 Rezago: 0,
+                NoEjecutado: 669473383,
                 Enero: {
                     Proyectado: 669473383,
                     Ejecutado: 669473383,
@@ -356,6 +358,7 @@ export const DATOS_TABLA_REPORTE = [
                 Modificaciones: 0,
                 Aprobado: 9468710000,
                 Rezago: 0,
+                NoEjecutado: 669473383,
                 Enero: {
                     Proyectado: 669473383,
                     Ejecutado: 669473383,
@@ -439,6 +442,7 @@ export const DATOS_TABLA_REPORTE = [
                 Modificaciones: 0,
                 Aprobado: 9468710000,
                 Rezago: 0,
+                NoEjecutado: 669473383,
                 Enero: {
                     Proyectado: 669473383,
                     Ejecutado: 669473383,
@@ -522,6 +526,7 @@ export const DATOS_TABLA_REPORTE = [
                 Modificaciones: 0,
                 Aprobado: 9468710000,
                 Rezago: 0,
+                NoEjecutado: 669473383,
                 Enero: {
                     Proyectado: 669473383,
                     Ejecutado: 669473383,
@@ -605,6 +610,7 @@ export const DATOS_TABLA_REPORTE = [
                 Modificaciones: 0,
                 Aprobado: 9468710000,
                 Rezago: 0,
+                NoEjecutado: 669473383,
                 Enero: {
                     Proyectado: 669473383,
                     Ejecutado: 669473383,
@@ -688,6 +694,7 @@ export const DATOS_TABLA_REPORTE = [
                 Modificaciones: 0,
                 Aprobado: 9468710000,
                 Rezago: 0,
+                NoEjecutado: 669473383,
                 Enero: {
                     Proyectado: 669473383,
                     Ejecutado: 669473383,
@@ -750,6 +757,73 @@ export const DATOS_TABLA_REPORTE = [
                 },
             },
         ],
+        Totales: {
+            ApropiacionInicial: 9468710000,
+            Modificaciones: 0,
+            Aprobado: 9468710000,
+            Rezago: 0,
+            NoEjecutado: 669473383,
+            Enero: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+            Febrero: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+            Marzo: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+            Abril: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+            Mayo: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+            Junio: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+            Julio: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+            Agosto: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+            Septiembre: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+            Octubre: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+            Noviembre: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+            Diciembre: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+        }
     },
     {
         Rubros: [
@@ -777,6 +851,7 @@ export const DATOS_TABLA_REPORTE = [
                 Modificaciones: 0,
                 Aprobado: 9468710000,
                 Rezago: 0,
+                NoEjecutado: 669473383,
                 Enero: {
                     Proyectado: 669473383,
                     Ejecutado: 669473383,
@@ -864,6 +939,7 @@ export const DATOS_TABLA_REPORTE = [
                 Modificaciones: 0,
                 Aprobado: 9468710000,
                 Rezago: 0,
+                NoEjecutado: 669473383,
                 Enero: {
                     Proyectado: 669473383,
                     Ejecutado: 669473383,
@@ -961,6 +1037,7 @@ export const DATOS_TABLA_REPORTE = [
                 Modificaciones: 0,
                 Aprobado: 9468710000,
                 Rezago: 0,
+                NoEjecutado: 669473383,
                 Enero: {
                     Proyectado: 669473383,
                     Ejecutado: 669473383,
@@ -1058,118 +1135,7 @@ export const DATOS_TABLA_REPORTE = [
                 Modificaciones: 0,
                 Aprobado: 9468710000,
                 Rezago: 0,
-                Enero: {
-                    Proyectado: 669473383,
-                    Ejecutado: 669473383,
-                    Porcentaje: 1,
-                },
-                Febrero: {
-                    Proyectado: 669473383,
-                    Ejecutado: 669473383,
-                    Porcentaje: 1,
-                },
-                Marzo: {
-                    Proyectado: 669473383,
-                    Ejecutado: 669473383,
-                    Porcentaje: 1,
-                },
-                Abril: {
-                    Proyectado: 669473383,
-                    Ejecutado: 669473383,
-                    Porcentaje: 1,
-                },
-                Mayo: {
-                    Proyectado: 669473383,
-                    Ejecutado: 669473383,
-                    Porcentaje: 1,
-                },
-                Junio: {
-                    Proyectado: 669473383,
-                    Ejecutado: 669473383,
-                    Porcentaje: 1,
-                },
-                Julio: {
-                    Proyectado: 669473383,
-                    Ejecutado: 669473383,
-                    Porcentaje: 1,
-                },
-                Agosto: {
-                    Proyectado: 669473383,
-                    Ejecutado: 669473383,
-                    Porcentaje: 1,
-                },
-                Septiembre: {
-                    Proyectado: 669473383,
-                    Ejecutado: 669473383,
-                    Porcentaje: 1,
-                },
-                Octubre: {
-                    Proyectado: 669473383,
-                    Ejecutado: 669473383,
-                    Porcentaje: 1,
-                },
-                Noviembre: {
-                    Proyectado: 669473383,
-                    Ejecutado: 669473383,
-                    Porcentaje: 1,
-                },
-                Diciembre: {
-                    Proyectado: 669473383,
-                    Ejecutado: 669473383,
-                    Porcentaje: 1,
-                },
-            },
-            {
-                Rubro: {
-                    Vigencia: 0,
-                    Nombre: 'Administrativos',
-                    Descripcion: 'Administrativos',
-                    FechaCreacion: '2021-01-28T03:45:08.914Z',
-                    FechaModificacion: '2021-01-28T03:45:08.914Z',
-                    Activo: false,
-                    Codigo: '3-01-001-01-01-01-0001-01',
-                    Hijos: [],
-                    Padre: '3-01-001-01-01-01-0001',
-                    UnidadEjecutora: '1',
-                    Bloqueado: true,
-                    Apropiaciones: true
-                },
-                Fuentes: [
-                    {
-                        Vigencia: 2020,
-                        Nombre: 'Recursos del Balance Estampilla UD Ley 1825 de 2020',
-                        Descripcion: 'Recursos del Balance Estampilla UD Ley 1825 de 2020',
-                        Codigo: '2414',
-                        TipoFuente: null,
-                        ValorInicial: 20000000000,
-                        ValorActual: 0,
-                        Estado: 'distribuida',
-                        Rubros: {},
-                        NumeroDocumento: '34689',
-                        TipoDocumento: 'RESOLUCION',
-                        UnidadEjecutora: '1',
-                        Movimientos: {}
-                    },
-                    {
-                        Vigencia: 2020,
-                        Nombre: 'Recursos del Balance Estampilla UD Ley 1825 de 2020',
-                        Descripcion: 'Recursos del Balance Estampilla UD Ley 1825 de 2020',
-                        Codigo: '2414',
-                        TipoFuente: null,
-                        ValorInicial: 20000000000,
-                        ValorActual: 0,
-                        Estado: 'distribuida',
-                        Rubros: {},
-                        NumeroDocumento: '34689',
-                        TipoDocumento: 'RESOLUCION',
-                        UnidadEjecutora: '1',
-                        Movimientos: {}
-                    },
-                ],
-                ApropiacionInicial: 9468710000,
-                Modificaciones: 0,
-                Aprobado: 9468710000,
-                Rezago: 0,
+                NoEjecutado: 669473383,
                 Enero: {
                     Proyectado: 669473383,
                     Ejecutado: 669473383,
@@ -1282,6 +1248,120 @@ export const DATOS_TABLA_REPORTE = [
                 Modificaciones: 0,
                 Aprobado: 9468710000,
                 Rezago: 0,
+                NoEjecutado: 669473383,
+                Enero: {
+                    Proyectado: 669473383,
+                    Ejecutado: 669473383,
+                    Porcentaje: 1,
+                },
+                Febrero: {
+                    Proyectado: 669473383,
+                    Ejecutado: 669473383,
+                    Porcentaje: 1,
+                },
+                Marzo: {
+                    Proyectado: 669473383,
+                    Ejecutado: 669473383,
+                    Porcentaje: 1,
+                },
+                Abril: {
+                    Proyectado: 669473383,
+                    Ejecutado: 669473383,
+                    Porcentaje: 1,
+                },
+                Mayo: {
+                    Proyectado: 669473383,
+                    Ejecutado: 669473383,
+                    Porcentaje: 1,
+                },
+                Junio: {
+                    Proyectado: 669473383,
+                    Ejecutado: 669473383,
+                    Porcentaje: 1,
+                },
+                Julio: {
+                    Proyectado: 669473383,
+                    Ejecutado: 669473383,
+                    Porcentaje: 1,
+                },
+                Agosto: {
+                    Proyectado: 669473383,
+                    Ejecutado: 669473383,
+                    Porcentaje: 1,
+                },
+                Septiembre: {
+                    Proyectado: 669473383,
+                    Ejecutado: 669473383,
+                    Porcentaje: 1,
+                },
+                Octubre: {
+                    Proyectado: 669473383,
+                    Ejecutado: 669473383,
+                    Porcentaje: 1,
+                },
+                Noviembre: {
+                    Proyectado: 669473383,
+                    Ejecutado: 669473383,
+                    Porcentaje: 1,
+                },
+                Diciembre: {
+                    Proyectado: 669473383,
+                    Ejecutado: 669473383,
+                    Porcentaje: 1,
+                },
+            },
+            {
+                Rubro: {
+                    Vigencia: 0,
+                    Nombre: 'Administrativos',
+                    Descripcion: 'Administrativos',
+                    FechaCreacion: '2021-01-28T03:45:08.914Z',
+                    FechaModificacion: '2021-01-28T03:45:08.914Z',
+                    Activo: false,
+                    Codigo: '3-01-001-01-01-01-0001-01',
+                    Hijos: [],
+                    Padre: '3-01-001-01-01-01-0001',
+                    UnidadEjecutora: '1',
+                    Bloqueado: true,
+                    Apropiaciones: true
+                },
+                Fuentes: [
+                    {
+                        Vigencia: 2020,
+                        Nombre: 'Recursos del Balance Estampilla UD Ley 1825 de 2020',
+                        Descripcion: 'Recursos del Balance Estampilla UD Ley 1825 de 2020',
+                        Codigo: '2414',
+                        TipoFuente: null,
+                        ValorInicial: 20000000000,
+                        ValorActual: 0,
+                        Estado: 'distribuida',
+                        Rubros: {},
+                        NumeroDocumento: '34689',
+                        TipoDocumento: 'RESOLUCION',
+                        UnidadEjecutora: '1',
+                        Movimientos: {}
+                    },
+                    {
+                        Vigencia: 2020,
+                        Nombre: 'Recursos del Balance Estampilla UD Ley 1825 de 2020',
+                        Descripcion: 'Recursos del Balance Estampilla UD Ley 1825 de 2020',
+                        Codigo: '2414',
+                        TipoFuente: null,
+                        ValorInicial: 20000000000,
+                        ValorActual: 0,
+                        Estado: 'distribuida',
+                        Rubros: {},
+                        NumeroDocumento: '34689',
+                        TipoDocumento: 'RESOLUCION',
+                        UnidadEjecutora: '1',
+                        Movimientos: {}
+                    },
+                ],
+                ApropiacionInicial: 9468710000,
+                Modificaciones: 0,
+                Aprobado: 9468710000,
+                Rezago: 0,
+                NoEjecutado: 669473383,
                 Enero: {
                     Proyectado: 669473383,
                     Ejecutado: 669473383,
@@ -1379,6 +1459,7 @@ export const DATOS_TABLA_REPORTE = [
                 Modificaciones: 0,
                 Aprobado: 9468710000,
                 Rezago: 0,
+                NoEjecutado: 669473383,
                 Enero: {
                     Proyectado: 669473383,
                     Ejecutado: 669473383,
@@ -1440,9 +1521,351 @@ export const DATOS_TABLA_REPORTE = [
                     Porcentaje: 1,
                 },
             }
-        ]
+        ],
+        Totales: {
+            ApropiacionInicial: 9468710000,
+            Modificaciones: 0,
+            Aprobado: 9468710000,
+            Rezago: 0,
+            NoEjecutado: 669473383,
+            Enero: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+            Febrero: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+            Marzo: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+            Abril: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+            Mayo: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+            Junio: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+            Julio: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+            Agosto: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+            Septiembre: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+            Octubre: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+            Noviembre: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+            Diciembre: {
+                Proyectado: 669473383,
+                Ejecutado: 669473383,
+                Porcentaje: 1,
+            },
+        }
     }
 
+];
+
+export const DATOS_TOTALES_TABLA_REPORTE = [
+    {
+        Titulo: 'SALDO DISPONIBLE DEL PERIODO',
+        ApropiacionInicial: 9468710000,
+        Modificaciones: 0,
+        Aprobado: 9468710000,
+        Rezago: 0,
+        NoEjecutado: 669473383,
+        Enero: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Febrero: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Marzo: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Abril: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Mayo: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Junio: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Julio: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Agosto: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Septiembre: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Octubre: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Noviembre: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Diciembre: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+    },
+    {
+        Titulo: 'SALDO DISPONIBLE DEL EJERCICIO',
+        ApropiacionInicial: 9468710000,
+        Modificaciones: 0,
+        Aprobado: 9468710000,
+        Rezago: 0,
+        NoEjecutado: 669473383,
+        Enero: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Febrero: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Marzo: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Abril: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Mayo: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Junio: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Julio: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Agosto: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Septiembre: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Octubre: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Noviembre: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Diciembre: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+    },
+    {
+        Titulo: 'RECURSOS DE DESTINACION',
+        ApropiacionInicial: 9468710000,
+        Modificaciones: 0,
+        Aprobado: 9468710000,
+        Rezago: 0,
+        NoEjecutado: 669473383,
+        Enero: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Febrero: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Marzo: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Abril: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Mayo: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Junio: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Julio: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Agosto: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Septiembre: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Octubre: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Noviembre: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Diciembre: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+    },
+    {
+        Titulo: 'SALDO NETO DE TESORERIA',
+        ApropiacionInicial: 9468710000,
+        Modificaciones: 0,
+        Aprobado: 9468710000,
+        Rezago: 0,
+        NoEjecutado: 669473383,
+        Enero: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Febrero: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Marzo: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Abril: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Mayo: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Junio: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Julio: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Agosto: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Septiembre: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Octubre: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Noviembre: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+        Diciembre: {
+            Proyectado: 669473383,
+            Ejecutado: 669473383,
+            Porcentaje: 1,
+        },
+    }
 ];
 
 export const CONFIGURACION_TABLA_REPORTE = {
