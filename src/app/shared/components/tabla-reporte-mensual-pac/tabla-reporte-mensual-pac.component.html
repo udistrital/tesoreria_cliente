@@ -1,5 +1,11 @@
 <div class="container-fluid" *ngIf="config && datos && rowspanTable">
     <div class="row">
+        <div class="col">
+            <h5 *ngIf="Title" class="card-title text-center text-primary">{{Title}}</h5>
+        </div>
+    </div>
+    <div class="row">
+        
         <div class="col-12">
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">

@@ -158,12 +158,12 @@ export const DATOS_TABLA_REPORTE = [
             {
                 Rubro: {
                     Vigencia: 0,
-                    Nombre: 'GASTOS',
-                    Descripcion: 'GASTOS',
+                    Nombre: 'SALDO DISPONIBLE TESORERIA',
+                    Descripcion: 'SALDO DISPONIBLE TESORERIA',
                     FechaCreacion: '2021-01-28T03:45:08.914Z',
                     FechaModificacion: '2021-01-28T03:45:08.914Z',
                     Activo: false,
-                    Codigo: '3',
+                    Codigo: '1',
                     Hijos: [
                         '3-00',
                         '3-01',
@@ -248,12 +248,12 @@ export const DATOS_TABLA_REPORTE = [
             {
                 Rubro: {
                     Vigencia: 0,
-                    Nombre: 'GASTOS',
-                    Descripcion: 'GASTOS',
+                    Nombre: 'INGRESOS',
+                    Descripcion: 'INGRESOS',
                     FechaCreacion: '2021-01-28T03:45:08.914Z',
                     FechaModificacion: '2021-01-28T03:45:08.914Z',
                     Activo: false,
-                    Codigo: '3',
+                    Codigo: '2',
                     Hijos: [
                         '3-00',
                         '3-01',
@@ -338,7 +338,7 @@ export const DATOS_TABLA_REPORTE = [
                     FechaCreacion: '2021-01-28T03:45:08.914Z',
                     FechaModificacion: '2021-01-28T03:45:08.914Z',
                     Activo: false,
-                    Codigo: '3-01',
+                    Codigo: '2-01',
                     Hijos: [
                         '3-01-001',
                         '3-01-002',
@@ -425,9 +425,9 @@ export const DATOS_TABLA_REPORTE = [
                     FechaCreacion: '2021-01-28T03:45:08.914Z',
                     FechaModificacion: '2021-01-28T03:45:08.914Z',
                     Activo: false,
-                    Codigo: '3-01-001-01-01-01-0001-01',
+                    Codigo: '2-01-001-01-01-01-0001-01',
                     Hijos: [],
-                    Padre: '3-01-001-01-01-01-0001',
+                    Padre: '2-01-001-01-01-01-0001',
                     UnidadEjecutora: '1',
                     Bloqueado: true,
                     Apropiaciones: true
@@ -508,9 +508,9 @@ export const DATOS_TABLA_REPORTE = [
                     FechaCreacion: '2021-01-28T03:45:08.914Z',
                     FechaModificacion: '2021-01-28T03:45:08.914Z',
                     Activo: false,
-                    Codigo: '3-01-001-01-01-01-0001-01',
+                    Codigo: '2-01-001-01-01-01-0001-01',
                     Hijos: [],
-                    Padre: '3-01-001-01-01-01-0001',
+                    Padre: '2-01-001-01-01-01-0001',
                     UnidadEjecutora: '1',
                     Bloqueado: true,
                     Apropiaciones: true
@@ -591,9 +591,9 @@ export const DATOS_TABLA_REPORTE = [
                     FechaCreacion: '2021-01-28T03:45:08.914Z',
                     FechaModificacion: '2021-01-28T03:45:08.914Z',
                     Activo: false,
-                    Codigo: '3-01-001-01-01-01-0001-01',
+                    Codigo: '2-01-001-01-01-01-0001-01',
                     Hijos: [],
-                    Padre: '3-01-001-01-01-01-0001',
+                    Padre: '2-01-001-01-01-01-0001',
                     UnidadEjecutora: '1',
                     Bloqueado: true,
                     Apropiaciones: true
@@ -674,9 +674,9 @@ export const DATOS_TABLA_REPORTE = [
                     FechaCreacion: '2021-01-28T03:45:08.914Z',
                     FechaModificacion: '2021-01-28T03:45:08.914Z',
                     Activo: false,
-                    Codigo: '3-01-001-01-01-01-0001-01',
+                    Codigo: '2-01-001-01-01-01-0001-01',
                     Hijos: [],
-                    Padre: '3-01-001-01-01-01-0001',
+                    Padre: '2-01-001-01-01-01-0001',
                     UnidadEjecutora: '1',
                     Bloqueado: true,
                     Apropiaciones: true
@@ -2303,3 +2303,216 @@ export const CONFIGURACION_TABLA_REPORTE = {
     sort: true,
     filter: false,
 };
+
+export const CONFIGURACION_TABLA_REVISION_PAC: any = {
+    title: {
+        name: 'Revision Reportes de Ingresos por Rubro',
+        class: 'text-center text-light',
+    },
+    showColumnTitle: true,
+    dataConfig: [
+        {
+            key: 'Rubro',
+            title: {
+                name: 'Codigo Rubro',
+                class: 'text-center px-5 text-nowrap',
+            },
+            pipe: {
+                class: 'text-left text-nowrap align-middle text-danger',
+                type: 'custom',
+                config: [
+                    (data: any) => {
+                        return data.Codigo;
+                    }
+                ], //
+            }
+        },
+        {
+            key: 'Rubro',
+            title: {
+                name: 'Nombre Rubro',
+                class: 'text-center px-5 text-nowrap',
+            },
+            pipe: {
+                class: 'text-left text-nowrap align-middle text-danger',
+                type: 'custom',
+                config: [
+                    (data: any) => {
+                        return data.Nombre;
+                    }
+                ], //
+            }
+        },
+        {
+            key: 'Reportados',
+            title: {
+                name: 'Total Reportados',
+                class: 'text-center text-nowrap px-5',
+            },
+            pipe: {
+                type: 'currency',
+                config: [
+                    '$',
+                    'symbol',
+                    '1.2-2',
+                    'en-US'
+                ],
+                class: 'text-right align-middle px-0 text-danger',
+            }
+        },
+        {
+            key: 'Registrados',
+            title: {
+                name: 'Total Registrados',
+                class: 'text-center text-nowrap px-5',
+            },
+            pipe: {
+                type: 'currency',
+                config: [
+                    '$',
+                    'symbol',
+                    '1.2-2',
+                    'en-US'
+                ],
+                class: 'text-right align-middle px-0 text-danger',
+            }
+        },
+    ],
+    noData: {
+        name: 'No se encontraron inconsistencias',
+        class: 'text-center',
+    },
+    sort: true,
+    filter: false,
+};
+
+export const CONFIGURACION_TABLA_REVISION_PAC_2: any = {
+    title: {
+        name: 'Revision Reportes de Gastos por Rubro',
+        class: 'text-center text-light',
+    },
+    showColumnTitle: true,
+    dataConfig: [
+        {
+            key: 'Rubro',
+            title: {
+                name: 'Codigo Rubro',
+                class: 'text-center px-5 text-nowrap',
+            },
+            pipe: {
+                class: 'text-left text-nowrap align-middle text-danger',
+                type: 'custom',
+                config: [
+                    (data: any) => {
+                        return data.Codigo;
+                    }
+                ], //
+            }
+        },
+        {
+            key: 'Rubro',
+            title: {
+                name: 'Nombre Rubro',
+                class: 'text-center px-5 text-nowrap',
+            },
+            pipe: {
+                class: 'text-left text-nowrap align-middle text-danger',
+                type: 'custom',
+                config: [
+                    (data: any) => {
+                        return data.Nombre;
+                    }
+                ], //
+            }
+        },
+        {
+            key: 'Reportados',
+            title: {
+                name: 'Total Reportados',
+                class: 'text-center text-nowrap px-5',
+            },
+            pipe: {
+                type: 'currency',
+                config: [
+                    '$',
+                    'symbol',
+                    '1.2-2',
+                    'en-US'
+                ],
+                class: 'text-right align-middle px-0 text-danger',
+            }
+        },
+        {
+            key: 'Registrados',
+            title: {
+                name: 'Total Registrados',
+                class: 'text-center text-nowrap px-5',
+            },
+            pipe: {
+                type: 'currency',
+                config: [
+                    '$',
+                    'symbol',
+                    '1.2-2',
+                    'en-US'
+                ],
+                class: 'text-right align-middle px-0 text-danger',
+            }
+        },
+    ],
+    noData: {
+        name: 'No se encontraron inconsistencias',
+        class: 'text-center',
+    },
+    sort: true,
+    filter: false,
+};
+
+export const DATOS_REVISION_PAC_2 = [
+    {
+        Rubro: {
+            Vigencia: 0,
+            Nombre: 'GASTOS',
+            Descripcion: 'GASTOS',
+            FechaCreacion: '2021-01-28T03:45:08.914Z',
+            FechaModificacion: '2021-01-28T03:45:08.914Z',
+            Activo: false,
+            Codigo: '3',
+            Hijos: [
+                '3-00',
+                '3-01',
+                '3-03'
+            ],
+            Padre: '',
+            UnidadEjecutora: '1',
+            Bloqueado: false,
+            Apropiaciones: false
+        },
+        Reportados: 368494968684,
+        Registrados: 368494268684,
+    }
+];
+export const DATOS_REVISION_PAC = [
+    {
+        Rubro: {
+            Vigencia: 0,
+            Nombre: 'INGRESOS',
+            Descripcion: 'INGRESOS',
+            FechaCreacion: '2021-01-28T03:45:08.914Z',
+            FechaModificacion: '2021-01-28T03:45:08.914Z',
+            Activo: false,
+            Codigo: '2',
+            Hijos: [
+                '3-00',
+                '3-01',
+                '3-03'
+            ],
+            Padre: '',
+            UnidadEjecutora: '1',
+            Bloqueado: false,
+            Apropiaciones: false
+        },
+        Reportados: 368494968684,
+        Registrados: 368494268684,
+    }
+];
