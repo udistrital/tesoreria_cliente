@@ -31,6 +31,11 @@ const routes: Routes = [{
       path: 'ingresosyretenciones',
       loadChildren: () => import('./certificado-retenciones/certificado-retenciones.module')
       .then(m => m.CertificadoRetencionesModule),
+    },
+    {
+      path: 'informacionexogena',
+      loadChildren: () => import('./informacion-exogena/informacion-exogena.module')
+      .then(m => m.InformacionExogenaModule),
     }
   ],
 }];

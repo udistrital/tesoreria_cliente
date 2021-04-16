@@ -1,0 +1,164 @@
+<div class="container bg-white p-5 border rounded">
+    <div class="row">
+        <div class="col py-2">
+            <h5 class="card-title text-center text-primary text-uppercase">
+                FORMATO PREVALIDADOR
+            </h5>
+        </div>
+    </div>
+    <form [formGroup]="prevalidadorGroup" (ngSubmit)="saveForm()">
+        <div class="container">
+            <div class="row">
+                <div class="col py-3">
+                    <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
+                        Datos Generales
+                    </h6>
+                </div>
+            </div>
+            <!-- Seleccion Area Funcional -->
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label for="areaFuncional">Área Funcional</label>
+                    <select class="custom-select" id="areaFuncional" formControlName="areaFuncional" [class.is-invalid]="isInvalid('areaFuncional')">
+                        <option selected disabled value="">Seleccione...</option>
+                        <option>01</option>
+                        <option>02</option>
+                    </select>
+                    <small *ngIf="isInvalid('areaFuncional')" class="text-danger">Seleccione una opción</small>
+                </div>
+                <div class="col-md-4">
+                    <label for="tipoPersona">Tipo de Persona</label>
+                    <select class="custom-select" id="tipoPersona" formControlName="tipoPersona" [class.is-invalid]="isInvalid('tipoPersona')">
+                        <option selected disabled value="">Seleccione...</option>
+                        <option>Natural</option>
+                        <option>Jurídica</option>
+                    </select>
+                    <small *ngIf="isInvalid('tipoPersona')" class="text-danger">Seleccione una opción</small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label for="vigencia">Vigencia</label>
+                    <select class="custom-select" id="vigencia" formControlName="vigencia" [class.is-invalid]="isInvalid('vigencia')">
+                        <option selected disabled value="">Seleccione...</option>
+                        <option>2019</option>
+                        <option>2020</option>
+                    </select>
+                    <small *ngIf="isInvalid('vigencia')" class="text-danger">Seleccione una opción</small>
+                </div>
+                <div class="col-md-8">
+                    <label for="formato">Formato</label>
+                    <select class="custom-select" id="formato" formControlName="formato" [class.is-invalid]="isInvalid('formato')">
+                        <option selected disabled value="">Seleccione...</option>
+                        <option>1007</option>
+                        <option>2020</option>
+                    </select>
+                    <small *ngIf="isInvalid('formato')" class="text-danger">Seleccione una opción</small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col">
+                    <label for="descripcion">Descripción</label>
+                    <textarea class="form-control" id="descripcion" formControlName="descripcion" rows="1" [class.is-invalid]="isInvalid('descripcion')"></textarea>
+                    <small *ngIf="isInvalid('descripcion')" class="text-danger">Se requiere completar este campo</small>
+                </div>
+            </div>
+            <div class="form-group row align-items-end pb-2">
+                <div class="col-md-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Aplicar cuantías menores
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="valorCuantia">Valor de Cuantía</label>
+                    <input currencyMask class="form-control" id="valorCuantia" formControlName="valorCuantia" [class.is-invalid]="isInvalid('valorCuantia')">
+                    <small *ngIf="isInvalid('valorCuantia')" class="text-danger">Ingrese números en este campo</small>
+                </div>
+                <div class="col-md-4">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Exportar
+                        </button>
+                        <div class="dropdown-menu">
+                            <p class="dropdown-item text-dark">XML</p>
+                            <p class="dropdown-item text-dark">CSV</p>
+                            <p class="dropdown-item text-dark">PDF</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
+
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label for="vigenciaInforme">Vigencia</label>
+                    <select class="custom-select" id="vigenciaInforme" formControlName="vigenciaInforme" [class.is-invalid]="isInvalid('vigenciaInforme')">
+                        <option selected disabled value="">Seleccione...</option>
+                        <option>2019</option>
+                        <option>2020</option>
+                    </select>
+                    <small *ngIf="isInvalid('vigenciaInforme')" class="text-danger">Seleccione una opción</small>
+                </div>
+                <div class="col-md-4">
+                    <label for="informe">Informe</label>
+                    <select class="custom-select" id="informe" formControlName="informe" [class.is-invalid]="isInvalid('informe')">
+                        <option selected disabled value="">Seleccione...</option>
+                        <option>Información Exógena 2019</option>
+                        <option>Información Exógena 2020</option>
+                    </select>
+                    <small *ngIf="isInvalid('informe')" class="text-danger">Seleccione una opción</small>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-block btn-primary text-white m-0 mt-4" disable="disable">
+                        Consultar Informe
+                    </button>
+                </div>
+            </div>
+            <!-- Botones: Volver a registro, Siguiente -->
+            <div class="container">
+                <div class="row pt-2 text-center">
+                    <div class="col-md-6">
+                        <a routerLink="../../consolidar/lista">
+                            <button type="button" class="btn btn-primary text-white col-md-7 m-0 mt-4">
+                                Volver a registros
+                            </button>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-success text-white col-md-7 m-0 mt-4" data-toggle="modal" data-target="#modalGuardar">
+                            Exportar Información
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Modal: Solicitud Guardada -->
+<div class="modal fade" id="modalGuardar" tabindex="-1" aria-labelledby="modalGuardar" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalGuardar"><i class="fas fa-check text-success"></i>EXPORTAR INFORMACIÓN</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="text-center">Se creará un registro del prevalidador.</p>
+                <p class="text-center">(descripción)</p>
+            </div>
+            <div class="modal-footer">
+                <a routerLink="../../consolidar/lista" class="btn btn-primary" data-dismiss="modal">
+                    Aceptar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin Modal: Solicitud Guardada -->

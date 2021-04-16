@@ -1,0 +1,33 @@
+<div class="container bg-white p-5 border rounded">
+    <div class="row">
+        <div class="col py-2">
+            <h5 class="card-title text-center text-primary text-uppercase">
+                REGISTRO DE INFORMACIÓN EXÓGENA
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-horizontal-stepper linear #stepper>
+                <mat-step [stepControl]="datosRegistroGroup">
+                    <ng-template matStepLabel>Inicio</ng-template>
+                    <div class="container">
+                        <ngx-set-datosregistro></ngx-set-datosregistro>
+                    </div>
+                </mat-step>
+                <mat-step [stepControl]="consultaInformacionGroup">
+                    <ng-template matStepLabel>Consulta de Información</ng-template>
+                    <div class="container">
+                        <ngx-set-consultainformacion></ngx-set-consultainformacion>
+                    </div>
+                </mat-step>
+                <mat-step [stepControl]="consultaTercerosGroup">
+                    <ng-template matStepLabel>Consulta de Terceros</ng-template>
+                    <div class="container">
+                        <ngx-set-consultaterceros></ngx-set-consultaterceros>
+                    </div>
+                </mat-step>
+            </mat-horizontal-stepper>
+        </div>
+    </div>
+</div>
