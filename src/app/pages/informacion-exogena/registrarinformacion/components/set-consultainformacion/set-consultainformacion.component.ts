@@ -13,8 +13,8 @@ export class SetConsultainformacionComponent implements OnInit {
 
   configConsultas: any;
   datosConsultas: any;
-  
-  constructor(private fb: FormBuilder) { 
+
+  constructor(private fb: FormBuilder) {
     this.datosConsultas = DATOS_CONSULTAS;
     this.configConsultas = CONFIGURACION_CONSULTAS;
   }

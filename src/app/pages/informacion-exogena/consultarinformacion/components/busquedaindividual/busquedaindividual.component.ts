@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CONFIGURACION_TABLACERTIFICADO, DATOS_TABLACERTIFICADO } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'ngx-busquedaindividual',
@@ -10,10 +11,17 @@ export class BusquedaindividualComponent implements OnInit {
 
   busquedaGroup: FormGroup;
 
+  configCertificado: any;
+  datosCertificado: any;
+
   constructor( private fb: FormBuilder ) { }
 
   ngOnInit() {
     this.createForm();
+
+    this.configCertificado = CONFIGURACION_TABLACERTIFICADO;
+    this.datosCertificado = DATOS_TABLACERTIFICADO;
+
   }
 
   createForm() {

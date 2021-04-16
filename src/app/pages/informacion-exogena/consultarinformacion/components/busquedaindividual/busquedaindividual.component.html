@@ -17,7 +17,7 @@
             </div>
             <!-- Búsqueda Individual -->
             <div class="container">
-                <div class="form-group row justify-content-lg-center align-items-md-center">
+                <div class="form-group row justify-content-lg-center align-items-end">
                     <div class="col-md-4">
                         <label for="tipoID">Tipo de ID</label>
                         <select class="custom-select" id="tipoID" formControlName="tipoID" [class.is-invalid]="isInvalid('tipoID')">
@@ -32,8 +32,8 @@
                         <input value=" " type="text" class="form-control" readonly>
                     </div>
                     <div class="col-md-4">
-                        <button type="button" class="btn btn-primary btn-block text-white m-0 mt-2">
-                            Consultar
+                        <button type="button" class="btn btn-success btn-block text-white m-0 mt-2">
+                            Nueva Consulta
                         </button>
                     </div>
                 </div>
@@ -104,7 +104,12 @@
                 </div>
             </div>
             <div class="container">
-                <!-- tabla -->
+                <div class="row">
+                    <div class="col-md-12 bg-white px-4 pb-3">
+                        <ngx-general-table [config]="configCertificado" [datos]="datosCertificado">
+                        </ngx-general-table>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col p-3">
@@ -166,17 +171,10 @@
             <!-- Botones: Volver a registro, Siguiente -->
             <div class="container">
                 <div class="row pt-3 text-center">
-                    <div class="col-md-6">
+                    <div class="col-md">
                         <a routerLink="../../consolidar/lista">
-                            <button type="button" class="btn btn-primary text-white col-md-7 m-0 mt-4">
+                            <button type="button" class="btn btn-primary text-white col-md-4 m-0 mt-4">
                                 Volver a registros
-                            </button>
-                        </a>
-                    </div>
-                    <div class="col-md-6">
-                        <a routerLink="../../consultainformacion/consulta">
-                            <button type="button" class="btn btn-success text-white col-md-7 m-0 mt-4">
-                                Nueva Consulta
                             </button>
                         </a>
                     </div>

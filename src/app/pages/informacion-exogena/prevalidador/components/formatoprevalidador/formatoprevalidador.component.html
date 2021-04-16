@@ -83,9 +83,21 @@
                           Exportar
                         </button>
                         <div class="dropdown-menu">
-                            <p class="dropdown-item text-dark">XML</p>
-                            <p class="dropdown-item text-dark">CSV</p>
-                            <p class="dropdown-item text-dark">PDF</p>
+                            <p class="dropdown-item text-dark">
+                                <button class="btn btn-block" (click)="exportar(exportarInfoModal)">
+                                    XML
+                                </button>
+                            </p>
+                            <p class="dropdown-item text-dark">
+                                <button class="btn btn-block" (click)="exportar(exportarInfoModal)">
+                                    CSV
+                                </button>
+                            </p>
+                            <p class="dropdown-item text-dark">
+                                <button class="btn btn-block" (click)="exportar(exportarInfoModal)">
+                                    PDF
+                                </button>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -130,7 +142,7 @@
                     </div>
                     <div class="col-md-6">
                         <button type="button" class="btn btn-success text-white col-md-7 m-0 mt-4" data-toggle="modal" data-target="#modalGuardar">
-                            Exportar Información
+                            Guardar Información
                         </button>
                     </div>
                 </div>
@@ -139,12 +151,28 @@
     </form>
 </div>
 
+<!-- Modal para descargar pdf de comprobante -->
+<ng-template #exportarInfoModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">PREVALIDADOR - (ENTIDAD)</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <ngx-descargarcomprobante></ngx-descargarcomprobante>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary text-white" (click)="modal.close('Close click')">Volver</button>
+    </div>
+</ng-template>
+
 <!-- Modal: Solicitud Guardada -->
 <div class="modal fade" id="modalGuardar" tabindex="-1" aria-labelledby="modalGuardar" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalGuardar"><i class="fas fa-check text-success"></i>EXPORTAR INFORMACIÓN</h5>
+                <h5 class="modal-title" id="modalGuardar"><i class="fas fa-check text-success"></i>GUARDAR INFORMACIÓN</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

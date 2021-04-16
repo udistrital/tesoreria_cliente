@@ -7,6 +7,9 @@ import { SharedModule } from '../../../shared/shared.module';
 import { MatDividerModule } from '@angular/material';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+
 
 
 @NgModule({
@@ -20,7 +23,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDividerModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CurrencyMaskModule,
+    RxReactiveFormsModule
   ]
 })
 export class PrevalidadorModule { }

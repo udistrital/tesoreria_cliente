@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'ngx-formatoprevalidador',
@@ -11,7 +12,7 @@ export class FormatoprevalidadorComponent implements OnInit {
 
   prevalidadorGroup: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.createForm();
@@ -47,6 +48,11 @@ export class FormatoprevalidadorComponent implements OnInit {
         control.markAsTouched();
       });
     }
+  }
+
+  // Funcion para exportar
+  exportar(exportarInfoModal) {
+    this.modalService.open(exportarInfoModal, { size: 'xl' });
   }
 
 }
