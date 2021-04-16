@@ -210,6 +210,16 @@ export const CONFIGURACION_TABLA_DETALLE_GIRO: any = {
                 class: 'text-right align-middle px-0',
             }
         },
+        {
+            key: 'Estado',
+            title: {
+                name: 'Estado',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-center',
+            }
+        },
     ],
     rowActions: {
         title: {
@@ -353,7 +363,7 @@ export const DATOS_DETALLE_GIRO = [
         FechaGiro: '2021-04-07T20:04:07Z',
         NumeroCheque: '20200607164945',
         Valor: 123456789,
-        Estado: 'Anulado',
+        Estado: 'Girado',
     },
     {
         Beneficiario: {
@@ -364,7 +374,7 @@ export const DATOS_DETALLE_GIRO = [
         FechaGiro: '2021-04-07T20:04:07Z',
         NumeroCheque: '20200607164945',
         Valor: 123456789,
-        Estado: 'Anulado',
+        Estado: 'Girado',
     },
     {
         Beneficiario: {
