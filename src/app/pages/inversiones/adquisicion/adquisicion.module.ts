@@ -15,6 +15,7 @@ import { ShowDetalleadquisicionComponent } from './components/show-detalleadquis
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { RendimientosComponent } from './components/rendimientos/rendimientos.component';
+import { SetProcesoreinversionComponent } from './components/set-procesoreinversion/set-procesoreinversion.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RendimientosComponent } from './components/rendimientos/rendimientos.co
     SetInfoinversioninicialComponent,
     SetContabilizacionComponent,
     ShowDetalleadquisicionComponent,
-    RendimientosComponent
+    RendimientosComponent,
+    SetProcesoreinversionComponent
   ],
   imports: [
     CommonModule,
