@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CONF_DIFERENCIAS, DATOS_DIFERENCIAS } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'ngx-set-diferencias',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SetDiferenciasComponent implements OnInit {
 
-  constructor() { }
+  configuracionDiferencias: any;
+  datosDiferencias: any;
+
+  constructor() {
+    this.configuracionDiferencias = CONF_DIFERENCIAS;
+    this.datosDiferencias = DATOS_DIFERENCIAS;
+   }
 
   ngOnInit() {
   }

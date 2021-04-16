@@ -16,6 +16,9 @@ import { PdfviewComponent } from './components/pdfview/pdfview.component';
 import * as fromBoletinDiario from './reducers/boletin-diario.reducer';
 import { BoletinDiarioEffects } from './effects/boletin-diario.effects';
 import { SharedModule } from '../../shared/shared.module';
+import { MatStepperModule, MatDialogModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [ListComponent,
@@ -31,6 +34,11 @@ import { SharedModule } from '../../shared/shared.module';
     CommonModule,
     BoletinDiarioRoutingModule,
     SharedModule,
+    MatStepperModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    PdfViewerModule,
     StoreModule.forFeature(fromBoletinDiario.boletinDiarioFeatureKey, fromBoletinDiario.reducer),
     EffectsModule.forFeature([BoletinDiarioEffects]),
   ]

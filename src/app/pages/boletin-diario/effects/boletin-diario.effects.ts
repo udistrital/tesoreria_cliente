@@ -12,8 +12,7 @@ export class BoletinDiarioEffects {
 
 
   loadBoletinDiarios$ = createEffect(() => {
-    return this.actions$.pipe( 
-
+    return this.actions$.pipe(
       ofType(BoletinDiarioActions.loadBoletinDiarios),
       /** An EMPTY observable only emits completion. Replace with your own observable API request */
       concatMap(() => EMPTY)

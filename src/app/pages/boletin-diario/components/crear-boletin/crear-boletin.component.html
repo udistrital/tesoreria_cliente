@@ -1,1 +1,35 @@
-<p>crear-boletin works!</p>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col py-2">
+                    <h5 class="card-title text-center text-primary">
+                        CREAR NUEVO GIRO DE NÓMINA
+                    </h5>
+                </div>
+            </div>
+            <mat-horizontal-stepper linear #stepper>
+                <mat-step [completed]="informacion">
+                    <ng-template matStepLabel> Inicio </ng-template>
+                    <ngx-set-informacion (statusForm)="validarInformacion($event)" (informacionForm)="datosInformacionForm($event, stepper)"></ngx-set-informacion>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel> Boletín borrador </ng-template>
+                    <ngx-set-borrador></ngx-set-borrador>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel> Concentración </ng-template>
+                    <ngx-set-concentracion ></ngx-set-concentracion>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel> Diferencias </ng-template>
+                    <ngx-set-diferencias></ngx-set-diferencias>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel> Firmas </ng-template>
+                    <ngx-firmas></ngx-firmas>
+                </mat-step>
+            </mat-horizontal-stepper>  
+        </div>
+    </div>
+</div>

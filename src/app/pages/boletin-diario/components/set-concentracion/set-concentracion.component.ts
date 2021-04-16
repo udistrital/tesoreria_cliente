@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CONF_BANCOS, DATOS_BANCOS } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'ngx-set-concentracion',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SetConcentracionComponent implements OnInit {
 
-  constructor() { }
+  configuracionEntidades: any;
+  datosEntidades: any;
+
+  constructor() {
+    this.configuracionEntidades = CONF_BANCOS;
+    this.datosEntidades = DATOS_BANCOS;
+   }
 
   ngOnInit() {
   }

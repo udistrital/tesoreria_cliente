@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrearBoletinComponent implements OnInit {
 
+  informacion: boolean = true;
+
   constructor() { }
 
   ngOnInit() {
   }
+
+  validarInformacion() {}
+
+  datosInformacionForm() {}
 
 }

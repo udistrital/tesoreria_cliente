@@ -1,1 +1,42 @@
-<p>set-informacion works!</p>
+<div class="container-fluid">
+    <form [formGroup]="boletinDiario" (ngSubmit)="onSubmit(boletinDiario.value)">
+        <div class="card p-3 m-4">
+            <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+                Información del boletín
+            </div>
+            <div class="card-body pt-0">
+                <div class="row my-2">
+                    <div class="col py-2">
+                        <label for="areaFuncional"> Área funcional </label> <br>
+                        <select name="areaFuncional" id="areaFuncional" class="form-control" formControlName="areaFuncional" [class.is-invalid]="esInvalido('areaFuncional')">
+                            <option *ngFor="let area of areaFuncional" value={{area}}> {{area}} </option>
+                        </select>
+                    </div>
+                    <div class="col py-2">
+                        <label for="centroGestor">Centro gestor</label> <br>
+                        <input class="form-control" type="text" name="centroGestor" id="centroGestor" placeholder="230" disabled>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col py-2">
+                        <label for="fecha"> Fecha </label> <br>
+                        <input type="date" name="fecha" id="fecha" class="form-control" formControlName="fechaRegistro" [class.is-invalid]="esInvalido('fechaRegistro')">
+                    </div>
+                </div>
+                <small class="message m-2" *ngIf="mensaje"> Los campos en rojo son requeridos* </small> 
+            </div>
+        </div>                         
+        <div class="row text-center">
+            <div class="col">
+                <button routerLinkActive="active" routerLink="pages/giros/proveedores/lista" type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
+                    Volver al registro
+                </button>
+            </div>
+            <div class="col">
+                <button mat-button class="btn btn-success px-3 py-2 my-2 text-light" type="submit">
+                    Consultar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
