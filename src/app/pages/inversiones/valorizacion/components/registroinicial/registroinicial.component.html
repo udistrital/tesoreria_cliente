@@ -71,7 +71,7 @@
                         <!-- Corresponde al porcentaje del patrimonio -->
                         <div class="col-md-6">
                             <label for="participacion">Participación Patrimonial</label>
-                            <input type="text" class="form-control" id="participacion" formControlName="participacion" [class.is-invalid]="isInvalid('participacion')">
+                            <input type="number" class="form-control" id="participacion" formControlName="participacion" [class.is-invalid]="isInvalid('participacion')">
                             <small *ngIf="isInvalid('participacion')" class="text-danger">Ingrese números en este
                                 campo</small>
                         </div>
@@ -96,15 +96,13 @@
                         <div class="row pt-2 text-center">
                             <div class="col-md-6">
                                 <a routerLink="../lista">
-                                    <button type="button" class="btn btn-primary mb-3 mt-3 text-white">
-                                        <div class="d-flex flex-row justify-content-around align-middle">
+                                    <button type="button" class="btn btn-primary col-md-7 m-0 mt-4 text-white">
                                             Volver a registros
-                                        </div>
                                     </button>
                                 </a>
                             </div>
                             <div class="col-md-6 form-group">
-                                <button *ngIf="infoRegistroGroup.valid" type="button" class="btn btn-success text-white m-0 mt-4" (click)="open(modalGuardar)">
+                                <button *ngIf="infoRegistroGroup.valid" type="button" class="btn btn-success col-md-7 text-white m-0 mt-4" (click)="open(modalGuardar)">
                                     GUARDAR
                                 </button>
                             </div>

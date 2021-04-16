@@ -88,28 +88,16 @@ export const CONFIGURACION_TABLA_OTRASENTIDADES: any = {
         },
         actions: [
             {
-                name: 'rendimientos',
-                icon: 'fas fa-check-double',
-                class: 'p-1',
-                title: 'Rendimientos de Inversión',
-            },
-            {
                 name: 'consultaDetalle',
                 icon: 'fas fa-eye',
                 class: 'p-1',
                 title: 'Detalle de la Inversión',
             },
             {
-                name: 'reinversion',
-                icon: 'fas fa-money-check',
+                name: 'registrarProceso',
+                icon: 'fas fa-list',
                 class: 'p-1',
-                title: 'Registrar Reinversión',
-            },
-            {
-                name: 'cancelarInversion',
-                icon: 'fas fa-ban',
-                class: 'p-1',
-                title: 'Cancelar Inversión',
+                title: 'Registrar Proceso',
             },
         ],
     },

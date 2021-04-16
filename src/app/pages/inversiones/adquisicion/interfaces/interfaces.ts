@@ -143,7 +143,7 @@ export const DATOS_TABLA_ADQUISICION: any = [
 
 export const CONFIGURACION_CONTABILIZACION: any = {
     title: {
-        name: 'CAUSACIÓN INVERSIÓN INICIAL',
+        name: 'CAUSACIÓN DE INVERSIÓN',
         class: 'text-center',
         actionClass: 'd-flex flex-row justify-content-around align-middle'
     },
