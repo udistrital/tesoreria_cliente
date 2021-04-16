@@ -31,6 +31,11 @@ const routes: Routes = [{
       path: 'plan-anual-caja',
       loadChildren: () => import('./plan-anual-caja/plan-anual-caja.module')
       .then(m => m.PlanAnualCajaModule),
+    },
+    {
+      path: 'acreedores',
+      loadChildren: () => import('./acreedores/acreedores.module')
+      .then(m => m.AcreedoresModule),
     }
   ],
 }];

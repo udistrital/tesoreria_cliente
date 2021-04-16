@@ -31,6 +31,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { PdfviewsharedComponent } from './components/pdfviewshared/pdfviewshared.component';
 import { TablaReporteMensualPacComponent } from './components/tabla-reporte-mensual-pac/tabla-reporte-mensual-pac.component';
 import { TablaReporteRubrosComponent } from './components/tabla-reporte-rubros/tabla-reporte-rubros.component';
+import { ContabilizacionComponent } from './components/contabilizacion/contabilizacion.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { TablaReporteRubrosComponent } from './components/tabla-reporte-rubros/t
     FileUploadComponent,
     TableComponent,
     TablaReporteMensualPacComponent,
+    ContabilizacionComponent,
   ],
   imports: [
     CommonModule,
@@ -80,6 +82,7 @@ import { TablaReporteRubrosComponent } from './components/tabla-reporte-rubros/t
     TableComponent,
     TablaReporteMensualPacComponent,
     TablaReporteRubrosComponent,
+    ContabilizacionComponent,
   ],
   providers: [
     DatePipe,

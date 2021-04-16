@@ -1,0 +1,89 @@
+<div class="container">
+    <div class="row p-2">
+        <div class="col">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="d-flex justify-content-center p-4">
+                                                <h5 class="text-primary text-center font-weight-bold pb-4">Detalle de
+                                                    Giro</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label>N° de Cheque:</label>
+                                                <span class="form-control text-left">{{datos.NumeroCheque}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label>Fecha Cheque:</label>
+                                                <span class="form-control text-left">{{datos.FechaGiro}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label>Valor:</label>
+                                                <span class="form-control text-left">{{datos.Valor | currency}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label>Orden de Pago:</label>
+                                                <span class="form-control text-left">{{datos.OrdenPago}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label>Beneficiario:</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <span
+                                                    class="form-control text-left">{{datos.Beneficiario.TipoID}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="form-group">
+                                                <span
+                                                    class="form-control text-left">{{datos.Beneficiario.NumeroID}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <span
+                                                    class="form-control text-left">{{datos.Beneficiario.Nombre}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row p-2">
+                                        <div class="col d-flex justify-content-start">
+                                            <ngx-btn-volver></ngx-btn-volver>
+                                        </div>
+                                        <div class="col d-flex justify-content-end">
+                                            <button type="button" class="btn btn-primary px-3 py-2 my-3 text-light"
+                                                (click)="Anular()">Anular</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
