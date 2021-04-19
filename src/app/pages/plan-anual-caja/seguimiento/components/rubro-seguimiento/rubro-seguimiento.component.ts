@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { GetVigenciaActual, GetArbolRubro } from '../../../../../shared/actions/shared.actions';
 import { getVigenciaActual, getNodoSeleccionado } from '../../../../../shared/selectors/shared.selectors';
@@ -8,7 +8,7 @@ import { getVigenciaActual, getNodoSeleccionado } from '../../../../../shared/se
   templateUrl: './rubro-seguimiento.component.html',
   styleUrls: ['./rubro-seguimiento.component.scss']
 })
-export class RubroSeguimientoComponent implements OnInit {
+export class RubroSeguimientoComponent implements OnInit, OnDestroy {
 
   subscription3$: any;
   rubroSeleccionado: any;

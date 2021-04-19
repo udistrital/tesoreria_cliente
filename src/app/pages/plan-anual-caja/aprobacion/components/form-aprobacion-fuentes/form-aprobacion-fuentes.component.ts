@@ -56,7 +56,7 @@ export class FormAprobacionFuentesComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription$.unsubscribe();
   }
-  
+
   ngOnInit() {
     this.subscription$ = combineLatest([
       this.store.select(getVigenciaActual),
