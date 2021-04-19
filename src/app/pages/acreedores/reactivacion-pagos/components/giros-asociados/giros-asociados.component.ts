@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
@@ -12,7 +12,7 @@ import { ConsultaOrdenesPagoComponent } from '../consulta-ordenes-pago/consulta-
   templateUrl: './giros-asociados.component.html',
   styleUrls: ['./giros-asociados.component.scss']
 })
-export class GirosAsociadosComponent implements OnInit {
+export class GirosAsociadosComponent implements OnInit, OnDestroy {
 
   configuracion: any;
   datos: any[];
@@ -31,7 +31,9 @@ export class GirosAsociadosComponent implements OnInit {
     this.configuracion = data;
     this.datos = DATOS_DETALLE_GIRO;
   }
-
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
+  }
   ngOnInit() {
     this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((data: any) => {
       if (this.sharedService.IfStore(data)) {

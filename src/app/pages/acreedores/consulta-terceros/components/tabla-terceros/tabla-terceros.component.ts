@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
@@ -11,7 +11,7 @@ import { CONFIGURACION_TABLA_CONSULTA_ACREEDORES, DATOS_CONSULTA_ACREEDORES } fr
   templateUrl: './tabla-terceros.component.html',
   styleUrls: ['./tabla-terceros.component.scss']
 })
-export class TablaTercerosComponent implements OnInit {
+export class TablaTercerosComponent implements OnInit, OnDestroy {
 
   configuracion: any;
   datos: any[];
@@ -27,6 +27,9 @@ export class TablaTercerosComponent implements OnInit {
     this.datos = DATOS_CONSULTA_ACREEDORES;
   }
 
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
+  }
   ngOnInit() {
     this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((data: any) => {
       if (this.sharedService.IfStore(data)) {

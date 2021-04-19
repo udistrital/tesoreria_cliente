@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -13,7 +13,7 @@ import { GirosAsociadosComponent } from '../giros-asociados/giros-asociados.comp
   templateUrl: './consulta-ordenes-pago.component.html',
   styleUrls: ['./consulta-ordenes-pago.component.scss']
 })
-export class ConsultaOrdenesPagoComponent implements OnInit {
+export class ConsultaOrdenesPagoComponent implements OnInit, OnDestroy {
 
   configuracion: any;
   datos: any[];
@@ -29,7 +29,9 @@ export class ConsultaOrdenesPagoComponent implements OnInit {
     this.configuracion = CONFIGURACION_TABLA_CONSULTA_ORDENES_PAGO;
     this.datos = DATOS_CONSULTA_ORDENES_PAGO;
   }
-
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
+  }
   ngOnInit() {
     this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((data: any) => {
       if (this.sharedService.IfStore(data)) {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
@@ -11,7 +11,7 @@ import { CONFIGURACION_TABLA_ANULACION_CHEQUES, CONFIGURACION_TABLA_DETALLE_GIRO
   templateUrl: './detalle-giro.component.html',
   styleUrls: ['./detalle-giro.component.scss']
 })
-export class DetalleGiroComponent implements OnInit {
+export class DetalleGiroComponent implements OnInit, OnDestroy {
 
   configuracion: any;
   datos: any[];
@@ -25,6 +25,9 @@ export class DetalleGiroComponent implements OnInit {
   ) {
     this.configuracion = CONFIGURACION_TABLA_DETALLE_GIRO;
     this.datos = DATOS_DETALLE_GIRO;
+  }
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
   }
 
   ngOnInit() {

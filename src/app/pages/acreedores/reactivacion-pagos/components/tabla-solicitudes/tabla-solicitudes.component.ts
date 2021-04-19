@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
@@ -11,7 +11,7 @@ import { CONFIGURACION_TABLA_SOLICITUDES_PAGO, DATOS_SOLICITUDES_PAGO } from '..
   templateUrl: './tabla-solicitudes.component.html',
   styleUrls: ['./tabla-solicitudes.component.scss']
 })
-export class TablaSolicitudesComponent implements OnInit {
+export class TablaSolicitudesComponent implements OnInit, OnDestroy {
 
   configuracion: any;
   datos: any[];
@@ -25,6 +25,9 @@ export class TablaSolicitudesComponent implements OnInit {
   ) {
     this.configuracion = CONFIGURACION_TABLA_SOLICITUDES_PAGO;
     this.datos = DATOS_SOLICITUDES_PAGO;
+  }
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
   }
 
   ngOnInit() {
