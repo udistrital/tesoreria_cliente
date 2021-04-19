@@ -1,1 +1,138 @@
-<p>detalle-ordenes-pago works!</p>
+<div class="container py-5">
+    <div class="row p-2">
+        <div class="col">
+            <div class="container-fluid">
+                <div class="row">
+                    <div
+                        class="col-3 border-right border-dark d-flex align-items-center justify-content-end text-right">
+                        <p>Datos del Beneficiario:</p>
+                    </div>
+                    <div class="col-9">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label>Tipo ID:</label>
+                                        <span class="form-control">{{Datos.TipoID}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-8">
+                                    <div class="form-group">
+                                        <label>Numero ID:</label>
+                                        <span class="form-control">{{Datos.NumeroID}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Nombre</label>
+                                        <span class="form-control">{{Datos.Nombre}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="col-3 border-right border-dark d-flex align-items-center justify-content-end text-right">
+                        <p>Datos del Compromiso:</p>
+                    </div>
+                    <div class="col-9">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Numero de Orden</label>
+                                        <span class="form-control">{{Datos.OPRelacionado}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-5">
+                                    <div class="form-group">
+                                        <label>Numero de Compromiso</label>
+                                        <span class="form-control">{{Datos.NumeroCompromiso}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-7">
+                                    <div class="form-group">
+                                        <label>Compromiso</label>
+                                        <span class="form-control">{{Datos.Compromiso}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-5">
+                                    <div class="form-group">
+                                        <label>Interventor</label>
+                                        <span class="form-control">{{Datos.Interventor}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-7">
+                                    <div class="form-group">
+                                        <label>Nombre</label>
+                                        <span class="form-control">{{Datos.NombreInterventor}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>N° Acta de Recibido</label>
+                                        <span class="form-control">{{Datos.ActaRecibido}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>N° Entrada Almacen</label>
+                                        <span class="form-control">{{Datos.Entrada}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Detalle</label>
+                                        <span class="form-control">{{Datos.Detalle}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Tipo de Orden de Pago</label>
+                                        <span class="form-control">{{Datos.TipoOP}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row p-3">
+                    <div class="col d-flex justify-content-center">
+                        <ngx-general-table [config]="configuracion1" [datos]="datos1"></ngx-general-table>
+                    </div>
+                </div>
+                <div class="row p-3">
+                    <div class="col d-flex justify-content-center">
+                        <ngx-general-table [config]="configuracion2" [datos]="datos2"></ngx-general-table>
+                    </div>
+                </div>
+                <div class="row px-3">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Valor Neto a Girar</label>
+                            <span class="form-control text-center">{{Datos.ValorNeto | currency}}</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Codigo Contable</label>
+                            <span class="form-control text-center">{{Datos.CodigoContable}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

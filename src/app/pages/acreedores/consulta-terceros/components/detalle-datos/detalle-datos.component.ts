@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DATOS_CONSULTA_ACREEDORES } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'ngx-detalle-datos',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetalleDatosComponent implements OnInit {
 
-  constructor() { }
+  Datos: any;
+
+  constructor() {
+    this.Datos = DATOS_CONSULTA_ACREEDORES[0];
+  }
 
   ngOnInit() {
   }

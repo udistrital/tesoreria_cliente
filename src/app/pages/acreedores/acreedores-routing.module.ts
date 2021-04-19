@@ -9,7 +9,7 @@ const routes: Routes = [
       .then(m => m.AnulacionChequeModule),
   },
   {
-    path: 'consulta-terceros',
+    path: 'consulta',
     loadChildren: () => import('./consulta-terceros/consulta-terceros.module')
       .then(m => m.ConsultaTercerosModule),
   },

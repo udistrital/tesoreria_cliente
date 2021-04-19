@@ -7,13 +7,32 @@ import { DetalleTerceroComponent } from './components/detalle-tercero/detalle-te
 import { DetalleDatosComponent } from './components/detalle-datos/detalle-datos.component';
 import { DetalleOrdenesPagoComponent } from './components/detalle-ordenes-pago/detalle-ordenes-pago.component';
 import { DetalleGiroComponent } from './components/detalle-giro/detalle-giro.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule, MatSelectModule, MatStepperModule } from '@angular/material';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { SharedModule } from '../../../shared/shared.module';
 
 
 @NgModule({
-  declarations: [TablaTercerosComponent, DetalleTerceroComponent, DetalleDatosComponent, DetalleOrdenesPagoComponent, DetalleGiroComponent],
+  declarations: [
+    TablaTercerosComponent,
+    DetalleTerceroComponent,
+    DetalleDatosComponent,
+    DetalleOrdenesPagoComponent,
+    DetalleGiroComponent,
+  ],
   imports: [
     CommonModule,
-    ConsultaTercerosRoutingModule
+    ConsultaTercerosRoutingModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    CurrencyMaskModule,
+    ScrollingModule,
+    MatSelectModule,
+    MatStepperModule,
   ]
 })
 export class ConsultaTercerosModule { }
