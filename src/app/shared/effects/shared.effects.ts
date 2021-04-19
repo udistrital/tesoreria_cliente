@@ -7,7 +7,7 @@ import { EMPTY, of } from 'rxjs';
 import * as SharedActions from '../actions/shared.actions';
 import { SharedService } from '../services/shared.service';
 import { Store } from '@ngrx/store';
-import { selectVigencias } from '../selectors/shared.selectors';
+import { selectTiposID, selectVigencias } from '../selectors/shared.selectors';
 
 
 @Injectable()
@@ -79,4 +79,98 @@ export class SharedEffects {
       })
     );
   });
+
+  getTiposID$ = createEffect(() => {
+    return this.actions$.pipe(ofType(SharedActions.getTiposID),
+      withLatestFrom(this.store.select(selectTiposID)),
+      mergeMap((action) => {
+        if (!action || !action[1])
+          return this.sharedService.getTiposID(true).pipe(
+            map(data => SharedActions.loadTiposID([data])),
+            catchError(data => of(SharedActions.CatchError(data))));
+        else
+          return of(SharedActions.loadTiposID(action[1]));
+      }));
+  });
+
+  getDatosID$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.getDatosID), mergeMap((params) =>
+        this.sharedService.getDatosID(params.numero, params.tipo, params.limit, params.fields)
+          .pipe(map((data: any[]) => {
+            if (data)
+              data = data.map((tercero) => (
+                { TerceroId: tercero.TerceroId }
+              ));
+            return SharedActions.loadDatosID({ clave: params.clave, datosId: data });
+          }), catchError(data => of(SharedActions.CatchError(data))))));
+  });
+
+  // Consulta de proveedores
+  getProveedores$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerDatosProvedor),
+      mergeMap((accion) => this.sharedService.getDatosProveedores(
+        accion && accion.id ? accion.id : null,
+        accion && accion.query ? accion.query : null)
+        .pipe(map(data => SharedActions.cargarDatosProvedor(
+          { Proveedores: (data && data.Data ? data.Data : data) })),
+          catchError(data => of(SharedActions.CatchError(data))))));
+  });
+
+  // Consulta de telefonos proveedores
+  getTelefonosProveedores$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerTelefonosProvedores),
+      mergeMap((accion) =>
+        this.sharedService.getTelefonosProveedores(
+          accion && accion.id ? accion.id : null,
+          accion && accion.query ? accion.query : null)
+          .pipe(map(data => SharedActions.cargarTelefonosProvedores(
+            { TelefonosProveedores: (data && data.Data ? data.Data : data) })),
+            catchError(data => of(SharedActions.CatchError(data))))));
+  });
+
+  // Consulta de ordenadores de gasto
+  getOrdenadores$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerOrdenadores),
+      mergeMap((accion) =>
+        this.sharedService.getOrdenadores(
+          accion && accion.id ? accion.id : null,
+          accion && accion.query ? accion.query : null,
+          accion.limit ? accion.limit : null)
+          .pipe(map(data => SharedActions.cargarOdrenadores(
+            { Ordenadores: (data && data.Data ? data.Data : data) })),
+            catchError(data => of(SharedActions.CatchError(data))))));
+  });
+
+  // Consulta de dependencias
+  getDependencias$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerDependencias),
+      mergeMap((accion) =>
+        this.sharedService.getDependencias(
+          accion && accion.id ? accion.id : null,
+          accion && accion.query ? accion.query : null,
+          accion.limit ? accion.limit : null)
+          .pipe(map(data => SharedActions.cargarDependencias(
+            { Dependencias: (data && data.Data ? data.Data : data) })),
+            catchError(data => of(SharedActions.CatchError(data))))));
+  });
+
+  // Consulta de facultades y proyectos
+  getFacultadesProyectos$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerFacultadesProyectos),
+      mergeMap((accion) =>
+        this.sharedService.getFacultadesProyectos(
+          accion && accion.id ? accion.id : null,
+          accion && accion.query ? accion.query : null,
+          accion.limit ? accion.limit : null)
+          .pipe(map(data => SharedActions.cargarFacultadesProyectos(
+            { FacultadesProyectos: (data && data.Data ? data.Data : data) })),
+            catchError(data => of(SharedActions.CatchError(data))))));
+  });
+
 }
