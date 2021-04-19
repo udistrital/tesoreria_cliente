@@ -30,3 +30,18 @@ export const actualizarSolicitudAvance = createAction(
   '[Avances] Actualizar y guardar una solicitud de avance existente en back',
   props<{ id: any, element: any }>()
 );
+
+export const cargarInfoFuncionario = createAction(
+  '[Shared] Cargar información de funcionario al store',
+  props()
+);
+
+export const cargarDescripcionSolicitud = createAction(
+  '[Shared] Cargar descripción de la solicitud al store',
+  props()
+);
+
+export const cargarTiposdeAvances = createAction(
+  '[Shared] Cargar tipos de avances al store',
+  props()
+);
