@@ -12,7 +12,7 @@ export class SolicitudReactivacionComponent implements OnInit {
   files: any[];
   Datos: any[];
 
-  ReactivacionForm: FormGroup
+  ReactivacionForm: FormGroup;
 
   constructor(
     private fb: FormBuilder
@@ -25,7 +25,7 @@ export class SolicitudReactivacionComponent implements OnInit {
       Nombre: [],
       Apellido: [],
       Detalle: [],
-    })
+    });
   }
 
   ngOnInit() {

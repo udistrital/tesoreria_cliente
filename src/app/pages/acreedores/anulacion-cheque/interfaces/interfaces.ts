@@ -55,7 +55,7 @@ export const CONFIGURACION_TABLA_ANULACION_CHEQUES: any = {
         {
             key: 'OPRelacionado',
             title: {
-                name: 'Area Funcional',
+                name: 'N° OP o RA',
                 class: 'text-center',
             },
             pipe: {
@@ -74,7 +74,7 @@ export const CONFIGURACION_TABLA_ANULACION_CHEQUES: any = {
                 name: 'editar',
                 icon: 'fas fa-list',
                 class: 'p-2',
-                title: 'Editar',
+                title: 'Editar Anulacion Orden Pago',
             },
         ],
     },
@@ -173,7 +173,7 @@ export const CONFIGURACION_TABLA_DETALLE_GIRO: any = {
             key: 'FechaGiro',
             title: {
                 name: 'Fecha de Giro',
-                class: 'text-center text-nowrap',
+                class: 'text-center text-nowrap px-5',
             },
             pipe: {
                 type: 'date',
@@ -296,7 +296,7 @@ export const CONFIGURACION_TABLA_DETALLE_GIRO_2: any = {
             key: 'FechaGiro',
             title: {
                 name: 'Fecha de Giro',
-                class: 'text-center text-nowrap',
+                class: 'text-center text-nowrap px-5',
             },
             pipe: {
                 type: 'date',
@@ -452,24 +452,24 @@ export const CONFIGURACION_TABLA_CONTABILIZACION: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-center text-nowrap',
+                class: 'text-center text-nowrap px-5',
             }
         },
         {
             key: 'Detalle',
             title: {
                 name: 'Detalle',
-                class: 'text-center text-nowrap',
+                class: 'text-center text-nowrap px-5',
             },
             pipe: {
-                class: 'text-center text-nowrap',
+                class: 'text-center text-nowrap px-5',
             }
         },
         {
             key: 'Debito',
             title: {
                 name: 'Debito',
-                class: 'text-center',
+                class: 'text-center text-nowrap px-5',
             },
             pipe: {
                 type: 'currency',
@@ -486,7 +486,7 @@ export const CONFIGURACION_TABLA_CONTABILIZACION: any = {
             key: 'Credito',
             title: {
                 name: 'Credito',
-                class: 'text-center',
+                class: 'text-center text-nowrap px-5',
             },
             pipe: {
                 type: 'currency',

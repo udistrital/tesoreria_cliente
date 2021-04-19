@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 import { CONFIGURACION_TABLA_CONTABILIZACION, DATOS_CONTABILIZACION } from '../../interfaces/interfaces';
 
 @Component({
@@ -38,7 +39,12 @@ export class ContabilizacionComponent implements OnInit {
   }
 
   Guardar() {
-
+    Swal.fire({
+      type: 'success',
+      title: 'Contabilizacion Aprobada',
+      text: 'Consecutivo 12345',
+      confirmButtonText: 'Aceptar',
+    });
   }
 
   Descargar() {

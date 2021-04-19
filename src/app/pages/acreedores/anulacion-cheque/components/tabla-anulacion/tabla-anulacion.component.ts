@@ -30,7 +30,7 @@ export class TablaAnulacionComponent implements OnInit {
   ngOnInit() {
     this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((data: any) => {
       if (this.sharedService.IfStore(data)) {
-        if (data.accion.title === 'Editar') {
+        if (data.accion.title === 'Editar Anulacion Orden Pago') {
           this.route.navigate(['pages/acreedores/anulacion-cheque/detalle-giro']);
           this.store.dispatch(LoadFilaSeleccionada(null));
         }

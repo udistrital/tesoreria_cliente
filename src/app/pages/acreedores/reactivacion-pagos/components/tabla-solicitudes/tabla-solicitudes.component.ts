@@ -30,12 +30,12 @@ export class TablaSolicitudesComponent implements OnInit {
   ngOnInit() {
     this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((data: any) => {
       if (this.sharedService.IfStore(data)) {
-       
+
         if (data.accion.title === 'Editar') {
           this.route.navigate(['pages/acreedores/reactivacion-pagos/respuesta-solicitud']);
           this.store.dispatch(LoadFilaSeleccionada(null));
         }
-        
+
       }
     });
   }

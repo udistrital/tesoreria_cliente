@@ -95,7 +95,7 @@ export const DATOS_SOLICITUDES_PAGO = [
         Apellidos: 'Murillo Yara',
         Detalle: 'Reactivacion de Pago por monitoria no reclamada',
         Estado: 'Pendiente',
-        Archivos:[
+        Archivos: [
             {
                 name: 'Cedula.pdf'
             },
@@ -113,7 +113,7 @@ export const DATOS_SOLICITUDES_PAGO = [
         Apellidos: 'Murillo Yara',
         Detalle: 'Reactivacion de Pago por monitoria no reclamada',
         Estado: 'Pendiente',
-        Archivos:[
+        Archivos: [
             {
                 name: 'Cedula.pdf'
             },
@@ -131,7 +131,7 @@ export const DATOS_SOLICITUDES_PAGO = [
         Apellidos: 'Murillo Yara',
         Detalle: 'Reactivacion de Pago por monitoria no reclamada',
         Estado: 'Pendiente',
-        Archivos:[
+        Archivos: [
             {
                 name: 'Cedula.pdf'
             },
@@ -149,7 +149,7 @@ export const DATOS_SOLICITUDES_PAGO = [
         Apellidos: 'Murillo Yara',
         Detalle: 'Reactivacion de Pago por monitoria no reclamada',
         Estado: 'Pendiente',
-        Archivos:[
+        Archivos: [
             {
                 name: 'Cedula.pdf'
             },
@@ -280,4 +280,4 @@ export const DATOS_CONSULTA_ORDENES_PAGO = [
         NumeroID: '1018463814',
         Nombre: 'Jhoan Manuel Murillo'
     }
-]
+];

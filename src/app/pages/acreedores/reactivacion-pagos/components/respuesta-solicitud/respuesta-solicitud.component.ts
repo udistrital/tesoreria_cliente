@@ -21,7 +21,7 @@ export class RespuestaSolicitudComponent implements OnInit {
   }
 
   OnCreate() {
-    this.matDialog.open(ConsultaOrdenesPagoComponent)
+    this.matDialog.open(ConsultaOrdenesPagoComponent);
   }
 
 }

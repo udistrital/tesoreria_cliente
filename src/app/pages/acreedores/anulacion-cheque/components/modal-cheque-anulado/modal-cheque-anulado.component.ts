@@ -17,7 +17,7 @@ export class ModalChequeAnuladoComponent implements OnInit {
     private router: Router,
   ) {
     this.configuracion = CONFIGURACION_TABLA_DETALLE_GIRO_2;
-    this.datos = [DATOS_DETALLE_GIRO[0]];
+    this.datos = [DATOS_DETALLE_GIRO[2]];
   }
 
   ngOnInit() {

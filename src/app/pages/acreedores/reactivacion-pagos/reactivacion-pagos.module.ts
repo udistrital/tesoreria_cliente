@@ -33,7 +33,7 @@ import { SharedModule } from '../../../shared/shared.module';
     ScrollingModule,
     MatSelectModule,
   ],
-  entryComponents:[
+  entryComponents: [
     ConsultaOrdenesPagoComponent,
     GirosAsociadosComponent,
   ]

@@ -33,17 +33,17 @@ export class ConsultaOrdenesPagoComponent implements OnInit {
   ngOnInit() {
     this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((data: any) => {
       if (this.sharedService.IfStore(data)) {
-       
+
         if (data.accion.title === 'Editar Ordenes de Pago') {
           this.matDialog.open(GirosAsociadosComponent);
           this.store.dispatch(LoadFilaSeleccionada(null));
         }
-        
+
       }
     });
   }
   OnClose() {
-    this.matDialogRef.close()
+    this.matDialogRef.close();
   }
 
 }
