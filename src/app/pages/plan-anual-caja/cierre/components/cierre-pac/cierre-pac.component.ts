@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -11,7 +11,7 @@ import { CONFIGURACION_TABLA_REPORTE, DATOS_TABLA_REPORTE } from '../../../repor
   templateUrl: './cierre-pac.component.html',
   styleUrls: ['./cierre-pac.component.scss']
 })
-export class CierrePacComponent implements OnInit {
+export class CierrePacComponent implements OnInit, OnDestroy {
 
   configuracion: any;
   FechasForm: FormGroup;
@@ -36,6 +36,9 @@ export class CierrePacComponent implements OnInit {
       Nombre: 'Rector',
       label: '01 - Rector',
     }));
+  }
+  ngOnDestroy(): void {
+    this.subscription3$.unsubscribe();
   }
 
   ngOnInit() {

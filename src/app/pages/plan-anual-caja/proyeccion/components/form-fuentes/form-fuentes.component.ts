@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { combineLatest } from 'rxjs';
@@ -11,7 +11,7 @@ import { ProyeccionServiceService } from '../../services/proyeccion-service.serv
   templateUrl: './form-fuentes.component.html',
   styleUrls: ['./form-fuentes.component.scss']
 })
-export class FormFuentesComponent implements OnInit {
+export class FormFuentesComponent implements OnInit, OnDestroy {
 
   FuenteFinanciamientoForm: FormGroup;
   FuentesFinanciamiento: any;
@@ -52,6 +52,9 @@ export class FormFuentesComponent implements OnInit {
     }));
     this.store.dispatch(GetVigenciaActual({ offset: 0 }));
     this.CreatFuenteFinanciamientoForm();
+  }
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
   }
   ngOnInit() {
     this.subscription$ = combineLatest([

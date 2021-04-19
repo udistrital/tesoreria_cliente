@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -10,7 +10,7 @@ import { getVigenciaActual } from '../../../../../shared/selectors/shared.select
   templateUrl: './reporte-pac.component.html',
   styleUrls: ['./reporte-pac.component.scss']
 })
-export class ReportePacComponent implements OnInit {
+export class ReportePacComponent implements OnInit, OnDestroy {
 
   configuracion: any;
   FechasForm: FormGroup;
@@ -36,7 +36,9 @@ export class ReportePacComponent implements OnInit {
       label: '01 - Rector',
     }));
   }
-
+  ngOnDestroy(): void {
+    this.subscription3$.unsubscribe();
+  }
   ngOnInit() {
     this.subscription3$ = this.store.select(getVigenciaActual).subscribe((vigencia: any) => {
       if (vigencia) {

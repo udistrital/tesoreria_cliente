@@ -21,7 +21,10 @@ export class RubroSeguimientoComponent implements OnInit {
     this.store.dispatch(GetVigenciaActual({ offset: 0 }));
     this.store.dispatch(GetArbolRubro({ branch: '3' }));
   }
-
+  ngOnDestroy(): void {
+    this.subscription2$.unsubscribe();
+    this.subscription3$.unsubscribe();
+  }
   ngOnInit() {
     this.subscription3$ = this.store.select(getVigenciaActual).subscribe((vigencia: any) => {
       if (vigencia) {
