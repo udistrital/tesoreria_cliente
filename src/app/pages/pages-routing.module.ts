@@ -21,6 +21,11 @@ const routes: Routes = [{
       path: 'giros',
       loadChildren: () => import('./giros/giros.module')
       .then(m => m.GirosModule),
+    },
+    {
+      path: 'inversiones',
+      loadChildren: () => import('./inversiones/inversiones.module')
+      .then(m => m.InversionesModule),
     }
   ],
 }];

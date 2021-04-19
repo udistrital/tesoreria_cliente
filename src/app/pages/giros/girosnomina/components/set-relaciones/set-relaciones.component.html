@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="card p-3 m-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+            Relaciones de autorización radicadas
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <p> Seleccione la relacion de autorización a girar: </p>
+                </div>
+            </div>
+            <small class="message" *ngIf="mensaje"> Debe elegir una relación de autorización* </small>
+        </div>
+        <ngx-general-table [config]="configurationPlus" [datos]="datosGiroRelacion"></ngx-general-table>
+
+        <div class="mt-4" *ngIf="datoSeleccionado.length !== 0">
+            <p> Relación de autorización seleccionada: </p>
+            <ngx-general-table [config]="configurationMin" [datos]="datoSeleccionado"></ngx-general-table>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            <button type="button" matStepperPrevious class="btn btn-primary px-3 py-2 my-2 text-light">
+                Volver
+            </button>
+        </div>
+        <div class="col">
+            <button (click)="guardar()" class="btn btn-success px-3 py-2 my-2 text-light">
+                Generar detalles del giro
+            </button>
+        </div>
+    </div>
+</div>

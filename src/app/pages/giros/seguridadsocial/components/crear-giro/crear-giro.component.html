@@ -1,0 +1,35 @@
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col py-2">
+                    <h5 class="card-title text-center text-primary">
+                        CREAR NUEVO GIRO DE SEGURIDAD SOCIAL
+                    </h5>
+                </div>
+            </div>
+            <mat-horizontal-stepper linear #stepper>
+                <mat-step [completed]="informacion">
+                    <ng-template matStepLabel> Inicio </ng-template>
+                    <ngx-set-informacion (statusForm)="validarInformacion($event)" (informacionForm)="guardarInformacion($event, stepper)"></ngx-set-informacion>
+                </mat-step>
+                <mat-step [completed]="relaciones">
+                    <ng-template matStepLabel> Relación de Autorización </ng-template>
+                    <ngx-set-relaciones (statusRelaciones)="validarRelaciones($event)" (informacionRelaciones)="guardarRelacion($event, stepper)"></ngx-set-relaciones>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel> Rubros </ng-template>
+                    <ngx-set-rubros></ngx-set-rubros>
+                </mat-step>
+                <mat-step [completed]="erogacion">
+                    <ng-template matStepLabel> Erogación y detalles del giro </ng-template>
+                    <ngx-set-erogacion (statusErogacion)="validarErogacion($event)" (informacionBeneficiarios)="guardarBeneficiarios($event, stepper)" (informacionBancos)="guardarBanco($event)"></ngx-set-erogacion>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel> Resumen </ng-template>
+                    <ngx-set-resumen></ngx-set-resumen>
+                </mat-step>
+            </mat-horizontal-stepper>  
+        </div>
+    </div>
+</div>

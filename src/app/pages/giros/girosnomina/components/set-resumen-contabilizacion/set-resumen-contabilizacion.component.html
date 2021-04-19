@@ -1,0 +1,88 @@
+<div class="container-fluid">
+    <div class="card p-3 my-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+            Contabilización
+        </div>
+        <div class="card-body pt-0">
+            <div class="row my-2">
+                <div class="col py-2">
+                    <label for="conceptoContabilidad"> Concepto </label> <br>
+                    <input type="text" class="form-control" name="conceptoContabilidad" id="conceptoContabilidad" value={{concepto}}
+                        placeholder={{concepto}} disabled>
+                </div>
+                <div class="col py-2">
+                    <label for="tipoCuenta"> Código </label> <br>
+                    <input class="form-control" type="text" name="tipoCuenta" id="tipoCuenta" value={{codigo}}
+                        placeholder={{codigo}} disabled>
+                </div>
+                <div class="col py-2">
+                    <label for="tipoCuenta"> Tipo de comprobante </label> <br>
+                    <input class="form-control" type="text" name="tipoCuenta" id="tipoCuenta" value={{tipoComprobante}}
+                        placeholder={{tipoComprobante}} disabled>
+                </div>
+                <div class="col py-2">
+                    <label for="tipoCuenta"> Consecutivo </label> <br>
+                    <input class="form-control" type="text" name="tipoCuenta" id="tipoCuenta" value={{consecutivo}}
+                        placeholder={{consecutivo}} disabled>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <ngx-general-table [config]="configurationContabilidad" [datos]="datosContabilidad"></ngx-general-table>
+            </div>
+            <div class="row my-2">
+                <div class="col py-2" align="center">
+                    <label class="font-weight-bold m-2" for="sumaDebito">Suma débito: </label>
+                    <input name="sumaDebito" id="sumaDebito" class="form-control total m-2" disabled value="{{totalDebito() | currency}}">
+                </div>
+                <div class="col py-2" align="center">
+                    <label class="font-weight-bold m-2" for="sumaCredito">Suma crédito: </label>
+                    <input name="sumaCredito" id="sumaCredito" class="form-control m-2 total" disabled value="{{totalCredito() | currency}}">
+                </div>
+            </div>
+            <nav class="mt-2" *ngIf="datosBeneficiarios.length !== 0">
+                <ul class="pagination justify-content-end">
+                    <p class="p-2 mx-2">Beneficiario: </p>
+                    <li class="page-item"><a class="page-link text-dark" (click)="anteriorAcreedor()"> Anterior </a></li>
+                    <li *ngFor="let beneficiario of datosBeneficiarios; index as x" class="page-item"
+                        (click)="elegirAcreedor(x)"><a class="page-link text-dark"> {{x+1}}</a></li>
+                    <li class="page-item"><a class="page-link text-dark" (click)="siguienteAcreedor()">Siguiente</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="card p-3 my-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+            Erogación del acreedor
+        </div>
+        <div class="card-body pt-0">
+            <div class="row justify-content-center">
+                <ngx-general-table [config]="configurationAcreedor" [datos]="datosAcreedor"></ngx-general-table>
+            </div>
+            <div class="row justify-content-md-center">
+                <label class="mx-2 p-2 font-weight-bold" for="valorTotal"> Valor total a girar: </label> <br>
+                <input class="form-control total" id="valorTotal" disabled value="{{totalGasto() | currency}}">
+            </div>
+            <nav class="mt-2" *ngIf="datosBeneficiarios.length !== 0">
+                <ul class="pagination justify-content-end">
+                    <p class="p-2 mx-2">Beneficiario: </p>
+                    <li class="page-item"><a class="page-link text-dark" (click)="anterior()"> Anterior </a></li>
+                    <li *ngFor="let beneficiario of datosBeneficiarios; index as x" class="page-item"
+                        (click)="elegir(x)"><a class="page-link text-dark"> {{x+1}}</a></li>
+                    <li class="page-item"><a class="page-link text-dark" (click)="siguiente()">Siguiente</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            <button matStepperPrevious type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
+                Volver
+            </button>
+        </div>
+        <div class="col">
+            <button (click)="guardar()" class="btn btn-success px-3 py-2 my-2 text-light">
+                Aprobar contabilidad
+            </button>
+        </div>
+    </div>
+</div>
