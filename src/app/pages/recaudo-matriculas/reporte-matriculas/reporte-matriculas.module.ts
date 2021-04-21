@@ -6,13 +6,36 @@ import { TablaReporteMatriculasComponent } from './components/tabla-reporte-matr
 import { DetalleReporteMatriculasComponent } from './components/detalle-reporte-matriculas/detalle-reporte-matriculas.component';
 import { ModalRegistroComponent } from './components/modal-registro/modal-registro.component';
 import { ModalCuotaComponent } from './components/modal-cuota/modal-cuota.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule, MatSelectModule } from '@angular/material';
+import { NbDatepickerModule } from '@nebular/theme';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { SharedModule } from '../../../shared/shared.module';
 
 
 @NgModule({
-  declarations: [TablaReporteMatriculasComponent, DetalleReporteMatriculasComponent, ModalRegistroComponent, ModalCuotaComponent],
+  declarations: [
+    TablaReporteMatriculasComponent,
+    DetalleReporteMatriculasComponent,
+    ModalRegistroComponent,
+    ModalCuotaComponent
+  ],
   imports: [
     CommonModule,
-    ReporteMatriculasRoutingModule
+    ReporteMatriculasRoutingModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    CurrencyMaskModule,
+    ScrollingModule,
+    MatSelectModule,
+    NbDatepickerModule,
+  ],
+  entryComponents: [
+    ModalRegistroComponent,
+    ModalCuotaComponent,
   ]
 })
 export class ReporteMatriculasModule { }
