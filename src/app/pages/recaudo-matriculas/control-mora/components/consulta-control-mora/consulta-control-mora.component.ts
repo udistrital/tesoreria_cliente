@@ -24,7 +24,7 @@ export class ConsultaControlMoraComponent implements OnInit {
 
   }
   AgregarRegistro() {
-    this.route.navigate(['pages/recaudo-matriculas/control-mora/tabla-consulta']);
+    this.route.navigate(['pages/recaudo-matriculas/control-mora/tabla-general']);
   }
 
 

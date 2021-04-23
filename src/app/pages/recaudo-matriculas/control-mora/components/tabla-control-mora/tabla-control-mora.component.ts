@@ -5,6 +5,7 @@ import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actio
 import { getFilaSeleccionada } from '../../../../../shared/selectors/shared.selectors';
 import { SharedService } from '../../../../../shared/services/shared.service';
 import { CONFIGURACION_TABLA_CONSULTA_MATRICULAS, DATOS_CONSULTA_MATRICULAS } from '../../../consulta-matriculas/interfaces/interfaces';
+import { CONFIGURACION_TABLA_CONTROL_MORA, DATOS_CONTROL_MORA } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'ngx-tabla-control-mora',
@@ -23,8 +24,8 @@ export class TablaControlMoraComponent implements OnInit, OnDestroy {
     private sharedService: SharedService,
     private route: Router,
   ) {
-    this.configuracion = CONFIGURACION_TABLA_CONSULTA_MATRICULAS;
-    this.datos = DATOS_CONSULTA_MATRICULAS;
+    this.configuracion = CONFIGURACION_TABLA_CONTROL_MORA;
+    this.datos = DATOS_CONTROL_MORA;
   }
   ngOnDestroy(): void {
     this.subscription$.unsubscribe();
@@ -32,7 +33,7 @@ export class TablaControlMoraComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((data: any) => {
       if (this.sharedService.IfStore(data)) {
-        if (data.accion.title === 'Editar') {
+        if (data.accion.title === 'Editar 3') {
           this.AgregarRegistro();
           this.store.dispatch(LoadFilaSeleccionada(null));
         }
@@ -41,7 +42,7 @@ export class TablaControlMoraComponent implements OnInit, OnDestroy {
     });
   }
   AgregarRegistro() {
-    this.route.navigate(['pages/recaudo-matriculas/consulta-matriculas/contabilizacion']);
+    this.route.navigate(['pages/recaudo-matriculas/control-mora/detalle-reporte']);
   }
 
 }

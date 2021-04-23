@@ -32,6 +32,7 @@ import { SharedModule } from '../../../shared/shared.module';
     ScrollingModule,
     MatSelectModule,
     NbDatepickerModule,
+    MatDialogModule,
   ],
   entryComponents: [
     ModalRegistroComponent,

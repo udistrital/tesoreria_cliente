@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { CONFIGURACION_TABLA_CONTABILIZACION } from '../../../../acreedores/anulacion-cheque/interfaces/interfaces';
-import { DATOS_CONTABILIZACION } from '../../../../inversiones/adquisicion/interfaces/interfaces';
+
+import { DATOS_CONTABILIZACION_2 } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'ngx-contabilizacion',
@@ -16,7 +17,7 @@ export class ContabilizacionComponent implements OnInit {
   credito: any;
 
   constructor() {
-    this.datos = DATOS_CONTABILIZACION;
+    this.datos = DATOS_CONTABILIZACION_2;
     this.configuracion = CONFIGURACION_TABLA_CONTABILIZACION;
     this.debito = this.datos.map((element: any) => {
       if (element.Debito) {

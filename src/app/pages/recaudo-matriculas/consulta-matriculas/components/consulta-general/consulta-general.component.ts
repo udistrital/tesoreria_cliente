@@ -24,7 +24,7 @@ export class ConsultaGeneralComponent implements OnInit {
 
   }
   AgregarRegistro() {
-    this.route.navigate(['pages/recaudo-matriculas/consulta-matriculas/tabla-consulta']);
+    this.route.navigate(['pages/recaudo-matriculas/consulta-matriculas/tabla-general']);
   }
 
 

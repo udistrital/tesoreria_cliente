@@ -11,11 +11,11 @@ const routes: Routes = [
     component: ConsultaGeneralComponent,
   },
   {
-    path: 'contabilizacion',
+    path: 'tabla-general',
     component: TablaConsultaComponent,
   },
   {
-    path: 'tabla-general',
+    path: 'contabilizacion',
     component: ContabilizacionComponent,
   }
 ];

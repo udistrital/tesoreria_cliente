@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
 import { getFilaSeleccionada } from '../../../../../shared/selectors/shared.selectors';
 import { SharedService } from '../../../../../shared/services/shared.service';
-import { CONFIGURACION_TABLA_REPORTE_DETALLE, DATOS_REPORTE_MATRICULAS } from '../../interfaces/interfaces';
+import { CONFIGURACION_TABLA_REPORTE_DETALLE, DATOS_REPORTE_DETALLE, DATOS_REPORTE_MATRICULAS } from '../../interfaces/interfaces';
 import { ModalRegistroComponent } from '../modal-registro/modal-registro.component';
 
 @Component({
@@ -27,7 +27,7 @@ export class DetalleReporteMatriculasComponent implements OnInit, OnDestroy {
     private matDialog: MatDialog,
   ) {
     this.configuracion = CONFIGURACION_TABLA_REPORTE_DETALLE;
-    this.datos = DATOS_REPORTE_MATRICULAS;
+    this.datos = DATOS_REPORTE_DETALLE;
   }
   ngOnDestroy(): void {
     this.subscription$.unsubscribe();

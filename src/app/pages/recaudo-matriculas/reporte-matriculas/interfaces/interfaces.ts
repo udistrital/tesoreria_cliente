@@ -114,7 +114,7 @@ export const CONFIGURACION_TABLA_REPORTE_DETALLE = {
                     key: 'TipoID',
                     title: {
                         name: 'Tipo ID',
-                        class: 'text-center px-5',
+                        class: 'text-center align-middle px-5',
                     },
                     pipe: {
                         class: '',
@@ -124,7 +124,7 @@ export const CONFIGURACION_TABLA_REPORTE_DETALLE = {
                     key: 'NumeroID',
                     title: {
                         name: 'Numero ID',
-                        class: 'text-center px-5',
+                        class: 'text-center align-middle px-5',
                     },
                     pipe: {
                         class: '',
@@ -134,7 +134,7 @@ export const CONFIGURACION_TABLA_REPORTE_DETALLE = {
                     key: 'Codigo',
                     title: {
                         name: 'Codigo',
-                        class: 'text-center px-5',
+                        class: 'text-center align-middle px-5',
                     },
                     pipe: {
                         class: '',
@@ -144,7 +144,7 @@ export const CONFIGURACION_TABLA_REPORTE_DETALLE = {
                     key: 'Nombre',
                     title: {
                         name: 'Nombre',
-                        class: 'text-center px-5',
+                        class: 'text-center align-middle px-5',
                     },
                     pipe: {
                         class: '',
@@ -193,7 +193,7 @@ export const CONFIGURACION_TABLA_REPORTE_DETALLE = {
                             '1.2-2',
                             'en-US'
                         ],
-                        class: 'text-right align-middle px-0',
+                        class: 'text-center',
                     }
                 },
                 {
@@ -203,19 +203,31 @@ export const CONFIGURACION_TABLA_REPORTE_DETALLE = {
                         class: 'text-center px-5',
                     },
                     pipe: {
-                        type: 'currency',
-                        pipe: {
-                            type: 'date',
-                            config: [
-                                'shortDate'
-                            ],
-                            class: 'text-center',
-                        }
+                        type: 'date',
+                        config: [
+                            'shortDate'
+                        ],
+                        class: 'text-center',
                     }
                 },
             ]
         },
     ],
+    rowActions: {
+        title: {
+            name: 'Acciones',
+            class: 'text-center',
+            actionClass: 'd-flex flex-row justify-content-around align-middle'
+        },
+        actions: [
+            {
+                name: 'Editar',
+                icon: 'fas fa-pencil-alt',
+                class: '',
+                title: 'Editar',
+            },
+        ],
+    },
     noData: {
         name: 'No Existen Elementos Asociados',
         class: 'text-center',
@@ -299,53 +311,54 @@ export const DATOS_REPORTE_DETALLE = [
 export const CONFIGURACION_TABLA_REPORTE_CUOTAS = {
     showColumnTitle: true,
     dataConfig: [
+
         {
-            key: 'Cuotas',
+            key: 'ValorCuota',
             title: {
-                name: 'Cuotas',
+                name: 'Valor',
                 class: 'text-center px-5',
             },
             pipe: {
-                class: '',
+                type: 'currency',
+                config: [
+                    '$',
+                    'symbol',
+                    '1.2-2',
+                    'en-US'
+                ],
+                class: 'text-center',
+            }
+        },
+        {
+            key: 'FechaLimite',
+            title: {
+                name: 'Fecha Limite',
+                class: 'text-center px-5',
             },
-            compound: [
-                {
-                    key: 'ValorCuota',
-                    title: {
-                        name: 'Valor',
-                        class: 'text-center px-5',
-                    },
-                    pipe: {
-                        type: 'currency',
-                        config: [
-                            '$',
-                            'symbol',
-                            '1.2-2',
-                            'en-US'
-                        ],
-                        class: 'text-right align-middle px-0',
-                    }
-                },
-                {
-                    key: 'FechaLimite',
-                    title: {
-                        name: 'Fecha Limite',
-                        class: 'text-center px-5',
-                    },
-                    pipe: {
-                        type: 'currency',
-                        pipe: {
-                            type: 'date',
-                            config: [
-                                'shortDate'
-                            ],
-                            class: 'text-center',
-                        }
-                    }
-                },
-            ]
+            pipe: {
+                type: 'date',
+                config: [
+                    'shortDate'
+                ],
+                class: 'text-center',
+            }
         },
     ],
+    rowActions: {
+        title: {
+            name: 'Acciones',
+            class: 'text-center',
+            actionClass: 'd-flex flex-row justify-content-around align-middle'
+        },
+        actions: [
+            {
+                name: 'Editar',
+                icon: 'fas fa-pencil-alt',
+                class: '',
+                title: 'Editar 2',
+            },
+        ],
+    },
     noData: {
         name: 'No Existen Elementos Asociados',
         class: 'text-center',
@@ -355,20 +368,18 @@ export const CONFIGURACION_TABLA_REPORTE_CUOTAS = {
 };
 
 export const DATOS_REPORTE_CUOTAS = [
+
     {
-        Cuotas: [
-            {
-                ValorCuota: 1000000,
-                FechaLimite: '2021-04-07T20:04:07Z',
-            },
-            {
-                ValorCuota: 1000000,
-                FechaLimite: '2021-04-07T20:04:07Z',
-            },
-            {
-                ValorCuota: 1000000,
-                FechaLimite: '2021-04-07T20:04:07Z',
-            },
-        ]
+        ValorCuota: 1000000,
+        FechaLimite: '2021-04-07T20:04:07Z',
     },
+    {
+        ValorCuota: 1000000,
+        FechaLimite: '2021-04-07T20:04:07Z',
+    },
+    {
+        ValorCuota: 1000000,
+        FechaLimite: '2021-04-07T20:04:07Z',
+    },
+
 ];

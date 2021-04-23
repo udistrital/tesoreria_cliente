@@ -30,6 +30,10 @@ import { SharedModule } from '../../../shared/shared.module';
     ScrollingModule,
     MatSelectModule,
     NbDatepickerModule,
+    MatDialogModule,
+  ],
+  entryComponents: [
+    DetalleGeneralMoraComponent,
   ]
 })
 export class ReporteMoraModule { }

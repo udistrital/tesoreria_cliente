@@ -36,14 +36,14 @@ export class ModalRegistroComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((data: any) => {
       if (this.sharedService.IfStore(data)) {
-        if (data.accion.title === 'Editar') {
-          this.AgregarRegistro();
+        if (data.accion.title === 'Editar 2') {
+          this.AgregarRegistro2();
           this.store.dispatch(LoadFilaSeleccionada(null));
         }
       }
     });
   }
-  AgregarRegistro() {
+  AgregarRegistro2() {
     this.matDialog.open(ModalCuotaComponent);
   }
   OnClose() {

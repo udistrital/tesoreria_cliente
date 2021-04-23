@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
+import { Router } from '@angular/router';
 import { CONFIGURACION_TABLA_CONSULTA_MATRICULAS } from '../../../consulta-matriculas/interfaces/interfaces';
 import { DetalleGeneralMoraComponent } from '../../../reporte-mora/components/detalle-general-mora/detalle-general-mora.component';
 import { DATOS_REPORTE_MORA } from '../../../reporte-mora/interfaces/interfaces';
+import { CONFIGURACION_TABLA_CONSULTA_MATRICULAS_2 } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'ngx-detalle-control-mora',
@@ -17,16 +19,15 @@ export class DetalleControlMoraComponent implements OnInit {
   subscription$: any;
 
   constructor(
-    private matDialogRef: MatDialogRef<DetalleGeneralMoraComponent>
+    private route: Router,
   ) {
-    this.configuracion = CONFIGURACION_TABLA_CONSULTA_MATRICULAS;
+    this.configuracion = CONFIGURACION_TABLA_CONSULTA_MATRICULAS_2;
     this.datos = DATOS_REPORTE_MORA;
   }
   ngOnInit() {
   }
   OnClose() {
-    this.matDialogRef.close();
+    this.route.navigate(['pages/recaudo-matriculas/control-mora/contabilizacion']);
   }
-
 
 }

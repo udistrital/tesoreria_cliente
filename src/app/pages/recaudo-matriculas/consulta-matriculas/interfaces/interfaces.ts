@@ -6,61 +6,61 @@ export const CONFIGURACION_TABLA_CONSULTA_MATRICULAS: any = {
             key: 'TipoID',
             title: {
                 name: 'Tipo ID',
-                class: 'text-center',
+                class: 'text-center align-middle',
             },
             pipe: {
-                class: 'text-center',
+                class: 'text-center align-middle',
             }
         },
         {
             key: 'NumeroID',
             title: {
                 name: 'Numero ID',
-                class: 'text-center',
+                class: 'text-center align-middle',
             },
             pipe: {
-                class: '',
+                class: 'text-center text-nowrap align-middle',
             }
         },
         {
             key: 'Codigo',
             title: {
                 name: 'Codigo',
-                class: 'text-center',
+                class: 'text-center align-middle',
             },
             pipe: {
-                class: '',
+                class: 'text-center text-nowrap align-middle',
             }
         },
         {
             key: 'Nombre',
             title: {
                 name: 'Nombre',
-                class: 'text-center',
+                class: 'text-center text-nowrap align-middle',
             },
             pipe: {
-                class: '',
+                class: 'text-center text-nowrap align-middle',
             }
         },
         {
             key: 'FechaOrdinaria',
             title: {
                 name: 'Fecha Ordinaria',
-                class: 'text-center',
+                class: 'text-center align-middle',
             },
             pipe: {
                 type: 'date',
                 config: [
                     'shortDate'
                 ],
-                class: 'text-center',
+                class: 'text-center align-middle',
             }
         },
         {
             key: 'ValorOrdinario',
             title: {
                 name: 'Valor Ordinario',
-                class: 'text-center text-nowrap px-5',
+                class: 'text-center align-middle text-nowrap px-5',
             },
             pipe: {
                 type: 'currency',
@@ -77,21 +77,21 @@ export const CONFIGURACION_TABLA_CONSULTA_MATRICULAS: any = {
             key: 'FechaExtraOrdinaria',
             title: {
                 name: 'Fecha Ordinaria',
-                class: 'text-center',
+                class: 'text-center align-middle',
             },
             pipe: {
                 type: 'date',
                 config: [
                     'shortDate'
                 ],
-                class: 'text-center',
+                class: 'text-center align-middle',
             }
         },
         {
             key: 'ValorExtraOrdinario',
             title: {
                 name: 'Valor Ordinario',
-                class: 'text-center text-nowrap px-5',
+                class: 'text-center align-middle text-nowrap px-5',
             },
             pipe: {
                 type: 'currency',
@@ -108,32 +108,32 @@ export const CONFIGURACION_TABLA_CONSULTA_MATRICULAS: any = {
             key: 'Pago',
             title: {
                 name: 'Pago',
-                class: 'text-center',
+                class: 'text-center align-middle',
             },
             pipe: {
                 isBoolean: true,
-                class: 'text-center',
+                class: 'text-center align-middle',
             }
         },
         {
             key: 'FechaPago',
             title: {
                 name: 'Fecha Pago',
-                class: 'text-center',
+                class: 'text-center align-middle',
             },
             pipe: {
                 type: 'date',
                 config: [
                     'shortDate'
                 ],
-                class: 'text-center',
+                class: 'text-center align-middle',
             }
         },
         {
             key: 'ValorPago',
             title: {
                 name: 'Valor Pago',
-                class: 'text-center text-nowrap px-5',
+                class: 'text-center align-middle text-nowrap px-5',
             },
             pipe: {
                 type: 'currency',
@@ -150,13 +150,13 @@ export const CONFIGURACION_TABLA_CONSULTA_MATRICULAS: any = {
     ],
     noData: {
         name: 'No Existen Elementos Asociados',
-        class: 'text-center',
+        class: 'text-center align-middle',
     },
     sort: true,
     filter: false,
 };
 
-export const DATOS_CONTABILIZACION = [
+export const DATOS_CONTABILIZACION_2 = [
     {
         Secuencia: 1,
         Documento: 1018463814,
