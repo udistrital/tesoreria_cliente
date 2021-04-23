@@ -1,1 +1,83 @@
-<p>contabilizacion works!</p>
+<div class="container">
+    <div class="row p-2">
+        <div class="col">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="d-flex justify-content-center p-4">
+                                                <h5 class="text-primary text-center font-weight-bold pb-4">
+                                                    Contabilizacion</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label>N° de Cheque:</label>
+                                                <span class="form-control text-left">1234567</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label>Fecha Cheque:</label>
+                                                <span class="form-control text-left">C-002</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label>Valor:</label>
+                                                <span class="form-control text-left">12312344</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label>Orden de Pago:</label>
+                                                <span class="form-control text-left">Anulacion Cheque</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ngx-general-table [config]="configuracion" [datos]="datos"></ngx-general-table>
+                                <div class="container-fluid">
+                                    <div class="row border-top pt-2 mt-2">
+                                        <div class="col-4"></div>
+                                        <div class="col-2 pt-2">
+                                            <div class="form-group">
+                                                
+                                                <p>Sumas Iguales:</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-3 p-0">
+                                            <div class="form-group">
+                                                <span class="form-control text-center">{{debito | currency}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-3 p-0">
+                                            <div class="form-group">
+                                                <span class="form-control text-center">{{credito | currency}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row p-2">
+                                        <div class="col d-flex justify-content-between">
+                                            <ngx-btn-volver></ngx-btn-volver>
+                                            <button type="button" class="btn btn-primary px-3 py-2 my-3 text-light"
+                                                (click)="Descargar()">Descargar Comprobante</button>
+                                            <button type="button" class="btn btn-primary px-3 py-2 my-3 text-light"
+                                                (click)="Guardar()">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

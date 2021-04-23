@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-consulta-general',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsultaGeneralComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit() {
+  configuracion: any;
+  datos: any[];
+  title: any;
+  subscription$: any;
+
+  constructor(
+    private route: Router,
+  ) {
+    
   }
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
+  }
+  ngOnInit() {
+    
+  }
+  AgregarRegistro() {
+    this.route.navigate(['pages/recaudo-matriculas/consulta-matriculas/tabla-consulta']);
+  }
+ 
 
 }

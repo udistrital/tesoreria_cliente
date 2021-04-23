@@ -41,6 +41,6 @@ export class TablaReporteMatriculasComponent implements OnInit, OnDestroy {
     });
   }
   AgregarRegistro() {
-    this.route.navigate(['pages/recaudo-matriculas/detalle-reporte']);
+    this.route.navigate(['pages/recaudo-matriculas/reporte-matriculas/detalle-reporte']);
   }
 }
