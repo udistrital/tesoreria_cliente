@@ -16,9 +16,9 @@ import { SharedModule } from '../../../shared/shared.module';
 
 @NgModule({
   declarations: [
-    ConsultaControlMoraComponent, 
-    TablaControlMoraComponent, 
-    DetalleControlMoraComponent, 
+    ConsultaControlMoraComponent,
+    TablaControlMoraComponent,
+    DetalleControlMoraComponent,
     ContabilizacionComponent
   ],
   imports: [
