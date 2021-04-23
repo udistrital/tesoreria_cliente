@@ -68,7 +68,7 @@ export const CONFIGURACION_TABLA_REPORTE_MATRICULAS: any = {
                 name: 'editar',
                 icon: 'fas fa-list',
                 class: 'p-2',
-                title: 'Editar Anulacion Orden Pago',
+                title: 'Editar',
             },
         ],
     },
@@ -294,4 +294,81 @@ export const DATOS_REPORTE_DETALLE = [
             },
         ]
     }
+]
+
+export const CONFIGURACION_TABLA_REPORTE_CUOTAS = {
+    showColumnTitle: true,
+    dataConfig: [
+        {
+            key: 'Cuotas',
+            title: {
+                name: 'Cuotas',
+                class: 'text-center px-5',
+            },
+            pipe: {
+                class: '',
+            },
+            compound: [
+                {
+                    key: 'ValorCuota',
+                    title: {
+                        name: 'Valor',
+                        class: 'text-center px-5',
+                    },
+                    pipe: {
+                        type: 'currency',
+                        config: [
+                            '$',
+                            'symbol',
+                            '1.2-2',
+                            'en-US'
+                        ],
+                        class: 'text-right align-middle px-0',
+                    }
+                },
+                {
+                    key: 'FechaLimite',
+                    title: {
+                        name: 'Fecha Limite',
+                        class: 'text-center px-5',
+                    },
+                    pipe: {
+                        type: 'currency',
+                        pipe: {
+                            type: 'date',
+                            config: [
+                                'shortDate'
+                            ],
+                            class: 'text-center',
+                        }
+                    }
+                },
+            ]
+        },
+    ],
+    noData: {
+        name: 'No Existen Elementos Asociados',
+        class: 'text-center',
+    },
+    sort: true,
+    filter: false,
+};
+
+export const DATOS_REPORTE_CUOTAS = [
+    {
+        Cuotas: [
+            {
+                ValorCuota: 1000000,
+                FechaLimite: '2021-04-07T20:04:07Z',
+            },
+            {
+                ValorCuota: 1000000,
+                FechaLimite: '2021-04-07T20:04:07Z',
+            },
+            {
+                ValorCuota: 1000000,
+                FechaLimite: '2021-04-07T20:04:07Z',
+            },
+        ]
+    },
 ]

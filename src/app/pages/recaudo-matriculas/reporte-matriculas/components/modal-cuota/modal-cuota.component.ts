@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
+
 
 @Component({
   selector: 'ngx-modal-cuota',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalCuotaComponent implements OnInit {
 
-  constructor() { }
+  configuracion: any;
+  datos: any[];
+  title: any;
+  subscription$: any;
 
+  constructor(
+    private matDialogRef: MatDialogRef<ModalCuotaComponent>,
+  ) {
+  }
   ngOnInit() {
   }
+  OnClose() {
+    this.matDialogRef.close()
+  }
+
 
 }

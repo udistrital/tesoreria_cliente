@@ -33,7 +33,7 @@ export class TablaReporteMatriculasComponent implements OnInit, OnDestroy {
     this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((data: any) => {
       if (this.sharedService.IfStore(data)) {
         if (data.accion.title === 'Editar') {
-          this.route.navigate(['pages/recaudo-matriculas/detalle-reporte']);
+          this.AgregarRegistro()
           this.store.dispatch(LoadFilaSeleccionada(null));
         }
 

@@ -36,10 +36,9 @@ export class DetalleReporteMatriculasComponent implements OnInit {
     this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((data: any) => {
       if (this.sharedService.IfStore(data)) {
         if (data.accion.title === 'Editar') {
-          this.matDialog.open(ModalRegistroComponent)
+          this.AgregarRegistro();
           this.store.dispatch(LoadFilaSeleccionada(null));
         }
-
       }
     });
   }
