@@ -25,7 +25,7 @@ export class DetalleControlMoraComponent implements OnInit {
   ngOnInit() {
   }
   OnClose() {
-    this.matDialogRef.close()
+    this.matDialogRef.close();
   }
 
 

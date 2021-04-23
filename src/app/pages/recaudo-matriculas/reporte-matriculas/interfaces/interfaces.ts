@@ -294,7 +294,7 @@ export const DATOS_REPORTE_DETALLE = [
             },
         ]
     }
-]
+];
 
 export const CONFIGURACION_TABLA_REPORTE_CUOTAS = {
     showColumnTitle: true,
@@ -371,4 +371,4 @@ export const DATOS_REPORTE_CUOTAS = [
             },
         ]
     },
-]
+];

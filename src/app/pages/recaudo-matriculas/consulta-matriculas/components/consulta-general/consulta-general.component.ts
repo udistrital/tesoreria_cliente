@@ -17,17 +17,15 @@ export class ConsultaGeneralComponent implements OnInit {
   constructor(
     private route: Router,
   ) {
-    
+
   }
-  ngOnDestroy(): void {
-    this.subscription$.unsubscribe();
-  }
+
   ngOnInit() {
-    
+
   }
   AgregarRegistro() {
     this.route.navigate(['pages/recaudo-matriculas/consulta-matriculas/tabla-consulta']);
   }
- 
+
 
 }

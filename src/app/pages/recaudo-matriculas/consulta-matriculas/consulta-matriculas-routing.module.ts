@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'tabla-general',
-    component:ContabilizacionComponent,
+    component: ContabilizacionComponent,
   }
 ];
 

@@ -146,7 +146,7 @@ export const CONFIGURACION_TABLA_CONSULTA_MATRICULAS: any = {
                 class: 'text-right align-middle px-0',
             }
         },
-        
+
     ],
     noData: {
         name: 'No Existen Elementos Asociados',
@@ -305,5 +305,5 @@ export const DATOS_CONSULTA_MATRICULAS = [
         FechaPago: '2021-04-07T20:04:07Z',
         Pago: true,
     },
-    
+
 ];

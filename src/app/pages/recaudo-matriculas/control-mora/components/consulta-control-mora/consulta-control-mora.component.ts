@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class ConsultaControlMoraComponent implements OnInit {
 
-  
+
   configuracion: any;
   datos: any[];
   title: any;
@@ -17,17 +17,15 @@ export class ConsultaControlMoraComponent implements OnInit {
   constructor(
     private route: Router,
   ) {
-    
+
   }
-  ngOnDestroy(): void {
-    this.subscription$.unsubscribe();
-  }
+
   ngOnInit() {
-    
+
   }
   AgregarRegistro() {
     this.route.navigate(['pages/recaudo-matriculas/control-mora/tabla-consulta']);
   }
- 
+
 
 }

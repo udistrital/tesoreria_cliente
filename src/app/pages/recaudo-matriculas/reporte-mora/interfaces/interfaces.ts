@@ -11,7 +11,7 @@ export const DATOS_REPORTE_MORA = [
         ValorPago: 0,
         FechaPago: '',
         Pago: false,
-    }, 
+    },
     {
         TipoID: 'CC',
         NumeroID: '1018463814',
@@ -24,5 +24,5 @@ export const DATOS_REPORTE_MORA = [
         ValorPago: 0,
         FechaPago: '',
         Pago: false,
-    }, 
+    },
 ];

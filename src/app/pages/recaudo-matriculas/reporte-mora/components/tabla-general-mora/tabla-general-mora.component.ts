@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -14,7 +14,7 @@ import { DetalleGeneralMoraComponent } from '../detalle-general-mora/detalle-gen
   templateUrl: './tabla-general-mora.component.html',
   styleUrls: ['./tabla-general-mora.component.scss']
 })
-export class TablaGeneralMoraComponent implements OnInit {
+export class TablaGeneralMoraComponent implements OnInit, OnDestroy {
 
   configuracion: any;
   datos: any[];
@@ -37,7 +37,7 @@ export class TablaGeneralMoraComponent implements OnInit {
     this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((data: any) => {
       if (this.sharedService.IfStore(data)) {
         if (data.accion.title === 'Editar') {
-          this.AgregarRegistro()
+          this.AgregarRegistro();
           this.store.dispatch(LoadFilaSeleccionada(null));
         }
 
@@ -45,7 +45,7 @@ export class TablaGeneralMoraComponent implements OnInit {
     });
   }
   AgregarRegistro() {
-    this.matDialog.open(DetalleGeneralMoraComponent)
+    this.matDialog.open(DetalleGeneralMoraComponent);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -13,7 +13,7 @@ import { ModalCuotaComponent } from '../modal-cuota/modal-cuota.component';
   templateUrl: './modal-registro.component.html',
   styleUrls: ['./modal-registro.component.scss']
 })
-export class ModalRegistroComponent implements OnInit {
+export class ModalRegistroComponent implements OnInit, OnDestroy {
 
   configuracion: any;
   datos: any[];
@@ -44,10 +44,10 @@ export class ModalRegistroComponent implements OnInit {
     });
   }
   AgregarRegistro() {
-    this.matDialog.open(ModalCuotaComponent)
+    this.matDialog.open(ModalCuotaComponent);
   }
   OnClose() {
-    this.matDialogRef.close()
+    this.matDialogRef.close();
   }
 }
 

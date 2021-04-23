@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
@@ -11,7 +11,7 @@ import { CONFIGURACION_TABLA_CONSULTA_MATRICULAS, DATOS_CONSULTA_MATRICULAS } fr
   templateUrl: './tabla-consulta.component.html',
   styleUrls: ['./tabla-consulta.component.scss']
 })
-export class TablaConsultaComponent implements OnInit {
+export class TablaConsultaComponent implements OnInit, OnDestroy {
 
   configuracion: any;
   datos: any[];
@@ -33,7 +33,7 @@ export class TablaConsultaComponent implements OnInit {
     this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((data: any) => {
       if (this.sharedService.IfStore(data)) {
         if (data.accion.title === 'Editar') {
-          this.AgregarRegistro()
+          this.AgregarRegistro();
           this.store.dispatch(LoadFilaSeleccionada(null));
         }
 
