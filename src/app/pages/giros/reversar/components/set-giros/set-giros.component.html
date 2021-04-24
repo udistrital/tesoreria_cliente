@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="card p-3 m-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+            Giros radicados
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <p> Seleccione el giro a reversar: </p>
+                </div>
+            </div>
+            <small class="message" *ngIf="mensaje"> Debe elegir un giro* </small> 
+        </div>
+        <ngx-general-table [config]="configurationPlus" [datos]="datosGiros"></ngx-general-table>
+
+        <div class="mt-4" *ngIf="giroSeleccionado.length !== 0">
+            <p> Giro seleccionado: </p>
+            <ngx-general-table [config]="configurationMin" [datos]="giroSeleccionado"></ngx-general-table>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            <button type="button" routerLinkActive="active" routerLink="pages/giros/reversar/lista" class="btn btn-primary px-3 py-2 my-2 text-light">
+                Volver al registro
+            </button>
+        </div>
+        <div class="col">
+            <button (click)="guardar()" class="btn btn-success px-3 py-2 my-2 text-light">
+                Siguiente
+            </button>
+        </div>
+    </div>
+</div>

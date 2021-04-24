@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 bg-white px-3 py-3 pt-3 pb-3">
+            <h5 class="card-title text-center text-primary">
+                CREAR SUCURSAL
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 bg-white">
+            <form [formGroup]="crearSucursalGroup" (ngSubmit)="saveForm()">
+                <div class="container">
+
+                    <div class="form-group row px-5">
+
+                        <div class="col-md-6">
+                            <label>Nombre del Banco</label>
+                            <select class="custom-select" formControlName="nombreBanco" [class.is-invalid]="isInvalid('nombreBanco')">
+                                <option selected disabled>Seleccione...</option>
+                                <option>Banco de la Republica</option>
+                                <option>Banco de Bogotá</option>
+                            </select>
+                            <small *ngIf="isInvalid('nombreBanco')" class="text-danger">Seleccione un valor</small>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Nombre de la Sucursal</label>
+                            <input type="text" class="form-control" formControlName="nombreSucursal" [class.is-invalid]="isInvalid('nombreSucursal')">
+                            <small *ngIf="isInvalid('nombreSucursal')" class="text-danger">Complete este campo</small>
+                        </div>
+                    </div>
+
+                    <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
+
+                    <!-- Botones: Volver a registro, Siguiente -->
+                    <div class="row pt-2 text-center">
+                        <div class="col-md-6">
+                            <a href="#/pages/giros/sucursales/lista">
+                                <button type="button" class="btn btn-primary mb-3 mt-3 text-white">
+                                    <div class="d-flex flex-row justify-content-around align-middle">
+                                        <span>Volver</span>
+                                    </div>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-success mb-3 mt-3" (click)="guardar()">
+                                Guardar
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Fin Botones: Volver a registro, Siguiente -->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Guardar Sucursal -->
+<ng-template #modalGuardar let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Guardar</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        ¿Desea guardar los cambios?
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">Cancelar</button>
+        <button type="button" class="btn btn-primary text-white" (click)="modal.close(true)">
+            <a routerLink="../lista" data-dismiss="modal">Guardar</a>
+        </button>
+    </div>
+</ng-template>
+<!-- Fin Modal -->

@@ -5,7 +5,8 @@ import { GirosRoutingModule } from './giros-routing.module';
 import { GirosComponent } from './giros.component';
 
 @NgModule({
-  declarations: [GirosComponent],
+  declarations: [GirosComponent
+  ],
   imports: [
     CommonModule,
     GirosRoutingModule
