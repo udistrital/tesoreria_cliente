@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatStepper } from '@angular/material';
+import { Store } from '@ngrx/store';
+import { cargarDatosInformacion } from '../../actions/boletin-diario.actions';
 
 @Component({
   selector: 'ngx-crear-boletin',
@@ -7,15 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrearBoletinComponent implements OnInit {
 
-  informacion: boolean = true;
+  informacion: boolean = false;
 
-  constructor() { }
+  constructor(private store: Store<any>) { }
 
   ngOnInit() {
   }
 
-  validarInformacion() {}
+  validarInformacion(data: boolean) {
+    this.informacion = data;
+  }
 
-  datosInformacionForm() {}
+  datosInformacionForm(data: any, stepper: MatStepper) {
+    this.store.dispatch(cargarDatosInformacion(data));
+    stepper.next();
+  }
 
 }

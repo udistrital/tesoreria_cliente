@@ -23,7 +23,6 @@
                         <button (click)="mostrarBorrador()" class="btn btn-primary px-3 py-2 ml-auto text-light"> Mostrar borrador </button>
                     </div>
                 </div>
-                <small class="message m-2" *ngIf="mensaje"> Los campos en rojo son requeridos* </small>
             </form>
             <div *ngIf="consulta === 'cuentaContable'">
                 <form [formGroup]="cuentasForm">
@@ -62,7 +61,7 @@
                         </div>
                         <div class="col">
                             <label for="comprobante"> Comprobante </label>
-                            <select class="form-control" name="tipoComprobante" id="tipoComprobante" formControlName="comprobante" [class.is-invalid]="esInvalido(comprobanteForm,'comprobante')">
+                            <select class="form-control" name="comprobante" id="comprobante" formControlName="comprobante" [class.is-invalid]="esInvalido(comprobanteForm,'comprobante')">
                                 <option disabled hidden> Elegir... </option>
                                 <option *ngFor="let comprobante of comprobantes" value={{comprobante}}> {{comprobante}}</option>
                             </select>
@@ -71,6 +70,7 @@
                             <button (click)="consultar()" class="btn btn-primary px-3 py-2 mt-3 text-light"> Consultar </button>
                         </div>
                     </div>
+                    <small class="message m-2" *ngIf="mensaje"> Los campos en rojo son requeridos* </small>
                 </form>
 
                 <ngx-general-table class="m-3" [config]="configuracionComprobante" [datos]="datosComprobante">

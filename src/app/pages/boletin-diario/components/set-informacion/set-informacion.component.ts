@@ -33,6 +33,19 @@ export class SetInformacionComponent implements OnInit {
       areaFuncional: ['', Validators.required],
       fechaRegistro: ['', Validators.required],
     });
+    this.handleChanges();
+  }
+
+  handleChanges() {
+    this.boletinDiario.statusChanges.subscribe(
+      result => {
+        if (result === 'VALID') {
+          this.statusForm.emit(true);
+        } else {
+          this.statusForm.emit(false);
+        }
+      }
+    );
   }
 
   onSubmit(data: any) {

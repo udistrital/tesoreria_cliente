@@ -6,6 +6,9 @@ import { PDFDocumentProxy } from 'ng2-pdf-viewer';
 import { MatDialog } from '@angular/material';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { getDatosInformacion } from '../../selectors/boletin-diario.selectors';
+import { SharedService } from '../../../../shared/services/shared.service';
 
 @Component({
   selector: 'ngx-firmas',
@@ -37,6 +40,8 @@ export class FirmasComponent implements OnInit {
     '19 01 03 01'
   ];
 
+  subscription: any;
+
   pdfSrc = 'https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf'; // this sample, dynamic one we will generate with the pdfmake
   pageVariable = 1;
 
@@ -56,6 +61,8 @@ export class FirmasComponent implements OnInit {
     public dialog: MatDialog,
     private route: Router,
     private modalService: NgbModal,
+    private store: Store<any>,
+    private sharedService: SharedService,
   ) {
     this.configuracionFirmas = CONF_CARGOS;
     this.datosFirmas = DATOS_CARGOS;
@@ -70,7 +77,15 @@ export class FirmasComponent implements OnInit {
     });
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.subscription = this.store.select(getDatosInformacion).subscribe(
+      data => {
+        if (this.sharedService.IfStore(data)) {
+          this.fecha = data.fechaRegistro;
+        }
+      }
+    );
+  }
 
   aprobar() {
     if (this.cargos.length !== 0) {
