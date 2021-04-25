@@ -9,12 +9,21 @@ import { SetInicioComponent } from './components/set-inicio/set-inicio.component
 import { SetConsignacionesComponent } from './components/set-consignaciones/set-consignaciones.component';
 import { SetAfectacionComponent } from './components/set-afectacion/set-afectacion.component';
 import { SetContabilizarComponent } from './components/set-contabilizar/set-contabilizar.component';
-
+import { SetIdentificarComponent } from './components/set-identificar/set-identificar.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-  declarations: [ListaIngresosComponent, LayoutIngresosComponent, CrearIngresosComponent, SetInicioComponent, SetConsignacionesComponent, SetAfectacionComponent, SetContabilizarComponent],
+  declarations: [ListaIngresosComponent,
+    LayoutIngresosComponent,
+    CrearIngresosComponent,
+    SetInicioComponent,
+    SetConsignacionesComponent,
+    SetAfectacionComponent,
+    SetContabilizarComponent,
+    SetIdentificarComponent],
   imports: [
     CommonModule,
+    SharedModule,    
     IngresosRoutingModule
   ]
 })
