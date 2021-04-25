@@ -17,7 +17,6 @@ export class FirmasComponent implements OnInit {
   @ViewChild('modalPDF', { static: false }) modalPDF: any;
   @ViewChild('modalJustificacion', { static: false }) modalJustificacion: any;
   @ViewChild('modalAprobar', { static: false }) modalAprobar: any;
-  
   configuracionFirmas: any;
   datosFirmas: any;
   fecha: Date;
@@ -68,12 +67,10 @@ export class FirmasComponent implements OnInit {
       justificacion: ['', Validators.required],
       numeroCuenta: ['', Validators.required],
       observacion: ['', Validators.required]
-    })
+    });
    }
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
   aprobar() {
     if (this.cargos.length !== 0) {
@@ -84,10 +81,9 @@ export class FirmasComponent implements OnInit {
         title: '¡Error!',
         html: 'Debe existir al menos un responsable',
         confirmButtonText: 'Aceptar',
-      });  
+      });
     }
   }
-
   guardar() {
     Swal.fire({
       type: 'success',
@@ -110,17 +106,17 @@ export class FirmasComponent implements OnInit {
     if (this.cargoForm.valid) {
       DATOS_CARGOS.push(
         {
-          cargo: this.cargoForm.value.cargo,          
-          nombre: 'Maria Arias'
+          cargo: this.cargoForm.value.cargo,
+          nombre: 'Maria Arias',
         }
-      )
+      );
     } else {
       this.validarFormulario(this.cargoForm);
     }
   }
 
   aceptar() {
-    this.cerrar()
+    this.cerrar();
     this.route.navigateByUrl('pages/boletin/lista');
     Swal.fire({
       type: 'success',

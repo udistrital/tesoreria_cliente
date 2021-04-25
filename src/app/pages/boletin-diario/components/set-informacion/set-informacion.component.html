@@ -9,6 +9,7 @@
                     <div class="col py-2">
                         <label for="areaFuncional"> Área funcional </label> <br>
                         <select name="areaFuncional" id="areaFuncional" class="form-control" formControlName="areaFuncional" [class.is-invalid]="esInvalido('areaFuncional')">
+                            <option hidden disabled> Elegir... </option>
                             <option *ngFor="let area of areaFuncional" value={{area}}> {{area}} </option>
                         </select>
                     </div>

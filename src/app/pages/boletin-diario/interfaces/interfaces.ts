@@ -102,6 +102,428 @@ export const CONF_BOLETINES: any = {
     sort: true,
     filter: true,
 };
+export const CONF_BORRADOR: any = {
+    showColumnTitle: true,
+    // title: {
+    //     name: 'Actividades Asociadas',
+    //     class: 'text-center text-light',
+    // },
+    dataConfig: [
+        {
+            key: 'cuenta',
+            title: {
+                name: 'Cuenta',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'nombreCuenta',
+            title: {
+                name: 'Nombre cuenta',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'saldoAnterior',
+            title: {
+                name: 'Saldo anterior',
+                class: 'text-center',
+            },
+            pipe: {
+                type: 'currency',
+                config: [],
+                class: 'text-center',
+            }
+        },
+        {
+            key: 'ingresos',
+            title: {
+                name: 'Ingresos (créditos)',
+                class: 'text-center',
+            },
+            pipe: {
+                type: 'currency',
+                config: [],
+                class: 'text-center',
+            }
+        },
+        {
+            key: 'egresos',
+            title: {
+                name: 'Egresos (débitos)',
+                class: 'text-center',
+            },
+            pipe: {
+                type: 'currency',
+                config: [],
+                class: 'text-center',
+            }
+        },
+        {
+            key: 'nuevoSaldo',
+            title: {
+                name: 'Nuevo saldo',
+                class: 'text-center',
+            },
+            pipe: {
+                type: 'currency',
+                config: [],
+                class: 'text-center',
+            }
+        }
+    ],
+    rowActions: {
+        title: {
+            name: 'Detalles',
+            class: 'text-center',
+            actionClass: 'd-flex flex-row justify-content-around align-middle'
+        },
+        actions: [
+            {
+                name: 'ver',
+                icon: 'fas fa-eye',
+                class: 'p-2',
+                title: 'Ver solicitud',
+            }
+        ],
+    },
+    noData: {
+        name: 'No existen elementos asociados',
+        class: 'text-center',
+    },
+    sort: true,
+    filter: true,
+};
+export const CONF_CONSULTACUENTA: any = {
+    showColumnTitle: true,
+    // title: {
+    //     name: 'Actividades Asociadas',
+    //     class: 'text-center text-light',
+    // },
+    dataConfig: [
+        {
+            key: 'tipoComprobante',
+            title: {
+                name: 'Tipo comprobante',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'comprobante',
+            title: {
+                name: 'Comprobante',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'numero',
+            title: {
+                name: 'Numero',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'secuencia',
+            title: {
+                name: 'Secuencia',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'cedula',
+            title: {
+                name: 'Cédula',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'nombreTercero',
+            title: {
+                name: 'Nombre del tercero',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'nombre',
+            title: {
+                name: 'Nombre',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'fecha',
+            title: {
+                name: 'Fecha',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'descripcion',
+            title: {
+                name: 'Descripción',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'valor',
+            title: {
+                name: 'Valor',
+                class: 'text-center',
+            },
+            pipe: {
+                type: 'currency',
+                config: [],
+                class: 'text-center',
+            }
+        },
+        {
+            key: 'creditos',
+            title: {
+                name: 'Créditos',
+                class: 'text-center',
+            },
+            pipe: {
+                type: 'currency',
+                config: [],
+                class: 'text-center',
+            }
+        },
+        {
+            key: 'debitos',
+            title: {
+                name: 'Débitos',
+                class: 'text-center',
+            },
+            pipe: {
+                type: 'currency',
+                config: [],
+                class: 'text-center',
+            }
+        },
+        {
+            key: 'base',
+            title: {
+                name: 'Base',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        }
+    ],
+    rowActions: {
+        title: {
+            name: 'Detalles',
+            class: 'text-center',
+            actionClass: 'd-flex flex-row justify-content-around align-middle'
+        },
+        actions: [
+            {
+                name: 'ver',
+                icon: 'fas fa-eye',
+                class: 'p-2',
+                title: 'Ver solicitud',
+            }
+        ],
+    },
+    noData: {
+        name: 'No existen elementos asociados',
+        class: 'text-center',
+    },
+    sort: true,
+    filter: true,
+};
+export const CONF_CONSULTACOMPROBANTE: any = {
+    showColumnTitle: true,
+    // title: {
+    //     name: 'Actividades Asociadas',
+    //     class: 'text-center text-light',
+    // },
+    dataConfig: [
+        {
+            key: 'cuenta',
+            title: {
+                name: 'Cuenta',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'numero',
+            title: {
+                name: 'Número',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'secuencia',
+            title: {
+                name: 'Secuencia',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'cedula',
+            title: {
+                name: 'Cédula',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'nombreTercero',
+            title: {
+                name: 'Nombre del tercero',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'nombre',
+            title: {
+                name: 'Nombre',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'fecha',
+            title: {
+                name: 'Fecha',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'descripcion',
+            title: {
+                name: 'Descripción',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'valor',
+            title: {
+                name: 'Valor',
+                class: 'text-center',
+            },
+            pipe: {
+                type: 'currency',
+                config: [],
+                class: 'text-center',
+            }
+        },
+        {
+            key: 'creditos',
+            title: {
+                name: 'Créditos',
+                class: 'text-center',
+            },
+            pipe: {
+                type: 'currency',
+                config: [],
+                class: 'text-center',
+            }
+        },
+        {
+            key: 'debitos',
+            title: {
+                name: 'Débitos',
+                class: 'text-center',
+            },
+            pipe: {
+                type: 'currency',
+                config: [],
+                class: 'text-center',
+            }
+        },
+        {
+            key: 'base',
+            title: {
+                name: 'Base',
+                class: 'text-center',
+            },
+            pipe: {
+                type: 'currency',
+                config: [],
+                class: 'text-center',
+            }
+        }
+    ],
+    rowActions: {
+        title: {
+            name: 'Detalles',
+            class: 'text-center',
+            actionClass: 'd-flex flex-row justify-content-around align-middle'
+        },
+        actions: [
+            {
+                name: 'ver',
+                icon: 'fas fa-eye',
+                class: 'p-2',
+                title: 'Ver solicitud',
+            }
+        ],
+    },
+    noData: {
+        name: 'No existen elementos asociados',
+        class: 'text-center',
+    },
+    sort: true,
+    filter: true,
+};
 export const CONF_BANCOS: any = {
     showColumnTitle: true,
     // title: {
@@ -380,4 +802,65 @@ export const DATOS_CARGOS: any = [
         cargo: 'Auxiliar de contabilidad',
      },
 ];
-
+export const DATOS_COMPROBANTE: any = [
+    {
+        cuenta: 'corriente',
+        numero: 6131,
+        secuencia: 2,
+        cedula: 7231919,
+        nombreTercero: 'Andres Arias',
+        nombre: 'Banco occidente',
+        fecha: '12/01/2020',
+        descripcion: 'Pago julio',
+        valor: 1273998,
+        creditos: 1273998,
+        debitos: 0,
+        base: 0,
+    },
+    {
+        cuenta: 'ahorros',
+        numero: 9853,
+        secuencia: 3,
+        cedula: 834201,
+        nombreTercero: 'Cesar Forero',
+        nombre: 'Banco occidente',
+        fecha: '03/04/2020',
+        descripcion: 'Pago julio',
+        valor: 832749,
+        creditos: 832749,
+        debitos: 0,
+        base: 0,
+     },
+];
+export const DATOS_CUENTAS: any = [
+    {
+        tipoComprobante: 'G',
+        comprobante: 7,
+        numero: 6123,
+        secuencia: 8,
+        cedula: 71368162,
+        nombreTercero: 'Plata Ya LTDA',
+        nombre: 'Occidente',
+        fecha: '2020/01/20',
+        descripcion: 'Pago julio',
+        valor: 18239093,
+        creditos: 18239093,
+        debitos: 0,
+        base: 0,
+    },
+    {
+        tipoComprobante: 'G',
+        comprobante: 1,
+        numero: 8973,
+        secuencia: 9,
+        cedula: 7613132,
+        nombreTercero: 'Chaparro Murcia',
+        nombre: 'Occidente',
+        fecha: '2020/10/07',
+        descripcion: 'Pago correspondiente',
+        valor: 4392401,
+        creditos: 4392401,
+        debitos: 0,
+        base: 0,
+     },
+];
