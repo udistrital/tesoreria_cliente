@@ -36,6 +36,16 @@ const routes: Routes = [{
       path: 'acreedores',
       loadChildren: () => import('./acreedores/acreedores.module')
       .then(m => m.AcreedoresModule),
+    },
+    {
+      path: 'ingresosyretenciones',
+      loadChildren: () => import('./certificado-retenciones/certificado-retenciones.module')
+      .then(m => m.CertificadoRetencionesModule),
+    },
+    {
+      path: 'informacionexogena',
+      loadChildren: () => import('./informacion-exogena/informacion-exogena.module')
+      .then(m => m.InformacionExogenaModule),
     }
   ],
 }];

@@ -14,6 +14,8 @@ export class ShowDetalleadquisicionComponent implements OnInit {
   configContabilizacion: any;
   datosContabilizacion: any;
 
+  tipoInversion: any;
+
   // Icono en la Lista de documentos
   mostrarOcultar: string;
   mostrarOcultarIcono: string;
@@ -21,6 +23,9 @@ export class ShowDetalleadquisicionComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) {
     this.configContabilizacion = CONFIGURACION_DETALLE;
     this.datosContabilizacion = DATOS_CONTABILIZACION;
+
+    this.tipoInversion = 'adquisicion';
+    // this.tipoInversion = 'reinversion';
 
     // Icono en la Lista de documentos
     this.mostrarOcultar = 'Mostrar';
@@ -33,13 +38,22 @@ export class ShowDetalleadquisicionComponent implements OnInit {
     });
   }
 
-    // Configuracion de Icono en lista documentos
-    mostrarOcultarTablas(state: string) {
-      if (state === 'false') {
-        this.mostrarOcultarIcono = 'fa-minus-square';
-      } else {
-        this.mostrarOcultarIcono = 'fa-plus-square';
-      }
+  // Configuracion de Icono en lista documentos
+  mostrarOcultarTablas(state: string) {
+    if (state === 'false') {
+      this.mostrarOcultarIcono = 'fa-minus-square';
+    } else {
+      this.mostrarOcultarIcono = 'fa-plus-square';
     }
+  }
+
+  // Configuracion de Icono en lista documentos
+  mostrarOcultarDatos(state: string) {
+    if (state === 'false') {
+      this.mostrarOcultarIcono = 'fa-minus-square';
+    } else {
+      this.mostrarOcultarIcono = 'fa-plus-square';
+    }
+  }
 
 }

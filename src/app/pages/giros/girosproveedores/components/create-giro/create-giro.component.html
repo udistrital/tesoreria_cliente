@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col py-2">
+                    <h5 class="card-title text-center text-primary">
+                        CREAR NUEVO GIRO A PROVEEDORES
+                    </h5>
+                </div>
+            </div>
+            <mat-horizontal-stepper linear #stepper>
+                <mat-step [completed]="informacion">
+                    <ng-template matStepLabel> Inicio </ng-template>
+                    <ngx-set-information (validarForm)="validarInformacion($event)" (informacionForm)="datosInformacionForm($event, stepper)"></ngx-set-information>
+                </mat-step>
+                <mat-step [completed]="orden">
+                    <ng-template matStepLabel> Órdenes de pago </ng-template>
+                    <ngx-set-ordenpago *ngIf="tipoTramite === 'giroUnico'" (validarOrden)="guardarOrden($event, stepper)" (statusOrden)="validarOrden($event)"></ngx-set-ordenpago>
+                    <ngx-set-ordenespago *ngIf="tipoTramite === 'giroRango'" (validarOrdenes)="guardarOrdenes($event, stepper)" (statusOrdenes)="validarOrden($event)"></ngx-set-ordenespago>
+                </mat-step>
+                <mat-step [completed]="erogacion">
+                    <ng-template matStepLabel> Erogación y detalles del giro </ng-template>
+                    <ngx-set-erogacion (statusErogacion)="validarErogacion($event)" (informacionBanco)="datosBancoForm($event)" (informacionBanco)="datosBancoForm($event)" (informacionBeneficiarios)="datosBeneficiarios($event, stepper)"></ngx-set-erogacion>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel> Resumen </ng-template>
+                    <ngx-set-resumen></ngx-set-resumen>
+                </mat-step>
+            </mat-horizontal-stepper>  
+        </div>
+    </div>
+</div>

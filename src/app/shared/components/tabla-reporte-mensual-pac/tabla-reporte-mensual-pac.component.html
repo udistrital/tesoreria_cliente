@@ -1,5 +1,11 @@
-<div class="container-fluid" *ngIf="config && datos && rowspanTable">
+<div class="container-fluid" *ngIf="config && datos && rowspanTable && totales">
     <div class="row">
+        <div class="col">
+            <h5 *ngIf="Title" class="card-title text-center text-primary">{{Title}}</h5>
+        </div>
+    </div>
+    <div class="row">
+        
         <div class="col-12">
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
@@ -53,20 +59,13 @@
                     </thead>
                     <!-- Elementos Relacionados -->
                     <ng-container *ngFor="let rubros of datos, index as i">
-                        <tbody ngx-tabla-reporte-rubros [config]="config" [datos]="rubros.Rubros"
+                        <tbody ngx-tabla-reporte-rubros [config]="config" [datos]="rubros"
                             [rowspanTable]="rowspanTable" [index]="i">
                         </tbody>
                     </ng-container>
-                    <!-- <tr>
-                        <th scope="col" colspan="7" [class]="config.endSubtotal.first.class">
-                            
-                        </th>
-                        <th scope="col" colspan="1" [class]="config.endSubtotal.last.class">
-                            
-                        </th>
-                        <th scope="col" colspan="4" [class]="config.endSubtotal.last.class">
-                        </th>
-                    </tr> -->
+                    <ng-container *ngFor="let total of totales">
+                        <tr ngx-tabla-reporte-totales [items]="total" [config]="config" [rowspanTable]="rowspanTable" [index]="1"></tr>
+                    </ng-container>
                 </table>
             </div>
         </div>

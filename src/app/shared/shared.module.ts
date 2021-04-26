@@ -32,6 +32,9 @@ import { PdfviewsharedComponent } from './components/pdfviewshared/pdfviewshared
 import { TablaReporteMensualPacComponent } from './components/tabla-reporte-mensual-pac/tabla-reporte-mensual-pac.component';
 import { TablaReporteRubrosComponent } from './components/tabla-reporte-rubros/tabla-reporte-rubros.component';
 import { ContabilizacionComponent } from './components/contabilizacion/contabilizacion.component';
+import { TablaReporteSumasComponent } from './components/tabla-reporte-sumas/tabla-reporte-sumas.component';
+import { TablaReporteTotalesComponent } from './components/tabla-reporte-totales/tabla-reporte-totales.component';
+
 
 
 @NgModule({
@@ -83,6 +86,8 @@ import { ContabilizacionComponent } from './components/contabilizacion/contabili
     TablaReporteMensualPacComponent,
     TablaReporteRubrosComponent,
     ContabilizacionComponent,
+    TablaReporteSumasComponent,
+    TablaReporteTotalesComponent,
   ],
   providers: [
     DatePipe,

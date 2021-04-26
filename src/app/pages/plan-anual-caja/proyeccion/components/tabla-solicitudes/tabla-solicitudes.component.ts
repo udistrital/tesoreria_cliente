@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -14,7 +14,7 @@ import { FormSolicitudPacComponent } from '../form-solicitud-pac/form-solicitud-
   templateUrl: './tabla-solicitudes.component.html',
   styleUrls: ['./tabla-solicitudes.component.scss']
 })
-export class TablaSolicitudesComponent implements OnInit {
+export class TablaSolicitudesComponent implements OnInit, OnDestroy {
 
   configuracion: any;
   datos: any[];
@@ -38,6 +38,9 @@ export class TablaSolicitudesComponent implements OnInit {
       Nombre: 'Rector',
       label: '01 - Rector',
     }));
+  }
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
   }
 
   ngOnInit() {

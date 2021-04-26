@@ -18,7 +18,6 @@ export class TablaReporteRubrosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
   }
 
 

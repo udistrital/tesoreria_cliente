@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { GetVigenciaActual, LoadCentroGestor, LoadAreaFuncional } from '../../../../../shared/actions/shared.actions';
@@ -10,9 +11,10 @@ import { CONFIGURACION_TABLA_REPORTE, DATOS_TABLA_REPORTE } from '../../../repor
   templateUrl: './cierre-pac.component.html',
   styleUrls: ['./cierre-pac.component.scss']
 })
-export class CierrePacComponent implements OnInit {
+export class CierrePacComponent implements OnInit, OnDestroy {
 
   configuracion: any;
+  FechasForm: FormGroup;
   datos: any[];
   title: any;
   subscription$: any;
@@ -22,9 +24,10 @@ export class CierrePacComponent implements OnInit {
   constructor(
     private store: Store<any>,
     private route: Router,
+    private fb: FormBuilder,
   ) {
     this.store.dispatch(GetVigenciaActual({ offset: 0 }));
-    this.title = 'CIERRE PLAN MENSUALIZADO DE CAJA';
+    this.title = 'PLAN MENSUALIZADO DE CAJA';
     this.store.dispatch(LoadCentroGestor({
       CentroGestor: 230,
     }));
@@ -34,11 +37,16 @@ export class CierrePacComponent implements OnInit {
       label: '01 - Rector',
     }));
   }
+  ngOnDestroy(): void {
+    this.subscription3$.unsubscribe();
+  }
 
   ngOnInit() {
     this.subscription3$ = this.store.select(getVigenciaActual).subscribe((vigencia: any) => {
       if (vigencia) {
-        this.Vigencia = vigencia[0].valor;
+        this.FechasForm = this.fb.group({
+          Vigencia: [vigencia[0].valor],
+        });
       }
     });
   }
