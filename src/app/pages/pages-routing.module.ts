@@ -28,7 +28,7 @@ const routes: Routes = [{
       .then(m => m.InversionesModule),
     },
     {
-      path: 'ingresos',
+      path: 'ingresos/:tipo',
       loadChildren: () => import('./ingresos/ingresos.module')
       .then(m => m.IngresosModule),
     }

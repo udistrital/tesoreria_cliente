@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { cargarTipoIngreso } from '../../actions/ingresos.actions';
 
 @Component({
   selector: 'ngx-layout-ingresos',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutIngresosComponent implements OnInit {
 
-  constructor() { }
+  tipoIngreso: any;
+
+  constructor(
+    private routeActived: ActivatedRoute,
+    private store: Store<any>,
+  ) { }
 
   ngOnInit() {
+    this.getOrden();
   }
 
+  getOrden (): void {
+    this.routeActived.params.subscribe(
+      params => {
+        this.store.dispatch(cargarTipoIngreso(params));
+      }
+    )
+  }
 }

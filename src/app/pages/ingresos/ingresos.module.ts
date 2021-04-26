@@ -11,6 +11,12 @@ import { SetAfectacionComponent } from './components/set-afectacion/set-afectaci
 import { SetContabilizarComponent } from './components/set-contabilizar/set-contabilizar.component';
 import { SetIdentificarComponent } from './components/set-identificar/set-identificar.component';
 import { SharedModule } from '../../shared/shared.module';
+import { MatStepperModule, MatDialogModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import * as fromIngresos from './reducers/ingresos.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { IngresosEffects } from './effects/ingresos.effects';
 
 @NgModule({
   declarations: [ListaIngresosComponent,
@@ -23,8 +29,14 @@ import { SharedModule } from '../../shared/shared.module';
     SetIdentificarComponent],
   imports: [
     CommonModule,
-    SharedModule,    
-    IngresosRoutingModule
+    SharedModule,
+    MatStepperModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    IngresosRoutingModule,
+    StoreModule.forFeature(fromIngresos.ingresosFeatureKey, fromIngresos.reducer),
+    EffectsModule.forFeature([IngresosEffects])
   ]
 })
 export class IngresosModule { }
