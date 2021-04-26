@@ -1,1 +1,40 @@
-<p>set-consignaciones works!</p>
+<div class="container-fluid">
+    <div class="card p-3 m-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 px-1 rounded">
+            Lista de consignaciones
+        </div>
+        <div class="card-body">
+            <ngx-general-table [config]="configurationConsignaciones" [datos]="datosConsignaciones"></ngx-general-table>
+        </div>
+        <div class="row m-2">
+            <div class="col p-2">
+                <label class="p-2 font-weight-bold" for="valorDevengo"> Total efectivo: </label> <br>
+                <input class="form-control" id="valorDevengo" disabled value="{{totalEfectivo() | currency}}">
+            </div>
+            <div class="col p-2">
+                <label class="p-2 font-weight-bold" for="valorDescuentos"> Total cheque: </label> <br>
+                <input class="form-control" id="valorDescuentos" disabled value="{{totalCheque() | currency}}">
+            </div>
+            <div class="col p-2">
+                <label class="p-2 font-weight-bold" for="valorDevengo"> Total datáfono: </label> <br>
+                <input class="form-control" id="valorDevengo" disabled value="{{totalDatafono() | currency}}">
+            </div>
+            <div class="col p-2">
+                <label class="p-2 font-weight-bold" for="valorDescuentos"> Total: </label> <br>
+                <input class="form-control" id="valorDescuentos" disabled value="{{total() | currency}}">
+            </div>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            <button matStepperPrevious type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
+                Volver al registro
+            </button>
+        </div>
+        <div class="col">
+            <button matStepperNext class="btn btn-success px-3 py-2 my-2 text-light" type="submit">
+                Siguiente
+            </button>
+        </div>
+    </div>
+</div>
