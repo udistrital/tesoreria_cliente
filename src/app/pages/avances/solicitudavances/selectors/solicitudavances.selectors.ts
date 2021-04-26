@@ -29,3 +29,4 @@ export const seleccionarTiposAvances = createSelector(
     selectSolicitudavancesState,
     (state: fromSolicitudavances.State) => state.tiposAvances
 );
+

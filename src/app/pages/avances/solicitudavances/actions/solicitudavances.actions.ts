@@ -45,3 +45,4 @@ export const cargarTiposdeAvances = createAction(
   '[Shared] Cargar tipos de avances al store',
   props()
 );
+

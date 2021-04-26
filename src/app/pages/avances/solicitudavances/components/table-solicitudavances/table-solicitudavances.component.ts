@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { OPCIONES_AREA_FUNCIONAL } from '../../../../../shared/interfaces/interfaces';
@@ -24,6 +25,7 @@ export class TableSolicitudavancesComponent implements OnInit, OnDestroy {
     private store: Store<any>,
     private router: Router,
   ) {
+
     this.datosSolicitudes = [];
     this.configSolicitudes = CONFIGURACION_TABLASOLICITUD;
     this.areasFuncionales = OPCIONES_AREA_FUNCIONAL;
@@ -46,8 +48,13 @@ export class TableSolicitudavancesComponent implements OnInit, OnDestroy {
           this.datosSolicitudes = accion.solicitudesAvance;
           this.datosSolicitudes.forEach(element => {
             element.estadoSolicitud = element.EstadoTipoSolicitud.EstadoId.Nombre;
-            const area = this.areasFuncionales.find((ar: any) =>
-              ar.Id === element.AreaFuncionalId);
+
+            const area = this.areasFuncionales.find(area =>
+              area.Id === element.AreaFuncionalId);
+
+            // const area = this.areasFuncionales.find((ar: any) =>
+              // ar.Id === element.AreaFuncionalId);
+
             element.areaFuncional = area.Id + ' - ' + area.Nombre;
           });
         } /*else if (accion.tiposAvances.idActualizado) {
