@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { IngresosEffects } from './ingresos.effects';
 
 describe('IngresosEffects', () => {
-  let actions$: Observable<any>;
+  const actions$: Observable<any> = new Observable ();
   let effects: IngresosEffects;
 
   beforeEach(() => {

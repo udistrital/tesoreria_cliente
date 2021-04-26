@@ -593,9 +593,26 @@ export const CONF_DESCUENTOS: any = {
                 class: 'text-justify',
             }
         }
-        
     ],
     sort: true,
     filter: false,
 };
  /******  Datos dummy ******************/
+ export const DATOS_INGRESOS: any = [
+    {
+        vigencia: 2020,
+        consecutivo: 32,
+        centroGestor: 230,
+        areaFuncional: 1,
+        valorTotal: 8127361,
+        fecha: '2020/12/01',
+    },
+    {
+        vigencia: 2021,
+        consecutivo: 54,
+        centroGestor: 230,
+        areaFuncional: 1,
+        valorTotal: 6523421,
+        fecha: '2021/01/01',
+    }
+];

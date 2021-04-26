@@ -26,6 +26,6 @@ export class LayoutIngresosComponent implements OnInit {
       params => {
         this.store.dispatch(cargarTipoIngreso(params));
       }
-    )
+    );
   }
 }
