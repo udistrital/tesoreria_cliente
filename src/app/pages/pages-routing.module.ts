@@ -28,6 +28,11 @@ const routes: Routes = [{
       .then(m => m.InversionesModule),
     },
     {
+      path: 'plan-anual-caja',
+      loadChildren: () => import('./plan-anual-caja/plan-anual-caja.module')
+      .then(m => m.PlanAnualCajaModule),
+    },
+    {
       path: 'ingresosyretenciones',
       loadChildren: () => import('./certificado-retenciones/certificado-retenciones.module')
       .then(m => m.CertificadoRetencionesModule),

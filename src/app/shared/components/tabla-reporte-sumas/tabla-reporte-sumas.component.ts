@@ -1,19 +1,21 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { LoadFilaSeleccionada } from '../../actions/shared.actions';
 
 /* tslint:disable:component-selector */
 @Component({
-  selector: '[ngx-cell-view]',
-  templateUrl: './cell-view.component.html',
-  styleUrls: ['./cell-view.component.scss']
+  selector: '[ngx-tabla-reporte-sumas]',
+  templateUrl: './tabla-reporte-sumas.component.html',
+  styleUrls: ['./tabla-reporte-sumas.component.scss']
 })
-export class CellViewComponent implements OnInit {
+
+export class TablaReporteSumasComponent implements OnInit {
 
   @Input() config: any;
   @Input() items: any;
   @Input() rowspanTable: any;
   @Input() index: any;
+  @Input() title: any;
 
   constructor(
     private store: Store<any>,
