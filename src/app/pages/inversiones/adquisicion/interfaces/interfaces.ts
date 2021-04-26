@@ -143,7 +143,7 @@ export const DATOS_TABLA_ADQUISICION: any = [
 
 export const CONFIGURACION_CONTABILIZACION: any = {
     title: {
-        name: 'CAUSACIÓN INVERSIÓN INICIAL',
+        name: 'CAUSACIÓN DE INVERSIÓN',
         class: 'text-center',
         actionClass: 'd-flex flex-row justify-content-around align-middle'
     },
@@ -303,3 +303,95 @@ export const CONFIGURACION_DETALLE: any = {
         class: 'text-center',
     },
 };
+
+export const CONFIGURACION_TABLARENDIMIENTOS: any = {
+    showColumnTitle: true,
+    dataConfig: [
+        {
+            key: 'vigencia',
+            title: {
+                name: 'Vigencia',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-center',
+            }
+        },
+        {
+            key: 'numeroComprobante',
+            title: {
+                name: 'Número',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'detalle',
+            title: {
+                name: 'Detalle',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
+            key: 'areaFuncional',
+            title: {
+                name: 'Área Funcional',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-center',
+            }
+        },
+        {
+            key: 'fechaRendimiento',
+            title: {
+                name: 'Fecha de Documento',
+                class: 'text-center',
+            },
+            pipe: {
+                type: 'date',
+                config: [
+                    'shortDate'
+                ],
+                class: 'text-center',
+            }
+        },
+    ],
+    rowActions: {
+        title: {
+            name: 'Acciones',
+            class: 'text-center',
+            actionClass: 'd-flex flex-row justify-content-around align-middle'
+        },
+        actions: [
+            {
+                name: 'verDetalle',
+                icon: 'fas fa-eye',
+                class: 'p-1',
+                title: 'Ver Detalle',
+            },
+        ],
+    },
+};
+
+export const DATOS_TABLARENDIMIENTOS: any = [
+    {
+        vigencia: '2019',
+        numeroComprobante: '01-01-01',
+        detalle: 'Rendimientos CDT Mes 1',
+        areaFuncional: '01',
+        fechaRendimiento: '2019-05-01T23:00:00Z',
+    },
+    {
+        vigencia: '2019',
+        numeroComprobante: '01-01-02',
+        detalle: 'Rendimientos CDT Mes 2',
+        areaFuncional: '01',
+        fechaRendimiento: '2019-06-01T23:00:00Z',
+    },
+];

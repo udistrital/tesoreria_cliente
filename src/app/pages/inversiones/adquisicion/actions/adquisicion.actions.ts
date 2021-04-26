@@ -8,3 +8,8 @@ export const loadInversioninicial = createAction(
   '[Adquisicion] Load Inversion Inicial Afectacion',
   props(),
 );
+
+export const loadRendimientos = createAction(
+  '[Legalizacionavance] Load Rendimientos',
+  props()
+);

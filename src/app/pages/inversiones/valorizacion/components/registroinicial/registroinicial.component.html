@@ -1,0 +1,133 @@
+<div class="container bg-white p-5 border rounded">
+    <div class="row">
+        <div class="col py-2">
+            <h5 class="card-title text-center text-primary text-uppercase">
+                REGISTRO INICIAL DE INVERSIÓN
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form [formGroup]="infoRegistroGroup" (ngSubmit)="saveForm()">
+                <div class="container">
+                    <!-- Seleccion Area Funcional -->
+                    <div class="form-group row">
+                        <div class="col-md-5">
+                            <label for="areaFuncional">Área Funcional</label>
+                            <select class="custom-select" id="areaFuncional" formControlName="areaFuncional" [class.is-invalid]="isInvalid('areaFuncional')">
+                                <option selected disabled value="">Seleccione...</option>
+                                <option>2020</option>
+                                <option>2019</option>
+                            </select>
+                            <small *ngIf="isInvalid('areaFuncional')" class="text-danger">Seleccione una opción</small>
+                        </div>
+                    </div>
+                    <!-- Seleccion NIT y trae el nombre de la entidad bancaria -->
+                    <div class="form-group row">
+                        <div class="col-md-5">
+                            <label for="nit">NIT</label>
+                            <input type="number" id="nit" class="form-control" formControlName="nit" [class.is-invalid]="isInvalid('nit')">
+                            <small *ngIf="isInvalid('nit')" class="text-danger">Ingrese números en este campo</small>
+                        </div>
+                        <div class="col-md-7">
+                            <label>Nombre de Entidad Financiera</label>
+                            <input value=" " type="text" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <!-- Seleccion de Fecha de adquisición de la inversion, el tipo de documento y número -->
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="fechaAdquisicion">Fecha de Adquisición</label>
+                            <div class="input-group">
+                                <input type="date" id="fechaAdquisicion" name="fecha" class="form-control" formControlName="fechaAdquisicion" [class.is-invalid]="isInvalid('fechaAdquisicion')">
+                                <div class="input-group-append">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="tipoDocumento">Tipo de Documento</label>
+                            <select class="custom-select" id="tipoDocumento" formControlName="tipoDocumento" [class.is-invalid]="isInvalid('tipoDocumento')">
+                                <option selected disabled value="">Seleccione...</option>
+                                <option>CC</option>
+                                <option>CE</option>
+                            </select>
+                            <small *ngIf="isInvalid('tipoDocumento')" class="text-danger">Seleccione una opción</small>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="numeroDocumento">Número de Documento</label>
+                            <input type="number" class="form-control" id="numeroDocumento" formControlName="numeroDocumento" [class.is-invalid]="isInvalid('numeroDocumento')">
+                            <small *ngIf="isInvalid('numeroDocumento')" class="text-danger">Ingrese números en este
+                                campo</small>
+                        </div>
+                    </div>
+                    <!-- Valor nominal, porcentaje o participación -->
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="valorNominal">Valor Nominal</label>
+                            <input currencyMask class="form-control" id="valorNominal" formControlName="valorNominal" [class.is-invalid]="isInvalid('valorNominal')">
+                            <small *ngIf="isInvalid('valorNominal')" class="text-danger">Ingrese números en este
+                                campo</small>
+                        </div>
+                        <!-- Corresponde al porcentaje del patrimonio -->
+                        <div class="col-md-6">
+                            <label for="participacion">Participación Patrimonial</label>
+                            <input type="number" class="form-control" id="participacion" formControlName="participacion" [class.is-invalid]="isInvalid('participacion')">
+                            <small *ngIf="isInvalid('participacion')" class="text-danger">Ingrese números en este
+                                campo</small>
+                        </div>
+                    </div>
+                    <!-- Valor de la inversión y de las acciones -->
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="valorInversion">Valor de la Inversión</label>
+                            <input currencyMask class="form-control" id="valorInversion" formControlName="valorInversion" [class.is-invalid]="isInvalid('valorInversion')">
+                            <small *ngIf="isInvalid('valorInversion')" class="text-danger">Ingrese números en este
+                                campo</small>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="valorAcciones">Valor de las Acciones</label>
+                            <input currencyMask class="form-control" id="valorAcciones" formControlName="valorAcciones" [class.is-invalid]="isInvalid('valorAcciones')">
+                            <small *ngIf="isInvalid('valorAcciones')" class="text-danger">Ingrese números en este
+                                campo</small>
+                        </div>
+                    </div>
+                    <!-- Botones: Volver a registro, Siguiente -->
+                    <div class="container">
+                        <div class="row pt-2 text-center">
+                            <div class="col-md-6">
+                                <a routerLink="../lista">
+                                    <button type="button" class="btn btn-primary col-md-7 m-0 mt-4 text-white">
+                                            Volver a registros
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <button *ngIf="infoRegistroGroup.valid" type="button" class="btn btn-success col-md-7 text-white m-0 mt-4" (click)="open(modalGuardar)">
+                                    GUARDAR
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Solicitud Guardada -->
+<ng-template #modalGuardar let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Guardar</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        ¿Desea guardar los cambios?
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancelar</button>
+        <button type="button" class="btn btn-primary text-white" (click)="modal.close(true)">Guardar</button>
+    </div>
+</ng-template>
+<!-- Fin Modal: Solicitud Guardada -->

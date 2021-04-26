@@ -1,0 +1,162 @@
+<div class="container bg-white p-5 border rounded">
+    <div class="row">
+        <div class="col py-2">
+            <h5 class="card-title text-center text-primary text-uppercase">
+                RENDIMIENTOS DE INVERSIÓN
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-horizontal-stepper linear #stepper>
+                <mat-step [stepControl]="causacionResumenGroup">
+                    <ng-template matStepLabel>Causación Inicial</ng-template>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col pb-3">
+                                <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
+                                    Detalle de Inversión
+                                </h6>
+                            </div>
+                        </div>
+
+                        <div class="row pt-2">
+                            <div class="col-md-4">
+                                <label>Consecutivo de Inversión</label>
+                                <input value=" " type="text" class="form-control" readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Estado</label>
+                                <input value=" " type="text" class="form-control" readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Fecha de Adquisición</label>
+                                <input value=" " type="text" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col-md-4">
+                                <label>NIT</label>
+                                <input value=" " type="text" class="form-control" readonly>
+                            </div>
+                            <div class="col-md-8">
+                                <label>Nombre de la Entidad</label>
+                                <input value=" " type="text" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <label class=" px-3">Vigencia de la Tasa</label>
+                                </div>
+                                <div class="row pt-2">
+                                    <div class="col-md-5">
+                                        <input value=" " type="text" class="form-control" readonly>
+                                    </div>
+                                    <label class="pt-2"> - </label>
+                                    <div class="col-md-5">
+                                        <input value=" " type="text" class="form-control" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <label>Valor de la Inversión</label>
+                                <input value=" " type="text" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 bg-white pt-4 pb-3">
+                                <ngx-general-table [config]="configRendimientos" [datos]="datosRendimientos">
+                                </ngx-general-table>
+                            </div>
+                        </div>
+
+                        <!-- Botones: Volver a registro, Siguiente -->
+                        <div class="container">
+                            <div class="row pt-2 text-center">
+                                <div class="col-md-6">
+                                    <a routerLink="../lista">
+                                        <button type="button" class="btn btn-primary col-md-7 m-0 mt-4 text-white">
+                                            Volver a registros
+                                        </button>
+                                    </a>
+                                </div>
+                                <div class="col-md-6">
+                                    <button mat-button matStepperNext class="btn btn-success col-md-7 text-white m-0 mt-4">
+                                        Nuevo Rendimiento
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-step>
+
+                <mat-step [stepControl]="contabilizacionGroup">
+                    <ng-template matStepLabel>Contabilización</ng-template>
+                    <div class="container">
+                        <ngx-set-contabilizacion></ngx-set-contabilizacion>
+                    </div>
+                </mat-step>
+
+                <mat-step [stepControl]="guardarRendimientoGroup">
+                    <ng-template matStepLabel>Guardar</ng-template>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col pb-3">
+                                <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
+                                    Nuevo Rendimiento
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 bg-white pt-4 pb-3">
+                                <ngx-general-table [config]="configRendimientos" [datos]="datosRendimientos">
+                                </ngx-general-table>
+                            </div>
+                        </div>
+                        <!-- Botones: Regresar, Siguiente -->
+                        <div class="container">
+                            <div class="row pt-2 text-center">
+                                <div class="col-md-6">
+                                    <button mat-button matStepperPrevious class="btn btn-primary col-md-7 text-white m-0 mt-4">
+                                        Regresar
+                                    </button>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <button type="button" class="btn btn-success col-md-7 text-white m-0 mt-4" data-toggle="modal" data-target="#modalGuardar">
+                                        GUARDAR
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-step>
+
+            </mat-horizontal-stepper>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Solicitud Guardada -->
+<div class="modal fade" id="modalGuardar" tabindex="-1" aria-labelledby="modalGuardar" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalGuardar"><i class="fas fa-check text-success"></i>¡Guardado!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="text-center">Se ha guardado el registro de rendimientos de inversión No. (consecutivo).</p>
+                <p class="text-center">Estado: Compra</p>
+            </div>
+            <div class="modal-footer">
+                <a routerLink="../lista" class="btn btn-primary" data-dismiss="modal">
+                    Aceptar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin Modal: Solicitud Guardada -->
