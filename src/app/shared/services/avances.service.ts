@@ -12,11 +12,7 @@ export class AvancesService {
 
   public getTiposAvances(id?: number, query?: any) {
     this.rqManager.setPath('AVANCES_CRUD');
-    let queryParams = '';
-    if (query)
-      for (const [key, value] of Object.entries(query))
-        queryParams += `${key}:${value},`;
-    return this.rqManager.get('tipo_avance/' + (id ? '/' + id : ''), { query: queryParams });
+    return this.rqManager.getv2('tipo_avance', id, query);
   }
 
   public createTipoAvance(element: any) {
@@ -33,12 +29,7 @@ export class AvancesService {
 
   public getNormas(id?: number, query?: any) {
     this.rqManager.setPath('AVANCES_CRUD');
-    let queryParams = '';
-    if (query)
-      for (const [key, value] of Object.entries(query))
-        queryParams += `${key}:${value},`;
-    queryParams = queryParams.substr(0, queryParams.length - 1);
-    return this.rqManager.get('norma/' + (id ? '/' + id : ''), { query: queryParams });
+    return this.rqManager.getv2('norma', id, query);
   }
 
   public createNorma(element: any) {
@@ -55,12 +46,9 @@ export class AvancesService {
 
   public getRequisitos(id?: number, query?: any) {
     this.rqManager.setPath('PARAMETROS_CRUD_SERVICE');
-    let queryParams = 'ParametroPadreId:324,';
-    if (query)
-      for (const [key, value] of Object.entries(query))
-        queryParams += `${key}:${value},`;
-    queryParams = queryParams.substr(0, queryParams.length - 1);
-    return this.rqManager.get('parametro/' + (id ? '/' + id : ''), { query: queryParams });
+    if (!query) query = {};
+    query.ParametroPadreId = 324;
+    return this.rqManager.getv2('parametro', id, query);
   }
 
   public createRequisito(element: any) {
@@ -81,12 +69,11 @@ export class AvancesService {
 
   public getRequisitoTipoAvance(id?: number, query?: any, idTipoAvance?: number) {
     this.rqManager.setPath('AVANCES_CRUD');
-    let queryParams = idTipoAvance ? `TipoAvanceId:${idTipoAvance},` : '';
-    if (query)
-      for (const [key, value] of Object.entries(query))
-        queryParams += `${key}:${value},`;
-    queryParams = queryParams.substr(0, queryParams.length - 1);
-    return this.rqManager.get('requisito_tipo_avance/' + (id ? '/' + id : ''), { query: queryParams });
+    if (idTipoAvance) {
+      if (!query) query = {};
+      query.TipoAvanceId = idTipoAvance;
+    }
+    return this.rqManager.getv2('requisito_tipo_avance', id, query);
   }
 
   public createRequisitoTipoAvance(element: any) {
@@ -103,12 +90,9 @@ export class AvancesService {
 
   public getEspecificaciones(id?: number, query?: any) {
     this.rqManager.setPath('PARAMETROS_CRUD_SERVICE');
-    let queryParams = 'ParametroPadreId:325,';
-    if (query)
-      for (const [key, value] of Object.entries(query))
-        queryParams += `${key}:${value},`;
-    queryParams = queryParams.substr(0, queryParams.length - 1);
-    return this.rqManager.get('parametro/' + (id ? '/' + id : ''), { query: queryParams });
+    if (!query) query = {};
+    query.ParametroPadreId = 325;
+    return this.rqManager.getv2('parametro', id, query);
   }
 
   public createEspecificacion(element: any) {

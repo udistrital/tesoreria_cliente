@@ -1,4 +1,3 @@
-import { SetDetallegiroComponent } from '../components/set-detallegiro/set-detallegiro.component';
 export const CONFIGURACION_GIROCHEQUES: any = {
     showColumnTitle: true,
     // title: {

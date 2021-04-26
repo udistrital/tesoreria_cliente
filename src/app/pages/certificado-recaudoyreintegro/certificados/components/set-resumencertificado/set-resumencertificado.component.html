@@ -1,0 +1,137 @@
+<form [formGroup]="resumenCertificadoGroup">
+    <div class="container">
+        <!-- Se muestran los datos que se han agregado en el proceso -->
+        <div class="row">
+            <div class="col pt-3">
+                <h6 class="card-title col-md-12 bg-dark text-white text-center py-2 px-2 rounded">
+                    Datos Generales
+                </h6>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label>Área Funcional</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Centro Gestor</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Fecha</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label>Código de Estudiante</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Tipo de ID</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Número de ID</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-md-4">
+                <label>Nombre Completo</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Proyecto</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Facultad</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+
+        <div class="container pt-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <button #btnComprobantes class="card-title col-md-12 btn btn-secondary text-white" type="button" data-toggle="collapse" data-target="#collapseComprobantes" aria-expanded="false" aria-controls="collapseComprobantes" (click)="mostrarOcultarDocs(btnComprobantes.getAttribute('aria-expanded'))">
+                        <i class="far {{mostrarOcultarIcono}} text-ligth pr-3"></i><span>Comprobantes de Pago</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Tabla: Listado de Anexos-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="collapse" id="collapseComprobantes">
+                        <div class="card card-body">
+                            <!-- Tabla General Adaptada Anexos -->
+                            <ngx-general-table [config]="configComprobantes" [datos]="datosComprobantes">
+                            </ngx-general-table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <mat-divider class="col-md-12 py-3 border-warning"></mat-divider>
+        <div class="row justify-content-center text-center">
+            <button class="btn btn-outline-success col-md-7 text-success m-0 mt-4" data-dismiss="modal" (click)="create(modalCertificado)">
+                GENERAR CERTIFICADO
+            </button>
+        </div>
+
+        <!-- Botones: Regresar, Siguiente -->
+        <div class="container">
+            <div class="row pt-2 text-center">
+                <div class="col-md-6">
+                    <button mat-button matStepperPrevious class="btn btn-primary col-md-7 text-white m-0 mt-4">
+                    Regresar
+                </button>
+                </div>
+                <div class="col-md-6 form-group">
+                    <button type="button" class="btn btn-success col-md-7 text-white m-0 mt-4" data-toggle="modal" data-target="#modalGuardar">
+                    GUARDAR
+                </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Modal: Solicitud Guardada -->
+<div class="modal fade" id="modalGuardar" tabindex="-1" aria-labelledby="modalGuardar" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalGuardar"><i class="fas fa-check text-success"></i>GUARDADO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="text-center">Se ha generado el certificado solicitado </p>
+            </div>
+            <div class="modal-footer">
+                <a routerLink="../lista" class="btn btn-primary" data-dismiss="modal">
+                    Aceptar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin Modal: Solicitud Guardada -->
+
+<!-- Modal para descargar pdf de comprobante -->
+<ng-template #modalCertificado let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">CERTIFICADO</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <ngx-descargarcomprobante></ngx-descargarcomprobante>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary text-white" (click)="modal.close('Close click')">Volver</button>
+    </div>
+</ng-template>

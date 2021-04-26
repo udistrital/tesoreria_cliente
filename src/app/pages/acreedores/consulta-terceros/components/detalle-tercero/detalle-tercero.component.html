@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row p-2">
+        <div class="col">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-center p-4">
+                                    <h5 class="text-primary text-center font-weight-bold pb-4">Consulta de Acreedor</h5>
+                                </div>
+                                <mat-horizontal-stepper>
+                                    <mat-step>
+                                        <ng-template matStepLabel>Datos de Acreedor</ng-template>
+                                        <ngx-detalle-datos></ngx-detalle-datos>
+                                        <div class="d-flex justify-content-end p-3">
+                                            <button class="btn btn-primary text-light" matStepperNext>Siguiente</button>
+                                        </div>
+                                    </mat-step>
+                                    <mat-step>
+                                        <ng-template matStepLabel>Orden de Pago Asociada</ng-template>
+                                        <ngx-detalle-ordenes-pago></ngx-detalle-ordenes-pago>
+                                        <div class="d-flex justify-content-between p-3">
+                                            <button class="btn btn-primary text-light" matStepperPrevious>Atrás</button>
+                                            <button class="btn btn-primary text-light" matStepperNext>Siguiente</button>
+                                        </div>
+                                    </mat-step>
+                                    <mat-step>
+                                        <ng-template matStepLabel>Giro Asociado</ng-template>
+                                        <ngx-detalle-giro></ngx-detalle-giro>
+                                        <div class="d-flex justify-content-start p-3">
+                                            <button class="btn btn-primary text-light" matStepperPrevious>Atrás</button>
+                                        </div>
+                                    </mat-step>
+                                </mat-horizontal-stepper>
+                                <div class="d-flex justify-content-end">
+                                    <ngx-btn-volver></ngx-btn-volver>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

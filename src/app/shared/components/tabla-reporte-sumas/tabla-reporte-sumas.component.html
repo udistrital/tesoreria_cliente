@@ -1,0 +1,60 @@
+<td [attr.colspan]="4" class="text-center bg-primary text-light font-weight-bold">
+    {{ title }}
+</td>
+
+<ng-container *ngFor="let data of config.dataConfig; index as i">
+    <!-- Si es un Dato Sencillo (string, number, Date...) -->
+    <ng-container *ngIf="i > 3">
+        
+        <ng-container *ngIf="data.pipe.isBoolean">
+            <td [class]="data.pipe.class" [attr.rowspan]="rowspanTable[index]">
+                <ng-container *ngIf="items[data.key]; else DatoFalse">
+                    <i class="fas fa-check"></i>
+                </ng-container>
+                <ng-template #DatoFalse>
+                    <i class="fas fa-minus"></i>
+                </ng-template>
+            </td>
+        </ng-container>
+        <!-- Si el Dato es un Arreglo (No Objetos) -->
+        <ng-container *ngIf="data.pipe.isArray">
+            <td [class]="data.pipe.class" [attr.rowspan]="rowspanTable[index]">
+                <ng-container *ngFor="let value of items[data.key]">
+                    <span class="my-2 text-nowrap">{{value}}</span><br>
+                </ng-container>
+            </td>
+        </ng-container>
+    
+        <!-- Si es otro tipo de dato -->
+        <ng-container *ngIf="!data.pipe.isArray && !data.pipe.isBoolean">
+    
+            <!-- Si es un Dato Sencillo (string, number, Date...) -->
+            <ng-container *ngIf="!data.compound && !data.objectKeys">
+                <td class="text-right bg-primary text-light text-nowrap px-0" [attr.rowspan]="rowspanTable[index]">
+                    {{  data.pipe.type ? (items[data.key] | multiPipe:data.pipe.type:data.pipe.config) : items[data.key] }}
+                </td>
+            </ng-container>
+    
+            <!-- Si el Dato es un Arreglo de Objetos (Deja el espacio para colocarlos despues) -->
+            <ng-container *ngIf="data.compound && !data.objectKeys">
+                <ng-container *ngFor="let element3 of data.compound">
+                    <td class="p-0 m-0 border-0"></td>
+                </ng-container>
+            </ng-container>
+    
+            <!-- Si el Dato es un Objeto -->
+            <ng-container *ngIf="!data.compound && data.objectKeys">
+                <ng-container *ngFor="let element of items[data.key] | keyvalue : asIsOrder">
+                    <ng-container *ngFor="let element3 of data.objectKeys">
+                        <ng-container *ngIf="element3.key === element.key">
+                            <td class="text-right bg-primary text-light text-nowrap px-0" [attr.rowspan]="rowspanTable[index]">
+                                {{  element3.pipe.type ? (element.value | multiPipe:element3.pipe.type:element3.pipe.config) : element.value }}
+                            </td>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+        </ng-container>
+
+    </ng-container>
+</ng-container>

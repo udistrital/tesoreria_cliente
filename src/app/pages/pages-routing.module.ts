@@ -31,6 +31,36 @@ const routes: Routes = [{
       path: 'boletin',
       loadChildren: () => import('./boletin-diario/boletin-diario.module')
       .then(m => m.BoletinDiarioModule),
+    },
+    {
+      path: 'declaracionretenciones',
+      loadChildren: () => import('./declaracion-retenciones/declaracion-retenciones.module')
+      .then(m => m.DeclaracionRetencionesModule),
+    },
+    {
+      path: 'recaudoyreintegro',
+      loadChildren: () => import('./certificado-recaudoyreintegro/certificado-recaudoyreintegro.module')
+      .then(m => m.CertificadoRecaudoyreintegroModule),
+    },
+    {
+      path: 'plan-anual-caja',
+      loadChildren: () => import('./plan-anual-caja/plan-anual-caja.module')
+      .then(m => m.PlanAnualCajaModule),
+    },
+    {
+      path: 'acreedores',
+      loadChildren: () => import('./acreedores/acreedores.module')
+      .then(m => m.AcreedoresModule),
+    },
+    {
+      path: 'ingresosyretenciones',
+      loadChildren: () => import('./certificado-retenciones/certificado-retenciones.module')
+      .then(m => m.CertificadoRetencionesModule),
+    },
+    {
+      path: 'informacionexogena',
+      loadChildren: () => import('./informacion-exogena/informacion-exogena.module')
+      .then(m => m.InformacionExogenaModule),
     }
   ],
 }];

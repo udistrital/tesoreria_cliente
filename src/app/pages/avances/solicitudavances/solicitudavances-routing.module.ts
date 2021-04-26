@@ -10,7 +10,7 @@ const routes: Routes = [
     component: TableSolicitudavancesComponent,
   },
   {
-    path: 'crear',
+    path: 'crear/:id',
     component: StepperSolicitudavancesComponent,
   },
 ];

@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row p-2">
+        <div class="col">
+            <ngx-datos-generales-iniciales [Title]="title"></ngx-datos-generales-iniciales>
+        </div>
+    </div>
+    <div class="row p-2">
+        <div class="col">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <form [formGroup]="FechasForm" *ngIf="FechasForm">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="d-flex justify-content-center p-4">
+                                                    <span class="text-primary text-center font-weight-bold pb-4">Cierre de Vigencia PAC</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4 d-flex align-items-center justify-content-end text-right">
+                                                <p>Vigencia:</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <input class="form-control text-center" formControlName="Vigencia">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <button type="button" class="btn btn-primary px-3 py-2 my-3 text-light"
+                                        (click)="GenerarReporte()">
+                                            Generar PAC Vigencia</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row p-2">
+        <div class="col-12 d-flex justify-content-end">
+            <ngx-btn-volver></ngx-btn-volver>
+        </div>
+    </div>
+</div>

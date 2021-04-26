@@ -92,3 +92,86 @@ export const loadVigencias = createAction(
   '[Shared] Load Vigencias',
   props()
 );
+
+// Tipos ID de terceros
+
+export const getTiposID = createAction(
+  '[Shared] Get Tipos Identificacion'
+);
+
+export const loadTiposID = createAction(
+  '[Shared] Load Tipos Identificacion',
+  props()
+);
+
+// Datos de ID de terceros
+
+export const getDatosID = createAction(
+  '[Shared] Get Datos Identificacion',
+  props<{ clave: string, numero?: string, tipo?: number, limit?: number, fields?: string }>()
+);
+
+export const loadDatosID = createAction(
+  '[Shared] Load Datos Identificacion',
+  props<{ clave: string, datosId: any }>()
+);
+
+// Datos de proveedor
+
+export const cargarDatosProvedor = createAction(
+  '[Shared] Cargar datos proveedor al store',
+  props()
+);
+
+export const obtenerDatosProvedor = createAction(
+  '[Shared] Obtener datos proveedor desde el back',
+  props<{ id?: any, query?: any }>()
+);
+
+// Teléfonos de proveedor
+
+export const cargarTelefonosProvedores = createAction(
+  '[Shared] Cargar telefonos proveedor al store',
+  props()
+);
+
+export const obtenerTelefonosProvedores = createAction(
+  '[Shared] Obtener telefonos proveedor desde el back',
+  props<{ id?: any, query?: any }>()
+);
+
+// Ordenadores de gasto
+
+export const cargarOdrenadores = createAction(
+  '[Shared] Cargar ordenadores al store',
+  props()
+);
+
+export const obtenerOrdenadores = createAction(
+  '[Shared] Obtener ordenadores desde el back',
+  props<{ id?: any, query?: any, limit?: number }>()
+);
+
+// Dependencias
+
+export const cargarDependencias = createAction(
+  '[Shared] Cargar dependencias al store',
+  props()
+);
+
+export const obtenerDependencias = createAction(
+  '[Shared] Obtener dependencias desde el back',
+  props<{ id?: any, query?: any, limit?: number }>()
+);
+
+// Facultades y proyectos
+
+export const cargarFacultadesProyectos = createAction(
+  '[Shared] Cargar facultades y proyectos al store',
+  props()
+);
+
+export const obtenerFacultadesProyectos = createAction(
+  '[Shared] Obtener facultades y proyectos desde el back',
+  props<{ id?: any, query?: any, limit?: number }>()
+);

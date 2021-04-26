@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <div class="row p-2">
+        <div class="col">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="d-flex justify-content-center p-4">
+                                                <h5 class="text-primary text-center font-weight-bold pb-4">Detalle de Giro</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label>Tipo de Documento:</label>
+                                                <span class="form-control text-center">O.P. Proveedores</span>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label>Consecutivo:</label>
+                                                <span class="form-control text-center">1244</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label>Tipo de Giro:</label>
+                                                <span class="form-control text-center">Cheque</span>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label>Orden de Pago:</label>
+                                                <span class="form-control text-center">19045</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ngx-general-table [config]="configuracion" [datos]="datos"></ngx-general-table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row p-2">
+        <div class="col-12 d-flex justify-content-end">
+            <ngx-btn-volver></ngx-btn-volver>
+        </div>
+    </div>
+</div>
