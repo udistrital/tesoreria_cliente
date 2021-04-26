@@ -26,6 +26,16 @@ const routes: Routes = [{
       path: 'inversiones',
       loadChildren: () => import('./inversiones/inversiones.module')
       .then(m => m.InversionesModule),
+    },
+    {
+      path: 'ingresosyretenciones',
+      loadChildren: () => import('./certificado-retenciones/certificado-retenciones.module')
+      .then(m => m.CertificadoRetencionesModule),
+    },
+    {
+      path: 'informacionexogena',
+      loadChildren: () => import('./informacion-exogena/informacion-exogena.module')
+      .then(m => m.InformacionExogenaModule),
     }
   ],
 }];
