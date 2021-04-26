@@ -45,6 +45,16 @@ export const getModalidadesSeleccion = createSelector(
   (state: fromShared.State) => state.ModalidadesSeleccion
 );
 
+export const selectTiposID = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.TiposID
+);
+
+export const selectDatosID = createSelector(
+  selectSharedState,
+  (state: fromShared.State, clave: string) => state.DatosID[clave]
+);
+
 export const selectVigencias = createSelector(
   selectSharedState,
   (state: fromShared.State) => state.Vigencias
@@ -60,3 +70,27 @@ export const selectVigenciasNoFuturas = createSelector(
   }
 );
 
+export const seleccionarProveedores = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.Proveedores
+);
+
+export const seleccionarTelefonosProveedores = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.TelefonosProveedores
+);
+
+export const seleccionarOrdenadores = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.Ordenadores
+);
+
+export const seleccionarDependencias = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.Dependencias
+);
+
+export const seleccionarFacultadesProyectos = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.FacultadesProyectos
+);

@@ -37,8 +37,12 @@ export class SolicitudAvancesEffects {
             mergeMap((accion) => this.servicio.getSolicitudesAvance(accion && accion.id ? accion.id : null, accion && accion.query ? accion.query : null)
                 .pipe(map(data => SolicitudAvanceActions.cargarSolicitudesAvance({
                     solicitudesAvance: (data && data.Data ? data.Data : data)
+
                 })),
                     catchError(data => of(SharedActions.CatchError(data)))))
+
+                // })), catchError(data => of(SharedActions.CatchError(data)))))
+
         );
     });
 
@@ -47,10 +51,17 @@ export class SolicitudAvancesEffects {
             ofType(SolicitudAvanceActions.crearSolicitudAvance),
             mergeMap((accion) => {
                 return this.servicio.createSolicitudAvance(accion.element)
-                    .pipe(map(data => SolicitudAvanceActions.cargarSolicitudesAvance({
-                        solicitudesAvance: { creado: (data && data.Data ? data.Data : data) }
-                    })),
-                        catchError(data => of(SharedActions.CatchError(data))));
+                    // .pipe(map(data => SolicitudAvanceActions.cargarSolicitudesAvance({
+                    //     solicitudesAvance: { creado: (data && data.Data ? data.Data : data) }
+                    // })),
+                    //     catchError(data => of(SharedActions.CatchError(data))));
+                    .pipe(map(data => {
+                       this.popupManager.showSuccessAlert('Guardado exitoso');
+                       return SolicitudAvanceActions.cargarSolicitudesAvance({
+                           solicitudesAvance: { creado: (data && data.Data ? data.Data : data) }
+                       });
+                    }), catchError(data => of(SharedActions.CatchError(data))));
+
             })
         );
     });

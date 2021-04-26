@@ -27,20 +27,32 @@
     </div>
 </div>
 
-<!-- Modal: Eliminar registros de la tabla -->
-<ng-template #eliminarTipoModal let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="BorrarTipoModal">Borrar Registro</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
+<!-- Modal: Cancelar Inversión-->
+<ng-template #cancelarInversion let-modal>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="material-icons cerrar align-middle">
+            close
+            </span>
+            <h5 class="modal-title denegar align-middle" id="cancelarInversionLabel"> CANCELAR INVERSIÓN </h5>
+            <button type="button" class="close" (click)="close()" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
         </button>
-    </div>
-    <div class="modal-body">
-        ¿Desea borrar el registro?
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cancelar</button>
-        <button type="button" class="btn btn-danger" (click)="modal.close(true)">Borrar</button>
+        </div>
+        <form [formGroup]="justificarCancelacion" (ngSubmit)="crear(justificarCancelacion.value)">
+            <div class="modal-body">
+                <p class="p-3"> ¿Desea cancelar la inversión?</p>
+                <p class="p-3"><small> El estado de la inversión pasara a "Cancelado"</small></p>
+                <div class="form-group p-3">
+                    <label for="justificacion">Justificación:</label>
+                    <textarea formControlName="justificacion" class="form-control" id="justificacion" placeholder="Escribir..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light px-3 py-2" (click)="close()">Cancelar</button>
+                <button mat-button type="submit" class="btn btn-danger px-3 py-2" [disabled]="justificarCancelacion.invalid">Continuar</button>
+            </div>
+        </form>
     </div>
 </ng-template>
 <!-- Fin Modal -->

@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <div class="row pt-3">
+        <div class="col-2">
+        </div>
+        <div class="col-5">
+            <div class="d-flex justify-content-center pb-3">
+                <span class="text-primary text-center font-weight-bold">Proyectado</span>
+            </div>
+        </div>
+        <div class="col-5">
+            <div class="d-flex justify-content-center pb-3">
+                <span class="text-primary text-center font-weight-bold">Ejecutado</span>
+            </div>
+        </div>
+
+    </div>
+    <form [formGroup]="ProyeccionMensualForm" *ngIf="ProyeccionMensualForm">
+        <div class="row">
+            <ng-container *ngFor="let mes of Meses; index as i">
+                <div class="col-2 border-right border-dark d-flex align-items-center justify-content-end text-right">
+                    <p>{{mes}}</p>
+                </div>
+                <div class="col-5  pr-0">
+                    <div class="form-group">
+                        <input currencyMask type="text" [options]="{ prefix: '$ ', thousands: ',', decimal: '.' }"
+                            class="form-control text-right" placeholder="" formControlName={{mes}}>
+                    </div>
+                </div>
+                <div class="col-5  pr-0">
+                    <div class="form-group">
+                        <input currencyMask type="text" [options]="{ prefix: '$ ', thousands: ',', decimal: '.' }"
+                            class="form-control text-right" placeholder="" formControlName={{mes}}>
+                    </div>
+                </div>
+            </ng-container>
+            <div
+                class="col-2 pt-3 border-right border-top border-dark d-flex align-items-center justify-content-end text-right">
+                <p>Total Distribuido</p>
+            </div>
+            <div class="col-5 pt-3 border-top border-dark pr-0">
+                <div class="form-group">
+                    <span class="form-control overflow text-right">
+                        {{TotalDistribuido | currency:'$':'symbol':'1.2-2':'en-US'}}
+                    </span>
+                </div>
+            </div>
+            <div class="col-5 pt-3 border-top border-dark pr-0">
+                <div class="form-group">
+                    <span class="form-control overflow text-right">
+                        {{TotalDistribuido | currency:'$':'symbol':'1.2-2':'en-US'}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

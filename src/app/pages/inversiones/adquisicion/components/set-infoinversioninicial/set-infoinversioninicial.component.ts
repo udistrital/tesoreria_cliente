@@ -14,9 +14,20 @@ export class SetInfoinversioninicialComponent implements OnInit {
   inversionInicialGroup: FormGroup;
 
   subscription$: any;
+  tipoInversion: any;
 
+  // Icono en la Lista de documentos
+  mostrarOcultar: string;
+  mostrarOcultarIcono: string;
 
-  constructor(private fb: FormBuilder, private store: Store<any>) { }
+  constructor(private fb: FormBuilder, private store: Store<any>) {
+    this.tipoInversion = 'adquisicion';
+    // this.tipoInversion = 'reinversion';
+
+    // Icono en la Lista de documentos
+    this.mostrarOcultar = 'Mostrar';
+    this.mostrarOcultarIcono = 'fa-plus-square';
+  }
 
   ngOnInit() {
     this.createForm();
@@ -81,6 +92,15 @@ export class SetInfoinversioninicialComponent implements OnInit {
       return Object.values(this.inversionInicialGroup.controls).forEach(control => {
         control.markAsTouched();
       });
+    }
+  }
+
+  // Configuracion de Icono en lista documentos
+  mostrarOcultarDatos(state: string) {
+    if (state === 'false') {
+      this.mostrarOcultarIcono = 'fa-minus-square';
+    } else {
+      this.mostrarOcultarIcono = 'fa-plus-square';
     }
   }
 

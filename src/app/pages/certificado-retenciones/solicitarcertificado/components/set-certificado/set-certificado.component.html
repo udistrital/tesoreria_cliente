@@ -1,0 +1,132 @@
+<div class="container bg-white p-5 border rounded">
+    <div class="row">
+        <div class="col py-2">
+            <h5 class="card-title text-center text-primary text-uppercase">
+                SOLICITAR CERTIFICADO
+            </h5>
+        </div>
+    </div>
+    <!-- Seleccionar el area funcional -->
+    <form [formGroup]="solicitarCertificadoGroup" (ngSubmit)="saveForm()">
+        <div class="form-group row">
+            <div class="col-md-5">
+                <label for="areaFuncional">Área Funcional</label>
+                <select class="custom-select" id="areaFuncional" formControlName="areaFuncional" [class.is-invalid]="isInvalid('areaFuncional')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>01</option>
+                    <option>02</option>
+                </select>
+                <small *ngIf="isInvalid('areaFuncional')" class="text-danger">Seleccione una opción</small>
+            </div>
+        </div>
+        <!-- Escribir una descripcion del tipo de declaracion, elegir el tipo de documento -->
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label for="tipoPersona">Tipo de Persona</label>
+                <select class="custom-select" id="tipoPersona" formControlName="tipoPersona" [class.is-invalid]="isInvalid('tipoPersona')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>Natural</option>
+                    <option>Jurídica</option>
+                </select>
+                <small *ngIf="isInvalid('tipoPersona')" class="text-danger">Seleccione una opción</small>
+            </div>
+            <div class="col-md-4">
+                <label for="tipoID">Tipo de ID</label>
+                <select class="custom-select" id="tipoID" formControlName="tipoID" [class.is-invalid]="isInvalid('tipoID')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>CC</option>
+                    <option>CE</option>
+                </select>
+                <small *ngIf="isInvalid('tipoID')" class="text-danger">Seleccione una opción</small>
+            </div>
+            <div class="col-md-4">
+                <label for="numeroID">Número de ID</label>
+                <input type="number" class="form-control" id="numeroID" formControlName="numeroID" [class.is-invalid]="isInvalid('numeroID')">
+                <small *ngIf="isInvalid('numeroID')" class="text-danger">Ingrese un valor
+                    numérico</small>
+            </div>
+        </div>
+        <div class="row py-3">
+            <div class="col-md-4">
+                <label>Nombres</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Apellidos</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Razón Social</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label for="vigencia">Vigencia</label>
+                <select class="custom-select" id="vigencia" formControlName="vigencia" [class.is-invalid]="isInvalid('vigencia')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>2019</option>
+                    <option>2020</option>
+                </select>
+                <small *ngIf="isInvalid('vigencia')" class="text-danger">Seleccione una opción</small>
+            </div>
+            <div class="col-md-4">
+                <label for="fechaInicial">Fecha de Inicial</label>
+                <div class="input-group">
+                    <input type="date" name="fechaInicial" id="fechaInicial" class="form-control" formControlName="fechaInicial" [class.is-invalid]="isInvalid('fechaInicial')">
+                    <div class="input-group-append">
+                    </div>
+                </div>
+            </div>
+            <div class=" col-md-4">
+                <label for="fechaFinal">Fecha de Final</label>
+                <div class="input-group">
+                    <input type="date" name="fechaFinal" id="fechaFinal" class="form-control" formControlName="fechaFinal" [class.is-invalid]="isInvalid('fechaFinal')">
+                    <div class="input-group-append">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Botones: Regresar, Siguiente -->
+        <div class="container">
+            <div class="row pt-2 text-center">
+                <div class="col-md-6">
+                    <a routerLink="../lista">
+                        <button type="button" class="btn btn-primary text-white col-md-7 m-0 mt-4">
+                            Regresar
+                        </button>
+                    </a>
+                </div>
+                <div *ngIf="solicitarCertificadoGroup.valid" class="col-md-6 form-group">
+                    <button type="submit" class="btn btn-success text-white col-md-7 m-0 mt-4" data-toggle="modal" data-target="#modalGuardar">
+                        SOLICITAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Modal: Solicitud Guardada -->
+    <div class="modal fade" id="modalGuardar" tabindex="-1" aria-labelledby="modalGuardar" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalGuardar"><i class="fas fa-check text-success"></i>SOLICITAR CERTIFICADO
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center">Se ha creado el certificado (tipo).</p>
+                </div>
+                <div class="modal-footer">
+                    <a routerLink="../lista" class="btn btn-primary" data-dismiss="modal">
+                        Aceptar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Modal: Solicitud Guardada -->
+</div>

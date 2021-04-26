@@ -1,0 +1,12 @@
+<!-- Subtitulo -->
+<th scope="col" colspan="100" [class]="config.subtitle.class">
+    {{datos.Rubros[0] ? datos.Rubros[0].Rubro.Nombre: ''}}
+</th>
+<!-- Datos -->
+<ng-container *ngFor="let items of datos.Rubros; index as i">
+    <tr ngx-cell-view [items]="items" [config]="config" [rowspanTable]="rowspanTable" [index]="i"></tr>
+</ng-container>
+<!-- Suma -->
+<ng-container *ngIf="datos.Totales">
+    <tr ngx-tabla-reporte-sumas [items]="datos.Totales" [title]="'Totales'" [config]="config" [rowspanTable]="rowspanTable" [index]="1"></tr>
+</ng-container>
