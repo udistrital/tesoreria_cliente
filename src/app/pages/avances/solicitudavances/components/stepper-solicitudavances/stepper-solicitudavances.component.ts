@@ -4,6 +4,8 @@ import { FormBuilder } from '@angular/forms';
 import { SetDescripcionComponent } from '../set-descripcion/set-descripcion.component';
 import { SetTipoavanceComponent } from '../set-tipoavance/set-tipoavance.component';
 import { ShowDetalleavanceComponent } from '../show-detalleavance/show-detalleavance.component';
+import { Store } from '@ngrx/store';
+import { getTiposID } from '../../../../../shared/actions/shared.actions';
 
 @Component({
   selector: 'ngx-stepper-solicitudavances',
@@ -17,7 +19,9 @@ export class StepperSolicitudavancesComponent implements OnInit {
   @ViewChild(ShowDetalleavanceComponent, { static: false }) showDetalleavanceComponent: ShowDetalleavanceComponent;
 
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private store: Store<any>) {
+    this.store.dispatch(getTiposID());
+  }
 
   ngOnInit() {
   }

@@ -84,7 +84,7 @@ export const CONFIGURACION_REQUISITOSTIPO: any = {
     showColumnTitle: true,
     dataConfig: [
         {
-            key: 'codigoAbreviado',
+            key: 'CodigoAbreviacion',
             title: {
                 name: 'Código',
                 class: 'text-center',
@@ -94,7 +94,7 @@ export const CONFIGURACION_REQUISITOSTIPO: any = {
             }
         },
         {
-            key: 'nombreRequisito',
+            key: 'Nombre',
             title: {
                 name: 'Nombre de Requisito',
                 class: 'text-center',
@@ -133,19 +133,6 @@ export const CONFIGURACION_REQUISITOSTIPO: any = {
     sort: true,
     filter: false,
 };
-
-export const DATOS_REQUISITOSTIPO: any = [
-    {
-        codigoAbreviado: 'CINV',
-        nombreRequisito: 'Carta de Invitación ',
-        adjunto: 'cartainvitacion.pdf'
-    },
-    {
-        codigoAbreviado: 'INS',
-        nombreRequisito: 'Inscripción',
-        adjunto: 'inscripcion.pdf'
-    },
-];
 
 export const CONFIGURACION_ESPECIFICACIONTIPO: any = {
     title: {
@@ -221,19 +208,6 @@ export const CONFIGURACION_ESPECIFICACIONTIPO: any = {
     filter: false,
 };
 
-export const DATOS_ESPECIFICACIONTIPO: any = [
-    {
-        tipoEspecificacion: 'Transporte',
-        descripcion: 'Transporte terrestre',
-        valor: 500000,
-    },
-    {
-        tipoEspecificacion: 'Hospedaje',
-        descripcion: 'Hospedaje en la ciudad 1 dia',
-        valor: 500000,
-    },
-];
-
 export const CONFIGURACION_ESPECIFICACIONDETALLE: any = {
     title: {
         name: 'ESPECIFICACIONES', // name title
@@ -299,16 +273,3 @@ export const CONFIGURACION_ESPECIFICACIONDETALLE: any = {
     sort: true,
     filter: false,
 };
-
-export const DATOS_ESPECIFICACIONDETALLE: any = [
-    {
-        tipoEspecificacion: 'Transporte',
-        descripcion: 'Transporte terrestre',
-        valor: 500000,
-    },
-    {
-        tipoEspecificacion: 'Hospedaje',
-        descripcion: 'Hospedaje en la ciudad 1 dia',
-        valor: 500000,
-    },
-];

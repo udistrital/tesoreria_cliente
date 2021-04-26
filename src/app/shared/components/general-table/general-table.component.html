@@ -134,10 +134,9 @@
                 </table>
             </div>
             <!-- Botón Inferior para crear nuevo registro -->
-            <!-- <div *ngIf="config.tableActions" class="col-12 d-flex justify-content-center">
-                <ng-container *ngFor="let allAction of config.tableActions">
-                    <button type="button" (click)="SelectedAllAction(allAction)"
-                        class="btn btn-primary py-2 mb-3 mt-3 text-light">
+            <div *ngIf="config.tableActionsI" class="col-12 d-flex justify-content-center">
+                <ng-container *ngFor="let allAction of config.tableActionsI">
+                    <button type="button" (click)="SelectedAllAction(allAction)" class="btn btn-primary py-2 mb-3 mt-3 text-light">
                         <div class="d-flex flex-row justify-content-around align-middle">
                             <i [class]="allAction.icon"></i>
                             <span [class]="allAction.class">
@@ -146,7 +145,7 @@
                         </div>
                     </button>
                 </ng-container>
-            </div> -->
+            </div>
         </div>
     </div>
 </div>

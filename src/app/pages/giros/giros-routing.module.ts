@@ -14,6 +14,11 @@ const routes: Routes = [{
       .then(m => m.GirochequesModule),
     },
     {
+      path: 'proveedores',
+      loadChildren: () => import('./girosproveedores/girosproveedores.module')
+      .then(m => m.GirosproveedoresModule),
+    },
+    {
       path: 'nomina',
       loadChildren: () => import('./girosnomina/girosnomina.module')
       .then(m => m.GirosnominaModule),

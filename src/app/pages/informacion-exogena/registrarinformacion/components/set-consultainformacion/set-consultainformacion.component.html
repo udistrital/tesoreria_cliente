@@ -1,0 +1,54 @@
+<form [formGroup]="consultaInformacionGroup" (ngSubmit)="saveForm()">
+    <div class="container">
+        <div class="row">
+            <div class="col pb-3">
+                <h6 class="card-title col-md-7 bg-primary text-white text-center py-2 px-2 rounded">
+                    Consulta de Información
+                </h6>
+            </div>
+        </div>
+        <!-- Seleccion Area Funcional -->
+        <div class="form-group row">
+            <div class="col-md-5">
+                <label for="tipoConsulta">Tipo de Consulta</label>
+                <select class="custom-select" id="tipoConsulta" formControlName="tipoConsulta" [class.is-invalid]="isInvalid('tipoConsulta')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>01</option>
+                    <option>02</option>
+                </select>
+                <small *ngIf="isInvalid('tipoConsulta')" class="text-danger">Seleccione una opción</small>
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-block btn-success m-0 mt-4">
+                    Generar Información
+                </button>
+            </div>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-block btn-primary text-white m-0 mt-4" disable="disable">
+                    Nueva Consulta
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 bg-white px-4 pb-3">
+                <ngx-general-table [config]="configConsultas" [datos]="datosConsultas"></ngx-general-table>
+            </div>
+        </div>
+
+        <!-- Botones: Volver a registro, Siguiente -->
+        <div class="container">
+            <div class="row pt-2 text-center">
+                <div class="col-md-6">
+                    <button mat-button matStepperPrevious type="button" class="btn btn-primary text-white col-md-7 m-0 mt-4">
+                        Volver
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <button mat-button matStepperNext type="submit" class="btn btn-success col-md-7 m-0 mt-4">
+                        Siguiente
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

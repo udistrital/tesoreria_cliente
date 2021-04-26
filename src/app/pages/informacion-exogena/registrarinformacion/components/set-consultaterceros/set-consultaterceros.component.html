@@ -1,0 +1,157 @@
+<form [formGroup]="consultaTercerosGroup" (ngSubmit)="saveForm()">
+    <div class="container">
+        <div class="row">
+            <div class="col pb-3">
+                <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
+                    Consulta de Terceros
+                </h6>
+            </div>
+        </div>
+        <!-- Seleccionar búsqueda -->
+        <div class="row pt-2">
+            <div class="col-md-4 form-group">
+                <span>Tipo de Búsqueda:</span>
+                <div class="invalid-feedback" [class.d-block]="isInvalid('busqueda')">Complete este campo</div>
+            </div>
+            <div class="col-md-4 form-group">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="individual" name="busqueda" class="custom-control-input" formControlName="busqueda" value="individual">
+                    <label class="custom-control-label" for="individual">Individual</label>
+                </div>
+            </div>
+            <div class="col-md-4 form-group">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="masiva" name="busqueda" class="custom-control-input" formControlName="busqueda" value="masiva">
+                    <label class="custom-control-label" for="masiva">Masiva</label>
+                </div>
+            </div>
+        </div>
+        <mat-divider class="col-md-12 py-3 border-primary"></mat-divider>
+
+        <!-- Búsqueda Individual -->
+        <div class="container" *ngIf="busqueda === 'individual'">
+            <div class="form-group row justify-content-lg-center align-items-md-center">
+                <div class="col-md-4">
+                    <label for="tipoID">Tipo de ID</label>
+                    <select class="custom-select" id="tipoID" formControlName="tipoID" [class.is-invalid]="isInvalid('tipoID')">
+                        <option selected disabled value="">Seleccione...</option>
+                        <option>CC</option>
+                        <option>CE</option>
+                    </select>
+                    <small *ngIf="isInvalid('tipoID')" class="text-danger">Seleccione una opción</small>
+                </div>
+                <div class="col-md-4 pr-3">
+                    <label>Número de ID</label>
+                    <input value=" " type="text" class="form-control" readonly>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <button type="button" class="btn btn-primary btn-block text-white m-0 mt-2">
+                            Consultar
+                        </button>
+                    </div>
+                    <div class="row">
+                        <button type="button" class="btn btn-outline-success btn-block text-success m-0 mt-2" (click)="exportar(exportarInfoModal)">
+                            Exportar Información
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 bg-white px-4 pb-3">
+                    <ngx-general-table [config]="configConsultaterceros" [datos]="datosConsultaterceros">
+                    </ngx-general-table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Búsqueda Masiva -->
+        <div class="container" *ngIf="busqueda === 'masiva'">
+            <div class="form-group row justify-content-between align-items-center">
+                <!-- Campo: Adjuntar archivo csv -->
+                <div class="container col-md-8">
+                    <p class="text-center">Importar Archivo CSV</p>
+                    <div class="row">
+                        <div class="col">
+                            <ngx-file-upload (prepareFilesList)="prepareFileList($event)"></ngx-file-upload>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <button type="button" class="btn btn-primary btn-block text-white m-0 mt-2">
+                            Consultar
+                        </button>
+                    </div>
+                    <div class="row">
+                        <button type="button" class="btn btn-outline-success btn-block text-success m-0 mt-2" (click)="exportar(exportarInfoModal)">
+                            Exportar Información
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 bg-white px-4 pb-3">
+                    <ngx-general-table [config]="configConsultaterceros" [datos]="datosConsultaterceros">
+                    </ngx-general-table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botones: Volver a registro, Siguiente -->
+        <div class="container">
+            <div class="row pt-2 text-center">
+                <div class="col-md-6">
+                    <button mat-button matStepperPrevious type="button" class="btn btn-primary text-white col-md-7 m-0 mt-4">
+                        Volver
+                    </button>
+                </div>
+                <div *ngIf="consultaTercerosGroup.valid" class="col-md-6 form-group">
+                    <button type="button" class="btn btn-success text-white col-md-7 m-0 mt-4" data-toggle="modal" data-target="#modalGuardar">
+                        GUARDAR REPORTE
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Modal para descargar pdf de comprobante -->
+<ng-template #exportarInfoModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Consulta de Información Exógena</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <ngx-descargarcomprobante></ngx-descargarcomprobante>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary text-white" (click)="modal.close('Close click')">Volver</button>
+    </div>
+</ng-template>
+
+<!-- Modal: Solicitud Guardada -->
+<div class="modal fade" id="modalGuardar" tabindex="-1" aria-labelledby="modalGuardar" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalGuardar"><i class="fas fa-check text-success"></i>GUARDAR REPORTE</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="text-center">Se guardará el registro de consulta.</p>
+                <p class="text-center">(descripción)</p>
+            </div>
+            <div class="modal-footer">
+                <a routerLink="../lista" class="btn btn-primary" data-dismiss="modal">
+                    Aceptar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin Modal: Solicitud Guardada -->

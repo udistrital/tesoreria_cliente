@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col">
+                                <div class="d-flex justify-content-center p-4">
+                                    <span class="text-primary text-center font-weight-bold pb-4">
+                                        Revision de Reportes de Ingresos y Gastos
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <ngx-general-table [config]="configuracion1" [datos]="datos1"></ngx-general-table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <ngx-general-table [config]="configuracion2" [datos]="datos2"></ngx-general-table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center" *ngIf="!valid">
+                        <div class="card p-4 m-4 border">
+                            <div class="card-body">
+                                <span class="text-center text-danger">Antes de poder generar el reporte, es necesario ajustar las inconsistencias</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center" *ngIf="valid">
+                        <button type="button" class="btn btn-primary px-3 py-2 my-3 text-light"
+                            (click)="GenerarReporte()">
+                            Generar Reporte</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <div class="row p-2">
+        <div class="col-12 d-flex justify-content-end">
+            <ngx-btn-volver></ngx-btn-volver>
+        </div>
+    </div>
+</div>

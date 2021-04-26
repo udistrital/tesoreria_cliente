@@ -1,10 +1,14 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { DATOS_REQUISITOSTIPO, CONFIGURACION_REQUISITOSTIPO, DATOS_ESPECIFICACIONTIPO, CONFIGURACION_ESPECIFICACIONTIPO } from '../../interfaces/interfaces';
+import { CONFIGURACION_REQUISITOSTIPO, CONFIGURACION_ESPECIFICACIONTIPO } from '../../interfaces/interfaces';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { getAccionTabla, getFilaSeleccionada } from '../../../../../shared/selectors/shared.selectors';
 import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
+import { obtenerEspecificaciones, obtenerRequisitos, obtenerRequisitoTipoAvances, obtenerTiposAvances } from '../../../../../shared/actions/avances.actions';
+import { seleccionarEspecificaciones, seleccionarRequisitos, seleccionarRequisitoTipoAvances, seleccionarTiposAvances } from '../../../../../shared/selectors/avances.selectors';
+import { combineLatest } from 'rxjs';
+import { cargarTiposdeAvances } from '../../actions/solicitudavances.actions';
 
 @Component({
   selector: 'ngx-set-tipoavance',
@@ -29,16 +33,34 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
 
   subscription$: any;
   subscriptionAccion$: any;
+  subTiposAvance$: any;
+  listaTiposAvances: any;
+  agregando: any;
+  tipoAvanceActual: any;
+  subscriptionRequisitos$: any;
+  subEspecificaciones$: any;
+  especificaciones: any;
 
 
   constructor(private fb: FormBuilder, private modalService: NgbModal, private store: Store<any>) {
-
+    this.tipoAvanceActual = null;
+    this.agregando = false;
     this.tiposAvances = [];
-
+    this.listaTiposAvances = [];
+    this.especificaciones = [];
+    this.store.dispatch(obtenerTiposAvances({}));
+    this.store.dispatch(obtenerRequisitos({ query: { Activo: true } }));
+    this.store.dispatch(obtenerEspecificaciones({ query: { Activo: true } }));
+    this.store.dispatch(cargarTiposdeAvances({ tiposAvances: this.tiposAvances }));
   }
 
   ngOnInit() {
     this.createForm();
+
+    // Tipos de avance
+    this.subTiposAvance$ = this.store.select(seleccionarTiposAvances).subscribe((accion) => {
+      if (accion && accion.tiposAvances && accion.tiposAvances[0]) this.listaTiposAvances = accion.tiposAvances;
+    });
 
     this.subscriptionAccion$ = this.store.select(getAccionTabla).subscribe((accion) => {
       if (accion && accion.titulo && accion.titulo.tabla !== undefined) {
@@ -62,13 +84,22 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
         }
       }
     });
+
+    // Especificaciones
+    this.subEspecificaciones$ = this.store.select(seleccionarEspecificaciones).subscribe((acc) => {
+      if (acc && acc.especificaciones && acc.especificaciones[0])
+        this.especificaciones = acc.especificaciones;
+    });
   }
 
   ngOnDestroy(): void {
     this.subscription$.unsubscribe();
     this.subscriptionAccion$.unsubscribe();
+    this.subTiposAvance$.unsubscribe();
+    if (this.subscriptionRequisitos$)
+      this.subscriptionRequisitos$.unsubscribe();
+    this.subEspecificaciones$.unsubscribe();
     this.store.dispatch(LoadFilaSeleccionada(null));
-
   }
 
   // Validacion del Formulario
@@ -78,7 +109,8 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
 
   createForm() {
     this.tipoAvanceGroup = this.fb.group({
-      seleccionAvance: ['', Validators.required],
+      seleccionAvance: [''],
+      total: [''],
     });
     this.modalEspecificacionGroup = this.fb.group({
       tipoId: ['', Validators.required],
@@ -94,6 +126,15 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
         control.markAsTouched();
       });
     }
+  }
+
+  get tipoAvance() {
+    if (this.tipoAvanceGroup) {
+      const field = this.tipoAvanceGroup.get('seleccionAvance');
+      if (field)
+        return field.value;
+    }
+    return null;
   }
 
   esInvalido(nombre: string) {
@@ -142,7 +183,7 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
   modalEspecificacion(accion: any) {
     if (accion.fila) {
       this.modalEspecificacionGroup.setValue({
-        tipoId: accion.fila.tipoEspecificacion,
+        tipoId: accion.fila.tipoEspec,
         descripcion: accion.fila.descripcion,
         valorSolicitado: accion.fila.valor,
       });
@@ -157,13 +198,15 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
     this.agregarRegistroModalRef.result.then((result) => {
       if (`${result}`) {
         if (accion.fila) {
-          accion.fila.tipoEspecificacion = this.modalEspecificacionGroup.get('tipoId').value;
+          accion.fila.tipoEspec = this.modalEspecificacionGroup.get('tipoId').value;
+          accion.fila.tipoEspecificacion = this.modalEspecificacionGroup.get('tipoId').value.Nombre;
           accion.fila.descripcion = this.modalEspecificacionGroup.get('descripcion').value;
           accion.fila.valor = this.modalEspecificacionGroup.get('valorSolicitado').value;
         } else {
           this.tiposAvances[accion.titulo.tabla].especificaciones.push(
             {
-              tipoEspecificacion: this.modalEspecificacionGroup.get('tipoId').value,
+              tipoEspec: this.modalEspecificacionGroup.get('tipoId').value,
+              tipoEspecificacion: this.modalEspecificacionGroup.get('tipoId').value.Nombre,
               descripcion: this.modalEspecificacionGroup.get('descripcion').value,
               valor: this.modalEspecificacionGroup.get('valorSolicitado').value,
             },
@@ -204,20 +247,41 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
   }
 
   agregarTipo() {
-    const tipo = {
-      requisitos: Object.assign([], DATOS_REQUISITOSTIPO),
-      configrequisitos: Object.assign({}, CONFIGURACION_REQUISITOSTIPO),
-      especificaciones: Object.assign([], DATOS_ESPECIFICACIONTIPO),
-      configespecificaciones: Object.assign({}, CONFIGURACION_ESPECIFICACIONTIPO),
-      mostrarOcultar: 'Mostrar',
-      mostrarOcultarIcono: 'fa-plus-square',
-    };
-    tipo.configespecificaciones.title = Object.assign({}, CONFIGURACION_ESPECIFICACIONTIPO.title);
-    tipo.configrequisitos.title = Object.assign({}, CONFIGURACION_REQUISITOSTIPO.title);
-    this.tiposAvances.push(tipo);
+    if (this.tipoAvanceGroup.get('seleccionAvance').invalid) return;
+    this.agregando = true;
+    this.tipoAvanceActual = this.tipoAvance;
+    this.tipoAvanceActual.configrequisitos = Object.assign({}, CONFIGURACION_REQUISITOSTIPO);
+    this.tipoAvanceActual.configespecificaciones = Object.assign({}, CONFIGURACION_ESPECIFICACIONTIPO);
+    this.tipoAvanceActual.configespecificaciones.title = Object.assign({}, CONFIGURACION_ESPECIFICACIONTIPO.title);
+    this.tipoAvanceActual.configrequisitos.title = Object.assign({}, CONFIGURACION_REQUISITOSTIPO.title);
+    this.tipoAvanceActual.mostrarOcultar = 'Mostrar';
+    this.tipoAvanceActual.mostrarOcultarIcono = 'fa-plus-square';
+    this.tipoAvanceActual.especificaciones = [];
+    this.tipoAvanceActual.requisitos = [];
+    this.tiposAvances.push(this.tipoAvanceActual);
+    this.store.dispatch(cargarTiposdeAvances({ tiposAvances: this.tiposAvances }));
     this.tiposAvances.forEach((tipoindex, index) => {
       tipoindex.configespecificaciones.title.tabla = index;
       tipoindex.configrequisitos.title.tabla = index;
+    });
+    this.store.dispatch(obtenerRequisitoTipoAvances({
+      idTipoAvance: this.tipoAvanceActual.Id, query: { Activo: true }
+    }));
+    this.subscriptionRequisitos$ = combineLatest([
+      this.store.select(seleccionarRequisitos),
+      this.store.select(seleccionarRequisitoTipoAvances)
+    ]).subscribe(([accionRequisitos, accionAsociaciones]) => {
+      if (accionRequisitos && accionRequisitos.requisitos &&
+        accionAsociaciones && accionAsociaciones.datos &&
+        accionRequisitos.requisitos.length && accionRequisitos.requisitos[0].Id
+      ) {
+        this.tipoAvanceActual.requisitos = accionRequisitos.requisitos.filter((requisito: any) =>
+          accionAsociaciones.datos.some((asociacion: any) =>
+            requisito.Id === asociacion.RequisitoAvanceId));
+        this.subscriptionRequisitos$.unsubscribe();
+        this.store.dispatch(cargarTiposdeAvances({ tiposAvances: this.tiposAvances }));
+        this.agregando = false;
+      }
     });
   }
 
