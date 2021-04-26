@@ -12,7 +12,7 @@ export const CONFIGURACION_TABLASOLICITUD: any = {
             }
         },
         {
-            key: 'numeroSolicitud',
+            key: 'Id',
             title: {
                 name: 'Número de Solicitud',
                 class: 'text-center',
@@ -32,7 +32,7 @@ export const CONFIGURACION_TABLASOLICITUD: any = {
             }
         },
         {
-            key: 'fecha',
+            key: 'FechaRadicacion',
             title: {
                 name: 'Fecha',
                 class: 'text-center',
@@ -74,20 +74,6 @@ export const CONFIGURACION_TABLASOLICITUD: any = {
     sort: true,
     filter: true,
 };
-export const DATOS_TABLASOLICITUD: any = [
-    {
-        areaFuncional: '01',
-        numeroSolicitud: '001',
-        estadoSolicitud: 'Elaborado',
-        fecha: '2021-20-11T02:18:54Z',
-    },
-    {
-        areaFuncional: '01',
-        numeroSolicitud: '002',
-        estadoSolicitud: 'Elaborado',
-        fecha: '2021-02-10T02:18:54Z',
-    },
-];
 
 
 export const CONFIGURACION_REQUISITOSTIPO: any = {
@@ -98,7 +84,7 @@ export const CONFIGURACION_REQUISITOSTIPO: any = {
     showColumnTitle: true,
     dataConfig: [
         {
-            key: 'codigoAbreviado',
+            key: 'CodigoAbreviacion',
             title: {
                 name: 'Código',
                 class: 'text-center',
@@ -108,7 +94,7 @@ export const CONFIGURACION_REQUISITOSTIPO: any = {
             }
         },
         {
-            key: 'nombreRequisito',
+            key: 'Nombre',
             title: {
                 name: 'Nombre de Requisito',
                 class: 'text-center',
@@ -147,19 +133,6 @@ export const CONFIGURACION_REQUISITOSTIPO: any = {
     sort: true,
     filter: false,
 };
-
-export const DATOS_REQUISITOSTIPO: any = [
-    {
-        codigoAbreviado: 'CINV',
-        nombreRequisito: 'Carta de Invitación ',
-        adjunto: 'cartainvitacion.pdf'
-    },
-    {
-        codigoAbreviado: 'INS',
-        nombreRequisito: 'Inscripción',
-        adjunto: 'inscripcion.pdf'
-    },
-];
 
 export const CONFIGURACION_ESPECIFICACIONTIPO: any = {
     title: {
@@ -235,19 +208,6 @@ export const CONFIGURACION_ESPECIFICACIONTIPO: any = {
     filter: false,
 };
 
-export const DATOS_ESPECIFICACIONTIPO: any = [
-    {
-        tipoEspecificacion: 'Transporte',
-        descripcion: 'Transporte terrestre',
-        valor: 500000,
-    },
-    {
-        tipoEspecificacion: 'Hospedaje',
-        descripcion: 'Hospedaje en la ciudad 1 dia',
-        valor: 500000,
-    },
-];
-
 export const CONFIGURACION_ESPECIFICACIONDETALLE: any = {
     title: {
         name: 'ESPECIFICACIONES', // name title
@@ -313,16 +273,3 @@ export const CONFIGURACION_ESPECIFICACIONDETALLE: any = {
     sort: true,
     filter: false,
 };
-
-export const DATOS_ESPECIFICACIONDETALLE: any = [
-    {
-        tipoEspecificacion: 'Transporte',
-        descripcion: 'Transporte terrestre',
-        valor: 500000,
-    },
-    {
-        tipoEspecificacion: 'Hospedaje',
-        descripcion: 'Hospedaje en la ciudad 1 dia',
-        valor: 500000,
-    },
-];
