@@ -33,6 +33,11 @@ const routes: Routes = [{
       .then(m => m.DeclaracionRetencionesModule),
     },
     {
+      path: 'recaudoyreintegro',
+      loadChildren: () => import('./certificado-recaudoyreintegro/certificado-recaudoyreintegro.module')
+      .then(m => m.CertificadoRecaudoyreintegroModule),
+    },
+    {
       path: 'plan-anual-caja',
       loadChildren: () => import('./plan-anual-caja/plan-anual-caja.module')
       .then(m => m.PlanAnualCajaModule),
