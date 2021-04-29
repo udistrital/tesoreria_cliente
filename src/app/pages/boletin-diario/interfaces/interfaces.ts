@@ -864,3 +864,238 @@ export const DATOS_CUENTAS: any = [
         base: 0,
      },
 ];
+export const DATOS_BORRADOR: any = [
+    {
+        Cuentas: [
+            {
+                cuenta: {
+                    cuenta: '',
+                    nombreCuenta: 'SALDO DE TESORERÍA',
+                    saldo: 35550520418,
+                    debito: 1550728,
+                    credito: 1550728,
+                    nuevoSaldo: 35550520418,
+                },
+            }
+        ]
+    },
+    {
+        Cuentas: [
+            {
+                cuenta: {
+                    cuenta: '11',
+                    nombreCuenta: 'EFECTIVO',
+                    saldo: 21667969346,
+                    debito: 1550728,
+                    credito: 1550728,
+                    nuevoSaldo: 21667969346,
+                },
+            }
+        ]
+    },
+    {
+        Cuentas: [
+            {
+                cuenta: {
+                    cuenta: '11 10',
+                    nombreCuenta: 'BANCOS Y CORPORACIONES',
+                    saldo: 21667969346,
+                    debito: 1550728,
+                    credito: 1550728,
+                    nuevoSaldo: 21667969346,
+                },
+            }
+        ]
+    },
+    {
+        Cuentas: [
+            {
+                cuenta: {
+                    cuenta: '11 10 05',
+                    nombreCuenta: 'CUENTA CORRIENTE BANCA',
+                    saldo: 454988542,
+                    debito: 0,
+                    credito: 1550728,
+                    nuevoSaldo: 453437814,
+                },
+            }
+        ]
+    },
+    {
+        Cuentas: [
+            {
+                cuenta: {
+                    cuenta: '11 10 05 02',
+                    nombreCuenta: 'Occidente 05354-08 proveedores',
+                    saldo: 454988542,
+                    debito: 0,
+                    credito: 1550728,
+                    nuevoSaldo: 453437814,
+                },
+            }
+        ]
+    },
+    {
+        Cuentas: [
+            {
+                cuenta: {
+                    cuenta: '11 10 06',
+                    nombreCuenta: 'CUENTA DE AHORRO',
+                    saldo: 21212880803,
+                    debito: 1550728,
+                    credito: 0,
+                    nuevoSaldo: 21214431531,
+                },
+            }
+        ]
+    },
+    {
+        Cuentas: [
+            {
+                cuenta: {
+                    cuenta: '11 10 06 06',
+                    nombreCuenta: 'OCCIDENTE 230-81451-9 Prestamos',
+                    saldo: 519063789,
+                    debito: 0,
+                    credito: 0,
+                    nuevoSaldo: 519063789,
+                },
+            }
+        ]    
+    },
+    {
+        Cuentas: [
+            {
+                cuenta: {
+                    cuenta: '12',
+                    nombreCuenta: 'INVERSIONES',
+                    saldo: 8832579091,
+                    debito: 0,
+                    credito: 0,
+                    nuevoSaldo: 8832579091,
+                },
+            }
+        ]
+       
+    },
+    {
+        Cuentas: [
+            {
+                cuenta: {
+                    cuenta: '12 01',
+                    nombreCuenta: 'INVERSIONES ADMINISTRA',
+                    saldo: 8832579091,
+                    debito: 0,
+                    credito: 0,
+                    nuevoSaldo: 8832579091,
+                },
+            }
+        ]
+       
+    },
+    {
+        Cuentas: [
+            {
+                cuenta: {
+                    cuenta: '12 01 06',
+                    nombreCuenta: 'CERTIFICADO DE DEPOSITO',
+                    saldo: 8832579091,
+                    debito: 0,
+                    credito: 0,
+                    nuevoSaldo: 8832579091,
+                },
+            }
+        ]
+       
+    },
+    {
+        Cuentas: [
+            {
+                cuenta: {
+                    cuenta: '12 01 06 52',
+                    nombreCuenta: 'CDT FPENSIONES 61-90 D',
+                    saldo: 8832579091,
+                    debito: 0,
+                    credito: 0,
+                    nuevoSaldo: 8832579091,
+                },
+            }
+        ]
+       
+    },
+    {
+        Cuentas: [
+            {
+                cuenta: {
+                    cuenta: '12 01 06 52 06',
+                    nombreCuenta: 'CDT BANCOLOMBIA BENEFICIO INSTITUCIONAL',
+                    saldo: 8832579091,
+                    debito: 0,
+                    credito: 0,
+                    nuevoSaldo: 8832579091,
+                },
+            }
+        ]
+       
+    },
+    {
+        Cuentas: [
+            {
+                cuenta: {
+                    cuenta: '19',
+                    nombreCuenta: 'OTROS ACTIVOS',
+                    saldo: 5050071980,
+                    debito: 0,
+                    credito: 0,
+                    nuevoSaldo: 8832579091,
+                },
+            }
+        ]
+       
+    },
+    {
+        Cuentas: [
+            {
+                cuenta: {
+                    cuenta: '19 01',
+                    nombreCuenta: 'RESERVA FINANCIERA ACTUARIAL',
+                    saldo: 5050071980,
+                    debito: 0,
+                    credito: 0,
+                    nuevoSaldo: 8832579091,
+                },
+            }
+        ]
+       
+    },
+    {
+        Cuentas: [
+            {
+                cuenta: {
+                    cuenta: '19 01 01',
+                    nombreCuenta: 'EFECTIVO',
+                    saldo: 659450801,
+                    debito: 0,
+                    credito: 0,
+                    nuevoSaldo: 659450801,
+                },
+            }
+        ]
+       
+    },
+    {
+        Cuentas: [
+            {
+                cuenta: {
+                    cuenta: '19 01 01 01',
+                    nombreCuenta: 'BANCO DE OCCIDENTE 251-80660-0 Ahorros',
+                    saldo: 659450801,
+                    debito: 0,
+                    credito: 0,
+                    nuevoSaldo: 659450801,
+                },
+            }
+        ]
+       
+    },
+];

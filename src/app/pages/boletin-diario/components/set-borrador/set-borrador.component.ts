@@ -1,7 +1,11 @@
-import { renderFlagCheckIfStmt } from '@angular/compiler/src/render3/view/template';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { CONF_CONSULTACUENTA, CONF_CONSULTACOMPROBANTE, DATOS_CUENTAS, DATOS_COMPROBANTE } from '../../interfaces/interfaces';
+import { CONF_CONSULTACUENTA,
+  CONF_CONSULTACOMPROBANTE,
+  DATOS_CUENTAS,
+  DATOS_COMPROBANTE,
+  CONF_BORRADOR,
+  DATOS_BORRADOR } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'ngx-set-borrador',
@@ -42,6 +46,8 @@ export class SetBorradorComponent implements OnInit {
   ];
 
   mensaje: boolean;
+  configBorrador: any;
+  datosBorrador: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -60,6 +66,8 @@ export class SetBorradorComponent implements OnInit {
     this.datosCuentas = [];
     this.configuracionComprobante = CONF_CONSULTACOMPROBANTE;
     this.datosComprobante = [];
+    this.configBorrador = CONF_BORRADOR;
+    this.datosBorrador= DATOS_BORRADOR;
    }
 
   ngOnInit() {
