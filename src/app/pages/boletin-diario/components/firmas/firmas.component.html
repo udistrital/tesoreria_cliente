@@ -1,0 +1,150 @@
+<div class="container-fluid">
+    <div class="card p-3 m-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+            Identificación de diferencias
+        </div>
+        <div class="card-body pt-0">
+            <form [formGroup]="cargoForm">
+                <div class="row py-2">
+                    <div class="col">
+                        <label for="cargo"> Cargo </label> <br>
+                        <select class="form-control" name="cargo" id="cargo" formControlName="cargo" [class.is-invalid]="esInvalido(cargoForm,'cargo')">
+                            <option hidden disabled> Elegir... </option>
+                            <option *ngFor="let cargo of cargos" value="{{cargo}}">{{cargo}}</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="nombre"> Nombre </label> <br>
+                        <input class="form-control" name="nombre" id="nombre" type="text" value="Maria Arias" disabled>
+                    </div>
+                    <div class="col">
+                        <button (click)="agregar()" class="btn btn-primary px-3 py-2 mt-4 text-light"> Agregar
+                            <i class="fas fa-plus"></i> 
+                        </button>          
+                    </div>
+                </div>
+            </form>
+            <div class="row my-2 justify-content-center">
+                <ngx-general-table class="mt-3" [config]="configuracionFirmas" [datos]="datosFirmas"></ngx-general-table>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            <button matStepperPrevious type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
+                Volver
+            </button>
+        </div>
+        <div class="col">
+            <button (click)="justificar()" class="btn btn-danger px-3 py-2 my-2 text-light">
+                Rechazar
+            </button>
+        </div>
+        <div class="col">
+            <button (click)="generarPdf()" class="btn btn-success px-3 py-2 my-2 text-light">
+                Generar boletín
+            </button>
+        </div>
+        <div class="col">
+            <button (click)="guardar()" class="btn btn-success px-3 py-2 my-2 text-light">
+                Guardar
+            </button>
+        </div>
+        <div class="col">
+            <button (click)="aprobar()" class="btn btn-success px-3 py-2 my-2 text-light">
+                Aprobar
+            </button>
+        </div>
+    </div>
+</div>
+
+<ng-template #modalPDF>
+    <mat-dialog-content>
+        <div class="modal-content">
+            <div class="modal-header">
+                <ngx-pdfview [fileName]="fileName" [currentPage]="pageVariable" [totalPages]="totalPages" [zoomAmt]="zoom" [zoomMax]="zoomMax" [zoomMin]="zoomMin" (setZoom)="setZoom($event)" (download)="download()" (print)="print()"></ngx-pdfview>
+                <button type="button" class="close" (click)="close()" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+            <!-- header part -->
+            
+            <!-- pdf-viewer section -->
+            <div class="output-pdf-viewer">
+                <pdf-viewer [src]="pdfSrc" [(page)]="pageVariable" [show-all]="true" [render-text]="true" [original-size]="true" [fit-to-page]="false" [autoresize]="true" [show-borders]="true" [zoom-scale]="zoomScale" [zoom]="zoom" (after-load-complete)="afterLoadComplete($event)"
+                    #pdfViewer></pdf-viewer>
+            </div>
+        </div>
+    </mat-dialog-content>
+</ng-template>
+
+<ng-template #modalJustificacion>
+    <mat-dialog-content>
+        <div class="container-fluid">
+            <form [formGroup]="justificacionForm">
+                <div class="card p-3 m-4">
+                    <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+                        Justificación
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="row my-2">
+                            <div class="col py-2">
+                                <label for="responsable"> Nombre del responsable </label> <br>
+                                <input class="form-control" type="text" name="responsable" id="responsable" formControlName="responsable" [class.is-invalid]="esInvalido(justificacionForm,'responsable')">
+                            </div>
+                            <div class="col py-2">
+                                <label for="justificacion"> Justificación </label> <br>
+                                <textarea class="form-control" name="justificacion" id="justificacion" rows="5" formControlName="justificacion" [class.is-invalid]="esInvalido(justificacionForm,'justificacion')"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-3 m-4">
+                    <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+                        Cuenta a corregir
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="row my-2">
+                            <div class="col py-2">
+                                <label for="nombreResponsable"> Número de la cuenta </label> <br>
+                                <select class="form-control" name="numeroCuenta" id="numeroCuenta" formControlName="numeroCuenta" [class.is-invalid]="esInvalido(justificacionForm,'numeroCuenta')"> 
+                                    <option *ngFor="let cuenta of cuentas" value="{{cuenta}}">{{cuenta}} </option>
+                                </select> <br>
+                                <label for="nombreCuenta"> Nombre de la cuenta </label> <br>
+                                <input class="form-control" type="text" name="nombreCuenta" id="nombreCuenta" value="Efectivo" disabled>
+                            </div>
+                            <div class="col py-2">
+                                <label for="observacion"> Observación </label> <br>
+                                <textarea class="form-control" name="observacion" id="observacion" rows="5" formControlName="observacion" [class.is-invalid]="esInvalido(justificacionForm,'observacion')"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p *ngIf="mensaje" class="message m-3"> Los campos en rojo son requeridos* </p>
+            </form>
+        </div>        
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button class="btn btn-danger px-3 py-2 m-3 text-ligth" mat-button mat-dialog-close> Cancelar </button>
+        <button (click)="validar()" class="btn btn-success px-3 py-2 m-3 text-ligth"> Solicitar corrección </button>
+    </mat-dialog-actions>
+</ng-template>
+<ng-template #modalAprobar>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title text-center text-primary my-2"> Aprobar boletín diario </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                (click)="cerrar()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="modal-body m-3">
+            <p> La aprobación del boletín diario es un proceso irreversible. ¿Desea continuar? </p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" (click)="cerrar()" class="btn btn-danger">Cancelar</button>
+            <button type="button" (click)="aceptar()" class="btn btn-success px-3 py-2 my-2 text-light"> Aprobar </button>
+        </div>
+    </div>
+</ng-template>
