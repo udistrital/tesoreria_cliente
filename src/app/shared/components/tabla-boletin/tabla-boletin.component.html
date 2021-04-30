@@ -35,10 +35,10 @@
                                 </ng-container>
                             </ng-container>
                             <!-- Acciones -->
-                            <ng-container *ngIf="config.rowActions">
+                            <!-- <ng-container *ngIf="config.rowActions">
                                 <th scope="col" [attr.rowspan]="rowspanTitle" [class]="config.rowActions.title.class">
                                     {{config.rowActions.title.name}}</th>
-                            </ng-container>
+                            </ng-container> -->
                         </tr>
                         <tr *ngIf="config.showColumnTitle">
                             <ng-container *ngFor="let element of config.dataConfig">
@@ -63,9 +63,6 @@
                             [rowspanTable]="rowspanTable" [index]="i">
                         </tbody>
                     </ng-container>
-                    <!-- <ng-container *ngFor="let total of totales">
-                        <tr ngx-tabla-reporte-totales [items]="total" [config]="config" [rowspanTable]="rowspanTable" [index]="1"></tr>
-                    </ng-container> -->
                 </table>
             </div>
         </div>

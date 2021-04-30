@@ -67,7 +67,7 @@ export class SetBorradorComponent implements OnInit {
     this.configuracionComprobante = CONF_CONSULTACOMPROBANTE;
     this.datosComprobante = [];
     this.configBorrador = CONF_BORRADOR;
-    this.datosBorrador= DATOS_BORRADOR;
+    this.datosBorrador = DATOS_BORRADOR;
    }
 
   ngOnInit() {
@@ -82,7 +82,6 @@ export class SetBorradorComponent implements OnInit {
   }
 
   mostrarBorrador() {
-    this.consulta = undefined;
     this.consultaForm.reset();
     this.comprobanteForm.reset();
     this.cuentasForm.reset();

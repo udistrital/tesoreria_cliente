@@ -130,7 +130,7 @@ export const CONF_BORRADOR: any = {
             }
         },
         {
-            key: 'saldoAnterior',
+            key: 'saldo',
             title: {
                 name: 'Saldo anterior',
                 class: 'text-center',
@@ -142,7 +142,7 @@ export const CONF_BORRADOR: any = {
             }
         },
         {
-            key: 'ingresos',
+            key: 'credito',
             title: {
                 name: 'Ingresos (créditos)',
                 class: 'text-center',
@@ -154,7 +154,7 @@ export const CONF_BORRADOR: any = {
             }
         },
         {
-            key: 'egresos',
+            key: 'debito',
             title: {
                 name: 'Egresos (débitos)',
                 class: 'text-center',
@@ -178,21 +178,6 @@ export const CONF_BORRADOR: any = {
             }
         }
     ],
-    rowActions: {
-        title: {
-            name: 'Detalles',
-            class: 'text-center',
-            actionClass: 'd-flex flex-row justify-content-around align-middle'
-        },
-        actions: [
-            {
-                name: 'ver',
-                icon: 'fas fa-eye',
-                class: 'p-2',
-                title: 'Ver solicitud',
-            }
-        ],
-    },
     noData: {
         name: 'No existen elementos asociados',
         class: 'text-center',
@@ -740,7 +725,7 @@ export const DATOS_BOLETINES: any = [
         fechaAprobacion: '06/10/2020',
         fechaRegistro: '05/10/2020',
         estado: 'Aprobado',
-     },
+    },
 ];
 export const DATOS_BANCOS: any = [
     {
@@ -752,17 +737,17 @@ export const DATOS_BANCOS: any = [
         entidadBancaria: 'Banco BBVA',
         capital: 34984721,
         concentracion: 37,
-     },
-     {
+    },
+    {
         entidadBancaria: 'Banco de Bogotá',
         capital: 12563123,
         concentracion: 10,
-     },
-     {
+    },
+    {
         entidadBancaria: 'Banco Popular',
         capital: 1456234,
         concentracion: 3,
-     }
+    }
 ];
 export const DATOS_DIFERENCIAS: any = [
     {
@@ -790,7 +775,7 @@ export const DATOS_DIFERENCIAS: any = [
         fecha: '20/04/10',
         descripcion: 'Pago certificado',
         valor: 2123,
-     }
+    }
 ];
 export const DATOS_CARGOS: any = [
     {
@@ -800,7 +785,7 @@ export const DATOS_CARGOS: any = [
     {
         nombre: 'María del Pilar',
         cargo: 'Auxiliar de contabilidad',
-     },
+    },
 ];
 export const DATOS_COMPROBANTE: any = [
     {
@@ -830,7 +815,7 @@ export const DATOS_COMPROBANTE: any = [
         creditos: 832749,
         debitos: 0,
         base: 0,
-     },
+    },
 ];
 export const DATOS_CUENTAS: any = [
     {
@@ -843,7 +828,7 @@ export const DATOS_CUENTAS: any = [
         nombre: 'Occidente',
         fecha: '2020/01/20',
         descripcion: 'Pago julio',
-        valor: 18239093,
+        saldoAnterior: 18239093,
         creditos: 18239093,
         debitos: 0,
         base: 0,
@@ -858,244 +843,267 @@ export const DATOS_CUENTAS: any = [
         nombre: 'Occidente',
         fecha: '2020/10/07',
         descripcion: 'Pago correspondiente',
-        valor: 4392401,
-        creditos: 4392401,
+        saldoAnterior: 4392401,
+        egresos: 4392401,
         debitos: 0,
         base: 0,
-     },
+    },
 ];
 export const DATOS_BORRADOR: any = [
+    /* { cuentas: [{
+        cuenta: '',
+        nombreCuenta: 'SALDO DE TESORERÍA',
+        saldo: 35550520418,
+        debito: 1550728,
+        credito: 1550728,
+        nuevoSaldo: 35550520418,
+    }]},
+    { cuentas: [{
+        cuenta: '11',
+        nombreCuenta: 'EFECTIVO',
+        saldo: 21667969346,
+        debito: 1550728,
+        credito: 1550728,
+        nuevoSaldo: 21667969346,
+    }]},
+    { cuentas: [{
+        cuenta: '11 10',
+        nombreCuenta: 'BANCOS Y CORPORACIONES',
+        saldo: 21667969346,
+        debito: 1550728,
+        credito: 1550728,
+        nuevoSaldo: 21667969346,
+    }]},
+    { cuentas: [{
+        cuenta: '11 10 05',
+        nombreCuenta: 'CUENTA CORRIENTE BANCA',
+        saldo: 454988542,
+        debito: 0,
+        credito: 1550728,
+        nuevoSaldo: 453437814,
+    }]},
+    { cuentas: [{
+        cuenta: '11 10 05 02',
+        nombreCuenta: 'Occidente 05354-08 proveedores',
+        saldo: 454988542,
+        debito: 0,
+        credito: 1550728,
+        nuevoSaldo: 453437814,
+    }]},
+    { cuentas: [{
+        cuenta: '11 10 06',
+        nombreCuenta: 'CUENTA DE AHORRO',
+        saldo: 21212880803,
+        debito: 1550728,
+        credito: 0,
+        nuevoSaldo: 21214431531,
+    }]},
+    { cuentas: [{
+        cuenta: '11 10 06 06',
+        nombreCuenta: 'OCCIDENTE 230-81451-9 Prestamos',
+        saldo: 519063789,
+        debito: 0,
+        credito: 0,
+        nuevoSaldo: 519063789,
+    }]},
+    { cuentas: [{
+        cuenta: '12',
+        nombreCuenta: 'INVERSIONES',
+        saldo: 8832579091,
+        debito: 0,
+        credito: 0,
+        nuevoSaldo: 8832579091,
+    }]},
+    { cuentas: [{
+        cuenta: '12 01',
+        nombreCuenta: 'INVERSIONES ADMINISTRA',
+        saldo: 8832579091,
+        debito: 0,
+        credito: 0,
+        nuevoSaldo: 8832579091,
+    }]},
+    { cuentas: [{
+        cuenta: '12 01 06',
+        nombreCuenta: 'CERTIFICADO DE DEPOSITO',
+        saldo: 8832579091,
+        debito: 0,
+        credito: 0,
+        nuevoSaldo: 8832579091,
+    }]},
+    { cuentas: [{
+        cuenta: '12 01 06 52',
+        nombreCuenta: 'CDT FPENSIONES 61-90 D',
+        saldo: 8832579091,
+        debito: 0,
+        credito: 0,
+        nuevoSaldo: 8832579091,
+    }]},
+    { cuentas: [{
+        cuenta: '12 01 06 52 06',
+        nombreCuenta: 'CDT BANCOLOMBIA BENEFICIO INSTITUCIONAL',
+        saldo: 8832579091,
+        debito: 0,
+        credito: 0,
+        nuevoSaldo: 8832579091,
+    }]},
+    { cuentas: [{
+        cuenta: '19',
+        nombreCuenta: 'OTROS ACTIVOS',
+        saldo: 5050071980,
+        debito: 0,
+        credito: 0,
+        nuevoSaldo: 8832579091,
+    }]},
+    { cuentas: [{
+        cuenta: '19 01',
+        nombreCuenta: 'RESERVA FINANCIERA ACTUARIAL',
+        saldo: 5050071980,
+        debito: 0,
+        credito: 0,
+        nuevoSaldo: 8832579091,
+    }]},
+    { cuentas: [{
+        cuenta: '19 01 01',
+        nombreCuenta: 'EFECTIVO',
+        saldo: 659450801,
+        debito: 0,
+        credito: 0,
+        nuevoSaldo: 659450801,
+    }]},
+    { cuentas: [{
+        cuenta: '19 01 01 01',
+        nombreCuenta: 'BANCO DE OCCIDENTE 251-80660-0 Ahorros',
+        saldo: 659450801,
+        debito: 0,
+        credito: 0,
+        nuevoSaldo: 659450801,
+    }]}, */
     {
-        Cuentas: [
-            {
-                cuenta: {
-                    cuenta: '',
-                    nombreCuenta: 'SALDO DE TESORERÍA',
-                    saldo: 35550520418,
-                    debito: 1550728,
-                    credito: 1550728,
-                    nuevoSaldo: 35550520418,
-                },
-            }
-        ]
+        cuenta: '',
+        nombreCuenta: 'SALDO DE TESORERÍA',
+        saldo: 35550520418,
+        debito: 1550728,
+        credito: 1550728,
+        nuevoSaldo: 35550520418,
     },
     {
-        Cuentas: [
-            {
-                cuenta: {
-                    cuenta: '11',
-                    nombreCuenta: 'EFECTIVO',
-                    saldo: 21667969346,
-                    debito: 1550728,
-                    credito: 1550728,
-                    nuevoSaldo: 21667969346,
-                },
-            }
-        ]
+        cuenta: '11',
+        nombreCuenta: 'EFECTIVO',
+        saldo: 21667969346,
+        debito: 1550728,
+        credito: 1550728,
+        nuevoSaldo: 21667969346,
     },
     {
-        Cuentas: [
-            {
-                cuenta: {
-                    cuenta: '11 10',
-                    nombreCuenta: 'BANCOS Y CORPORACIONES',
-                    saldo: 21667969346,
-                    debito: 1550728,
-                    credito: 1550728,
-                    nuevoSaldo: 21667969346,
-                },
-            }
-        ]
+        cuenta: '11 10',
+        nombreCuenta: 'BANCOS Y CORPORACIONES',
+        saldo: 21667969346,
+        debito: 1550728,
+        credito: 1550728,
+        nuevoSaldo: 21667969346,
     },
     {
-        Cuentas: [
-            {
-                cuenta: {
-                    cuenta: '11 10 05',
-                    nombreCuenta: 'CUENTA CORRIENTE BANCA',
-                    saldo: 454988542,
-                    debito: 0,
-                    credito: 1550728,
-                    nuevoSaldo: 453437814,
-                },
-            }
-        ]
+        cuenta: '11 10 05',
+        nombreCuenta: 'CUENTA CORRIENTE BANCA',
+        saldo: 454988542,
+        debito: 0,
+        credito: 1550728,
+        nuevoSaldo: 453437814,
     },
     {
-        Cuentas: [
-            {
-                cuenta: {
-                    cuenta: '11 10 05 02',
-                    nombreCuenta: 'Occidente 05354-08 proveedores',
-                    saldo: 454988542,
-                    debito: 0,
-                    credito: 1550728,
-                    nuevoSaldo: 453437814,
-                },
-            }
-        ]
+        cuenta: '11 10 05 02',
+        nombreCuenta: 'Occidente 05354-08 proveedores',
+        saldo: 454988542,
+        debito: 0,
+        credito: 1550728,
+        nuevoSaldo: 453437814,
     },
     {
-        Cuentas: [
-            {
-                cuenta: {
-                    cuenta: '11 10 06',
-                    nombreCuenta: 'CUENTA DE AHORRO',
-                    saldo: 21212880803,
-                    debito: 1550728,
-                    credito: 0,
-                    nuevoSaldo: 21214431531,
-                },
-            }
-        ]
+        cuenta: '11 10 06',
+        nombreCuenta: 'CUENTA DE AHORRO',
+        saldo: 21212880803,
+        debito: 1550728,
+        credito: 0,
+        nuevoSaldo: 21214431531,
     },
     {
-        Cuentas: [
-            {
-                cuenta: {
-                    cuenta: '11 10 06 06',
-                    nombreCuenta: 'OCCIDENTE 230-81451-9 Prestamos',
-                    saldo: 519063789,
-                    debito: 0,
-                    credito: 0,
-                    nuevoSaldo: 519063789,
-                },
-            }
-        ]    
+        cuenta: '11 10 06 06',
+        nombreCuenta: 'OCCIDENTE 230-81451-9 Prestamos',
+        saldo: 519063789,
+        debito: 0,
+        credito: 0,
+        nuevoSaldo: 519063789,
     },
     {
-        Cuentas: [
-            {
-                cuenta: {
-                    cuenta: '12',
-                    nombreCuenta: 'INVERSIONES',
-                    saldo: 8832579091,
-                    debito: 0,
-                    credito: 0,
-                    nuevoSaldo: 8832579091,
-                },
-            }
-        ]
-       
+        cuenta: '12',
+        nombreCuenta: 'INVERSIONES',
+        saldo: 8832579091,
+        debito: 0,
+        credito: 0,
+        nuevoSaldo: 8832579091,
     },
     {
-        Cuentas: [
-            {
-                cuenta: {
-                    cuenta: '12 01',
-                    nombreCuenta: 'INVERSIONES ADMINISTRA',
-                    saldo: 8832579091,
-                    debito: 0,
-                    credito: 0,
-                    nuevoSaldo: 8832579091,
-                },
-            }
-        ]
-       
+        cuenta: '12 01',
+        nombreCuenta: 'INVERSIONES ADMINISTRA',
+        saldo: 8832579091,
+        debito: 0,
+        credito: 0,
+        nuevoSaldo: 8832579091,
     },
     {
-        Cuentas: [
-            {
-                cuenta: {
-                    cuenta: '12 01 06',
-                    nombreCuenta: 'CERTIFICADO DE DEPOSITO',
-                    saldo: 8832579091,
-                    debito: 0,
-                    credito: 0,
-                    nuevoSaldo: 8832579091,
-                },
-            }
-        ]
-       
+        cuenta: '12 01 06',
+        nombreCuenta: 'CERTIFICADO DE DEPOSITO',
+        saldo: 8832579091,
+        debito: 0,
+        credito: 0,
+        nuevoSaldo: 8832579091,
     },
     {
-        Cuentas: [
-            {
-                cuenta: {
-                    cuenta: '12 01 06 52',
-                    nombreCuenta: 'CDT FPENSIONES 61-90 D',
-                    saldo: 8832579091,
-                    debito: 0,
-                    credito: 0,
-                    nuevoSaldo: 8832579091,
-                },
-            }
-        ]
-       
+        cuenta: '12 01 06 52',
+        nombreCuenta: 'CDT FPENSIONES 61-90 D',
+        saldo: 8832579091,
+        debito: 0,
+        credito: 0,
+        nuevoSaldo: 8832579091,
     },
     {
-        Cuentas: [
-            {
-                cuenta: {
-                    cuenta: '12 01 06 52 06',
-                    nombreCuenta: 'CDT BANCOLOMBIA BENEFICIO INSTITUCIONAL',
-                    saldo: 8832579091,
-                    debito: 0,
-                    credito: 0,
-                    nuevoSaldo: 8832579091,
-                },
-            }
-        ]
-       
+        cuenta: '12 01 06 52 06',
+        nombreCuenta: 'CDT BANCOLOMBIA BENEFICIO INSTITUCIONAL',
+        saldo: 8832579091,
+        debito: 0,
+        credito: 0,
+        nuevoSaldo: 8832579091,
     },
     {
-        Cuentas: [
-            {
-                cuenta: {
-                    cuenta: '19',
-                    nombreCuenta: 'OTROS ACTIVOS',
-                    saldo: 5050071980,
-                    debito: 0,
-                    credito: 0,
-                    nuevoSaldo: 8832579091,
-                },
-            }
-        ]
-       
+        cuenta: '19',
+        nombreCuenta: 'OTROS ACTIVOS',
+        saldo: 5050071980,
+        debito: 0,
+        credito: 0,
+        nuevoSaldo: 8832579091,
     },
     {
-        Cuentas: [
-            {
-                cuenta: {
-                    cuenta: '19 01',
-                    nombreCuenta: 'RESERVA FINANCIERA ACTUARIAL',
-                    saldo: 5050071980,
-                    debito: 0,
-                    credito: 0,
-                    nuevoSaldo: 8832579091,
-                },
-            }
-        ]
-       
+        cuenta: '19 01',
+        nombreCuenta: 'RESERVA FINANCIERA ACTUARIAL',
+        saldo: 5050071980,
+        debito: 0,
+        credito: 0,
+        nuevoSaldo: 8832579091,
     },
     {
-        Cuentas: [
-            {
-                cuenta: {
-                    cuenta: '19 01 01',
-                    nombreCuenta: 'EFECTIVO',
-                    saldo: 659450801,
-                    debito: 0,
-                    credito: 0,
-                    nuevoSaldo: 659450801,
-                },
-            }
-        ]
-       
+        cuenta: '19 01 01',
+        nombreCuenta: 'EFECTIVO',
+        saldo: 659450801,
+        debito: 0,
+        credito: 0,
+        nuevoSaldo: 659450801,
     },
     {
-        Cuentas: [
-            {
-                cuenta: {
-                    cuenta: '19 01 01 01',
-                    nombreCuenta: 'BANCO DE OCCIDENTE 251-80660-0 Ahorros',
-                    saldo: 659450801,
-                    debito: 0,
-                    credito: 0,
-                    nuevoSaldo: 659450801,
-                },
-            }
-        ]
-       
-    },
+        cuenta: '19 01 01 01',
+        nombreCuenta: 'BANCO DE OCCIDENTE 251-80660-0 Ahorros',
+        saldo: 659450801,
+        debito: 0,
+        credito: 0,
+        nuevoSaldo: 659450801,
+    }
 ];

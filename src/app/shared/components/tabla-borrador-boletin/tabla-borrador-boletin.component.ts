@@ -15,7 +15,6 @@ export class TablaBorradorBoletinComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.datos);
   }
 
 }

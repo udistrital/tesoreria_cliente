@@ -24,7 +24,10 @@
                     </div>
                 </div>
             </form>
-            <ngx-tabla-boletin [config]="configBorrador" [datos]="datosBorrador"> </ngx-tabla-boletin>
+            <div *ngIf="consulta === 0 || consulta === null">
+                <ngx-general-table [config]="configBorrador" [datos]="datosBorrador"> </ngx-general-table>
+            </div>
+            <!-- <ngx-tabla-boletin [config]="configBorrador" [datos]="datosBorrador"> </ngx-tabla-boletin> -->
             <div *ngIf="consulta === 'cuentaContable'">
                 <form [formGroup]="cuentasForm">
                     <div class="row mt-4">
