@@ -517,6 +517,16 @@ export const CONF_BANCOS: any = {
     // },
     dataConfig: [
         {
+            key: 'nombreCuenta',
+            title: {
+                name: 'Cuenta contable',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'text-justify',
+            }
+        },
+        {
             key: 'entidadBancaria',
             title: {
                 name: 'Entidad bancaria',
@@ -728,6 +738,55 @@ export const DATOS_BOLETINES: any = [
     },
 ];
 export const DATOS_BANCOS: any = [
+    {
+        nombreCuenta: 'EFECTIVO',
+    },
+    {
+        entidadBancaria: 'Banco de Occidente',
+        capital: 23684456,
+        concentracion: 38,
+    },
+    {
+        entidadBancaria: 'Banco BBVA',
+        capital: 34984721,
+        concentracion: 37,
+    },
+    {
+        entidadBancaria: 'Banco de Bogotá',
+        capital: 12563123,
+        concentracion: 10,
+    },
+    {
+        entidadBancaria: 'Banco Popular',
+        capital: 1456234,
+        concentracion: 3,
+    },
+    {
+        nombreCuenta: 'INVERSIONES',
+    },
+    {
+        entidadBancaria: 'Banco de Occidente',
+        capital: 23684456,
+        concentracion: 38,
+    },
+    {
+        entidadBancaria: 'Banco BBVA',
+        capital: 34984721,
+        concentracion: 37,
+    },
+    {
+        entidadBancaria: 'Banco de Bogotá',
+        capital: 12563123,
+        concentracion: 10,
+    },
+    {
+        entidadBancaria: 'Banco Popular',
+        capital: 1456234,
+        concentracion: 3,
+    },
+    {
+        nombreCuenta: 'OTROS ACTIVOS',
+    },
     {
         entidadBancaria: 'Banco de Occidente',
         capital: 23684456,

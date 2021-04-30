@@ -40,6 +40,8 @@ export class FirmasComponent implements OnInit {
     '19 01 03 01'
   ];
 
+  mensaje: boolean = false;
+
   subscription: any;
 
   pdfSrc = 'https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf'; // this sample, dynamic one we will generate with the pdfmake
@@ -147,6 +149,7 @@ export class FirmasComponent implements OnInit {
 
   validar() {
     if (this.justificacionForm.valid) {
+      this.mensaje = false;
       this.close();
       Swal.fire({
         type: 'success',
@@ -156,6 +159,7 @@ export class FirmasComponent implements OnInit {
       });
       this.route.navigateByUrl('pages/boletin/lista');
     } else {
+      this.mensaje = true;
       this.validarFormulario(this.justificacionForm);
     }
   }

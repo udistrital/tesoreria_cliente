@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </form>
-            <div *ngIf="consulta === 0 || consulta === null">
+            <div *ngIf="consulta === undefined || consulta === null">
                 <ngx-general-table [config]="configBorrador" [datos]="datosBorrador"> </ngx-general-table>
             </div>
             <!-- <ngx-tabla-boletin [config]="configBorrador" [datos]="datosBorrador"> </ngx-tabla-boletin> -->
