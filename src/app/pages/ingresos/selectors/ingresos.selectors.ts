@@ -8,3 +8,7 @@ export const selectIngresosState = createFeatureSelector<fromIngresos.State>(
 export const getTipoIngreso = createSelector(
   selectIngresosState,
   (state: fromIngresos.State) => state.TipoIngreso);
+
+export const getConsignaciones = createSelector(
+  selectIngresosState,
+  (state: fromIngresos.State) => state.Consignaciones);

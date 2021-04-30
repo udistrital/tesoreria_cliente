@@ -17,6 +17,7 @@ import { StoreModule } from '@ngrx/store';
 import * as fromIngresos from './reducers/ingresos.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { IngresosEffects } from './effects/ingresos.effects';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [ListaIngresosComponent,
@@ -35,6 +36,7 @@ import { IngresosEffects } from './effects/ingresos.effects';
     FormsModule,
     ReactiveFormsModule,
     IngresosRoutingModule,
+    PdfViewerModule,
     StoreModule.forFeature(fromIngresos.ingresosFeatureKey, fromIngresos.reducer),
     EffectsModule.forFeature([IngresosEffects])
   ]

@@ -34,7 +34,7 @@ export class ListaIngresosComponent implements OnInit, OnDestroy {
     if (this.subscriptionTipo$ !== undefined) {
       this.subscriptionTipo$.unsubscribe();
     }
-    if (this.subscriptionTipo$ !== undefined) {
+    if (this.subscriptionTabla$ !== undefined) {
       this.subscriptionTabla$.unsubscribe();
     }
   }

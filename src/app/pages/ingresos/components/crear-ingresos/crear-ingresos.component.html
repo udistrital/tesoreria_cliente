@@ -9,17 +9,17 @@
                 </div>
             </div>
             <mat-horizontal-stepper linear #stepper>
-                <mat-step>
+                <mat-step [completed]="inicio">
                     <ng-template matStepLabel> Inicio </ng-template>
-                    <ngx-set-inicio></ngx-set-inicio>
+                    <ngx-set-inicio (validarForm)="validarInicio($event)" (informacionForm)="informacionInicio($event, stepper)"></ngx-set-inicio>
                 </mat-step>
                 <mat-step>
                     <ng-template matStepLabel> Consignaciones </ng-template>
                     <ngx-set-consignaciones></ngx-set-consignaciones>
                 </mat-step>
-                <mat-step>
+                <mat-step [completed]="afectacion">
                     <ng-template matStepLabel> Afectación presupuestal </ng-template>
-                    <ngx-set-afectacion></ngx-set-afectacion>
+                    <ngx-set-afectacion (validarRubros)="validarRubros($event)" (informacionRubros)="informacionRubros($event, stepper)"></ngx-set-afectacion>
                 </mat-step>
                 <mat-step>
                     <ng-template matStepLabel> Contabilización </ng-template>

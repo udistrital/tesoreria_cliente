@@ -9,6 +9,11 @@ export const cargarTipoIngreso = createAction(
   props(),
 );
 
+export const cargarConsignaciones = createAction(
+  '[Ingresos] Cargar Consignaciones',
+  props(),
+);
+
 
 
 

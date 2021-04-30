@@ -1,16 +1,17 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { getTipoIngreso } from '../../selectors/ingresos.selectors';
 import { SharedService } from '../../../../shared/services/shared.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'ngx-set-inicio',
   templateUrl: './set-inicio.component.html',
   styleUrls: ['./set-inicio.component.scss']
 })
-export class SetInicioComponent implements OnInit {
+export class SetInicioComponent implements OnInit, OnDestroy {
 
   @Output () validarForm: EventEmitter <any>;
   @Output () informacionForm: EventEmitter <any>;
@@ -60,8 +61,14 @@ export class SetInicioComponent implements OnInit {
     this.informacionForm = new EventEmitter;
   }
 
+  ngOnDestroy() {
+    if (this.subscriptionTipoIngreso$ !== undefined) {
+      this.subscriptionTipoIngreso$.unsubscribe();
+    }
+  }
+
   ngOnInit() {
-    this.store.select(getTipoIngreso).subscribe(
+  this.subscriptionTipoIngreso$ = this.store.select(getTipoIngreso).subscribe(
       data => {
         if (this.sharedService.IfStore(data)) {
           switch (data.tipo) {
@@ -102,8 +109,17 @@ export class SetInicioComponent implements OnInit {
 
   onSubmit(data: any) {
     if (this.datosConsultaForm.valid) {
-      this.mensaje = false;
-      this.informacionForm.emit(data);
+      if (this.datosConsultaForm.value.fechaFinal < this.datosConsultaForm.value.fechaInicio) {
+        Swal.fire({
+          type: 'error',
+          title: '¡Error!',
+          html: 'La fecha final no puede ser anterior a la inicial',
+          confirmButtonText: 'Aceptar',
+        });
+      } else {
+        this.mensaje = false;
+        this.informacionForm.emit(data);
+      }
     } else {
       this.mensaje = true;
       this.validarFormulario();
@@ -114,6 +130,7 @@ export class SetInicioComponent implements OnInit {
     this.datosConsultaForm.statusChanges.subscribe(
       result => {
         if (result === 'VALID') {
+          this.mensaje = false;
           this.validarForm.emit(true);
         } else {
           this.validarForm.emit(false);

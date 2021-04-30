@@ -5,12 +5,13 @@ export const ingresosFeatureKey = 'ingresos';
 
 export interface State {
   TipoIngreso: any;
+  Consignaciones: any;
 
 }
 
 export const initialState: State = {
   TipoIngreso: null,
-
+  Consignaciones: null,
 };
 
 const ingresosReducer = createReducer(
@@ -19,6 +20,9 @@ const ingresosReducer = createReducer(
   on(IngresosActions.loadIngresoss, state => state),
   on(IngresosActions.cargarTipoIngreso, (state, action) => ({
     ...state, TipoIngreso: state.TipoIngreso = action
+  })),
+  on(IngresosActions.cargarConsignaciones, (state, action) => ({
+    ...state, Consignaciones: state.Consignaciones = action
   })),
 
 );

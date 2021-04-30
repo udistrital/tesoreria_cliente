@@ -760,7 +760,7 @@ export const DATOS_APORTES_DISTRITO: any = [
         numeroCuenta: 3294021,
         tipoCuenta: 'Corriente',
         vigencia: 2019,
-        valor: 23842934,
+        valor: 758348421,
         tipoDocumento: 'Recibo de caja',
         numeroDocumento: 'Res No. 012',
         fechaDocumento: '2019/07/24',
@@ -768,18 +768,19 @@ export const DATOS_APORTES_DISTRITO: any = [
 ];
 export const DATOS_CODIGO_BARRAS: any = [
     {
-        fechaConsignacion: '2019/08/03',
-        entidadFinanciera: 'BBVA',
-        numeroCuenta: 3294021,
-        tipoCuenta: 'Corriente',
-        vigencia: 2019,
-        valor: 23842934,
-        tipoDocumento: 'Recibo de caja',
-        numeroDocumento: 'Res No. 012',
-        fechaDocumento: '2019/07/24',
+        codigoBanco: 23,
+        oficina: 248,
+        ciudad: 'Bogotá',
+        fechaRecaudo: '2020/06/03',
+        tran: 'CB',
+        valorEfectivo: 0,
+        valorCheque: 576681,
+        valorDatafono: 0,
+        valorTotal: 576681,
+        codigoTrans: 8672,
+        referencia1: 2019357403,
     }
 ];
-
 export const DATOS_OTRAS_ENTIDADES: any = [
     {
         oficina: '',
@@ -793,5 +794,25 @@ export const DATOS_OTRAS_ENTIDADES: any = [
         valorDatafono: 5800234,
         valorTotal: 5800234,
         otrasReferencias: 324,
+    }
+];
+export const DATOS_CONTABILIDAD: any = [
+    {
+        secuencia: 1,
+        tercero: 12631623,
+        numeroCuenta: 17283612,
+        nombreCuenta: 'Banco',
+        detalle: 'Ingresos',
+        debito: 0,
+        credito: 586681
+    },
+    {
+        secuencia: 2,
+        tercero: 84568904,
+        numeroCuenta: 23623,
+        nombreCuenta: 'Banco occidente',
+        detalle: 'Ingresos',
+        debito: 586681,
+        credito: 0
     }
 ];
