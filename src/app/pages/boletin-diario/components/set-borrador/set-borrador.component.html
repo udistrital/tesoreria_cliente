@@ -1,0 +1,97 @@
+<div class="container-fluid">
+    <div class="card p-2 m-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+            Identificación de diferencias
+        </div>
+        <div class="card-body pt-0">
+            <div class="row m-2">
+                <p> Seleccione los parámetros a consultar: </p>
+            </div>
+            <form [formGroup]="consultaForm">
+                <div class="row ml-2 mr-2 mt-4 mb-2 d-flex">
+                    <div class="col p-0">
+                        <input name="tipoConsulta" id="tipo" type="radio" formControlName="tipoConsulta"
+                            value="tipoComprobante">
+                        <label class="pl-3" for="tipo"> Tipo de comprobante </label>
+                    </div>
+                    <div class="col">
+                        <input name="tipoConsulta" id="cuenta" type="radio" formControlName="tipoConsulta"
+                            value="cuentaContable">
+                        <label class="pl-3" for="cuenta"> Número de la cuenta contable </label>
+                    </div>
+                    <div class="col d-flex">
+                        <button (click)="mostrarBorrador()" class="btn btn-primary px-3 py-2 ml-auto text-light"> Mostrar borrador </button>
+                    </div>
+                </div>
+            </form>
+            <div *ngIf="consulta === undefined || consulta === null">
+                <ngx-general-table [config]="configBorrador" [datos]="datosBorrador"> </ngx-general-table>
+            </div>
+            <!-- <ngx-tabla-boletin [config]="configBorrador" [datos]="datosBorrador"> </ngx-tabla-boletin> -->
+            <div *ngIf="consulta === 'cuentaContable'">
+                <form [formGroup]="cuentasForm">
+                    <div class="row mt-4">
+                        <div class="col">
+                            <label for="numeroCuenta"> Número de la cuenta contable </label>
+                            <select class="form-control" name="numeroCuenta" id="numeroCuenta" formControlName="numeroCuenta" [class.is-invalid]="esInvalido(cuentasForm,'numeroCuenta')">
+                                <option hidden disabled> Elegir... </option>
+                                <option *ngFor="let cuenta of cuentasContables" value={{cuenta}}> {{cuenta}}</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="numeroCuenta"> Nombre de cuenta </label>
+                            <input class="form-control" name="numeroCuenta" id="numeroCuenta" type="text" value="Bancolombia inversion" disabled>
+                        </div>
+                        <div class="col">
+                            <button (click)="consultar()" class="btn btn-primary px-3 py-2 mt-3 text-light"> Consultar </button>
+                        </div>
+                    </div>
+                    <small class="message m-2" *ngIf="mensaje"> Los campos en rojo son requeridos* </small>
+                </form>
+
+                <ngx-general-table class="m-3" [config]="configuracionCuentas" [datos]="datosCuentas">
+                </ngx-general-table>
+            </div>
+            
+            <div *ngIf="consulta === 'tipoComprobante'">    
+                <form [formGroup]="comprobanteForm">
+                    <div class="row mt-4">
+                        <div class="col">
+                            <label for="tipoComprobante"> Tipo de comprobante </label>
+                            <select class="form-control" name="tipoComprobante" id="tipoComprobante" formControlName="tipoComprobante" [class.is-invalid]="esInvalido(comprobanteForm,'tipoComprobante')">
+                                <option disabled hidden> Elegir... </option>
+                                <option *ngFor="let tipo of tiposComprobante" value={{tipo}}> {{tipo}}</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="comprobante"> Comprobante </label>
+                            <select class="form-control" name="comprobante" id="comprobante" formControlName="comprobante" [class.is-invalid]="esInvalido(comprobanteForm,'comprobante')">
+                                <option disabled hidden> Elegir... </option>
+                                <option *ngFor="let comprobante of comprobantes" value={{comprobante}}> {{comprobante}}</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <button (click)="consultar()" class="btn btn-primary px-3 py-2 mt-3 text-light"> Consultar </button>
+                        </div>
+                    </div>
+                    <small class="message m-2" *ngIf="mensaje"> Los campos en rojo son requeridos* </small>
+                </form>
+
+                <ngx-general-table class="m-3" [config]="configuracionComprobante" [datos]="datosComprobante">
+                </ngx-general-table>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            <button matStepperPrevious type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
+                Volver
+            </button>
+        </div>
+        <div class="col">
+            <button matStepperNext class="btn btn-success px-3 py-2 my-2 text-light">
+                Siguiente
+            </button>
+        </div>
+    </div>
+</div>

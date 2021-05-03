@@ -32,6 +32,11 @@ import { PdfviewsharedComponent } from './components/pdfviewshared/pdfviewshared
 import { TablaReporteMensualPacComponent } from './components/tabla-reporte-mensual-pac/tabla-reporte-mensual-pac.component';
 import { TablaReporteRubrosComponent } from './components/tabla-reporte-rubros/tabla-reporte-rubros.component';
 import { ContabilizacionComponent } from './components/contabilizacion/contabilizacion.component';
+import { TablaReporteSumasComponent } from './components/tabla-reporte-sumas/tabla-reporte-sumas.component';
+import { TablaReporteTotalesComponent } from './components/tabla-reporte-totales/tabla-reporte-totales.component';
+import { TablaBorradorBoletinComponent } from './components/tabla-borrador-boletin/tabla-borrador-boletin.component';
+import { TablaBoletinComponent } from './components/tabla-boletin/tabla-boletin.component';
+
 
 
 @NgModule({
@@ -49,6 +54,7 @@ import { ContabilizacionComponent } from './components/contabilizacion/contabili
     FileUploadComponent,
     TableComponent,
     TablaReporteMensualPacComponent,
+    TablaBoletinComponent,
     ContabilizacionComponent,
   ],
   imports: [
@@ -83,6 +89,10 @@ import { ContabilizacionComponent } from './components/contabilizacion/contabili
     TablaReporteMensualPacComponent,
     TablaReporteRubrosComponent,
     ContabilizacionComponent,
+    TablaReporteSumasComponent,
+    TablaReporteTotalesComponent,
+    TablaBorradorBoletinComponent,
+    TablaBoletinComponent,
   ],
   providers: [
     DatePipe,
@@ -99,4 +109,3 @@ export class SharedModule { }
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
-

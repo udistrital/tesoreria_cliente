@@ -1,0 +1,33 @@
+<div class="container bg-white p-5 border rounded">
+    <div class="row">
+        <div class="col py-2">
+            <h5 class="card-title text-center text-primary text-uppercase">
+                NUEVA DECLARACIÓN DE RETENCIÓN
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-horizontal-stepper linear #stepper>
+                <mat-step [stepControl]="datosDeclaracionGroup">
+                    <ng-template matStepLabel>Inicio</ng-template>
+                    <div class="container">
+                        <ngx-set-datosdeclaracion></ngx-set-datosdeclaracion>
+                    </div>
+                </mat-step>
+                <mat-step [stepControl]="detalleDeclaracionGroup">
+                    <ng-template matStepLabel>Detalle</ng-template>
+                    <div class="container">
+                        <ngx-set-detalledeclaracion></ngx-set-detalledeclaracion>
+                    </div>
+                </mat-step>
+                <mat-step [stepControl]="resumenDeclaracionGroup">
+                    <ng-template matStepLabel>Guardar</ng-template>
+                    <div class="container">
+                        <ngx-set-resumendeclaracion></ngx-set-resumendeclaracion>
+                    </div>
+                </mat-step>
+            </mat-horizontal-stepper>
+        </div>
+    </div>
+</div>

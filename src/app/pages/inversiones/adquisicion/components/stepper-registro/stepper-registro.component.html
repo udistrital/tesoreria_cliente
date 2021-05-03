@@ -2,17 +2,23 @@
     <div class="row">
         <div class="col py-2">
             <h5 class="card-title text-center text-primary text-uppercase">
-                REGISTRAR NUEVA ADQUISICIÓN
+                REGISTRAR NUEVA INVERSIÓN
             </h5>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <mat-horizontal-stepper linear #stepper>
-                <mat-step [stepControl]="infoAdquisicionGroup">
+                <mat-step *ngIf="tipoInversion === 'adquisicion'" [stepControl]="infoAdquisicionGroup">
                     <ng-template matStepLabel>Inicio</ng-template>
                     <div class="container">
                         <ngx-set-procesoadquisicion></ngx-set-procesoadquisicion>
+                    </div>
+                </mat-step>
+                <mat-step *ngIf="tipoInversion === 'reinversion'" [stepControl]="infoReinversionGroup">
+                    <ng-template matStepLabel>Inicio</ng-template>
+                    <div class="container">
+                        <ngx-set-procesoreinversion></ngx-set-procesoreinversion>
                     </div>
                 </mat-step>
                 <mat-step [stepControl]="inversionInicialGroup">
@@ -21,7 +27,7 @@
                         <ngx-set-infoinversioninicial></ngx-set-infoinversioninicial>
                     </div>
                 </mat-step>
-                <mat-step [stepControl]="causacionInicialGroup">
+                <mat-step [stepControl]="contabilizacionGroup">
                     <ng-template matStepLabel>Contabilización</ng-template>
                     <div class="container">
                         <ngx-set-contabilizacion></ngx-set-contabilizacion>

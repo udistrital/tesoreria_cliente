@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { GetVigenciaActual, GetArbolRubro } from '../../../../../shared/actions/shared.actions';
 import { getVigenciaActual, getNodoSeleccionado } from '../../../../../shared/selectors/shared.selectors';
@@ -8,7 +8,7 @@ import { getVigenciaActual, getNodoSeleccionado } from '../../../../../shared/se
   templateUrl: './rubro-aprobacion.component.html',
   styleUrls: ['./rubro-aprobacion.component.scss']
 })
-export class RubroAprobacionComponent implements OnInit {
+export class RubroAprobacionComponent implements OnInit, OnDestroy {
 
   subscription3$: any;
   rubroSeleccionado: any;
@@ -21,7 +21,10 @@ export class RubroAprobacionComponent implements OnInit {
     this.store.dispatch(GetVigenciaActual({ offset: 0 }));
     this.store.dispatch(GetArbolRubro({ branch: '3' }));
   }
-
+  ngOnDestroy(): void {
+    this.subscription2$.unsubscribe();
+    this.subscription3$.unsubscribe();
+  }
   ngOnInit() {
     this.subscription3$ = this.store.select(getVigenciaActual).subscribe((vigencia: any) => {
       if (vigencia) {

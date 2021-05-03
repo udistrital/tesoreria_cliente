@@ -18,43 +18,43 @@
         <div class="row pt-2">
             <div class="col-md-4">
                 <label>Tipo de ID</label>
-                <input type="text" class="form-control" value=" " readonly>
+                <input type="text" class="form-control" value="{{infoFuncionario?.tipoId.Nombre}}" readonly>
             </div>
             <div class="col-md-4">
                 <label>Número de ID</label>
-                <input type="text" class="form-control" value=" " readonly>
+                <input type="text" class="form-control" value="{{infoFuncionario?.numeroId}}" readonly>
             </div>
             <div class="col-md-4">
                 <label>Área Funcional</label>
-                <input type="text" class="form-control" value=" " readonly>
+                <input type="text" class="form-control" value="{{infoFuncionario?.areaFuncional?.label}}" readonly>
             </div>
         </div>
         <div class="row pt-2">
             <div class="col-md-4">
                 <label>Nombres</label>
-                <input type="text" class="form-control" value=" " readonly>
+                <input type="text" class="form-control" value="{{infoFuncionario?.tercero?.Nombres}}" readonly>
             </div>
             <div class="col-md-4">
                 <label>Apellidos</label>
-                <input type="text" class="form-control" value=" " readonly>
+                <input type="text" class="form-control" value="{{infoFuncionario?.tercero?.Apellidos}}" readonly>
             </div>
             <div class="col-md-4">
                 <label>Dirección</label>
-                <input type="text" class="form-control" value=" " readonly>
+                <input type="text" class="form-control" value="{{infoFuncionario?.tercero?.Direccion}}" readonly>
             </div>
         </div>
         <div class="row pt-2">
             <div class="col-md-4">
                 <label>Correo Electrónico</label>
-                <input type="text" class="form-control" value=" " readonly>
+                <input type="text" class="form-control" value="{{infoFuncionario?.tercero?.Correo}}" readonly>
             </div>
             <div class="col-md-4">
                 <label>Teléfono Móvil</label>
-                <input type="text" class="form-control" value=" " readonly>
+                <input type="text" class="form-control" value="{{infoFuncionario?.tercero?.Movil}}" readonly>
             </div>
             <div class="col-md-4">
                 <label>Teléfono Fijo</label>
-                <input type="text" class="form-control" value=" " readonly>
+                <input type="text" class="form-control" value="{{infoFuncionario?.tercero?.Fijo}}" readonly>
             </div>
         </div>
     </div>
@@ -71,29 +71,29 @@
         <div class="row pt-2">
             <div class="col-md-6">
                 <label>Nombre Ordenador del Gasto</label>
-                <input type="text" class="form-control" value=" " readonly>
+                <input type="text" class="form-control" value="{{descripcionSolicitud?.ordenadorGasto?.NombreOrdenador}}" readonly>
             </div>
             <div class="col-md-6">
                 <label>Cargo Ordenador del Gasto</label>
-                <input type="text" class="form-control" value=" " readonly>
+                <input type="text" class="form-control" value="{{descripcionSolicitud?.ordenadorGasto?.RolOrdenador}}" readonly>
             </div>
         </div>
         <div class="row pt-2">
             <div class="col-md-6">
                 <label>Objetivo</label>
-                <textarea class="form-control" rows="3" readonly></textarea>
+                <textarea class="form-control" rows="3" readonly>{{descripcionSolicitud?.objetivo}}</textarea>
             </div>
             <div class="col-md-6">
                 <div class="row">
                     <div class="col">
                         <label>Fecha del Evento</label>
-                        <input type="text" class="form-control" value=" " readonly>
+                        <input type="text" class="form-control" value="{{descripcionSolicitud?.fecha}}" readonly>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <label>Dependencia</label>
-                        <input type="text" class="form-control" value=" " readonly>
+                        <input type="text" class="form-control" value="{{descripcionSolicitud?.dependencia?.Nombre}}" readonly>
                     </div>
                 </div>
             </div>
@@ -101,19 +101,19 @@
         <div class="row pt-2">
             <div class="col-md-6">
                 <label>Justificación</label>
-                <textarea class="form-control" rows="3" readonly></textarea>
+                <textarea class="form-control" rows="3" readonly>{{descripcionSolicitud?.justificacion}}</textarea>
             </div>
             <div class="col-md-6">
                 <div class="row">
                     <div class="col">
                         <label>Facultad</label>
-                        <input type="text" class="form-control" value=" " readonly>
+                        <input type="text" class="form-control" value="{{descripcionSolicitud?.facultad?.Nombre}}" readonly>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <label>Proyecto Curricular</label>
-                        <input type="text" class="form-control" value=" " readonly>
+                        <input type="text" class="form-control" value="{{descripcionSolicitud?.proyecto?.Nombre}}" readonly>
                     </div>
                 </div>
             </div>
@@ -148,30 +148,32 @@
             </div>
         </div>
         <!-- Grupo: Lista de Tipos de Avance -->
-        <div class="container pt-3 ">
-            <div class="row">
-                <div class="col-md-12">
-                    <button #btnTiposAvances class="card-title col-md-12 btn btn-secondary text-white" type="button" data-toggle="collapse" data-target="#collapseTiposAvances" aria-expanded="false" aria-controls="collapseTiposAvances" (click)="mostrarOcultarTiposAvances(btnTiposAvances.getAttribute('aria-expanded'))">
-                        <i class="far {{mostrarOcultarIcono}} text-ligth pr-3"></i><span>Tipo de Avance</span>
-                    </button>
+        <div *ngFor="let tipoavance of tiposAvances; index as i" class="container pt-3 ">
+            <div class="container pt-3 ">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button #btnTiposAvances class="card-title col-md-12 btn btn-secondary text-white" type="button" data-toggle="collapse" [attr.data-target]="'#collapseTiposAvances'+i" aria-expanded="false" aria-controls="collapseTiposAvances" (click)="mostrarOcultarTiposAvances(btnTiposAvances.getAttribute('aria-expanded'), i)">
+                            <i class="far {{tiposAvances[i].mostrarOcultarIcono}} text-ligth pr-3"></i><span>{{tipoavance.CodigoAbreviacion}} - {{tipoavance.Nombre}}</span>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <!-- Tabla: Listado de Requisitos-->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="collapse" id="collapseTiposAvances">
-                        <div class="card card-body">
-                            <!-- Tabla General Adaptada Requisitos -->
-                            <ngx-general-table [config]="configRequisitos" [datos]="datosRequisitos">
-                            </ngx-general-table>
-                            <!-- Tabla General Adaptada Especificaciones-->
-                            <ngx-general-table [config]="configDetalle" [datos]="datosDetalle">
-                            </ngx-general-table>
+                <!-- Tabla: Listado de Requisitos-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="collapse" id="collapseTiposAvances{{ i }}">
+                            <div class="card card-body">
+                                <!-- Tabla General Adaptada Requisitos -->
+                                <ngx-general-table [config]="tipoavance.configrequisitos" [datos]="tipoavance.requisitos">
+                                </ngx-general-table>
+                                <!-- Tabla General Adaptada Especificaciones-->
+                                <ngx-general-table [config]="tipoavance.configespecificaciones" [datos]="tipoavance.especificaciones">
+                                </ngx-general-table>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- Fin Tabla: Listado de Requisitos-->
             </div>
-            <!-- Fin Tabla: Listado de Requisitos-->
         </div>
         <!-- Fin Grupo: Lista de Tipos de Avance -->
 
@@ -182,7 +184,7 @@
             <div class="col-sm-5"></div>
             <label class="col-sm-3 col-form-label text-center">Total Avance Solicitado</label>
             <div class="col-sm-4">
-                <input type="text" value="{{ '0'|currency }}" class="form-control">
+                <input type="text" value="{{ totalAvance|currency }}" class="form-control">
             </div>
         </div>
     </div>
@@ -197,7 +199,7 @@
                 <button mat-button matStepperPrevious class="btn btn-primary text-white m-0 mt-4">Regresar</button>
             </div>
             <div class="col-md-6 form-group">
-                <button type="button" class="btn btn-success text-white m-0 mt-4" data-toggle="modal" data-target="#exampleModal2">
+                <button type="button" class="btn btn-success text-white m-0 mt-4" (click)="guardar()">
                     GUARDAR</button>
             </div>
         </div>

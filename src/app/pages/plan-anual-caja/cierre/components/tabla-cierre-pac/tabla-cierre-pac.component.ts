@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CONFIGURACION_TABLA_REPORTE, DATOS_TABLA_REPORTE } from '../../../reporte/interfaces/interfaces';
+import { CONFIGURACION_TABLA_REPORTE, DATOS_TABLA_REPORTE, DATOS_TOTALES_TABLA_REPORTE } from '../../../reporte/interfaces/interfaces';
 
 @Component({
   selector: 'ngx-tabla-cierre-pac',
@@ -10,8 +10,12 @@ export class TablaCierrePacComponent implements OnInit {
 
   datos: any;
   configuracion: any;
+  title: string;
+  totales: any;
 
   constructor() {
+    this.title = 'CIERRE PLAN MENSUALIZADO DE CAJA';
+    this.totales = DATOS_TOTALES_TABLA_REPORTE;
     this.configuracion = CONFIGURACION_TABLA_REPORTE;
     this.datos = (DATOS_TABLA_REPORTE as any[]).map((element: any) => {
       return {
@@ -25,7 +29,8 @@ export class TablaCierrePacComponent implements OnInit {
               return x.Nombre;
             }),
           };
-        })
+        }),
+        Totales: element.Totales ? element.Totales : undefined
       };
     });
   }

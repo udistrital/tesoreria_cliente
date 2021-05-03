@@ -1,0 +1,11 @@
+<!-- Subtitulo -->
+<th scope="col" colspan="100" [class]="config.subtitle.class">
+    {{datos.cuentas[0] ? datos.cuentas[0].nombreCuenta: ''}}
+</th>
+<!-- Datos -->
+<ng-container *ngFor="let items of datos.cuentas; index as i">
+    <tr ngx-cell-view [items]="items" [config]="config" [rowspanTable]="rowspanTable" [index]="i"></tr>
+</ng-container>
+
+
+

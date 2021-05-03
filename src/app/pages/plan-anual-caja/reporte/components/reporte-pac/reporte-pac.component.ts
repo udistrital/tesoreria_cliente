@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { LoadCentroGestor, LoadAreaFuncional, GetVigenciaActual } from '../../../../../shared/actions/shared.actions';
@@ -9,9 +10,10 @@ import { getVigenciaActual } from '../../../../../shared/selectors/shared.select
   templateUrl: './reporte-pac.component.html',
   styleUrls: ['./reporte-pac.component.scss']
 })
-export class ReportePacComponent implements OnInit {
+export class ReportePacComponent implements OnInit, OnDestroy {
 
   configuracion: any;
+  FechasForm: FormGroup;
   datos: any[];
   title: any;
   subscription$: any;
@@ -21,6 +23,7 @@ export class ReportePacComponent implements OnInit {
   constructor(
     private store: Store<any>,
     private route: Router,
+    private fb: FormBuilder,
   ) {
     this.store.dispatch(GetVigenciaActual({ offset: 0 }));
     this.title = 'PLAN MENSUALIZADO DE CAJA';
@@ -33,17 +36,23 @@ export class ReportePacComponent implements OnInit {
       label: '01 - Rector',
     }));
   }
-
+  ngOnDestroy(): void {
+    this.subscription3$.unsubscribe();
+  }
   ngOnInit() {
     this.subscription3$ = this.store.select(getVigenciaActual).subscribe((vigencia: any) => {
       if (vigencia) {
-        this.Vigencia = vigencia[0].valor;
+        this.FechasForm = this.fb.group({
+          FechaInicio: [],
+          FechaFin: [],
+          Vigencia: [vigencia[0].valor],
+        });
       }
     });
   }
 
   GenerarReporte() {
-    this.route.navigate(['pages/plan-anual-caja/reporte/tabla-reporte-pac']);
+    this.route.navigate(['pages/plan-anual-caja/reporte/revision-reporte-pac']);
   }
 
 }

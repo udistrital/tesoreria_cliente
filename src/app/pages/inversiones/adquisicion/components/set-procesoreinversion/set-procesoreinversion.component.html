@@ -1,0 +1,67 @@
+<form [formGroup]="infoReinversionGroup" (ngSubmit)="saveForm()">
+    <div class="container">
+        <div class="row">
+            <div class="col pb-3">
+                <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
+                    Proceso de Reinversión
+                </h6>
+            </div>
+        </div>
+        <!-- Seleccion Area Funcional -->
+        <div class="form-group row">
+            <div class="col-md-5">
+                <label for="areaFuncional">Área Funcional</label>
+                <select class="custom-select" id="areaFuncional" formControlName="areaFuncional" [class.is-invalid]="isInvalid('areaFuncional')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>2020</option>
+                    <option>2019</option>
+                </select>
+                <small *ngIf="isInvalid('areaFuncional')" class="text-danger">Seleccione una opción</small>
+            </div>
+        </div>
+        <!-- Seleccion NIT y trae el nombre de la entidad bancaria -->
+        <div class="form-group row">
+            <div class="col-md-3">
+                <label>No. Inversión Inicial</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-3">
+                <label>NIT</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-6">
+                <label>Nombre de Entidad Financiera</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+        </div>
+        <!-- Seleccion de Recursos de compra y tipo de titulo valor -->
+        <div class="form-group row">
+            <div class="col-md-6">
+                <label>Recursos de la Compra</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-6">
+                <label>Tipo de Título Valor</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+        </div>
+
+        <!-- Botones: Volver a registro, Siguiente -->
+        <div class="container">
+            <div class="row pt-2 text-center">
+                <div class="col-md-6">
+                    <a routerLink="../lista">
+                        <button type="button" class="btn btn-primary col-md-7 m-0 mt-4 text-white">
+                            Volver a registros
+                        </button>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <button mat-button matStepperNext type="submit" class="btn btn-success col-md-7 m-0 mt-4">
+                        Siguiente
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

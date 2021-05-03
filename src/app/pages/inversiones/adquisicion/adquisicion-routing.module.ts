@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TableInversionfinancieraComponent } from './components/table-inversionfinanciera/table-inversionfinanciera.component';
 import { StepperRegistroComponent } from './components/stepper-registro/stepper-registro.component';
+import { RendimientosComponent } from './components/rendimientos/rendimientos.component';
 
 
 
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: 'registro',
     component: StepperRegistroComponent,
+  },
+  {
+    path: 'rendimientos',
+    component: RendimientosComponent,
   },
 ];
 

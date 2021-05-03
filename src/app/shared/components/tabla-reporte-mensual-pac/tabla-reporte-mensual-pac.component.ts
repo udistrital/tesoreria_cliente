@@ -12,6 +12,8 @@ export class TablaReporteMensualPacComponent implements OnInit, OnChanges {
 
   @Input() config: any;
   @Input() datos: any;
+  @Input() Title: any;
+  @Input() totales: any;
   @Output() selectedAction: EventEmitter<any>;
   Subtotal: any;
   stringBusqueda: string;
