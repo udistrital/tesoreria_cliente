@@ -53,6 +53,11 @@ const routes: Routes = [{
       .then(m => m.AcreedoresModule),
     },
     {
+      path: 'recaudo-matriculas',
+      loadChildren: () => import('./recaudo-matriculas/recaudo-matriculas.module')
+      .then(m => m.RecaudoMatriculasModule),
+    },
+    {
       path: 'ingresosyretenciones',
       loadChildren: () => import('./certificado-retenciones/certificado-retenciones.module')
       .then(m => m.CertificadoRetencionesModule),

@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-center p-4">
+                <h5 class="text-primary text-center font-weight-bold pb-4">Crear Cuota
+                </h5>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="form-group">
+                <label>Valor Total a Diferir:</label>
+                <input currencyMask type="text" [options]="{ prefix: '$ ', thousands: ',', decimal: '.' }"
+                    class="form-control text-right" placeholder="">
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <label>Fecha Limite:</label>
+                <input [nbDatepicker]="datepicker" class="form-control text-center">
+                <nb-datepicker #datepicker></nb-datepicker>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-flex justify-content-between">
+    <button type="button" class="btn btn-light px-3 py-2 my-3" (click)="OnClose()">Cancelar</button>
+    <button type="button" class="btn btn-primary px-3 py-2 my-3 text-light" (click)="OnClose()">Guardar</button>
+</div>
