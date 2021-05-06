@@ -20,10 +20,11 @@
                     <label class="p-2 font-weight-bold" for="valor"> Valor </label> <br>
                     <input class="form-control" name="valor" id="valor" value="{{totalAportes() | currency}}" disabled>
                 </div>
-                <div class="col p-2">
-                    <button class="btn btn-primary px-3 py-2 my-2 text-light" (click)="agregar()"> Agregar <i class="fas fa-plus"></i> </button>
+                <div class="col p-2 align-self-end">
+                    <button class="btn btn-primary px-3 py-2 text-light" (click)="agregar()"> Agregar <i class="fas fa-plus"></i> </button>
                 </div>
             </div>
+            <small class="message m-2" *ngIf="mensaje"> Los campos en rojo son requeridos* </small> 
         </form>
         <div class="card-body">
             <ngx-general-table [config]="configuration" [datos]="datos"></ngx-general-table>
