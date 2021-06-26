@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <div class="card p-3 m-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 px-1 rounded">
+            Lista de consignaciones
+        </div>
+        <div class="card-body">
+            <ngx-general-table [config]="configurationConsignaciones" [datos]="datosConsignaciones"></ngx-general-table>
+            <nav class="mt-2">
+                <ul class="pagination justify-content-end">
+                    <p class="p-2 mx-2">Página: </p>
+                    <li class="page-item"><a class="page-link text-dark" (click)="anterior()"> Anterior </a></li>
+                    <li class="page-item"><a class="page-link text-dark"> 1 </a></li>
+                    <li class="page-item"><a class="page-link text-dark"> 2 </a></li>
+                    <li class="page-item"><a class="page-link text-dark"> 3 </a></li>
+                    <li class="page-item"><a class="page-link text-dark" (click)="siguiente()">Siguiente</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div *ngIf="!aportes" class="row m-2">
+            <div class="col p-2">
+                <label class="p-2 font-weight-bold" for="valorEfectivo"> Total efectivo: </label> <br>
+                <input class="form-control" name="valorEfectivo" id="valorEfectivo" disabled value="{{totalEfectivo() | currency}}">
+            </div>
+            <div class="col p-2">
+                <label class="p-2 font-weight-bold" for="valorCheques"> Total cheque: </label> <br>
+                <input class="form-control" name="valorCheques" id="valorCheques" disabled value="{{totalCheque() | currency}}">
+            </div>
+            <div class="col p-2">
+                <label class="p-2 font-weight-bold" for="valorDatafono"> Total datáfono: </label> <br>
+                <input class="form-control" name="valorDatafono" id="valorDatafono" disabled value="{{totalDatafono() | currency}}">
+            </div>
+            <div class="col p-2">
+                <label class="p-2 font-weight-bold" for="valorTotal"> Total: </label> <br>
+                <input class="form-control" name="valorTotal" id="valorTotal" disabled value="{{total() | currency}}">
+            </div>
+        </div>
+        <div *ngIf="aportes" class="row m-2">
+            <div class="col-4 ml-3 p-2">
+                <label class="p-2 font-weight-bold" for="valorDevengo"> Total: </label> <br>
+                <input class="form-control" id="valorDevengo" disabled value="{{totalAportes() | currency}}">
+            </div>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            <button matStepperPrevious type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
+                Volver
+            </button>
+        </div>
+        <div class="col">
+            <button matStepperNext class="btn btn-success px-3 py-2 my-2 text-light" type="submit">
+                Siguiente
+            </button>
+        </div>
+    </div>
+</div>
