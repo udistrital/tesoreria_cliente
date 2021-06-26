@@ -59,9 +59,9 @@
                     </thead>
                     <!-- Elementos Relacionados -->
                     <ng-container *ngFor="let cuentas of datos, index as i">
-                        <tbody ngx-tabla-borrador-boletin [config]="config" [datos]="cuentas"
+                        <ngx-tabla-borrador-boletin [config]="config" [datos]="cuentas"
                             [rowspanTable]="rowspanTable" [index]="i">
-                        </tbody>
+                        </ngx-tabla-borrador-boletin>
                     </ng-container>
                 </table>
             </div>

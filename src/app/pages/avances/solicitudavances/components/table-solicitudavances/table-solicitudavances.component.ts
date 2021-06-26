@@ -49,13 +49,13 @@ export class TableSolicitudavancesComponent implements OnInit, OnDestroy {
           this.datosSolicitudes.forEach(element => {
             element.estadoSolicitud = element.EstadoTipoSolicitud.EstadoId.Nombre;
 
-            const area = this.areasFuncionales.find(area =>
+            const areaRes = this.areasFuncionales.find(area =>
               area.Id === element.AreaFuncionalId);
 
             // const area = this.areasFuncionales.find((ar: any) =>
               // ar.Id === element.AreaFuncionalId);
 
-            element.areaFuncional = area.Id + ' - ' + area.Nombre;
+            element.areaFuncional = areaRes.Id + ' - ' + areaRes.Nombre;
           });
         } /*else if (accion.tiposAvances.idActualizado) {
           const tipoAvance = this.datosTablaTipos.find((element: any) =>
