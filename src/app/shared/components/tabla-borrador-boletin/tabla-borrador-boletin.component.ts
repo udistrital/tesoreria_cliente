@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: '[ngx-tabla-borrador-boletin]',
+  selector: 'ngx-tabla-borrador-boletin',
   templateUrl: './tabla-borrador-boletin.component.html',
   styleUrls: ['./tabla-borrador-boletin.component.scss']
 })
