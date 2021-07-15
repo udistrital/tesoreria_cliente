@@ -10,8 +10,8 @@ steps:
     branch:
     - develop
     - feature/*
+    - hotfix/*
     - release/*
-    - release
     event:
     - push
 
@@ -23,8 +23,8 @@ steps:
     branch:
     - develop
     - feature/*
+    - hotfix/*
     - release/*
-    - release
     event:
     - push
 
@@ -36,8 +36,8 @@ steps:
     branch:
     - develop
     - feature/*
+    - hotfix/*
     - release/*
-    - release
     event:
     - push
 
@@ -58,6 +58,9 @@ steps:
   when:
     branch:
     - unitest
+    - develop
+    - feature/*
+    - hotfix/*
 
 - name: run_sonar_scanner
   image: aosapps/drone-sonar-plugin
@@ -70,8 +73,8 @@ steps:
     branch:
     - develop
     - feature/*
+    - hotfix/*
     - release/*
-    - release
     event:
     - push
 
@@ -85,7 +88,7 @@ steps:
   when:
     branch:
     - release/*
-    - release
+    - develop
     event:
     - push
 
@@ -98,6 +101,7 @@ steps:
   when:
     branch:
     - master
+    - hotfix/*
     event:
     - push
 
@@ -116,7 +120,6 @@ steps:
   when:
     branch:
     - release/*
-    - release
     event:
     - push
 
@@ -161,40 +164,40 @@ steps:
   when:
     branch:
     - develop
-    - release/*
+    - hotfix/*
     - master
-    - release
+    - release/*
     event:
     - push
     status:
     - failure
     - success
 
-- name: notify_slack
-  image: plugins/slack
-  settings:
-    webhook:
-      from_secret: slack_webhook
-    channel: deploy
-    template: >
-      {{#success build.status}}
-        :heavy_check_mark:  <{{ build.link }}|SUCCESS> Build #{{build.number}}
-        type: {{ build.event }} - Repo: {{repo.name}}
-        Commit: <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
-        Branch: {{build.branch}} - Autor: {{build.author}}  :sunglasses:
-      {{else}}
-        :x: <{{ build.link }}|FAILURE> Build #{{build.number}}
-        type: {{ build.event }} - Repo: {{repo.name}}
-        Branch: {{build.branch}} - Autor: {{build.author}} :weary:
-        Commit: <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
-      {{/success}}
-  when:
-    branch:
-    - develop
-    - release
-    - master
-    event:
-    - push
-    status:
-    - failure
-    - success
+# - name: notify_slack
+#   image: plugins/slack
+#   settings:
+#     webhook:
+#       from_secret: slack_webhook
+#     channel: deploy
+#     template: >
+#       {{#success build.status}}
+#         :heavy_check_mark:  <{{ build.link }}|SUCCESS> Build #{{build.number}}
+#         type: {{ build.event }} - Repo: {{repo.name}}
+#         Commit: <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
+#         Branch: {{build.branch}} - Autor: {{build.author}}  :sunglasses:
+#       {{else}}
+#         :x: <{{ build.link }}|FAILURE> Build #{{build.number}}
+#         type: {{ build.event }} - Repo: {{repo.name}}
+#         Branch: {{build.branch}} - Autor: {{build.author}} :weary:
+#         Commit: <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
+#       {{/success}}
+#   when:
+#     branch:
+#     - develop
+#     - release
+#     - master
+#     event:
+#     - push
+#     status:
+#     - failure
+#     - success
