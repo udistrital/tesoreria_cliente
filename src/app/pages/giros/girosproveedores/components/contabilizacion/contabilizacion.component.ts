@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { SelectService } from '../../../../../shared/services/select.service';
-import {MatDialog} from '@angular/material/dialog';
+// import {MatDialog} from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { MatStepper } from '@angular/material';
+import { MatStepper, MatDialog } from '@angular/material';
 import { cargarDatosTercero } from '../../actions/giros-proveedores.actions';
 
 @Component({
