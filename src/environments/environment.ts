@@ -55,9 +55,9 @@ export const environment = {
         SIGN_OUT_URL: 'https://autenticacion.portaloas.udistrital.edu.co/oidc/logout',
         SIGN_OUT_REDIRECT_URL: 'http://localhost:4200/',
     },
-    AVANCES_CRUD: 'http://127.0.0.1:8080/v1/',
+    AVANCES_CRUD: 'http://pruebasapi2.intranetoas.udistrital.edu.co:8212/v1/',
     PARAMETROS_CRUD_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/parametros/',
-    TESORERIA_MID_SERVICE: 'http://localhost:8081/v1/',
+    TESORERIA_MID_SERVICE: 'http://pruebasapi2.intranetoas.udistrital.edu.co:8214/v1/',
     TERCEROS_CRUD_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/terceros_crud/v1/',
     ADMINISTRATIVA_AMAZON_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/administrativa_amazon_api/v1/',
 
