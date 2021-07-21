@@ -7,7 +7,7 @@ import { CONF_CONT, DATOS_CONT } from '../../interfaces/interfaces';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'ngx-contabilizacion',
+  selector: 'ngx-contabilizacion-seguridad',
   templateUrl: './contabilizacion.component.html',
   styleUrls: ['./contabilizacion.component.scss']
 })

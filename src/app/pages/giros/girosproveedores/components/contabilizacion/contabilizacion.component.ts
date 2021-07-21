@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { SelectService } from '../../../../../shared/services/select.service';
-// import {MatDialog} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { MatStepper, MatDialog } from '@angular/material';
+import { MatStepper} from '@angular/material';
 import { cargarDatosTercero } from '../../actions/giros-proveedores.actions';
 
 @Component({
-  selector: 'ngx-contabilizacion',
+  selector: 'ngx-contabilizacion-proveedores',
   templateUrl: './contabilizacion.component.html',
   styleUrls: ['./contabilizacion.component.scss']
 })

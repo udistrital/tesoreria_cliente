@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { SelectService } from '../../../../../shared/services/select.service';
-// import { MatDialog } from '@angular/material/dialog';
-import { MatStepper, MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatStepper } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { cargarDatosTercero } from '../../actions/girosnomina.actions';
 @Component({
-  selector: 'ngx-contabilizacion',
+  selector: 'ngx-contabilizacion-nomina',
   templateUrl: './contabilizacion.component.html',
   styleUrls: ['./contabilizacion.component.scss']
 })
