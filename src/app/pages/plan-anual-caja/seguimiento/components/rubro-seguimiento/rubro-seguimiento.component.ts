@@ -47,7 +47,7 @@ export class RubroSeguimientoComponent implements OnInit, OnDestroy {
   }
 
   fuenteRecurso() {
-    console.warn('Funcionalidad aún no desarrollada')
+    console.warn('Funcionalidad aún no desarrollada');
   }
 
 }

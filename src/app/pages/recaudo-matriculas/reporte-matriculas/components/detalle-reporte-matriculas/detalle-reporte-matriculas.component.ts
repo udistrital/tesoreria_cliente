@@ -47,7 +47,7 @@ export class DetalleReporteMatriculasComponent implements OnInit, OnDestroy {
   }
 
   OnCreate() {
-    console.warn('Funcionalidad aún no desarrollada')
+    console.warn('Funcionalidad aún no desarrollada');
   }
 
 }

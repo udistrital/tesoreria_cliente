@@ -17,7 +17,7 @@ export class FormRubroPacComponent implements OnInit {
   }
 
   OnCreate() {
-    console.warn('Funcionalidad aún no desarrollada')
+    console.warn('Funcionalidad aún no desarrollada');
   }
 
 }
