@@ -94,7 +94,7 @@ Los siguientes mockups representan la estructura general de la aplicación, mód
 
 | Develop | Release 0.1.0 | Master |
 | -- | -- | -- |
-| [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/tesoreria_cliente/status.svg?ref=refs/heads/develop)](https://hubci.portaloas.udistrital.edu.co/udistrital/tesoreria_cliente) | [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/tesoreria_cliente/status.svg?ref=refs/heads/release)](https://hubci.portaloas.udistrital.edu.co/udistrital/tesoreria_cliente) | [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/tesoreria_cliente/status.svg?ref=refs/heads/master)](https://hubci.portaloas.udistrital.edu.co/udistrital/tesoreria_cliente) |
+| [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/tesoreria_cliente/status.svg?ref=refs/heads/develop)](https://hubci.portaloas.udistrital.edu.co/udistrital/tesoreria_cliente) | [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/tesoreria_cliente/status.svg?ref=refs/heads/release/0.1.0)](https://hubci.portaloas.udistrital.edu.co/udistrital/tesoreria_cliente) | [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/tesoreria_cliente/status.svg?ref=refs/heads/master)](https://hubci.portaloas.udistrital.edu.co/udistrital/tesoreria_cliente) |
 
 ## Licencia
 
