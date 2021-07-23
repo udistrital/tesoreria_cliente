@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <div class="card p-3 m-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 px-1 rounded">
+            Rubros
+        </div>
+        <form [formGroup]="rubrosForm">
+            <div class="row m-2">
+                <div class="col p-2">
+                    <label class="p-2 font-weight-bold" for="numeroRubro"> Número del rubro </label> <br>
+                    <select class="form-control" name="numeroRubro" id="numeroRubro" formControlName="numeroRubro">
+                        <option *ngFor="let numeroRubro of numerosRubros" value={{numeroRubro}}> {{numeroRubro}} </option>
+                    </select>
+                </div>
+                <div class="col p-2">
+                    <label class="p-2 font-weight-bold" for="nombreRubro"> Nombre rubro </label> <br>
+                    <input class="form-control" name="nombreRubro" id="nombreRubro" value="Programas de pregrado" disabled>
+                </div>
+                <div class="col p-2">
+                    <label class="p-2 font-weight-bold" for="valor"> Valor </label> <br>
+                    <input class="form-control" name="valor" id="valor" value="{{totalAportes() | currency}}" disabled>
+                </div>
+                <div class="col p-2 align-self-end">
+                    <button class="btn btn-primary px-3 py-2 text-light" (click)="agregar()"> Agregar <i class="fas fa-plus"></i> </button>
+                </div>
+            </div>
+            <small class="message m-2" *ngIf="mensaje"> Los campos en rojo son requeridos* </small>
+        </form>
+        <div class="card-body">
+            <ngx-general-table [config]="configuration" [datos]="datos"></ngx-general-table>
+        </div>
+
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            <button matStepperPrevious type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
+                Volver
+            </button>
+        </div>
+        <div class="col">
+            <button (click)="aprobar()" class="btn btn-success px-3 py-2 my-2 text-light" type="submit">
+                Aprobar presupuesto
+            </button>
+        </div>
+    </div>
+</div>

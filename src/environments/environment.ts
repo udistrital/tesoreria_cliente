@@ -48,11 +48,17 @@ export const environment = {
     TOKEN: {
         AUTORIZATION_URL: 'https://autenticacion.portaloas.udistrital.edu.co/oauth2/authorize',
         CLIENTE_ID: 'e36v1MPQk2jbz9KM4SmKhk8Cyw0a',
+        // CLIENTE_ID: 'xsCo1iC2gxLYFl8RVEZqZl4ST2oa',
         RESPONSE_TYPE: 'id_token token',
         SCOPE: 'openid email role',
         REDIRECT_URL: 'http://localhost:4200/',
         SIGN_OUT_URL: 'https://autenticacion.portaloas.udistrital.edu.co/oidc/logout',
         SIGN_OUT_REDIRECT_URL: 'http://localhost:4200/',
     },
+    AVANCES_CRUD: 'http://pruebasapi2.intranetoas.udistrital.edu.co:8212/v1/',
+    PARAMETROS_CRUD_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/parametros/',
+    TESORERIA_MID_SERVICE: 'http://pruebasapi2.intranetoas.udistrital.edu.co:8214/v1/',
+    TERCEROS_CRUD_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/terceros_crud/v1/',
+    ADMINISTRATIVA_AMAZON_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/administrativa_amazon_api/v1/',
 
 };

@@ -12,6 +12,14 @@ export interface State {
   AreaFuncional: any;
   CentroGestor: any;
   ModalidadesSeleccion: any;
+  Vigencias: any;
+  TiposID: any;
+  DatosID: any;
+  Proveedores: any;
+  TelefonosProveedores: any;
+  Ordenadores: any;
+  Dependencias: any;
+  FacultadesProyectos: any;
 }
 
 export const initialState: State = {
@@ -23,6 +31,14 @@ export const initialState: State = {
   AreaFuncional: null,
   CentroGestor: null,
   ModalidadesSeleccion: null,
+  Vigencias: null,
+  TiposID: null,
+  DatosID: {},
+  Proveedores: null,
+  TelefonosProveedores: null,
+  Ordenadores: null,
+  Dependencias: null,
+  FacultadesProyectos: null,
 };
 
 const sharedReducer = createReducer(
@@ -52,6 +68,33 @@ const sharedReducer = createReducer(
   })),
   on(SharedActions.LoadModalidadesSeleccion, (state, action) => ({
     ...state, ModalidadesSeleccion: state.ModalidadesSeleccion = action
+  })),
+  on(SharedActions.loadVigencias, (state, action) => ({
+    ...state, Vigencias: state.Vigencias = action
+  })),
+  on(SharedActions.loadTiposID, (state, action) => ({
+    ...state, TiposID: state.TiposID = action
+  })),
+  on(SharedActions.loadDatosID, (state, action) => {
+    state.DatosID[action.clave] = action;
+    return ({
+      ...state, DatosID: state.DatosID = Object.assign({}, state.DatosID)
+    });
+  }),
+  on(SharedActions.cargarDatosProvedor, (state, action) => ({
+    ...state, Proveedores: state.Proveedores = action
+  })),
+  on(SharedActions.cargarTelefonosProvedores, (state, action) => ({
+    ...state, TelefonosProveedores: state.TelefonosProveedores = action
+  })),
+  on(SharedActions.cargarOdrenadores, (state, action) => ({
+    ...state, Ordenadores: state.Ordenadores = action
+  })),
+  on(SharedActions.cargarDependencias, (state, action) => ({
+    ...state, Dependencias: state.Dependencias = action
+  })),
+  on(SharedActions.cargarFacultadesProyectos, (state, action) => ({
+    ...state, FacultadesProyectos: state.FacultadesProyectos = action
   })),
 );
 

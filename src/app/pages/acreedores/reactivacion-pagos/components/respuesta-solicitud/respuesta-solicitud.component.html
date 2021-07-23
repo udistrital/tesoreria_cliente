@@ -1,0 +1,102 @@
+<div class="container-fluid">
+    <div class="row p-2">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <div class="container-fliud">
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-8">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="d-flex justify-content-center p-4">
+                                                <h5 class="text-primary text-center font-weight-bold pb-4">Anulacion
+                                                    de Cheques</h5>
+                                            </div>
+                                        </div>
+                                        <div class="col-3 d-flex align-items-center justify-content-end">
+                                            <p>Identificacion:</p>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <span class="form-control">{{Solicitud.TipoID}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <span class="form-control">{{Solicitud.NumeroID}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-3 d-flex align-items-center justify-content-end">
+                                            <p>Codigo:</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <span class="form-control">{{Solicitud.Codigo}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-3 d-flex align-items-center justify-content-end">
+                                            <p>Nombre(s):</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <span class="form-control">{{Solicitud.Nombres}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-3 d-flex align-items-center justify-content-end">
+                                            <p>Apellido(s):</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <span class="form-control">{{Solicitud.Apellidos}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-3 d-flex align-items-center justify-content-end">
+                                            <p>Detalle:</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <textarea class="form-control" rows="3"
+                                                    [disabled]="true">{{Solicitud.Detalle}}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 d-flex align-items-center justify-content-center">
+                                            <p>Soportes</p>
+                                        </div>
+                                    </div>
+                                    <div class="row py-2" *ngFor="let item of Solicitud.Archivos; index as i">
+
+                                        <div class="col-9">
+                                            <span class="form-control overflow">{{item.name}}</span>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="d-flex justify-content-center">
+                                                <button class="btn btn-primary text-light" type="button">
+                                                    <!-- <i class="fas fa-times"></i> -->
+                                                    Ver
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2"></div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary px-3 py-2 my-3 text-light"
+                            (click)="OnCreate()">Consultar Orden de Pago</button>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <ngx-btn-volver></ngx-btn-volver>
+                        <button type="button" class="btn btn-primary px-3 py-2 my-3 text-light">Rechazar
+                            Solicitud</button>
+                        <button type="button" class="btn btn-primary px-3 py-2 my-3 text-light">Aprobar
+                            Solicitud</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

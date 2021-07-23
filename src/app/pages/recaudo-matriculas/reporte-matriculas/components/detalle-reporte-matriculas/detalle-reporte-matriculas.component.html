@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row p-2">
+        <div class="col">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="d-flex justify-content-center p-4">
+                                            <h5 class="text-primary text-center font-weight-bold pb-2">Reporte
+                                                Matriculas Diferidas</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-3">
+                                    <div class="col">
+                                        <label>Decano:</label>
+                                        <select class="form-control py-2">
+                                            <option>Fulanito</option>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label>Coordinador de Proyecto:</label>
+                                        <select class="form-control py-2">
+                                            <option>Pepito Perez</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <ngx-general-table [config]="configuracion" [datos]="datos"></ngx-general-table>
+                                <div class="d-flex justify-content-center">
+                                    <button type="button" class="btn btn-primary px-3 py-2 my-3 text-light"
+                                        (click)="OnCreate()">Agregar Registro</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

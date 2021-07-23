@@ -1,0 +1,186 @@
+<form>
+    <h6 class="text-white bg-primary d-inline-block p-2 px-4 rounded">Resumen de Solicitud</h6>
+    <h6 class="text-white bg-dark p-2 px-4 rounded w-100">Información de Solicitud</h6>
+    <div class="row">
+        <div class="col-md-3 form-group">
+            <label>Consecutivo</label>
+            <input class="form-control" disabled value="{{datosResponsable?.consecutivo}}">
+        </div>
+        <div class="col-md-3 form-group">
+            <label>Área Funcional</label>
+            <input class="form-control" disabled value="{{datosResponsable?.areaFuncional?.label}}">
+        </div>
+        <div class="col-md-3 form-group">
+            <label>Fecha</label>
+            <input class="form-control" ngbDatepicker #d="ngbDatepicker" disabled
+                value="{{datosResponsable?.fechaSolicitud | date:'dd/MM/yyyy'}}">
+        </div>
+        <div class="col-md-3 form-group">
+            <label>Tipo de Informe</label>
+            <input class="form-control" disabled
+                value="{{datosResponsable?.tipoInforme === 'practicas' ? 'Prácticas Académicas' : 'Normal'}}">
+        </div>
+    </div>
+    <h6 class="text-white bg-dark p-2 px-4 rounded w-100">Datos del Responsable</h6>
+    <div class="row">
+        <div class="col-md-2 form-group">
+            <label>Tipo de ID</label>
+            <input class="form-control" disabled value="{{datosResponsable?.tipoId}}">
+        </div>
+        <div class="col-md-4 form-group">
+            <label>No. de ID</label>
+            <input class="form-control" disabled value="{{datosResponsable?.numeroId}}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 form-group">
+            <label>Nombres</label>
+            <input class="form-control" disabled>
+        </div>
+        <div class="col-md-4 form-group">
+            <label>Apellidos</label>
+            <input class="form-control" disabled>
+        </div>
+        <div class="col-md-4 form-group">
+            <label>Teléfono Móvil</label>
+            <input class="form-control" disabled>
+        </div>
+    </div>
+    <h6 class="text-white bg-dark p-2 px-4 rounded w-100">Descripción de Legalización</h6>
+    <div class="row">
+        <div class="col-md-4 form-group">
+            <label>Fecha Orden de Pago</label>
+            <input class="form-control" disabled>
+        </div>
+        <div class="col-md-4 form-group">
+            <label>Número Orden de Pago</label>
+            <input class="form-control" disabled value="{{datosLegalizacion?.numeroOrden}}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 form-group">
+            <label>Dependencia</label>
+            <input class="form-control" disabled value="{{datosLegalizacion?.dependencia}}">
+        </div>
+        <div class="col-md-4 form-group">
+            <label>Facultad</label>
+            <input class="form-control" disabled>
+        </div>
+        <div class="col-md-4 form-group">
+            <label>Total Valor Otorgado</label>
+            <input class="form-control" disabled value="{{datosLegalizacion?.totalAvance | currency}}">
+        </div>
+    </div>
+    <div class="row border-top border-primary mx-1 my-3"></div>
+    <h6 class="text-white bg-dark p-2 px-4 rounded w-100">Registro de Información</h6>
+    <div class="row pb-3">
+        <div class="col">
+            <button #btnLegalizacion class="btn btn-primary-700 w-100" type="button" data-toggle="collapse"
+                data-target="#collapseLegalizacion" aria-expanded="false" aria-controls="collapseLegalizacion"
+                (click)="mostrarOcultarRegistrosLegalizacion(btnLegalizacion.getAttribute('aria-expanded'))">
+                <i class="fas {{mostrarOcultarIconoLegalizacion}} px-2"></i>
+                Registros de Legalización
+            </button>
+        </div>
+    </div>
+    <div class="collapse" id="collapseLegalizacion">
+        <div class="container pt-2">
+            <ngx-general-table [config]="configRegistrosLegalizacion" [datos]="datosRegistrosLegalizacion">
+            </ngx-general-table>
+        </div>
+    </div>
+    <div class="row pb-3">
+        <div class="col">
+            <button #btnRetenciones class="btn btn-primary-700 w-100" type="button" data-toggle="collapse"
+                data-target="#collapseRetenciones" aria-expanded="false" aria-controls="collapseRetenciones"
+                (click)="mostrarOcultarConsolidado(btnRetenciones.getAttribute('aria-expanded'))">
+                <i class="fas {{mostrarOcultarIconoRetenciones}} px-2"></i>
+                Consolidado de Retenciones
+            </button>
+        </div>
+    </div>
+    <div class="collapse" id="collapseRetenciones">
+        <div class="container pt-2">
+            <ngx-general-table [config]="configRetenciones" [datos]="datosRetenciones"></ngx-general-table>
+        </div>
+    </div>
+
+    <ng-container *ngIf="datosResponsable?.tipoInforme === 'practicas'">
+        <h6 class="text-white bg-dark p-2 px-4 rounded w-100">Información de Práctica</h6>
+        <div class="row">
+            <div class="col-md-3 form-group">
+                <label>Fecha de la práctica</label>
+                <input class="form-control" disabled value="{{datosPracticas?.fecha}}">
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Destino de la práctica</label>
+                <input class="form-control" disabled value="{{datosPracticas?.destinoPractica}}">
+            </div>
+            <div class="col-md-5 form-group">
+                <label>Proyecto Curricular</label>
+                <input class="form-control" disabled value="{{datosPracticas?.proyectoCurricular}}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 form-group">
+                <label>Correo de Responsable</label>
+                <input class="form-control" disabled>
+            </div>
+            <div class="col-md-3 form-group">
+                <label>Teléfono de Responsable</label>
+                <input class="form-control" disabled>
+            </div>
+            <div class="col-md-3 form-group">
+                <label>Valor del Avance</label>
+                <input class="form-control" disabled  value="{{datosPracticas?.valorAvance}}">
+            </div>
+            <div class="col-md-3 form-group">
+                <label>Valor del Reintegro</label>
+                <input class="form-control" disabled value="{{datosPracticas?.valorReintegro}}">
+            </div>
+        </div>
+        <h6 class="text-white bg-dark p-2 px-4 rounded w-100">Información de Estudiantes</h6>
+        <div class="container py-2 px-0">
+            <ngx-general-table [config]="configEstudiantes" [datos]="datosEstudiantes"></ngx-general-table>
+        </div>
+        <h6 class="text-white bg-dark p-2 px-4 rounded w-100">Anexos</h6>
+        <div class="container py-2 px-0">
+            <ngx-general-table [config]="configAnexos" [datos]="datosAnexos"></ngx-general-table>
+        </div>
+    </ng-container>
+
+    <div class="row justify-content-between">
+        <div class="col-md-2">
+            <button mat-button matStepperPrevious class="btn btn-primary text-white w-100">Anterior</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#guardarModal">
+                Guardar
+            </button>
+        </div>
+    </div>
+</form>
+
+<div class="modal fade" id="guardarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Guardar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea Guardar los cambios?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <a routerLink="../lista" role="button" class="btn btn-primary text-white"
+                    data-dismiss="modal">
+                    Guardar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

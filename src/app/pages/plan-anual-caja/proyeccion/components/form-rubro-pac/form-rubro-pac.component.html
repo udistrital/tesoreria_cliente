@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row p-2">
+        <div class="col">
+            <ngx-datos-generales-iniciales [Title]="title" [Disabled]="true"></ngx-datos-generales-iniciales>
+        </div>
+    </div>
+    <div class="row p-2">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <ngx-seleccion-rubro></ngx-seleccion-rubro>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row p-2">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-center">
+                        <span class="text-primary text-center font-weight-bold">Datos de Proyeccion</span>
+                    </div>
+                    <ngx-form-fuentes></ngx-form-fuentes>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-center pb-3">
+                        <span class="text-primary text-center font-weight-bold">Proyeccion Mensual</span>
+                    </div>
+                    <ngx-form-proyeccion></ngx-form-proyeccion>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row p-2">
+        <div class="col-6 d-flex justify-content-start">
+            <ngx-btn-volver></ngx-btn-volver>
+        </div>
+        <div class="col-6 d-flex justify-content-end">
+            <button type="button" class="btn btn-primary px-3 py-2 my-3 text-light" (click)="OnCreate()">
+                Guardar
+            </button>
+        </div>
+    </div>
+</div>

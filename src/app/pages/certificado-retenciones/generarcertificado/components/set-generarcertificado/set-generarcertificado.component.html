@@ -1,0 +1,98 @@
+<div class="container bg-white p-5 border rounded">
+    <div class="row">
+        <div class="col py-2">
+            <h5 class="card-title text-center text-primary text-uppercase">
+                GENERAR CERTIFICADO
+            </h5>
+        </div>
+    </div>
+    <!-- Seleccionar el area funcional -->
+    <form [formGroup]="generarCertificadoGroup" (ngSubmit)="saveForm()">
+        <p>Completar los siguientes campos:</p>
+        <div class="form-group row">
+            <div class="col-md-5">
+                <label for="areaFuncional">Área Funcional</label>
+                <select class="custom-select" id="areaFuncional" formControlName="areaFuncional" [class.is-invalid]="isInvalid('areaFuncional')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>01</option>
+                    <option>02</option>
+                </select>
+                <small *ngIf="isInvalid('areaFuncional')" class="text-danger">Seleccione una opción</small>
+            </div>
+        </div>
+        <!-- Escribir una descripcion del tipo de declaracion, elegir el tipo de documento -->
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label for="tipoPersona">Tipo de Persona</label>
+                <select class="custom-select" id="tipoPersona" formControlName="tipoPersona" [class.is-invalid]="isInvalid('tipoPersona')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>Natural</option>
+                    <option>Jurídica</option>
+                </select>
+                <small *ngIf="isInvalid('tipoPersona')" class="text-danger">Seleccione una opción</small>
+            </div>
+            <div class="col-md-4">
+                <label for="tipoID">Tipo de ID</label>
+                <select class="custom-select" id="tipoID" formControlName="tipoID" [class.is-invalid]="isInvalid('tipoID')">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>CC</option>
+                    <option>CE</option>
+                </select>
+                <small *ngIf="isInvalid('tipoID')" class="text-danger">Seleccione una opción</small>
+            </div>
+            <div class="col-md-4">
+                <label for="numeroID">Número de ID</label>
+                <input type="number" class="form-control" id="numeroID" formControlName="numeroID" [class.is-invalid]="isInvalid('numeroID')">
+                <small *ngIf="isInvalid('numeroID')" class="text-danger">Ingrese un valor
+                    numérico</small>
+            </div>
+        </div>
+        <div class="row py-3">
+            <div class="col-md-4">
+                <label>Nombres</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Apellidos</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Razón Social</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label>Vigencia</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Fecha de Inicial</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+            <div class=" col-md-4">
+                <label>Fecha de Final</label>
+                <input type="text" class="form-control" value=" " readonly>
+            </div>
+        </div>
+        <!-- Botones: Regresar, Siguiente -->
+        <div class="container">
+            <div class="row pt-2 text-center">
+                <div class="col-md-6">
+                    <a routerLink="../lista">
+                        <button type="button" class="btn btn-primary text-white col-md-7 m-0 mt-4">
+                            Volver a registros
+                        </button>
+                    </a>
+                </div>
+                <div *ngIf="generarCertificadoGroup.valid" class="col-md-6 form-group">
+                    <a routerLink="../consultar">
+                        <button type="submit" class="btn btn-success text-white col-md-7 m-0 mt-4">
+                            Consultar Información
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -21,6 +21,23 @@ import { TimeRangePipe } from './pipes/time-range.pipe';
 import { CellViewComponent } from './components/cell-view/cell-view.component';
 import { CompoundCellComponent } from './components/compound-cell/compound-cell.component';
 import { BtnVolverComponent } from './components/btn-volver/btn-volver.component';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import { FileUploadDirective } from './directives/file-upload.directive';
+import { TableComponent } from './components/table/table.component';
+import * as fromAvances from './reducers/avances.reducer';
+import { AvancesEffects } from './effects/avances.effects';
+import { DescargarcomprobanteComponent } from './components/descargarcomprobante/descargarcomprobante.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { PdfviewsharedComponent } from './components/pdfviewshared/pdfviewshared.component';
+import { TablaReporteMensualPacComponent } from './components/tabla-reporte-mensual-pac/tabla-reporte-mensual-pac.component';
+import { TablaReporteRubrosComponent } from './components/tabla-reporte-rubros/tabla-reporte-rubros.component';
+import { ContabilizacionComponent } from './components/contabilizacion/contabilizacion.component';
+import { TablaReporteSumasComponent } from './components/tabla-reporte-sumas/tabla-reporte-sumas.component';
+import { TablaReporteTotalesComponent } from './components/tabla-reporte-totales/tabla-reporte-totales.component';
+import { TablaBorradorBoletinComponent } from './components/tabla-borrador-boletin/tabla-borrador-boletin.component';
+import { TablaBoletinComponent } from './components/tabla-boletin/tabla-boletin.component';
+
+
 
 @NgModule({
   exports: [
@@ -29,17 +46,26 @@ import { BtnVolverComponent } from './components/btn-volver/btn-volver.component
     DatosGeneralesInicialesComponent,
     MouseOverDirective,
     ArbolRubroComponent,
+    DescargarcomprobanteComponent,
+    PdfviewsharedComponent,
     SelectedRowDirective,
     TimeRangePipe,
     BtnVolverComponent,
+    FileUploadComponent,
+    TableComponent,
+    TablaReporteMensualPacComponent,
+    TablaBoletinComponent,
+    ContabilizacionComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    PdfViewerModule,
     NbTreeGridModule,
     StoreModule.forFeature(fromShared.sharedFeatureKey, fromShared.reducer),
-    EffectsModule.forFeature([SharedEffects])
+    StoreModule.forFeature(fromAvances.avancesFeatureKey, fromAvances.reducer),
+    EffectsModule.forFeature([SharedEffects, AvancesEffects])
   ],
   declarations: [
     GeneralTableComponent,
@@ -48,12 +74,25 @@ import { BtnVolverComponent } from './components/btn-volver/btn-volver.component
     DatosGeneralesInicialesComponent,
     MouseOverDirective,
     ArbolRubroComponent,
+    DescargarcomprobanteComponent,
+    PdfviewsharedComponent,
     SelectedRowDirective,
     MultiPipePipe,
     TimeRangePipe,
     CellViewComponent,
     CompoundCellComponent,
     BtnVolverComponent,
+    TableComponent,
+    FileUploadComponent,
+    FileUploadDirective,
+    TableComponent,
+    TablaReporteMensualPacComponent,
+    TablaReporteRubrosComponent,
+    ContabilizacionComponent,
+    TablaReporteSumasComponent,
+    TablaReporteTotalesComponent,
+    TablaBorradorBoletinComponent,
+    TablaBoletinComponent,
   ],
   providers: [
     DatePipe,
@@ -70,4 +109,3 @@ export class SharedModule { }
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
-

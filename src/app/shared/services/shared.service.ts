@@ -78,6 +78,115 @@ export class SharedService {
     return this.rqManager.get(`vigencia/vigencia_actual_area/1${query}`, params);
   }
 
+  /**
+   * Gets Vigencias
+   * @returns Listado de todas las vigencias
+   */
+  public getVigencias() {
+    this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
+    return this.rqManager.get('vigencia/vigencias_total');
+  }
+
+  /**
+   * Gets TiposID
+   * @returns  Tipos de identificacion de terceros
+   */
+
+  public getTiposID(activo?: boolean) {
+    this.rqManager.setPath('TERCEROS_CRUD_SERVICE');
+    let query = '';
+    if (activo !== null && activo !== undefined)
+      query = `Activo:${activo}`;
+    const params = {
+      fields: 'Nombre,Id',
+      query: query,
+    };
+    return this.rqManager.get('tipo_documento', params);
+  }
+
+  /**
+   * Gets DatosIdentificacion
+   * @returns  Datos de identificacion de terceros
+   */
+
+  public getDatosID(numero?: string, tipo?: number, limit?: number, fields?: string) {
+    this.rqManager.setPath('TERCEROS_CRUD_SERVICE');
+    const params = {
+      query: `Numero:${numero},TipoDocumentoId.Id:${tipo}`,
+      limit: limit ? limit : 1,
+      fields: fields ? fields : 'TerceroId'
+    };
+    return this.rqManager.get('datos_identificacion', params);
+  }
+
+  /**
+   *
+   * @param id Id del proveedor
+   * @param query Parámetros de consulta
+   * @returns Consulta de proveedores
+   */
+  public getDatosProveedores(id?: number, query?: any) {
+    this.rqManager.setPath('ADMINISTRATIVA_AMAZON_SERVICE');
+    return this.rqManager.getv2('informacion_proveedor', id, query);
+  }
+
+  /**
+   *
+   * @param id Id del registro
+   * @param query Parámetros de consulta
+   * @returns Consulta de teléfonos de proveedores
+   */
+  public getTelefonosProveedores(id?: number, query?: any) {
+    this.rqManager.setPath('ADMINISTRATIVA_AMAZON_SERVICE');
+    return this.rqManager.getv2('proveedor_telefono', id, query);
+  }
+
+  /**
+   *
+   * @param id Identificación de orden
+   * @param query Query para buscar ordenes
+   * @param limit Límite de cantidad de ordenes (todos por defecto)
+   * @returns
+   */
+  public getOrdenadores(id?: number, query?: any, limit?: any) {
+    this.rqManager.setPath('ADMINISTRATIVA_AMAZON_SERVICE');
+    if (!id) {
+      if (!limit) limit = 0;
+      if (!query) query = {};
+      if (query.Estado === null || query.Estado === undefined) query.Estado = true;
+    }
+    return this.rqManager.getv2('ordenadores', id, query, null, null, null, limit);
+  }
+
+  /**
+   *
+   * @param id Identificación de dependencia
+   * @param query Parámetros de búsqueda
+   * @param limit Cantidad de registros (todos por defecto)
+   * @returns
+   */
+  public getDependencias(id?: number, query?: any, limit?: any) {
+    this.rqManager.setPath('OIKOS_SERVICE');
+    if (!id) {
+      if (!limit) limit = 0;
+      if (!query) query = {};
+      if (query.Activo === null || query.Activo === undefined) query.Activo = true;
+    }
+    return this.rqManager.getv2('dependencia', id, query, null, null, null, limit);
+  }
+
+  /**
+   *
+   * @param id Identificación de registro
+   * @param query Parámetros de consulta
+   * @param limit Cantidad de registros (todos por defento)
+   * @returns
+   */
+  public getFacultadesProyectos(id?: number, query?: any, limit?: any) {
+    this.rqManager.setPath('OIKOS_SERVICE');
+    if (!id && !limit) limit = 0;
+    return this.rqManager.getv2('dependencia_padre/FacultadesConProyectos', id, query, null, null, null, limit);
+  }
 
 
   /**

@@ -1,0 +1,143 @@
+<form [formGroup]="descripcionGroup" (ngSubmit)="saveForm()">
+    <!-- Grupo: Datos del funcionario -->
+    <div class="container">
+        <div class="row">
+            <div class="col pb-3">
+                <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
+                    Descripción de Solicitud
+                </h6>
+            </div>
+        </div>
+        <!-- Campos: Nombres, Apellidos, Dirección -->
+        <div class="form-group row">
+            <div class="col-md-6">
+                <label>Nombre del Ordenador del Gasto</label>
+                <input value="{{descripcionGroup?.get('ordenadorGasto')?.value?.NombreOrdenador}}" type="text" class="form-control"
+                    readonly>
+            </div>
+            <div class="col-md-6">
+                <label>Cargo del Ordenador del Gasto</label>
+                <mat-select class="form-control" placeholder="Seleccione..." formControlName="ordenadorGasto">
+                    <cdk-virtual-scroll-viewport itemSize="10" minBufferPx="200" maxBufferPx="400" class="vs-viewport">
+                        <mat-option *cdkVirtualFor="let ordenador of ordenadores" class="vs-item" [value]="ordenador">
+                            {{ordenador.RolOrdenador}}
+                        </mat-option>
+                    </cdk-virtual-scroll-viewport>
+                </mat-select>
+                <small *ngIf="ordenadorInvalid" class="text-danger">Complete este campo</small>
+            </div>
+        </div>
+        <!-- Fin Campos: Nombres, Apellidos, Dirección -->
+
+        <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
+
+        <!-- Campos: Correo, Teléfono móvil y fijo -->
+        <div class="form-group row">
+            <div class="col-md-6">
+                <label>Objetivo</label>
+                <textarea class="form-control" placeholder="Descripción de la Solicitud de Avance" formControlName="objetivo" rows="3" [class.is-invalid]="objetivoInvalid"></textarea>
+                <small *ngIf="objetivoInvalid" class="text-danger">Ingrese mínimo 5 caracteres</small>
+            </div>
+            <div class="col-md-6">
+                <div class="row px-3">
+                    <label>Fecha</label>
+                    <div class="input-group">
+                        <input type="date" name="fecha" class="form-control" formControlName="fecha">
+                        <div class="input-group-append">
+                        </div>
+                    </div>
+                </div>
+                <div class="row px-3">
+                    <label>Dependencia</label>
+                    <mat-select class="form-control" placeholder="Seleccione..." formControlName="dependencia">
+                        <cdk-virtual-scroll-viewport itemSize="10" minBufferPx="200" maxBufferPx="400" class="vs-viewport">
+                            <mat-option *cdkVirtualFor="let dependencia of dependencias" class="vs-item" [value]="dependencia">
+                                {{dependencia.Nombre}}
+                            </mat-option>
+                        </cdk-virtual-scroll-viewport>
+                    </mat-select>
+                    <small *ngIf="dependenciaInvalid" class="text-danger">Complete este campo</small>
+                </div>
+            </div>
+        </div>
+        <!-- Fin Campos: Correo, Teléfono móvil y fijo -->
+        <!-- Campos: Correo, Teléfono móvil y fijo -->
+        <div class="form-group row">
+            <div class="col-md-6">
+                <label>Justificación</label>
+                <textarea class="form-control" placeholder="Justificación de la Solicitud de Avance" formControlName="justificacion" rows="3" [class.is-invalid]="justificacionInvalid"></textarea>
+                <small *ngIf="justificacionInvalid" class="text-danger">Ingrese mínimo 5 caracteres</small>
+            </div>
+            <div class="col-md-6">
+                <div class="row px-3">
+                    <label>Facultad</label>
+                    <mat-select class="form-control" placeholder="Seleccione..." formControlName="facultad">
+                        <cdk-virtual-scroll-viewport itemSize="10" minBufferPx="200" maxBufferPx="400" class="vs-viewport">
+                            <mat-option *cdkVirtualFor="let dependencia of facultades" class="vs-item" [value]="dependencia">
+                                {{dependencia.Nombre}}
+                            </mat-option>
+                        </cdk-virtual-scroll-viewport>
+                    </mat-select>
+                    <small *ngIf="facultadInvalid" class="text-danger">Complete este campo</small>
+                </div>
+                <div class="row px-3">
+                    <label>Proyecto Curricular</label>
+                    <mat-select class="form-control" placeholder="Seleccione..." formControlName="proyecto">
+                        <cdk-virtual-scroll-viewport itemSize="10" minBufferPx="200" maxBufferPx="400" class="vs-viewport">
+                            <mat-option *cdkVirtualFor="let dependencia of proyectosCurriculares" class="vs-item" [value]="dependencia">
+                                {{dependencia.Nombre}}
+                            </mat-option>
+                        </cdk-virtual-scroll-viewport>
+                    </mat-select>
+                    <small *ngIf="proyectoInvalid" class="text-danger">Complete este campo</small>
+                </div>
+            </div>
+        </div>
+        <!-- Fin Campos: Correo, Teléfono móvil y fijo -->
+
+        <!-- Campos: Nombres, Apellidos, Dirección -->
+        <div class="form-group row align-items-baseline">
+            <div class="col-md-3">
+                <label>Código de Convenio</label>
+                <select class="custom-select" formControlName="codConvenio" [class.is-invalid]="codConvenioInvalid">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>210</option>
+                    <option>201</option>
+                </select>
+                <small *ngIf="codConvenioInvalid" class="text-danger">Complete este campo</small>
+            </div>
+            <div class="col-md-3">
+                <label>Nombre de Convenio</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-3">
+                <label class="col-form-label col-form-label-sm">Código Proyecto de Investigación</label>
+                <select class="custom-select" formControlName="codInvestigacion" [class.is-invalid]="codInvestigacionInvalid">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option>120</option>
+                    <option>102</option>
+                </select>
+                <small *ngIf="codInvestigacionInvalid" class="text-danger">Complete este campo</small>
+            </div>
+            <div class="col-md-3">
+                <label class="col-form-label col-form-label-sm">Nombre Proyecto de Investigación</label>
+                <input value=" " type="text" class="form-control" readonly>
+            </div>
+        </div>
+        <!-- Fin Campos: Nombres, Apellidos, Dirección -->
+
+        <!-- Botones: Volver a registro, Siguiente -->
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-6">
+                    <button mat-button matStepperPrevious class="btn btn-primary m-0 mt-4 text-white" type="button">Regresar</button>
+                </div>
+                <div class="form-group col-6">
+                    <button mat-button matStepperNext type="submit" class="btn btn-success m-0 mt-4">Siguiente</button>
+                </div>
+            </div>
+        </div>
+        <!-- Fin Botones: Volver a registro, Siguiente -->
+    </div>
+    <!-- Fin Datos del funcionario -->
+</form>

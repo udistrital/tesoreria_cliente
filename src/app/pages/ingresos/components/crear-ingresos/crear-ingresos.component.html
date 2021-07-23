@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col py-2">
+                    <h5 class="card-title text-center text-primary">
+                        REGISTRO DE INGRESOS
+                    </h5>
+                </div>
+            </div>
+            <mat-horizontal-stepper linear #stepper>
+                <mat-step [completed]="inicio">
+                    <ng-template matStepLabel> Inicio </ng-template>
+                    <ngx-set-inicio (validarForm)="validarInicio($event)" (informacionForm)="informacionInicio($event, stepper)"></ngx-set-inicio>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel> Consignaciones </ng-template>
+                    <ngx-set-consignaciones></ngx-set-consignaciones>
+                </mat-step>
+                <mat-step [completed]="afectacion">
+                    <ng-template matStepLabel> Afectación presupuestal </ng-template>
+                    <ngx-set-afectacion (validarRubros)="validarRubros($event)" (informacionRubros)="informacionRubros($event, stepper)"></ngx-set-afectacion>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel> Contabilización </ng-template>
+                    <ngx-set-contabilizar></ngx-set-contabilizar>
+                </mat-step>
+            </mat-horizontal-stepper>  
+        </div>
+    </div>
+</div>

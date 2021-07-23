@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="card p-3 m-4">
+        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
+            Concentración por entidad financiera
+        </div>
+        <div class="card-body pt-0">
+            <div class="row my-2 justify-content-center">
+                <ngx-general-table class="mt-3" [config]="configuracionEntidades" [datos]="datosEntidades"></ngx-general-table>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            <button matStepperPrevious type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
+                Volver
+            </button>
+        </div>
+        <div class="col">
+            <button matStepperNext class="btn btn-success px-3 py-2 my-2 text-light">
+                Siguiente
+            </button>
+        </div>
+    </div>
+</div>

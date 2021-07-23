@@ -1,0 +1,40 @@
+input {
+    height: 2.5rem;
+    width: 18rem;
+}
+
+select {
+    height: 2.5rem;
+    width: 18rem;
+}
+
+.total {
+    width: 10rem;
+}
+
+.card-title {
+    margin-top: -2rem;
+}
+
+.informacion {
+    margin-top: -1.2rem;
+}
+
+.modal-content {
+    width: 100%;
+}
+
+.area {
+    width: 90%;
+    height: 5rem;
+}
+
+.message {
+    color: red;
+}
+
+@media (min-width: 960px) {
+    .modal-content {
+        width: 120%;
+    }
+}

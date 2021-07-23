@@ -1,0 +1,104 @@
+<form [formGroup]="infoFuncionarioGroup" (ngSubmit)="saveForm()">
+    <!-- Grupo: Datos del funcionario -->
+    <div class="container">
+        <div class="row">
+            <div class="col pb-3">
+                <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
+                    Datos del Funcionario
+                </h6>
+            </div>
+        </div>
+        <!-- Campo: Vigencia -->
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label>Área Funcional</label>
+                <select class="custom-select" formControlName="areaFuncional" [class.is-invalid]="areaInvalid">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option [ngValue]="opcion" *ngFor="let opcion of areasFuncionales">{{opcion?.label}}</option>
+                </select>
+                <small *ngIf="areaInvalid" class="text-danger">Complete este campo</small>
+            </div>
+        </div>
+        <!-- Campos: Elegir ID, Área Funcional, número de ID -->
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label>Tipo de ID</label>
+                <select class="custom-select" formControlName="tipoId" [class.is-invalid]="tipoIdInvalid">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option [ngValue]="tipoId" *ngFor="let tipoId of tiposId">{{ tipoId.Nombre }}</option>
+                </select>
+                <small *ngIf="tipoIdInvalid" class="text-danger">Complete este campo</small>
+            </div>
+            <div class="col-md-4">
+                <label>Número de ID</label>
+                <input type="number" class="form-control" formControlName="numeroId"
+                    [class.is-invalid]="numeroIdInvalid">
+                <small *ngIf="numeroIdInvalid" class="text-danger">Ingrese números en este campo</small>
+            </div>
+            <div class="col-md-4">
+                <label>Vigencia</label>
+                <select class="custom-select" formControlName="vigencia" [class.is-invalid]="vigenciaInvalid">
+                    <option selected disabled value="">Seleccione...</option>
+                    <option [ngValue]="vigencia" *ngFor="let vigencia of vigencias">{{vigencia?.valor}}</option>
+                </select>
+                <small *ngIf="vigenciaInvalid" class="text-danger">Complete este campo</small>
+            </div>
+        </div>
+        <!-- Fin Campos: Elegir ID, Área Funcional, número de ID -->
+        <!-- Campos: Nombres, Apellidos, Dirección -->
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label>Nombres</label>
+                <input value="{{tercero?.Nombres}}" type="text"
+                    class="form-control" readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Apellidos</label>
+                <input value="{{tercero?.Apellidos}}" type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Dirección</label>
+                <input value="{{tercero?.Direccion}}" type="text" class="form-control" readonly>
+            </div>
+        </div>
+        <!-- Fin Campos: Nombres, Apellidos, Dirección -->
+        <!-- Campos: Correo, Teléfono móvil y fijo -->
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label>Correo Electrónico</label>
+                <input value="{{tercero?.Correo}}" type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Teléfono Móvil</label>
+                <input value="{{tercero?.Movil}}" type="text" class="form-control" readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Teléfono Fijo</label>
+                <input value="{{tercero?.Fijo}}" type="text" class="form-control" readonly>
+            </div>
+        </div>
+        <!-- Fin Campos: Correo, Teléfono móvil y fijo -->
+
+        <!-- Botones: Volver a registro, Siguiente -->
+        <div class="container">
+            <div class="row pt-2 text-center">
+                <div class="col-md-6">
+                    <a href="/#/pages/avances/solicitudavances/lista/">
+                        <button type="button" class="btn btn-primary mb-3 mt-3 text-white">
+                            <div class="d-flex flex-row justify-content-around align-middle">
+                                <span>Volver a registros</span>
+                            </div>
+                        </button>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <button mat-button matStepperNext type="submit" class="btn btn-success m-0 mt-4">
+                        Siguiente
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Fin Botones: Volver a registro, Siguiente -->
+    </div>
+    <!-- Fin Datos del funcionario -->
+</form>

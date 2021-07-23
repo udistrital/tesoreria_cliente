@@ -1,0 +1,74 @@
+<div class="container-fluid">
+    <form [formGroup]="FuenteFinanciamientoForm" *ngIf="FuenteFinanciamientoForm">
+        <div class="row border-bottom border-dark my-3 py-3">
+            <div class="col-12 col-sm-4">
+                <div class="form-group">
+                    <label>Código:</label>
+                    <mat-select class="form-control" formControlName="FuenteSeleccionada">
+                        <cdk-virtual-scroll-viewport itemSize="50" minBufferPx="200" maxBufferPx="400"
+                            class="example-viewport">
+                            <mat-option *cdkVirtualFor="let fuente of FuentesFinanciamiento" class="example-item"
+                                [value]="fuente">
+                                {{fuente.Codigo}}
+                            </mat-option>
+                        </cdk-virtual-scroll-viewport>
+                    </mat-select>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label>Nombre:</label>
+                    <span class="form-control overflow">
+                        {{FuenteFinanciamientoForm.get('FuenteSeleccionada').value ?
+                        FuenteFinanciamientoForm.get('FuenteSeleccionada').value.Nombre : '' }}
+                    </span>
+                </div>
+            </div>
+            <div class="col-12 col-sm-2">
+                <div class="d-flex justify-content-center">
+                    <button [disabled]="!FuenteFinanciamientoForm.valid" class="btn btn-primary text-light mt-4"
+                        type="button" (click)="AgregarFuente()">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label>Valor Fuente de Financiamiento:</label>
+                    <span class="form-control overflow">
+                        {{FuenteFinanciamientoForm.get('FuenteSeleccionada').value ?
+                        (FuenteFinanciamientoForm.get('FuenteSeleccionada').value.ValorActual |
+                        currency:'$':'symbol':'3.2-2':'en-US' ) : '' }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row" >
+        <div class="col-12" *ngIf="MostrarFuentes">
+            <div class="form-group">
+                <label>Valor Fuente de Financiamiento:</label>
+            </div>
+        </div>
+        <ng-container *ngFor="let fuente of Fuentes; index as i">
+            <div class="col-10">
+                <div class="form-group border p-2">
+                    <span class="">
+                        {{fuente.Codigo}} <br>
+                        {{fuente.Nombre}} <br>
+                        {{fuente.ValorActual | currency:'$':'symbol':'3.2-2':'en-US'}}
+                    </span>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="d-flex justify-content-center my-3">
+                    <button class="btn btn-primary text-light" type="button"
+                        (click)="QuitarFuente(i)">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
+<ngx-datos-pac *ngIf="MostrarFuentes" [Fuentes]="Fuentes"></ngx-datos-pac>

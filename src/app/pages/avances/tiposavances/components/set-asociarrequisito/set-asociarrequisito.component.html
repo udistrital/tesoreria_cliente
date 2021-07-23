@@ -1,0 +1,89 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 bg-white py-3">
+            <h5 class="card-title text-center text-primary">
+                ASOCIAR REQUISITOS
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 bg-white px-4 pb-3">
+            <form [formGroup]="asociarRequisitoGroup">
+                <!-- Grupo: Información de Tipo de Avance-->
+                <div class="container">
+                    <!-- Campo: Código Abreviacion, nombre de Tipo de Avance -->
+                    <div class="form-group row">
+                        <div class="col-md-5">
+                            <label>Código de Abreviación</label>
+                            <input type="text" class="form-control" readonly value="{{codigoTipo}}">
+                        </div>
+                        <div class="col-md-7">
+                            <label>Nombre de Tipo de Avance</label>
+                            <input type="text" class="form-control" readonly value="{{nombreTipo}}">
+                        </div>
+                    </div>
+                    <!-- Fin Campo Código Abreviacion, nombre de Tipo de Avance -->
+                    <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
+                    <!-- Campos: Área funcional, fecha -->
+                    <div class="form-group row">
+                        <div class="col-md-9">
+                            <label>Requisitos</label>
+                            <select class="custom-select" formControlName="requisitos" [class.is-invalid]="requisitosInvalid">
+                                <option selected disabled value="">Seleccione...</option>
+                                <option [ngValue]="requisito" *ngFor="let requisito of requisitos">{{requisito?.CodigoAbreviacion}} - {{requisito?.Nombre}}</option>
+                            </select>
+                            <small *ngIf="requisitosInvalid" class="text-danger">Seleccione una opción</small>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary btn-block text-white m-0 mt-4" (click)="asociarRequisito()">Añadir</button>
+                        </div>
+                    </div>
+                    <!-- Fin Campos Área funcional, fecha -->
+                    <!-- Fin Grupo: Información de Tipo de avance -->
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 bg-white px-4 pb-3">
+                        <ngx-general-table [config]="configRequisitos" [datos]="datosRequisitos"></ngx-general-table>
+                    </div>
+                </div>
+                <!-- Botones: Volver a registro, Siguiente -->
+                <div class="row pt-2 text-center">
+                    <div class="col-md-6">
+                        <a href="#/pages/avances/tiposavances/lista">
+                            <button type="button" class="btn btn-primary mb-3 mt-3 text-white">
+                                <div class="d-flex flex-row justify-content-around align-middle">
+                                    <span>Volver</span>
+                                </div>
+                            </button>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a rol="button" class="btn btn-success mb-3 mt-3 text-white"
+                            href="#/pages/avances/tiposavances/lista">Aceptar</a>
+                    </div>
+                </div>
+
+                <!-- Fin Botones: Volver a registro, Siguiente -->
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Eliminar registros de la tabla -->
+<ng-template #eliminarTipoModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="BorrarTipoModal">Borrar Requisito</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        ¿Desea borrar el requisito?
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="modal.close(true)">Borrar</button>
+    </div>
+</ng-template>
+<!-- Fin Modal -->

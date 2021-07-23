@@ -11,6 +11,7 @@ export const environment = {
   CLIENTE_PRESUPUESTO: '/pages/plan-cuentas',
   CLIENTE_CONTABILIDAD: 'https://pruebascontabilidad.portaloas.udistrital.edu.co/pages',
   WSO2_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/',
+  NECESIDADES: 'https://pruebasnecesidades.portaloas.udistrital.edu.co/',
   NECESIDADES_CRUD_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/necesidades_crud/v1/',
   ADMINISTRATIVA_PRUEBAS_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/administrativa_amazon_api/v1/',
   PLAN_CUENTAS_MONGO_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/plan_cuentas_mongo_crud/v1/',
@@ -34,12 +35,12 @@ export const environment = {
 },
   TOKEN: {
     AUTORIZATION_URL: 'https://autenticacion.portaloas.udistrital.edu.co/oauth2/authorize',
-    CLIENTE_ID: 'aWFPYYJ5gP2JdDP390gFP7gU1dYa',
+    CLIENTE_ID: 'xsCo1iC2gxLYFl8RVEZqZl4ST2oa',
     RESPONSE_TYPE: 'id_token token',
     SCOPE: 'openid email role',
-    REDIRECT_URL: 'https://pruebaspresupuesto.portaloas.udistrital.edu.co',
+    REDIRECT_URL: 'https://pruebastesoreria.portaloas.udistrital.edu.co',
     SIGN_OUT_URL: 'https://autenticacion.portaloas.udistrital.edu.co/oidc/logout',
-    SIGN_OUT_REDIRECT_URL: 'https://pruebaspresupuesto.portaloas.udistrital.edu.co',
+    SIGN_OUT_REDIRECT_URL: 'https://pruebastesoreria.portaloas.udistrital.edu.co',
   },
 
 };

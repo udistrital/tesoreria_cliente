@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 bg-white py-3">
+            <h5 class="card-title text-center text-primary">
+                LISTA DE INVERSIÓN FINANCIERA
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 bg-white px-5 d-flex flex-row justify-content-end">
+            <a routerLink="../registro">
+                <button type="button" class="btn btn-primary mb-3 mt-3 text-white">
+                    <div class="d-flex flex-row justify-content-around align-middle">
+                        <i class="fas fa-plus py-1 px-2"></i>
+                        <span>
+                            Registrar Adquisición
+                        </span>
+                    </div>
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 bg-white px-4 pb-3">
+            <ngx-general-table [config]="configAdquisicion" [datos]="datosAdquisicion"></ngx-general-table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Cancelar Inversión-->
+<ng-template #cancelarInversion let-modal>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="material-icons cerrar align-middle">
+            close
+            </span>
+            <h5 class="modal-title denegar align-middle" id="cancelarInversionLabel"> CANCELAR INVERSIÓN </h5>
+            <button type="button" class="close" (click)="close()" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <form [formGroup]="justificarCancelacion" (ngSubmit)="crear(justificarCancelacion.value)">
+            <div class="modal-body">
+                <p class="p-3"> ¿Desea cancelar la inversión?</p>
+                <p class="p-3"><small> El estado de la inversión pasara a "Cancelado"</small></p>
+                <div class="form-group p-3">
+                    <label for="justificacion">Justificación:</label>
+                    <textarea formControlName="justificacion" class="form-control" id="justificacion" placeholder="Escribir..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light px-3 py-2" (click)="close()">Cancelar</button>
+                <button mat-button type="submit" class="btn btn-danger px-3 py-2" [disabled]="justificarCancelacion.invalid">Continuar</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+<!-- Fin Modal -->

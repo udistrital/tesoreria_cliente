@@ -1,0 +1,28 @@
+export const DATOS_REPORTE_MORA = [
+    {
+        TipoID: 'CC',
+        NumeroID: '1018463814',
+        Codigo: '20111005011',
+        Nombre: 'Jhoan Manuel Murillo Yara',
+        ValorOrdinario: 1500000,
+        FechaOrdinaria: '2021-04-07T20:04:07Z',
+        ValorExtraOrdinario: 1500000,
+        FechaExtraOrdinaria: '2021-04-07T20:04:07Z',
+        ValorPago: 0,
+        FechaPago: '',
+        Pago: false,
+    },
+    {
+        TipoID: 'CC',
+        NumeroID: '1018463814',
+        Codigo: '20111005011',
+        Nombre: 'Jhoan Manuel Murillo Yara',
+        ValorOrdinario: 1500000,
+        FechaOrdinaria: '2021-04-07T20:04:07Z',
+        ValorExtraOrdinario: 1500000,
+        FechaExtraOrdinaria: '2021-04-07T20:04:07Z',
+        ValorPago: 0,
+        FechaPago: '',
+        Pago: false,
+    },
+];

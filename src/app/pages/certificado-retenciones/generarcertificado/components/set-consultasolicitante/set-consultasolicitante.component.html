@@ -1,0 +1,111 @@
+<div class="container bg-white p-5 border rounded">
+    <div class="row">
+        <div class="col py-2">
+            <h5 class="card-title text-center text-primary text-uppercase">
+                GENERAR CERTIFICADO
+            </h5>
+        </div>
+    </div>
+    <div class="container py-2">
+        <div class="row">
+            <div class="col-md-12">
+                <h6 class="card-title col-md-7 bg-primary text-white text-center py-2 px-2 rounded">
+                    Consolidar Información
+                </h6>
+            </div>
+        </div>
+        <div class="row pt-2 justify-content-center align-items-end">
+            <div class="col-md-2 pr-0 pt-0 pb-0 pl-3">
+                <label>Tipo de Informe</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" value="P" readonly>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" value="12" readonly>
+            </div>
+            <div class="col-md-5 pl-0">
+                <label for="ordenPago">No. Órden de Pago</label>
+                <input type="number" class="form-control" id="ordenPago">
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-lg-center p-3">
+        <!-- Tabla General Adaptada Consulta -->
+        <ngx-general-table [config]="configInformacion" [datos]="datosInformacion">
+        </ngx-general-table>
+    </div>
+    <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
+
+    <!-- Botones: Volver a registro, Siguiente -->
+    <div class="container">
+        <div class="row pt-2 text-center">
+            <div class="col-md-4">
+                <a routerLink="../lista" class="btn btn-primary col-md-10 text-white m-0 mt-4">
+                    Volver
+                </a>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-danger col-md-10 text-white m-0 mt-4" (click)="cancelar(cancelarModal)">
+                    Cancelar
+                </button>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-success col-md-10 text-white m-0 mt-4" (click)="generar(generarModal)">
+                    Generar Certificado
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Guardar Definitivo-->
+<ng-template #cancelarModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title text-danger" id="cancelarCertificado">CANCELAR CERTIFICADO</h5>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p class="text-center">Se cancelará la generación del certificado.</p>
+        <br>
+        <form [formGroup]="justificacionGroup" (ngSubmit)="saveForm()">
+            <div class="form-group row justify-content-center">
+                <div class="col-md-10 p-3">
+                    <label for="justificacion"><small>Justificar la cancelación, observaciones o información faltante:</small></label>
+                    <textarea id="justificacion" class="form-control" placeholder="Justificación" formControlName="justificacion" rows="2" [class.is-invalid]="isInvalid('justificacion')"></textarea>
+                    <small *ngIf="isInvalid('justificacion')" class="text-danger">Ingrese información en este campo</small>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary text-secondary" data-dismiss="modal" (click)="modal.close('Close click')">
+            Cerrar
+        </button>
+        <a routerLink="../lista" class="btn btn-danger text-light" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
+            Aceptar
+        </a>
+    </div>
+</ng-template>
+
+<!-- Modal Estado Corregir Definitivo -->
+<ng-template #generarModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title text-success" id="generarCertificado">GENERAR CERTIFICADO</h5>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p class="text-center">Se creó el certificado solicitado.</p>
+    </div>
+    <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-outline-secondary text-secondary" data-dismiss="modal" (click)="modal.close('Close click')">Cerrar</button> -->
+        <a routerLink="../lista" class="btn btn-primary text-light" data-dismiss="modal" (click)="modal.dismiss('Cross click')">
+            Aceptar
+        </a>
+    </div>
+</ng-template>
+<!-- Fin Modal -->
