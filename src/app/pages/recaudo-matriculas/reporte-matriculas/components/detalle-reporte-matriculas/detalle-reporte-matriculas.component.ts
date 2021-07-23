@@ -46,4 +46,8 @@ export class DetalleReporteMatriculasComponent implements OnInit, OnDestroy {
     this.matDialog.open(ModalRegistroComponent);
   }
 
+  OnCreate() {
+    console.warn("Funcionalidad aún no desarrollada")
+  }
+
 }

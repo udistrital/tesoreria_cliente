@@ -16,4 +16,8 @@ export class SeguimientoPacComponent implements OnInit {
   ngOnInit() {
   }
 
+  OnCreate() {
+    console.warn("Funcionalidad aún no desarrollada")
+  }
+
 }

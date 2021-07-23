@@ -46,5 +46,8 @@ export class RubroSeguimientoComponent implements OnInit, OnDestroy {
     this.rubroSeleccionado = rubro;
   }
 
+  fuenteRecurso() {
+    console.warn("Funcionalidad aún no desarrollada")
+  }
 
 }

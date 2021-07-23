@@ -45,4 +45,8 @@ export class SeleccionRubroComponent implements OnInit, OnDestroy {
   SeleccionarRubro(rubro: any) {
     this.rubroSeleccionado = rubro;
   }
+
+  fuenteRecurso() {
+    console.warn("Funcionalidad aún no desarrollada")
+  }
 }
