@@ -5,7 +5,7 @@ import { MatStepper } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { cargarDatosTercero } from '../../actions/girosnomina.actions';
 @Component({
-  selector: 'ngx-contabilizacion',
+  selector: 'ngx-contabilizacion-nomina',
   templateUrl: './contabilizacion.component.html',
   styleUrls: ['./contabilizacion.component.scss']
 })

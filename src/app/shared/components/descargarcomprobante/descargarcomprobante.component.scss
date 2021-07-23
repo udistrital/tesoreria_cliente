@@ -7,7 +7,7 @@
     position: relative;
     background-color: rgba(#ddd, 0.5);
     // pdf viewer overwriting styles
-     ::ng-deep {
+    ::ng-deep {
         .pdfViewer {
             .page {
                 border: none;
