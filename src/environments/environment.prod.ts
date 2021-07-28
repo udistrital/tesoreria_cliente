@@ -13,8 +13,6 @@ export const environment = {
 
   CLIENTE_PRESUPUESTO: '/pages/plan-cuentas',
   CLIENTE_CONTABILIDAD: 'https://pruebascontabilidad.portaloas.udistrital.edu.co/pages',
-
-  
   WSO2_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/',
   PLAN_CUENTAS_CRUD_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/plan_cuentas_crud/v1/',
   PLAN_CUENTAS_MID_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/plan_cuentas_mid/v1/',
