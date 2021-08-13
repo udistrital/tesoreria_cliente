@@ -41,7 +41,7 @@ export class TableSolicitudavancesComponent implements OnInit, OnDestroy {
 
     this.documento = this.autenticationServie.getPayload().documento;
 
-    console.log("Documento: ", this.documento);
+    //console.log("Documento: ", this.documento);
 
     this.tableSubscription$ = this.store.select(getFilaSeleccionada).subscribe((accion) => {
       if (accion && accion.accion && accion.fila) {
