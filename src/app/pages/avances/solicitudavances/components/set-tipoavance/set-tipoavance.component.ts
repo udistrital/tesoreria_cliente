@@ -49,7 +49,7 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
   subOrdenadores$: any;
   ordenadores: any;
 
-  constructor(private fb: FormBuilder, private modalService: NgbModal, private store: Store<any>, private nuxeoService: NuxeoService, private documentoService: DocumentoService,) {
+  constructor(private fb: FormBuilder, private modalService: NgbModal, private store: Store<any>, private nuxeoService: NuxeoService, private documentoService: DocumentoService) {
     this.tipoAvanceActual = null;
     this.agregando = false;
     this.tiposAvances = [];
