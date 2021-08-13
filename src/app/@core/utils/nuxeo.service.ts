@@ -52,18 +52,14 @@ export class NuxeoService {
     }
 
     saveFiles(files, documentoService, nuxeoservice) {
-        console.log("Save files ", files)
         this.documentos = {};
         var idDocumento = 0;
         nuxeoservice.documentos = {};
         NuxeoService.nuxeo.connect()
             .then(function (client) {
                 files.forEach(file => {
-                    // console.log(file);
-                    //console.log("Save files for each ", file.name)
                     documentoService.get('tipo_documento/' + '6')
                         .subscribe(res => {
-                            //console.log("res ", res)
                             if (res !== null) {
                                 const tipoDocumento = <TipoDocumento>res;
                                 console.info(tipoDocumento);
@@ -76,21 +72,16 @@ export class NuxeoService {
                                     .input(tipoDocumento.Workspace)
                                     .execute()
                                     .then(function (doc) {
-                                       // console.log("entró al then ", doc)
-                                        //console.log("entró al then file ", file)
                                         const nuxeoBlob = new Nuxeo.Blob({ content: file});
-                                        //console.log("1");
                                         NuxeoService.nuxeo.batchUpload()
                                             .upload(nuxeoBlob)
                                             .then(function (response) {
-                                                //console.log("2");
                                                 file.uid = doc.uid;
                                                 NuxeoService.nuxeo.operation('Blob.AttachOnDocument')
                                                     .param('document', doc.uid)
                                                     .input(response.blob)
                                                     .execute()
                                                     .then(function (respuesta) {
-                                                        //console.log("file ", file);
                                                         const documentoPost = new Documento;
                                                         documentoPost.Enlace = file.uid;
                                                         documentoPost.Nombre = file.nombre;
