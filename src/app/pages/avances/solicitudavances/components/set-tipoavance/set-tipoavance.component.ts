@@ -44,11 +44,10 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
   subEspecificaciones$: any;
   especificaciones: any;
   uidDocumento: any;
-  idDocumento : any;
+  idDocumento: any;
   fileDocumento: any[];
   subOrdenadores$: any;
   ordenadores: any;
-
 
   constructor(private fb: FormBuilder, private modalService: NgbModal, private store: Store<any>, private nuxeoService: NuxeoService, private documentoService: DocumentoService,) {
     this.tipoAvanceActual = null;
@@ -248,7 +247,7 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
         accion.fila.adjunto = this.archivo.name;
         accion.fila.archivo = this.archivo;
         this.cargaDocumentos(accion);
-        //console.log("ID DOCUMENTO ", this.idDocumento);
+        // console.log("ID DOCUMENTO ", this.idDocumento);
         accion.fila.idDocumento = this.idDocumento;
         this.archivo = null;
       }
@@ -259,13 +258,13 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
   }
 
   async cargaDocumentos(accion: any) {
-    //console.log("ENTRÓ CARGA DOCUMENTOS ", this.archivo)
+    // console.log("ENTRÓ CARGA DOCUMENTOS ", this.archivo)
     const start = async () => {
       this.fileDocumento.push(this.archivo);
-      //await this.asyncForEach(this.fileDocumento, async (file) => {
-        //console.log("CARGA DOCUMENTOS ", file)
+      // await this.asyncForEach(this.fileDocumento, async (file) => {
+        // console.log("CARGA DOCUMENTOS ", file)
         await this.postSoporteNuxeo(this.fileDocumento, accion);
-      //});
+      // });
     };
     await start();
   }
@@ -277,17 +276,17 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
         (file.nombre = 'soporte_' + file.IdDocumento + '_prueba_avances'),
         (file.key = 'soporte_' + file.IdDocumento);
       });
-      //console.log("file.Id ", file.Id, " file.nombre ", file.nombre, " file.key ", file.key)
+      // console.log("file.Id ", file.Id, " file.nombre ", file.nombre, " file.key ", file.key)
       await this.nuxeoService.getDocumentos$(files, this.documentoService)
         .subscribe(response => {
-          //console.log("PRUEBA ORDENADORES ", response)
+          // console.log("PRUEBA ORDENADORES ", response)
           if (Object.keys(response).length === files.length) {
             files.forEach((file, index) => {
               this.uidDocumento = file.uid;
               this.idDocumento = response[file.key].Id;
-              //console.log("ID DOCUMENTO ", this.idDocumento);
+              // console.log("ID DOCUMENTO ", this.idDocumento);
               accion.fila.idDocumento = this.idDocumento;
-              //console.log("ID DOCUMENTO ACCION", accion.fila.idDocumento);
+              // console.log("ID DOCUMENTO ACCION", accion.fila.idDocumento);
 
               resolve(response[file.key].Id);
             });
@@ -348,7 +347,7 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
             requisito.Id === asociacion.RequisitoAvanceId));
         this.subscriptionRequisitos$.unsubscribe();
         this.store.dispatch(cargarTiposdeAvances({ tiposAvances: this.tiposAvances }));
-        //console.log("TIPOS AVANCES ", this.tiposAvances)
+        // console.log("TIPOS AVANCES ", this.tiposAvances)
         this.agregando = false;
       }
     });

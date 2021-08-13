@@ -53,7 +53,6 @@ export class NuxeoService {
 
     saveFiles(files, documentoService, nuxeoservice) {
         this.documentos = {};
-        var idDocumento = 0;
         nuxeoservice.documentos = {};
         NuxeoService.nuxeo.connect()
             .then(function (client) {
