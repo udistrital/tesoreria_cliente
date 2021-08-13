@@ -17,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ImplicitAutenticationService } from './@core/utils/implicit_autentication.service';
+import { AutenticationService } from './@core/utils/authentication.service';
 import {
   NbChatModule,
   NbDatepickerModule,
@@ -32,6 +33,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from '././@core/store/effects/app.effects';
+import { NuxeoService } from './@core/utils/nuxeo.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -75,7 +77,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     EffectsModule.forRoot([AppEffects]),
   ],
   bootstrap: [AppComponent],
-  providers: [ImplicitAutenticationService,
+  providers: [ImplicitAutenticationService, NuxeoService, AutenticationService,
     { provide: APP_BASE_HREF, useValue: '/' },
   ],
 })

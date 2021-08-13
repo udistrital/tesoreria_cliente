@@ -7,8 +7,13 @@ export const environment = {
 
     production: false,
     NUXEO: {
-        PATH: 'https://documental.udistrital.edu.co/nuxeo/',
-    },
+
+        PATH: 'https://documental.portaloas.udistrital.edu.co/nuxeo/',
+        CREDENTIALS: {
+          USERNAME: 'desarrollooas',
+          PASS: 'desarrollooas2019',
+        },
+      },
     CLIENTE_PRESUPUESTO: '/pages/plan-cuentas',
     CLIENTE_CONTABILIDAD: 'https://pruebascontabilidad.portaloas.udistrital.edu.co/pages',
     WSO2_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/',
@@ -35,6 +40,7 @@ export const environment = {
     CORE_AMAZON_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/core_amazon_crud/v1/',
     CONFIGURACION_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/configuracion_crud_api/v1/',
     CONF_MENU_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/configuracion_crud_api/v1/menu_opcion_padre/ArbolMenus/',
+    DOCUMENTO_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/documento_crud/v2/',
     KNOWAGE: {
         PROTOCOL: 'https',
         HOST: 'tuleap.udistrital.edu.co',
@@ -60,7 +66,8 @@ export const environment = {
     ADMINISTRATIVA_AMAZON_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/administrativa_amazon_api/v1/',
     OIKOS_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/oikos_crud_api/v2/',
     TERCEROS_CRUD_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/terceros_crud/v1/',
-    TESORERIA_MID_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/tesoreria_mid/v1/',
+    // TESORERIA_MID_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/tesoreria_mid/v1/',
+    TESORERIA_MID_SERVICE: 'http://localhost:8081/v1/',
 // -----------------------------------------------------------------------------------
 
 };

@@ -3,12 +3,15 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CONFIGURACION_REQUISITOSTIPO, CONFIGURACION_ESPECIFICACIONTIPO } from '../../interfaces/interfaces';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
-import { getAccionTabla, getFilaSeleccionada } from '../../../../../shared/selectors/shared.selectors';
-import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
+import { getAccionTabla, getFilaSeleccionada, seleccionarOrdenadores } from '../../../../../shared/selectors/shared.selectors';
+import { LoadFilaSeleccionada, obtenerOrdenadores } from '../../../../../shared/actions/shared.actions';
 import { obtenerEspecificaciones, obtenerRequisitos, obtenerRequisitoTipoAvances, obtenerTiposAvances } from '../../../../../shared/actions/avances.actions';
 import { seleccionarEspecificaciones, seleccionarRequisitos, seleccionarRequisitoTipoAvances, seleccionarTiposAvances } from '../../../../../shared/selectors/avances.selectors';
 import { combineLatest } from 'rxjs';
 import { cargarTiposdeAvances } from '../../actions/solicitudavances.actions';
+import { ClassGetter } from '@angular/compiler/src/output/output_ast';
+import { NuxeoService } from '../../../../../@core/utils/nuxeo.service';
+import { DocumentoService } from '../../../../../@core/utils/documento.service';
 
 @Component({
   selector: 'ngx-set-tipoavance',
@@ -40,14 +43,22 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
   subscriptionRequisitos$: any;
   subEspecificaciones$: any;
   especificaciones: any;
+  uidDocumento: any;
+  idDocumento : any;
+  fileDocumento: any[];
+  subOrdenadores$: any;
+  ordenadores: any;
 
 
-  constructor(private fb: FormBuilder, private modalService: NgbModal, private store: Store<any>) {
+  constructor(private fb: FormBuilder, private modalService: NgbModal, private store: Store<any>, private nuxeoService: NuxeoService, private documentoService: DocumentoService,) {
     this.tipoAvanceActual = null;
     this.agregando = false;
     this.tiposAvances = [];
     this.listaTiposAvances = [];
     this.especificaciones = [];
+    this.fileDocumento = [];
+    this.ordenadores = [];
+    this.store.dispatch(obtenerOrdenadores({}));
     this.store.dispatch(obtenerTiposAvances({}));
     this.store.dispatch(obtenerRequisitos({ query: { Activo: true } }));
     this.store.dispatch(obtenerEspecificaciones({ query: { Activo: true } }));
@@ -66,6 +77,10 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
       if (accion && accion.titulo && accion.titulo.tabla !== undefined) {
         this.modalEspecificacion(accion);
       }
+    });
+
+    this.subOrdenadores$ = this.store.select(seleccionarOrdenadores).subscribe((action) => {
+      if (action && action.Ordenadores) this.ordenadores = action.Ordenadores;
     });
 
     // Acciones de tablas
@@ -218,17 +233,68 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
     });
   }
 
+  /*async asyncForEach(array, callback) {
+    console.log("Entró a asyncForEach ", array.lenth)
+    for (let index = 0; index < array.length; index++) {
+      console.log("async ", array)
+      await callback(array[index], index, array);
+    }
+  }*/
+
   // Modal acciones sobre la tabla: adjuntar archivos
-  modalAdjuntar(accion: any) {
+  async modalAdjuntar(accion: any) {
     this.modalService.open(this.adjuntarArchivoModal).result.then((result) => {
       if (`${result}`) {
         accion.fila.adjunto = this.archivo.name;
         accion.fila.archivo = this.archivo;
+        this.cargaDocumentos(accion);
+        console.log("ID DOCUMENTO ", this.idDocumento);
+        accion.fila.idDocumento = this.idDocumento;
         this.archivo = null;
       }
     }, (reason) => {
       this.archivo = null;
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  async cargaDocumentos(accion: any) {
+    console.log("ENTRÓ CARGA DOCUMENTOS ", this.archivo)
+    const start = async () => {
+      this.fileDocumento.push(this.archivo);
+      //await this.asyncForEach(this.fileDocumento, async (file) => {
+        //console.log("CARGA DOCUMENTOS ", file)
+        await this.postSoporteNuxeo(this.fileDocumento, accion);
+      //});
+    };
+    await start();
+  }
+
+  async postSoporteNuxeo(files: any, accion: any) {
+    return new Promise(async (resolve, reject) => {
+      files.forEach((file) => {
+        (file.Id = file.name),
+        (file.nombre = 'soporte_' + file.IdDocumento + '_prueba_avances'),
+        (file.key = 'soporte_' + file.IdDocumento);
+      });
+      //console.log("file.Id ", file.Id, " file.nombre ", file.nombre, " file.key ", file.key)
+      await this.nuxeoService.getDocumentos$(files, this.documentoService)
+        .subscribe(response => {
+          console.log("PRUEBA ORDENADORES ", response)
+          if (Object.keys(response).length === files.length) {
+            files.forEach((file, index) => {
+              this.uidDocumento = file.uid;
+              this.idDocumento = response[file.key].Id;
+              console.log("ID DOCUMENTO ", this.idDocumento);
+              accion.fila.idDocumento = this.idDocumento;
+              console.log("ID DOCUMENTO ACCION", accion.fila.idDocumento);
+
+              resolve(response[file.key].Id);
+            });
+          }
+        }, error => {
+          reject(error);
+        });
     });
   }
 
@@ -261,6 +327,8 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
     this.tiposAvances.push(this.tipoAvanceActual);
     this.store.dispatch(cargarTiposdeAvances({ tiposAvances: this.tiposAvances }));
     this.tiposAvances.forEach((tipoindex, index) => {
+      console.log("TIPOS INDEX ", tipoindex)
+      console.log("INDEX ", index)
       tipoindex.configespecificaciones.title.tabla = index;
       tipoindex.configrequisitos.title.tabla = index;
     });
@@ -280,6 +348,7 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
             requisito.Id === asociacion.RequisitoAvanceId));
         this.subscriptionRequisitos$.unsubscribe();
         this.store.dispatch(cargarTiposdeAvances({ tiposAvances: this.tiposAvances }));
+        console.log("TIPOS AVANCES ", this.tiposAvances)
         this.agregando = false;
       }
     });
