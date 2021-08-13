@@ -32,7 +32,7 @@ export class TableSolicitudavancesComponent implements OnInit, OnDestroy {
     this.datosSolicitudes = [];
     this.configSolicitudes = CONFIGURACION_TABLASOLICITUD;
     this.areasFuncionales = OPCIONES_AREA_FUNCIONAL;
-    this.documento = "";
+    this.documento = '';
     this.clearStore();
     this.store.dispatch(obtenerSolicitudesAvance({}));
   }
@@ -41,7 +41,7 @@ export class TableSolicitudavancesComponent implements OnInit, OnDestroy {
 
     this.documento = this.autenticationServie.getPayload().documento;
 
-    //console.log("Documento: ", this.documento);
+    // console.log("Documento: ", this.documento);
 
     this.tableSubscription$ = this.store.select(getFilaSeleccionada).subscribe((accion) => {
       if (accion && accion.accion && accion.fila) {

@@ -326,8 +326,8 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
     this.tiposAvances.push(this.tipoAvanceActual);
     this.store.dispatch(cargarTiposdeAvances({ tiposAvances: this.tiposAvances }));
     this.tiposAvances.forEach((tipoindex, index) => {
-      //console.log("TIPOS INDEX ", tipoindex)
-      //console.log("INDEX ", index)
+      // console.log("TIPOS INDEX ", tipoindex)
+      // console.log("INDEX ", index)
       tipoindex.configespecificaciones.title.tabla = index;
       tipoindex.configrequisitos.title.tabla = index;
     });
