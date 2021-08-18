@@ -92,7 +92,6 @@ export class NuxeoService {
                                                                 // nuxeoservice.documentos[file.key] = resuestaPost.Body;
                                                                 nuxeoservice.documentos$.next(nuxeoservice.documentos);
                                                             });
-
                                                     });
                                             })
                                             .catch(function (error) {
