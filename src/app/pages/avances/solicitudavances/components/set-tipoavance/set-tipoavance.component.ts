@@ -260,9 +260,8 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
   async cargaDocumentos(accion: any) {
     // console.log("ENTRÓ CARGA DOCUMENTOS ", this.archivo)
     const start = async () => {
-      this.fileDocumento = []
+      this.fileDocumento = [];
       this.fileDocumento.push(this.archivo);
-      console.log("fileDocumento ", this.fileDocumento)
       // await this.asyncForEach(this.fileDocumento, async (file) => {
         // console.log("CARGA DOCUMENTOS ", file)
         await this.postSoporteNuxeo(this.fileDocumento, accion);
@@ -284,7 +283,7 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
               this.uidDocumento = file.uid;
               this.idDocumento = response[file.key].Id;
               accion.fila.idDocumento = this.idDocumento;
-              files = []
+              files = [];
               resolve(response[file.key].Id);
             });
         }, error => {
