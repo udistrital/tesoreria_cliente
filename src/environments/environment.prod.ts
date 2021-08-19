@@ -32,15 +32,15 @@ export const environment = {
   DOCUMENTO_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/documento_crud/v2/',
   TOKEN: {
     AUTORIZATION_URL: 'https://autenticacion.portaloas.udistrital.edu.co/oauth2/authorize',
-    CLIENTE_ID: 'xsCo1iC2gxLYFl8RVEZqZl4ST2oa',
+    CLIENTE_ID: 'FYJx7yXf8fPkejYJl1Fku0hQQkAa',
     RESPONSE_TYPE: 'id_token token',
     SCOPE: 'openid email role',
     // REDIRECT_URL: 'http://10.20.0.254/presupuesto_cliente/',
     // SIGN_OUT_URL: 'https://autenticacion.portaloas.udistrital.edu.co/oidc/logout',
     // SIGN_OUT_REDIRECT_URL: 'http://10.20.0.254/presupuesto_cliente/',
-    REDIRECT_URL: 'https://pruebastesoreria.portaloas.udistrital.edu.co',
+    REDIRECT_URL: 'https://tesoreria.portaloas.udistrital.edu.co',
     SIGN_OUT_URL: 'https://autenticacion.portaloas.udistrital.edu.co/oidc/logout',
-    SIGN_OUT_REDIRECT_URL: 'https://pruebastesoreria.portaloas.udistrital.edu.co',
+    SIGN_OUT_REDIRECT_URL: 'https://tesoreria.portaloas.udistrital.edu.co',
   },
 
 };
