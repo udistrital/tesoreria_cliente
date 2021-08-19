@@ -13,7 +13,7 @@ export const environment = {
           USERNAME: 'desarrollooas',
           PASS: 'desarrollooas2019',
         },
-      },
+    },
     CLIENTE_PRESUPUESTO: '/pages/plan-cuentas',
     CLIENTE_CONTABILIDAD: 'https://pruebascontabilidad.portaloas.udistrital.edu.co/pages',
     WSO2_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/',
