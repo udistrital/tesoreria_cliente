@@ -6,7 +6,7 @@ const colors = require('colors');
 require('dotenv').config();
 // `environment.ts` file structure
 const envConfigFile 
-= `// ESTE ARCHIVO SE GENERA AUTOMATICAMENTE 
+= `// ESTE ARCHIVO SE GENERA AUTOMATICAMENTE
 // LOS CAMBIOS REALIZADOS A ESTE ARCHIVO SERÁN SOBREESCRITOS
 // VER README.md PARA MAS INFORMACIÓN.
 
