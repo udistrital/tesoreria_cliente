@@ -1,3 +1,5 @@
+// VER src/evironments/README.md PARA MAS INFORMACIÓN PARA ESTE ARCHIVO
+
 const { writeFile } = require('fs');
 // Configure Angular `environment.ts` file path
 const targetPath = './src/environments/environment.ts';
@@ -5,6 +7,17 @@ const targetPath = './src/environments/environment.ts';
 const colors = require('colors');
 require('dotenv').config();
 // `environment.ts` file structure
+// COLOCAR LAS VARIABLES OBLIGATORIAS
+if (!(
+    process.env.NUXEO_USER 
+    && process.env.NUXEO_PASS
+    && process.env.KNOWAGE_USER
+    && process.env.KNOWAGE_PASS
+    && process.env.TOKEN_CLIENT_ID
+)) {
+    console.error('All the required environment variables were not provided!');
+    process.exit(-1);
+}
 const envConfigFile 
 = `// ESTE ARCHIVO SE GENERA AUTOMATICAMENTE
 // LOS CAMBIOS REALIZADOS A ESTE ARCHIVO SERÁN SOBREESCRITOS
@@ -83,6 +96,7 @@ export const environment = {
 };
 
 `;
+
 // console.log(colors.magenta('The file `environment.ts` will be written with the following content: \n'));
 // console.log(colors.grey(envConfigFile));
 writeFile(targetPath, envConfigFile, function (err) {
