@@ -21,7 +21,8 @@
       { "name": "tslint-language-service"}
     ],
     "types": [
-      "jest"
+      "jest",
+      "node"
     ]
   }
 }

@@ -4,7 +4,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { SelectService } from '../../../../../shared/services/select.service';
 import Swal from 'sweetalert2';
-import { environment } from '../../../../../../environments/environment.test';
+import { environment } from '../../../../../../environments/environment';
 
 @Component({
   selector: 'ngx-consulta',
