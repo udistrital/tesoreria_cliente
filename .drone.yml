@@ -81,6 +81,7 @@ steps:
 - name: nodejs_release
   image: node:12.6.0
   commands:
+  - echo $VARIABLES_PRUEBA
   - echo $VARIABLES_TEST > .env
   - node --version
   - npm cache clean --force
