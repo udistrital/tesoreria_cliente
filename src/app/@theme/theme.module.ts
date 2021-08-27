@@ -22,6 +22,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ImplicitAutenticationService } from '../@core/utils/implicit_autentication.service';
 import { ConfiguracionService } from '../@core/data/configuracion.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DocumentoService } from '../@core/utils/documento.service';
 import {
   FooterComponent,
   HeaderComponent,
@@ -219,7 +220,8 @@ export class ThemeModule {
       providers: [
         ...NB_THEME_PROVIDERS,
         ImplicitAutenticationService,
-        ConfiguracionService
+        ConfiguracionService,
+        DocumentoService
       ],
     };
   }

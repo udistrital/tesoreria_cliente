@@ -109,5 +109,10 @@ export class AvancesService {
     return this.rqManager.put('parametro/', element, id);
   }
 
+  // Solicitudes avance
+  public createSolicitudesTipoAvance(element: any) {
+    this.rqManager.setPath('AVANCES_CRUD');
+    return this.rqManager.post('requisito_tipo_avance/', element);
+  }
 }
 

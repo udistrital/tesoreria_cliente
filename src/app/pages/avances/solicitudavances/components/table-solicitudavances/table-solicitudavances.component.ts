@@ -7,6 +7,7 @@ import { getFilaSeleccionada } from '../../../../../shared/selectors/shared.sele
 import { cargarSolicitudesAvance, obtenerSolicitudesAvance } from '../../actions/solicitudavances.actions';
 import { CONFIGURACION_TABLASOLICITUD } from '../../interfaces/interfaces';
 import { seleccionarSolicitudesAvance } from '../../selectors/solicitudavances.selectors';
+import { AutenticationService } from '../../../../../@core/utils/authentication.service';
 
 @Component({
   selector: 'ngx-table-solicitudavances',
@@ -20,20 +21,28 @@ export class TableSolicitudavancesComponent implements OnInit, OnDestroy {
   subSolicitudes$: any;
   areasFuncionales: any;
   tableSubscription$: any;
+  documento: any;
 
   constructor(
     private store: Store<any>,
     private router: Router,
+    private autenticationServie: AutenticationService,
   ) {
 
     this.datosSolicitudes = [];
     this.configSolicitudes = CONFIGURACION_TABLASOLICITUD;
     this.areasFuncionales = OPCIONES_AREA_FUNCIONAL;
+    this.documento = '';
     this.clearStore();
     this.store.dispatch(obtenerSolicitudesAvance({}));
   }
 
   ngOnInit() {
+
+    this.documento = this.autenticationServie.getPayload().documento;
+
+    // console.log("Documento: ", this.documento);
+
     this.tableSubscription$ = this.store.select(getFilaSeleccionada).subscribe((accion) => {
       if (accion && accion.accion && accion.fila) {
         if (accion.accion.name === 'modificarSolicitud') {

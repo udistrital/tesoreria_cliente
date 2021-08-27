@@ -29,6 +29,8 @@ export class ShowDetalleavanceComponent implements OnInit, OnDestroy {
   subTiposAvances$: any;
   descripcionSolicitud: any;
   tiposAvances: any;
+  avancesTotales: any;
+  avanceTemp: any;
   subGuardar$: any;
 
   constructor(private _formBuilder: FormBuilder,
@@ -66,6 +68,21 @@ export class ShowDetalleavanceComponent implements OnInit, OnDestroy {
           tipo.configrequisitos.tableActions = null;
           this.tiposAvances.push(tipo);
         });
+        this.avancesTotales = [];
+        for (let i = 0; i < this.tiposAvances.length; i++) {
+          this.avanceTemp = {
+            Activo: this.tiposAvances[i].Activo,
+            AreaFuncional: this.tiposAvances[i].AreaFuncional,
+            CodigoAbreviacion: this.tiposAvances[i].CodigoAbreviacion,
+            Descripcion: this.tiposAvances[i].Descripcion,
+            FechaCreacion: this.tiposAvances[i].FechaCreacion,
+            FechaModificacion: this.tiposAvances[i].FechaModificacion,
+            Id: this.tiposAvances[i].Id,
+            Nombre: this.tiposAvances[i].Nombre,
+            NumeroOrden: this.tiposAvances[i].NumeroOrden,
+          };
+          this.avancesTotales.push(this.avanceTemp);
+        }
       }
     });
     // Guardado
@@ -114,9 +131,12 @@ export class ShowDetalleavanceComponent implements OnInit, OnDestroy {
       ProyectoInvId: 5,
       TerceroId: this.infoFuncionario.tercero.Id,
       FechaEvento: this.descripcionSolicitud.fecha,
-      Activo: true
+      Activo: true,
+      AvanceTotal: this.avancesTotales,
+      TipoAvance: this.tiposAvances,
     };
     this.store.dispatch(crearSolicitudAvance({ element: elemento }));
+    // console.log("elemento ", elemento);
   }
 
 }

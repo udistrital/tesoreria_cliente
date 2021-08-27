@@ -56,6 +56,7 @@ export class SolicitudAvancesEffects {
                     // })),
                     //     catchError(data => of(SharedActions.CatchError(data))));
                     .pipe(map(data => {
+                        // console.log("data ", data)
                        this.popupManager.showSuccessAlert('Guardado exitoso');
                        return SolicitudAvanceActions.cargarSolicitudesAvance({
                            solicitudesAvance: { creado: (data && data.Data ? data.Data : data) }
