@@ -2,7 +2,7 @@ kind: pipeline
 name: oas_cliente_ci
 
 steps:
- - name: check_readme
+- name: check_readme
   image: jjvargass/qa_develoment:latest
   commands:
   - python /app/check_readme.py
@@ -15,7 +15,7 @@ steps:
     event:
     - push
 
- - name: check_branch
+- name: check_branch
   image: jjvargass/qa_develoment:latest
   commands:
   - python /app/check_branch.py -H ${DRONE_GIT_HTTP_URL}
