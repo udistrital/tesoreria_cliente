@@ -155,6 +155,7 @@
     "placeholder_tipo_documento": "Tipo documento",
     "placeholder_fecha_documento": "Fecha documento",
     "placeholder_numero_documento": "Numero documento",
+    "validacion_caracteres": "Ingrese al menos {{caracteres}} carácteres",
     "enviar": "Enviar",
     "detalle": "Detalle",
     "siguiente_abr": "Sig.",

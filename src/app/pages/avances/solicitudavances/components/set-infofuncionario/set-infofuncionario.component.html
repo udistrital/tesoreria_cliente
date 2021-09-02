@@ -22,7 +22,7 @@
         <!-- Campos: Elegir ID, Área Funcional, número de ID -->
         <div class="form-group row">
             <div class="col-md-4">
-                <label>Tipo de ID</label>
+                <label>Tipo de Documento</label>
                 <select class="custom-select" formControlName="tipoId" [class.is-invalid]="tipoIdInvalid">
                     <option selected disabled value="">Seleccione...</option>
                     <option [ngValue]="tipoId" *ngFor="let tipoId of tiposId">{{ tipoId.Nombre }}</option>
@@ -30,9 +30,9 @@
                 <small *ngIf="tipoIdInvalid" class="text-danger">Complete este campo</small>
             </div>
             <div class="col-md-4">
-                <label>Número de ID</label>
-                <input type="number" class="form-control" formControlName="numeroId"
-                    [class.is-invalid]="numeroIdInvalid">
+                <label>Número de Documento</label>
+                <input type="number" [readonly]="!tipoIdSelected" class="form-control" formControlName="numeroId"
+                    [class.is-invalid]="numeroIdInvalid" placeholder="{{this.caracteres}}">
                 <small *ngIf="numeroIdInvalid" class="text-danger">Ingrese números en este campo</small>
             </div>
             <div class="col-md-4">

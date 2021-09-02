@@ -48,6 +48,7 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
   fileDocumento: any[];
   subOrdenadores$: any;
   ordenadores: any;
+  tipoAgregado: any;
 
   constructor(private fb: FormBuilder, private modalService: NgbModal, private store: Store<any>, private nuxeoService: NuxeoService, private documentoService: DocumentoService) {
     this.tipoAvanceActual = null;
@@ -57,6 +58,7 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
     this.especificaciones = [];
     this.fileDocumento = [];
     this.ordenadores = [];
+    this.tipoAgregado = false;
     this.store.dispatch(obtenerOrdenadores({}));
     this.store.dispatch(obtenerTiposAvances({}));
     this.store.dispatch(obtenerRequisitos({ query: { Activo: true } }));
@@ -248,7 +250,6 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
         accion.fila.archivo = this.archivo;
         this.cargaDocumentos(accion);
         accion.fila.idDocumento = this.idDocumento;
-        // console.log("ID DOCUMENTO ", this.idDocumento);
         this.archivo = null;
       }
     }, (reason) => {
@@ -274,8 +275,8 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
     return new Promise(async (resolve, reject) => {
       files.forEach((file) => {
         (file.Id = file.name),
-        (file.nombre = 'soporte_' + file.IdDocumento + '_prueba_avances'),
-        (file.key = 'soporte_' + file.IdDocumento);
+        (file.nombre = 'soporte_' + file.Id + '_prueba_avances'),
+        (file.key = 'soporte_' + file.Id);
       });
       await this.nuxeoService.getDocumentos$(files, this.documentoService)
         .subscribe(response => {
@@ -308,6 +309,9 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
 
   agregarTipo() {
     if (this.tipoAvanceGroup.get('seleccionAvance').invalid) return;
+    if (this.tipoAgregado == false){
+      this.tipoAgregado = true
+    }
     this.agregando = true;
     this.tipoAvanceActual = this.tipoAvance;
     this.tipoAvanceActual.configrequisitos = Object.assign({}, CONFIGURACION_REQUISITOSTIPO);
