@@ -24,7 +24,7 @@ export class SetInfofuncionarioComponent implements OnInit, OnDestroy {
   subscriptionfilter$: any;
   subscriptionTel$: any;
   subInfoFuncionario$: any;
-  caracteres: any
+  caracteres: any;
 
   constructor(
     private fb: FormBuilder,
@@ -119,7 +119,7 @@ export class SetInfofuncionarioComponent implements OnInit, OnDestroy {
     this.subInfoFuncionario$ = this.infoFuncionarioGroup.valueChanges.subscribe((value) => {
       this.store.dispatch(cargarInfoFuncionario({ infoFuncionario: value }));
     });
-    this.caracteres = this.translate.instant('GLOBAL.validacion_caracteres', {caracteres: 3})
+    this.caracteres = this.translate.instant('GLOBAL.validacion_caracteres', {caracteres: 3});
   }
 
   ngOnDestroy() {
@@ -154,7 +154,7 @@ export class SetInfofuncionarioComponent implements OnInit, OnDestroy {
     return this.infoFuncionarioGroup.get('areaFuncional').invalid && this.infoFuncionarioGroup.get('areaFuncional').touched;
   }
   get tipoIdSelected() {
-    return this.infoFuncionarioGroup.get('tipoId').valid
+    return this.infoFuncionarioGroup.get('tipoId').valid;
   }
 
   createForm() {

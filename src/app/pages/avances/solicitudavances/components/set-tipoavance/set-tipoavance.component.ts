@@ -309,8 +309,8 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
 
   agregarTipo() {
     if (this.tipoAvanceGroup.get('seleccionAvance').invalid) return;
-    if (this.tipoAgregado == false){
-      this.tipoAgregado = true
+    if (this.tipoAgregado === false) {
+      this.tipoAgregado = true;
     }
     this.agregando = true;
     this.tipoAvanceActual = this.tipoAvance;
