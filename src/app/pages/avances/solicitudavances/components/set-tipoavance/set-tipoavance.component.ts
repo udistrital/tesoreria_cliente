@@ -248,7 +248,6 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
         accion.fila.archivo = this.archivo;
         this.cargaDocumentos(accion);
         accion.fila.idDocumento = this.idDocumento;
-        // console.log("ID DOCUMENTO ", this.idDocumento);
         this.archivo = null;
       }
     }, (reason) => {
@@ -274,8 +273,8 @@ export class SetTipoavanceComponent implements OnInit, OnDestroy {
     return new Promise(async (resolve, reject) => {
       files.forEach((file) => {
         (file.Id = file.name),
-        (file.nombre = 'soporte_' + file.IdDocumento + '_prueba_avances'),
-        (file.key = 'soporte_' + file.IdDocumento);
+        (file.nombre = 'soporte_' + file.Id + '_prueba_avances'),
+        (file.key = 'soporte_' + file.Id);
       });
       await this.nuxeoService.getDocumentos$(files, this.documentoService)
         .subscribe(response => {

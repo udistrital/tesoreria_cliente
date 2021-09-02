@@ -35,19 +35,11 @@
         <div class="form-group row">
             <div class="col-md-6">
                 <label>Objetivo</label>
-                <textarea class="form-control" placeholder="Descripción de la Solicitud de Avance" formControlName="objetivo" rows="3" [class.is-invalid]="objetivoInvalid"></textarea>
+                <textarea class="form-control" placeholder="Objetivo de la Solicitud de Avance" formControlName="objetivo" rows="2" [class.is-invalid]="objetivoInvalid"></textarea>
                 <small *ngIf="objetivoInvalid" class="text-danger">Ingrese mínimo 5 caracteres</small>
             </div>
             <div class="col-md-6">
-                <div class="row px-3">
-                    <label>Fecha</label>
-                    <div class="input-group">
-                        <input type="date" name="fecha" class="form-control" formControlName="fecha">
-                        <div class="input-group-append">
-                        </div>
-                    </div>
-                </div>
-                <div class="row px-3">
+                <div class="row px-3 py-2">
                     <label>Dependencia</label>
                     <mat-select class="form-control" placeholder="Seleccione..." formControlName="dependencia">
                         <cdk-virtual-scroll-viewport itemSize="10" minBufferPx="200" maxBufferPx="400" class="vs-viewport">

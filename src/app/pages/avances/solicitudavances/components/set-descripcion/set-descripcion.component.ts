@@ -98,7 +98,6 @@ export class SetDescripcionComponent implements OnInit, OnDestroy {
     this.descripcionGroup = this.fb.group({
       ordenadorGasto: ['', Validators.required],
       objetivo: ['', Validators.required],
-      fecha: ['', Validators.required],
       dependencia: ['', Validators.required],
       justificacion: ['', Validators.required],
       facultad: ['', Validators.required],
