@@ -27,16 +27,15 @@ export class TableSolicitudavancesComponent implements OnInit, OnDestroy, AfterV
   areasFuncionales: any;
   tableSubscription$: any;
   documento: any;
-  
 
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);  
+  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    console.log("dataSource ", this.dataSource)
+    // console.log("dataSource ", this.dataSource)
   }
-  
+
   constructor(
     private store: Store<any>,
     private router: Router,
@@ -52,7 +51,6 @@ export class TableSolicitudavancesComponent implements OnInit, OnDestroy, AfterV
   }
 
   ngOnInit() {
-    
 
     this.documento = this.autenticationServie.getPayload().documento;
 
