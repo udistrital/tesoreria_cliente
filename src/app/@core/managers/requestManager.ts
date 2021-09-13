@@ -85,6 +85,7 @@ export class RequestManager {
       }
 
     }
+
     this.httpOptions = {
       headers: new HttpHeaders({
         'Accept': 'application/json'

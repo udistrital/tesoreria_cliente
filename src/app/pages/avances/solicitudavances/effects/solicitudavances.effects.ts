@@ -34,7 +34,7 @@ export class SolicitudAvancesEffects {
     getSolicitudesAvances$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(SolicitudAvanceActions.obtenerSolicitudesAvance),
-            mergeMap((accion) => this.servicio.getSolicitudesAvance(accion && accion.id ? accion.id : null, accion && accion.query ? accion.query : null)
+            mergeMap((accion) => this.servicio.getSolicitudesAvance(accion && accion.id ? accion.id : null, accion && accion.query ? accion.query : {id: '20', nombre: 'Pedro'})
                 .pipe(map(data => SolicitudAvanceActions.cargarSolicitudesAvance({
                     solicitudesAvance: (data && data.Data ? data.Data : data)
 

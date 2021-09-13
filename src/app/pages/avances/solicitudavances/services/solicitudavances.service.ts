@@ -10,13 +10,14 @@ export class SolicitudavancesService {
 
   // Solicitudes de avance
 
-  public getSolicitudesAvance(id?: number, query?: any) {
+  public getSolicitudesAvance(id?: number, query?: any, limit?: any) {
     this.rqManager.setPath('TESORERIA_MID_SERVICE');
-    let queryParams = '';
-    if (query)
-      for (const [key, value] of Object.entries(query))
-        queryParams += `${key}:${value},`;
-    return this.rqManager.get('solicitud_avance/' + (id ? '/' + id : ''), { query: queryParams });
+    //let queryParams = '';
+    //let limitParams = '';
+    const params = {
+      limit: limit ? limit : 0,
+    };
+    return this.rqManager.get('solicitud_avance', params);
   }
 
   public createSolicitudAvance(element: any) {
