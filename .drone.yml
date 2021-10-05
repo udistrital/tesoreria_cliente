@@ -3,6 +3,7 @@ name: oas_cliente_ci
 
 steps:
 - name: check_readme
+  failure: ignore
   image: jjvargass/qa_develoment:latest
   commands:
   - python /app/check_readme.py
@@ -16,6 +17,7 @@ steps:
     - push
 
 - name: check_branch
+  failure: ignore
   image: jjvargass/qa_develoment:latest
   commands:
   - python /app/check_branch.py -H ${DRONE_GIT_HTTP_URL}
@@ -28,26 +30,34 @@ steps:
     event:
     - push
 
-# - name: check_commits
-#   image: jjvargass/qa_develoment:latest
-#   commands:
-#   - python /app/check_commits.py
-#   when:
-#     branch:
-#     - develop
-#     - feature/*
-#     - hotfix/*
-#     - release/*
-#     event:
-#     - push
+# SCRIPT NO OBJETIVO - Ver:
+# https://github.com/udistrital/arka_cliente/commit/37e3ece10d52cae1303d837ad0e8a6ca1fb7a549
+# Quedó habilitado solo permitiendo que falle
+- name: check_commits
+  failure: ignore
+  image: jjvargass/qa_develoment:latest
+  commands:
+  - python /app/check_commits.py
+  when:
+    branch:
+    - develop
+    - feature/*
+    - hotfix/*
+    - release/*
+    event:
+    - push
 
 - name: prueba-unitarias
+  failure: ignore
   image: node:12.6.0
   commands:
   - npm i
   - npm run test
   when:
     branch:
+    - develop
+    - feature/*
+    - hotfix/*
     - unitest
 
 - name:  pruebas-linter
@@ -74,6 +84,7 @@ steps:
     - develop
     - feature/*
     - hotfix/*
+    - master
     - release/*
     event:
     - push
@@ -81,8 +92,6 @@ steps:
 - name: nodejs_release
   image: node:12.6.0
   commands:
-  - node --version
-  - npm cache clean --force
   - npm i
   - npm run build:test
   when:
@@ -96,7 +105,6 @@ steps:
 - name: nodejs_master
   image: node:12.6.0
   commands:
-  - node --version
   - npm i
   - npm run build:prod
   when:
@@ -173,32 +181,3 @@ steps:
     status:
     - failure
     - success
-
-# - name: notify_slack
-#   image: plugins/slack
-#   settings:
-#     webhook:
-#       from_secret: slack_webhook
-#     channel: deploy
-#     template: >
-#       {{#success build.status}}
-#         :heavy_check_mark:  <{{ build.link }}|SUCCESS> Build #{{build.number}}
-#         type: {{ build.event }} - Repo: {{repo.name}}
-#         Commit: <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
-#         Branch: {{build.branch}} - Autor: {{build.author}}  :sunglasses:
-#       {{else}}
-#         :x: <{{ build.link }}|FAILURE> Build #{{build.number}}
-#         type: {{ build.event }} - Repo: {{repo.name}}
-#         Branch: {{build.branch}} - Autor: {{build.author}} :weary:
-#         Commit: <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
-#       {{/success}}
-#   when:
-#     branch:
-#     - develop
-#     - release
-#     - master
-#     event:
-#     - push
-#     status:
-#     - failure
-#     - success
