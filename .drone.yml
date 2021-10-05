@@ -81,7 +81,7 @@ steps:
 - name: nodejs_release
   image: node:12.6.0
   commands:
-  - echo $VARIABLES_TEST > .env
+  - echo "$VARIABLES_TEST" > .env
   - node --version
   - npm cache clean --force
   - npm i
@@ -97,7 +97,7 @@ steps:
 - name: nodejs_master
   image: node:12.6.0
   commands:
-  - echo $VARIABLES_PROD > .env
+  - echo "$VARIABLES_PROD" > .env
   - node --version
   - npm i
   - npm run build:prod
