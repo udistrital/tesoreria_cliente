@@ -48,7 +48,7 @@ export class TableSolicitudavancesComponent implements OnInit, OnDestroy {
   }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  
+
   ngOnInit() {
     this.displayedColumns = this.configSolicitudes.dataConfig.map(x => x.key);
     this.columnNames = this.configSolicitudes.dataConfig;
@@ -106,7 +106,7 @@ export class TableSolicitudavancesComponent implements OnInit, OnDestroy {
     const tableArr: Element[] = [];
     for (let i = 0; i < this.datosSolicitudes.length; i++) {
       const tabla: Element = {areaFuncional: this.datosSolicitudes[i].areaFuncional, Id: this.datosSolicitudes[i].Id, estadoSolicitud: this.datosSolicitudes[i].estadoSolicitud,
-        fechaRadicacion: this.datePipe.transform(this.datosSolicitudes[i].FechaRadicacion, 'dd/MM/yyyy'), acciones: ''}
+        fechaRadicacion: this.datePipe.transform(this.datosSolicitudes[i].FechaRadicacion, 'dd/MM/yyyy'), acciones: ''};
       tableArr.push(tabla);
     }
     this.dataSource = new MatTableDataSource(tableArr);
