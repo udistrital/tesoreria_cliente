@@ -34,8 +34,8 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from '././@core/store/effects/app.effects';
 import { NuxeoService } from './@core/utils/nuxeo.service';
-import { MatTableModule, 
-  MatSortModule, 
+import { MatTableModule,
+  MatSortModule,
   MatPaginatorModule,
   MatIconModule,
   MatFormFieldModule,

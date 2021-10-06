@@ -2,7 +2,7 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { DatePipe } from '@angular/common'
+import { DatePipe } from '@angular/common';
 import { OPCIONES_AREA_FUNCIONAL } from '../../../../../shared/interfaces/interfaces';
 import { getFilaSeleccionada } from '../../../../../shared/selectors/shared.selectors';
 import { cargarSolicitudesAvance, obtenerSolicitudesAvance } from '../../actions/solicitudavances.actions';
@@ -51,7 +51,7 @@ export class TableSolicitudavancesComponent implements OnInit, OnDestroy {
   
   ngOnInit() {
     this.displayedColumns = this.configSolicitudes.dataConfig.map(x => x.key);
-    this.columnNames = this.configSolicitudes.dataConfig;    
+    this.columnNames = this.configSolicitudes.dataConfig;
     this.documento = this.autenticationServie.getPayload().documento;
 
     // console.log("Documento: ", this.documento);
@@ -94,7 +94,7 @@ export class TableSolicitudavancesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subSolicitudes$.unsubscribe();
-    //this.tableSubscription$.unsubscribe();
+    // this.tableSubscription$.unsubscribe();
     this.clearStore();
   }
 
@@ -103,20 +103,19 @@ export class TableSolicitudavancesComponent implements OnInit, OnDestroy {
   }
 
   createTable() {
-    let tableArr: Element[] = [];
+    const tableArr: Element[] = [];
     for (let i = 0; i < this.datosSolicitudes.length; i++) {
-      let tabla: Element = {areaFuncional: this.datosSolicitudes[i].areaFuncional, Id: this.datosSolicitudes[i].Id, estadoSolicitud: this.datosSolicitudes[i].estadoSolicitud, fechaRadicacion: this.datePipe.transform(this.datosSolicitudes[i].FechaRadicacion, 'dd/MM/yyyy'), acciones: ''}
-      tableArr.push(tabla)
+      const tabla: Element = {areaFuncional: this.datosSolicitudes[i].areaFuncional, Id: this.datosSolicitudes[i].Id, estadoSolicitud: this.datosSolicitudes[i].estadoSolicitud,
+        fechaRadicacion: this.datePipe.transform(this.datosSolicitudes[i].FechaRadicacion, 'dd/MM/yyyy'), acciones: ''}
+      tableArr.push(tabla);
     }
     this.dataSource = new MatTableDataSource(tableArr);
     this.dataSource.paginator = this.paginator;
   }
   modificarSolicitud(prueba: any) {
-    console.log("entró ", prueba)
-    this.router.navigate(['pages/avances/solicitudavances/crear/' + prueba.Id])
-    return
+    this.router.navigate(['pages/avances/solicitudavances/crear/' + prueba.Id]);
+    return;
     this.tableSubscription$ = this.store.select(getFilaSeleccionada).subscribe((accion) => {
-      console.log("ASD ", accion)
       if (accion && accion.accion && accion.fila) {
         if (accion.accion.name === 'modificarSolicitud') {
           return this.router.navigate(['pages/avances/solicitudavances/crear/' + accion.fila.Id]);
@@ -132,9 +131,9 @@ export class TableSolicitudavancesComponent implements OnInit, OnDestroy {
 
 
 export interface Element {
-  areaFuncional: string,
-  Id: number,
-  estadoSolicitud: string,
-  fechaRadicacion: string,
-  acciones: string,
+  areaFuncional: string;
+  Id: number;
+  estadoSolicitud: string;
+  fechaRadicacion: string;
+  acciones: string;
 }
