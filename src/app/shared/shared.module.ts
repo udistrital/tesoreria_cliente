@@ -36,6 +36,7 @@ import { TablaReporteSumasComponent } from './components/tabla-reporte-sumas/tab
 import { TablaReporteTotalesComponent } from './components/tabla-reporte-totales/tabla-reporte-totales.component';
 import { TablaBorradorBoletinComponent } from './components/tabla-borrador-boletin/tabla-borrador-boletin.component';
 import { TablaBoletinComponent } from './components/tabla-boletin/tabla-boletin.component';
+import { MatTableModule, MatPaginatorModule, MatIconModule, MatFormFieldModule, MatInputModule } from '@angular/material'
 
 
 
@@ -56,6 +57,11 @@ import { TablaBoletinComponent } from './components/tabla-boletin/tabla-boletin.
     TablaReporteMensualPacComponent,
     TablaBoletinComponent,
     ContabilizacionComponent,
+    MatTableModule,
+    MatPaginatorModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   imports: [
     CommonModule,
@@ -65,7 +71,12 @@ import { TablaBoletinComponent } from './components/tabla-boletin/tabla-boletin.
     NbTreeGridModule,
     StoreModule.forFeature(fromShared.sharedFeatureKey, fromShared.reducer),
     StoreModule.forFeature(fromAvances.avancesFeatureKey, fromAvances.reducer),
-    EffectsModule.forFeature([SharedEffects, AvancesEffects])
+    EffectsModule.forFeature([SharedEffects, AvancesEffects]),
+    MatTableModule,
+    MatPaginatorModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   declarations: [
     GeneralTableComponent,
