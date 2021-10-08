@@ -80,10 +80,11 @@ steps:
 
 - name: nodejs_release
   image: node:12.6.0
+  environment:
+    VARIABLES:
+      from_secret: VARIABLES_TEST
   commands:
-  - echo "$VARIABLES_TEST" > .env
-  - node --version
-  - npm cache clean --force
+  - source <(echo "$VARIABLES")
   - npm i
   - npm run build:test
   when:
@@ -96,9 +97,11 @@ steps:
 
 - name: nodejs_master
   image: node:12.6.0
+  environment:
+    VARIABLES:
+      from_secret: VARIABLES_PROD
   commands:
-  - echo "$VARIABLES_PROD" > .env
-  - node --version
+  - source <(echo "$VARIABLES")
   - npm i
   - npm run build:prod
   when:
