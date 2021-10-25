@@ -174,7 +174,7 @@ export class SharedEffects {
   });
 
   // Consulta de bancos
-  
+
   getBancos$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(SharedActions.obtenerBancos),
@@ -187,10 +187,10 @@ export class SharedEffects {
           { Bancos: (data && data.Data ? data.Data : data)})),
           catchError(data => of(SharedActions.CatchError(data))))));
         });
-        
+
   // Consulta de id para guardar sucursales
   // Consulta a la tabla info_complementaria en terceros para saber que id se asociará en la llave foranea al momento de crear la sucursal
-        
+
   getIdSucursales$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(SharedActions.obtenerIdSucursales),

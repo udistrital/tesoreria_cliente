@@ -8,7 +8,7 @@ import { SharedModule } from '../../../shared/shared.module';
 import { MatDividerModule, MatSelectModule, MatOptionModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
-import * as fromSucursales from './reducers/sucursales.reducer'
+import * as fromSucursales from './reducers/sucursales.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 

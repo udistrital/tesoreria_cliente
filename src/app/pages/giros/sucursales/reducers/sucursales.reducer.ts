@@ -1,5 +1,5 @@
 import { createReducer, Action, on } from '@ngrx/store';
-import * as SucursalesActions from '../actions/sucursales.actions'
+import * as SucursalesActions from '../actions/sucursales.actions';
 
 export const sucursalesFeatureKey = 'sucursales';
 

@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { Actions, createEffect, ofType } from "@ngrx/effects";
-import * as SucursalesActions from '../actions/sucursales.actions'
-import * as SharedActions from '../../../../shared/actions/shared.actions'
-import { PopUpManager } from "../../../../@core/managers/popUpManager";
-import { SucursalesService } from "../services/sucursales.service";
+import { Injectable } from '@angular/core';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import * as SucursalesActions from '../actions/sucursales.actions';
+import * as SharedActions from '../../../../shared/actions/shared.actions';
+import { PopUpManager } from '../../../../@core/managers/popUpManager';
+import { SucursalesService } from '../services/sucursales.service';
 import { catchError, map, mergeMap } from "rxjs/operators";
-import { of } from "rxjs";
+import { of } from 'rxjs';
 
 @Injectable()
 export class SucursalesEffects {
@@ -29,6 +29,6 @@ export class SucursalesEffects {
                     });
                 }), catchError(data => of(SharedActions.CatchError(data))));
             })
-        )
-    })
+        );
+    });
 }

@@ -205,7 +205,6 @@ export class SharedService {
     return this.rqManager.getv2('tercero_tipo_tercero', id, query, null, null, null, limit);
   }
 
-  
   /**
    *
    * @param query Query para buscar id de sucursales para agregar en la fk de info_complementaria_tercero
@@ -214,7 +213,7 @@ export class SharedService {
    public getIdSucursales(query?: any) {
     this.rqManager.setPath('TERCEROS_CRUD_SERVICE');
     if (!query) query = {};
-    if (query.CodigoAbreviacion === null || query.CodigoAbreviacion === undefined) query.CodigoAbreviacion = "SUC";
+    if (query.CodigoAbreviacion === null || query.CodigoAbreviacion === undefined) query.CodigoAbreviacion = 'SUC';
     return this.rqManager.getv2('info_complementaria', null, query, null, null, null, null);
   }
 
