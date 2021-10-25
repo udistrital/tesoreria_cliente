@@ -54,16 +54,6 @@ export class TableSolicitudavancesComponent implements OnInit, OnDestroy {
     this.columnNames = this.configSolicitudes.dataConfig;
     this.documento = this.autenticationServie.getPayload().documento;
 
-    // console.log("Documento: ", this.documento);
-
-    // this.tableSubscription$ = this.store.select(getFilaSeleccionada).subscribe((accion) => {
-    //   if (accion && accion.accion && accion.fila) {
-    //     if (accion.accion.name === 'modificarSolicitud') {
-    //       this.router.navigate(['pages/avances/solicitudavances/crear/' + accion.fila.Id]);
-    //     }
-    //   }
-    // });
-
     this.subSolicitudes$ = this.store.select(seleccionarSolicitudesAvance).subscribe((accion) => {
       if (accion && accion.solicitudesAvance) {
         if (accion.solicitudesAvance.length && accion.solicitudesAvance[0].Id) {
@@ -74,19 +64,9 @@ export class TableSolicitudavancesComponent implements OnInit, OnDestroy {
             const areaRes = this.areasFuncionales.find(area =>
               area.Id === element.AreaFuncionalId);
 
-            // const area = this.areasFuncionales.find((ar: any) =>
-              // ar.Id === element.AreaFuncionalId);
-
             element.areaFuncional = areaRes.Id + ' - ' + areaRes.Nombre;
           });
-        } /*else if (accion.tiposAvances.idActualizado) {
-          const tipoAvance = this.datosTablaTipos.find((element: any) =>
-            element.Id === accion.tiposAvances.idActualizado);
-          if (tipoAvance) {
-            tipoAvance.estadoTipo = 'Inactivo';
-            this.popupManager.showSuccessAlert('Tipo de avance desactivado');
-          }
-        }*/
+        }
       }
       this.createTable();
     });
@@ -94,7 +74,6 @@ export class TableSolicitudavancesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subSolicitudes$.unsubscribe();
-    // this.tableSubscription$.unsubscribe();
     this.clearStore();
   }
 

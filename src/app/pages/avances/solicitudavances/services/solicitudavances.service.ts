@@ -10,10 +10,8 @@ export class SolicitudavancesService {
 
   // Solicitudes de avance
 
-  public getSolicitudesAvance(id?: number, query?: any, limit?: any) {
+  public getSolicitudesAvance(limit?: number) {
     this.rqManager.setPath('TESORERIA_MID_SERVICE');
-    // let queryParams = '';
-    // let limitParams = '';
     const params = {
       limit: limit ? limit : 0,
     };
