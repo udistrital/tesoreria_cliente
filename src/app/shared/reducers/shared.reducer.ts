@@ -20,6 +20,8 @@ export interface State {
   Ordenadores: any;
   Dependencias: any;
   FacultadesProyectos: any;
+  Bancos: any;
+  IdSucursales: any;
 }
 
 export const initialState: State = {
@@ -39,6 +41,8 @@ export const initialState: State = {
   Ordenadores: null,
   Dependencias: null,
   FacultadesProyectos: null,
+  Bancos: null,
+  IdSucursales: null,
 };
 
 const sharedReducer = createReducer(
@@ -95,6 +99,12 @@ const sharedReducer = createReducer(
   })),
   on(SharedActions.cargarFacultadesProyectos, (state, action) => ({
     ...state, FacultadesProyectos: state.FacultadesProyectos = action
+  })),
+  on(SharedActions.cargarBancos, (state, action) => ({
+    ...state, Bancos: state.Bancos = action
+  })),
+  on(SharedActions.cargarIdSucursales, (state, action) => ({
+    ...state, IdSucursales: state.IdSucursales = action
   })),
 );
 

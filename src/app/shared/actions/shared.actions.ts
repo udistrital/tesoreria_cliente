@@ -175,3 +175,23 @@ export const obtenerFacultadesProyectos = createAction(
   '[Shared] Obtener facultades y proyectos desde el back',
   props<{ id?: any, query?: any, limit?: number }>()
 );
+
+export const cargarBancos = createAction(
+  '[Shared] Cargar bancos al store',
+  props()
+);
+
+export const obtenerBancos = createAction(
+  '[Shared] Obtener bancos desde el back',
+  props<{ id?: any, query?: any, limit?: number }> ()
+);
+
+export const obtenerIdSucursales = createAction(
+  '[Shared] Obtener id para agregar sucursales',
+  props<{ query?: any}> ()
+);
+
+export const cargarIdSucursales = createAction(
+  '[Shared] Cargar id para agregar sucursales',
+  props()
+);

@@ -15,11 +15,16 @@
 
                         <div class="col-md-6">
                             <label>Nombre del Banco</label>
-                            <select class="custom-select" formControlName="nombreBanco" [class.is-invalid]="isInvalid('nombreBanco')">
-                                <option selected disabled>Seleccione...</option>
+                            <mat-select class="form-control" placeholder="Seleccione..." formControlName="nombreBanco">
+                                <cdk-virtual-scroll-viewport itemSize="10" minBufferPx="200" maxBufferPx="400" class="vs-viewport">
+                                    <mat-option *cdkVirtualFor="let banco of bancos" [value]="banco">
+                                        {{banco.TerceroId.NombreCompleto}}
+                                    </mat-option>
+                                </cdk-virtual-scroll-viewport>
+                                <!-- <option selected disabled>Seleccione...</option>
                                 <option>Banco de la Republica</option>
-                                <option>Banco de Bogotá</option>
-                            </select>
+                                <option>Banco de Bogotá</option> -->
+                            </mat-select>
                             <small *ngIf="isInvalid('nombreBanco')" class="text-danger">Seleccione un valor</small>
                         </div>
                         <div class="col-md-6">

@@ -1,13 +1,17 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Store } from '@ngrx/store'
+import { obtenerBancos, obtenerIdSucursales } from '../../../../../shared/actions/shared.actions';
+import { seleccionarBancos, seleccionarIdSucursales } from '../../../../../shared/selectors/shared.selectors';
+import { crearSucursal } from '../../actions/sucursales.actions';
 
 @Component({
   selector: 'ngx-create-sucursal',
   templateUrl: './create-sucursal.component.html',
   styleUrls: ['./create-sucursal.component.scss']
 })
-export class CreateSucursalComponent implements OnInit {
+export class CreateSucursalComponent implements OnInit, OnDestroy {
   @ViewChild('modalGuardar', { static: false }) modalGuardar: ElementRef;
 
 
@@ -16,13 +20,31 @@ export class CreateSucursalComponent implements OnInit {
   // Modal
   closeResult = '';
 
+  bancos: any;
+  subBancos$ :any;
+  idSucursales$ : any;
 
 
-  constructor(private fb: FormBuilder, private modalService: NgbModal) {
+
+  constructor(private fb: FormBuilder, private modalService: NgbModal, private store: Store<any>,) {
     this.createForm();
+    this.bancos = [];
+    this.store.dispatch(obtenerBancos({}))
+    this.store.dispatch(obtenerIdSucursales({}))
   }
-
+  
   ngOnInit() {
+    this.createForm();
+    //Bancos
+    this.subBancos$ = this.store.select(seleccionarBancos).subscribe((action) => {
+      if (action && action.Bancos) {
+        this.bancos = action.Bancos
+      }
+    })
+  }
+  
+  ngOnDestroy() {
+    this.subBancos$.unsubscribe();
   }
 
   createForm() {
@@ -30,6 +52,7 @@ export class CreateSucursalComponent implements OnInit {
       nombreBanco: ['', Validators.required],
       nombreSucursal: ['', Validators.required],
     });
+
   }
 
   saveForm() {
@@ -49,15 +72,32 @@ export class CreateSucursalComponent implements OnInit {
   }
 
   guardar() {
-    if (this.crearSucursalGroup.valid) {
+    var idSucursal;
+    if (this.crearSucursalGroup.valid) {      
+      this.idSucursales$ = this.store.select(seleccionarIdSucursales).subscribe((action) => {
+        if (action && action.IdSucursales){
+          idSucursal = action.IdSucursales[0].Id
+        }
+      })
+      const elemento = {
+        Activo: true,
+        Dato: "{\"nombreSucursal\": \"" + this.crearSucursalGroup.value.nombreSucursal.toUpperCase() + "\"}",
+        InfoComplementariaId: {
+          Id: idSucursal
+        },
+        TerceroId: {
+          Id: this.crearSucursalGroup.value.nombreBanco.TerceroId.Id
+        }
+      }
       this.modalService.open(this.modalGuardar).result.then((result) => {
         if (`${result}`) {
-
+          this.store.dispatch(crearSucursal({ element: elemento}));          
         }
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       });
-    } else { this.saveForm(); }
+    } else { 
+      this.saveForm(); }
   }
 
   private getDismissReason(reason: any): string {
