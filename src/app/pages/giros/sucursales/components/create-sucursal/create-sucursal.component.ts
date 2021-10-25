@@ -32,7 +32,7 @@ export class CreateSucursalComponent implements OnInit, OnDestroy {
     this.store.dispatch(obtenerBancos({}));
     this.store.dispatch(obtenerIdSucursales({}));
   }
-  
+
   ngOnInit() {
     this.createForm();
     // Bancos
@@ -96,7 +96,7 @@ export class CreateSucursalComponent implements OnInit, OnDestroy {
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       });
-    } else { 
+    } else {
       this.saveForm(); }
   }
 

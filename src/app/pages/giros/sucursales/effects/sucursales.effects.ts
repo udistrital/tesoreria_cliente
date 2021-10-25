@@ -4,7 +4,7 @@ import * as SucursalesActions from '../actions/sucursales.actions';
 import * as SharedActions from '../../../../shared/actions/shared.actions';
 import { PopUpManager } from '../../../../@core/managers/popUpManager';
 import { SucursalesService } from '../services/sucursales.service';
-import { catchError, map, mergeMap } from "rxjs/operators";
+import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 @Injectable()
