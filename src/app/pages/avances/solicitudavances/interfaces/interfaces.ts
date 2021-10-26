@@ -8,7 +8,7 @@ export const CONFIGURACION_TABLASOLICITUD: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: '',
+                class: 'left',
             }
         },
         {
@@ -18,7 +18,7 @@ export const CONFIGURACION_TABLASOLICITUD: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                class: 'left',
             }
         },
         {
@@ -28,11 +28,11 @@ export const CONFIGURACION_TABLASOLICITUD: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                class: 'left',
             }
         },
         {
-            key: 'FechaRadicacion',
+            key: 'fechaRadicacion',
             title: {
                 name: 'Fecha',
                 class: 'text-center',
@@ -42,9 +42,19 @@ export const CONFIGURACION_TABLASOLICITUD: any = {
                 config: [
                     'shortDate'
                 ],
-                class: 'text-center',
+                class: 'center',
             }
         },
+        {
+            key: 'acciones',
+            title: {
+                name: 'Acciones',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'icons'
+            }
+        }
     ],
     rowActions: {
         title: {
