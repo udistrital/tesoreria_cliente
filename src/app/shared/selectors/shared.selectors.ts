@@ -104,3 +104,8 @@ export const seleccionarIdSucursales = createSelector(
   selectSharedState,
   (state: fromShared.State) => state.IdSucursales
 );
+
+export const seleccionarSucursales = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.Sucursales
+);

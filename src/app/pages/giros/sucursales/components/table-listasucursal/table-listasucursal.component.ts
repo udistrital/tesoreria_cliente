@@ -1,9 +1,12 @@
 import { Component, OnInit, OnDestroy, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
-import { DATOS_TABLASUCURSAL, CONFIGURACION_TABLASUCURSAL } from '../../interfaces/interfaces';
-import { getFilaSeleccionada } from '../../../../../shared/selectors/shared.selectors';
+import { CONFIGURACION_TABLASUCURSAL } from '../../interfaces/interfaces';
+import { getFilaSeleccionada, seleccionarSucursales } from '../../../../../shared/selectors/shared.selectors';
 import { Store } from '@ngrx/store';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
+import { cargarSucursales, LoadFilaSeleccionada, obtenerSucursales } from '../../../../../shared/actions/shared.actions';
+import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { Router } from '@angular/router';
+import { actualizarSucursal } from '../../actions/sucursales.actions';
 
 
 @Component({
@@ -16,9 +19,16 @@ export class TableListasucursalComponent implements OnInit, OnDestroy {
 
   configSucursal: any;
   datosSucursal: any;
+  datosSucursales: any;
   subscription$: any;
 
+  subSucursales$: any;
+
   closeResult = '';
+
+  displayedColumns = [];
+  columnNames;
+  dataSource;
 
 
   @Output() selectedAction: EventEmitter<any>;
@@ -26,29 +36,44 @@ export class TableListasucursalComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<any>,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private router: Router,
     ) {
     this.stringBusqueda = '';
     this.selectedAction = new EventEmitter<any>();
-    this.datosSucursal = DATOS_TABLASUCURSAL;
+    // this.datosSucursal = DATOS_TABLASUCURSAL;
     this.configSucursal = CONFIGURACION_TABLASUCURSAL;
-
+    this.datosSucursal = [];
+    this.clearStore();
+    this.store.dispatch(obtenerSucursales({}));
     }
 
+    @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
   ngOnInit() {
-    this.subscription$ = this.store.select(getFilaSeleccionada).subscribe((accion) => {
-      if (accion && accion.accion && accion.fila) {
-        // Eliminar datos que se encuentran en la tabla
-        if (accion.accion.name === 'borraSucursal') {
-          this.modalEliminar(accion.fila);
+    this.displayedColumns = this.configSucursal.dataConfig.map(x => x.key);
+    this.columnNames = this.configSucursal.dataConfig;
+    this.subSucursales$ = this.store.select(seleccionarSucursales).subscribe((accion) => {
+      if (accion && accion.Sucursales) {
+        if (accion.Sucursales.length && accion.Sucursales[0].Id) {
+          this.datosSucursales = accion.Sucursales;
+          this.datosSucursales.forEach(element => {
+            element.sucursal = JSON.parse(element.Dato).nombreSucursal;
+          });
+          this.createTable();
         }
       }
     });
   }
 
   ngOnDestroy(): void {
-    this.subscription$.unsubscribe();
-    this.store.dispatch(LoadFilaSeleccionada(null));
+    // this.subscription$.unsubscribe();
+    this.subSucursales$.unsubscribe();
+    this.clearStore();
+  }
+
+  clearStore() {
+    this.store.dispatch(cargarSucursales(null));
   }
 
   modalEliminar(fila: any) {
@@ -61,6 +86,20 @@ export class TableListasucursalComponent implements OnInit, OnDestroy {
     });
   }
 
+  createTable() {
+    const tableArr: Element[] = [];
+    for (let i = 0; i < this.datosSucursales.length; i++) {
+      let active;
+      if (this.datosSucursales[i].Activo === true) active = 'Activo';
+      else active = 'Inactivo';
+      const tabla: Element = {nombreSucursal: this.datosSucursales[i].sucursal, nombreBanco: this.datosSucursales[i].TerceroId.NombreCompleto, codigoID: i + 1,
+        acciones: '', activo: active};
+      tableArr.push(tabla);
+    }
+    this.dataSource = new MatTableDataSource(tableArr);
+    this.dataSource.paginator = this.paginator;
+  }
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -71,4 +110,20 @@ export class TableListasucursalComponent implements OnInit, OnDestroy {
     }
   }
 
+  modificarSucursal(sucursal: any) {
+    this.router.navigate(['pages/giros/sucursales/editar/' + this.datosSucursales[sucursal.codigoID - 1].Id]);
+    return;
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+}
+
+export interface Element {
+  nombreSucursal: string;
+  codigoID: number;
+  nombreBanco: string;
+  activo: string;
+  acciones: string;
 }

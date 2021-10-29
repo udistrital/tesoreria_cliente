@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { GirosRoutingModule } from './giros-routing.module';
 import { GirosComponent } from './giros.component';
-import { MatTableModule, MatSortModule, MatPaginatorModule, MatIconModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatTableModule, MatSortModule, MatPaginatorModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSlideToggleModule } from '@angular/material';
 import { SucursalesEffects } from './sucursales/effects/sucursales.effects';
 import { EffectsModule } from '@ngrx/effects';
 
@@ -19,6 +19,7 @@ import { EffectsModule } from '@ngrx/effects';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSlideToggleModule,
     EffectsModule.forFeature([SucursalesEffects]),
 
   ]

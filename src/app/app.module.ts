@@ -40,6 +40,7 @@ import { MatTableModule,
   MatIconModule,
   MatFormFieldModule,
   MatInputModule,
+  MatSlideToggleModule,
 } from '@angular/material';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -88,6 +89,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSlideToggleModule,
   ],
   bootstrap: [AppComponent],
   providers: [ImplicitAutenticationService, NuxeoService, AutenticationService,

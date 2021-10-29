@@ -210,6 +210,20 @@ export class SharedService {
    * @param query Query para buscar id de sucursales para agregar en la fk de info_complementaria_tercero
    * @returns
    */
+   public getSucursales(query?: any, limit?: number) {
+    this.rqManager.setPath('TERCEROS_CRUD_SERVICE');
+    if (!limit) limit = 0;
+    if (!query) query = {};
+    if (query.CodigoAbreviacion === null || query.CodigoAbreviacion === undefined) query.InfoComplementariaId__CodigoAbreviacion = 'SUC';
+    return this.rqManager.getv2('info_complementaria_tercero', null, query, null, null, null, limit);
+  }
+
+  /**
+   * @param id Identificación de orden
+   * @param query Query para buscar sucursales
+   * @param limit Límite de cantidad de bancos (todos por defecto)
+   * @returns
+   */
    public getIdSucursales(query?: any) {
     this.rqManager.setPath('TERCEROS_CRUD_SERVICE');
     if (!query) query = {};

@@ -5,7 +5,7 @@ import { SucursalesRoutingModule } from './sucursales-routing.module';
 import { CreateSucursalComponent } from './components/create-sucursal/create-sucursal.component';
 import { TableListasucursalComponent } from './components/table-listasucursal/table-listasucursal.component';
 import { SharedModule } from '../../../shared/shared.module';
-import { MatDividerModule, MatSelectModule, MatOptionModule} from '@angular/material';
+import { MatDividerModule, MatSelectModule, MatOptionModule, MatSlideToggleModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import * as fromSucursales from './reducers/sucursales.reducer';
@@ -29,6 +29,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     ScrollingModule,
     EffectsModule,
     MatOptionModule,
+    MatSlideToggleModule
   ]
 })
 export class SucursalesModule { }

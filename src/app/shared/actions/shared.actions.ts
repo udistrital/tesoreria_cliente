@@ -195,3 +195,13 @@ export const cargarIdSucursales = createAction(
   '[Shared] Cargar id para agregar sucursales',
   props()
 );
+
+export const obtenerSucursales = createAction(
+  '[Shared] Obtener sucursales de bancos del back',
+  props<{ id?: any, query?: any, limit?: any }>()
+);
+
+export const cargarSucursales = createAction(
+  '[Shared] Cargar Sucursales al store',
+  props()
+);

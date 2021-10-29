@@ -201,6 +201,19 @@ export class SharedEffects {
       .pipe(map(data => SharedActions.cargarIdSucursales(
         { IdSucursales: (data && data.Data ? data.Data : data)})),
         catchError(data => of(SharedActions.CatchError(data))))));
-      });
+  });
+
+  getSucursales$ = createEffect(() => {
+    return this.actions$.pipe(
+        ofType(SharedActions.obtenerSucursales),
+        mergeMap((accion) => this.sharedService.getSucursales(accion && accion.query ? accion.query : null)
+            .pipe(map(data => SharedActions.cargarSucursales(
+              { Sucursales: (data && data.Data ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+
+            // })), catchError(data => of(SharedActions.CatchError(data)))))
+
+    );
+  });
 
 }
