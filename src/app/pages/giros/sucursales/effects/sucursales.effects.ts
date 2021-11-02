@@ -18,7 +18,7 @@ export class SucursalesEffects {
         private servicio: SucursalesService,
         private popupManager: PopUpManager,
         private router: Router,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
     ) {
     }
 

@@ -4,7 +4,6 @@ import { RequestManager } from '../../../../@core/managers/requestManager';
 @Injectable({
     providedIn: 'root'
 })
-
 export class SucursalesService {
     constructor(private rqManager: RequestManager) { }
 

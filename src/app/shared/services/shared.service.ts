@@ -219,9 +219,7 @@ export class SharedService {
   }
 
   /**
-   * @param id Identificación de orden
    * @param query Query para buscar sucursales
-   * @param limit Límite de cantidad de bancos (todos por defecto)
    * @returns
    */
    public getIdSucursales(query?: any) {

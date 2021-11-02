@@ -113,7 +113,7 @@ export class CreateSucursalComponent implements OnInit, OnDestroy {
       });
       const elemento = {
         Activo: this.crearSucursalGroup.value.activo,
-        Dato: '{\"nombreSucursal\":\"' + this.crearSucursalGroup.value.nombreSucursal.toUpperCase() + '\"}',
+        Dato: JSON.stringify({nombreSucursal: this.crearSucursalGroup.value.nombreSucursal.toUpperCase()}),
         InfoComplementariaId: {
           Id: idSucursal
         },

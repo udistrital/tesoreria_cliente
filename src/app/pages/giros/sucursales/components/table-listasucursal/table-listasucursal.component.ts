@@ -41,7 +41,6 @@ export class TableListasucursalComponent implements OnInit, OnDestroy {
     ) {
     this.stringBusqueda = '';
     this.selectedAction = new EventEmitter<any>();
-    // this.datosSucursal = DATOS_TABLASUCURSAL;
     this.configSucursal = CONFIGURACION_TABLASUCURSAL;
     this.datosSucursal = [];
     this.clearStore();
@@ -67,7 +66,6 @@ export class TableListasucursalComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // this.subscription$.unsubscribe();
     this.subSucursales$.unsubscribe();
     this.clearStore();
   }

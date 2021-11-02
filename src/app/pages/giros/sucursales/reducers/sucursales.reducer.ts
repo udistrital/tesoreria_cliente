@@ -13,7 +13,6 @@ export const initialState: State = {
     bancos: null,
 };
 
-
 const sucursalesReducer = createReducer(
     initialState,
 );
