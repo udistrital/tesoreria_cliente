@@ -173,4 +173,47 @@ export class SharedEffects {
             catchError(data => of(SharedActions.CatchError(data))))));
   });
 
+  // Consulta de bancos
+
+  getBancos$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerBancos),
+      mergeMap((accion) =>
+      this.sharedService.getBancos(
+        accion && accion.id ? accion.id : null,
+        accion && accion.query ? accion.query : null,
+        accion.limit ? accion.limit : null)
+        .pipe(map(data => SharedActions.cargarBancos(
+          { Bancos: (data && data.Data ? data.Data : data)})),
+          catchError(data => of(SharedActions.CatchError(data))))));
+        });
+
+  // Consulta de id para guardar sucursales
+  // Consulta a la tabla info_complementaria en terceros para saber que id se asociará en la llave foranea al momento de crear la sucursal
+
+  getIdSucursales$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerIdSucursales),
+      mergeMap((accion) =>
+      this.sharedService.getIdSucursales(
+        accion && accion.query ? accion.query : null,
+      )
+      .pipe(map(data => SharedActions.cargarIdSucursales(
+        { IdSucursales: (data && data.Data ? data.Data : data)})),
+        catchError(data => of(SharedActions.CatchError(data))))));
+  });
+
+  getSucursales$ = createEffect(() => {
+    return this.actions$.pipe(
+        ofType(SharedActions.obtenerSucursales),
+        mergeMap((accion) => this.sharedService.getSucursales(accion && accion.query ? accion.query : null)
+            .pipe(map(data => SharedActions.cargarSucursales(
+              { Sucursales: (data && data.Data ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+
+            // })), catchError(data => of(SharedActions.CatchError(data)))))
+
+    );
+  });
+
 }

@@ -94,3 +94,18 @@ export const seleccionarFacultadesProyectos = createSelector(
   selectSharedState,
   (state: fromShared.State) => state.FacultadesProyectos
 );
+
+export const seleccionarBancos = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.Bancos
+);
+
+export const seleccionarIdSucursales = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.IdSucursales
+);
+
+export const seleccionarSucursales = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.Sucursales
+);
