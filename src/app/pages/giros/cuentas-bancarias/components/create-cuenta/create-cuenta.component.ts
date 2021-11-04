@@ -19,8 +19,7 @@ export class CreateCuentaComponent implements OnInit {
    }
 
   ngOnInit() {
-    console.log(this.opcionesAreaFuncional)
-    this.createForm()
+    this.createForm();
   }
 
   createForm() {
