@@ -37,6 +37,7 @@ export class CreateCuentaComponent implements OnInit, OnDestroy {
   touched: boolean;
   recaudadoraPagadora: string;
   sucursal: any;
+  ver: boolean;
 
   // Formulario
   crearCuentaBancariaGroup: FormGroup;
@@ -54,15 +55,17 @@ export class CreateCuentaComponent implements OnInit, OnDestroy {
     this.store.dispatch(obtenerDivisas({}));
     this.store.dispatch(obtenerTipoCuenta({}));
     this.tituloAccion = this.activatedRoute.snapshot.url[0].path;
-    // this.recaudadoraPagadora = 'recaudadora'
-    if (this.tituloAccion === 'editar' ) {
-      this.store.dispatch(obtenerSucursales({query: {InfoComplementariaId__CodigoAbreviacion: 'SUC'}}));
+    if (this.tituloAccion === 'ver' ) this.ver = true;
+    else this.ver = false
+    if (this.tituloAccion === 'editar' || this.tituloAccion === 'ver' ) {
+      this.store.dispatch(obtenerSucursales({query: {InfoComplementariaId__CodigoAbreviacion: 'SUC',
+                                            Activo: true}}));
       this.store.dispatch(obtenerCuentasBancarias({query: {Id: this.id}}));
     } else this.store.dispatch(obtenerRecursos({codigo: 2}));
    }
   ngOnDestroy() {
     this.clearStore();
-    if (this.tituloAccion === 'editar') {
+    if (this.tituloAccion === 'editar' || this.tituloAccion === 'ver') {
       this.subCuentaBancaria$.unsubscribe();
     }
     this.tituloAccion = '';
@@ -79,14 +82,14 @@ export class CreateCuentaComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    if (this.tituloAccion === 'editar') {
+    if (this.tituloAccion === 'editar' || this.tituloAccion === 'ver') {
       this.subCuentaBancaria$ = this.store.select(seleccionarCuentasBancarias).subscribe((accion) => {
         if (accion && accion.CuentasBancarias) {
           this.datosCuentaBancaria = accion.CuentasBancarias[0];
-          if (this.datosCuentaBancaria.Recaudadora === true && this.tituloAccion === 'editar') {
+          if (this.datosCuentaBancaria.Recaudadora === true && (this.tituloAccion === 'editar' || this.tituloAccion === 'ver')) {
             this.store.dispatch(obtenerRecursos({codigo: 2}));
             this.subBancos();
-          } else if (this.datosCuentaBancaria.Recaudadora === false && this.tituloAccion === 'editar') {
+          } else if (this.datosCuentaBancaria.Recaudadora === false && (this.tituloAccion === 'editar' || this.tituloAccion === 'ver')) {
             this.store.dispatch(obtenerRecursos({codigo: 3}));
             this.subBancos();
           }
@@ -126,7 +129,7 @@ export class CreateCuentaComponent implements OnInit, OnDestroy {
   consultaSucursales() {
     const banco = this.crearCuentaBancariaGroup.controls['nombreBanco'].value;
     this.store.dispatch(obtenerSucursales({query: {InfoComplementariaId__CodigoAbreviacion: 'SUC',
-    TerceroId__NombreCompleto: banco.TerceroId.NombreCompleto}}));
+    TerceroId__NombreCompleto: banco.TerceroId.NombreCompleto, Activo: true}}));
     this.subSucursales$ = this.store.select(seleccionarSucursales).subscribe((accion) => {
       if (accion &&  accion.Sucursales) {
         if (accion.Sucursales.length && accion.Sucursales[0].Id) {
@@ -173,7 +176,7 @@ export class CreateCuentaComponent implements OnInit, OnDestroy {
       };
       this.modalService.open(this.modalGuardar).result.then((result) => {
         if (`${result}`) {
-          if (this.tituloAccion === 'editar') {
+          if (this.tituloAccion === 'editar' || this.tituloAccion === 'ver') {
             this.store.dispatch(actualizarCuentaBancaria({id: this.id, element: elemento}));
           } else {
             this.store.dispatch(crearCuentaBancaria({element: elemento}));
@@ -198,14 +201,16 @@ export class CreateCuentaComponent implements OnInit, OnDestroy {
   }
 
   consultaTipoRecursos(recaudadora: boolean) {
-    this.subRecursos$.unsubscribe();
-    this.checkedRecaudadora = recaudadora;
-    if (this.checkedRecaudadora === true) {
-      this.store.dispatch(obtenerRecursos({codigo: 2}));
-    } else {
-      this.store.dispatch(obtenerRecursos({codigo: 3}));
+    if (this.ver === false) {
+      this.subRecursos$.unsubscribe();
+      this.checkedRecaudadora = recaudadora;
+      if (this.checkedRecaudadora === true) {
+        this.store.dispatch(obtenerRecursos({codigo: 2}));
+      } else {
+        this.store.dispatch(obtenerRecursos({codigo: 3}));
+      }
+      this.subRecursos();
     }
-    this.subRecursos();
   }
 
   subRecursos() {
@@ -216,7 +221,7 @@ export class CreateCuentaComponent implements OnInit, OnDestroy {
           this.recursos.forEach(element => {
             element.recursos = element.data.Nombre;
           });
-          if (this.tituloAccion === 'editar' && this.touched === false) {
+          if ((this.tituloAccion === 'editar' || this.tituloAccion === 'ver' )&& this.touched === false) {
             this.cuentaBancaria();
           }
         }
@@ -258,7 +263,7 @@ export class CreateCuentaComponent implements OnInit, OnDestroy {
   cuentaBancaria() {
     this.touched = true;
     this.subCuentaBancaria$.unsubscribe();
-    if (this.tituloAccion === 'editar') {
+    if (this.tituloAccion === 'editar' || this.tituloAccion === 'ver') {
       this.subCuentaBancaria$ = this.store.select(seleccionarCuentasBancarias).subscribe((accion) => {
         if (accion && accion.CuentasBancarias) {
           this.datosCuentaBancaria = accion.CuentasBancarias[0];

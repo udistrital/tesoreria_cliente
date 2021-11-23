@@ -108,6 +108,11 @@ export class TableCuentabancariaComponent implements OnInit, OnDestroy {
     return;
   }
 
+  verCuentaBancaria(cuentaBancaria: any) {
+    this.router.navigate(['pages/giros/cuentas/ver/' + this.datosCuentaBancaria[cuentaBancaria.ID - 1].Id]);
+    return;
+  }
+
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
