@@ -23,6 +23,10 @@ export interface State {
   Bancos: any;
   IdSucursales: any;
   Sucursales: any;
+  Divisas: any;
+  Recursos: any;
+  TipoCuentas: any;
+  CuentasBancarias: any;
 }
 
 export const initialState: State = {
@@ -45,6 +49,10 @@ export const initialState: State = {
   Bancos: null,
   IdSucursales: null,
   Sucursales: null,
+  Divisas: null,
+  Recursos: null,
+  TipoCuentas: null,
+  CuentasBancarias: null,
 };
 
 const sharedReducer = createReducer(
@@ -110,6 +118,18 @@ const sharedReducer = createReducer(
   })),
   on(SharedActions.cargarSucursales, (state, action) => ({
     ...state, Sucursales: state.Sucursales = action
+  })),
+  on(SharedActions.cargarDivisas, (state, action) => ({
+    ...state, Divisas: state.Divisas = action
+  })),
+  on(SharedActions.cargarRecursos, (state, action) => ({
+    ...state, Recursos: state.Recursos = action
+  })),
+  on(SharedActions.cargarTipoCuenta, (state, action) => ({
+    ...state, TipoCuentas: state.TipoCuentas = action
+  })),
+  on(SharedActions.cargarCuentasBancarias, (state, action) => ({
+    ...state, CuentasBancarias: state.CuentasBancarias = action
   })),
 );
 

@@ -67,6 +67,7 @@ export const environment = {
     OIKOS_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/oikos_crud_api/v2/',
     TERCEROS_CRUD_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/terceros_crud/v1/',
     TESORERIA_MID_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/tesoreria_mid/v1/',
+    GIROS_CRUD_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/giros_crud/v1/',
     // TESORERIA_MID_SERVICE: 'http://localhost:8081/v1/',
 // -----------------------------------------------------------------------------------
 

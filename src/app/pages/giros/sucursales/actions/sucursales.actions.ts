@@ -5,10 +5,6 @@ export const crearSucursal = createAction(
     props<{ element: any }>()
 );
 
-export const cargarSucursales = createAction(
-    '[Giros] Cargar sucursales al store',
-    props()
-);
 
 export const actualizarSucursal = createAction(
     '[Giros] Actualizar y guardar una sucursal existente',
