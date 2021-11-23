@@ -56,7 +56,7 @@ export class CreateCuentaComponent implements OnInit, OnDestroy {
     this.store.dispatch(obtenerTipoCuenta({}));
     this.tituloAccion = this.activatedRoute.snapshot.url[0].path;
     if (this.tituloAccion === 'ver' ) this.ver = true;
-    else this.ver = false
+    else this.ver = false;
     if (this.tituloAccion === 'editar' || this.tituloAccion === 'ver' ) {
       this.store.dispatch(obtenerSucursales({query: {InfoComplementariaId__CodigoAbreviacion: 'SUC',
                                             Activo: true}}));
@@ -221,7 +221,7 @@ export class CreateCuentaComponent implements OnInit, OnDestroy {
           this.recursos.forEach(element => {
             element.recursos = element.data.Nombre;
           });
-          if ((this.tituloAccion === 'editar' || this.tituloAccion === 'ver' )&& this.touched === false) {
+          if ((this.tituloAccion === 'editar' || this.tituloAccion === 'ver' ) && this.touched === false) {
             this.cuentaBancaria();
           }
         }
