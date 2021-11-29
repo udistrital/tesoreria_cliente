@@ -216,4 +216,53 @@ export class SharedEffects {
     );
   });
 
+  getDivisas$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerDivisas),
+      mergeMap((accion) =>
+      this.sharedService.getDivisas(
+        accion && accion.query ? accion.query : null,
+        accion.limit ? accion.limit : null
+      )
+      .pipe(map(data => SharedActions.cargarDivisas(
+        { Divisas: (data && data.Data ? data.Data : data)})),
+        catchError(data => of (SharedActions.CatchError(data)))))
+    );
+  });
+
+  getRecursos$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerRecursos),
+      mergeMap((codigo) =>
+      this.sharedService.getRecursos(codigo.codigo)
+      .pipe(map(data => SharedActions.cargarRecursos(
+        { Recursos: (data && data.Data ? data.Data : data)})),
+        catchError(data => of (SharedActions.CatchError(data)))))
+    );
+  });
+
+  getTipoCuenta$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerTipoCuenta),
+      mergeMap((accion) =>
+      this.sharedService.getTipoCuenta(
+        accion && accion.query ? accion.query : null,
+        accion.limit ? accion.limit : null
+      )
+      .pipe(map(data => SharedActions.cargarTipoCuenta(
+        {TipoCuentas: (data && data.Data ? data.Data : data)})),
+        catchError(data => of (SharedActions.CatchError(data)))))
+    );
+  });
+
+  getCuentasBancarias$ = createEffect(() => {
+    return this.actions$.pipe(
+        ofType(SharedActions.obtenerCuentasBancarias),
+        mergeMap((accion) => this.sharedService.getCuentasBancarias(accion && accion.query ? accion.query : null)
+            .pipe(map(data => SharedActions.cargarCuentasBancarias(
+              { CuentasBancarias: (data && data.Data ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+    );
+  });
+
 }

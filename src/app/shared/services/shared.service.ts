@@ -208,6 +208,7 @@ export class SharedService {
   /**
    *
    * @param query Query para buscar id de sucursales para agregar en la fk de info_complementaria_tercero
+   * @param limit Limite de cantidad de sucursales
    * @returns
    */
    public getSucursales(query?: any, limit?: number) {
@@ -228,6 +229,56 @@ export class SharedService {
     if (query.CodigoAbreviacion === null || query.CodigoAbreviacion === undefined) query.CodigoAbreviacion = 'SUC';
     return this.rqManager.getv2('info_complementaria', null, query, null, null, null, null);
   }
+
+  /**
+   * @param query Query para buscar las divisas de parametros
+   * @param limit Limite de cantidad de divisas
+   * @returns
+   */
+   public getDivisas(query?: any, limit?: number) {
+    this.rqManager.setPath('PARAMETROS_CRUD_SERVICE');
+    if (!limit) limit = 0;
+    if (!query) query = {};
+    if (query.CodigoAbreviacion === null || query.CodigoAbreviacion === undefined) query.TipoParametroId__CodigoAbreviacion = 'D';
+    return this.rqManager.getv2('parametro', null, query, null, null, null, null);
+  }
+
+    /**
+   * Gets arbol
+   *  returns one tree level at once.
+   * @param [codigo] codigo que se va a consultar
+   * @returns  codigo
+   */
+ public getRecursos(codigo: string) {
+  this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
+  return this.rqManager.get(`arbol_rubro/arbol_reducido/${codigo}?nivel=1`);
+}
+
+/**
+   * @param query Query para buscar los tipos de cuentas de parametros
+   * @param limit Limite de cantidad de tipos de cuentas
+   * @returns
+   */
+ public getTipoCuenta(query?: any, limit?: number) {
+  this.rqManager.setPath('PARAMETROS_CRUD_SERVICE');
+  if (!limit) limit = 0;
+  if (!query) query = {};
+  if (query.CodigoAbreviacion === null || query.CodigoAbreviacion === undefined) query.TipoParametroId__CodigoAbreviacion = 'CB';
+  return this.rqManager.getv2('parametro', null, query, null, null, null, null);
+}
+
+/**
+   *
+   * @param query Query para buscar cuentas bancarias del crud de giros
+   * @param limit Limite de cantidad de cuentas bancarias
+   * @returns
+   */
+ public getCuentasBancarias(query?: any, limit?: number) {
+  this.rqManager.setPath('GIROS_CRUD_SERVICE');
+  if (!limit) limit = 0;
+  if (!query) query = {};
+  return this.rqManager.getv2('cuenta_bancaria', null, query, null, null, null, limit);
+}
 
 
   /**

@@ -109,3 +109,23 @@ export const seleccionarSucursales = createSelector(
   selectSharedState,
   (state: fromShared.State) => state.Sucursales
 );
+
+export const seleccionarDivisas = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.Divisas
+);
+
+export const seleccionarRecursos = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.Recursos
+);
+
+export const seleccionarTipoCuentas = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.TipoCuentas
+);
+
+export const seleccionarCuentasBancarias = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.CuentasBancarias
+);

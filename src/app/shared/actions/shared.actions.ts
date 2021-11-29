@@ -205,3 +205,43 @@ export const cargarSucursales = createAction(
   '[Shared] Cargar Sucursales al store',
   props()
 );
+
+export const cargarDivisas = createAction(
+  '[Shared] Cargar divisas al store',
+  props()
+);
+
+export const obtenerDivisas = createAction(
+  '[Shared] Obtener divisas desde el back',
+  props<{query?: any, limit?: number}> ()
+);
+
+export const obtenerRecursos = createAction(
+  '[Shared] Obtener recursos desde el back',
+  props<{ codigo: any }>()
+);
+
+export const cargarRecursos = createAction(
+  '[Shared] Cargar recursos al store',
+  props()
+);
+
+export const cargarTipoCuenta = createAction(
+  '[Shared] Cargar tipos de cuentas bancarias al store',
+  props()
+);
+
+export const obtenerTipoCuenta = createAction(
+  '[Shared] Obtener tipos de cuentas bancarias desde el back',
+  props<{query?: any, limit?: number}> ()
+);
+
+export const obtenerCuentasBancarias = createAction(
+  '[Shared] Obtener cuentas bancarias de bancos del back',
+  props<{ id?: any, query?: any, limit?: any }>()
+);
+
+export const cargarCuentasBancarias = createAction(
+  '[Shared] Cargar cuentas bancarias al store',
+  props()
+);

@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { GirosRoutingModule } from './giros-routing.module';
 import { GirosComponent } from './giros.component';
-import { MatTableModule, MatSortModule, MatPaginatorModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSlideToggleModule } from '@angular/material';
+import { MatTableModule, MatSortModule, MatPaginatorModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSlideToggleModule, MatRadioModule } from '@angular/material';
 import { SucursalesEffects } from './sucursales/effects/sucursales.effects';
+import { CuentaBancariaEffects } from './cuentas-bancarias/effects/cuentaBancaria.effects';
 import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
@@ -20,7 +21,8 @@ import { EffectsModule } from '@ngrx/effects';
     MatFormFieldModule,
     MatInputModule,
     MatSlideToggleModule,
-    EffectsModule.forFeature([SucursalesEffects]),
+    MatRadioModule,
+    EffectsModule.forFeature([SucursalesEffects, CuentaBancariaEffects]),
 
   ]
 })
