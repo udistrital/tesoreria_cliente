@@ -4,7 +4,7 @@ export const CONFIGURACION_TABLACUENTA: any = {
         {
             key: 'ID',
             title: {
-                name: 'ID',
+                name_i18n: 'id',
                 class: 'text-center',
             },
             pipe: {
@@ -14,7 +14,7 @@ export const CONFIGURACION_TABLACUENTA: any = {
         {
             key: 'nombreCuenta',
             title: {
-                name: 'Cuenta',
+                name_i18n: 'cuenta',
                 class: 'text-center',
             },
             pipe: {
@@ -24,7 +24,7 @@ export const CONFIGURACION_TABLACUENTA: any = {
         {
             key: 'tipoCuenta',
             title: {
-                name: 'TipoCuenta',
+                name_i18n: 'tipo_cuenta',
                 class: 'text-center',
             },
             pipe: {
@@ -34,7 +34,7 @@ export const CONFIGURACION_TABLACUENTA: any = {
         {
             key: 'numeroCuenta',
             title: {
-                name: 'NumeroCuenta',
+                name_i18n: 'numero_cuenta',
                 class: 'text-center',
             },
             pipe: {
@@ -44,7 +44,7 @@ export const CONFIGURACION_TABLACUENTA: any = {
         {
             key: 'sucursal',
             title: {
-                name: 'Sucursal',
+                name_i18n: 'sucursal',
                 class: 'text-center',
             },
             pipe: {
@@ -54,7 +54,7 @@ export const CONFIGURACION_TABLACUENTA: any = {
         {
             key: 'estado',
             title: {
-                name: 'Estado',
+                name_i18n: 'estado',
                 class: 'text-center',
             },
             pipe: {
@@ -64,7 +64,7 @@ export const CONFIGURACION_TABLACUENTA: any = {
         {
             key: 'acciones',
             title: {
-                name: 'Acciones',
+                name_i18n: 'acciones',
                 class: 'text-center',
             },
             pipe: {
@@ -72,37 +72,15 @@ export const CONFIGURACION_TABLACUENTA: any = {
             }
         }
     ],
-    rowActions: {
-        title: {
-            name: 'Acciones',
-            class: 'text-center',
-            actionClass: 'd-flex flex-row justify-content-around align-middle'
-        },
-        actions: [
-            {
-                name: 'verDetalleCuenta',
-                icon: 'fas fa-eye',
-                class: 'p-1',
-                title: 'Ver Detalle de Cuenta Bancaria',
-            },
-            {
-                name: 'editarCuenta',
-                icon: 'fas fa-edit',
-                class: 'p-1',
-                title: 'Editar Detalle de Cuenta Bancaria',
-            },
-            {
-                name: 'borrarCuenta',
-                icon: 'fas fa-trash-alt',
-                class: 'p-1',
-                title: 'BorrarCuenta',
-            },
-        ],
-    },
     noData: {
-        name: 'No Existen Elementos Asociados',
+        name_i18n: 'No Existen Elementos Asociados',
         class: 'text-center',
     },
     sort: true,
     filter: true,
+};
+
+export const CODIGO_RECURSOS: any = {
+    recaudadora : 2,
+    pagadora : 3,
 };

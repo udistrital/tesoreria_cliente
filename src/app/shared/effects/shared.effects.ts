@@ -262,9 +262,6 @@ export class SharedEffects {
             .pipe(map(data => SharedActions.cargarCuentasBancarias(
               { CuentasBancarias: (data && data.Data ? data.Data : data)})),
             catchError(data => of(SharedActions.CatchError(data)))))
-
-            // })), catchError(data => of(SharedActions.CatchError(data)))))
-
     );
   });
 

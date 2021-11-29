@@ -202,7 +202,14 @@
     "cdp_suspension": "CDP suspensión",
     "cdp_traslado": "CDP traslado",
     "cdp_reduccion": "CDP reducción",
-    "anulation_not_allowed": "Anulación para este documento no permitida."
+    "anulation_not_allowed": "Anulación para este documento no permitida.",
+    "seleccione" : "Seleccione una opción",
+    "volver" : "Volver",
+    "complete" : "Complete este campo",
+    "guardar_cambios" : "¿Desea guardar los cambios?",
+    "activo" : "Activo",
+    "inactivo" : "Inactivo",
+    "cambiar_estado" : "Cambiar estado"
   },
   "RUBRO": {
     "asignar_rubro": "Asignar Rubro",
@@ -404,6 +411,29 @@
     "estado_vigencia": "Estado de la Vigencia",
     "fecha_inicio": "Fecha Inicio",
     "fecha_cierre": "Fecha Cierre"
+  },
+  "CUENTA_BANCARIA" : {
+    "cuenta_bancaria" : "CUENTA BANCARIA",
+    "datos_cuenta" : "Datos de la cuenta",
+    "recaudadora" : "recaudadora",
+    "pagadora" : "pagadora",
+    "4xmil" : "4 x 1000",
+    "recurso" : "Recurso",
+    "divisa" : "Divisa",
+    "id" : "ID",
+    "numero_cuenta" : "Número de cuenta",
+    "tipo_cuenta" : "Tipo de Cuenta",
+    "datos_banco" : "Datos del banco",
+    "banco" : "Banco",
+    "sucursal" : "Sucursal",
+    "lista" : "Lista de cuentas bancarias",
+    "nueva" : "Nueva Cuenta Bancaria",
+    "guardado_exitoso" : "Guardado de cuenta bancaria exitoso",
+    "edicion_exitosa" : "Se ha actualizado la cuenta bancaria exitosamente",
+    "cuenta" : "Cuenta",
+    "estado" : "Estado",
+    "acciones" : "Acciones",
+    "cambiar_estado" : "¿Desea cambiar el estado de la cuenta bancaria?"
   },
   "FOOTER": {
     "dias_disponibilidad": "Lunes a Viernes",

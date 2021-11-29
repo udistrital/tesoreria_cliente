@@ -7,6 +7,7 @@ import * as CuentasBancariasActions from '../actions/cuentaBancaria.action';
 import * as SharedActions from '../../../../shared/actions/shared.actions';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class CuentaBancariaEffects {
@@ -17,7 +18,8 @@ export class CuentaBancariaEffects {
         private servicio: CuentaBancariaService,
         private popupManager: PopUpManager,
         private router: Router,
-        private activatedRoute: ActivatedRoute, ) {
+        private activatedRoute: ActivatedRoute,
+        private translate: TranslateService, ) {
 
         }
 
@@ -27,7 +29,7 @@ export class CuentaBancariaEffects {
             mergeMap((accion) => {
                 return this.servicio.crearCuentaBancaria(accion.element)
                 .pipe(map(data => {
-                    this.popupManager.showSuccessAlert('Guardado de cuenta bancaria exitoso');
+                    this.popupManager.showSuccessAlert(this.translate.instant('CUENTA_BANCARIA.guardado_exitoso'));
                     this.router.navigateByUrl('pages/giros/cuentas/lista');
                     return SharedActions.cargarCuentasBancarias({
                         Sucursales: (data && data.Data ? data.Data : data)}
@@ -43,7 +45,7 @@ export class CuentaBancariaEffects {
             mergeMap((accion) => {
                 return this.servicio.actualizarCuentaBancaria(accion.id, accion.element)
                 .pipe(map(data => {
-                    this.popupManager.showSuccessAlert('Se ha actualizado la cuenta bancaria exitosamente');
+                    this.popupManager.showSuccessAlert(this.translate.instant('CUENTA_BANCARIA.edicion_exitosa'));
                     this.router.navigateByUrl('pages/giros/cuentas/lista');
                     return SharedActions.cargarCuentasBancarias({
                         Sucursales: (data && data.Data ? data.Data : data)
@@ -53,4 +55,3 @@ export class CuentaBancariaEffects {
         );
     });
 }
-

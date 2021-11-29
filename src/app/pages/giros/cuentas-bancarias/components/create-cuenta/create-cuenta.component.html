@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12 bg-white px-3 py-3 pt-3 pb-3">
             <h5 class="card-title text-center text-primary">
-                {{ tituloAccion.toUpperCase()}} CUENTA BANCARIA
+                {{ tituloAccion.toUpperCase()}} {{ 'CUENTA_BANCARIA.cuenta_bancaria' | translate }}
             </h5>
         </div>
     </div>
@@ -12,23 +12,23 @@
                 <div class="container">
                     <div class="form-group row px-5">
                         <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
-                            Datos de la Cuenta
+                            {{ 'CUENTA_BANCARIA.datos_cuenta' | translate }}
                         </h6>
                     </div>
                     <div class="form-group row px-5">
                         <div class="col-md-8">
                             <mat-radio-group formControlName="recaudadoraPagadora" [disabled]="ver">
-                                <mat-radio-button class="example-margin" value="recaudadora" (click)=consultaTipoRecursos(true)>Recaudadora</mat-radio-button>
-                                <mat-radio-button class="example-margin" value="pagadora" (click)=consultaTipoRecursos(false)>Pagadora</mat-radio-button>
+                                <mat-radio-button class="example-margin" value="recaudadora" (click)=consultaTipoRecursos(true)>{{ 'CUENTA_BANCARIA.recaudadora' | translate }}</mat-radio-button>
+                                <mat-radio-button class="example-margin" value="pagadora" (click)=consultaTipoRecursos(false)>{{ 'CUENTA_BANCARIA.pagadora' | translate }}</mat-radio-button>
                             </mat-radio-group>
                         </div>
                         <div class="col-md-4">
-                            <mat-checkbox class="example-margin" formControlName="cuatropormil" [disabled]="ver">4 x 1000</mat-checkbox>
+                            <mat-checkbox class="example-margin" formControlName="cuatropormil" [disabled]="ver">{{ 'CUENTA_BANCARIA.4xmil' | translate }}</mat-checkbox>
                         </div>
                     </div>
                     <div class="form-group row px-5">
                         <div class="col-md-4">
-                            <label>Area Funcional</label>
+                            <label>{{ 'GLOBAL.area_funcional' | translate }}</label>
                             <mat-select [disabled]="ver" class="form-control" placeholder="Seleccione..." formControlName="areaFuncional" [class.is-invalid]="isInvalid('areaFuncional')">
                                 <cdk-virtual-scroll-viewport itemSize="2" minBufferPx="100" maxBufferPx="200" class="vs-viewport-corto">
                                     <mat-option *cdkVirtualFor="let opcion of opcionesAreaFuncional" [value]="opcion">
@@ -36,10 +36,10 @@
                                     </mat-option>
                                 </cdk-virtual-scroll-viewport>
                             </mat-select>
-                            <small *ngIf="isInvalid('areaFuncional')" class="text-danger">Seleccione una opción</small>
+                            <small *ngIf="isInvalid('areaFuncional')" class="text-danger">{{ 'GLOBAL.seleccione' | translate }}</small>
                         </div>
                         <div class="col-md-4">
-                            <label>Recurso</label>
+                            <label>{{ 'CUENTA_BANCARIA.recurso' | translate }}</label>
                             <mat-select [disabled]="ver" class="form-control" placeholder="Seleccione..." formControlName="recurso" [class.is-invalid]="isInvalid('recurso')">
                                 <cdk-virtual-scroll-viewport itemSize="2" minBufferPx="100" maxBufferPx="200" class="vs-viewport-corto">
                                     <mat-option *cdkVirtualFor="let recurso of recursos" [value]="recurso">
@@ -47,10 +47,10 @@
                                     </mat-option>
                                 </cdk-virtual-scroll-viewport>
                             </mat-select>
-                            <small *ngIf="isInvalid('recurso')" class="text-danger">Seleccione una opción</small>
+                            <small *ngIf="isInvalid('recurso')" class="text-danger">{{ 'GLOBAL.seleccione' | translate }}</small>
                         </div>
                         <div class="col-md-4">
-                            <label>Divisa</label>
+                            <label>{{ 'CUENTA_BANCARIA.divisa' | translate }}</label>
                             <mat-select [disabled]="ver" class="form-control" placeholder="Seleccione..." formControlName="divisa" [class.is-invalid]="isInvalid('divisa')">
                                 <cdk-virtual-scroll-viewport itemSize="2" minBufferPx="100" maxBufferPx="200" class="vs-viewport-corto">
                                     <mat-option *cdkVirtualFor="let divisa of divisas" [value]="divisa">
@@ -58,22 +58,22 @@
                                     </mat-option>
                                 </cdk-virtual-scroll-viewport>
                             </mat-select>
-                            <small *ngIf="isInvalid('divisa')" class="text-danger">Seleccione una opción</small>
+                            <small *ngIf="isInvalid('divisa')" class="text-danger">{{ 'GLOBAL.seleccione' | translate }}</small>
                         </div>
                     </div>
                     <div class="form-group row px-5">
                         <div class="col-md-4">
-                            <label>Nombre</label>
+                            <label>{{ 'GLOBAL.nombre' | translate }}</label>
                             <input type="text" class="form-control" formControlName="nombreCuenta" [class.is-invalid]="isInvalid('nombreCuenta')" [readonly]="ver">
-                            <small *ngIf="isInvalid('nombreCuenta')" class="text-danger">Complete este campo</small>
+                            <small *ngIf="isInvalid('nombreCuenta')" class="text-danger">{{ 'GLOBAL.complete' | translate }}</small>
                         </div>
                         <div class="col-md-4">
-                            <label>Numero de cuenta</label>
+                            <label>{{ 'CUENTA_BANCARIA.numero_cuenta' | translate }}</label>
                             <input type="number" class="form-control" pattern="^[\d]+$" formControlName="numeroCuenta" [class.is-invalid]="isInvalid('numeroCuenta')" [readonly]="ver">
-                            <small *ngIf="isInvalid('numeroCuenta')" class="text-danger">Complete este campo solo con numeros</small>
+                            <small *ngIf="isInvalid('numeroCuenta')" class="text-danger">{{ 'GLOBAL.complete' | translate }}</small>
                         </div>
                         <div class="col-md-4">
-                            <label>Tipo de Cuenta</label>
+                            <label>{{ 'CUENTA_BANCARIA.tipo_cuenta' | translate }}</label>
                              <mat-select [disabled]="ver" class="form-control" placeholder="Seleccione..." formControlName="tipoCuenta" [class.is-invalid]="isInvalid('tipoCuenta')">
                                 <cdk-virtual-scroll-viewport itemSize="2" minBufferPx="100" maxBufferPx="200" class="vs-viewport-corto">
                                     <mat-option *cdkVirtualFor="let tipoCuenta of tipoCuentas" [value]="tipoCuenta">
@@ -81,7 +81,7 @@
                                     </mat-option>
                                 </cdk-virtual-scroll-viewport>
                             </mat-select>
-                            <small *ngIf="isInvalid('tipoCuenta')" class="text-danger">Seleccione una opción</small>
+                            <small *ngIf="isInvalid('tipoCuenta')" class="text-danger">{{ 'GLOBAL.seleccione' | translate }}</small>
                         </div>
                     </div>
 
@@ -90,12 +90,12 @@
                 <div class="container">
                     <div class="form-group row px-5">
                         <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
-                            Datos del Banco
+                            {{ 'CUENTA_BANCARIA.datos_banco' | translate }}
                         </h6>
                     </div>
                     <div class="form-group row px-5">
                         <div class="col-md-6">
-                            <label>Banco</label>
+                            <label>{{ 'CUENTA_BANCARIA.banco' | translate }}</label>
                             <mat-select [disabled]="ver" class="form-control" placeholder="Elegir Banco..." formControlName="nombreBanco" [class.is-invalid]="isInvalid('nombreBanco')" (selectionChange)="consultaSucursales()">
                                 <cdk-virtual-scroll-viewport itemSize="10" minBufferPx="200" maxBufferPx="400" class="vs-viewport">
                                     <mat-option *cdkVirtualFor="let banco of bancos" [value]="banco">
@@ -103,10 +103,10 @@
                                     </mat-option>
                                 </cdk-virtual-scroll-viewport>
                             </mat-select>
-                            <small *ngIf="isInvalid('nombreBanco')" class="text-danger">Seleccione una opción</small>
+                            <small *ngIf="isInvalid('nombreBanco')" class="text-danger">{{ 'GLOBAL.seleccione' | translate }}</small>
                         </div>
                         <div class="col-md-6">
-                            <label>Sucursal</label>
+                            <label>{{ 'CUENTA_BANCARIA.sucursal' | translate }}</label>
                             <mat-select [disabled]="ver" class="form-control" placeholder="Elegir Sucursal..." formControlName="sucursal" [class.is-invalid]="isInvalid('sucursal')">
                                 <cdk-virtual-scroll-viewport itemSize="2" minBufferPx="100" maxBufferPx="200" class="vs-viewport-corto">
                                     <mat-option *cdkVirtualFor="let sucursal of sucursales" [value]="sucursal">
@@ -114,7 +114,7 @@
                                     </mat-option>
                                 </cdk-virtual-scroll-viewport>
                             </mat-select>
-                            <small *ngIf="isInvalid('sucursal')" class="text-danger">Seleccione una opción</small>
+                            <small *ngIf="isInvalid('sucursal')" class="text-danger">{{ 'GLOBAL.seleccione' | translate }}</small>
                         </div>
                     </div>
                     <!-- Botones: Volver a registro, Siguiente -->
@@ -123,14 +123,14 @@
                             <a>
                                 <button type="button" class="btn btn-primary mb-3 mt-3 text-white">
                                     <div class="d-flex flex-row justify-content-around align-middle" [routerLink]="['/pages/giros/cuentas/lista']" routerLinkActive="router-link-active" >
-                                        <span>Volver</span>
+                                        <span>{{ 'GLOBAL.volver' | translate }}</span>
                                     </div>
                                 </button>
                             </a>
                         </div>
                         <div class="col-md-6">
                             <button type="button" class="btn btn-success mb-3 mt-3" (click)="guardar()">
-                                Guardar
+                                {{ 'GLOBAL.guardar' | translate }}
                             </button>
                         </div>
                     </div>
@@ -144,18 +144,18 @@
 <!-- Modal: Guardar Sucursal -->
  <ng-template #modalGuardar let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Guardar</h4>
+        <h4 class="modal-title" id="modal-basic-title">{{ 'GLOBAL.guardar' | translate }}</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
-        ¿Desea guardar los cambios?
+        {{ 'GLOBAL.guardar_cambios' | translate }}
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">Cancelar</button>
         <button type="button" class="btn btn-primary text-white" (click)="modal.close(true)">
-            <a data-dismiss="modal">Guardar</a>
+            <a data-dismiss="modal">{{ 'GLOBAL.guardar' | translate }}</a>
         </button>
     </div>
 </ng-template>

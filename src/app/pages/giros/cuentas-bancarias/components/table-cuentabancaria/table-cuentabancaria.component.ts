@@ -3,8 +3,10 @@ import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 import { cargarCuentasBancarias, cargarSucursales, obtenerCuentasBancarias, obtenerSucursales, obtenerTipoCuenta } from '../../../../../shared/actions/shared.actions';
 import { seleccionarCuentasBancarias, seleccionarSucursales, seleccionarTipoCuentas } from '../../../../../shared/selectors/shared.selectors';
+import { actualizarCuentaBancaria } from '../../actions/cuentaBancaria.action';
 import { CONFIGURACION_TABLACUENTA } from '../../interfaces/interfaces';
 
 @Component({
@@ -13,7 +15,7 @@ import { CONFIGURACION_TABLACUENTA } from '../../interfaces/interfaces';
   styleUrls: ['./table-cuentabancaria.component.scss']
 })
 export class TableCuentabancariaComponent implements OnInit, OnDestroy {
-  @ViewChild('borrarRegistroModal', {static: false}) borrarRegistroModal: ElementRef;
+  @ViewChild('modalCambioEstado', {static: false}) modalCambioEstado: ElementRef;
 
   configCuentaBancaria: any;
   datosCuentaBancaria: any;
@@ -38,10 +40,14 @@ export class TableCuentabancariaComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<any>,
     private modalService: NgbModal,
-    private router: Router, ) {
+    private router: Router,
+    private translate: TranslateService ) {
       this.stringBusqueda = '';
       this.selectedAction = new EventEmitter<any>();
       this.configCuentaBancaria = CONFIGURACION_TABLACUENTA;
+      for (let i = 0; i < this.configCuentaBancaria.dataConfig.length; i++) {
+        this.configCuentaBancaria.dataConfig[i].title.name = this.translate.instant('CUENTA_BANCARIA.' + this.configCuentaBancaria.dataConfig[i].title.name_i18n);
+      }
       this.datosCuentaBancaria = [];
       this.store.dispatch(obtenerSucursales({}));
       this.store.dispatch(obtenerTipoCuenta({}));
@@ -93,8 +99,8 @@ export class TableCuentabancariaComponent implements OnInit, OnDestroy {
     const tableArr: Element[] = [];
     for (let i = 0; i < this.datosCuentaBancaria.length; i++) {
       let active;
-      if (this.datosCuentaBancaria[i].Activo === true) active = 'Activo';
-      else active = 'Inactivo';
+      if (this.datosCuentaBancaria[i].Activo === true) active = this.translate.instant('GLOBAL.activo');
+      else active = this.translate.instant('GLOBAL.inactivo');
       const tabla: Element = {ID: i + 1, nombreCuenta: this.datosCuentaBancaria[i].NombreCuenta, tipoCuenta: this.datosCuentaBancaria[i].tipoCuenta,
         numeroCuenta: this.datosCuentaBancaria[i].NumeroCuenta, sucursal: this.datosCuentaBancaria[i].sucursal, estado: active, acciones: ''};
         tableArr.push(tabla);
@@ -111,6 +117,19 @@ export class TableCuentabancariaComponent implements OnInit, OnDestroy {
   verCuentaBancaria(cuentaBancaria: any) {
     this.router.navigate(['pages/giros/cuentas/ver/' + this.datosCuentaBancaria[cuentaBancaria.ID - 1].Id]);
     return;
+  }
+
+  cambiarEstado(cuentaBancaria: any) {
+    this.modalService.open(this.modalCambioEstado).result.then((result) => {
+      const cuenta = this.datosCuentaBancaria[cuentaBancaria.ID - 1];
+      const id = cuenta.Id;
+      if (`${result}`) {
+        cuenta.Activo = !cuenta.Activo; delete cuentaBancaria.estado;
+        this.store.dispatch(actualizarCuentaBancaria({ id: id, element: cuenta }));
+        if (cuenta.Activo === true) cuentaBancaria.estado = this.translate.instant('GLOBAL.activo');
+      else cuentaBancaria.estado = this.translate.instant('GLOBAL.inactivo');
+      }
+    }, () => { });
   }
 
   applyFilter(filterValue: string) {

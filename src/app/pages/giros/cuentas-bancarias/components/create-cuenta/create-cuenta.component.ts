@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { OPCIONES_AREA_FUNCIONAL } from '../../../../../shared/interfaces/interfaces';
+import { CODIGO_RECURSOS } from '../../interfaces/interfaces';
 import { obtenerBancos, obtenerSucursales, obtenerDivisas, cargarDivisas, obtenerRecursos, obtenerTipoCuenta, obtenerCuentasBancarias,
         cargarCuentasBancarias, cargarRecursos, cargarBancos } from '../../../../../shared/actions/shared.actions';
 import { Store } from '@ngrx/store';
@@ -8,6 +9,7 @@ import { seleccionarBancos, seleccionarDivisas, seleccionarSucursales, seleccion
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
 import { actualizarCuentaBancaria, crearCuentaBancaria } from '../../actions/cuentaBancaria.action';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'ngx-create-cuenta',
@@ -19,6 +21,7 @@ export class CreateCuentaComponent implements OnInit, OnDestroy {
   // Modal
   closeResult = '';
   opcionesAreaFuncional: any;
+  codigoRecursos: any;
   bancos: any;
   subBancos$: any;
   sucursales: any;
@@ -41,9 +44,10 @@ export class CreateCuentaComponent implements OnInit, OnDestroy {
 
   // Formulario
   crearCuentaBancariaGroup: FormGroup;
-  constructor(private fb: FormBuilder, private store: Store<any>, private modalService: NgbModal, private activatedRoute: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private store: Store<any>, private modalService: NgbModal, private activatedRoute: ActivatedRoute, translate: TranslateService) {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.opcionesAreaFuncional = OPCIONES_AREA_FUNCIONAL;
+    this.codigoRecursos = CODIGO_RECURSOS;
     this.bancos = [];
     this.sucursales = [];
     this.divisas = [];
@@ -61,7 +65,7 @@ export class CreateCuentaComponent implements OnInit, OnDestroy {
       this.store.dispatch(obtenerSucursales({query: {InfoComplementariaId__CodigoAbreviacion: 'SUC',
                                             Activo: true}}));
       this.store.dispatch(obtenerCuentasBancarias({query: {Id: this.id}}));
-    } else this.store.dispatch(obtenerRecursos({codigo: 2}));
+    } else this.store.dispatch(obtenerRecursos({codigo: this.codigoRecursos.recaudadora}));
    }
   ngOnDestroy() {
     this.clearStore();
@@ -87,10 +91,10 @@ export class CreateCuentaComponent implements OnInit, OnDestroy {
         if (accion && accion.CuentasBancarias) {
           this.datosCuentaBancaria = accion.CuentasBancarias[0];
           if (this.datosCuentaBancaria.Recaudadora === true && (this.tituloAccion === 'editar' || this.tituloAccion === 'ver')) {
-            this.store.dispatch(obtenerRecursos({codigo: 2}));
+            this.store.dispatch(obtenerRecursos({codigo: this.codigoRecursos.recaudadora}));
             this.subBancos();
           } else if (this.datosCuentaBancaria.Recaudadora === false && (this.tituloAccion === 'editar' || this.tituloAccion === 'ver')) {
-            this.store.dispatch(obtenerRecursos({codigo: 3}));
+            this.store.dispatch(obtenerRecursos({codigo: this.codigoRecursos.pagadora}));
             this.subBancos();
           }
         }
@@ -205,9 +209,9 @@ export class CreateCuentaComponent implements OnInit, OnDestroy {
       this.subRecursos$.unsubscribe();
       this.checkedRecaudadora = recaudadora;
       if (this.checkedRecaudadora === true) {
-        this.store.dispatch(obtenerRecursos({codigo: 2}));
+        this.store.dispatch(obtenerRecursos({codigo: this.codigoRecursos.recaudadora}));
       } else {
-        this.store.dispatch(obtenerRecursos({codigo: 3}));
+        this.store.dispatch(obtenerRecursos({codigo: this.codigoRecursos.pagadora}));
       }
       this.subRecursos();
     }
@@ -269,10 +273,10 @@ export class CreateCuentaComponent implements OnInit, OnDestroy {
           this.datosCuentaBancaria = accion.CuentasBancarias[0];
           if (this.datosCuentaBancaria.Recaudadora === true) this.recaudadoraPagadora = 'recaudadora';
           else this.recaudadoraPagadora = 'pagadora';
-          this.subSucursales$ = this.store.select(seleccionarSucursales).subscribe((accion) => {
-            if (accion &&  accion.Sucursales) {
-              if (accion.Sucursales.length && accion.Sucursales[0].Id) {
-                this.sucursales = accion.Sucursales;
+          this.subSucursales$ = this.store.select(seleccionarSucursales).subscribe((accion1) => {
+            if (accion1 &&  accion1.Sucursales) {
+              if (accion1.Sucursales.length && accion1.Sucursales[0].Id) {
+                this.sucursales = accion1.Sucursales;
                 this.sucursales.forEach(element => {
                   element.sucursal = JSON.parse(element.Dato).nombreSucursal;
                 });
