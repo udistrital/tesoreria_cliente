@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12 bg-white px-3 py-3 pt-3 pb-3">
             <h5 class="card-title text-center text-primary">
-                CREAR BANCO
+                {{ 'BANCO.crear' | translate }}
             </h5>
         </div>
     </div>
@@ -14,31 +14,28 @@
                     <div class="form-group row px-5">
 
                         <div class="col-md-4">
-                            <label>Código Super</label>
+                            <label>{{ 'BANCO.super' | translate }}</label>
                             <input type="number" class="form-control" formControlName="codigoSuper" [class.is-invalid]="isInvalid('codigoSuper')">
-                            <small *ngIf="isInvalid('codigoSuper')" class="text-danger">Ingrese numeros en este
-                                campo</small>
+                            <small *ngIf="isInvalid('codigoSuper')" class="text-danger">{{ 'BANCO.ing_numeros' | translate }}</small>
                         </div>
                         <div class="col-md-4">
-                            <label>Código ACH</label>
+                            <label>{{ 'BANCO.ach' | translate }}</label>
                             <input type="number" class="form-control" formControlName="codigoAch" [class.is-invalid]="isInvalid('codigoAch')">
-                            <small *ngIf="isInvalid('codigoAch')" class="text-danger">Ingrese numeros en este
-                                campo</small>
+                            <small *ngIf="isInvalid('codigoAch')" class="text-danger">{{ 'BANCO.ing_numeros' | translate }}</small>
                         </div>
                         <div class="col-md-4">
-                            <label>NIT</label>
+                            <label>{{ 'BANCO.nit' | translate }}</label>
                             <input type="number" class="form-control" formControlName="nitBanco" [class.is-invalid]="isInvalid('nitBanco')">
-                            <small *ngIf="isInvalid('nitBanco')" class="text-danger">Ingrese numeros en este
-                                campo</small>
+                            <small *ngIf="isInvalid('nitBanco')" class="text-danger">{{ 'BANCO.ing_numeros' | translate }}</small>
                         </div>
                     </div>
 
 
                     <div class="form-group row px-5">
                         <div class="col">
-                            <label>Nombre del Banco</label>
+                            <label>{{ 'BANCO.nombre_banco' | translate }}</label>
                             <input type="text" class="form-control" formControlName="nombreBanco" [class.is-invalid]="isInvalid('nombreBanco')">
-                            <small *ngIf="isInvalid('nombreBanco')" class="text-danger">Complete este campo</small>
+                            <small *ngIf="isInvalid('nombreBanco')" class="text-danger">{{ 'GLOBAL.seleccione' | translate }}</small>
                         </div>
                     </div>
 
@@ -52,14 +49,14 @@
                         <a href="#/pages/giros/bancos/lista">
                             <button type="button" class="btn btn-primary mb-3 mt-3 text-white">
                                 <div class="d-flex flex-row justify-content-around align-middle">
-                                    <span>Volver</span>
+                                    <span>{{ 'GLOBAL.volver' | translate }}</span>
                                 </div>
                             </button>
                         </a>
                     </div>
                     <div class="col-md-6">
                         <button type="button" class="btn btn-success mb-3 mt-3" (click)="guardar()">
-                            Guardar
+                            {{ 'GLOBAL.guardar' | translate }}
                         </button>
                     </div>
                 </div>
@@ -72,18 +69,18 @@
 <!-- Modal: Guardar Sucursal -->
 <ng-template #modalGuardar let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Guardar</h4>
+        <h4 class="modal-title" id="modal-basic-title">{{ 'GLOBAL.guardar' | translate }}</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
-        ¿Desea guardar los cambios?
+        {{ 'GLOBAL.guardar_cambios' | translate }}
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">Cancelar</button>
         <button type="button" class="btn btn-primary text-white" (click)="modal.close(true)">
-            <a routerLink="../lista" data-dismiss="modal">Guardar</a>
+            <a data-dismiss="modal">{{ 'GLOBAL.guardar' | translate }}</a>
         </button>
     </div>
 </ng-template>

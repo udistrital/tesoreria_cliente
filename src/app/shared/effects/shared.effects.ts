@@ -7,7 +7,7 @@ import { EMPTY, of } from 'rxjs';
 import * as SharedActions from '../actions/shared.actions';
 import { SharedService } from '../services/shared.service';
 import { Store } from '@ngrx/store';
-import { selectTiposID, selectVigencias } from '../selectors/shared.selectors';
+import { getAccionTabla, selectTiposID, selectVigencias } from '../selectors/shared.selectors';
 
 
 @Injectable()
@@ -261,6 +261,66 @@ export class SharedEffects {
         mergeMap((accion) => this.sharedService.getCuentasBancarias(accion && accion.query ? accion.query : null)
             .pipe(map(data => SharedActions.cargarCuentasBancarias(
               { CuentasBancarias: (data && data.Data ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+    );
+  });
+
+  getTipoContribuyente$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerTipoContribuyente),
+      mergeMap((accion) => this.sharedService.getTipoContribuyente(accion && accion.query ? accion.query : null)
+          .pipe(map(data => SharedActions.cargarTipoContribuyente(
+            {TipoContribuyente: (data && data.Data ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+    );
+  });
+
+  getTipoDocumento$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerTipoDocumento),
+      mergeMap((accion) => this.sharedService.getTipoDocumento(accion && accion.query ? accion.query : null)
+          .pipe(map(data => SharedActions.cargarTipoDocumento(
+            {TipoDocumento: (data && data.Data ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+    );
+  });
+
+  getBancoByNit$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerBancoByNit),
+      mergeMap((accion) => this.sharedService.getBancoByNit(accion && accion.query ? accion.query : null)
+          .pipe(map(data => SharedActions.cargarBancoByNit(
+            {BancoByNit: (data && data.Data ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+    );
+  });
+
+  getInfoComplementaria$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerInfoComplementaria),
+      mergeMap((accion) => this.sharedService.getInfoComplementaria(accion && accion.query ? accion.query : null)
+          .pipe(map(data => SharedActions.cargarInfoComplementaria(
+            {InfoComplementaria: (data && data.Data ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+    );
+  });
+
+  getBancoMid$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerBancosMid),
+      mergeMap(() => this.sharedService.getBancoMid()
+          .pipe(map(data => SharedActions.cargarBancosMid(
+            {BancosMid: (data && data.Data ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+    );
+  });
+
+  getTipoTercero$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerTipoTercero),
+      mergeMap((accion) => this.sharedService.getTipoTercero(accion && accion.query ? accion.query : null)
+          .pipe(map(data => SharedActions.cargarTipoTercero(
+            {TipoTercero: (data && data.Data ? data.Data : data)})),
             catchError(data => of(SharedActions.CatchError(data)))))
     );
   });

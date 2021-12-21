@@ -245,3 +245,63 @@ export const cargarCuentasBancarias = createAction(
   '[Shared] Cargar cuentas bancarias al store',
   props()
 );
+
+export const obtenerTipoContribuyente = createAction(
+  '[Shared] Obtener tipo de contribuyente del back',
+  props<{query?: any, limit?: any }>()
+);
+
+export const cargarTipoContribuyente = createAction(
+  '[Shared] Cargar tipo de contribuyente al store',
+  props()
+);
+
+export const obtenerTipoDocumento = createAction(
+  '[Shared] Obtener tipo de documento del back',
+  props<{query?: any, limit?: any }>()
+);
+
+export const cargarTipoDocumento = createAction(
+  '[Shared] Cargar tipo de documento al store',
+  props()
+);
+
+export const obtenerBancoByNit = createAction(
+  '[Shared] Obtener banco por nit del back',
+  props<{query?: any, limit?: any }>()
+);
+
+export const cargarBancoByNit = createAction(
+  '[Shared] Cargar banco por nit al store',
+  props()
+);
+
+export const obtenerInfoComplementaria = createAction(
+  '[Shared] Obtener info complementaria del banco desde el back',
+  props<{query?: any, limit?: any }>()
+);
+
+export const cargarInfoComplementaria = createAction(
+  '[Shared] Cargar info complementaria del banco al store',
+  props()
+);
+
+export const obtenerTipoTercero = createAction(
+  '[Shared] Obtener info del tipo de tercero desde el back',
+  props<{query?: any, limit?: any }>()
+);
+
+export const cargarTipoTercero = createAction(
+  '[Shared] Cargar info del tipo tercero al store',
+  props()
+);
+
+export const obtenerBancosMid = createAction(
+  '[Shared] Obtener info complementaria del banco desde el mid',
+  props<{query?: any, limit?: any }>()
+);
+
+export const cargarBancosMid = createAction(
+  '[Shared] Cargar info complementaria del banco del mid al store',
+  props()
+);

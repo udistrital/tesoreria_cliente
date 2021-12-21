@@ -27,6 +27,12 @@ export interface State {
   Recursos: any;
   TipoCuentas: any;
   CuentasBancarias: any;
+  TipoContribuyente: any;
+  TipoDocumento: any;
+  BancoByNit: any;
+  InfoComplementaria: any;
+  BancosMid: any;
+  TipoTercero: any;
 }
 
 export const initialState: State = {
@@ -53,6 +59,12 @@ export const initialState: State = {
   Recursos: null,
   TipoCuentas: null,
   CuentasBancarias: null,
+  TipoContribuyente: null,
+  TipoDocumento: null,
+  BancoByNit: null,
+  InfoComplementaria: null,
+  BancosMid: null,
+  TipoTercero: null,
 };
 
 const sharedReducer = createReducer(
@@ -130,6 +142,24 @@ const sharedReducer = createReducer(
   })),
   on(SharedActions.cargarCuentasBancarias, (state, action) => ({
     ...state, CuentasBancarias: state.CuentasBancarias = action
+  })),
+  on(SharedActions.cargarTipoContribuyente, (state, action) => ({
+    ...state, TipoContribuyente: state.TipoContribuyente = action
+  })),
+  on(SharedActions.cargarTipoDocumento, (state, action) => ({
+    ...state, TipoDocumento: state.TipoDocumento = action
+  })),
+  on(SharedActions.cargarBancoByNit, (state, action) => ({
+    ...state, BancoByNit: state.BancoByNit = action
+  })),
+  on(SharedActions.cargarInfoComplementaria, (state, action) => ({
+    ...state, InfoComplementaria: state.InfoComplementaria = action
+  })),
+  on(SharedActions.cargarBancosMid, (state, action) => ({
+    ...state, BancosMid: state.BancosMid = action
+  })),
+  on(SharedActions.cargarTipoTercero, (state, action) => ({
+    ...state, TipoTercero: state.TipoTercero = action
   })),
 );
 

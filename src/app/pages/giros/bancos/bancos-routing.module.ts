@@ -11,6 +11,10 @@ const routes: Routes = [  {
   path: 'crear',
   component: CreateBancoComponent,
 },
+{
+  path: 'editar/:id',
+  component: CreateBancoComponent,
+},
 ];
 
 @NgModule({

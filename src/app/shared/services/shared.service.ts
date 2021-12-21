@@ -215,7 +215,9 @@ export class SharedService {
     this.rqManager.setPath('TERCEROS_CRUD_SERVICE');
     if (!limit) limit = 0;
     if (!query) query = {};
-    if (query.CodigoAbreviacion === null || query.CodigoAbreviacion === undefined) query.InfoComplementariaId__CodigoAbreviacion = 'SUC';
+    if (query.InfoComplementariaId__CodigoAbreviacion === null || query.InfoComplementariaId__CodigoAbreviacion === undefined) {
+      query.InfoComplementariaId__CodigoAbreviacion = 'SUC';
+    }
     return this.rqManager.getv2('info_complementaria_tercero', null, query, null, null, null, limit);
   }
 
@@ -278,6 +280,81 @@ export class SharedService {
   if (!limit) limit = 0;
   if (!query) query = {};
   return this.rqManager.getv2('cuenta_bancaria', null, query, null, null, null, limit);
+}
+
+/**
+   *
+   * @param query Query para buscar el tipo de contribuyente del crud de terceros
+   * @param limit Limite de cantidad de tipos de contribuyente
+   * @returns
+   */
+ public getTipoContribuyente(query?: any, limit?: number) {
+  this.rqManager.setPath('TERCEROS_CRUD_SERVICE');
+  if (!limit) limit = 0;
+  if (!query) query = {};
+  return this.rqManager.getv2('tipo_contribuyente', null, query, null, null, null, limit);
+}
+
+/**
+   *
+   * @param query Query para buscar el tipo de documento del crud de terceros
+   * @param limit Limite de cantidad de tipos de documento
+   * @returns
+   */
+ public getTipoDocumento(query?: any, limit?: number) {
+  this.rqManager.setPath('TERCEROS_CRUD_SERVICE');
+  if (!limit) limit = 0;
+  if (!query) query = {};
+  return this.rqManager.getv2('tipo_documento', null, query, null, null, null, limit);
+}
+
+/**
+   *
+   * @param query Query para buscar el banco por NIT del crud de terceros
+   * @param limit Limite de cantidad de bancos por NIT
+   * @returns
+   */
+ public getBancoByNit(query?: any, limit?: number) {
+  this.rqManager.setPath('TERCEROS_CRUD_SERVICE');
+  if (!limit) limit = 0;
+  if (!query) query = {};
+  return this.rqManager.getv2('datos_identificacion', null, query, null, null, null, limit);
+}
+
+/**
+   *
+   * @param query Query para buscar la info complementaria de los codigos de los bancos del crud de terceros
+   * @param limit Limite de cantidad de info complementaria
+   * @returns
+   */
+ public getInfoComplementaria(query?: any, limit?: number) {
+  this.rqManager.setPath('TERCEROS_CRUD_SERVICE');
+  if (!limit) limit = 0;
+  if (!query) query = {};
+  return this.rqManager.getv2('info_complementaria', null, query, null, null, null, limit);
+}
+
+/**
+   *
+   * @returns
+   */
+ public getBancoMid() {
+  this.rqManager.setPath('TESORERIA_MID_SERVICE');
+
+  return this.rqManager.getv2('bancos', null, null, null, null, null, null);
+}
+
+/**
+   *
+   * @param query Query para buscar los tipos de terceros del crud de terceros
+   * @param limit Limite de cantidad de tipos de terceros
+   * @returns
+   */
+ public getTipoTercero(query?: any, limit?: number) {
+  this.rqManager.setPath('TERCEROS_CRUD_SERVICE');
+  if (!limit) limit = 0;
+  if (!query) query = {};
+  return this.rqManager.getv2('tipo_tercero', null, query, null, null, null, limit);
 }
 
 

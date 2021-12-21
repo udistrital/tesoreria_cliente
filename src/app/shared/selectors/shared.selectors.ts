@@ -129,3 +129,33 @@ export const seleccionarCuentasBancarias = createSelector(
   selectSharedState,
   (state: fromShared.State) => state.CuentasBancarias
 );
+
+export const seleccionarTipoContribuyente = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.TipoContribuyente
+);
+
+export const seleccionarTipoDocumento = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.TipoDocumento
+);
+
+export const seleccionarBancoByNit = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.BancoByNit
+);
+
+export const seleccionarInfoComplementaria = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.InfoComplementaria
+);
+
+export const seleccionarBancosMid = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.BancosMid
+);
+
+export const seleccionarTipoTercero = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.TipoTercero
+);
