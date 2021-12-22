@@ -447,7 +447,10 @@
     "lista": "Lista de bancos",
     "nuevo": "Nuevo Banco",
     "crear": "Crear banco",
-    "ing_numeros": "Ingrese números en este campo"
+    "ing_numeros": "Ingrese números en este campo",
+    "creacion_banco": "Se ha creado el banco exitosamente",
+    "act_banco": "Se ha actualizado el banco exitosamente",
+    "cambio_estado": "Se ha cambiado el estado del banco exitosamente"
   },
   "FOOTER": {
     "dias_disponibilidad": "Lunes a Viernes",

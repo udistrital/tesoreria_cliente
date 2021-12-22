@@ -31,7 +31,7 @@ export class BancosEffects {
                 return this.servicio.crearBanco(accion.element)
                 .pipe(map(data => {
                     return SharedActions.cargarBancos({
-                        Bancos: (data && data.Data ? data.Data : data)}
+                        Bancos: ((data && data.Data) ? data.Data : data)}
                     );
                 }), catchError(data => of(SharedActions.CatchError(data))));
             })
@@ -44,10 +44,10 @@ export class BancosEffects {
             mergeMap((accion) => {
                 return this.servicio.actualizarBanco(accion.id, accion.element)
                 .pipe(map(data => {
-                    this.popupManager.showSuccessAlert('Se ha actualizado el banco exitosamente');
+                    this.popupManager.showSuccessAlert(this.translate.instant('BANCO.act_banco'));
                     this.router.navigateByUrl('pages/giros/bancos/lista');
                     return SharedActions.cargarBancos({
-                        Bancos: (data && data.Data ? data.Data : data)
+                        Bancos: ((data && data.Data) ? data.Data : data)
                     });
                 }), catchError(data => of(SharedActions.CatchError(data))));
             })
@@ -61,7 +61,7 @@ export class BancosEffects {
                 return this.servicio.crearDatosBanco(accion.element)
                 .pipe(map(data => {
                     return SharedActions.cargarBancos({
-                        Bancos: (data && data.Data ? data.Data : data)}
+                        Bancos: ((data && data.Data) ? data.Data : data)}
                     );
                 }), catchError(data => of(SharedActions.CatchError(data))));
             })
@@ -75,7 +75,7 @@ export class BancosEffects {
                 return this.servicio.actualizarDatosBanco(accion.id, accion.element)
                 .pipe(map(data => {
                     return SharedActions.cargarBancos({
-                        Bancos: (data && data.Data ? data.Data : data)
+                        Bancos: ((data && data.Data) ? data.Data : data)
                     });
                 }), catchError(data => of(SharedActions.CatchError(data))));
             })
@@ -89,7 +89,7 @@ export class BancosEffects {
                 return this.servicio.crearCodsBanco(accion.element)
                 .pipe(map(data => {
                     return SharedActions.cargarBancos({
-                        Bancos: (data && data.Data ? data.Data : data)}
+                        Bancos: ((data && data.Data) ? data.Data : data)}
                     );
                 }), catchError(data => of(SharedActions.CatchError(data))));
             })
@@ -102,11 +102,11 @@ export class BancosEffects {
             mergeMap((accion) => {
                 return this.servicio.crearTipoTercero(accion.element)
                 .pipe(map(data => {
-                    this.popupManager.showSuccessAlert('Se ha creado el banco exitosamente').then((result) => {
+                    this.popupManager.showSuccessAlert(this.translate.instant('BANCO.creacion_banco')).then((result) => {
                         if (result.value === true) this.router.navigateByUrl('pages/giros/bancos/lista');
                     });
                     return SharedActions.cargarTipoTercero({
-                        TipoTercero: (data && data.Data ? data.Data : data)}
+                        TipoTercero: ((data && data.Data) ? data.Data : data)}
                     );
                 }), catchError(data => of(SharedActions.CatchError(data))));
             })
@@ -120,7 +120,7 @@ export class BancosEffects {
                 return this.servicio.actualizarCodsBanco(accion.id, accion.element)
                 .pipe(map(data => {
                     return SharedActions.cargarBancos({
-                        Bancos: (data && data.Data ? data.Data : data)
+                        Bancos: ((data && data.Data) ? data.Data : data)
                     });
                 }), catchError(data => of(SharedActions.CatchError(data))));
             })
@@ -133,11 +133,11 @@ export class BancosEffects {
             mergeMap((accion) => {
                 return this.servicio.actualizarTercero(accion.id, accion.element)
                 .pipe(map(data => {
-                    this.popupManager.showSuccessAlert('Se ha cambiado el estado del banco exitosamente').then((result) => {
+                    this.popupManager.showSuccessAlert(this.translate.instant('BANCO.cambio_estado')).then((result) => {
                         window.location.reload();
                     });
                     return SharedActions.cargarBancosMid({
-                        Bancos: (data && data.Data ? data.Data : data)
+                        Bancos: ((data && data.Data) ? data.Data : data)
                     });
                 }), catchError(data => of(SharedActions.CatchError(data))));
             })
