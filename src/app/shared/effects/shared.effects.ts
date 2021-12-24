@@ -260,7 +260,7 @@ export class SharedEffects {
         ofType(SharedActions.obtenerCuentasBancarias),
         mergeMap((accion) => this.sharedService.getCuentasBancarias((accion && accion.query) ? accion.query : null)
             .pipe(map(data => SharedActions.cargarCuentasBancarias(
-              { CuentasBancarias: (data && data.Data ? data.Data : data)})),
+              { CuentasBancarias: ((data && data.Data) ? data.Data : data)})),
             catchError(data => of(SharedActions.CatchError(data)))))
     );
   });
@@ -270,7 +270,7 @@ export class SharedEffects {
       ofType(SharedActions.obtenerTipoContribuyente),
       mergeMap((accion) => this.sharedService.getTipoContribuyente((accion && accion.query) ? accion.query : null)
           .pipe(map(data => SharedActions.cargarTipoContribuyente(
-            {TipoContribuyente: (data && data.Data ? data.Data : data)})),
+            {TipoContribuyente: ((data && data.Data) ? data.Data : data)})),
             catchError(data => of(SharedActions.CatchError(data)))))
     );
   });
@@ -280,7 +280,7 @@ export class SharedEffects {
       ofType(SharedActions.obtenerTipoDocumento),
       mergeMap((accion) => this.sharedService.getTipoDocumento((accion && accion.query) ? accion.query : null)
           .pipe(map(data => SharedActions.cargarTipoDocumento(
-            {TipoDocumento: (data && data.Data ? data.Data : data)})),
+            {TipoDocumento: ((data && data.Data) ? data.Data : data)})),
             catchError(data => of(SharedActions.CatchError(data)))))
     );
   });
@@ -290,7 +290,7 @@ export class SharedEffects {
       ofType(SharedActions.obtenerBancoByNit),
       mergeMap((accion) => this.sharedService.getBancoByNit((accion && accion.query) ? accion.query : null)
           .pipe(map(data => SharedActions.cargarBancoByNit(
-            {BancoByNit: (data && data.Data ? data.Data : data)})),
+            {BancoByNit: ((data && data.Data) ? data.Data : data)})),
             catchError(data => of(SharedActions.CatchError(data)))))
     );
   });
@@ -300,7 +300,7 @@ export class SharedEffects {
       ofType(SharedActions.obtenerInfoComplementaria),
       mergeMap((accion) => this.sharedService.getInfoComplementaria((accion && accion.query) ? accion.query : null)
           .pipe(map(data => SharedActions.cargarInfoComplementaria(
-            {InfoComplementaria: (data && data.Data ? data.Data : data)})),
+            {InfoComplementaria: ((data && data.Data) ? data.Data : data)})),
             catchError(data => of(SharedActions.CatchError(data)))))
     );
   });
@@ -310,7 +310,7 @@ export class SharedEffects {
       ofType(SharedActions.obtenerBancosMid),
       mergeMap(() => this.sharedService.getBancoMid()
           .pipe(map(data => SharedActions.cargarBancosMid(
-            {BancosMid: (data && data.Data ? data.Data : data)})),
+            {BancosMid: ((data && data.Data) ? data.Data : data)})),
             catchError(data => of(SharedActions.CatchError(data)))))
     );
   });
@@ -320,7 +320,7 @@ export class SharedEffects {
       ofType(SharedActions.obtenerTipoTercero),
       mergeMap((accion) => this.sharedService.getTipoTercero(accion && accion.query ? accion.query : null)
           .pipe(map(data => SharedActions.cargarTipoTercero(
-            {TipoTercero: (data && data.Data ? data.Data : data)})),
+            {TipoTercero: ((data && data.Data) ? data.Data : data)})),
             catchError(data => of(SharedActions.CatchError(data)))))
     );
   });
