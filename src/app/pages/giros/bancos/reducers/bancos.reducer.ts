@@ -1,15 +1,15 @@
 import { createReducer, Action, on } from '@ngrx/store';
 
-export const sucursalesFeatureKey = 'sucursales';
+export const bancosFeatureKey = 'bancos';
 
 export interface State {
-    sucursales: any;
     bancos: any;
+    contribuyente: any;
 }
 
 export const initialState: State = {
-    sucursales: null,
     bancos: null,
+    contribuyente: null,
 };
 
 const sucursalesReducer = createReducer(

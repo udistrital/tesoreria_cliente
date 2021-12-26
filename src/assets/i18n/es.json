@@ -435,6 +435,23 @@
     "acciones" : "Acciones",
     "cambiar_estado" : "¿Desea cambiar el estado de la cuenta bancaria?"
   },
+  "BANCO" : {
+    "id" : "ID",
+    "cambiar_estado" : "¿Desea cambiar el estado del banco?",
+    "super" : "Código Super",
+    "ach" : "Código ACH",
+    "nombre_banco" : "Nombre del banco",
+    "estado" : "Estado",
+    "nit" : "NIT",
+    "acciones": "Acciones",
+    "lista": "Lista de bancos",
+    "nuevo": "Nuevo Banco",
+    "crear": "Crear banco",
+    "ing_numeros": "Ingrese números en este campo",
+    "creacion_banco": "Se ha creado el banco exitosamente",
+    "act_banco": "Se ha actualizado el banco exitosamente",
+    "cambio_estado": "Se ha cambiado el estado del banco exitosamente"
+  },
   "FOOTER": {
     "dias_disponibilidad": "Lunes a Viernes",
     "horario": "8am a 5pm",

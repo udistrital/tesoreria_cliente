@@ -7,6 +7,7 @@ import { MatTableModule, MatSortModule, MatPaginatorModule, MatIconModule, MatFo
 import { SucursalesEffects } from './sucursales/effects/sucursales.effects';
 import { CuentaBancariaEffects } from './cuentas-bancarias/effects/cuentaBancaria.effects';
 import { EffectsModule } from '@ngrx/effects';
+import { BancosEffects } from './bancos/effects/bancos.effects';
 
 @NgModule({
   declarations: [GirosComponent
@@ -22,7 +23,7 @@ import { EffectsModule } from '@ngrx/effects';
     MatInputModule,
     MatSlideToggleModule,
     MatRadioModule,
-    EffectsModule.forFeature([SucursalesEffects, CuentaBancariaEffects]),
+    EffectsModule.forFeature([SucursalesEffects, CuentaBancariaEffects, BancosEffects]),
 
   ]
 })
