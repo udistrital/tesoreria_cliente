@@ -23,10 +23,40 @@ export const LoadArbolRubro = createAction(
   props()
 );
 
+export const GetArbolCuentaContableDebito = createAction(
+  '[Shared] Get Arbol Cuenta Contable Debito',
+  props()
+);
+
+export const LoadArbolCuentaContableDebito = createAction(
+  '[Shared] Load Arbol Cuenta Contable Debito',
+  props()
+);
+
+export const GetArbolCuentaContableCredito = createAction(
+  '[Shared] Get Arbol Cuenta Contable Credito',
+  props()
+);
+
+export const LoadArbolCuentaContableCredito = createAction(
+  '[Shared] Load Arbol Cuenta Contable Credito',
+  props()
+);
+
 // Nodo Seleccionado
 
 export const LoadNodoSeleccionado = createAction(
   '[Shared] Load Nodo Seleccionado',
+  props()
+);
+
+export const LoadNodoSeleccionadoCuentaContableDebito = createAction(
+  '[Shared] Load Nodo Seleccionado Cuenta Contable Debito',
+  props()
+);
+
+export const LoadNodoSeleccionadoCuentaContableCredito = createAction(
+  '[Shared] Load Nodo Seleccionado Cuenta Contable Credito',
   props()
 );
 
@@ -303,5 +333,110 @@ export const obtenerBancosMid = createAction(
 
 export const cargarBancosMid = createAction(
   '[Shared] Cargar info complementaria del banco del mid al store',
+  props()
+);
+
+export const obtenerConceptos = createAction(
+  '[Shared] Obtener conceptos desde el crud de cuentas contables',
+  props<{query?: any, limit?: any }>()
+);
+
+export const cargarConceptos = createAction(
+  '[Shared] Cargar conceptos al store',
+  props()
+);
+
+export const obtenerConcepto = createAction(
+  '[Shared] Obtener un concepto desde el crud de cuentas contables',
+  props<{query?: any, concepto?: any }>()
+);
+
+export const cargarConcepto = createAction(
+  '[Shared] Cargar un concepto al store',
+  props()
+);
+
+export const obtenerConceptosByCodigo = createAction(
+  '[Shared] Obtener conceptos por codigo desde el crud de cuentas contables',
+  props<{codigo?: any}>()
+);
+
+export const cargarConceptosByCodigo = createAction(
+  '[Shared] Cargar conceptos por codigo al store',
+  props()
+);
+
+export const obtenerRubro = createAction(
+  '[Shared] Obtener rubro por codigo desde el crud de plan cuentas',
+  props<{codRubro: any}>()
+);
+
+export const cargarRubro = createAction(
+  '[Shared] Cargar rubro al store',
+  props()
+);
+
+export const obtenerCuentaDebito = createAction(
+  '[Shared] Obtener cuenta contable debito por codigo',
+  props<{idCuentaContable: any}>()
+);
+
+export const cargarCuentaDebito = createAction(
+  '[Shared] Cargar cuenta contable debito por codigo al store',
+  props()
+);
+
+export const obtenerCuentaCredito = createAction(
+  '[Shared] Obtener cuenta contable credito por codigo',
+  props<{idCuentaContable: any}>()
+);
+
+export const cargarCuentaCredito = createAction(
+  '[Shared] Cargar cuenta contable credito por codigo al store',
+  props()
+);
+
+export const obtenerParametros = createAction(
+  '[Shared] Obtener parametros del crud de parametros',
+  props<{query?: any, limit?: any }>()
+);
+
+export const cargarParametros = createAction(
+  '[Shared] Cargar parametros al store',
+  props()
+);
+
+export const obtenerParametrosHijos = createAction(
+  '[Shared] Obtener parametros hijos del crud de parametros',
+  props<{query?: any, limit?: any }>()
+);
+
+export const cargarParametrosHijos = createAction(
+  '[Shared] Cargar parametros hijos al store',
+  props()
+);
+
+export const obtenerTipoComprobante = createAction(
+  '[Shared] Obtener tipos de comprobante del crud de cuentas contables',
+  props<{query?: any, limit?: any }>()
+);
+
+export const cargarTipoComprobante = createAction(
+  '[Shared] Cargar tipos de comprobantes al store',
+  props()
+);
+
+export const SeleccionarRubro = createAction(
+  '[Shared] Cargar rubros al store',
+  props()
+);
+
+export const SeleccionarRubroVer = createAction(
+  '[Shared] Cargar rubro al store cuando se va a ver o editar un concepto',
+  props()
+);
+
+export const SeleccionarCuentaContable = createAction(
+  '[Shared] Cargar cuentas contables al store',
   props()
 );

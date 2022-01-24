@@ -10,9 +10,29 @@ export const getArbolRubro = createSelector(
   (state: fromShared.State) => state.ArbolRubro
 );
 
+export const getArbolCuentaContableDebito = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.ArbolCuentaContableDebito
+);
+
+export const getArbolCuentaContableCredito = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.ArbolCuentaContableCredito
+);
+
 export const getNodoSeleccionado = createSelector(
   selectSharedState,
   (state: fromShared.State) => state.NodoSeleccionado
+);
+
+export const getNodoSeleccionadoCuentaContableDebito = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.NodoSeleccionadoCuentaContableDebito
+);
+
+export const getNodoSeleccionadoCuentaContableCredito = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.NodoSeleccionadoCuentaContableCredito
 );
 
 export const getFilaSeleccionada = createSelector(
@@ -158,4 +178,49 @@ export const seleccionarBancosMid = createSelector(
 export const seleccionarTipoTercero = createSelector(
   selectSharedState,
   (state: fromShared.State) => state.TipoTercero
+);
+
+export const seleccionarConceptos = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.Conceptos
+);
+
+export const seleccionarConcepto = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.Concepto
+);
+
+export const seleccionarParametros = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.Parametros
+);
+
+export const seleccionarParametrosHijos = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.ParametrosHijos
+);
+
+export const seleccionarTipoComprobante = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.TipoComprobante
+);
+
+export const getRubroSeleccionado = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.RubroSeleccionado
+);
+
+export const getRubro = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.Rubro
+);
+
+export const getCuentaDebito = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.CuentaDebito
+);
+
+export const getCuentaCredito = createSelector(
+  selectSharedState,
+  (state: fromShared.State) => state.CuentaCredito
 );

@@ -14,6 +14,7 @@ import { CustomTablePipe } from './pipes/custom-table.pipe';
 import { DatosGeneralesInicialesComponent } from './components/datos-generales-iniciales/datos-generales-iniciales.component';
 import { MouseOverDirective } from './directives/mouse-over.directive';
 import { ArbolRubroComponent } from './components/arbol-rubro/arbol-rubro.component';
+import { ArbolCuentasContablesDebitoComponent } from './components/arbol-cuentas-contables-debito/arbol-cuentas-contables-debito.component';
 import { NbTreeGridModule } from '@nebular/theme';
 import { SelectedRowDirective } from './directives/selected-row.directive';
 import { MultiPipePipe } from './pipes/multi-pipe.pipe';
@@ -37,6 +38,7 @@ import { TablaReporteTotalesComponent } from './components/tabla-reporte-totales
 import { TablaBorradorBoletinComponent } from './components/tabla-borrador-boletin/tabla-borrador-boletin.component';
 import { TablaBoletinComponent } from './components/tabla-boletin/tabla-boletin.component';
 import { MatTableModule, MatPaginatorModule, MatIconModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { ArbolCuentasContablesCreditoComponent } from './components/arbol-cuentas-contables-credito/arbol-cuentas-contables-credito.component';
 
 
 
@@ -47,6 +49,8 @@ import { MatTableModule, MatPaginatorModule, MatIconModule, MatFormFieldModule, 
     DatosGeneralesInicialesComponent,
     MouseOverDirective,
     ArbolRubroComponent,
+    ArbolCuentasContablesDebitoComponent,
+    ArbolCuentasContablesCreditoComponent,
     DescargarcomprobanteComponent,
     PdfviewsharedComponent,
     SelectedRowDirective,
@@ -85,6 +89,8 @@ import { MatTableModule, MatPaginatorModule, MatIconModule, MatFormFieldModule, 
     DatosGeneralesInicialesComponent,
     MouseOverDirective,
     ArbolRubroComponent,
+    ArbolCuentasContablesDebitoComponent,
+    ArbolCuentasContablesCreditoComponent,
     DescargarcomprobanteComponent,
     PdfviewsharedComponent,
     SelectedRowDirective,

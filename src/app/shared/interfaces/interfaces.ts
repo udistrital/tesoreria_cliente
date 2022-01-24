@@ -119,6 +119,16 @@ export interface ArbolRubros<T> {
     children?: ArbolRubros<T>[];
     expanded?: boolean;
 }
+
+export interface ArbolCuentasContables<L> {
+    Codigo?: string;
+    data?: L;
+    children?: ArbolCuentasContables<L>[];
+    expanded?: boolean;
+    Nivel: number;
+    Nombre: string;
+}
+
 export interface DatosNodo {
     Codigo: string;
     Descripcion?: string;
@@ -129,6 +139,14 @@ export interface DatosNodo {
     UnidadEjecutora?: number;
     Estado?: string;
     IsLeaf?: boolean;
+}
+
+export interface DatosNodoCuentaContable {
+    Codigo?: string;
+    Hijos?: any[];
+    Nivel: number;
+    Nombre: string;
+    Padre?: string;
 }
 
 export const OPCIONES_AREA_FUNCIONAL = [
@@ -143,4 +161,12 @@ export const OPCIONES_AREA_FUNCIONAL = [
         label: '02 - Convenio',
     }
 
+];
+
+export const OPCIONES_ENTIDAD_PRESUPUESTAL = [
+    {
+        Id: 230,
+        Nombre: 'Universidad Distrital Francisco Jose de Caldas',
+        Label: '230 - Universidad Distrital'
+    }
 ];
