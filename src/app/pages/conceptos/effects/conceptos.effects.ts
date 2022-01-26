@@ -19,9 +19,9 @@ export class ConceptosEffects {
         private popupManager: PopUpManager,
         private router: Router,
         private activatedRoute: ActivatedRoute,
-        private translate: TranslateService, ) {
-
-        }
+        private translate: TranslateService,
+    ) {
+    }
 
     crearConceptoPadre$ = createEffect(() => {
         return this.actions$.pipe(
@@ -29,9 +29,11 @@ export class ConceptosEffects {
             mergeMap((accion) => {
                 return this.servicio.crearConceptoPadre(accion.element)
                 .pipe(map(data => {
-                    this.popupManager.showSuccessAlert(this.translate.instant('CUENTA_BANCARIA.guardado_exitoso')).then((result) => {
-                        if (result.value === true) this.router.navigateByUrl('pages/conceptos/lista');
-                    });
+                    this.popupManager
+                        .showSuccessAlert(this.translate.instant('CUENTA_BANCARIA.guardado_exitoso'))
+                        .then((result) => {
+                            if (result.value === true) this.router.navigateByUrl('pages/conceptos/lista');
+                        });
                     return SharedActions.cargarConcepto({
                         Conceptos: (data && data.Data ? data.Data : data)}
                     );

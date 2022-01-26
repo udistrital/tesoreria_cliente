@@ -63,7 +63,9 @@ export class ArbolCuentasContablesCreditoComponent implements OnInit, OnDestroy,
       }
     });
 
-    this.subCuentaContableCreditoSeleccionada$ = this.store.select(getNodoSeleccionadoCuentaContableCredito).subscribe((cuentaContable: any) => {
+    this.subCuentaContableCreditoSeleccionada$ = this.store
+    .select(getNodoSeleccionadoCuentaContableCredito)
+    .subscribe((cuentaContable: any) => {
       if (cuentaContable) {
         if (Object.keys(cuentaContable)[0] !== 'type') {
           if (cuentaContable !== null) {
@@ -71,7 +73,7 @@ export class ArbolCuentasContablesCreditoComponent implements OnInit, OnDestroy,
           }
         }
       }
-    });
+      });
   }
 
   changeSort(sortRequest: NbSortRequest): void {
