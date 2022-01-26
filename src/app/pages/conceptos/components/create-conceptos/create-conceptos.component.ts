@@ -122,7 +122,6 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
   }
 
   clearStore() {
-    this.store.dispatch(obtenerConcepto(null));
     this.store.dispatch(obtenerParametros(null));
     this.store.dispatch(obtenerTipoComprobante(null));
     this.store.dispatch(obtenerParametrosHijos(null));
@@ -204,6 +203,14 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
   }
 
   async consultarTipoTransaccion(change?: boolean) {
+    if (this.crearConceptosGroup.value.claseTransaccion && change) {
+      this.concepto.ClaseTransaccionId = this.crearConceptosGroup.value.claseTransaccion.Id
+      this.concepto.AreaFuncional = this.crearConceptosGroup.value.areaFuncional.Id
+      this.concepto.Codigo = this.crearConceptosGroup.value.codigo
+      this.concepto.Nombre = this.crearConceptosGroup.value.nombreConcepto
+      this.concepto.TipoComprobanteId = this.crearConceptosGroup.value.tipoComprobante.Codigo
+      this.concepto.CodigoBogdata = this.crearConceptosGroup.value.codigoBogData
+    }
     if (change) this.flag = change;
     if (this.crearConceptosGroup.value.claseTransaccion && this.flag) {
       this.flag = true;
@@ -275,7 +282,7 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
     if (this.crearConceptosGroup.valid) {
       var tipoTransaccion;
       if (this.concepto) {
-        if (!this.concepto.Padre) {
+        if (!this.padre) {
           tipoTransaccion = this.crearConceptosGroup.value.tipoTransaccion.Id;
         } else {
           tipoTransaccion = 0;
@@ -303,7 +310,7 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
         elemento.RubroPresupuestalId = this.rubroSeleccionado.data.Codigo;
       } else if (this.tituloAccion === 'editar') {
         elemento.Nivel = this.concepto.Nivel;
-        elemento.TipoTransaccionId = this.crearConceptosGroup.value.tipoTransaccion.Id;
+        if (!this.padre) elemento.TipoTransaccionId = this.crearConceptosGroup.value.tipoTransaccion.Id;
         for (let i = 0; i < this.cuentasDebitoTabla.length; i++) {
           elemento.CuentasDebito.push(this.cuentasDebitoTabla[i].Codigo);
         }

@@ -63,3 +63,19 @@ export const CONFIGURACION_CUENTASCONTABLES_CREDITO: any = {
     sort: true,
     filter: false,
 };
+
+export interface EstructuraArbolRubrosApropiaciones {
+    Codigo: string;
+    Descripcion?: string;
+    ValorInicial: number;
+    Hijos?: EstructuraArbolRubrosApropiaciones[];
+    Movimientos?: string[];
+    Padre?: string;
+    UnidadEjecutora: number;
+    Estado?: string;
+    IsLeaf: boolean;
+    expanded?: boolean;
+    isHighlighted?: boolean;
+    data?: EstructuraArbolRubrosApropiaciones;
+    children?: EstructuraArbolRubrosApropiaciones[];
+  }

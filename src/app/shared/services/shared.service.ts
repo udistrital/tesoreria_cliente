@@ -64,10 +64,6 @@ export class SharedService {
    */
    public getArbolCuentaContableDebito() {
     this.rqManager.setPath('CUENTAS_CONTABLES_SERVICE');
-    // this.rqManager.setPath('DUMMY_SERVICE');
-    // Set the optional branch for the API request.
-    // const unidadEjecutora = 1;
-    // call request manager for the tree's data.
     return this.rqManager.get(`nodo_cuenta_contable/cuentas/debito`);
 
   }
@@ -80,10 +76,6 @@ export class SharedService {
    */
    public getArbolCuentaContableCredito() {
     this.rqManager.setPath('CUENTAS_CONTABLES_SERVICE');
-    // this.rqManager.setPath('DUMMY_SERVICE');
-    // Set the optional branch for the API request.
-    // const unidadEjecutora = 1;
-    // call request manager for the tree's data.
     return this.rqManager.get(`nodo_cuenta_contable/cuentas/credito`);
 
   }

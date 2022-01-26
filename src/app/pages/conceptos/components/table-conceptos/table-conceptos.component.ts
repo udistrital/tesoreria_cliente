@@ -17,22 +17,7 @@ import { Store } from '@ngrx/store';
 import { obtenerConceptos, obtenerConceptosByCodigo } from '../../../../shared/actions/shared.actions';
 import { seleccionarConceptos } from '../../../../shared/selectors/shared.selectors';
 import { Router } from '@angular/router';
-
-interface EstructuraArbolRubrosApropiaciones {
-  Codigo: string;
-  Descripcion?: string;
-  ValorInicial: number;
-  Hijos?: EstructuraArbolRubrosApropiaciones[];
-  Movimientos?: string[];
-  Padre?: string;
-  UnidadEjecutora: number;
-  Estado?: string;
-  IsLeaf: boolean;
-  expanded?: boolean;
-  isHighlighted?: boolean;
-  data?: EstructuraArbolRubrosApropiaciones;
-  children?: EstructuraArbolRubrosApropiaciones[];
-}
+import { EstructuraArbolRubrosApropiaciones } from '../../interfaces/interface';
 
 @Component({
   selector: 'ngx-table-conceptos',
@@ -51,10 +36,8 @@ export class TableConceptosComponent implements OnInit, OnDestroy, OnChanges {
   defaultColumns = ['Nombre'];
   hasListener: any[] = [];
   oldHighlight: ElementRef;
-
   allColumns = [this.customColumn, ...this.defaultColumns];
   dataSource: NbTreeGridDataSource<EstructuraArbolRubrosApropiaciones>;
-
   sortColumn: string;
   sortDirection: NbSortDirection = NbSortDirection.NONE;
   idHighlight: any;
@@ -75,13 +58,11 @@ export class TableConceptosComponent implements OnInit, OnDestroy, OnChanges {
   constructor(
     private renderer: Renderer2,
     private dataSourceBuilder: NbTreeGridDataSourceBuilder<EstructuraArbolRubrosApropiaciones>,
-    // private dataSourceBuilder2: NbTreeGridDataSourceBuilder<EstructuraArbolRubrosApropiaciones>,
     private treeHelper: ArbolHelper,
     private translate: TranslateService,
     private pUpManager: PopUpManager,
     private store: Store<any>,
     private router: Router
-    // private rubroHelper: RubroHelper,
   ) {
     this.store.dispatch(obtenerConceptos({}));
   }
@@ -91,8 +72,6 @@ export class TableConceptosComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   clearStore() {
-    this.store.dispatch(obtenerConceptos(null));
-    this.store.dispatch(obtenerConceptosByCodigo(null));
   }
 
   ngOnInit() {
@@ -157,8 +136,6 @@ export class TableConceptosComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  // private data: TreeNode<EstructuraArbolRubrosApropiaciones>[] | TreeNode<EstructuraArbolRubros>[];
-
   private data: [];
 
   loadTree() {
@@ -204,7 +181,6 @@ export class TableConceptosComponent implements OnInit, OnDestroy, OnChanges {
   cleanInterface() {
     this.loadTree();
     this.cleanForm = !this.cleanForm;
-    // this.selectedNodeData = undefined;
     this.formData.campos[FormManager.getIndexForm(this.formData, 'Codigo')].prefix.value = '';
     this.nodeData = undefined;
   }
@@ -230,59 +206,6 @@ export class TableConceptosComponent implements OnInit, OnDestroy, OnChanges {
       return true;
     }
     return false;
-  }
-
-  validarCampo($event) {
-    // Cambios por campo
-    switch ($event.nombre) {
-      // Cuando se cambia el campo de cuenta alterna, se oculta o muestran el campo de cód y nombre
-      case 'CuentaAlterna': {
-        const codCuenta = this.formData.campos[FormManager.getIndexForm(this.formData, 'CodigoCuentaAlterna')];
-        const nomCuenta = this.formData.campos[FormManager.getIndexForm(this.formData, 'NombreCuentaAlterna')];
-        if ($event.valor !== undefined && $event.valor.Id) {
-          codCuenta.claseGrid = codCuenta.claseGrid.replaceAll(' d-none', '');
-          nomCuenta.claseGrid = nomCuenta.claseGrid.replaceAll(' d-none', '');
-          codCuenta.requerido = true;
-        } else {
-          this.cuentaAlterna = null;
-          codCuenta.claseGrid += ' d-none';
-          nomCuenta.claseGrid += ' d-none';
-          codCuenta.requerido = false;
-        }
-        break;
-      }
-      // Cuando se cambia el cód de cuenta, se debe buscar la cuenta
-      case 'CodigoCuentaAlterna': {
-        if (this.cuentaAlternaAnt !== $event.valor.toString()) {
-          this.cuentaAlternaAnt = $event.valor;
-          const nomCuenta = this.formData.campos[FormManager.getIndexForm(this.formData, 'NombreCuentaAlterna')];
-          const cAlterna = $event.valor.toString();
-          let cA = '';
-          // Cuenta númerica a cuenta con guiones
-          if (cAlterna.length >= 6) {
-            cA = cAlterna[0] + '-' + cAlterna[1] + '-' + cAlterna.substring(2, 4) + '-' + cAlterna.substring(4, 6);
-            if (cAlterna.length >= 8)
-              cA += '-' + cAlterna.substring(6, 8);
-          }
-          // Valores para cuenta inválida o no encontrada
-          this.cuentaAlterna = null;
-          nomCuenta.requerido = true;
-          nomCuenta.valor = '';
-          nomCuenta.alerta = 'Cuenta inválida o no encontrada';
-          // Solicitud de datos de cuenta
-          this.treeHelper.getInfoCuenta(cA, false).subscribe(res => {
-            if (res && res !== undefined && res.Codigo && res.Nombre) {
-              // Valores para cuenta válida
-              this.cuentaAlterna = res.Codigo;
-              nomCuenta.requerido = false;
-              nomCuenta.valor = res.Codigo + ' ' + res.Nombre;
-              nomCuenta.alerta = null;
-            }
-          });
-        }
-        break;
-      }
-    }
   }
 
   validarForm($event) {
@@ -320,8 +243,6 @@ export class TableConceptosComponent implements OnInit, OnDestroy, OnChanges {
         }
       });
     }
-
-
   }
 
   showViewTab(option = '') {
@@ -333,22 +254,9 @@ export class TableConceptosComponent implements OnInit, OnDestroy, OnChanges {
         this.selectedNodeData = undefined;
         this.formData.campos[FormManager.getIndexForm(this.formData, 'Codigo')].prefix.value = '';
         break;
-
       default:
         break;
     }
-  }
-
-  makeFormEditable(editable: boolean, update = false) {
-    for (let i = 0; i < this.formData.campos.length; i++) {
-      this.formData.campos[i].deshabilitar = editable;
-    }
-    // always "Codigo" field is disabled.
-    if (update === true) {
-      const codigoIndex = FormManager.getIndexForm(this.formData, 'Codigo');
-      this.formData.campos[codigoIndex].deshabilitar = true;
-    }
-    this.formData.campos[FormManager.getIndexForm(this.formData, 'NombreCuentaAlterna')].deshabilitar = true;
   }
 
   showTreeTab() {
@@ -364,10 +272,14 @@ export class TableConceptosComponent implements OnInit, OnDestroy, OnChanges {
       const tipoMonedaIndex = FormManager.getIndexForm(this.formData, 'MonedaID');
       const detalleCuentaIndex = FormManager.getIndexForm(this.formData, 'DetalleCuentaID');
       const centroCostosIndex = FormManager.getIndexForm(this.formData, 'CentroDecostosID');
-      this.nodeData['DetalleCuentaID'] = this.formData.campos[detalleCuentaIndex].opciones.find(element => element.Id === this.nodeData['DetalleCuentaID']);
-      this.nodeData['CentroDecostosID'] = this.formData.campos[centroCostosIndex].opciones.find(element => element.Id === this.nodeData['CentroDecostosID']);
-      this.nodeData['MonedaID'] = this.formData.campos[tipoMonedaIndex].opciones.find(element => element.Id === this.nodeData['MonedaID']);
-      this.nodeData['NaturalezaCuentaID'] = this.formData.campos[naturalezaIndex].opciones.find(element => element.Id === this.nodeData['NaturalezaCuentaID']);
+      this.nodeData['DetalleCuentaID'] = this.formData.campos[detalleCuentaIndex]
+        .opciones.find(element => element.Id === this.nodeData['DetalleCuentaID']);
+      this.nodeData['CentroDecostosID'] = this.formData.campos[centroCostosIndex]
+        .opciones.find(element => element.Id === this.nodeData['CentroDecostosID']);
+      this.nodeData['MonedaID'] = this.formData.campos[tipoMonedaIndex]
+        .opciones.find(element => element.Id === this.nodeData['MonedaID']);
+      this.nodeData['NaturalezaCuentaID'] = this.formData.campos[naturalezaIndex]
+        .opciones.find(element => element.Id === this.nodeData['NaturalezaCuentaID']);
       this.nodeData['Ajustable'] = this.nodeData['Ajustable'] === true ? { Label: 'Si', Id: true } : { Label: 'No', Id: false };
       this.nodeData['RequiereTercero'] = this.nodeData['RequiereTercero'] === true ? { Label: 'Si', Id: true } : { Label: 'No', Id: false };
       this.nodeData['Nmnc'] = this.nodeData['Nmnc'] === true ? { Label: 'Si', Id: true } : { Label: 'No', Id: false };

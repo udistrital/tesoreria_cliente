@@ -98,7 +98,6 @@ export class ArbolCuentasContablesDebitoComponent implements OnInit, OnDestroy, 
   }
 
   CargarCuentaContables(Fuente: any, Arbol: any) {
-    // console.log(Arbol[0]);
     const ArbolFuenteRecurso = Arbol[0].children.find(
       hijo => hijo.Codigo === Fuente
     );
