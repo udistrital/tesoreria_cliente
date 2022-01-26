@@ -204,12 +204,12 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
 
   async consultarTipoTransaccion(change?: boolean) {
     if (this.crearConceptosGroup.value.claseTransaccion && change) {
-      this.concepto.ClaseTransaccionId = this.crearConceptosGroup.value.claseTransaccion.Id
-      this.concepto.AreaFuncional = this.crearConceptosGroup.value.areaFuncional.Id
-      this.concepto.Codigo = this.crearConceptosGroup.value.codigo
-      this.concepto.Nombre = this.crearConceptosGroup.value.nombreConcepto
-      this.concepto.TipoComprobanteId = this.crearConceptosGroup.value.tipoComprobante.Codigo
-      this.concepto.CodigoBogdata = this.crearConceptosGroup.value.codigoBogData
+      this.concepto.ClaseTransaccionId = this.crearConceptosGroup.value.claseTransaccion.Id;
+      this.concepto.AreaFuncional = this.crearConceptosGroup.value.areaFuncional.Id;
+      this.concepto.Codigo = this.crearConceptosGroup.value.codigo;
+      this.concepto.Nombre = this.crearConceptosGroup.value.nombreConcepto;
+      this.concepto.TipoComprobanteId = this.crearConceptosGroup.value.tipoComprobante.Codigo;
+      this.concepto.CodigoBogdata = this.crearConceptosGroup.value.codigoBogData;
     }
     if (change) this.flag = change;
     if (this.crearConceptosGroup.value.claseTransaccion && this.flag) {
