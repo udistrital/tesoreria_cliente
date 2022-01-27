@@ -41,6 +41,7 @@ export const environment = {
   CONF_MENU_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/configuracion_crud_api/v1/menu_opcion_padre/ArbolMenus/',
   DOCUMENTO_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/documento_crud/v2/',
   GIROS_CRUD_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/giros_crud/v1/',
+  CUENTAS_CONTABLES_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/cuentas_contables_crud/v1/',
   KNOWAGE: {
     PROTOCOL: 'https',
     HOST: 'tuleap.udistrital.edu.co',
