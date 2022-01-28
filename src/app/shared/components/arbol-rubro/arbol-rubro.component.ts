@@ -15,6 +15,7 @@ import { BehaviorSubject, combineLatest } from 'rxjs';
 export class ArbolRubroComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() FuenteRecurso: any;
+  @Input() Raiz: string;
 
   selectedTreeRow: any = null;
 
@@ -27,6 +28,7 @@ export class ArbolRubroComponent implements OnInit, OnDestroy, OnChanges {
 
   data: ArbolRubros<DatosNodo>[];
   dataSource: NbTreeGridDataSource<any>;
+  arbolRubro: boolean;
 
   subscription$: any;
   subscription2$: any;
@@ -42,7 +44,8 @@ export class ArbolRubroComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-
+    this.store.select(getArbolRubro).subscribe((arbol) => {
+    });
     if (changes.FuenteRecurso) {
       this.FuenteRecurso$.next(this.FuenteRecurso);
       this.store.dispatch(LoadNodoSeleccionado(null));
@@ -50,6 +53,7 @@ export class ArbolRubroComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnInit() {
+    this.arbolRubro = false;
     const getters: NbGetters<ArbolRubros<DatosNodo>, ArbolRubros<DatosNodo>> = {
       dataGetter: (node: ArbolRubros<DatosNodo>) => node.data || null,
       childrenGetter: (node: ArbolRubros<DatosNodo>) => !!node.children && !!node.children.length ? node.children : [],
@@ -59,7 +63,6 @@ export class ArbolRubroComponent implements OnInit, OnDestroy, OnChanges {
       this.store.select(getArbolRubro),
       this.FuenteRecurso$.asObservable(),
     ]).subscribe(([arbol, fuente]) => {
-
       if (Object.keys(arbol).length !== 0) {
         if (fuente) {
           this.data = this.CargarRubros(fuente, arbol);
@@ -67,8 +70,6 @@ export class ArbolRubroComponent implements OnInit, OnDestroy, OnChanges {
           this.data = [arbol[0]];
         }
         this.dataSource = this.dataSourceBuilder.create(this.data, getters);
-      } else {
-        this.parametric.CargarArbolRubros('3');
       }
     });
     this.subscription2$ = this.store.select(getNodoSeleccionado).subscribe((rubro: any) => {
@@ -96,17 +97,15 @@ export class ArbolRubroComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnDestroy(): void {
-    this.subscription$.unsubscribe();
-    this.subscription2$.unsubscribe();
+    if (this.subscription$) this.subscription$.unsubscribe();
+    if (this.subscription2$) this.subscription2$.unsubscribe();
   }
 
   onSelect(row: any) {
-
     this.store.dispatch(LoadNodoSeleccionado(row));
   }
 
   CargarRubros(Fuente: any, Arbol: any) {
-    // console.log(Arbol[0]);
     const ArbolFuenteRecurso = Arbol[0].children.find(
       hijo => hijo.Codigo === Fuente
     );

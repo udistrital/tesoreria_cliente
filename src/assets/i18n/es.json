@@ -209,7 +209,9 @@
     "guardar_cambios" : "¿Desea guardar los cambios?",
     "activo" : "Activo",
     "inactivo" : "Inactivo",
-    "cambiar_estado" : "Cambiar estado"
+    "cambiar_estado" : "Cambiar estado",
+    "entidad_pres": "Entidad presupuestal",
+    "cerrar": "Cerrar"
   },
   "RUBRO": {
     "asignar_rubro": "Asignar Rubro",
@@ -451,6 +453,25 @@
     "creacion_banco": "Se ha creado el banco exitosamente",
     "act_banco": "Se ha actualizado el banco exitosamente",
     "cambio_estado": "Se ha cambiado el estado del banco exitosamente"
+  },
+  "CONCEPTOS" : {
+    "lista" : "Lista de conceptos",
+    "nuevo_grupo": "Nuevo grupo",
+    "nuevo_nodo": "Nuevo nodo",
+    "ver": "Ver",
+    "editar": "Editar",
+    "conceptos": "Conceptos",
+    "clase_transaccion": "Clase de Transacción",
+    "tipo_transaccion": "Tipo de Transacción",
+    "concepto_padre": "Concepto padre",
+    "nombre": "Nombre del concepto",
+    "tipo_comprobante": "Tipo de comprobante",
+    "codigo_bdata": "Codigo Bogdata",
+    "agregar_debito": "Agregar Cuenta Debito",
+    "agregar_credito": "Agregar Cuenta Credito",
+    "rubro": "Seleccione un rubro",
+    "seleccione_debito": "Seleccione una cuenta debito",
+    "seleccione_credito": "Seleccione una cuenta credito"
   },
   "FOOTER": {
     "dias_disponibilidad": "Lunes a Viernes",

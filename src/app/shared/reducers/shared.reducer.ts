@@ -5,7 +5,11 @@ export const sharedFeatureKey = 'shared';
 
 export interface State {
   ArbolRubro: any;
+  ArbolCuentaContableDebito: any;
+  ArbolCuentaContableCredito: any;
   NodoSeleccionado: any;
+  NodoSeleccionadoCuentaContableDebito: any;
+  NodoSeleccionadoCuentaContableCredito: any;
   FilaSeleccionada: any;
   AccionTabla: any;
   VigenciaActual: any;
@@ -33,11 +37,25 @@ export interface State {
   InfoComplementaria: any;
   BancosMid: any;
   TipoTercero: any;
+  Conceptos: any;
+  Concepto: any;
+  Parametros: any;
+  ParametrosHijos: any;
+  TipoComprobante: any;
+  RubroSeleccionado: any;
+  Rubro: any;
+  CuentaContableSeleccionada: any;
+  CuentaDebito: any;
+  CuentaCredito: any;
 }
 
 export const initialState: State = {
   ArbolRubro: [],
+  ArbolCuentaContableDebito: [],
+  ArbolCuentaContableCredito: [],
   NodoSeleccionado: null,
+  NodoSeleccionadoCuentaContableDebito: null,
+  NodoSeleccionadoCuentaContableCredito: null,
   FilaSeleccionada: null,
   AccionTabla: null,
   VigenciaActual: null,
@@ -65,6 +83,16 @@ export const initialState: State = {
   InfoComplementaria: null,
   BancosMid: null,
   TipoTercero: null,
+  Conceptos: null,
+  Concepto: null,
+  Parametros: null,
+  ParametrosHijos: null,
+  TipoComprobante: null,
+  RubroSeleccionado: null,
+  Rubro: null,
+  CuentaContableSeleccionada: null,
+  CuentaDebito: null,
+  CuentaCredito: null,
 };
 
 const sharedReducer = createReducer(
@@ -74,8 +102,20 @@ const sharedReducer = createReducer(
   on(SharedActions.LoadArbolRubro, (state, action) => ({
     ...state, ArbolRubro: state.ArbolRubro = action
   })),
+  on(SharedActions.LoadArbolCuentaContableDebito, (state, action) => ({
+    ...state, ArbolCuentaContableDebito: state.ArbolCuentaContableDebito = action
+  })),
+  on(SharedActions.LoadArbolCuentaContableCredito, (state, action) => ({
+    ...state, ArbolCuentaContableCredito: state.ArbolCuentaContableCredito = action
+  })),
   on(SharedActions.LoadNodoSeleccionado, (state, action) => ({
     ...state, NodoSeleccionado: state.NodoSeleccionado = action
+  })),
+  on(SharedActions.LoadNodoSeleccionadoCuentaContableDebito, (state, action) => ({
+    ...state, NodoSeleccionadoCuentaContableDebito: state.NodoSeleccionadoCuentaContableDebito = action
+  })),
+  on(SharedActions.LoadNodoSeleccionadoCuentaContableCredito, (state, action) => ({
+    ...state, NodoSeleccionadoCuentaContableCredito: state.NodoSeleccionadoCuentaContableCredito = action
   })),
   on(SharedActions.LoadFilaSeleccionada, (state, action) => ({
     ...state, FilaSeleccionada: state.FilaSeleccionada = action
@@ -161,6 +201,36 @@ const sharedReducer = createReducer(
   on(SharedActions.cargarTipoTercero, (state, action) => ({
     ...state, TipoTercero: state.TipoTercero = action
   })),
+  on(SharedActions.cargarConceptos, (state, action) => ({
+    ...state, Conceptos: state.Conceptos = action
+  })),
+  on(SharedActions.cargarConcepto, (state, action) => ({
+    ...state, Concepto: state.Concepto = action
+  })),
+  on(SharedActions.cargarParametros, (state, action) => ({
+    ...state, Parametros: state.Parametros = action
+  })),
+  on(SharedActions.cargarParametrosHijos, (state, action) => ({
+    ...state, ParametrosHijos: state.ParametrosHijos = action
+  })),
+  on(SharedActions.cargarTipoComprobante, (state, action) => ({
+    ...state, TipoComprobante: state.TipoComprobante = action
+  })),
+  on(SharedActions.SeleccionarRubro, (state, action) => ({
+    ...state, RubroSeleccionado: state.RubroSeleccionado = action
+  })),
+  on(SharedActions.cargarRubro, (state, action) => ({
+    ...state, Rubro: state.Rubro = action
+  })),
+  on(SharedActions.SeleccionarCuentaContable, (state, action) => ({
+    ...state, CuentaContableSeleccionada: state.CuentaContableSeleccionada = action
+  })),
+  on(SharedActions.cargarCuentaDebito, (state, action) => ({
+    ...state, CuentaDebito: state.CuentaDebito = action
+  })),
+  on(SharedActions.cargarCuentaCredito, (state, action) => ({
+    ...state, CuentaCredito: state.CuentaCredito = action
+  }))
 );
 
 export function reducer(state: State | undefined, action: Action) {

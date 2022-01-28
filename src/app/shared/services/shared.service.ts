@@ -56,10 +56,40 @@ export class SharedService {
 
   }
 
+  /**
+   * Gets arbol cuenta contable
+   *  returns one tree level at once.
+   * @param [branch] tree's branch to request info from the API
+   * @returns  branch information.
+   */
+   public getArbolCuentaContableDebito() {
+    this.rqManager.setPath('CUENTAS_CONTABLES_SERVICE');
+    return this.rqManager.get(`nodo_cuenta_contable/cuentas/debito`);
+
+  }
+
+  /**
+   * Gets arbol cuenta contable
+   *  returns one tree level at once.
+   * @param [branch] tree's branch to request info from the API
+   * @returns  branch information.
+   */
+   public getArbolCuentaContableCredito() {
+    this.rqManager.setPath('CUENTAS_CONTABLES_SERVICE');
+    return this.rqManager.get(`nodo_cuenta_contable/cuentas/credito`);
+
+  }
+
   public getRubro(codigo: string) {
     this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
     return this.rqManager.get(`arbol_rubro/arbol/${codigo}`);
   }
+
+  public getCuentaContable(idCuentaContable: string) {
+    this.rqManager.setPath('CUENTAS_CONTABLES_SERVICE');
+    return this.rqManager.get(`nodo_cuenta_contable/codigo/${idCuentaContable}`);
+  }
+
   /**
      * Gets Vigencia Actual
      *  returns one tree level at once.
@@ -357,6 +387,75 @@ export class SharedService {
   return this.rqManager.getv2('tipo_tercero', null, query, null, null, null, limit);
 }
 
+/**
+   *
+   * @param query Query para buscar los conceptos del crud de cuentas contables
+   * @param limit Limite de cantidad de conceptos
+   * @returns
+   */
+ public getConceptos(query?: any, limit?: number) {
+  this.rqManager.setPath('CUENTAS_CONTABLES_SERVICE');
+  if (!limit) limit = 0;
+  if (!query) query = {};
+  return this.rqManager.getv2('conceptos', null, query, null, null, null, limit);
+}
+
+/**
+   *
+   * @param query Query para buscar los conceptos del crud de cuentas contables
+   * @param concepto concepto
+   * @returns
+   */
+ public getConcepto(query?: any, concepto?: any) {
+  this.rqManager.setPath('CUENTAS_CONTABLES_SERVICE');
+  if (!query) query = {};
+  return this.rqManager.getv2(`conceptos/${concepto}`, null, query, null, null, null, null);
+}
+
+/**
+   *
+   * @param codigo Codigo a buscar en los conceptos
+   * @returns
+   */
+ public getConceptosByCodigo(codigo: any) {
+  this.rqManager.setPath('CUENTAS_CONTABLES_SERVICE');
+  return this.rqManager.getv2('conceptos/' + codigo, null, null, null, null, null, null);
+}
+
+/**
+   *
+   * @param query Query para buscar los parametros del crud de parametros
+   * @param limit Limite de cantidad de parametros
+   * @returns
+   */
+ public getParametros(query?: any, limit?: number) {
+  this.rqManager.setPath('PARAMETROS_CRUD_SERVICE');
+  if (!limit) limit = 0;
+  if (!query) query = {};
+  return this.rqManager.getv2('parametro', null, query, null, null, null, limit);
+}
+
+/**
+   *
+   * @param query Query para buscar los parametros hijos del crud de parametros
+   * @param limit Limite de cantidad de parametros hijos
+   * @returns
+   */
+ public getParametrosHijos(query?: any, limit?: number) {
+  this.rqManager.setPath('PARAMETROS_CRUD_SERVICE');
+  if (!limit) limit = 0;
+  if (!query) query = {};
+  return this.rqManager.getv2('parametro', null, query, null, null, null, limit);
+}
+
+/**
+   *
+   * @returns
+   */
+ public getTipoComprobante() {
+  this.rqManager.setPath('CUENTAS_CONTABLES_SERVICE');
+  return this.rqManager.getv2('tipo_comprobante', null, null, null, null, null, null);
+}
 
   /**
      * getScreenSize
