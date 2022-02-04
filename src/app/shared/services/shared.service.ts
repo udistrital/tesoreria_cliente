@@ -62,21 +62,9 @@ export class SharedService {
    * @param [branch] tree's branch to request info from the API
    * @returns  branch information.
    */
-   public getArbolCuentaContableDebito() {
+   public getArbolCuentaContable() {
     this.rqManager.setPath('CUENTAS_CONTABLES_SERVICE');
-    return this.rqManager.get(`nodo_cuenta_contable/cuentas/debito`);
-
-  }
-
-  /**
-   * Gets arbol cuenta contable
-   *  returns one tree level at once.
-   * @param [branch] tree's branch to request info from the API
-   * @returns  branch information.
-   */
-   public getArbolCuentaContableCredito() {
-    this.rqManager.setPath('CUENTAS_CONTABLES_SERVICE');
-    return this.rqManager.get(`nodo_cuenta_contable/cuentas/credito`);
+    return this.rqManager.get(`nodo_cuenta_contable`);
 
   }
 
@@ -397,7 +385,7 @@ export class SharedService {
   this.rqManager.setPath('CUENTAS_CONTABLES_SERVICE');
   if (!limit) limit = 0;
   if (!query) query = {};
-  return this.rqManager.getv2('conceptos', null, query, null, null, null, limit);
+  return this.rqManager.getv2('conceptos?FullTree=true', null, query, null, null, null, limit);
 }
 
 /**
