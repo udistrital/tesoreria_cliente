@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { NbGetters, NbSortDirection, NbSortRequest, NbTreeGridDataSource, NbTreeGridDataSourceBuilder } from '@nebular/theme';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { LoadNodoSeleccionadoCuentaContableDebito } from '../../actions/shared.actions';
 import { ArbolCuentasContables, DatosNodoCuentaContable } from '../../interfaces/interfaces';
@@ -25,6 +26,7 @@ export class ArbolCuentasContablesDebitoComponent implements OnInit, OnDestroy, 
 
   data: ArbolCuentasContables<DatosNodoCuentaContable>[];
   dataSource: NbTreeGridDataSource<DatosNodoCuentaContable>;
+  buscar: string;
 
   subscriptionCuentaDebito$: any;
   subCuentaContableDebitoSeleccionada$: any;
@@ -36,7 +38,9 @@ export class ArbolCuentasContablesDebitoComponent implements OnInit, OnDestroy, 
     private dataSourceBuilder: NbTreeGridDataSourceBuilder<DatosNodoCuentaContable>,
     private store: Store<any>,
     private parametric: ParametricService,
+    private translate: TranslateService
   ) {
+    this.buscar = this.translate.instant('GLOBAL.buscar');
   }
 
   ngOnChanges(changes: SimpleChanges): void {

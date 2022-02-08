@@ -45,7 +45,7 @@ export class SharedEffects {
     return this.actions$.pipe(
       ofType(SharedActions.GetArbolCuentaContableDebito),
       mergeMap((branch) =>
-        this.sharedService.getArbolCuentaContableDebito()
+        this.sharedService.getArbolCuentaContable()
           .pipe(
             map(data => SharedActions.LoadArbolCuentaContableDebito(data)),
             catchError(data => of(SharedActions.CatchError(data))))
@@ -57,7 +57,7 @@ export class SharedEffects {
     return this.actions$.pipe(
       ofType(SharedActions.GetArbolCuentaContableCredito),
       mergeMap((branch) =>
-        this.sharedService.getArbolCuentaContableCredito()
+        this.sharedService.getArbolCuentaContable()
           .pipe(
             map(data => SharedActions.LoadArbolCuentaContableCredito(data)),
             catchError(data => of(SharedActions.CatchError(data))))

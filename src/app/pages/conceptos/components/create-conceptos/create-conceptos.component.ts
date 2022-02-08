@@ -203,7 +203,7 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
   }
 
   async consultarTipoTransaccion(change?: boolean) {
-    if (this.crearConceptosGroup.value.claseTransaccion && change) {
+    if (this.crearConceptosGroup.value.claseTransaccion && change && this.tituloAccion === 'editar') {
       this.concepto.ClaseTransaccionId = this.crearConceptosGroup.value.claseTransaccion.Id;
       this.concepto.AreaFuncional = this.crearConceptosGroup.value.areaFuncional.Id;
       this.concepto.Codigo = this.crearConceptosGroup.value.codigo;

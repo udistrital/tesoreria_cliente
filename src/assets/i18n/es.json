@@ -471,7 +471,8 @@
     "agregar_credito": "Agregar Cuenta Credito",
     "rubro": "Seleccione un rubro",
     "seleccione_debito": "Seleccione una cuenta debito",
-    "seleccione_credito": "Seleccione una cuenta credito"
+    "seleccione_credito": "Seleccione una cuenta credito",
+    "seleccione_concepto": "Seleccione un concepto"
   },
   "FOOTER": {
     "dias_disponibilidad": "Lunes a Viernes",
