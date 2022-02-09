@@ -352,7 +352,7 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
       this.subConcepto$ = this.store.select(seleccionarConcepto).subscribe((accion) => {
         if (accion && accion.Concepto) {
           this.concepto = accion.Concepto;
-          accion.Concepto = null
+          accion.Concepto = null;
           if (this.concepto.Padre) {
             this.padre = true;
             if (this.tituloAccion === 'ver' || this.tituloAccion === 'editar' ) {
