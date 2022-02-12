@@ -7,6 +7,8 @@ import { LoadAccionTabla } from '../../../../shared/actions/shared.actions';
 import { combineLatest } from 'rxjs';
 import { getTipoIngreso } from '../../selectors/ingresos.selectors';
 import { SharedService } from '../../../../shared/services/shared.service';
+import { OPCIONES_AREA_FUNCIONAL } from '../../../../shared/interfaces/interfaces';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'ngx-lista-ingresos',
@@ -20,15 +22,23 @@ export class ListaIngresosComponent implements OnInit, OnDestroy {
   subscriptionTabla$: any;
   subscriptionTipo$: any;
   tipoIngreso: any;
+  opcionesAreaFuncional: any;
+  tablaIngresos: FormGroup;
+  tipoIngresoSelect: any;
 
   constructor(
+    private formBuilder: FormBuilder,
     private store: Store<any>,
     private router: Router,
     private sharedService: SharedService,
   ) {
     this.configuration = CONF_INGRESOS;
     this.datosIngresos = DATOS_INGRESOS;
-   }
+    this.opcionesAreaFuncional = OPCIONES_AREA_FUNCIONAL;
+    this.tablaIngresos = this.formBuilder.group({
+      tipoIngreso: ['']
+    });
+  }
 
   ngOnDestroy() {
     if (this.subscriptionTipo$ !== undefined) {
@@ -37,6 +47,9 @@ export class ListaIngresosComponent implements OnInit, OnDestroy {
     if (this.subscriptionTabla$ !== undefined) {
       this.subscriptionTabla$.unsubscribe();
     }
+  }
+
+  ngSubmit() {
   }
 
   ngOnInit() {
@@ -52,6 +65,11 @@ export class ListaIngresosComponent implements OnInit, OnDestroy {
         }
       }
     });
+  }
+
+  cambioTipoIngreso() {
+    this.tipoIngresoSelect = this.tablaIngresos.value.tipoIngreso.Nombre;
+    this.router.navigate(['/pages/ingresos/' + this.tablaIngresos.value.tipoIngreso.Nombre + '/lista']);
   }
 
 }

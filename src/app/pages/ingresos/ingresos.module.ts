@@ -11,13 +11,14 @@ import { SetAfectacionComponent } from './components/set-afectacion/set-afectaci
 import { SetContabilizarComponent } from './components/set-contabilizar/set-contabilizar.component';
 import { SetIdentificarComponent } from './components/set-identificar/set-identificar.component';
 import { SharedModule } from '../../shared/shared.module';
-import { MatStepperModule, MatDialogModule } from '@angular/material';
+import { MatStepperModule, MatDialogModule, MatOptionModule, MatSelectModule, MatFormFieldModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import * as fromIngresos from './reducers/ingresos.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { IngresosEffects } from './effects/ingresos.effects';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [ListaIngresosComponent,
@@ -31,8 +32,12 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
   imports: [
     CommonModule,
     SharedModule,
+    MatSelectModule,
+    MatFormFieldModule,
     MatStepperModule,
     MatDialogModule,
+    MatOptionModule,
+    ScrollingModule,
     FormsModule,
     ReactiveFormsModule,
     IngresosRoutingModule,
