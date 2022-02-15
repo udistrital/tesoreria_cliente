@@ -200,9 +200,9 @@ export const seleccionarParametrosHijos = createSelector(
   (state: fromShared.State) => state.ParametrosHijos
 );
 
-export const seleccionarTipoComprobante = createSelector(
+export const seleccionarTipoDocumentos = createSelector(
   selectSharedState,
-  (state: fromShared.State) => state.TipoComprobante
+  (state: fromShared.State) => state.TipoDocumentos
 );
 
 export const getRubroSeleccionado = createSelector(

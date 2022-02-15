@@ -89,14 +89,14 @@
                     <div class="form-group row px-5">
                         <div class="col-md-6">
                             <label>{{ 'CONCEPTOS.tipo_documento' | translate}}</label>
-                            <mat-select [disabled]="ver || !tesoreria" class="form-control" placeholder="Seleccione..." formControlName="tipoComprobante" [class.is-invalid]="isInvalid('tipoComprobante')">
+                            <mat-select [disabled]="ver || !tesoreria" class="form-control" placeholder="Seleccione..." formControlName="tipoDocumento" [class.is-invalid]="isInvalid('tipoDocumento')">
                                 <cdk-virtual-scroll-viewport itemSize="2" minBufferPx="100" maxBufferPx="200" class="vs-viewport-corto">
-                                    <mat-option *cdkVirtualFor="let tipoComprobante of tiposComprobante" [value]="tipoComprobante">
-                                        {{tipoComprobante.Descripcion}}
+                                    <mat-option *cdkVirtualFor="let tipoDocumento of tiposDocumento" [value]="tipoDocumento">
+                                        {{tipoDocumento.Nombre}}
                                     </mat-option>
                                 </cdk-virtual-scroll-viewport>
                             </mat-select>
-                            <small *ngIf="isInvalid('tipoComprobante')" class="text-danger">{{ 'GLOBAL.seleccione' | translate}}</small>
+                            <small *ngIf="isInvalid('tipoDocumento')" class="text-danger">{{ 'GLOBAL.seleccione' | translate}}</small>
                         </div>
                         <div class="col-md-6" *ngIf="!padre">
                             <label>{{ 'GLOBAL.rubro' | translate}}</label>
