@@ -416,13 +416,13 @@ export const cargarParametrosHijos = createAction(
   props()
 );
 
-export const obtenerTipoComprobante = createAction(
-  '[Shared] Obtener tipos de comprobante del crud de cuentas contables',
+export const obtenerTipoDocumentos = createAction(
+  '[Shared] Obtener tipos de docoumentos del crud de cuentas contables',
   props<{query?: any, limit?: any }>()
 );
 
-export const cargarTipoComprobante = createAction(
-  '[Shared] Cargar tipos de comprobantes al store',
+export const cargarTipoDocumentos = createAction(
+  '[Shared] Cargar tipos de documentos al store',
   props()
 );
 

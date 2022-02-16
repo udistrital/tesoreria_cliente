@@ -41,7 +41,7 @@ export interface State {
   Concepto: any;
   Parametros: any;
   ParametrosHijos: any;
-  TipoComprobante: any;
+  TipoDocumentos: any;
   RubroSeleccionado: any;
   Rubro: any;
   CuentaContableSeleccionada: any;
@@ -87,7 +87,7 @@ export const initialState: State = {
   Concepto: null,
   Parametros: null,
   ParametrosHijos: null,
-  TipoComprobante: null,
+  TipoDocumentos: null,
   RubroSeleccionado: null,
   Rubro: null,
   CuentaContableSeleccionada: null,
@@ -213,8 +213,8 @@ const sharedReducer = createReducer(
   on(SharedActions.cargarParametrosHijos, (state, action) => ({
     ...state, ParametrosHijos: state.ParametrosHijos = action
   })),
-  on(SharedActions.cargarTipoComprobante, (state, action) => ({
-    ...state, TipoComprobante: state.TipoComprobante = action
+  on(SharedActions.cargarTipoDocumentos, (state, action) => ({
+    ...state, TIpoDocumentos: state.TipoDocumentos = action
   })),
   on(SharedActions.SeleccionarRubro, (state, action) => ({
     ...state, RubroSeleccionado: state.RubroSeleccionado = action

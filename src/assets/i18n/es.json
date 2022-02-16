@@ -465,7 +465,7 @@
     "tipo_transaccion": "Tipo de Transacción",
     "concepto_padre": "Concepto padre",
     "nombre": "Nombre del concepto",
-    "tipo_comprobante": "Tipo de comprobante",
+    "tipo_documento": "Tipo de documento",
     "codigo_bdata": "Codigo Bogdata",
     "agregar_debito": "Agregar Cuenta Debito",
     "agregar_credito": "Agregar Cuenta Credito",

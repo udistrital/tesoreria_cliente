@@ -438,11 +438,15 @@ export class SharedService {
 
 /**
    *
+   * @param query Query para buscar los tipos de documentos crud de parametros
+   * @param limit Limite de cantidad de tipos de documento
    * @returns
    */
- public getTipoComprobante() {
-  this.rqManager.setPath('CUENTAS_CONTABLES_SERVICE');
-  return this.rqManager.getv2('tipo_comprobante', null, null, null, null, null, null);
+ public getTipoDocumentos(query?: any, limit?: number) {
+  this.rqManager.setPath('PARAMETROS_CRUD_SERVICE');
+  if (!limit) limit = 0;
+  if (!query) query = {};
+  return this.rqManager.getv2('parametro', null, query, null, null, null, limit);
 }
 
   /**
