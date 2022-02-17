@@ -300,6 +300,7 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
         Aplicacion: 'tesoreria',
         CuentasCredito: [],
         CuentasDebito: [],
+        Hijos: null,
         Nivel: null,
       };
       if (this.tituloAccion === 'hijo') {
@@ -307,6 +308,7 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
         elemento.RubroPresupuestalId = this.rubroSeleccionado.data.Codigo;
       } else if (this.tituloAccion === 'editar') {
         elemento.Nivel = this.concepto.Nivel;
+        elemento.Hijos = this.concepto.Hijos;
         if (!this.padre) elemento.TipoTransaccionId = this.crearConceptosGroup.value.tipoTransaccion.Id;
         for (let i = 0; i < this.cuentasDebitoTabla.length; i++) {
           elemento.CuentasDebito.push(this.cuentasDebitoTabla[i].Codigo);
