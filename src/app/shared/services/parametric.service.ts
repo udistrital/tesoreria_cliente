@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { GetArbolRubro, GetModalidadesSeleccion } from '../actions/shared.actions';
+import { GetArbolCuentaContableCredito, GetArbolCuentaContableDebito, GetArbolRubro, GetModalidadesSeleccion } from '../actions/shared.actions';
 import { getArbolRubro, getModalidadesSeleccion } from '../selectors/shared.selectors';
 
 @Injectable({
@@ -14,11 +14,19 @@ export class ParametricService {
   }
 
   CargarArbolRubros(fuente: any) {
+    this.store.dispatch(GetArbolRubro({ branch: fuente }));
     this.store.select(getArbolRubro).subscribe((arbol: any) => {
       if (Object.keys(arbol).length === 0) {
-        this.store.dispatch(GetArbolRubro({ branch: fuente }));
       }
     });
+  }
+
+  CargarArbolCuentasContablesDebito() {
+    this.store.dispatch(GetArbolCuentaContableDebito({}));
+  }
+
+  CargarArbolCuentasContablesCredito() {
+    this.store.dispatch(GetArbolCuentaContableCredito({}));
   }
 
   CargarModalidadesDeSeleccion() {

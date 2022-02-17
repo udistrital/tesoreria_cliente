@@ -34,6 +34,14 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from '././@core/store/effects/app.effects';
 import { NuxeoService } from './@core/utils/nuxeo.service';
+import { MatTableModule,
+  MatSortModule,
+  MatPaginatorModule,
+  MatIconModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSlideToggleModule,
+} from '@angular/material';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -75,6 +83,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     !environment.production ? StoreDevtoolsModule.instrument({ }) : [],
     EffectsModule.forRoot([AppEffects]),
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSlideToggleModule,
   ],
   bootstrap: [AppComponent],
   providers: [ImplicitAutenticationService, NuxeoService, AutenticationService,

@@ -7,7 +7,7 @@ import { EMPTY, of } from 'rxjs';
 import * as SharedActions from '../actions/shared.actions';
 import { SharedService } from '../services/shared.service';
 import { Store } from '@ngrx/store';
-import { selectTiposID, selectVigencias } from '../selectors/shared.selectors';
+import { getAccionTabla, selectTiposID, selectVigencias } from '../selectors/shared.selectors';
 
 
 @Injectable()
@@ -36,6 +36,30 @@ export class SharedEffects {
         this.sharedService.getArbol(branch.branch)
           .pipe(
             map(data => SharedActions.LoadArbolRubro(data)),
+            catchError(data => of(SharedActions.CatchError(data))))
+      )
+    );
+  });
+
+  GetArbolCuentaContableDebito$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.GetArbolCuentaContableDebito),
+      mergeMap((branch) =>
+        this.sharedService.getArbolCuentaContable()
+          .pipe(
+            map(data => SharedActions.LoadArbolCuentaContableDebito(data)),
+            catchError(data => of(SharedActions.CatchError(data))))
+      )
+    );
+  });
+
+  GetArbolCuentaContableCredito$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.GetArbolCuentaContableCredito),
+      mergeMap((branch) =>
+        this.sharedService.getArbolCuentaContable()
+          .pipe(
+            map(data => SharedActions.LoadArbolCuentaContableCredito(data)),
             catchError(data => of(SharedActions.CatchError(data))))
       )
     );
@@ -114,7 +138,7 @@ export class SharedEffects {
         accion && accion.id ? accion.id : null,
         accion && accion.query ? accion.query : null)
         .pipe(map(data => SharedActions.cargarDatosProvedor(
-          { Proveedores: (data && data.Data ? data.Data : data) })),
+          { Proveedores: ((data && data.Data) ? data.Data : data) })),
           catchError(data => of(SharedActions.CatchError(data))))));
   });
 
@@ -127,7 +151,7 @@ export class SharedEffects {
           accion && accion.id ? accion.id : null,
           accion && accion.query ? accion.query : null)
           .pipe(map(data => SharedActions.cargarTelefonosProvedores(
-            { TelefonosProveedores: (data && data.Data ? data.Data : data) })),
+            { TelefonosProveedores: ((data && data.Data) ? data.Data : data) })),
             catchError(data => of(SharedActions.CatchError(data))))));
   });
 
@@ -141,7 +165,7 @@ export class SharedEffects {
           accion && accion.query ? accion.query : null,
           accion.limit ? accion.limit : null)
           .pipe(map(data => SharedActions.cargarOdrenadores(
-            { Ordenadores: (data && data.Data ? data.Data : data) })),
+            { Ordenadores: ((data && data.Data) ? data.Data : data) })),
             catchError(data => of(SharedActions.CatchError(data))))));
   });
 
@@ -155,7 +179,7 @@ export class SharedEffects {
           accion && accion.query ? accion.query : null,
           accion.limit ? accion.limit : null)
           .pipe(map(data => SharedActions.cargarDependencias(
-            { Dependencias: (data && data.Data ? data.Data : data) })),
+            { Dependencias: ((data && data.Data) ? data.Data : data) })),
             catchError(data => of(SharedActions.CatchError(data))))));
   });
 
@@ -169,8 +193,250 @@ export class SharedEffects {
           accion && accion.query ? accion.query : null,
           accion.limit ? accion.limit : null)
           .pipe(map(data => SharedActions.cargarFacultadesProyectos(
-            { FacultadesProyectos: (data && data.Data ? data.Data : data) })),
+            { FacultadesProyectos: ((data && data.Data) ? data.Data : data) })),
             catchError(data => of(SharedActions.CatchError(data))))));
+  });
+
+  // Consulta de bancos
+
+  getBancos$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerBancos),
+      mergeMap((accion) =>
+      this.sharedService.getBancos(
+        accion && accion.id ? accion.id : null,
+        accion && accion.query ? accion.query : null,
+        accion.limit ? accion.limit : null)
+        .pipe(map(data => SharedActions.cargarBancos(
+          { Bancos: ((data && data.Data) ? data.Data : data)})),
+          catchError(data => of(SharedActions.CatchError(data))))));
+        });
+
+  // Consulta de id para guardar sucursales
+  // Consulta a la tabla info_complementaria en terceros para saber que id se asociará en la llave foranea al momento de crear la sucursal
+
+  getIdSucursales$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerIdSucursales),
+      mergeMap((accion) =>
+      this.sharedService.getIdSucursales(
+        accion && accion.query ? accion.query : null,
+      )
+      .pipe(map(data => SharedActions.cargarIdSucursales(
+        { IdSucursales: ((data && data.Data) ? data.Data : data)})),
+        catchError(data => of(SharedActions.CatchError(data))))));
+  });
+
+  getSucursales$ = createEffect(() => {
+    return this.actions$.pipe(
+        ofType(SharedActions.obtenerSucursales),
+        mergeMap((accion) => this.sharedService.getSucursales(accion && accion.query ? accion.query : null)
+            .pipe(map(data => SharedActions.cargarSucursales(
+              { Sucursales: ((data && data.Data) ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+
+            // })), catchError(data => of(SharedActions.CatchError(data)))))
+
+    );
+  });
+
+  getDivisas$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerDivisas),
+      mergeMap((accion) =>
+      this.sharedService.getDivisas(
+        accion && accion.query ? accion.query : null,
+        accion.limit ? accion.limit : null
+      )
+      .pipe(map(data => SharedActions.cargarDivisas(
+        { Divisas: ((data && data.Data) ? data.Data : data)})),
+        catchError(data => of (SharedActions.CatchError(data)))))
+    );
+  });
+
+  getRecursos$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerRecursos),
+      mergeMap((codigo) =>
+      this.sharedService.getRecursos(codigo.codigo)
+      .pipe(map(data => SharedActions.cargarRecursos(
+        { Recursos: ((data && data.Data) ? data.Data : data)})),
+        catchError(data => of (SharedActions.CatchError(data)))))
+    );
+  });
+
+  getTipoCuenta$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerTipoCuenta),
+      mergeMap((accion) =>
+      this.sharedService.getTipoCuenta(
+        accion && accion.query ? accion.query : null,
+        accion.limit ? accion.limit : null
+      )
+      .pipe(map(data => SharedActions.cargarTipoCuenta(
+        {TipoCuentas: ((data && data.Data) ? data.Data : data)})),
+        catchError(data => of (SharedActions.CatchError(data)))))
+    );
+  });
+
+  getCuentasBancarias$ = createEffect(() => {
+    return this.actions$.pipe(
+        ofType(SharedActions.obtenerCuentasBancarias),
+        mergeMap((accion) => this.sharedService.getCuentasBancarias((accion && accion.query) ? accion.query : null)
+            .pipe(map(data => SharedActions.cargarCuentasBancarias(
+              { CuentasBancarias: ((data && data.Data) ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+    );
+  });
+
+  getTipoContribuyente$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerTipoContribuyente),
+      mergeMap((accion) => this.sharedService.getTipoContribuyente((accion && accion.query) ? accion.query : null)
+          .pipe(map(data => SharedActions.cargarTipoContribuyente(
+            {TipoContribuyente: ((data && data.Data) ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+    );
+  });
+
+  getTipoDocumento$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerTipoDocumento),
+      mergeMap((accion) => this.sharedService.getTipoDocumento((accion && accion.query) ? accion.query : null)
+          .pipe(map(data => SharedActions.cargarTipoDocumento(
+            {TipoDocumento: ((data && data.Data) ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+    );
+  });
+
+  getBancoByNit$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerBancoByNit),
+      mergeMap((accion) => this.sharedService.getBancoByNit((accion && accion.query) ? accion.query : null)
+          .pipe(map(data => SharedActions.cargarBancoByNit(
+            {BancoByNit: ((data && data.Data) ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+    );
+  });
+
+  getInfoComplementaria$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerInfoComplementaria),
+      mergeMap((accion) => this.sharedService.getInfoComplementaria((accion && accion.query) ? accion.query : null)
+          .pipe(map(data => SharedActions.cargarInfoComplementaria(
+            {InfoComplementaria: ((data && data.Data) ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+    );
+  });
+
+  getBancoMid$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerBancosMid),
+      mergeMap(() => this.sharedService.getBancoMid()
+          .pipe(map(data => SharedActions.cargarBancosMid(
+            {BancosMid: ((data && data.Data) ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+    );
+  });
+
+  getTipoTercero$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerTipoTercero),
+      mergeMap((accion) => this.sharedService.getTipoTercero(accion && accion.query ? accion.query : null)
+          .pipe(map(data => SharedActions.cargarTipoTercero(
+            {TipoTercero: ((data && data.Data) ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+    );
+  });
+
+  getConceptos$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerConceptos),
+      mergeMap((accion) => this.sharedService.getConceptos(accion && accion.query ? accion.query : null)
+          .pipe(map(data => SharedActions.cargarConceptos(
+            {Conceptos: ((data && data.Data) ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+    );
+  });
+
+  getConcepto$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerConcepto),
+      mergeMap((accion) => this.sharedService.getConcepto(accion && accion.query ? accion.query : null, accion.concepto)
+          .pipe(map(data => SharedActions.cargarConcepto(
+            {Concepto: ((data && data.Data) ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+    );
+  });
+
+  getConceptosByCodigo$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerConceptosByCodigo),
+      mergeMap((accion) => this.sharedService.getConceptosByCodigo(accion.codigo)
+      .pipe(map(data => SharedActions.cargarConceptosByCodigo(
+        {ConceptosByCodigo: ((data && data.Data) ? data.Data : data)})),
+        catchError(data => of(SharedActions.CatchError(data)))))
+    );
+  });
+
+  getRubro$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerRubro),
+      mergeMap((accion) => this.sharedService.getRubro(accion.codRubro)
+          .pipe(map(data => SharedActions.cargarRubro(
+            {Rubro: ((data && data.Data) ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+    );
+  });
+
+  getCuentaDebito$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerCuentaDebito),
+      mergeMap((accion) => this.sharedService.getCuentaContable(accion.idCuentaContable)
+          .pipe(map(data => SharedActions.cargarCuentaDebito(
+            {CuentaDebito: ((data && data.Data) ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+    );
+  });
+
+  getCuentaCredito$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerCuentaCredito),
+      mergeMap((accion) => this.sharedService.getCuentaContable(accion.idCuentaContable)
+          .pipe(map(data => SharedActions.cargarCuentaCredito(
+            {CuentaCredito: ((data && data.Data) ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+    );
+  });
+
+  getParametros$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerParametros),
+      mergeMap((accion) => this.sharedService.getParametros(accion && accion.query ? accion.query : null)
+          .pipe(map(data => SharedActions.cargarParametros(
+            {Parametros: ((data && data.Data) ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+    );
+  });
+
+  getParametrosHijos$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerParametrosHijos),
+      mergeMap((accion) => this.sharedService.getParametrosHijos(accion && accion.query ? accion.query : null)
+          .pipe(map(data => SharedActions.cargarParametrosHijos(
+            {ParametrosHijos: ((data && data.Data) ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+    );
+  });
+
+  getTipoComprobante$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SharedActions.obtenerTipoDocumentos),
+      mergeMap((accion) => this.sharedService.getTipoDocumentos(accion && accion.query ? accion.query : null)
+          .pipe(map(data => SharedActions.cargarTipoDocumentos(
+            {TipoDocumentos: ((data && data.Data) ? data.Data : data)})),
+            catchError(data => of(SharedActions.CatchError(data)))))
+    );
   });
 
 }

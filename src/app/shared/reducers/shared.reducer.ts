@@ -5,7 +5,11 @@ export const sharedFeatureKey = 'shared';
 
 export interface State {
   ArbolRubro: any;
+  ArbolCuentaContableDebito: any;
+  ArbolCuentaContableCredito: any;
   NodoSeleccionado: any;
+  NodoSeleccionadoCuentaContableDebito: any;
+  NodoSeleccionadoCuentaContableCredito: any;
   FilaSeleccionada: any;
   AccionTabla: any;
   VigenciaActual: any;
@@ -20,11 +24,38 @@ export interface State {
   Ordenadores: any;
   Dependencias: any;
   FacultadesProyectos: any;
+  Bancos: any;
+  IdSucursales: any;
+  Sucursales: any;
+  Divisas: any;
+  Recursos: any;
+  TipoCuentas: any;
+  CuentasBancarias: any;
+  TipoContribuyente: any;
+  TipoDocumento: any;
+  BancoByNit: any;
+  InfoComplementaria: any;
+  BancosMid: any;
+  TipoTercero: any;
+  Conceptos: any;
+  Concepto: any;
+  Parametros: any;
+  ParametrosHijos: any;
+  TipoDocumentos: any;
+  RubroSeleccionado: any;
+  Rubro: any;
+  CuentaContableSeleccionada: any;
+  CuentaDebito: any;
+  CuentaCredito: any;
 }
 
 export const initialState: State = {
   ArbolRubro: [],
+  ArbolCuentaContableDebito: [],
+  ArbolCuentaContableCredito: [],
   NodoSeleccionado: null,
+  NodoSeleccionadoCuentaContableDebito: null,
+  NodoSeleccionadoCuentaContableCredito: null,
   FilaSeleccionada: null,
   AccionTabla: null,
   VigenciaActual: null,
@@ -39,6 +70,29 @@ export const initialState: State = {
   Ordenadores: null,
   Dependencias: null,
   FacultadesProyectos: null,
+  Bancos: null,
+  IdSucursales: null,
+  Sucursales: null,
+  Divisas: null,
+  Recursos: null,
+  TipoCuentas: null,
+  CuentasBancarias: null,
+  TipoContribuyente: null,
+  TipoDocumento: null,
+  BancoByNit: null,
+  InfoComplementaria: null,
+  BancosMid: null,
+  TipoTercero: null,
+  Conceptos: null,
+  Concepto: null,
+  Parametros: null,
+  ParametrosHijos: null,
+  TipoDocumentos: null,
+  RubroSeleccionado: null,
+  Rubro: null,
+  CuentaContableSeleccionada: null,
+  CuentaDebito: null,
+  CuentaCredito: null,
 };
 
 const sharedReducer = createReducer(
@@ -48,8 +102,20 @@ const sharedReducer = createReducer(
   on(SharedActions.LoadArbolRubro, (state, action) => ({
     ...state, ArbolRubro: state.ArbolRubro = action
   })),
+  on(SharedActions.LoadArbolCuentaContableDebito, (state, action) => ({
+    ...state, ArbolCuentaContableDebito: state.ArbolCuentaContableDebito = action
+  })),
+  on(SharedActions.LoadArbolCuentaContableCredito, (state, action) => ({
+    ...state, ArbolCuentaContableCredito: state.ArbolCuentaContableCredito = action
+  })),
   on(SharedActions.LoadNodoSeleccionado, (state, action) => ({
     ...state, NodoSeleccionado: state.NodoSeleccionado = action
+  })),
+  on(SharedActions.LoadNodoSeleccionadoCuentaContableDebito, (state, action) => ({
+    ...state, NodoSeleccionadoCuentaContableDebito: state.NodoSeleccionadoCuentaContableDebito = action
+  })),
+  on(SharedActions.LoadNodoSeleccionadoCuentaContableCredito, (state, action) => ({
+    ...state, NodoSeleccionadoCuentaContableCredito: state.NodoSeleccionadoCuentaContableCredito = action
   })),
   on(SharedActions.LoadFilaSeleccionada, (state, action) => ({
     ...state, FilaSeleccionada: state.FilaSeleccionada = action
@@ -96,6 +162,75 @@ const sharedReducer = createReducer(
   on(SharedActions.cargarFacultadesProyectos, (state, action) => ({
     ...state, FacultadesProyectos: state.FacultadesProyectos = action
   })),
+  on(SharedActions.cargarBancos, (state, action) => ({
+    ...state, Bancos: state.Bancos = action
+  })),
+  on(SharedActions.cargarIdSucursales, (state, action) => ({
+    ...state, IdSucursales: state.IdSucursales = action
+  })),
+  on(SharedActions.cargarSucursales, (state, action) => ({
+    ...state, Sucursales: state.Sucursales = action
+  })),
+  on(SharedActions.cargarDivisas, (state, action) => ({
+    ...state, Divisas: state.Divisas = action
+  })),
+  on(SharedActions.cargarRecursos, (state, action) => ({
+    ...state, Recursos: state.Recursos = action
+  })),
+  on(SharedActions.cargarTipoCuenta, (state, action) => ({
+    ...state, TipoCuentas: state.TipoCuentas = action
+  })),
+  on(SharedActions.cargarCuentasBancarias, (state, action) => ({
+    ...state, CuentasBancarias: state.CuentasBancarias = action
+  })),
+  on(SharedActions.cargarTipoContribuyente, (state, action) => ({
+    ...state, TipoContribuyente: state.TipoContribuyente = action
+  })),
+  on(SharedActions.cargarTipoDocumento, (state, action) => ({
+    ...state, TipoDocumento: state.TipoDocumento = action
+  })),
+  on(SharedActions.cargarBancoByNit, (state, action) => ({
+    ...state, BancoByNit: state.BancoByNit = action
+  })),
+  on(SharedActions.cargarInfoComplementaria, (state, action) => ({
+    ...state, InfoComplementaria: state.InfoComplementaria = action
+  })),
+  on(SharedActions.cargarBancosMid, (state, action) => ({
+    ...state, BancosMid: state.BancosMid = action
+  })),
+  on(SharedActions.cargarTipoTercero, (state, action) => ({
+    ...state, TipoTercero: state.TipoTercero = action
+  })),
+  on(SharedActions.cargarConceptos, (state, action) => ({
+    ...state, Conceptos: state.Conceptos = action
+  })),
+  on(SharedActions.cargarConcepto, (state, action) => ({
+    ...state, Concepto: state.Concepto = action
+  })),
+  on(SharedActions.cargarParametros, (state, action) => ({
+    ...state, Parametros: state.Parametros = action
+  })),
+  on(SharedActions.cargarParametrosHijos, (state, action) => ({
+    ...state, ParametrosHijos: state.ParametrosHijos = action
+  })),
+  on(SharedActions.cargarTipoDocumentos, (state, action) => ({
+    ...state, TIpoDocumentos: state.TipoDocumentos = action
+  })),
+  on(SharedActions.SeleccionarRubro, (state, action) => ({
+    ...state, RubroSeleccionado: state.RubroSeleccionado = action
+  })),
+  on(SharedActions.cargarRubro, (state, action) => ({
+    ...state, Rubro: state.Rubro = action
+  })),
+  on(SharedActions.SeleccionarCuentaContable, (state, action) => ({
+    ...state, CuentaContableSeleccionada: state.CuentaContableSeleccionada = action
+  })),
+  on(SharedActions.cargarCuentaDebito, (state, action) => ({
+    ...state, CuentaDebito: state.CuentaDebito = action
+  })),
+  on(SharedActions.cargarCuentaCredito, (state, action) => ({
+    ...state, CuentaCredito: state.CuentaCredito = action
+  }))
 );
 
 export function reducer(state: State | undefined, action: Action) {

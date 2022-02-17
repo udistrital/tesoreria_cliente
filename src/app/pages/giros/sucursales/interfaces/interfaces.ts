@@ -8,7 +8,7 @@ export const CONFIGURACION_TABLASUCURSAL: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                class: 'center',
             }
         },
         {
@@ -18,7 +18,7 @@ export const CONFIGURACION_TABLASUCURSAL: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                class: 'left',
             }
         },
         {
@@ -28,9 +28,29 @@ export const CONFIGURACION_TABLASUCURSAL: any = {
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                class: 'left',
             }
         },
+        {
+            key: 'activo',
+            title: {
+                name: 'Activo',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'center',
+            },
+        },
+        {
+            key: 'acciones',
+            title: {
+                name: 'Acciones',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'icons'
+            }
+        }
     ],
     rowActions: {
         title: {
@@ -66,15 +86,3 @@ export const CONFIGURACION_TABLASUCURSAL: any = {
     sort: true,
     filter: true,
 };
-export const DATOS_TABLASUCURSAL: any = [
-    {
-        codigoID: '01',
-        nombreSucursal: 'Centro',
-        nombreBanco: 'Banco de la República',
-    },
-    {
-        codigoID: '02',
-        nombreSucursal: 'Hayuelos',
-        nombreBanco: 'Banco de Bogotá',
-    },
-];

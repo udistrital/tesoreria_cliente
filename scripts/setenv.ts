@@ -9,7 +9,7 @@ require('dotenv').config();
 // `environment.ts` file structure
 // COLOCAR LAS VARIABLES OBLIGATORIAS
 if (!(
-    process.env.NUXEO_USER 
+    process.env.NUXEO_USER
     && process.env.NUXEO_PASS
     && process.env.KNOWAGE_USER
     && process.env.KNOWAGE_PASS
@@ -18,7 +18,7 @@ if (!(
     console.error('All the required environment variables were not provided!');
     process.exit(-1);
 }
-const envConfigFile 
+const envConfigFile
 = `// ESTE ARCHIVO SE GENERA AUTOMATICAMENTE
 // LOS CAMBIOS REALIZADOS A ESTE ARCHIVO SERÁN SOBREESCRITOS
 // VER README.md PARA MAS INFORMACIÓN.
@@ -90,7 +90,8 @@ export const environment = {
    OIKOS_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/oikos_crud_api/v2/',
    TERCEROS_CRUD_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/terceros_crud/v1/',
    TESORERIA_MID_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/tesoreria_mid/v1/',
-   // TESORERIA_MID_SERVICE: 'http://localhost:8081/v1/',
+   GIROS_CRUD_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/giros_crud/v1/',
+   CUENTAS_CONTABLES_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/cuentas_contables_crud/v1/',
 // -----------------------------------------------------------------------------------
 
 };
