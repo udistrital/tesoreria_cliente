@@ -179,7 +179,7 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
       activo: [true],
       nombreConcepto: ['', Validators.required],
       tipoDocumento: ['', Validators.required],
-      codigoBogData: ['', Validators.required],
+      codigoBogData: [''],
     });
     this.modalCuentaDebitoGroup = this.fb.group({
       tipoId: ['', Validators.required],

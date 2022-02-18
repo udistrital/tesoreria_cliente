@@ -112,7 +112,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group row px-5">
+                    <div class="form-group row px-5" *ngIf="!padre">
                         <div class="col-md-6">
                             <label>{{ 'CONCEPTOS.codigo_bdata' | translate}}</label>
                             <input [readonly]="ver || !tesoreria" type="text" class="form-control" formControlName="codigoBogData" [class.is-invalid]="isInvalid('codigoBogData')">
