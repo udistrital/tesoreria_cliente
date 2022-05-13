@@ -657,7 +657,7 @@ export const TIPOS_INGRESOS: any = [
         Nombre: 'otrasEntidades',
         label: 'Aportes de otras entidades'
     }
-]
+];
  /******  Datos dummy ******************/
 export const DATOS_INGRESOS: any = [
     {
