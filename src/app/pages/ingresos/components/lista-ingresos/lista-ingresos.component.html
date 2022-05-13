@@ -3,7 +3,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col py-2">
-                    <h5 class="card-title text-center text-primary">LISTA DE INGRESOS POR {{tipoIngresoSelect}}</h5>
+                    <h5 class="card-title text-center text-primary">LISTA DE INGRESOS POR {{tipoIngresoSelect | uppercase}}</h5>
                 </div>
             </div>
             <form [formGroup]="tablaIngresos">
@@ -12,7 +12,7 @@
                         <label>Tipo de ingreso</label>
                         <mat-select class="form-control" placeholder="Seleccione..." formControlName="tipoIngreso" (selectionChange)="cambioTipoIngreso()">
                             <cdk-virtual-scroll-viewport itemSize="2" minBufferPx="100" maxBufferPx="200" class="vs-viewport-corto">
-                                <mat-option *cdkVirtualFor="let opcion of opcionesAreaFuncional" [value]="opcion">
+                                <mat-option *cdkVirtualFor="let opcion of tiposIngresos" [value]="opcion">
                                     {{opcion.label}}
                                 </mat-option>
                             </cdk-virtual-scroll-viewport>

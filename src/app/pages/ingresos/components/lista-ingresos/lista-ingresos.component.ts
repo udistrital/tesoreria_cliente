@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CONF_INGRESOS, DATOS_INGRESOS } from '../../interfaces/interfaces';
+import { CONF_INGRESOS, DATOS_INGRESOS, TIPOS_INGRESOS } from '../../interfaces/interfaces';
 import { Store } from '@ngrx/store';
 import { getAccionTabla } from '../../../../shared/selectors/shared.selectors';
 import { LoadAccionTabla } from '../../../../shared/actions/shared.actions';
@@ -22,7 +22,7 @@ export class ListaIngresosComponent implements OnInit, OnDestroy {
   subscriptionTabla$: any;
   subscriptionTipo$: any;
   tipoIngreso: any;
-  opcionesAreaFuncional: any;
+  tiposIngresos: any;
   tablaIngresos: FormGroup;
   tipoIngresoSelect: any;
 
@@ -34,7 +34,7 @@ export class ListaIngresosComponent implements OnInit, OnDestroy {
   ) {
     this.configuration = CONF_INGRESOS;
     this.datosIngresos = DATOS_INGRESOS;
-    this.opcionesAreaFuncional = OPCIONES_AREA_FUNCIONAL;
+    this.tiposIngresos = TIPOS_INGRESOS;
     this.tablaIngresos = this.formBuilder.group({
       tipoIngreso: ['']
     });
@@ -68,7 +68,7 @@ export class ListaIngresosComponent implements OnInit, OnDestroy {
   }
 
   cambioTipoIngreso() {
-    this.tipoIngresoSelect = this.tablaIngresos.value.tipoIngreso.Nombre;
+    this.tipoIngresoSelect = this.tablaIngresos.value.tipoIngreso.label;
     this.router.navigate(['/pages/ingresos/' + this.tablaIngresos.value.tipoIngreso.Nombre + '/lista']);
   }
 

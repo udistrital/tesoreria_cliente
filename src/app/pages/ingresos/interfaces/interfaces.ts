@@ -609,6 +609,55 @@ export const CONF_APORTES: any = {
     sort: true,
     filter: true,
 };
+
+export const OPCIONES_AREA_FUNCIONAL = [
+    {
+        Id: 1,
+        Nombre: 'Rector',
+        label: '01 - Rector',
+    },
+    {
+        Id: 2,
+        Nombre: 'Convenio',
+        label: '02 - Convenio',
+    }
+
+];
+
+export const TIPOS_INGRESOS: any = [
+    {
+        Nombre: 'icetex',
+        label: 'Icetex'
+    },
+    {
+        Nombre: 'barras',
+        label: 'Codigo de barras'
+    },
+    {
+        Nombre: 'pse',
+        label: 'PSE'
+    },
+    {
+        Nombre: 'ach',
+        label: 'ACH'
+    },
+    {
+        Nombre: 'recaudoLinea',
+        label: 'Recaudo en Linea'
+    },
+    {
+        Nombre: 'aportesNacion',
+        label: 'Aportes de la Nación'
+    },
+    {
+        Nombre: 'aportesDistrito',
+        label: 'Aportes del Distrito'
+    },
+    {
+        Nombre: 'otrasEntidades',
+        label: 'Aportes de otras entidades'
+    }
+]
  /******  Datos dummy ******************/
 export const DATOS_INGRESOS: any = [
     {
