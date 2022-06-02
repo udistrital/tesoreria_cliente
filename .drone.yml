@@ -52,11 +52,26 @@ steps:
     event:
     - push
 
+- name: preparar npm
+  image: node:14
+  commands:
+    - npm ci # Instalación limpia
+    - node --version
+    - npm --version
+  when:
+    branch: # Colocar las ramas que requieran npm
+      - dependabot/**
+      - develop
+      - feature/*
+      - hotfix/*
+      - master
+      - release/*
+      - unitest
+
 - name: prueba-unitarias
   failure: ignore
-  image: node:12.6.0
+  image: node:14
   commands:
-  - npm i
   - npm run test
   when:
     branch:
@@ -66,9 +81,8 @@ steps:
     - unitest
 
 - name:  pruebas-linter
-  image: node:12.6.0
+  image: node:14
   commands:
-  - npm i
   - npm run lint:ci
   when:
     branch:
@@ -95,9 +109,8 @@ steps:
     - push
 
 - name: nodejs_release
-  image: node:12.6.0
+  image: node:14
   commands:
-  - npm i
   - npm run build:test
   when:
     branch:
@@ -109,9 +122,8 @@ steps:
     - push
 
 - name: nodejs_master
-  image: node:12.6.0
+  image: node:14
   commands:
-  - npm i
   - npm run build:prod
   when:
     branch:
