@@ -59,7 +59,7 @@ steps:
     branch:
     - unitest
     - develop
-    - feature/*
+    # - feature/*
     - hotfix/*
 
 - name: run_sonar_scanner
