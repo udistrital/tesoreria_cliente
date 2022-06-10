@@ -4,17 +4,15 @@ import { MatStepper } from '@angular/material';
 @Component({
   selector: 'ngx-crear-ingresos',
   templateUrl: './crear-ingresos.component.html',
-  styleUrls: ['./crear-ingresos.component.scss']
+  styleUrls: ['./crear-ingresos.component.scss'],
 })
 export class CrearIngresosComponent implements OnInit {
-
   inicio: boolean = false;
   afectacion: boolean = false;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   validarInicio(data: boolean) {
     this.inicio = data;
@@ -31,5 +29,4 @@ export class CrearIngresosComponent implements OnInit {
   informacionRubros(data: any, stepper: MatStepper) {
     stepper.next();
   }
-
 }

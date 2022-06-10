@@ -1,28 +1,50 @@
 <div class="container-fluid">
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col py-2">
-                    <h5 class="card-title text-center text-primary">LISTA DE INGRESOS POR {{tipoIngresoSelect | uppercase}}</h5>
-                </div>
-            </div>
-            <form [formGroup]="tablaIngresos">
-                <div class="form-group row px-5">
-                    <div class="col-md-4">
-                        <label>Tipo de ingreso</label>
-                        <mat-select class="form-control" placeholder="Seleccione..." formControlName="tipoIngreso" (selectionChange)="cambioTipoIngreso()">
-                            <cdk-virtual-scroll-viewport itemSize="2" minBufferPx="100" maxBufferPx="200" class="vs-viewport-corto">
-                                <mat-option *cdkVirtualFor="let opcion of tiposIngresos" [value]="opcion">
-                                    {{opcion.label}}
-                                </mat-option>
-                            </cdk-virtual-scroll-viewport>
-                        </mat-select>
-                    </div>
-                </div>
-            </form>
-            <div class="card-body">
-                <ngx-general-table [config]="configuration" [datos]="datosIngresos"></ngx-general-table>
-            </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col py-2">
+          <h5 class="card-title text-center text-primary">
+            LISTA DE INGRESOS {{ tipoIngresoSelect | uppercase }}
+          </h5>
         </div>
+      </div>
+      <form [formGroup]="tablaIngresos">
+        <div class="form-group row px-5">
+          <div class="col-md-4">
+            <mat-label>Tipo de ingreso</mat-label>
+            <mat-select
+              class="form-control"
+              placeholder="Seleccione"
+              formControlName="tipoIngreso"
+              (selectionChange)="cambioTipoIngreso()"
+              [(value)]="selected"
+            >
+              <cdk-virtual-scroll-viewport
+                itemSize="2"
+                minBufferPx="100"
+                maxBufferPx="200"
+                class="vs-viewport"
+              >
+                <mat-option value='{{ null }}'>
+                  {{ "Ninguno" }}
+                </mat-option>
+                <mat-option
+                  *cdkVirtualFor="let opcion of tiposIngresos"
+                  [value]="opcion"
+                >
+                  {{ opcion.label }}
+                </mat-option>
+              </cdk-virtual-scroll-viewport>
+            </mat-select>
+          </div>
+        </div>
+      </form>
+      <div class="card-body">
+        <ngx-general-table
+          [config]="configuration"
+          [datos]="datosIngresos"
+        ></ngx-general-table>
+      </div>
     </div>
+  </div>
 </div>

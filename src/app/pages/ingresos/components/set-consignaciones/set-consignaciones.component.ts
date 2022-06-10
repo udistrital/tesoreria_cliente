@@ -3,7 +3,8 @@ import { Store } from '@ngrx/store';
 import { SharedService } from '../../../../shared/services/shared.service';
 import { getTipoIngreso } from '../../selectors/ingresos.selectors';
 import { Router } from '@angular/router';
-import { CONF_CONSIGNACION,
+import {
+  CONF_CONSIGNACION,
   CONF_CODIGO_BARRAS,
   CONF_APORTES,
   DATOS_ICETEX,
@@ -13,15 +14,15 @@ import { CONF_CONSIGNACION,
   DATOS_APORTES_NACION,
   DATOS_APORTES_DISTRITO,
   DATOS_CODIGO_BARRAS,
-  DATOS_OTRAS_ENTIDADES } from '../../interfaces/interfaces';
+  DATOS_OTRAS_ENTIDADES,
+} from '../../interfaces/interfaces';
 
 @Component({
   selector: 'ngx-set-consignaciones',
   templateUrl: './set-consignaciones.component.html',
-  styleUrls: ['./set-consignaciones.component.scss']
+  styleUrls: ['./set-consignaciones.component.scss'],
 })
 export class SetConsignacionesComponent implements OnInit, OnDestroy {
-
   configurationConsignaciones: any;
   datosConsignaciones: any;
   tipoIngreso: any;
@@ -34,8 +35,8 @@ export class SetConsignacionesComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<any>,
     private sharedService: SharedService,
-    private route: Router,
-  ) { }
+    private route: Router
+  ) {}
   ngOnDestroy() {
     if (this.subscriptionTipo$ !== undefined) {
       this.subscriptionTipo$.unsubscribe();
@@ -43,10 +44,12 @@ export class SetConsignacionesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscriptionTipo$ = this.store.select(getTipoIngreso).subscribe(
-      data => {
+    this.subscriptionTipo$ = this.store
+      .select(getTipoIngreso)
+      .subscribe((data) => {
         if (this.sharedService.IfStore(data)) {
-          switch (data.tipo) {
+          const tipoFinal = data.tipoIngreso.Nombre;
+          switch (tipoFinal) {
             case 'icetex':
               this.configurationConsignaciones = CONF_CONSIGNACION;
               this.datosConsignaciones = DATOS_ICETEX;
@@ -91,38 +94,50 @@ export class SetConsignacionesComponent implements OnInit, OnDestroy {
               this.regresar();
               break;
           }
-          this.tipoIngreso = data.tipo;
+          this.tipoIngreso = tipoFinal;
         }
-      }
-    );
+      });
   }
 
   total() {
-    return this.totalValoresEfectivo + this.totalValoresDatafono + this.totalCheques;
+    return (
+      this.totalValoresEfectivo + this.totalValoresDatafono + this.totalCheques
+    );
   }
 
   totalEfectivo() {
-    return this.totalValoresEfectivo = this.datosConsignaciones.reduce((a: any, b: { valorEfectivo: number; }) => a + b.valorEfectivo, 0);
+    return (this.totalValoresEfectivo = this.datosConsignaciones.reduce(
+      (a: any, b: { valorEfectivo: number }) => a + b.valorEfectivo,
+      0
+    ));
   }
 
   regresar() {
-    this.route.navigateByUrl('pages/ingresos/' + this.tipoIngreso + '/lista');
+    this.route.navigateByUrl('pages/ingresos/lista');
   }
 
   totalCheque() {
-    return this.totalCheques = this.datosConsignaciones.reduce((a: any, b: { valorCheque: number; }) => a + b.valorCheque, 0);
+    return (this.totalCheques = this.datosConsignaciones.reduce(
+      (a: any, b: { valorCheque: number }) => a + b.valorCheque,
+      0
+    ));
   }
 
   totalDatafono() {
-    return this.totalValoresDatafono = this.datosConsignaciones.reduce((a: any, b: { valorDatafono: number; }) => a + b.valorDatafono, 0);
+    return (this.totalValoresDatafono = this.datosConsignaciones.reduce(
+      (a: any, b: { valorDatafono: number }) => a + b.valorDatafono,
+      0
+    ));
   }
 
   totalAportes() {
-    return this.datosConsignaciones.reduce((a: any, b: { valor: number; }) => a + b.valor, 0);
+    return this.datosConsignaciones.reduce(
+      (a: any, b: { valor: number }) => a + b.valor,
+      0
+    );
   }
 
   anterior() {}
 
   siguiente() {}
-
 }

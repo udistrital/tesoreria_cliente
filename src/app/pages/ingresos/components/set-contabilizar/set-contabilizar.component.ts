@@ -64,7 +64,6 @@ export class SetContabilizarComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public dialog: MatDialog,
-    private route: Router,
     private sharedService: SharedService,
     private store: Store <any>,
   ) {
@@ -93,22 +92,6 @@ export class SetContabilizarComponent implements OnInit {
 
   totalCredito() {
     return this.credito = this.datos.reduce((a: any, b: { credito: number; }) => a + b.credito, 0);
-  }
-
-  guardar() {
-    if (this.contabilizacionForm.valid) {
-      Swal.fire({
-        type: 'success',
-        title: '¡Guardado!',
-        html: 'Se ha creado el ingreso con consecutivo 1',
-        confirmButtonText: 'Aceptar',
-      });
-      this.route.navigate(['pages/ingresos/' + this.tipoIngreso + '/lista']);
-      this.mensaje = false;
-    } else {
-      this.validarFormulario();
-      this.mensaje = true;
-    }
   }
 
   esInvalido(nombre: string) {

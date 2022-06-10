@@ -1,87 +1,192 @@
 <div class="container-fluid">
-    <form [formGroup]="datosConsultaForm" (ngSubmit)="onSubmit(datosConsultaForm.value)">
-        <div class="card p-3 m-4">
-            <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
-                Datos generales
-            </div>
-            <div class="card-body pt-0">
-                <div class="row my-2">
-                    <div class="col py-2">
-                        <label for="tipoDocumento"> Tipo de ingreso </label> <br>
-                        <input class="form-control" type="text" name="tipoDocumento" id="tipoDocumento" placeholder={{ingresoTipo}} disabled>
-                    </div>
-                    <div class="col py-2">
-                        <label for="centroGestor"> Tipo de documento </label> <br>
-                        <input class="form-control" type="text" name="centroGestor" id="centroGestor" value="230" disabled>
-                    </div>
-                </div>
-                <div class="row my-2">
-                    <div class="col py-2">
-                        <label for="areaFuncional"> Área funcional </label> <br>
-                        <select name="areaFuncional" id="areaFuncional" class="form-control" formControlName="areaFuncional" [class.is-invalid]="esInvalido('areaFuncional')">
-                            <option *ngFor="let area of areaFuncional" value={{area}}> {{area}} </option>
-                        </select>
-                    </div>
-                    <div class="col py-2">
-                        <label for="fecha"> Fecha </label> <br>
-                        <input type="date" name="fecha" id="fecha" class="form-control" value="" disabled>
-                    </div>
-                </div>
-            </div>
+  <form
+    [formGroup]="datosConsultaForm"
+    (ngSubmit)="onSubmit(datosConsultaForm.value)"
+  >
+    <div class="card p-3 m-4">
+      <div
+        class="card-title col-md-4 bg-primary text-light text-center py-1 rounded"
+      >
+        Datos generales
+      </div>
+      <div class="card-body pt-0">
+        <div class="row my-2">
+          <div class="col py-2">
+            <label for="tipoDocumento"> Tipo de ingreso </label> <br />
+            <input
+              class="form-control"
+              type="text"
+              name="tipoDocumento"
+              id="tipoDocumento"
+              placeholder="{{ ingresoTipo }}"
+              disabled
+            />
+          </div>
+          <div class="col py-2">
+            <label for="centroGestor"> Tipo de documento </label> <br />
+            <input
+              class="form-control"
+              type="text"
+              name="centroGestor"
+              id="centroGestor"
+              value="230"
+              disabled
+            />
+          </div>
         </div>
-        <div class="card p-3 m-4">
-            <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
-                Datos consulta
-            </div>
-            <div class="card-body pt-0">
-                <div class="row my-2">
-                    <div class="col py-2">
-                        <label for="banco"> Banco </label> <br>
-                        <select name="banco" id="banco" class="form-control" formControlName="banco" [class.is-invalid]="esInvalido('banco')">
-                            <option *ngFor="let banco of bancos" value="{{banco}}"> {{banco}} </option>
-                        </select>
-                    </div>
-                    <div class="col py-2">
-                        <label for="numeroCuenta"> Número de cuenta </label> <br>
-                        <input class="form-control" type="text" name="numeroCuenta" id="numeroCuenta" placeholder={{numeroCuenta}} disabled>
-                    </div>
-                </div>
-                <div class="row my-2">
-                    <div class="col py-2">
-                        <label for="nombreCuenta"> Nombre de la cuenta </label> <br>
-                        <select name="nombreCuenta" id="nombreCuenta" class="form-control" formControlName="nombreCuenta" [class.is-invalid]="esInvalido('nombreCuenta')">
-                            <option *ngFor="let cuenta of cuentas" value="{{cuenta}}"> {{cuenta}} </option>
-                        </select>
-                    </div>
-                    <div class="col py-2">
-                        <label for="codigoRecaudo">Código de recaudo</label> <br>
-                        <input class="form-control" type="text" name="codigoRecaudo" id="codigoRecaudo" formControlName="codigoRecaudo" [class.is-invalid]="esInvalido('codigoRecaudo')">
-                    </div>
-                </div>
-                <div class="row my-2">
-                    <div class="col py-2">
-                        <label for="fechaInicio"> Fecha de inicio </label> <br>
-                        <input type="date" name="fechaInicio" id="fechaInicio" class="form-control" formControlName="fechaInicio" [class.is-invalid]="esInvalido('fechaFinal')">
-                    </div>
-                    <div class="col py-2">
-                        <label for="fechaFinal"> Fecha final </label> <br>
-                        <input type="date" name="fechaFinal" id="fechaFinal" class="form-control" formControlName="fechaFinal" [class.is-invalid]="esInvalido('fechaFinal')">
-                    </div>
-                </div>
-                <small class="message m-2" *ngIf="mensaje"> Los campos en rojo son requeridos* </small>
-            </div>
+        <div class="row my-2">
+          <div class="col py-2">
+            <label for="areaFuncional"> Área funcional </label> <br />
+            <select
+              name="areaFuncional"
+              id="areaFuncional"
+              class="form-control"
+              formControlName="areaFuncional"
+              [class.is-invalid]="esInvalido('areaFuncional')"
+            >
+              <option *ngFor="let area of areaFuncional" value="{{ area }}">
+                {{ area }}
+              </option>
+            </select>
+          </div>
+          <div class="col py-2">
+            <label for="fecha"> Fecha </label> <br />
+            <input
+              type="text"
+              name="fecha"
+              id="fecha"
+              class="form-control"
+              formControlName="fecha"
+              disabled
+            />
+          </div>
         </div>
-        <div class="row text-center">
-            <div class="col">
-                <button (click)="regresar()" type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
-                    Volver al registro
-                </button>
-            </div>
-            <div class="col">
-                <button mat-button class="btn btn-success px-3 py-2 my-2 text-light" type="submit">
-                    Siguiente
-                </button>
-            </div>
+      </div>
+    </div>
+    <div class="card p-3 m-4">
+      <div
+        class="card-title col-md-4 bg-primary text-light text-center py-1 rounded"
+      >
+        Datos consulta
+      </div>
+      <div class="card-body pt-0">
+        <div class="row my-2">
+          <div class="col py-2">
+            <label for="banco"> Banco </label> <br />
+            <select
+              name="banco"
+              id="banco"
+              class="form-control"
+              formControlName="banco"
+              [class.is-invalid]="esInvalido('banco')"
+              (ngModelChange)="cambioBanco($event)"
+              [ngModel]="bancoSelected"
+            >
+              <option value="" disbaled selected>Seleccione el Banco</option>
+              <option *ngFor="let banco of bancos" value="{{ banco }}">
+                {{ banco }}
+              </option>
+            </select>
+          </div>
+          <div class="col py-2">
+            <label for="cuenta"> Datos de la Cuenta </label> <br />
+            <select
+              name="cuenta"
+              id="cuenta"
+              class="form-control"
+              formControlName="cuentasBancarias"
+              [class.is-invalid]="esInvalido('cuentasBancarias')"
+              (ngModelChange)="cambioNumeroCuenta($event)"
+              [ngModel]="numeroCuentaSelected"
+            >
+              <option value="" disbaled selected>Seleccione el Número</option>
+              <option
+                *ngFor="let cuenta of cuentasBancarias"
+                value="{{ cuenta }}"
+              >
+                {{ cuenta }}
+              </option>
+            </select>
+          </div>
         </div>
-    </form>
+        <div class="row my-2">
+          <div class="col py-2">
+            <label for="nombreCuenta"> Nombre de la cuenta </label> <br />
+            <select
+              name="nombreCuenta"
+              id="nombreCuenta"
+              class="form-control"
+              formControlName="nombreCuenta"
+              [class.is-invalid]="esInvalido('nombreCuenta')"
+              (ngModelChange)="cambioNombreCuenta($event)"
+              [ngModel]="nombreCuentaSelected"
+            >
+              <option value="" disbaled selected>Seleccione el Nombre</option>
+              <option *ngFor="let cuenta of cuentas" value="{{ cuenta }}">
+                {{ cuenta }}
+              </option>
+            </select>
+          </div>
+          <div class="col py-2">
+            <label for="codigoRecaudo">Código de recaudo</label> <br />
+            <input
+              class="form-control"
+              type="text"
+              name="codigoRecaudo"
+              id="codigoRecaudo"
+              formControlName="codigoRecaudo"
+              [class.is-invalid]="esInvalido('codigoRecaudo')"
+            />
+          </div>
+        </div>
+        <div class="row my-2">
+          <div class="col py-2">
+            <label for="fechaInicio"> Fecha de inicio </label> <br />
+            <input
+              type="date"
+              name="fechaInicio"
+              id="fechaInicio"
+              class="form-control"
+              formControlName="fechaInicio"
+              [class.is-invalid]="esInvalido('fechaFinal')"
+            />
+          </div>
+          <div class="col py-2">
+            <label for="fechaFinal"> Fecha final </label> <br />
+            <input
+              type="date"
+              name="fechaFinal"
+              id="fechaFinal"
+              class="form-control"
+              formControlName="fechaFinal"
+              [class.is-invalid]="esInvalido('fechaFinal')"
+            />
+          </div>
+        </div>
+        <small class="message m-2" *ngIf="mensaje">
+          Los campos en rojo son requeridos*
+        </small>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col">
+        <button
+          (click)="regresar()"
+          type="button"
+          class="btn btn-primary px-3 py-2 my-2 text-light"
+        >
+          Volver al registro
+        </button>
+      </div>
+      <div class="col">
+        <button
+          mat-button
+          class="btn btn-success px-3 py-2 my-2 text-light"
+          type="submit"
+        >
+          Siguiente
+        </button>
+      </div>
+    </div>
+  </form>
 </div>
