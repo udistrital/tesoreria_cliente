@@ -2,13 +2,13 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { GetArbolRubro, obtenerConcepto, obtenerCuentaCredito, obtenerCuentaDebito, obtenerParametros, obtenerParametrosHijos, obtenerRubro,
-          obtenerTipoComprobante, SeleccionarCuentaContable, SeleccionarRubro} from '../../../../shared/actions/shared.actions';
+          obtenerTipoDocumentos, SeleccionarCuentaContable, SeleccionarRubro} from '../../../../shared/actions/shared.actions';
 import { OPCIONES_AREA_FUNCIONAL, OPCIONES_ENTIDAD_PRESUPUESTAL } from '../../../../shared/interfaces/interfaces';
 import { TranslateService } from '@ngx-translate/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
 import { getArbolRubro, getCuentaCredito, getCuentaDebito, getNodoSeleccionado, getNodoSeleccionadoCuentaContableCredito, getNodoSeleccionadoCuentaContableDebito,
-          getRubro, seleccionarConcepto, seleccionarParametros, seleccionarParametrosHijos, seleccionarTipoComprobante } from '../../../../shared/selectors/shared.selectors';
+          getRubro, seleccionarConcepto, seleccionarParametros, seleccionarParametrosHijos, seleccionarTipoDocumentos } from '../../../../shared/selectors/shared.selectors';
 import { CONFIGURACION_CUENTASCONTABLES_CREDITO, CONFIGURACION_CUENTASCONTABLES_DEBITO } from '../../interfaces/interface';
 import { actualizarConceptoPadre, crearConceptosPadre } from '../../actions/conceptos.action';
 
@@ -41,8 +41,8 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
   subClaseTransaccion$: any;
   tiposTransacciones: any;
   subTipoTransaccion$: any;
-  tiposComprobante: any;
-  subTipoComprobante$: any;
+  tiposDocumento: any;
+  subTipoDocumento$: any;
   rubroSeleccionado: any;
   subRubroVer$: any;
   subRubro$: any;
@@ -101,7 +101,7 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
       if (this.tituloAccion === 'ver') this.ver = true;
     }
     this.store.dispatch(obtenerParametros({query: {TipoParametroId__CodigoAbreviacion: 'CT'}}));
-    this.store.dispatch(obtenerTipoComprobante({}));
+    this.store.dispatch(obtenerTipoDocumentos({query: {TipoParametroId__CodigoAbreviacion: 'TD'}}));
    }
   ngOnDestroy(): void {
     if (this.tituloAccion !== 'padre') this.subConcepto$.unsubscribe();
@@ -114,7 +114,7 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
         this.subCuentasDebito$.unsubscribe();
       }
     }
-    this.subTipoComprobante$.unsubscribe();
+    this.subTipoDocumento$.unsubscribe();
     this.subGetNodoSeleccionado$.unsubscribe();
     this.subGetNodoSeleccionadoCuentaContableD$.unsubscribe();
     this.subGetNodoSeleccionadoCuentaContableC$.unsubscribe();
@@ -122,9 +122,6 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
   }
 
   clearStore() {
-    this.store.dispatch(obtenerParametros(null));
-    this.store.dispatch(obtenerTipoComprobante(null));
-    this.store.dispatch(obtenerParametrosHijos(null));
     this.store.dispatch(SeleccionarRubro(null));
     this.store.dispatch(SeleccionarCuentaContable(null));
     this.store.dispatch(SeleccionarCuentaContable(null));
@@ -181,8 +178,8 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
       tipoTransaccion: [''],
       activo: [true],
       nombreConcepto: ['', Validators.required],
-      tipoComprobante: ['', Validators.required],
-      codigoBogData: ['', Validators.required],
+      tipoDocumento: ['', Validators.required],
+      codigoBogData: [''],
     });
     this.modalCuentaDebitoGroup = this.fb.group({
       tipoId: ['', Validators.required],
@@ -208,7 +205,7 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
       this.concepto.AreaFuncional = this.crearConceptosGroup.value.areaFuncional.Id;
       this.concepto.Codigo = this.crearConceptosGroup.value.codigo;
       this.concepto.Nombre = this.crearConceptosGroup.value.nombreConcepto;
-      this.concepto.TipoComprobanteId = this.crearConceptosGroup.value.tipoComprobante.Codigo;
+      this.concepto.TipoDocumento = this.crearConceptosGroup.value.tipoDocumento.Id;
       this.concepto.CodigoBogdata = this.crearConceptosGroup.value.codigoBogData;
     }
     if (change) this.flag = change;
@@ -297,12 +294,13 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
         ClaseTransaccionId: this.crearConceptosGroup.value.claseTransaccion.Id,
         TipoTransaccionId: tipoTransaccion,
         Codigo: this.crearConceptosGroup.value.codigo,
-        TipoComprobanteId: this.crearConceptosGroup.value.tipoComprobante.Codigo,
+        TipoDocumentoId: this.crearConceptosGroup.value.tipoDocumento.Id,
         RubroPresupuestalId: null,
         CodigoBogdata: this.crearConceptosGroup.value.codigoBogData,
         Aplicacion: 'tesoreria',
         CuentasCredito: [],
         CuentasDebito: [],
+        Hijos: null,
         Nivel: null,
       };
       if (this.tituloAccion === 'hijo') {
@@ -310,6 +308,7 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
         elemento.RubroPresupuestalId = this.rubroSeleccionado.data.Codigo;
       } else if (this.tituloAccion === 'editar') {
         elemento.Nivel = this.concepto.Nivel;
+        elemento.Hijos = this.concepto.Hijos;
         if (!this.padre) elemento.TipoTransaccionId = this.crearConceptosGroup.value.tipoTransaccion.Id;
         for (let i = 0; i < this.cuentasDebitoTabla.length; i++) {
           elemento.CuentasDebito.push(this.cuentasDebitoTabla[i].Codigo);
@@ -379,15 +378,15 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
     this.subClaseTransaccion$ = this.store.select(seleccionarParametros).subscribe((accion) => {
       if (accion && accion.Parametros) {
         this.clasesTransacciones = accion.Parametros;
-        this.subTipoComprobante();
+        this.subTipoDocumento();
       }
     });
   }
 
-  subTipoComprobante() {
-    this.subTipoComprobante$ = this.store.select(seleccionarTipoComprobante).subscribe((accion) => {
-      if (accion && accion.TiposComprobante) {
-        this.tiposComprobante = accion.TiposComprobante;
+  subTipoDocumento() {
+    this.subTipoDocumento$ = this.store.select(seleccionarTipoDocumentos).subscribe((accion) => {
+      if (accion && accion.TipoDocumentos) {
+        this.tiposDocumento = accion.TipoDocumentos;
         this.subRubroConcepto();
       }
     });
@@ -455,7 +454,7 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
         tipoTransaccion: this.tiposTransacciones[this.tiposTransacciones.findIndex((e: any) => e.Id === this.concepto.TipoTransaccionId)],
         activo: this.concepto.Activo,
         nombreConcepto: this.concepto.Nombre,
-        tipoComprobante: this.tiposComprobante[this.tiposComprobante.findIndex((e: any) => e.Codigo === this.concepto.TipoComprobanteId)],
+        tipoDocumento: this.tiposDocumento[this.tiposDocumento.findIndex((e: any) => e.Id === this.concepto.TipoDocumentoId)],
         codigoBogData: this.concepto.CodigoBogdata
       });
     }

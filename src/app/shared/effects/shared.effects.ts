@@ -431,10 +431,10 @@ export class SharedEffects {
 
   getTipoComprobante$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(SharedActions.obtenerTipoComprobante),
-      mergeMap((accion) => this.sharedService.getTipoComprobante()
-          .pipe(map(data => SharedActions.cargarTipoComprobante(
-            {TiposComprobante: ((data && data.Data) ? data.Data : data)})),
+      ofType(SharedActions.obtenerTipoDocumentos),
+      mergeMap((accion) => this.sharedService.getTipoDocumentos(accion && accion.query ? accion.query : null)
+          .pipe(map(data => SharedActions.cargarTipoDocumentos(
+            {TipoDocumentos: ((data && data.Data) ? data.Data : data)})),
             catchError(data => of(SharedActions.CatchError(data)))))
     );
   });
