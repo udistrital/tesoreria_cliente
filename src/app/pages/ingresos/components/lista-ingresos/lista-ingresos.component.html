@@ -4,14 +4,14 @@
       <div class="row">
         <div class="col py-2">
           <h5 class="card-title text-center text-primary">
-            LISTA DE INGRESOS {{ tipoIngresoSelect | uppercase }}
+            {{ 'INGRESOS.lista_ingreso_tipo' | translate: { TIPO: tipoIngresoSelect } | uppercase }}
           </h5>
         </div>
       </div>
       <form [formGroup]="tablaIngresos">
         <div class="form-group row px-5">
           <div class="col-md-4">
-            <mat-label>Tipo de ingreso</mat-label>
+            <mat-label>{{ 'INGRESOS.tipo_ingreso' | translate }}</mat-label>
             <mat-select
               class="form-control"
               placeholder="Seleccione"
@@ -26,13 +26,13 @@
                 class="vs-viewport"
               >
                 <mat-option value='{{ null }}'>
-                  {{ "Ninguno" }}
+                  {{ 'GLOBAL.ninguno' | translate }}
                 </mat-option>
                 <mat-option
                   *cdkVirtualFor="let opcion of tiposIngresos"
                   [value]="opcion"
                 >
-                  {{ opcion.label }}
+                  {{ opcion.label_i18n | translate }}
                 </mat-option>
               </cdk-virtual-scroll-viewport>
             </mat-select>

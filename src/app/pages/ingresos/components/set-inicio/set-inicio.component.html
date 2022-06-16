@@ -7,12 +7,12 @@
       <div
         class="card-title col-md-4 bg-primary text-light text-center py-1 rounded"
       >
-        Datos generales
+        {{ 'GLOBAL.datos_generales' | translate }}
       </div>
       <div class="card-body pt-0">
         <div class="row my-2">
           <div class="col py-2">
-            <label for="tipoDocumento"> Tipo de ingreso </label> <br />
+            <label for="tipoDocumento">{{ 'INGRESOS.tipo_ingreso' | translate }}</label> <br />
             <input
               class="form-control"
               type="text"
@@ -23,7 +23,7 @@
             />
           </div>
           <div class="col py-2">
-            <label for="centroGestor"> Tipo de documento </label> <br />
+            <label for="centroGestor">{{ 'INGRESOS.tipo_documento' | translate }}</label> <br />
             <input
               class="form-control"
               type="text"
@@ -36,7 +36,7 @@
         </div>
         <div class="row my-2">
           <div class="col py-2">
-            <label for="areaFuncional"> Área funcional </label> <br />
+            <label for="areaFuncional">{{ 'GLOBAL.area_funcional' | translate }}</label> <br />
             <select
               name="areaFuncional"
               id="areaFuncional"
@@ -50,7 +50,7 @@
             </select>
           </div>
           <div class="col py-2">
-            <label for="fecha"> Fecha </label> <br />
+            <label for="fecha">{{ 'GLOBAL.fecha' | translate }}</label> <br />
             <input
               type="text"
               name="fecha"
@@ -67,12 +67,12 @@
       <div
         class="card-title col-md-4 bg-primary text-light text-center py-1 rounded"
       >
-        Datos consulta
+        {{ 'GLOBAL.datos_consulta' | translate }}
       </div>
       <div class="card-body pt-0">
         <div class="row my-2">
           <div class="col py-2">
-            <label for="banco"> Banco </label> <br />
+            <label for="banco">{{ 'GLOBAL.banco' | translate }}</label> <br />
             <select
               name="banco"
               id="banco"
@@ -82,14 +82,14 @@
               (ngModelChange)="cambioBanco($event)"
               [ngModel]="bancoSelected"
             >
-              <option value="" disbaled selected>Seleccione el Banco</option>
+              <option value="" disbaled selected>{{ 'BANCO.seleccione_banco' | translate }}</option>
               <option *ngFor="let banco of bancos" value="{{ banco }}">
                 {{ banco }}
               </option>
             </select>
           </div>
           <div class="col py-2">
-            <label for="cuenta"> Datos de la Cuenta </label> <br />
+            <label for="cuenta">{{ 'CUENTA_BANCARIA.datos_cuenta' | translate }}</label> <br />
             <select
               name="cuenta"
               id="cuenta"
@@ -99,7 +99,7 @@
               (ngModelChange)="cambioNumeroCuenta($event)"
               [ngModel]="numeroCuentaSelected"
             >
-              <option value="" disbaled selected>Seleccione el Número</option>
+              <option value="" disbaled selected>{{ 'CUENTA_BANCARIA.seleccione_numero' | translate }}</option>
               <option
                 *ngFor="let cuenta of cuentasBancarias"
                 value="{{ cuenta }}"
@@ -111,7 +111,7 @@
         </div>
         <div class="row my-2">
           <div class="col py-2">
-            <label for="nombreCuenta"> Nombre de la cuenta </label> <br />
+            <label for="nombreCuenta">{{ 'CUENTA_BANCARIA.nombre_cuenta' | translate }}</label> <br />
             <select
               name="nombreCuenta"
               id="nombreCuenta"
@@ -121,14 +121,14 @@
               (ngModelChange)="cambioNombreCuenta($event)"
               [ngModel]="nombreCuentaSelected"
             >
-              <option value="" disbaled selected>Seleccione el Nombre</option>
+              <option value="" disbaled selected>{{ 'CUENTA_BANCARIA.seleccione_nombre' | translate }}</option>
               <option *ngFor="let cuenta of cuentas" value="{{ cuenta }}">
                 {{ cuenta }}
               </option>
             </select>
           </div>
           <div class="col py-2">
-            <label for="codigoRecaudo">Código de recaudo</label> <br />
+            <label for="codigoRecaudo">{{ 'INGRESOS.codigo_recaudo' | translate }}</label> <br />
             <input
               class="form-control"
               type="text"
@@ -141,30 +141,32 @@
         </div>
         <div class="row my-2">
           <div class="col py-2">
-            <label for="fechaInicio"> Fecha de inicio </label> <br />
+            <label for="fechaInicio">{{ 'GLOBAL.fecha_inicio' | translate }}</label> <br />
             <input
               type="date"
               name="fechaInicio"
               id="fechaInicio"
               class="form-control"
               formControlName="fechaInicio"
-              [class.is-invalid]="esInvalido('fechaFinal')"
+              (ngModelChange)="fechaInicioMal=esInvalido('fechaInicio')"
+              [class.is-invalid]="fechaInicioMal"
             />
           </div>
           <div class="col py-2">
-            <label for="fechaFinal"> Fecha final </label> <br />
+            <label for="fechaFinal">{{ 'GLOBAL.fecha_final' | translate }}</label> <br />
             <input
               type="date"
               name="fechaFinal"
               id="fechaFinal"
               class="form-control"
               formControlName="fechaFinal"
-              [class.is-invalid]="esInvalido('fechaFinal')"
+              (ngModelChange)="fechaFinMal=esInvalido('fechaFinal')"
+              [class.is-invalid]="fechaFinMal"
             />
           </div>
         </div>
         <small class="message m-2" *ngIf="mensaje">
-          Los campos en rojo son requeridos*
+          {{ 'GLOBAL.campos_requeridos' | translate }}
         </small>
       </div>
     </div>
@@ -175,7 +177,7 @@
           type="button"
           class="btn btn-primary px-3 py-2 my-2 text-light"
         >
-          Volver al registro
+        {{ 'GLOBAL.volver_registro' | translate }}
         </button>
       </div>
       <div class="col">
@@ -184,7 +186,7 @@
           class="btn btn-success px-3 py-2 my-2 text-light"
           type="submit"
         >
-          Siguiente
+        {{ 'GLOBAL.siguiente' | translate }}
         </button>
       </div>
     </div>

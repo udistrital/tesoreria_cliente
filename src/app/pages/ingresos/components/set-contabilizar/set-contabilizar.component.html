@@ -3,13 +3,13 @@
     <div
       class="card-title col-md-4 bg-primary text-light text-center py-1 rounded"
     >
-      Contabilización
+      {{ 'INGRESOS.contabilizacion' | translate }}
     </div>
     <div class="card-body pt-0">
       <form [formGroup]="contabilizacionForm">
         <div class="row m-1">
           <div class="col py-1">
-            <label for="tipoComprobante"> Tipo de comprobante </label> <br />
+            <label for="tipoComprobante">{{ 'CONTABILIZACION.tipo_comprobante' | translate }}</label> <br />
             <select
               name="tipoComprobante"
               id="tipoComprobante"
@@ -23,7 +23,7 @@
             </select>
           </div>
           <div class="col py-1">
-            <label for="codigoResumen"> Código </label> <br />
+            <label for="codigoResumen">{{ 'GLOBAL.codigo' | translate }}</label> <br />
             <select
               class="form-control"
               name="codigoResumen"
@@ -37,7 +37,7 @@
             </select>
           </div>
           <div class="col py-1">
-            <label for="consecutivo"> Consecutivo </label> <br />
+            <label for="consecutivo">{{ 'CONTABILIZACION.consecutivo' | translate }}</label> <br />
             <input
               name="consecutivoResumen"
               id="consecutivoResumen"
@@ -50,7 +50,7 @@
         </div>
         <div class="row m-1">
           <div class="col py-1">
-            <label for="conceptoResumen"> Concepto </label> <br />
+            <label for="conceptoResumen">{{ 'CONTABILIZACION.concepto' | translate }}</label> <br />
             <select
               name="conceptoResumen"
               id="conceptoResumen"
@@ -65,7 +65,7 @@
           </div>
         </div>
         <small class="message m-3" *ngIf="mensaje">
-          Los campos en rojo son requeridos*
+          {{ 'GLOBAL.campos_requeridos' | translate }}
         </small>
       </form>
       <div class="row my-2 justify-content-center">
@@ -78,7 +78,7 @@
       <div class="row my-2">
         <div class="col py-2" align="center">
           <label class="font-weight-bold m-2" for="sumaDebito"
-            >Suma débito:
+            >{{ 'CONTABILIZACION.suma_debito' | translate }}:
           </label>
           <input
             name="sumaDebito"
@@ -90,7 +90,7 @@
         </div>
         <div class="col py-2" align="center">
           <label class="font-weight-bold m-2" for="sumaCredito"
-            >Suma crédito:
+            >{{ 'CONTABILIZACION.suma_credito' | translate }}:
           </label>
           <input
             name="sumaCredito"
@@ -110,7 +110,7 @@
         type="button"
         class="btn btn-primary px-3 py-2 my-2 text-light"
       >
-        Volver
+        {{ 'GLOBAL.volver' | translate }}
       </button>
     </div>
     <div class="col">
@@ -118,12 +118,12 @@
         (click)="generarPdf()"
         class="btn btn-success px-3 py-2 my-2 text-light"
       >
-        Ver pdf
+      {{ 'GLOBAL.ver_pdf' | translate }}
       </button>
     </div>
     <div class="col">
       <button matStepperNext class="btn btn-success px-3 py-2 my-2 text-light">
-        Siguiente
+        {{ 'GLOBAL.siguiente' | translate }}
       </button>
     </div>
   </div>
