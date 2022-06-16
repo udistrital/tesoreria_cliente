@@ -1,3 +1,4 @@
+import { TranslateFormItemsService } from './../../../../../shared/helpers/translate-form-items.service';
 import { Component, OnInit } from '@angular/core';
 import { CONF_RUBROS, DATOS_CONCEPTOS, DATOS_RUBROS, CONF_CONCEPTOS } from '../../interfaces/interfaces';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -22,6 +23,7 @@ export class SetRubrosComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private translateHelper: TranslateFormItemsService,
   ) {
     this.conceptoForm = this.formBuilder.group({
       numeroConcepto: ['', Validators.required],
@@ -30,7 +32,7 @@ export class SetRubrosComponent implements OnInit {
 
   ngOnInit() {
     this.mensaje = false;
-    this.configurationRubro = CONF_RUBROS;
+    this.translateTableConfiguracion();
     this.configurationConcepto = CONF_CONCEPTOS;
     this.datosRubros = DATOS_RUBROS;
     this.datosConceptos = DATOS_CONCEPTOS;
@@ -51,6 +53,10 @@ export class SetRubrosComponent implements OnInit {
 
   totalGasto() {
     return this.totalGirar = this.datosConceptos.reduce((a: any, b: { valorTotal: number; }) => a + b.valorTotal, 0);
+  }
+
+  private translateTableConfiguracion(): void {
+    this.configurationRubro = this.translateHelper.translateItemTableConfiguration(CONF_RUBROS);
   }
 
 }

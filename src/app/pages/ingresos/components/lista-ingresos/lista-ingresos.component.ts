@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   CONF_INGRESOS,
-  DATOS_INGRESOS,
   TIPOS_INGRESOS,
 } from '../../interfaces/interfaces';
 import { Store } from '@ngrx/store';
@@ -11,9 +10,11 @@ import { LoadAccionTabla } from '../../../../shared/actions/shared.actions';
 import { combineLatest } from 'rxjs';
 import { getTipoIngreso } from '../../selectors/ingresos.selectors';
 import { SharedService } from '../../../../shared/services/shared.service';
-import { OPCIONES_AREA_FUNCIONAL } from '../../../../shared/interfaces/interfaces';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { cargarTipoIngreso } from '../../actions/ingresos.actions';
+import { TranslateService } from '@ngx-translate/core';
+import { TranslateFormItemsService } from '../../../../shared/helpers/translate-form-items.service';
+import { DATOS_INGRESOS } from '../../../../../assets/mock/tiposIngresos';
 
 @Component({
   selector: 'ngx-lista-ingresos',
@@ -35,9 +36,10 @@ export class ListaIngresosComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private store: Store<any>,
     private router: Router,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private translate: TranslateService,
+    private translateHelper: TranslateFormItemsService,
   ) {
-    this.configuration = CONF_INGRESOS;
     this.datosIngresos = DATOS_INGRESOS;
     this.tiposIngresos = TIPOS_INGRESOS;
     this.tablaIngresos = this.formBuilder.group({
@@ -54,21 +56,22 @@ export class ListaIngresosComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngSubmit() {}
-
   ngOnInit() {
+    this.translateTableConfiguracion();
     this.store.select(getTipoIngreso).subscribe((res) => {
       if (res && res.tipoIngreso) {
         this.selected = {
           Nombre: res.tipoIngreso.Nombre,
           label: res.tipoIngreso.label,
+          label_i18n: res.tipoIngreso.label_i18n,
         };
-        this.tipoIngresoSelect = this.selected.label;
+        this.tipoIngresoSelect = this.translate.instant(
+          this.selected.label_i18n
+        );
       } else {
         this.selected = null;
-        this.tipoIngresoSelect = 'TODOS';
+        this.tipoIngresoSelect = this.translate.instant('GLOBAL.todos');
       }
-
     });
 
     this.subscriptionTabla$ = combineLatest([
@@ -78,7 +81,9 @@ export class ListaIngresosComponent implements OnInit, OnDestroy {
       if (this.sharedService.IfStore(accion)) {
         if (this.sharedService.IfStore(tipoIngreso)) {
           this.tipoIngreso = tipoIngreso.tipoIngreso;
-          this.router.navigate([`pages/ingresos/crear/${this.tipoIngreso.Nombre}`]);
+          this.router.navigate([
+            `pages/ingresos/crear/${this.tipoIngreso.Nombre}`,
+          ]);
           this.store.dispatch(LoadAccionTabla(null));
         }
       }
@@ -87,7 +92,7 @@ export class ListaIngresosComponent implements OnInit, OnDestroy {
 
   cambioTipoIngreso() {
     if (this.selected) {
-      this.tipoIngresoSelect = this.selected.label;
+      this.tipoIngresoSelect = this.translate.instant(this.selected.label_i18n);
       this.configuration.tableActions[0].disabled = false;
       this.router.navigate([`/pages/ingresos/lista/${this.selected.Nombre}`]);
 
@@ -96,12 +101,13 @@ export class ListaIngresosComponent implements OnInit, OnDestroy {
           tipoIngreso: {
             Nombre: this.selected.Nombre,
             label: this.selected.label,
+            label_i18n: this.selected.label_i18n,
           },
         })
       );
     } else {
       this.configuration.tableActions[0].disabled = true;
-      this.tipoIngresoSelect = 'todos';
+      this.tipoIngresoSelect = this.translate.instant('GLOBAL.todos');
       this.router.navigate([`/pages/ingresos/lista`]);
 
       this.store.dispatch(
@@ -110,5 +116,10 @@ export class ListaIngresosComponent implements OnInit, OnDestroy {
         })
       );
     }
+  }
+
+  private translateTableConfiguracion(): void {
+    this.configuration =
+      this.translateHelper.translateItemTableConfiguration(CONF_INGRESOS);
   }
 }

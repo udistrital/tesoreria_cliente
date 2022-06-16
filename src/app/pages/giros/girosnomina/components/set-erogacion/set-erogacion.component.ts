@@ -14,6 +14,7 @@ import { CONF_BENEFICIARIO,
   DATOS_DESCUENTO,
   DATOS_DEVENGO } from '../../interfaces/interfaces';
 import { MatDialog } from '@angular/material';
+import { TranslateFormItemsService } from '../../../../../shared/helpers/translate-form-items.service';
 @Component({
   selector: 'ngx-set-erogacion',
   templateUrl: './set-erogacion.component.html',
@@ -69,13 +70,14 @@ export class SetErogacionComponent implements OnInit, OnDestroy {
   constructor(private store: Store<any>,
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
-    private sharedService: SharedService, ) {
+    private sharedService: SharedService,
+    private translateHelper: TranslateFormItemsService
+    ) {
       this.informacionBanco = new EventEmitter;
       this.informacionBeneficiarios = new EventEmitter;
       this.statusErogacion = new EventEmitter;
       this.configuration = CONF_BENEFICIARIO;
       this.configurationDetalles = CONF_DETALLES;
-      this.configurationRubro = CONF_RUBROS;
       this.configurationDescuento = CONF_DESCUENTOS;
       this.configurationDevengo = CONF_DEVENGO;
       this.datosDescuento = DATOS_DESCUENTO;
@@ -95,6 +97,7 @@ export class SetErogacionComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.translateTableConfiguracion();
     this.subscriptionDetalles$ = this.store.select(getFilaSeleccionada).subscribe(
       (action: any) => {
         if (this.sharedService.IfStore(action)) {
@@ -167,6 +170,10 @@ export class SetErogacionComponent implements OnInit, OnDestroy {
 
   totalNeto() {
     return this.neto = this.devengo - this.descuento;
+  }
+
+  private translateTableConfiguracion(): void {
+    this.configurationRubro = this.translateHelper.translateItemTableConfiguration(CONF_RUBROS);
   }
 
 }

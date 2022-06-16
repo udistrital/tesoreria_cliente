@@ -3,11 +3,13 @@ import { PDFDocumentProxy } from 'ng2-pdf-viewer';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
-import { DATOS_CONTABILIDAD, CONF_CONTABILIDAD } from '../../interfaces/interfaces';
+import { CONF_CONTABILIDAD } from '../../interfaces/interfaces';
 import { getTipoIngreso } from '../../selectors/ingresos.selectors';
 import { Store } from '@ngrx/store';
 import { SharedService } from '../../../../shared/services/shared.service';
 import Swal from 'sweetalert2';
+import { TranslateFormItemsService } from '../../../../shared/helpers/translate-form-items.service';
+import { DATOS_CONTABILIDAD } from '../../../../../assets/mock/tiposIngresos';
 
 @Component({
   selector: 'ngx-set-contabilizar',
@@ -66,17 +68,18 @@ export class SetContabilizarComponent implements OnInit {
     public dialog: MatDialog,
     private sharedService: SharedService,
     private store: Store <any>,
+    private translateHelper: TranslateFormItemsService
   ) {
-    this.configuration = CONF_CONTABILIDAD;
     this.contabilizacionForm = this.formBuilder.group({
       concepto: ['', Validators.required],
       codigo: ['', Validators.required],
       tipoComprobante: ['', Validators.required]
     });
     this.datos = DATOS_CONTABILIDAD;
-   }
+  }
 
   ngOnInit() {
+    this.translateTableConfiguracion();
     this.subscriptionTipoIngreso$ = this.store.select(getTipoIngreso).subscribe(
       data => {
         if (this.sharedService.IfStore(data)) {
@@ -189,5 +192,9 @@ export class SetContabilizarComponent implements OnInit {
   afterLoadComplete(pdf: PDFDocumentProxy): void {
     this.pdf = pdf;
     this.totalPages = pdf.numPages;
+  }
+
+  private translateTableConfiguracion(): void {
+    this.configuration = this.translateHelper.translateItemTableConfiguration(CONF_CONTABILIDAD);
   }
 }

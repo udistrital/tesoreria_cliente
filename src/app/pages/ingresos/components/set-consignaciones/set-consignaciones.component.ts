@@ -7,6 +7,10 @@ import {
   CONF_CONSIGNACION,
   CONF_CODIGO_BARRAS,
   CONF_APORTES,
+
+} from '../../interfaces/interfaces';
+import { TranslateFormItemsService } from '../../../../shared/helpers/translate-form-items.service';
+import {
   DATOS_ICETEX,
   DATOS_PSE,
   DATOS_ACH,
@@ -15,7 +19,7 @@ import {
   DATOS_APORTES_DISTRITO,
   DATOS_CODIGO_BARRAS,
   DATOS_OTRAS_ENTIDADES,
-} from '../../interfaces/interfaces';
+} from '../../../../../assets/mock/tiposIngresos';
 
 @Component({
   selector: 'ngx-set-consignaciones',
@@ -35,7 +39,8 @@ export class SetConsignacionesComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<any>,
     private sharedService: SharedService,
-    private route: Router
+    private route: Router,
+    private translateHelper: TranslateFormItemsService
   ) {}
   ngOnDestroy() {
     if (this.subscriptionTipo$ !== undefined) {
@@ -48,45 +53,44 @@ export class SetConsignacionesComponent implements OnInit, OnDestroy {
       .select(getTipoIngreso)
       .subscribe((data) => {
         if (this.sharedService.IfStore(data)) {
-          const tipoFinal = data.tipoIngreso.Nombre;
-          switch (tipoFinal) {
+          switch (data.tipoIngreso.Nombre) {
             case 'icetex':
-              this.configurationConsignaciones = CONF_CONSIGNACION;
+              this.translateTableConfiguracion(CONF_CONSIGNACION);
               this.datosConsignaciones = DATOS_ICETEX;
               this.aportes = false;
               break;
             case 'barras':
-              this.configurationConsignaciones = CONF_CODIGO_BARRAS;
+              this.translateTableConfiguracion(CONF_CODIGO_BARRAS);
               this.datosConsignaciones = DATOS_CODIGO_BARRAS;
               this.aportes = false;
               break;
             case 'pse':
-              this.configurationConsignaciones = CONF_CONSIGNACION;
+              this.translateTableConfiguracion(CONF_CONSIGNACION);
               this.datosConsignaciones = DATOS_PSE;
               this.aportes = false;
               break;
             case 'ach':
-              this.configurationConsignaciones = CONF_CONSIGNACION;
+              this.translateTableConfiguracion(CONF_CONSIGNACION);
               this.datosConsignaciones = DATOS_ACH;
               this.aportes = false;
               break;
             case 'recaudoLinea':
-              this.configurationConsignaciones = CONF_CONSIGNACION;
+              this.translateTableConfiguracion(CONF_CONSIGNACION);
               this.datosConsignaciones = DATOS_RECAUDO;
               this.aportes = false;
               break;
             case 'aportesNacion':
-              this.configurationConsignaciones = CONF_APORTES;
+              this.translateTableConfiguracion(CONF_APORTES);
               this.datosConsignaciones = DATOS_APORTES_NACION;
               this.aportes = true;
               break;
             case 'aportesDistrito':
-              this.configurationConsignaciones = CONF_APORTES;
+              this.translateTableConfiguracion(CONF_APORTES);
               this.datosConsignaciones = DATOS_APORTES_DISTRITO;
               this.aportes = true;
               break;
             case 'otrasEntidades':
-              this.configurationConsignaciones = CONF_CONSIGNACION;
+              this.translateTableConfiguracion(CONF_CONSIGNACION);
               this.datosConsignaciones = DATOS_OTRAS_ENTIDADES;
               this.aportes = false;
               break;
@@ -94,7 +98,7 @@ export class SetConsignacionesComponent implements OnInit, OnDestroy {
               this.regresar();
               break;
           }
-          this.tipoIngreso = tipoFinal;
+          this.tipoIngreso = data.tipoIngreso;
         }
       });
   }
@@ -140,4 +144,9 @@ export class SetConsignacionesComponent implements OnInit, OnDestroy {
   anterior() {}
 
   siguiente() {}
+
+  private translateTableConfiguracion(configuracion): void {
+    this.configurationConsignaciones =
+      this.translateHelper.translateItemTableConfiguration(configuracion);
+  }
 }

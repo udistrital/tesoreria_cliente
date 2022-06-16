@@ -17,7 +17,7 @@ export class SetInforesponsableComponent implements OnInit, OnDestroy, OnDestroy
   susDatosSolicitante$: any;
 
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private store: Store<any>,
     private mockService: MockService,
     ) {

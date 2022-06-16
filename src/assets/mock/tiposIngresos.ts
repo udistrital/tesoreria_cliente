@@ -5,7 +5,7 @@ export const DATOS_INGRESOS: any = [
     centroGestor: 230,
     areaFuncional: 1,
     valorTotal: 8127361,
-    fecha: "2020/12/01",
+    fecha: '2020/12/01',
   },
   {
     vigencia: 2021,
@@ -13,15 +13,15 @@ export const DATOS_INGRESOS: any = [
     centroGestor: 230,
     areaFuncional: 1,
     valorTotal: 6523421,
-    fecha: "2021/01/01",
+    fecha: '2021/01/01',
   },
 ];
 export const DATOS_ICETEX: any = [
   {
     oficina: 519,
-    ciudad: "Bogotá",
-    fechaRecaudo: "2020/06/01",
-    depositante: "ICETEX",
+    ciudad: 'Bogotá',
+    fechaRecaudo: '2020/06/01',
+    depositante: 'ICETEX',
     referencia1: 8127361,
     referencia2: 12391283,
     valorEfectivo: 0,
@@ -32,9 +32,9 @@ export const DATOS_ICETEX: any = [
   },
   {
     oficina: 519,
-    ciudad: "Bogotá",
-    fechaRecaudo: "2020/06/02",
-    depositante: "ICETEX",
+    ciudad: 'Bogotá',
+    fechaRecaudo: '2020/06/02',
+    depositante: 'ICETEX',
     referencia1: 8723481,
     referencia2: 10893298,
     valorEfectivo: 0,
@@ -46,10 +46,10 @@ export const DATOS_ICETEX: any = [
 ];
 export const DATOS_PSE: any = [
   {
-    oficina: "",
-    ciudad: "Bogotá",
-    fechaRecaudo: "2020/05/02",
-    depositante: "Andrea Arias",
+    oficina: '',
+    ciudad: 'Bogotá',
+    fechaRecaudo: '2020/05/02',
+    depositante: 'Andrea Arias',
     referencia1: 823422,
     referencia2: 1857723,
     valorEfectivo: 0,
@@ -59,10 +59,10 @@ export const DATOS_PSE: any = [
     otrasReferencias: 9672,
   },
   {
-    oficina: "",
-    ciudad: "Bogotá",
-    fechaRecaudo: "2020/06/10",
-    depositante: "Fernando Duran",
+    oficina: '',
+    ciudad: 'Bogotá',
+    fechaRecaudo: '2020/06/10',
+    depositante: 'Fernando Duran',
     referencia1: 8723481,
     referencia2: 10893298,
     valorEfectivo: 0,
@@ -74,10 +74,10 @@ export const DATOS_PSE: any = [
 ];
 export const DATOS_ACH: any = [
   {
-    oficina: "",
-    ciudad: "Bogotá",
-    fechaRecaudo: "2020/06/05",
-    depositante: "Banco de Bogotá",
+    oficina: '',
+    ciudad: 'Bogotá',
+    fechaRecaudo: '2020/06/05',
+    depositante: 'Banco de Bogotá',
     referencia1: 8943052,
     referencia2: 1823405,
     valorEfectivo: 0,
@@ -87,10 +87,10 @@ export const DATOS_ACH: any = [
     otrasReferencias: 9672,
   },
   {
-    oficina: "",
-    ciudad: "Bogotá",
-    fechaRecaudo: "2020/06/12",
-    depositante: "BBVA",
+    oficina: '',
+    ciudad: 'Bogotá',
+    fechaRecaudo: '2020/06/12',
+    depositante: 'BBVA',
     referencia1: 792347,
     referencia2: 1023948,
     valorEfectivo: 0,
@@ -103,9 +103,9 @@ export const DATOS_ACH: any = [
 export const DATOS_RECAUDO: any = [
   {
     oficina: 519,
-    ciudad: "Bogotá",
-    fechaRecaudo: "2020/06/05",
-    depositante: "Richard Buitrago",
+    ciudad: 'Bogotá',
+    fechaRecaudo: '2020/06/05',
+    depositante: 'Richard Buitrago',
     referencia1: 10327409,
     referencia2: 10546478,
     valorEfectivo: 14000,
@@ -116,9 +116,9 @@ export const DATOS_RECAUDO: any = [
   },
   {
     oficina: 519,
-    ciudad: "Bogotá",
-    fechaRecaudo: "2020/06/07",
-    depositante: "Lina Luis",
+    ciudad: 'Bogotá',
+    fechaRecaudo: '2020/06/07',
+    depositante: 'Lina Luis',
     referencia1: 2180123,
     referencia2: 2384081,
     valorEfectivo: 70000,
@@ -130,37 +130,37 @@ export const DATOS_RECAUDO: any = [
 ];
 export const DATOS_APORTES_NACION: any = [
   {
-    fechaConsignacion: "2019/08/01",
-    entidadFinanciera: "Banco de occidente",
+    fechaConsignacion: '2019/08/01',
+    entidadFinanciera: 'Banco de occidente',
     numeroCuenta: 230141209,
-    tipoCuenta: "Ahorros",
+    tipoCuenta: 'Ahorros',
     vigencia: 2018,
     valor: 28345779,
-    tipoDocumento: "Recibo de caja",
-    numeroDocumento: "Res No. 007",
-    fechaDocumento: "2019/07/26",
+    tipoDocumento: 'Recibo de caja',
+    numeroDocumento: 'Res No. 007',
+    fechaDocumento: '2019/07/26',
   },
 ];
 export const DATOS_APORTES_DISTRITO: any = [
   {
-    fechaConsignacion: "2019/08/03",
-    entidadFinanciera: "BBVA",
+    fechaConsignacion: '2019/08/03',
+    entidadFinanciera: 'BBVA',
     numeroCuenta: 3294021,
-    tipoCuenta: "Corriente",
+    tipoCuenta: 'Corriente',
     vigencia: 2019,
     valor: 758348421,
-    tipoDocumento: "Recibo de caja",
-    numeroDocumento: "Res No. 012",
-    fechaDocumento: "2019/07/24",
+    tipoDocumento: 'Recibo de caja',
+    numeroDocumento: 'Res No. 012',
+    fechaDocumento: '2019/07/24',
   },
 ];
 export const DATOS_CODIGO_BARRAS: any = [
   {
     codigoBanco: 23,
     oficina: 248,
-    ciudad: "Bogotá",
-    fechaRecaudo: "2020/06/03",
-    tran: "CB",
+    ciudad: 'Bogotá',
+    fechaRecaudo: '2020/06/03',
+    tran: 'CB',
     valorEfectivo: 0,
     valorCheque: 576681,
     valorDatafono: 0,
@@ -171,10 +171,10 @@ export const DATOS_CODIGO_BARRAS: any = [
 ];
 export const DATOS_OTRAS_ENTIDADES: any = [
   {
-    oficina: "",
-    ciudad: "Bogotá",
-    fechaRecaudo: "2020/06/07",
-    depositante: "",
+    oficina: '',
+    ciudad: 'Bogotá',
+    fechaRecaudo: '2020/06/07',
+    depositante: '',
     referencia1: 423487,
     referencia2: 892347,
     valorEfectivo: 0,

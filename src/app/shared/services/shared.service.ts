@@ -112,7 +112,7 @@ export class SharedService {
   public getTiposID(activo?: boolean) {
     this.rqManager.setPath('TERCEROS_CRUD_SERVICE');
     let query = '';
-    if (activo !== null && activo !== undefined) query = `Activo:${activo}`;
+    if (activo) query = `Activo:${activo}`;
     const params = {
       fields: 'Nombre,Id',
       query: query,
@@ -174,8 +174,7 @@ export class SharedService {
     if (!id) {
       if (!limit) limit = 0;
       if (!query) query = {};
-      if (query.Estado === null || query.Estado === undefined)
-        query.Estado = true;
+      if (!query.Estado) query.Estado = true;
     }
     return this.rqManager.getv2(
       'ordenadores',
@@ -200,8 +199,7 @@ export class SharedService {
     if (!id) {
       if (!limit) limit = 0;
       if (!query) query = {};
-      if (query.Activo === null || query.Activo === undefined)
-        query.Activo = true;
+      if (!query.Activo) query.Activo = true;
     }
     return this.rqManager.getv2(
       'dependencia',
@@ -269,10 +267,7 @@ export class SharedService {
     this.rqManager.setPath('TERCEROS_CRUD_SERVICE');
     if (!limit) limit = 0;
     if (!query) query = {};
-    if (
-      query.InfoComplementariaId__CodigoAbreviacion === null ||
-      query.InfoComplementariaId__CodigoAbreviacion === undefined
-    ) {
+    if (!query.InfoComplementariaId__CodigoAbreviacion) {
       query.InfoComplementariaId__CodigoAbreviacion = 'SUC';
     }
     return this.rqManager.getv2(
@@ -293,11 +288,7 @@ export class SharedService {
   public getIdSucursales(query?: any) {
     this.rqManager.setPath('TERCEROS_CRUD_SERVICE');
     if (!query) query = {};
-    if (
-      query.CodigoAbreviacion === null ||
-      query.CodigoAbreviacion === undefined
-    )
-      query.CodigoAbreviacion = 'SUC';
+    if (!query.CodigoAbreviacion) query.CodigoAbreviacion = 'SUC';
     return this.rqManager.getv2(
       'info_complementaria',
       null,
@@ -318,10 +309,7 @@ export class SharedService {
     this.rqManager.setPath('PARAMETROS_CRUD_SERVICE');
     if (!limit) limit = 0;
     if (!query) query = {};
-    if (
-      query.CodigoAbreviacion === null ||
-      query.CodigoAbreviacion === undefined
-    )
+    if (!query.CodigoAbreviacion)
       query.TipoParametroId__CodigoAbreviacion = 'D';
     return this.rqManager.getv2(
       'parametro',
@@ -354,10 +342,7 @@ export class SharedService {
     this.rqManager.setPath('PARAMETROS_CRUD_SERVICE');
     if (!limit) limit = 0;
     if (!query) query = {};
-    if (
-      query.CodigoAbreviacion === null ||
-      query.CodigoAbreviacion === undefined
-    )
+    if (!query.CodigoAbreviacion)
       query.TipoParametroId__CodigoAbreviacion = 'CB';
     return this.rqManager.getv2(
       'parametro',
@@ -633,12 +618,20 @@ export class SharedService {
    * @param limit Limite de cantidad de tipos de documento
    * @returns
    */
- public getTipoDocumentos(query?: any, limit?: number) {
-  this.rqManager.setPath('PARAMETROS_CRUD_SERVICE');
-  if (!limit) limit = 0;
-  if (!query) query = {};
-  return this.rqManager.getv2('parametro', null, query, null, null, null, limit);
-}
+  public getTipoDocumentos(query?: any, limit?: number) {
+    this.rqManager.setPath('PARAMETROS_CRUD_SERVICE');
+    if (!limit) limit = 0;
+    if (!query) query = {};
+    return this.rqManager.getv2(
+      'parametro',
+      null,
+      query,
+      null,
+      null,
+      null,
+      limit
+    );
+  }
 
   /**
    * getScreenSize

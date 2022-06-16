@@ -231,7 +231,7 @@ export const CONF_RUBROS: any = {
       key: 'numeroRubro',
       title: {
         class: 'text-center',
-        label_i18n: "RUBRO.numero_rubro"
+        label_i18n: 'RUBRO.numero_rubro'
       },
       pipe: {
         class: 'text-justify',
@@ -241,7 +241,7 @@ export const CONF_RUBROS: any = {
       key: 'nombreRubro',
       title: {
         class: 'text-center',
-        label_i18n: "RUBRO.nombre_rubro"
+        label_i18n: 'RUBRO.nombre_rubro'
       },
       pipe: {
         class: 'text-justify',
@@ -251,7 +251,7 @@ export const CONF_RUBROS: any = {
       key: 'valor',
       title: {
         class: 'text-center',
-        label_i18n: "GLOBAL.valor",
+        label_i18n: 'GLOBAL.valor',
       },
       pipe: {
         type: 'currency',
@@ -269,7 +269,7 @@ export const CONF_CONTABILIDAD: any = {
     {
       key: 'secuencia',
       title: {
-        label_i18n: "CONTABILIZACION.secuencia",
+        label_i18n: 'CONTABILIZACION.secuencia',
         class: 'text-center',
       },
       pipe: {
@@ -279,7 +279,7 @@ export const CONF_CONTABILIDAD: any = {
     {
       key: 'tercero',
       title: {
-        label_i18n: "CONTABILIZACION.tercero",
+        label_i18n: 'CONTABILIZACION.tercero',
         class: 'text-center',
       },
       pipe: {
@@ -289,7 +289,7 @@ export const CONF_CONTABILIDAD: any = {
     {
       key: 'numeroCuenta',
       title: {
-        label_i18n: "CONTABILIZACION.numero_cuenta",
+        label_i18n: 'CONTABILIZACION.numero_cuenta',
         class: 'text-center',
       },
       pipe: {
@@ -299,7 +299,7 @@ export const CONF_CONTABILIDAD: any = {
     {
       key: 'nombreCuenta',
       title: {
-        label_i18n: "CONTABILIZACION.nombre_cuenta",
+        label_i18n: 'CONTABILIZACION.nombre_cuenta',
         class: 'text-center',
       },
       pipe: {
@@ -309,7 +309,7 @@ export const CONF_CONTABILIDAD: any = {
     {
       key: 'detalle',
       title: {
-        label_i18n: "CONTABILIZACION.detalle",
+        label_i18n: 'CONTABILIZACION.detalle',
         class: 'text-center',
       },
       pipe: {
@@ -319,7 +319,7 @@ export const CONF_CONTABILIDAD: any = {
     {
       key: 'debito',
       title: {
-        label_i18n: "CONTABILIZACION.debito",
+        label_i18n: 'CONTABILIZACION.debito',
         class: 'text-center',
       },
       pipe: {
@@ -331,7 +331,7 @@ export const CONF_CONTABILIDAD: any = {
     {
       key: 'credito',
       title: {
-        label_i18n: "CONTABILIZACION.credito",
+        label_i18n: 'CONTABILIZACION.credito',
         class: 'text-center',
       },
       pipe: {
@@ -342,7 +342,7 @@ export const CONF_CONTABILIDAD: any = {
     },
   ],
   noData: {
-    label_i18n: "AVISOS.sin_elementos_asociados",
+    label_i18n: 'AVISOS.sin_elementos_asociados',
     class: 'text-center',
   },
   sort: true,
@@ -354,7 +354,7 @@ export const CONF_CODIGO_BARRAS: any = {
     {
       key: 'codigoOficina',
       title: {
-        label_i18n: "CODIGO_BARRAS.codigo_oficina",
+        label_i18n: 'CODIGO_BARRAS.codigo_oficina',
         class: 'text-center',
       },
       pipe: {
@@ -364,7 +364,7 @@ export const CONF_CODIGO_BARRAS: any = {
     {
       key: 'oficina',
       title: {
-        label_i18n: "CONSIGNACION.oficina",
+        label_i18n: 'CONSIGNACION.oficina',
         class: 'text-center',
       },
       pipe: {
@@ -374,7 +374,7 @@ export const CONF_CODIGO_BARRAS: any = {
     {
       key: 'ciudad',
       title: {
-        label_i18n: "CONSIGNACION.ciudad",
+        label_i18n: 'CONSIGNACION.ciudad',
         class: 'text-center',
       },
       pipe: {
@@ -384,7 +384,7 @@ export const CONF_CODIGO_BARRAS: any = {
     {
       key: 'fechaRecaudo',
       title: {
-        label_i18n: "CONSIGNACION.fecha_recaudo",
+        label_i18n: 'CONSIGNACION.fecha_recaudo',
         class: 'text-center',
       },
       pipe: {
@@ -394,7 +394,7 @@ export const CONF_CODIGO_BARRAS: any = {
     {
       key: 'documento',
       title: {
-        label_i18n: "CODIGO_BARRAS.documento",
+        label_i18n: 'CODIGO_BARRAS.documento',
         class: 'text-center',
       },
       pipe: {
@@ -404,7 +404,7 @@ export const CONF_CODIGO_BARRAS: any = {
     {
       key: 'tran',
       title: {
-        label_i18n: "CODIGO_BARRAS.transaccion",
+        label_i18n: 'CODIGO_BARRAS.transaccion',
         class: 'text-center',
       },
       pipe: {
@@ -414,7 +414,7 @@ export const CONF_CODIGO_BARRAS: any = {
     {
       key: 'valorEfectivo',
       title: {
-        label_i18n: "CONSIGNACION.valor_efectivo",
+        label_i18n: 'CONSIGNACION.valor_efectivo',
         class: 'text-center',
       },
       pipe: {
@@ -426,7 +426,7 @@ export const CONF_CODIGO_BARRAS: any = {
     {
       key: 'valorCheque',
       title: {
-        label_i18n: "CONSIGNACION.valor_cheque",
+        label_i18n: 'CONSIGNACION.valor_cheque',
         class: 'text-center',
       },
       pipe: {
@@ -438,7 +438,7 @@ export const CONF_CODIGO_BARRAS: any = {
     {
       key: 'valorDatafono',
       title: {
-        label_i18n: "CONSIGNACION.valor_datafono",
+        label_i18n: 'CONSIGNACION.valor_datafono',
         class: 'text-center',
       },
       pipe: {
@@ -450,7 +450,7 @@ export const CONF_CODIGO_BARRAS: any = {
     {
       key: 'valorTotal',
       title: {
-        label_i18n: "CONSIGNACION.valor_total",
+        label_i18n: 'CONSIGNACION.valor_total',
         class: 'text-center',
       },
       pipe: {
@@ -462,7 +462,7 @@ export const CONF_CODIGO_BARRAS: any = {
     {
       key: 'codigoTrans',
       title: {
-        label_i18n: "CODIGO_BARRAS.codigo_transaccion",
+        label_i18n: 'CODIGO_BARRAS.codigo_transaccion',
         class: 'text-center',
       },
       pipe: {
@@ -472,7 +472,7 @@ export const CONF_CODIGO_BARRAS: any = {
     {
       key: 'referencia1',
       title: {
-        label_i18n: "CONSIGNACION.referencia_1",
+        label_i18n: 'CONSIGNACION.referencia_1',
         class: 'text-center',
       },
       pipe: {
@@ -481,7 +481,7 @@ export const CONF_CODIGO_BARRAS: any = {
     },
   ],
   noData: {
-    label_i18n: "AVISOS.sin_elementos_asociados",
+    label_i18n: 'AVISOS.sin_elementos_asociados',
     class: 'text-center',
   },
   sort: true,
@@ -493,7 +493,7 @@ export const CONF_APORTES: any = {
     {
       key: 'fechaConsignacion',
       title: {
-        label_i18n: "APORTES.fecha_consignacion",
+        label_i18n: 'APORTES.fecha_consignacion',
         class: 'text-center',
       },
       pipe: {
@@ -503,7 +503,7 @@ export const CONF_APORTES: any = {
     {
       key: 'entidadFinanciera',
       title: {
-        label_i18n: "APORTES.entidad_financiera",
+        label_i18n: 'APORTES.entidad_financiera',
         class: 'text-center',
       },
       pipe: {
@@ -513,7 +513,7 @@ export const CONF_APORTES: any = {
     {
       key: 'numeroCuenta',
       title: {
-        label_i18n: "CUENTA_BANCARIA.numero_cuenta",
+        label_i18n: 'CUENTA_BANCARIA.numero_cuenta',
         class: 'text-center',
       },
       pipe: {
@@ -523,7 +523,7 @@ export const CONF_APORTES: any = {
     {
       key: 'tipoCuenta',
       title: {
-        label_i18n: "CUENTA_BANCARIA.tipo_cuenta",
+        label_i18n: 'CUENTA_BANCARIA.tipo_cuenta',
         class: 'text-center',
       },
       pipe: {
@@ -533,7 +533,7 @@ export const CONF_APORTES: any = {
     {
       key: 'vigencia',
       title: {
-        label_i18n: "GLOBAL.vigencia",
+        label_i18n: 'GLOBAL.vigencia',
         class: 'text-center',
       },
       pipe: {
@@ -543,7 +543,7 @@ export const CONF_APORTES: any = {
     {
       key: 'valor',
       title: {
-        label_i18n: "GLOBAL.valor",
+        label_i18n: 'GLOBAL.valor',
         class: 'text-center',
       },
       pipe: {
@@ -555,7 +555,7 @@ export const CONF_APORTES: any = {
     {
       key: 'tipoDocumento',
       title: {
-        label_i18n: "APORTES.tipo_documento",
+        label_i18n: 'APORTES.tipo_documento',
         class: 'text-center',
       },
       pipe: {
@@ -565,7 +565,7 @@ export const CONF_APORTES: any = {
     {
       key: 'numeroDocumento',
       title: {
-        label_i18n: "APORTES.numero_documento",
+        label_i18n: 'APORTES.numero_documento',
         class: 'text-center',
       },
       pipe: {
@@ -575,7 +575,7 @@ export const CONF_APORTES: any = {
     {
       key: 'fechaDocumento',
       title: {
-        label_i18n: "APORTES.fecha_documento",
+        label_i18n: 'APORTES.fecha_documento',
         class: 'text-center',
       },
       pipe: {
@@ -591,41 +591,41 @@ export const TIPOS_INGRESOS: any = [
   {
     Nombre: 'icetex',
     label: 'Icetex',
-    label_i18n: "INGRESOS.icetex"
+    label_i18n: 'INGRESOS.icetex'
   },
   {
     Nombre: 'barras',
     label: 'Codigo de barras',
-    label_i18n: "INGRESOS.codigo_barras"
+    label_i18n: 'INGRESOS.codigo_barras'
   },
   {
     Nombre: 'pse',
     label: 'PSE',
-    label_i18n: "INGRESOS.pse"
+    label_i18n: 'INGRESOS.pse'
   },
   {
     Nombre: 'ach',
     label: 'ACH',
-    label_i18n: "INGRESOS.ach"
+    label_i18n: 'INGRESOS.ach'
   },
   {
     Nombre: 'recaudoLinea',
     label: 'Recaudo en Linea',
-    label_i18n: "INGRESOS.recaudo_linea"
+    label_i18n: 'INGRESOS.recaudo_linea'
   },
   {
     Nombre: 'aportesNacion',
     label: 'Aportes de la Nación',
-    label_i18n: "INGRESOS.aportes_nacion"
+    label_i18n: 'INGRESOS.aportes_nacion'
   },
   {
     Nombre: 'aportesDistrito',
     label: 'Aportes del Distrito',
-    label_i18n: "INGRESOS.aportes_distrito"
+    label_i18n: 'INGRESOS.aportes_distrito'
   },
   {
     Nombre: 'otrasEntidades',
     label: 'Aportes de otras entidades',
-    label_i18n: "INGRESOS.aportes_otras_entidades"
+    label_i18n: 'INGRESOS.aportes_otras_entidades'
   }
 ];

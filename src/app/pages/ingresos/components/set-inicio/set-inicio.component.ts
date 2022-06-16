@@ -17,6 +17,7 @@ import { getTipoIngreso } from '../../selectors/ingresos.selectors';
 import { SharedService } from '../../../../shared/services/shared.service';
 import Swal from 'sweetalert2';
 import { MockService } from '../../../../shared/services/mock.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'ngx-set-inicio',
@@ -44,12 +45,16 @@ export class SetInicioComponent implements OnInit, OnDestroy {
   numeroCuentaSelected: string;
   nombreCuentaSelected: string;
 
+  fechaInicioMal: boolean = false;
+  fechaFinMal: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private store: Store<any>,
     private sharedService: SharedService,
     private route: Router,
-    private mockService: MockService
+    private mockService: MockService,
+    private translate: TranslateService,
   ) {
     this.datosConsultaForm = this.formBuilder.group({
       banco: ['', Validators.required],
@@ -79,26 +84,12 @@ export class SetInicioComponent implements OnInit, OnDestroy {
           // console.log('data: ', data);
           switch (data.tipoIngreso.Nombre) {
             case 'icetex':
-              this.ingresoTipo = data.tipoIngreso.label;
-              break;
             case 'barras':
-              this.ingresoTipo = data.tipoIngreso.label;
-              break;
             case 'pse':
-              this.ingresoTipo = data.tipoIngreso.label;
-              break;
             case 'ach':
-              this.ingresoTipo = data.tipoIngreso.label;
-              break;
             case 'recaudoLinea':
-              this.ingresoTipo = data.tipoIngreso.label;
-              break;
             case 'aportesNacion':
-              this.ingresoTipo = data.tipoIngreso.label;
-              break;
             case 'aportesDistrito':
-              this.ingresoTipo = data.tipoIngreso.label;
-              break;
             case 'otrasEntidades':
               this.ingresoTipo = data.tipoIngreso.label;
               break;
@@ -129,15 +120,6 @@ export class SetInicioComponent implements OnInit, OnDestroy {
         return `${area.codigo} - ${area.nombre}`;
       });
     });
-
-    // Traer Tipo de Cuenta de Parámetros CRUD
-    this.sharedService.getTipoCuenta().subscribe((res) => {
-      if (res && res.Data) {
-        // this.cuentas = res.Data.map((tipoCuenta) => {
-        //   return tipoCuenta.Nombre;
-        // });
-      }
-    });
   }
 
   onSubmit(data: any) {
@@ -147,10 +129,10 @@ export class SetInicioComponent implements OnInit, OnDestroy {
         this.datosConsultaForm.value.fechaInicio
       ) {
         Swal.fire({
-          type: 'error',
-          title: '¡Error!',
-          html: 'La fecha final no puede ser anterior a la inicial',
-          confirmButtonText: 'Aceptar',
+          type: this.translate.instant('AVISOS.error'),
+          title: this.translate.instant('AVISOS.error_titulo'),
+          html: this.translate.instant('AVISOS.fecha_inicio_mayor_fecha_final'),
+          confirmButtonText: this.translate.instant('AVISOS.boton_confirmacion'),
         });
       } else {
         this.mensaje = false;
