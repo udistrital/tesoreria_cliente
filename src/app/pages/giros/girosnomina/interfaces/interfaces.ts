@@ -954,62 +954,6 @@ export const DATOS_DESCUENTO: any = [
         valorDescuento: 775722,
     },
 ];
-export const DATOS_CONTABILIDAD: any = [
-    {
-        secuencia: 1,
-        tercero: 79355747,
-        numeroCuenta: 271863,
-        nombreCuenta: 'Proveedores',
-        detalle: 'Nómina del mes de julio',
-        debito: 0,
-        credito: 1264304,
-    },
-    {
-        secuencia: 2,
-        tercero: 79355747,
-        numeroCuenta: 712361,
-        nombreCuenta: 'Honorarios',
-        detalle: 'Nómina del mes de julio',
-        debito: 0,
-        credito: 2893934,
-    },
-    {
-        secuencia: 3,
-        tercero: 79355747,
-        numeroCuenta: 728612,
-        nombreCuenta: 'Reteica',
-        detalle: 'Nómina del mes de julio',
-        debito: 0,
-        credito: 10449,
-    },
-    {
-        secuencia: 4,
-        tercero: 79355747,
-        numeroCuenta: 123786,
-        nombreCuenta: 'Estampilla pro cultura',
-        detalle: 'Nómina del mes de julio',
-        debito: 0,
-        credito: 6588,
-    },
-    {
-        secuencia: 5,
-        tercero: 79355747,
-        numeroCuenta: 789123,
-        nombreCuenta: 'Estampilla pro adulto',
-        detalle: 'Nómina del mes de julio',
-        debito: 0,
-        credito: 23354,
-    },
-    {
-        secuencia: 6,
-        tercero: 79355747,
-        numeroCuenta: 4234768,
-        nombreCuenta: 'Libranzas',
-        detalle: 'Nómina del mes de julio',
-        debito: 22874645,
-        credito: 0,
-    }
-];
 export const DATOS_CONTABILIDAD_TERCERO: any = [
     {
         secuencia: 1,

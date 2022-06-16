@@ -1,11 +1,14 @@
 [{
     "id": 1,
     "nombre": "Rector",
-    "codigo": "01"
+    "codigo": "1",
+    "label": "01 - Rector"
+
   },
   {
     "id": 2,
-    "nombre": "IDEXUD",
-    "codigo": "02"
+    "nombre": "Convenios",
+    "codigo": "2",
+    "label": "01 - Convenio"
   }
 ]
