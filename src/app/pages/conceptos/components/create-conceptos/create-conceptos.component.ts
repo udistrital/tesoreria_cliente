@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { GetArbolRubro, obtenerConcepto, obtenerCuentaCredito, obtenerCuentaDebito, obtenerParametros, obtenerParametrosHijos, obtenerRubro,
           obtenerTipoDocumentos, SeleccionarCuentaContable, SeleccionarRubro} from '../../../../shared/actions/shared.actions';
-import { OPCIONES_AREA_FUNCIONAL, OPCIONES_ENTIDAD_PRESUPUESTAL } from '../../../../shared/interfaces/interfaces';
+import { OPCIONES_ENTIDAD_PRESUPUESTAL } from '../../../../shared/interfaces/interfaces';
 import { TranslateService } from '@ngx-translate/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
@@ -11,6 +11,7 @@ import { getArbolRubro, getCuentaCredito, getCuentaDebito, getNodoSeleccionado, 
           getRubro, seleccionarConcepto, seleccionarParametros, seleccionarParametrosHijos, seleccionarTipoDocumentos } from '../../../../shared/selectors/shared.selectors';
 import { CONFIGURACION_CUENTASCONTABLES_CREDITO, CONFIGURACION_CUENTASCONTABLES_DEBITO } from '../../interfaces/interface';
 import { actualizarConceptoPadre, crearConceptosPadre } from '../../actions/conceptos.action';
+import { MockService } from '../../../../shared/services/mock.service';
 
 @Component({
   selector: 'ngx-create-conceptos',
@@ -71,14 +72,20 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
   auxCount: number;
   ins: boolean;
 
-  constructor(private fb: FormBuilder, private store: Store<any>, private translate: TranslateService, private modalService: NgbModal, private activatedRoute: ActivatedRoute) {
+  constructor(
+    private fb: FormBuilder,
+    private store: Store<any>,
+    private translate: TranslateService,
+    private modalService: NgbModal,
+    private activatedRoute: ActivatedRoute,
+    private mockService: MockService,
+    ) {
     this.ins = true;
     this.tesoreria = true;
     this.debito = 'debito';
     this.credito = 'credito';
     this.aux = 0;
     this.auxCount = 0;
-    this.opcionesAreaFuncional = OPCIONES_AREA_FUNCIONAL;
     this.opcionesEntidadPresupuestal = OPCIONES_ENTIDAD_PRESUPUESTAL;
     this.configRequisitosDebito = CONFIGURACION_CUENTASCONTABLES_DEBITO;
     this.configRequisitosDebito.title.tabla = 0;
@@ -102,7 +109,7 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
     }
     this.store.dispatch(obtenerParametros({query: {TipoParametroId__CodigoAbreviacion: 'CT'}}));
     this.store.dispatch(obtenerTipoDocumentos({query: {TipoParametroId__CodigoAbreviacion: 'TD'}}));
-   }
+  }
   ngOnDestroy(): void {
     if (this.tituloAccion !== 'padre') this.subConcepto$.unsubscribe();
     this.subClaseTransaccion$.unsubscribe();
@@ -135,6 +142,12 @@ export class CreateConceptosComponent implements OnInit, OnDestroy {
         .filter((data: any) => (data.indexOf('/') === -1));
     if (this.roles.indexOf('ADMIN_CONTABILIDAD') > -1) this.tesoreria = false;
     else this.tesoreria = true;
+
+
+    this.mockService.getAreasFuncionales().subscribe((res) => {
+      this.opcionesAreaFuncional = res;
+    });
+
     this.subGetNodoSeleccionado$ = this.store.select(getNodoSeleccionado).subscribe((nodo: any) => {
       if (nodo) {
         if (Object.keys(nodo)[0] !== 'type') {

@@ -3,7 +3,6 @@ import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { DatePipe } from '@angular/common';
-import { OPCIONES_AREA_FUNCIONAL } from '../../../../../shared/interfaces/interfaces';
 import { getFilaSeleccionada } from '../../../../../shared/selectors/shared.selectors';
 import { cargarSolicitudesAvance, obtenerSolicitudesAvance } from '../../actions/solicitudavances.actions';
 import { CONFIGURACION_TABLASOLICITUD } from '../../interfaces/interfaces';
@@ -11,6 +10,7 @@ import { seleccionarSolicitudesAvance } from '../../selectors/solicitudavances.s
 import { AutenticationService } from '../../../../../@core/utils/authentication.service';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { MatPaginator } from '@angular/material/paginator';
+import { MockService } from '../../../../../shared/services/mock.service';
 
 @Component({
   selector: 'ngx-table-solicitudavances',
@@ -37,11 +37,11 @@ export class TableSolicitudavancesComponent implements OnInit, OnDestroy {
     private router: Router,
     private autenticationServie: AutenticationService,
     private datePipe: DatePipe,
+    private mockService: MockService
   ) {
 
     this.datosSolicitudes = [];
     this.configSolicitudes = CONFIGURACION_TABLASOLICITUD;
-    this.areasFuncionales = OPCIONES_AREA_FUNCIONAL;
     this.documento = '';
     this.clearStore();
     this.store.dispatch(obtenerSolicitudesAvance({}));
@@ -53,6 +53,10 @@ export class TableSolicitudavancesComponent implements OnInit, OnDestroy {
     this.displayedColumns = this.configSolicitudes.dataConfig.map(x => x.key);
     this.columnNames = this.configSolicitudes.dataConfig;
     this.documento = this.autenticationServie.getPayload().documento;
+
+    this.mockService.getAreasFuncionales().subscribe((res) => {
+      this.areasFuncionales = res;
+    });
 
     this.subSolicitudes$ = this.store.select(seleccionarSolicitudesAvance).subscribe((accion) => {
       if (accion && accion.solicitudesAvance) {

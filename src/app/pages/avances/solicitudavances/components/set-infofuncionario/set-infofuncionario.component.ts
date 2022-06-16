@@ -4,9 +4,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { combineLatest } from 'rxjs';
 import { cargarDatosProvedor, getDatosID, getTiposID, getVigencias, obtenerDatosProvedor, obtenerTelefonosProvedores } from '../../../../../shared/actions/shared.actions';
-import { OPCIONES_AREA_FUNCIONAL } from '../../../../../shared/interfaces/interfaces';
 import { seleccionarProveedores, seleccionarTelefonosProveedores, selectDatosID, selectTiposID, selectVigencias } from '../../../../../shared/selectors/shared.selectors';
 import { cargarInfoFuncionario } from '../../actions/solicitudavances.actions';
+import { MockService } from '../../../../../shared/services/mock.service';
 
 @Component({
   selector: 'ngx-set-infofuncionario',
@@ -30,8 +30,8 @@ export class SetInfofuncionarioComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private store: Store<any>,
     private translate: TranslateService,
+    private mockService: MockService,
   ) {
-    this.areasFuncionales = OPCIONES_AREA_FUNCIONAL;
     this.vigencias = [];
     this.tiposId = [];
     this.store.dispatch(getVigencias());
@@ -39,6 +39,11 @@ export class SetInfofuncionarioComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.createForm();
+
+    this.mockService.getAreasFuncionales().subscribe((res) => {
+      this.areasFuncionales = res;
+    });
+
     // Areas funcionales
     this.susVigencias$ = combineLatest([
       this.store.select(selectVigencias),

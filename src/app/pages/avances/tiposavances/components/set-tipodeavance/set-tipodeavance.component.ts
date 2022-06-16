@@ -11,12 +11,12 @@ import {
   obtenerRequisitoTipoAvances, obtenerTiposAvances
 } from '../../../../../shared/actions/avances.actions';
 import { GetVigenciaActual, getVigencias } from '../../../../../shared/actions/shared.actions';
-import { OPCIONES_AREA_FUNCIONAL } from '../../../../../shared/interfaces/interfaces';
 import {
   seleccionarNormas, seleccionarRequisitos,
   seleccionarRequisitoTipoAvances, seleccionarTiposAvances
 } from '../../../../../shared/selectors/avances.selectors';
 import { getVigenciaActual, selectVigencias } from '../../../../../shared/selectors/shared.selectors';
+import { MockService } from '../../../../../shared/services/mock.service';
 import { CONFIGURACION_REQUISITOSDETALLE, CONFIGURACION_TABLA_NORMA } from '../../interfaces/interfaces';
 
 @Component({
@@ -65,13 +65,13 @@ export class SetTipodeavanceComponent implements OnInit, OnDestroy {
     private router: Router,
     private modalService: NgbModal,
     private store: Store<any>,
+    private mockService: MockService,
   ) {
     this.vigencias = [];
     this.configRequisitos = CONFIGURACION_REQUISITOSDETALLE;
     this.datosRequisitos = [];
     this.configTableNorma = CONFIGURACION_TABLA_NORMA;
     this.datosTableNorma = [];
-    this.opcionesAreaFuncional = OPCIONES_AREA_FUNCIONAL;
     // Título, editar o crear
     this.tituloAccion = this.activatedRoute.snapshot.url[0].path;
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
@@ -93,6 +93,10 @@ export class SetTipodeavanceComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.mockService.getAreasFuncionales().subscribe((res) => {
+      this.opcionesAreaFuncional = res;
+    });
+
     this.subTiposAvances$ = this.store.select(seleccionarTiposAvances).subscribe((accion) => {
       if (accion && accion.tiposAvances)
         if (accion.tiposAvances.Id) {
