@@ -3,11 +3,13 @@ import { PDFDocumentProxy } from 'ng2-pdf-viewer';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
-import { DATOS_CONTABILIDAD, CONF_CONTABILIDAD } from '../../interfaces/interfaces';
+import { CONF_CONTABILIDAD } from '../../interfaces/interfaces';
 import { getTipoIngreso } from '../../selectors/ingresos.selectors';
 import { Store } from '@ngrx/store';
 import { SharedService } from '../../../../shared/services/shared.service';
 import Swal from 'sweetalert2';
+import { TranslateFormItemsService } from '../../../../shared/helpers/translate-form-items.service';
+import { DATOS_CONTABILIDAD } from '../../../../../assets/mock/tiposIngresos';
 
 @Component({
   selector: 'ngx-set-contabilizar',
@@ -64,20 +66,20 @@ export class SetContabilizarComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public dialog: MatDialog,
-    private route: Router,
     private sharedService: SharedService,
     private store: Store <any>,
+    private translateHelper: TranslateFormItemsService
   ) {
-    this.configuration = CONF_CONTABILIDAD;
     this.contabilizacionForm = this.formBuilder.group({
       concepto: ['', Validators.required],
       codigo: ['', Validators.required],
       tipoComprobante: ['', Validators.required]
     });
     this.datos = DATOS_CONTABILIDAD;
-   }
+  }
 
   ngOnInit() {
+    this.translateTableConfiguracion();
     this.subscriptionTipoIngreso$ = this.store.select(getTipoIngreso).subscribe(
       data => {
         if (this.sharedService.IfStore(data)) {
@@ -93,22 +95,6 @@ export class SetContabilizarComponent implements OnInit {
 
   totalCredito() {
     return this.credito = this.datos.reduce((a: any, b: { credito: number; }) => a + b.credito, 0);
-  }
-
-  guardar() {
-    if (this.contabilizacionForm.valid) {
-      Swal.fire({
-        type: 'success',
-        title: '¡Guardado!',
-        html: 'Se ha creado el ingreso con consecutivo 1',
-        confirmButtonText: 'Aceptar',
-      });
-      this.route.navigate(['pages/ingresos/' + this.tipoIngreso + '/lista']);
-      this.mensaje = false;
-    } else {
-      this.validarFormulario();
-      this.mensaje = true;
-    }
   }
 
   esInvalido(nombre: string) {
@@ -206,5 +192,9 @@ export class SetContabilizarComponent implements OnInit {
   afterLoadComplete(pdf: PDFDocumentProxy): void {
     this.pdf = pdf;
     this.totalPages = pdf.numPages;
+  }
+
+  private translateTableConfiguracion(): void {
+    this.configuration = this.translateHelper.translateItemTableConfiguration(CONF_CONTABILIDAD);
   }
 }

@@ -1,85 +1,176 @@
 <div class="container-fluid">
-    <div class="card p-3 m-4">
-        <div class="card-title col-md-4 bg-primary text-light text-center py-1 rounded">
-            Contabilización
-        </div>
-        <div class="card-body pt-0">
-            <form [formGroup]="contabilizacionForm">
-                <div class="row m-1">
-                    <div class="col py-1">
-                        <label for="conceptoResumen"> Concepto </label> <br>
-                        <select name="conceptoResumen" id="conceptoResumen" class="form-control" formControlName="concepto" [class.is-invalid]="esInvalido('concepto')">
-                            <option *ngFor="let concepto of conceptos" value={{concepto}}> {{concepto}} </option>
-                        </select>
-                    </div>
-                    <div class="col py-1">
-                        <label for="codigoResumen"> Código </label> <br>
-                        <select class="form-control" name="codigoResumen" id="codigoResumen" formControlName="codigo" [class.is-invalid]="esInvalido('codigo')">
-                            <option *ngFor="let codigo of codigos" value={{codigo}}> {{codigo}} </option>
-                        </select>
-                    </div>
-                    <div class="col py-1">
-                        <label for="tipoComprobante"> Tipo de comprobante </label> <br>
-                        <select name="tipoComprobante" id="tipoComprobante" class="form-control" formControlName="tipoComprobante" [class.is-invalid]="esInvalido('tipoComprobante')">
-                            <option *ngFor="let tipo of tiposComprobante" value={{tipo}}> {{tipo}} </option>
-                        </select>
-                    </div>
-                    <div class="col py-1">
-                        <label for="consecutivo"> Consecutivo </label> <br>
-                        <input name="consecutivoResumen" id="consecutivoResumen" class="form-control" type="text" placeholder="1" disabled>
-                    </div>
-                </div>
-                <small class="message m-3" *ngIf="mensaje"> Los campos en rojo son requeridos* </small>
-            </form>
-            <div class="row my-2 justify-content-center">
-                <ngx-general-table class="mt-3" [config]="configuration" [datos]="datos"></ngx-general-table>
-            </div>
-            <div class="row my-2">
-                <div class="col py-2" align="center">
-                    <label class="font-weight-bold m-2" for="sumaDebito">Suma débito: </label>
-                    <input name="sumaDebito" id="sumaDebito" class="form-control total m-2" disabled value="{{totalDebito() | currency}}">
-                </div>
-                <div class="col py-2" align="center">
-                    <label class="font-weight-bold m-2" for="sumaCredito">Suma crédito: </label>
-                    <input name="sumaCredito" id="sumaCredito" class="form-control m-2 total" disabled value="{{totalCredito() | currency}}">
-                </div>
-            </div>
-        </div>
+  <div class="card p-3 m-4">
+    <div
+      class="card-title col-md-4 bg-primary text-light text-center py-1 rounded"
+    >
+      {{ 'INGRESOS.contabilizacion' | translate }}
     </div>
-    <div class="row text-center">
-        <div class="col">
-            <button matStepperPrevious type="button" class="btn btn-primary px-3 py-2 my-2 text-light">
-                Volver
-            </button>
+    <div class="card-body pt-0">
+      <form [formGroup]="contabilizacionForm">
+        <div class="row m-1">
+          <div class="col py-1">
+            <label for="tipoComprobante">{{ 'CONTABILIZACION.tipo_comprobante' | translate }}</label> <br />
+            <select
+              name="tipoComprobante"
+              id="tipoComprobante"
+              class="form-control"
+              formControlName="tipoComprobante"
+              [class.is-invalid]="esInvalido('tipoComprobante')"
+            >
+              <option *ngFor="let tipo of tiposComprobante" value="{{ tipo }}">
+                {{ tipo }}
+              </option>
+            </select>
+          </div>
+          <div class="col py-1">
+            <label for="codigoResumen">{{ 'GLOBAL.codigo' | translate }}</label> <br />
+            <select
+              class="form-control"
+              name="codigoResumen"
+              id="codigoResumen"
+              formControlName="codigo"
+              [class.is-invalid]="esInvalido('codigo')"
+            >
+              <option *ngFor="let codigo of codigos" value="{{ codigo }}">
+                {{ codigo }}
+              </option>
+            </select>
+          </div>
+          <div class="col py-1">
+            <label for="consecutivo">{{ 'CONTABILIZACION.consecutivo' | translate }}</label> <br />
+            <input
+              name="consecutivoResumen"
+              id="consecutivoResumen"
+              class="form-control"
+              type="text"
+              placeholder="1"
+              disabled
+            />
+          </div>
         </div>
-        <div class="col">
-            <button (click)="generarPdf()" class="btn btn-success px-3 py-2 my-2 text-light">
-                Ver pdf
-            </button>
+        <div class="row m-1">
+          <div class="col py-1">
+            <label for="conceptoResumen">{{ 'CONTABILIZACION.concepto' | translate }}</label> <br />
+            <select
+              name="conceptoResumen"
+              id="conceptoResumen"
+              class="form-control"
+              formControlName="concepto"
+              [class.is-invalid]="esInvalido('concepto')"
+            >
+              <option *ngFor="let concepto of conceptos" value="{{ concepto }}">
+                {{ concepto }}
+              </option>
+            </select>
+          </div>
         </div>
-        <div class="col">
-            <button (click)="guardar()" class="btn btn-success px-3 py-2 my-2 text-light">
-                Guardar
-            </button>
+        <small class="message m-3" *ngIf="mensaje">
+          {{ 'GLOBAL.campos_requeridos' | translate }}
+        </small>
+      </form>
+      <div class="row my-2 justify-content-center">
+        <ngx-general-table
+          class="mt-3"
+          [config]="configuration"
+          [datos]="datos"
+        ></ngx-general-table>
+      </div>
+      <div class="row my-2">
+        <div class="col py-2" align="center">
+          <label class="font-weight-bold m-2" for="sumaDebito"
+            >{{ 'CONTABILIZACION.suma_debito' | translate }}:
+          </label>
+          <input
+            name="sumaDebito"
+            id="sumaDebito"
+            class="form-control total m-2"
+            disabled
+            value="{{ totalDebito() | currency }}"
+          />
         </div>
+        <div class="col py-2" align="center">
+          <label class="font-weight-bold m-2" for="sumaCredito"
+            >{{ 'CONTABILIZACION.suma_credito' | translate }}:
+          </label>
+          <input
+            name="sumaCredito"
+            id="sumaCredito"
+            class="form-control m-2 total"
+            disabled
+            value="{{ totalCredito() | currency }}"
+          />
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="row text-center">
+    <div class="col">
+      <button
+        matStepperPrevious
+        type="button"
+        class="btn btn-primary px-3 py-2 my-2 text-light"
+      >
+        {{ 'GLOBAL.volver' | translate }}
+      </button>
+    </div>
+    <div class="col">
+      <button
+        (click)="generarPdf()"
+        class="btn btn-success px-3 py-2 my-2 text-light"
+      >
+      {{ 'GLOBAL.ver_pdf' | translate }}
+      </button>
+    </div>
+    <div class="col">
+      <button matStepperNext class="btn btn-success px-3 py-2 my-2 text-light">
+        {{ 'GLOBAL.siguiente' | translate }}
+      </button>
+    </div>
+  </div>
 </div>
 <ng-template #modalPDF>
-    <mat-dialog-content>
-        <div class="modal-content">
-            <div class="modal-header">
-                <ngx-pdfviewshared [fileName]="fileName" [currentPage]="pageVariable" [totalPages]="totalPages" [zoomAmt]="zoom" [zoomMax]="zoomMax" [zoomMin]="zoomMin" (setZoom)="setZoom($event)" (download)="download()" (print)="print()"></ngx-pdfviewshared>
-                <button type="button" class="close" (click)="close()" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-            </div>
-            <!-- header part -->
+  <mat-dialog-content>
+    <div class="modal-content">
+      <div class="modal-header">
+        <ngx-pdfviewshared
+          [fileName]="fileName"
+          [currentPage]="pageVariable"
+          [totalPages]="totalPages"
+          [zoomAmt]="zoom"
+          [zoomMax]="zoomMax"
+          [zoomMin]="zoomMin"
+          (setZoom)="setZoom($event)"
+          (download)="download()"
+          (print)="print()"
+        ></ngx-pdfviewshared>
+        <button
+          type="button"
+          class="close"
+          (click)="close()"
+          data-dismiss="modal"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!-- header part -->
 
-            <!-- pdf-viewer section -->
-            <div class="output-pdf-viewer">
-                <pdf-viewer [src]="pdfSrc" [(page)]="pageVariable" [show-all]="true" [render-text]="true" [original-size]="true" [fit-to-page]="false" [autoresize]="true" [show-borders]="true" [zoom-scale]="zoomScale" [zoom]="zoom" (after-load-complete)="afterLoadComplete($event)"
-                    #pdfViewer></pdf-viewer>
-            </div>
-        </div>
-    </mat-dialog-content>
+      <!-- pdf-viewer section -->
+      <div class="output-pdf-viewer">
+        <pdf-viewer
+          [src]="pdfSrc"
+          [(page)]="pageVariable"
+          [show-all]="true"
+          [render-text]="true"
+          [original-size]="true"
+          [fit-to-page]="false"
+          [autoresize]="true"
+          [show-borders]="true"
+          [zoom-scale]="zoomScale"
+          [zoom]="zoom"
+          (after-load-complete)="afterLoadComplete($event)"
+          #pdfViewer
+        ></pdf-viewer>
+      </div>
+    </div>
+  </mat-dialog-content>
 </ng-template>

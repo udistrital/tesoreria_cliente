@@ -1,818 +1,631 @@
 export const CONF_INGRESOS: any = {
-    showColumnTitle: true,
-    // title: {
-    //     name: 'Actividades Asociadas',
-    //     class: 'text-center text-light',
-    // },
-    dataConfig: [
-        {
-            key: 'vigencia',
-            title: {
-                name: 'Vigencia',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'consecutivo',
-            title: {
-                name: 'Consecutivo',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'centroGestor',
-            title: {
-                name: 'Centro gestor',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'areaFuncional',
-            title: {
-                name: 'Área funcional',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'valorTotal',
-            title: {
-                name: 'Valor total',
-                class: 'text-center',
-            },
-            pipe: {
-                type: 'currency',
-                config: [],
-                class: 'text-center',
-            }
-        },
-        {
-            key: 'fecha',
-            title: {
-                name: 'Fecha',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        }
-    ],
-    rowActions: {
-        title: {
-            name: 'Detalles',
-            class: 'text-center',
-            actionClass: 'd-flex flex-row justify-content-around align-middle'
-        },
-        actions: [
-            {
-                name: 'verIngreso',
-                icon: 'fas fa-eye',
-                class: 'p-2',
-                title: 'Ver ingreso',
-            }
-        ],
-    },
-    tableActions: [
-        {
-            name: 'nuevo',
-            icon: 'fas fa-plus py-1 px-2',
-            class: 'px-2',
-            title: 'Nuevo ingreso',
-        }
-    ],
-    noData: {
-        name: 'No existen elementos asociados',
+  showColumnTitle: true,
+  dataConfig: [
+    {
+      key: 'vigencia',
+      title: {
         class: 'text-center',
+        label_i18n: 'GLOBAL.vigencia'
+      },
+      pipe: {
+        class: 'text-justify',
+      },
     },
-    sort: true,
-    filter: true,
+    {
+      key: 'consecutivo',
+      title: {
+        class: 'text-center',
+        label_i18n: 'GLOBAL.consecutivo'
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'centroGestor',
+      title: {
+        class: 'text-center',
+        label_i18n: 'GLOBAL.centro_gestor'
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'areaFuncional',
+      title: {
+        class: 'text-center',
+        label_i18n: 'GLOBAL.area_funcional'
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'valorTotal',
+      title: {
+        class: 'text-center',
+        label_i18n: 'GLOBAL.valor_total'
+      },
+      pipe: {
+        type: 'currency',
+        config: [],
+        class: 'text-center',
+      },
+    },
+    {
+      key: 'fecha',
+      title: {
+        class: 'text-center',
+        label_i18n: 'GLOBAL.fecha'
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+  ],
+  rowActions: {
+    title: {
+      class: 'text-center',
+      actionClass: 'd-flex flex-row justify-content-around align-middle',
+      label_i18n: 'GLOBAL.detalles'
+    },
+    actions: [
+      {
+        icon: 'fas fa-eye',
+        class: 'p-2',
+        label_i18n_name: 'ACCION.NOMBRE.ver_ingreso',
+        label_i18n_title: 'ACCION.TITULO.ver_ingreso'
+      },
+    ],
+  },
+  tableActions: [
+    {
+      icon: 'fas fa-plus py-1 px-2',
+      class: 'px-2',
+      disabled: true,
+      label_i18n_name: 'ACCION.NOMBRE.nuevo_ingreso',
+      label_i18n_title: 'ACCION.TITULO.nuevo_ingreso'
+    },
+  ],
+  noData: {
+    label_i18n: 'AVISOS.sin_elementos_asociados',
+    class: 'text-center',
+  },
+  sort: true,
+  filter: true,
 };
 export const CONF_CONSIGNACION: any = {
-    showColumnTitle: true,
-    // title: {
-    //     name: 'Actividades Asociadas',
-    //     class: 'text-center text-light',
-    // },
-    dataConfig: [
-        {
-            key: 'oficina',
-            title: {
-                name: 'Oficina',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'ciudad',
-            title: {
-                name: 'Ciudad',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'fechaRecaudo',
-            title: {
-                name: 'Fecha recaudo',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'depositante',
-            title: {
-                name: 'Depositante',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'referencia1',
-            title: {
-                name: 'Referencia 1 / CC NIT',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'referencia2',
-            title: {
-                name: 'Referencia 2 / Código del banco',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'valorEfectivo',
-            title: {
-                name: 'Valor efectivo',
-                class: 'text-center',
-            },
-            pipe: {
-                type: 'currency',
-                config: [],
-                class: 'text-center',
-            }
-        },
-        {
-            key: 'valorCheque',
-            title: {
-                name: 'Valor cheque',
-                class: 'text-center',
-            },
-            pipe: {
-                type: 'currency',
-                config: [],
-                class: 'text-center',
-            }
-        },
-        {
-            key: 'valorDatafono',
-            title: {
-                name: 'Valor datáfono',
-                class: 'text-center',
-            },
-            pipe: {
-                type: 'currency',
-                config: [],
-                class: 'text-center',
-            }
-        },
-        {
-            key: 'valorTotal',
-            title: {
-                name: 'Valor total',
-                class: 'text-center',
-            },
-            pipe: {
-                type: 'currency',
-                config: [],
-                class: 'text-center',
-            }
-        },
-        {
-            key: 'otrasReferencias',
-            title: {
-                name: 'Número otras referencias',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-    ],
-    noData: {
-        name: 'No existen elementos asociados',
+  showColumnTitle: true,
+  dataConfig: [
+    {
+      key: 'oficina',
+      title: {
+        label_i18n: 'CONSIGNACION.oficina',
         class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
     },
-    sort: true,
-    filter: true,
+    {
+      key: 'ciudad',
+      title: {
+        label_i18n: 'CONSIGNACION.ciudad',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'fechaRecaudo',
+      title: {
+        label_i18n: 'CONSIGNACION.fecha_recaudo',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'depositante',
+      title: {
+        label_i18n: 'CONSIGNACION.depositante',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'referencia1',
+      title: {
+        label_i18n: 'CONSIGNACION.referencia_1',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'referencia2',
+      title: {
+        label_i18n: 'CONSIGNACION.referencia_2',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'valorEfectivo',
+      title: {
+        label_i18n: 'CONSIGNACION.valor_efectivo',
+        class: 'text-center',
+      },
+      pipe: {
+        type: 'currency',
+        config: [],
+        class: 'text-center',
+      },
+    },
+    {
+      key: 'valorCheque',
+      title: {
+        label_i18n: 'CONSIGNACION.valor_cheque',
+        class: 'text-center',
+      },
+      pipe: {
+        type: 'currency',
+        config: [],
+        class: 'text-center',
+      },
+    },
+    {
+      key: 'valorDatafono',
+      title: {
+        label_i18n: 'CONSIGNACION.valor_datafono',
+        class: 'text-center',
+      },
+      pipe: {
+        type: 'currency',
+        config: [],
+        class: 'text-center',
+      },
+    },
+    {
+      key: 'valorTotal',
+      title: {
+        label_i18n: 'CONSIGNACION.valor_total',
+        class: 'text-center',
+      },
+      pipe: {
+        type: 'currency',
+        config: [],
+        class: 'text-center',
+      },
+    },
+    {
+      key: 'otrasReferencias',
+      title: {
+        label_i18n: 'CONSIGNACION.numero_otras_referencias',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+  ],
+  noData: {
+    label_i18n: 'AVISOS.sin_elementos_asociados',
+    class: 'text-center',
+  },
+  sort: true,
+  filter: true,
 };
 export const CONF_RUBROS: any = {
-    showColumnTitle: true,
-    // title: {
-    //     name: 'Actividades Asociadas',
-    //     class: 'text-center text-light',
-    // },
-    dataConfig: [
-        {
-            key: 'numeroRubro',
-            title: {
-                name: 'Número de rubro',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'nombreRubro',
-            title: {
-                name: 'Nombre rubro',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'valor',
-            title: {
-                name: 'Valor',
-                class: 'text-center',
-            },
-            pipe: {
-                type: 'currency',
-                config: [],
-                class: 'text-center',
-            }
-        }
-    ],
-    sort: false,
-    filter: false,
+  showColumnTitle: true,
+  dataConfig: [
+    {
+      key: 'numeroRubro',
+      title: {
+        class: 'text-center',
+        label_i18n: 'RUBRO.numero_rubro'
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'nombreRubro',
+      title: {
+        class: 'text-center',
+        label_i18n: 'RUBRO.nombre_rubro'
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'valor',
+      title: {
+        class: 'text-center',
+        label_i18n: 'GLOBAL.valor',
+      },
+      pipe: {
+        type: 'currency',
+        config: [],
+        class: 'text-center',
+      },
+    },
+  ],
+  sort: false,
+  filter: false,
 };
 export const CONF_CONTABILIDAD: any = {
-    showColumnTitle: true,
-    // title: {
-    //     name: 'Actividades Asociadas',
-    //     class: 'text-center text-light',
-    // },
-    dataConfig: [
-        {
-            key: 'secuencia',
-            title: {
-                name: 'Secuencia',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'tercero',
-            title: {
-                name: 'Tercero',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'numeroCuenta',
-            title: {
-                name: 'N° de la cuenta',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'nombreCuenta',
-            title: {
-                name: 'Nombre de la cuenta',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'detalle',
-            title: {
-                name: 'Detalle',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'debito',
-            title: {
-                name: 'Débito',
-                class: 'text-center',
-            },
-            pipe: {
-                type: 'currency',
-                config: [],
-                class: 'text-center',
-            }
-        },
-        {
-            key: 'credito',
-            title: {
-                name: 'Crédito',
-                class: 'text-center',
-            },
-            pipe: {
-                type: 'currency',
-                config: [],
-                class: 'text-center',
-            }
-        }
-    ],
-    noData: {
-        name: 'No existen elementos asociados',
+  showColumnTitle: true,
+  dataConfig: [
+    {
+      key: 'secuencia',
+      title: {
+        label_i18n: 'CONTABILIZACION.secuencia',
         class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
     },
-    sort: true,
-    filter: true,
+    {
+      key: 'tercero',
+      title: {
+        label_i18n: 'CONTABILIZACION.tercero',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'numeroCuenta',
+      title: {
+        label_i18n: 'CONTABILIZACION.numero_cuenta',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'nombreCuenta',
+      title: {
+        label_i18n: 'CONTABILIZACION.nombre_cuenta',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'detalle',
+      title: {
+        label_i18n: 'CONTABILIZACION.detalle',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'debito',
+      title: {
+        label_i18n: 'CONTABILIZACION.debito',
+        class: 'text-center',
+      },
+      pipe: {
+        type: 'currency',
+        config: [],
+        class: 'text-center',
+      },
+    },
+    {
+      key: 'credito',
+      title: {
+        label_i18n: 'CONTABILIZACION.credito',
+        class: 'text-center',
+      },
+      pipe: {
+        type: 'currency',
+        config: [],
+        class: 'text-center',
+      },
+    },
+  ],
+  noData: {
+    label_i18n: 'AVISOS.sin_elementos_asociados',
+    class: 'text-center',
+  },
+  sort: true,
+  filter: true,
 };
 export const CONF_CODIGO_BARRAS: any = {
-    showColumnTitle: true,
-    // title: {
-    //     name: 'Actividades Asociadas',
-    //     class: 'text-center text-light',
-    // },
-    dataConfig: [
-        {
-            key: 'codigoOficina',
-            title: {
-                name: 'Cód. oficina',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'oficina',
-            title: {
-                name: 'Oficina',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'ciudad',
-            title: {
-                name: 'Ciudad',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'fechaRecaudo',
-            title: {
-                name: 'Fecha recaudo',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'documento',
-            title: {
-                name: 'Documento',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'tran',
-            title: {
-                name: 'Tran',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'valorEfectivo',
-            title: {
-                name: 'Valor efectivo',
-                class: 'text-center',
-            },
-            pipe: {
-                type: 'currency',
-                config: [],
-                class: 'text-center',
-            }
-        },
-        {
-            key: 'valorCheque',
-            title: {
-                name: 'Valor cheque',
-                class: 'text-center',
-            },
-            pipe: {
-                type: 'currency',
-                config: [],
-                class: 'text-center',
-            }
-        },
-        {
-            key: 'valorDatafono',
-            title: {
-                name: 'Valor datáfono',
-                class: 'text-center',
-            },
-            pipe: {
-                type: 'currency',
-                config: [],
-                class: 'text-center',
-            }
-        },
-        {
-            key: 'valorTotal',
-            title: {
-                name: 'Valor total',
-                class: 'text-center',
-            },
-            pipe: {
-                type: 'currency',
-                config: [],
-                class: 'text-center',
-            }
-        },
-        {
-            key: 'codigoTrans',
-            title: {
-                name: 'Código trans',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'referencia1',
-            title: {
-                name: 'Referencia1',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-    ],
-    noData: {
-        name: 'No existen elementos asociados',
+  showColumnTitle: true,
+  dataConfig: [
+    {
+      key: 'codigoOficina',
+      title: {
+        label_i18n: 'CODIGO_BARRAS.codigo_oficina',
         class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
     },
-    sort: true,
-    filter: true,
+    {
+      key: 'oficina',
+      title: {
+        label_i18n: 'CONSIGNACION.oficina',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'ciudad',
+      title: {
+        label_i18n: 'CONSIGNACION.ciudad',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'fechaRecaudo',
+      title: {
+        label_i18n: 'CONSIGNACION.fecha_recaudo',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'documento',
+      title: {
+        label_i18n: 'CODIGO_BARRAS.documento',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'tran',
+      title: {
+        label_i18n: 'CODIGO_BARRAS.transaccion',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'valorEfectivo',
+      title: {
+        label_i18n: 'CONSIGNACION.valor_efectivo',
+        class: 'text-center',
+      },
+      pipe: {
+        type: 'currency',
+        config: [],
+        class: 'text-center',
+      },
+    },
+    {
+      key: 'valorCheque',
+      title: {
+        label_i18n: 'CONSIGNACION.valor_cheque',
+        class: 'text-center',
+      },
+      pipe: {
+        type: 'currency',
+        config: [],
+        class: 'text-center',
+      },
+    },
+    {
+      key: 'valorDatafono',
+      title: {
+        label_i18n: 'CONSIGNACION.valor_datafono',
+        class: 'text-center',
+      },
+      pipe: {
+        type: 'currency',
+        config: [],
+        class: 'text-center',
+      },
+    },
+    {
+      key: 'valorTotal',
+      title: {
+        label_i18n: 'CONSIGNACION.valor_total',
+        class: 'text-center',
+      },
+      pipe: {
+        type: 'currency',
+        config: [],
+        class: 'text-center',
+      },
+    },
+    {
+      key: 'codigoTrans',
+      title: {
+        label_i18n: 'CODIGO_BARRAS.codigo_transaccion',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'referencia1',
+      title: {
+        label_i18n: 'CONSIGNACION.referencia_1',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+  ],
+  noData: {
+    label_i18n: 'AVISOS.sin_elementos_asociados',
+    class: 'text-center',
+  },
+  sort: true,
+  filter: true,
 };
 export const CONF_APORTES: any = {
-    showColumnTitle: true,
-    // title: {
-    //     name: 'Actividades Asociadas',
-    //     class: 'text-center text-light',
-    // },
-    dataConfig: [
-        {
-            key: 'fechaConsignacion',
-            title: {
-                name: 'Fecha consignación',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'entidadFinanciera',
-            title: {
-                name: 'Entidad financiera',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'numeroCuenta',
-            title: {
-                name: 'N° de cuenta',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'tipoCuenta',
-            title: {
-                name: 'Tipo de cuenta',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'vigencia',
-            title: {
-                name: 'Vigencia',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'valor',
-            title: {
-                name: 'Valor',
-                class: 'text-center',
-            },
-            pipe: {
-                type: 'currency',
-                config: [],
-                class: 'text-center',
-            }
-        },
-        {
-            key: 'tipoDocumento',
-            title: {
-                name: 'Tipo de documento',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'numeroDocumento',
-            title: {
-                name: 'N° de documento',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        },
-        {
-            key: 'fechaDocumento',
-            title: {
-                name: 'Fecha del documento',
-                class: 'text-center',
-            },
-            pipe: {
-                class: 'text-justify',
-            }
-        }
-    ],
-    sort: true,
-    filter: true,
+  showColumnTitle: true,
+  dataConfig: [
+    {
+      key: 'fechaConsignacion',
+      title: {
+        label_i18n: 'APORTES.fecha_consignacion',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'entidadFinanciera',
+      title: {
+        label_i18n: 'APORTES.entidad_financiera',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'numeroCuenta',
+      title: {
+        label_i18n: 'CUENTA_BANCARIA.numero_cuenta',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'tipoCuenta',
+      title: {
+        label_i18n: 'CUENTA_BANCARIA.tipo_cuenta',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'vigencia',
+      title: {
+        label_i18n: 'GLOBAL.vigencia',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'valor',
+      title: {
+        label_i18n: 'GLOBAL.valor',
+        class: 'text-center',
+      },
+      pipe: {
+        type: 'currency',
+        config: [],
+        class: 'text-center',
+      },
+    },
+    {
+      key: 'tipoDocumento',
+      title: {
+        label_i18n: 'APORTES.tipo_documento',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'numeroDocumento',
+      title: {
+        label_i18n: 'APORTES.numero_documento',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+    {
+      key: 'fechaDocumento',
+      title: {
+        label_i18n: 'APORTES.fecha_documento',
+        class: 'text-center',
+      },
+      pipe: {
+        class: 'text-justify',
+      },
+    },
+  ],
+  sort: true,
+  filter: true,
 };
- /******  Datos dummy ******************/
-export const DATOS_INGRESOS: any = [
-    {
-        vigencia: 2020,
-        consecutivo: 32,
-        centroGestor: 230,
-        areaFuncional: 1,
-        valorTotal: 8127361,
-        fecha: '2020/12/01',
-    },
-    {
-        vigencia: 2021,
-        consecutivo: 54,
-        centroGestor: 230,
-        areaFuncional: 1,
-        valorTotal: 6523421,
-        fecha: '2021/01/01',
-    }
-];
-export const DATOS_ICETEX: any = [
-    {
-        oficina: 519,
-        ciudad: 'Bogotá',
-        fechaRecaudo: '2020/06/01',
-        depositante: 'ICETEX',
-        referencia1: 8127361,
-        referencia2: 12391283,
-        valorEfectivo: 0,
-        valorCheque: 2345678,
-        valorDatafono: 0,
-        valorTotal: 2345678,
-        otrasReferencias: 9672,
-    },
-    {
-        oficina: 519,
-        ciudad: 'Bogotá',
-        fechaRecaudo: '2020/06/02',
-        depositante: 'ICETEX',
-        referencia1: 8723481,
-        referencia2: 10893298,
-        valorEfectivo: 0,
-        valorCheque: 3467894,
-        valorDatafono: 0,
-        valorTotal: 3467894,
-        otrasReferencias: 9672,
-    }
-];
-export const DATOS_PSE: any = [
-    {
-        oficina: '',
-        ciudad: 'Bogotá',
-        fechaRecaudo: '2020/05/02',
-        depositante: 'Andrea Arias',
-        referencia1: 823422,
-        referencia2: 1857723,
-        valorEfectivo: 0,
-        valorCheque: 0,
-        valorDatafono: 3467894,
-        valorTotal: 3467894,
-        otrasReferencias: 9672,
-    },
-    {
-        oficina: '',
-        ciudad: 'Bogotá',
-        fechaRecaudo: '2020/06/10',
-        depositante: 'Fernando Duran',
-        referencia1: 8723481,
-        referencia2: 10893298,
-        valorEfectivo: 0,
-        valorCheque: 0,
-        valorDatafono: 7735983,
-        valorTotal: 7735983,
-        otrasReferencias: 9672,
-    }
-];
-export const DATOS_ACH: any = [
-    {
-        oficina: '',
-        ciudad: 'Bogotá',
-        fechaRecaudo: '2020/06/05',
-        depositante: 'Banco de Bogotá',
-        referencia1: 8943052,
-        referencia2: 1823405,
-        valorEfectivo: 0,
-        valorCheque: 0,
-        valorDatafono: 1238890,
-        valorTotal: 0,
-        otrasReferencias: 9672,
-    },
-    {
-        oficina: '',
-        ciudad: 'Bogotá',
-        fechaRecaudo: '2020/06/12',
-        depositante: 'BBVA',
-        referencia1: 792347,
-        referencia2: 1023948,
-        valorEfectivo: 0,
-        valorCheque: 0,
-        valorDatafono: 5938048,
-        valorTotal: 5938048,
-        otrasReferencias: 9672,
-    }
-];
-export const DATOS_RECAUDO: any = [
-    {
-        oficina: 519,
-        ciudad: 'Bogotá',
-        fechaRecaudo: '2020/06/05',
-        depositante: 'Richard Buitrago',
-        referencia1: 10327409,
-        referencia2: 10546478,
-        valorEfectivo: 14000,
-        valorCheque: 0,
-        valorDatafono: 0,
-        valorTotal: 14000,
-        otrasReferencias: 675,
-    },
-    {
-        oficina: 519,
-        ciudad: 'Bogotá',
-        fechaRecaudo: '2020/06/07',
-        depositante: 'Lina Luis',
-        referencia1: 2180123,
-        referencia2: 2384081,
-        valorEfectivo: 70000,
-        valorCheque: 0,
-        valorDatafono: 0,
-        valorTotal: 70000,
-        otrasReferencias: 98,
-    }
-];
-export const DATOS_APORTES_NACION: any = [
-    {
-        fechaConsignacion: '2019/08/01',
-        entidadFinanciera: 'Banco de occidente',
-        numeroCuenta: 230141209,
-        tipoCuenta: 'Ahorros',
-        vigencia: 2018,
-        valor: 28345779,
-        tipoDocumento: 'Recibo de caja',
-        numeroDocumento: 'Res No. 007',
-        fechaDocumento: '2019/07/26',
-    }
-];
-export const DATOS_APORTES_DISTRITO: any = [
-    {
-        fechaConsignacion: '2019/08/03',
-        entidadFinanciera: 'BBVA',
-        numeroCuenta: 3294021,
-        tipoCuenta: 'Corriente',
-        vigencia: 2019,
-        valor: 758348421,
-        tipoDocumento: 'Recibo de caja',
-        numeroDocumento: 'Res No. 012',
-        fechaDocumento: '2019/07/24',
-    }
-];
-export const DATOS_CODIGO_BARRAS: any = [
-    {
-        codigoBanco: 23,
-        oficina: 248,
-        ciudad: 'Bogotá',
-        fechaRecaudo: '2020/06/03',
-        tran: 'CB',
-        valorEfectivo: 0,
-        valorCheque: 576681,
-        valorDatafono: 0,
-        valorTotal: 576681,
-        codigoTrans: 8672,
-        referencia1: 2019357403,
-    }
-];
-export const DATOS_OTRAS_ENTIDADES: any = [
-    {
-        oficina: '',
-        ciudad: 'Bogotá',
-        fechaRecaudo: '2020/06/07',
-        depositante: '',
-        referencia1: 423487,
-        referencia2: 892347,
-        valorEfectivo: 0,
-        valorCheque: 0,
-        valorDatafono: 5800234,
-        valorTotal: 5800234,
-        otrasReferencias: 324,
-    }
-];
-export const DATOS_CONTABILIDAD: any = [
-    {
-        secuencia: 1,
-        tercero: 12631623,
-        numeroCuenta: 17283612,
-        nombreCuenta: 'Banco',
-        detalle: 'Ingresos',
-        debito: 0,
-        credito: 586681
-    },
-    {
-        secuencia: 2,
-        tercero: 84568904,
-        numeroCuenta: 23623,
-        nombreCuenta: 'Banco occidente',
-        detalle: 'Ingresos',
-        debito: 586681,
-        credito: 0
-    }
+
+export const TIPOS_INGRESOS: any = [
+  {
+    Nombre: 'icetex',
+    label: 'Icetex',
+    label_i18n: 'INGRESOS.icetex'
+  },
+  {
+    Nombre: 'barras',
+    label: 'Codigo de barras',
+    label_i18n: 'INGRESOS.codigo_barras'
+  },
+  {
+    Nombre: 'pse',
+    label: 'PSE',
+    label_i18n: 'INGRESOS.pse'
+  },
+  {
+    Nombre: 'ach',
+    label: 'ACH',
+    label_i18n: 'INGRESOS.ach'
+  },
+  {
+    Nombre: 'recaudoLinea',
+    label: 'Recaudo en Linea',
+    label_i18n: 'INGRESOS.recaudo_linea'
+  },
+  {
+    Nombre: 'aportesNacion',
+    label: 'Aportes de la Nación',
+    label_i18n: 'INGRESOS.aportes_nacion'
+  },
+  {
+    Nombre: 'aportesDistrito',
+    label: 'Aportes del Distrito',
+    label_i18n: 'INGRESOS.aportes_distrito'
+  },
+  {
+    Nombre: 'otrasEntidades',
+    label: 'Aportes de otras entidades',
+    label_i18n: 'INGRESOS.aportes_otras_entidades'
+  }
 ];

@@ -149,20 +149,6 @@ export interface DatosNodoCuentaContable {
     Padre?: string;
 }
 
-export const OPCIONES_AREA_FUNCIONAL = [
-    {
-        Id: 1,
-        Nombre: 'Rector',
-        label: '01 - Rector',
-    },
-    {
-        Id: 2,
-        Nombre: 'Convenio',
-        label: '02 - Convenio',
-    }
-
-];
-
 export const OPCIONES_ENTIDAD_PRESUPUESTAL = [
     {
         Id: 230,

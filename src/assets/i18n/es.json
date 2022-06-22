@@ -29,7 +29,7 @@
       "gestion_apropiaciones": "Preasignación Inicial",
       "gestion_fuentes": "Fuentes de Financiamiento",
       "gestion_productos": "Productos",
-      "gestion_modificaciones_apropiaciones":  "Modificaciones Presupuestales"
+      "gestion_modificaciones_apropiaciones": "Modificaciones Presupuestales"
     },
     "gestion_crp": {
       "gestion_crp": "Gestión de CRP",
@@ -43,8 +43,8 @@
       "cdp": "Certificado Disponibilidad Presupuestal",
       "cdp_acronimo": "CDP"
     },
-    "vigencia":"Vigencias",
-    "reportes":"Reportes",
+    "vigencia": "Vigencias",
+    "reportes": "Reportes",
     "auth": {
       "auth": "Autenticación",
       "login": "Iniciar sesión",
@@ -203,15 +203,34 @@
     "cdp_traslado": "CDP traslado",
     "cdp_reduccion": "CDP reducción",
     "anulation_not_allowed": "Anulación para este documento no permitida.",
-    "seleccione" : "Seleccione una opción",
-    "volver" : "Volver",
-    "complete" : "Complete este campo",
-    "guardar_cambios" : "¿Desea guardar los cambios?",
-    "activo" : "Activo",
-    "inactivo" : "Inactivo",
-    "cambiar_estado" : "Cambiar estado",
+    "seleccione": "Seleccione una opción",
+    "volver": "Volver",
+    "complete": "Complete este campo",
+    "guardar_cambios": "¿Desea guardar los cambios?",
+    "activo": "Activo",
+    "inactivo": "Inactivo",
+    "cambiar_estado": "Cambiar estado",
     "entidad_pres": "Entidad presupuestal",
-    "cerrar": "Cerrar"
+    "cerrar": "Cerrar",
+    "inicio": "Inicio",
+    "ninguno": "Ninguno",
+    "todos": "Todos",
+    "rubros": "Rubros",
+    "campos_requeridos": "Los campos en rojo son requeridos*",
+    "pagina": "Página",
+    "anterior": "Anterior",
+    "total": "Total",
+    "ver_pdf": "Ver PDF",
+    "datos_generales": "Datos Generales",
+    "fecha": "Fecha",
+    "datos_consulta": "Datos Consulta",
+    "banco": "Banco",
+    "fecha_inicio": "Fecha de Inicio",
+    "fecha_final": "Fecha Final",
+    "valor_total": "Valor Total",
+    "detalles": "Detalles",
+    "oficina": "Oficina",
+    "ciudad": "Ciudad"
   },
   "RUBRO": {
     "asignar_rubro": "Asignar Rubro",
@@ -219,7 +238,10 @@
     "rubro_registrado_error": "No Se Pudo Registrar El Rubro",
     "registrar_rubro": "Registrar Rubro",
     "add-producto": "Agregar producto",
-    "edit-producto": "Editar producto"
+    "edit-producto": "Editar producto",
+    "numero_rubro": "Número del Rubro",
+    "nombre_rubro": "Nombre del Rubro",
+    "modificar_rubro": "Debe modificar al menos un rubro"
   },
   "FUENTE_FINANCIAMIENTO": {
     "descripcion": "En esta sección podrá agregar, modificar, eliminar y asignar una fuente a distintas vigencias, así como el filtrado de las fuentes mencionadas",
@@ -244,15 +266,15 @@
     "cambiar_ingreso": "Cambiar Ingreso",
     "saldo_restante_mov": "Saldo restante del movimiento"
   },
-  "ACTIVIDAD":{
+  "ACTIVIDAD": {
     "comprobacion-diferencia": "El valor de la(s) actividad(es) supera el de la apropiación por un valor de: "
   },
   "APROPIACION": {
-    "consulta-apropiacion-title":"Consulta apropiación inicial",
-    "title_gestion_preasignacion":"Gestión de preapropiación inicial",
-    "selecciona-ano-consulta":"Seleccione el año a consultar : ",
-    "parrafo-intro-consulta-apro":"El siguiente árbol representa las apropiaciones aprobadas para la vigencia seleccionada y al hacer clic sobre un rubro que tenga ramificaciones podrá ver los rubros hijos.<br>En la parte derecha de la pantalla podrá encontrar el detalle del rubro con la información pertinente.",
-    "texto-modificar-apro":"Para agregar un rubro a la vigencia {{vigenciaSel}} de click en :",
+    "consulta-apropiacion-title": "Consulta apropiación inicial",
+    "title_gestion_preasignacion": "Gestión de preapropiación inicial",
+    "selecciona-ano-consulta": "Seleccione el año a consultar : ",
+    "parrafo-intro-consulta-apro": "El siguiente árbol representa las apropiaciones aprobadas para la vigencia seleccionada y al hacer clic sobre un rubro que tenga ramificaciones podrá ver los rubros hijos.<br>En la parte derecha de la pantalla podrá encontrar el detalle del rubro con la información pertinente.",
+    "texto-modificar-apro": "Para agregar un rubro a la vigencia {{vigenciaSel}} de click en :",
     "comprobacion": "Comprobación de la apropiacion inicial",
     "ingresos": " 2 INGRESOS",
     "egresos": "3 GASTOS",
@@ -260,18 +282,18 @@
     "comprobacion-diferencia": "Existe una diferencia entre ingresos y egresos de: ",
     "comprobacion-diferencia-cero": "Las apropiaciones tienen valor de 0",
     "apropiaciones": "Apropiaciones",
-    "valor-apropiacion-inicial":"Valor apropiación inicial",
+    "valor-apropiacion-inicial": "Valor apropiación inicial",
     "detalle-apropiacion-inicial": "Detalle de la Apropiación Inicial",
     "pre-asignar-apropiacion-inicial": "Preasignar apropiación inicial",
-    "total-actividades":"Total actividades: ",
-    "total-fuentes":"Total fuentes : ",
-    "actividad":"Actividad : ",
-    "valor-actividad":"Valor actividad : ",
-    "meta":"Meta : ",
-    "fuente":"Fuente : ",
-    "dependencia":"Dependencia : ",
-    "valor-fuente":"Valor fuente : ",
-    "valor-dependencia":"Valor dependencia : ",
+    "total-actividades": "Total actividades: ",
+    "total-fuentes": "Total fuentes : ",
+    "actividad": "Actividad : ",
+    "valor-actividad": "Valor actividad : ",
+    "meta": "Meta : ",
+    "fuente": "Fuente : ",
+    "dependencia": "Dependencia : ",
+    "valor-fuente": "Valor fuente : ",
+    "valor-dependencia": "Valor dependencia : ",
     "asignar-apropiacion-inicial": "Asignar Apropiación"
   },
   "MODIF": {
@@ -395,8 +417,8 @@
     "total_comprometido": "Totalmente comprometido",
     "saldo": "Saldo del CRP"
   },
-  "VIGENCIA" : {
-    "cierre_vigencia_titulo" : "Cierre de vigencia.",
+  "VIGENCIA": {
+    "cierre_vigencia_titulo": "Cierre de vigencia.",
     "precierre_button": "Ver información de precierre",
     "ejecucion": "Resumen ejecución presupuestal",
     "fuentes": "Saldo Fuentes",
@@ -414,37 +436,40 @@
     "fecha_inicio": "Fecha Inicio",
     "fecha_cierre": "Fecha Cierre"
   },
-  "CUENTA_BANCARIA" : {
-    "cuenta_bancaria" : "CUENTA BANCARIA",
-    "datos_cuenta" : "Datos de la cuenta",
-    "recaudadora" : "recaudadora",
-    "pagadora" : "pagadora",
-    "4xmil" : "4 x 1000",
-    "recurso" : "Recurso",
-    "divisa" : "Divisa",
-    "id" : "ID",
-    "numero_cuenta" : "Número de cuenta",
-    "tipo_cuenta" : "Tipo de Cuenta",
-    "datos_banco" : "Datos del banco",
-    "banco" : "Banco",
-    "sucursal" : "Sucursal",
-    "lista" : "Lista de cuentas bancarias",
-    "nueva" : "Nueva Cuenta Bancaria",
-    "guardado_exitoso" : "Guardado de cuenta bancaria exitoso",
-    "edicion_exitosa" : "Se ha actualizado la cuenta bancaria exitosamente",
-    "cuenta" : "Cuenta",
-    "estado" : "Estado",
-    "acciones" : "Acciones",
-    "cambiar_estado" : "¿Desea cambiar el estado de la cuenta bancaria?"
+  "CUENTA_BANCARIA": {
+    "cuenta_bancaria": "CUENTA BANCARIA",
+    "datos_cuenta": "Datos de la cuenta",
+    "recaudadora": "recaudadora",
+    "pagadora": "pagadora",
+    "4xmil": "4 x 1000",
+    "recurso": "Recurso",
+    "divisa": "Divisa",
+    "id": "ID",
+    "numero_cuenta": "Número de cuenta",
+    "tipo_cuenta": "Tipo de Cuenta",
+    "datos_banco": "Datos del banco",
+    "banco": "Banco",
+    "sucursal": "Sucursal",
+    "lista": "Lista de cuentas bancarias",
+    "nueva": "Nueva Cuenta Bancaria",
+    "guardado_exitoso": "Guardado de cuenta bancaria exitoso",
+    "edicion_exitosa": "Se ha actualizado la cuenta bancaria exitosamente",
+    "cuenta": "Cuenta",
+    "estado": "Estado",
+    "acciones": "Acciones",
+    "cambiar_estado": "¿Desea cambiar el estado de la cuenta bancaria?",
+    "seleccione_numero": "Seleccione el Número",
+    "nombre_cuenta": "Nombre de la Cuenta",
+    "seleccione_nombre": "Seleccione el Nombre"
   },
-  "BANCO" : {
-    "id" : "ID",
-    "cambiar_estado" : "¿Desea cambiar el estado del banco?",
-    "super" : "Código Super",
-    "ach" : "Código ACH",
-    "nombre_banco" : "Nombre del banco",
-    "estado" : "Estado",
-    "nit" : "NIT",
+  "BANCO": {
+    "id": "ID",
+    "cambiar_estado": "¿Desea cambiar el estado del banco?",
+    "super": "Código Super",
+    "ach": "Código ACH",
+    "nombre_banco": "Nombre del banco",
+    "estado": "Estado",
+    "nit": "NIT",
     "acciones": "Acciones",
     "lista": "Lista de bancos",
     "nuevo": "Nuevo Banco",
@@ -452,10 +477,11 @@
     "ing_numeros": "Ingrese números en este campo",
     "creacion_banco": "Se ha creado el banco exitosamente",
     "act_banco": "Se ha actualizado el banco exitosamente",
-    "cambio_estado": "Se ha cambiado el estado del banco exitosamente"
+    "cambio_estado": "Se ha cambiado el estado del banco exitosamente",
+    "seleccione_banco": "Seleccione el Banco"
   },
-  "CONCEPTOS" : {
-    "lista" : "Lista de conceptos",
+  "CONCEPTOS": {
+    "lista": "Lista de conceptos",
     "nuevo_grupo": "Nuevo grupo",
     "nuevo_nodo": "Nuevo nodo",
     "ver": "Ver",
@@ -489,6 +515,90 @@
   "Nombre": "Nombre",
   "ApropiacionInicial": "Valor Apropiación Inicial",
   "Codigo": "Código",
-  "ValorInicial" : "Valor inicial",
-  "ValorActual" : "Valor actual"
+  "ValorInicial": "Valor inicial",
+  "ValorActual": "Valor actual",
+  "INGRESOS": {
+    "registro_ingresos": "Registro de Ingresos",
+    "consignacion": "Consignación",
+    "contabilizacion": "Contabilización",
+    "afectacion_presupuestal": "Afectación Presupuestal",
+    "lista_ingreso_tipo": "Lista de Ingresos por {{ TIPO }}",
+    "tipo_ingreso": "Tipo de Ingreso",
+    "icetex": "Icetex",
+    "codigo_barras": "Código de Barras",
+    "pse": "PSE",
+    "ach": "ACH",
+    "recaudo_linea": "Recaudo en Línea",
+    "aportes_nacion": "Aportes de la Nación",
+    "aportes_distrito": "Aportes del Distrito",
+    "aportes_otras_entidades": "Aportes de Otras Entidades",
+    "ingreso_guardado": "Se ha creado el ingreso con consecutivo {{ CONSECUTIVO }}",
+    "tipo_documento": "Tipo de Documento",
+    "codigo_recaudo": "Código de Recaudo"
+  },
+  "AVISOS": {
+    "exitoso": "success",
+    "error": "error",
+    "guardado_titulo": "¡Guardado!",
+    "boton_confirmacion": "Aceptar",
+    "error_titulo": "¡Error!",
+    "fecha_inicio_mayor_fecha_final": "La fecha de inicio no debe ser mayor que la fecha final",
+    "sin_elementos_asociados": "No Existen Elementos Asociados"
+  },
+  "CONSIGNACIONES": {
+    "lista_consignaciones": "Lista de Consignaciones",
+    "total_efectivo": "Total Efectivo",
+    "total_cheque": "Total Cheque",
+    "total_datafono": "Total Datáfono"
+  },
+  "CONTABILIZACION": {
+    "tipo_comprobante": "Tipo de Comprobante",
+    "consecutivo": "Consecutivo",
+    "concepto": "Concepto",
+    "suma_debito": "Suma Débito",
+    "suma_credito": "Suma Crédito",
+    "secuencia": "Secuencia",
+    "tercero": "Tercero",
+    "numero_cuenta": "N° de la Cuenta",
+    "nombre_cuenta": "Nombre de la Cuenta",
+    "debito": "Débito",
+    "credito": "Crédito"
+  },
+  "ACCION": {
+    "NOMBRE": {
+      "ver_ingreso": "verIngreso",
+      "nuevo_ingreso": "nuevo"
+    },
+    "TITULO": {
+      "ver_ingreso": "Ver Ingreso",
+      "nuevo_ingreso": "Nuevo Ingreso"
+    }
+  },
+  "CONSIGNACION": {
+    "oficina": "Oficina",
+    "ciudad": "Ciudad",
+    "fecha_recaudo": "Fecha Recaudo",
+    "depositante": "Depositante",
+    "referencia_1": "Referencia 1 / CC NIT",
+    "referencia_2": "Referencia 2 / Código del Banco",
+    "valor_efectivo": "Valor Efectivo",
+    "valor_cheque": "Valor Cheque",
+    "valor_datafono": "Valor Datáfono",
+    "valor_total": "Valor Total",
+    "numero_otras_referencias": "Número Otras Referencias"
+  },
+  "CODIGO_BARRAS": {
+    "codigo_oficina": "Cód. Oficina",
+    "documento": "Documento",
+    "transaccion": "Trans.",
+    "valor_efectivo": "Valor Efectivo",
+    "codigo_transaccion": "Cód. Trans."
+  },
+  "APORTES": {
+    "fecha_consignacion": "Fecha Consignación",
+    "entidad_financiera": "Entidad Financiera",
+    "tipo_documento": "Tipo de Documento",
+    "numero_documento": "Número de Documento",
+    "fecha_documento": "Fecha del Documento"
+  }
 }

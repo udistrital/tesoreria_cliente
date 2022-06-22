@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { combineLatest } from 'rxjs';
 import { LoadAreaFuncional, LoadCentroGestor } from '../../actions/shared.actions';
-import { OPCIONES_AREA_FUNCIONAL } from '../../interfaces/interfaces';
 import { getAreaFuncional, getCentroGestor } from '../../selectors/shared.selectors';
+import { MockService } from '../../services/mock.service';
 
 @Component({
   selector: 'ngx-datos-generales-iniciales',
@@ -24,11 +24,15 @@ export class DatosGeneralesInicialesComponent implements OnInit {
 
   constructor(
     private store: Store<any>,
+    private mockService: MockService,
   ) {
-    this.Opciones = OPCIONES_AREA_FUNCIONAL;
   }
 
   ngOnInit() {
+    this.mockService.getAreasFuncionales().subscribe((res) => {
+      this.Opciones = res;
+    });
+
     this.subscription$ = combineLatest([
       this.store.select(getAreaFuncional),
       this.store.select(getCentroGestor)

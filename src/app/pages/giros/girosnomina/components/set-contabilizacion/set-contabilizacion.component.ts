@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { DATOS_CONTABILIDAD, CONF_CONT } from '../../interfaces/interfaces';
+import { CONF_CONT } from '../../interfaces/interfaces';
 import { Store } from '@ngrx/store';
 import { getDatosBeneficiarios } from '../../selectors/girosnomina.selectors';
 import { SharedService } from '../../../../../shared/services/shared.service';
+import { DATOS_CONTABILIDAD } from '../../../../../../assets/mock/tiposIngresos';
 
 @Component({
   selector: 'ngx-set-contabilizacion',

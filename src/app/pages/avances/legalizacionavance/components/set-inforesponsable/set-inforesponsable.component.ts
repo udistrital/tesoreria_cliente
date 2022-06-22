@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { LoadFilaSeleccionada } from '../../../../../shared/actions/shared.actions';
-import { OPCIONES_AREA_FUNCIONAL } from '../../../../../shared/interfaces/interfaces';
+import { MockService } from '../../../../../shared/services/mock.service';
 import { cargarDatosResponsableLegalizacion, loadTipoLegalizacion } from '../../actions/legalizacionavance.actions';
 
 @Component({
@@ -16,16 +16,24 @@ export class SetInforesponsableComponent implements OnInit, OnDestroy, OnDestroy
   subTipoInforme$: any;
   susDatosSolicitante$: any;
 
-  constructor(private fb: FormBuilder, private store: Store<any>) {
-    this.opcionesAreaFuncional = OPCIONES_AREA_FUNCIONAL;
+  constructor(
+    private fb: FormBuilder,
+    private store: Store<any>,
+    private mockService: MockService,
+    ) {
     this.crearFormulario();
   }
 
   ngOnInit() {
+    this.mockService.getAreasFuncionales().subscribe((res) => {
+      this.opcionesAreaFuncional = res;
+    });
+
     this.subTipoInforme$ = this.datosResponsable.get('tipoInforme').valueChanges.subscribe(valor => {
       if (this.datosResponsable.get('tipoInforme').valid)
         this.store.dispatch(loadTipoLegalizacion({ tipoInforme: valor }));
     });
+
     this.susDatosSolicitante$ = this.datosResponsable.valueChanges.subscribe(valor => {
       if (this.datosResponsable.valid)
         this.store.dispatch(cargarDatosResponsableLegalizacion({ datosResponsable: valor }));

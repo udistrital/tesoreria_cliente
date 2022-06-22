@@ -1,20 +1,32 @@
-import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  OnDestroy,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { getTipoIngreso } from '../../selectors/ingresos.selectors';
 import { SharedService } from '../../../../shared/services/shared.service';
 import Swal from 'sweetalert2';
+import { MockService } from '../../../../shared/services/mock.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'ngx-set-inicio',
   templateUrl: './set-inicio.component.html',
-  styleUrls: ['./set-inicio.component.scss']
+  styleUrls: ['./set-inicio.component.scss'],
 })
 export class SetInicioComponent implements OnInit, OnDestroy {
-
-  @Output () validarForm: EventEmitter <any>;
-  @Output () informacionForm: EventEmitter <any>;
+  @Output() validarForm: EventEmitter<any>;
+  @Output() informacionForm: EventEmitter<any>;
 
   tipoIngreso: any;
   ingresoTipo: any;
@@ -22,43 +34,40 @@ export class SetInicioComponent implements OnInit, OnDestroy {
   datosConsultaForm: FormGroup;
   subscriptionTipoIngreso$: any;
 
-  areaFuncional: String[] = [
-    'Servicios',
-    'Pagos',
-    'Formatos'
-  ];
+  areaFuncional: string[];
+  cuentasBancarias: string[];
+  cuentas: string[];
+  bancos: string[];
+  fecha: string;
 
-  numeroCuenta: any;
+  bancoSelected: string;
+  cuentaBancariaBancos: any;
+  numeroCuentaSelected: string;
+  nombreCuentaSelected: string;
 
-  cuentas: String[] = [
-    'Proveedores',
-    'Ahorros',
-    'General'
-  ];
-
-  bancos: String[] = [
-    'Banco de Occidente',
-    'Banco de Bogotá',
-    'BBVA'
-  ];
+  fechaInicioMal: boolean = false;
+  fechaFinMal: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private store: Store<any>,
     private sharedService: SharedService,
     private route: Router,
+    private mockService: MockService,
+    private translate: TranslateService,
   ) {
     this.datosConsultaForm = this.formBuilder.group({
       banco: ['', Validators.required],
       areaFuncional: ['', Validators.required],
+      fecha: [new Date().toLocaleDateString(), Validators.required],
       nombreCuenta: ['', Validators.required],
+      cuentasBancarias: ['', Validators.required],
       fechaInicio: ['', Validators.required],
       fechaFinal: ['', Validators.required],
-      codigoRecaudo: ['', Validators.required]
+      codigoRecaudo: ['', Validators.required],
     });
-    this.numeroCuenta = '230-14-61';
-    this.validarForm = new EventEmitter;
-    this.informacionForm = new EventEmitter;
+    this.validarForm = new EventEmitter();
+    this.informacionForm = new EventEmitter();
   }
 
   ngOnDestroy() {
@@ -68,53 +77,62 @@ export class SetInicioComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-  this.subscriptionTipoIngreso$ = this.store.select(getTipoIngreso).subscribe(
-      data => {
+    this.subscriptionTipoIngreso$ = this.store
+      .select(getTipoIngreso)
+      .subscribe((data) => {
         if (this.sharedService.IfStore(data)) {
-          switch (data.tipo) {
+          // console.log('data: ', data);
+          switch (data.tipoIngreso.Nombre) {
             case 'icetex':
-              this.ingresoTipo = 'ICETEX';
-              break;
             case 'barras':
-              this.ingresoTipo = 'Código de barras';
-              break;
             case 'pse':
-              this.ingresoTipo = 'PSE';
-              break;
             case 'ach':
-              this.ingresoTipo = 'ACH';
-              break;
             case 'recaudoLinea':
-              this.ingresoTipo = 'Recaudo en línea';
-              break;
             case 'aportesNacion':
-              this.ingresoTipo = 'Aportes de la nación';
-              break;
             case 'aportesDistrito':
-              this.ingresoTipo = 'Aportes del distrito';
-              break;
             case 'otrasEntidades':
-              this.ingresoTipo = 'Otras entidades';
+              this.ingresoTipo = data.tipoIngreso.label;
               break;
             default:
               this.regresar();
               break;
           }
-          this.tipoIngreso = data.tipo;
+          this.tipoIngreso = data.tipoIngreso;
         }
-      }
-    );
+      });
     this.handleChanges();
+
+    // Traer Bancos de Tesorería MID que tengan cuentas bancarias asociadas
+    this.sharedService.getCuentaBancariaBancoMid().subscribe((res) => {
+      if (res.Data && res.Data.length) {
+        this.cuentaBancariaBancos = res.Data;
+        const pruebaBancos = res.Data.map((cuenta) => {
+          return cuenta.NombreBanco;
+        });
+
+        this.bancos = [...new Set(pruebaBancos)] as string[];
+      }
+    });
+
+    // Traer Áreas Funcionales del servicio con Mock de datos TODO: Cambiar por un API paramétrica
+    this.mockService.getAreasFuncionales().subscribe((res) => {
+      this.areaFuncional = res.map((area) => {
+        return `${area.codigo} - ${area.nombre}`;
+      });
+    });
   }
 
   onSubmit(data: any) {
     if (this.datosConsultaForm.valid) {
-      if (this.datosConsultaForm.value.fechaFinal < this.datosConsultaForm.value.fechaInicio) {
+      if (
+        this.datosConsultaForm.value.fechaFinal <
+        this.datosConsultaForm.value.fechaInicio
+      ) {
         Swal.fire({
-          type: 'error',
-          title: '¡Error!',
-          html: 'La fecha final no puede ser anterior a la inicial',
-          confirmButtonText: 'Aceptar',
+          type: this.translate.instant('AVISOS.error'),
+          title: this.translate.instant('AVISOS.error_titulo'),
+          html: this.translate.instant('AVISOS.fecha_inicio_mayor_fecha_final'),
+          confirmButtonText: this.translate.instant('AVISOS.boton_confirmacion'),
         });
       } else {
         this.mensaje = false;
@@ -127,36 +145,69 @@ export class SetInicioComponent implements OnInit, OnDestroy {
   }
 
   handleChanges() {
-    this.datosConsultaForm.statusChanges.subscribe(
-      result => {
-        if (result === 'VALID') {
-          this.mensaje = false;
-          this.validarForm.emit(true);
-        } else {
-          this.validarForm.emit(false);
-        }
+    this.datosConsultaForm.statusChanges.subscribe((result) => {
+      if (result === 'VALID') {
+        this.mensaje = false;
+        this.validarForm.emit(true);
+      } else {
+        this.validarForm.emit(false);
       }
-    );
+    });
   }
 
   regresar() {
-    this.route.navigateByUrl('pages/ingresos/' + this.tipoIngreso + '/lista');
+    this.route.navigateByUrl(`pages/ingresos/lista/${this.tipoIngreso.Nombre}`);
   }
 
   esInvalido(nombre: string) {
     const input = this.datosConsultaForm.get(nombre);
-    if (input)
-      return input.invalid && (input.touched || input.dirty);
-    else
-      return true;
+    if (input) return input.invalid && (input.touched || input.dirty);
+    else return true;
   }
 
   validarFormulario() {
     if (this.datosConsultaForm.invalid) {
-      return Object.values(this.datosConsultaForm.controls).forEach(control => {
-        control.markAsDirty();
-      });
+      return Object.values(this.datosConsultaForm.controls).forEach(
+        (control) => {
+          control.markAsDirty();
+        }
+      );
     }
   }
 
+  cambioBanco(event$: string) {
+    this.bancoSelected = event$;
+    if (event$) {
+      this.cuentasBancarias = this.cuentaBancariaBancos
+        .filter((cuenta) => {
+          return cuenta.NombreBanco === this.bancoSelected;
+        })
+        .map((cuenta) => {
+          return `${cuenta.NumeroCuenta} / ${cuenta.NombreSucursal}`;
+        });
+
+      this.cambioNumeroCuenta('');
+    }
+  }
+
+  cambioNumeroCuenta(event$: any) {
+    this.numeroCuentaSelected = event$;
+    if (event$) {
+      const numCuenta: string = event$.split('/')[0].trim();
+      const query = { NumeroCuenta: numCuenta };
+      const limit = -1;
+      this.sharedService.getCuentasBancarias(query, limit).subscribe((res) => {
+        if (res.Data && res.Data.length) {
+          this.cuentas = res.Data.map((cuenta) => {
+            return cuenta.NombreCuenta;
+          });
+        }
+      });
+      this.cambioNombreCuenta('');
+    }
+  }
+
+  cambioNombreCuenta(event$: any) {
+    this.nombreCuentaSelected = event$;
+  }
 }

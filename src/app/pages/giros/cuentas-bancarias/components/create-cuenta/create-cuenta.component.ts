@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
-import { OPCIONES_AREA_FUNCIONAL } from '../../../../../shared/interfaces/interfaces';
 import { CODIGO_RECURSOS } from '../../interfaces/interfaces';
 import { obtenerBancos, obtenerSucursales, obtenerDivisas, cargarDivisas, obtenerRecursos, obtenerTipoCuenta, obtenerCuentasBancarias,
         cargarCuentasBancarias, cargarRecursos, cargarBancos } from '../../../../../shared/actions/shared.actions';
@@ -10,6 +9,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
 import { actualizarCuentaBancaria, crearCuentaBancaria } from '../../actions/cuentaBancaria.action';
 import { TranslateService } from '@ngx-translate/core';
+import { MockService } from '../../../../../shared/services/mock.service';
 
 @Component({
   selector: 'ngx-create-cuenta',
@@ -44,9 +44,15 @@ export class CreateCuentaComponent implements OnInit, OnDestroy {
 
   // Formulario
   crearCuentaBancariaGroup: FormGroup;
-  constructor(private fb: FormBuilder, private store: Store<any>, private modalService: NgbModal, private activatedRoute: ActivatedRoute, translate: TranslateService) {
+  constructor(
+    private fb: FormBuilder,
+    private store: Store<any>,
+    private modalService: NgbModal,
+    private activatedRoute: ActivatedRoute,
+    translate: TranslateService,
+    private mockService: MockService,
+    ) {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.opcionesAreaFuncional = OPCIONES_AREA_FUNCIONAL;
     this.codigoRecursos = CODIGO_RECURSOS;
     this.bancos = [];
     this.sucursales = [];
@@ -86,6 +92,10 @@ export class CreateCuentaComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.mockService.getAreasFuncionales().subscribe((res) => {
+      this.opcionesAreaFuncional = res;
+    });
+
     if (this.tituloAccion === 'editar' || this.tituloAccion === 'ver') {
       this.subCuentaBancaria$ = this.store.select(seleccionarCuentasBancarias).subscribe((accion) => {
         if (accion && accion.CuentasBancarias) {

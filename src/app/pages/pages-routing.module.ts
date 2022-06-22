@@ -68,7 +68,7 @@ const routes: Routes = [{
       .then(m => m.InformacionExogenaModule),
     },
     {
-      path: 'ingresos/:tipo',
+      path: 'ingresos',
       loadChildren: () => import('./ingresos/ingresos.module')
       .then(m => m.IngresosModule),
     },
