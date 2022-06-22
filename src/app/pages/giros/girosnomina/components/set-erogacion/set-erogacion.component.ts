@@ -71,7 +71,7 @@ export class SetErogacionComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
     private sharedService: SharedService,
-    private translateHelper: TranslateFormItemsService
+    private translateHelper: TranslateFormItemsService,
     ) {
       this.informacionBanco = new EventEmitter;
       this.informacionBeneficiarios = new EventEmitter;
@@ -173,7 +173,8 @@ export class SetErogacionComponent implements OnInit, OnDestroy {
   }
 
   private translateTableConfiguracion(): void {
-    this.configurationRubro = this.translateHelper.translateItemTableConfiguration(CONF_RUBROS);
+    this.configurationRubro = this.translateHelper
+      .translateItemTableConfiguration(CONF_RUBROS);
   }
 
 }

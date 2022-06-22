@@ -7,7 +7,6 @@ import {
   CONF_CONSIGNACION,
   CONF_CODIGO_BARRAS,
   CONF_APORTES,
-
 } from '../../interfaces/interfaces';
 import { TranslateFormItemsService } from '../../../../shared/helpers/translate-form-items.service';
 import {
@@ -40,7 +39,7 @@ export class SetConsignacionesComponent implements OnInit, OnDestroy {
     private store: Store<any>,
     private sharedService: SharedService,
     private route: Router,
-    private translateHelper: TranslateFormItemsService
+    private translateHelper: TranslateFormItemsService,
   ) {}
   ngOnDestroy() {
     if (this.subscriptionTipo$ !== undefined) {

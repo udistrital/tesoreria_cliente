@@ -112,7 +112,7 @@ export class SharedService {
   public getTiposID(activo?: boolean) {
     this.rqManager.setPath('TERCEROS_CRUD_SERVICE');
     let query = '';
-    if (activo) query = `Activo:${activo}`;
+    if (activo === true || activo === false) query = `Activo:${activo}`;
     const params = {
       fields: 'Nombre,Id',
       query: query,
@@ -129,7 +129,7 @@ export class SharedService {
     numero?: string,
     tipo?: number,
     limit?: number,
-    fields?: string
+    fields?: string,
   ) {
     this.rqManager.setPath('TERCEROS_CRUD_SERVICE');
     const params = {
@@ -183,7 +183,7 @@ export class SharedService {
       null,
       null,
       null,
-      limit
+      limit,
     );
   }
 
@@ -199,7 +199,8 @@ export class SharedService {
     if (!id) {
       if (!limit) limit = 0;
       if (!query) query = {};
-      if (!query.Activo) query.Activo = true;
+      if (query.Activo === undefined || query.Activo === null)
+        query.Activo = true;
     }
     return this.rqManager.getv2(
       'dependencia',
@@ -208,7 +209,7 @@ export class SharedService {
       null,
       null,
       null,
-      limit
+      limit,
     );
   }
 
@@ -229,7 +230,7 @@ export class SharedService {
       null,
       null,
       null,
-      limit
+      limit,
     );
   }
 
@@ -253,7 +254,7 @@ export class SharedService {
       null,
       null,
       null,
-      limit
+      limit,
     );
   }
 
@@ -277,7 +278,7 @@ export class SharedService {
       null,
       null,
       null,
-      limit
+      limit,
     );
   }
 
@@ -296,7 +297,7 @@ export class SharedService {
       null,
       null,
       null,
-      null
+      null,
     );
   }
 
@@ -318,7 +319,7 @@ export class SharedService {
       null,
       null,
       null,
-      null
+      null,
     );
   }
 
@@ -351,7 +352,7 @@ export class SharedService {
       null,
       null,
       null,
-      null
+      null,
     );
   }
 
@@ -372,7 +373,7 @@ export class SharedService {
       null,
       null,
       null,
-      limit
+      limit,
     );
   }
 
@@ -393,7 +394,7 @@ export class SharedService {
       null,
       null,
       null,
-      limit
+      limit,
     );
   }
 
@@ -414,7 +415,7 @@ export class SharedService {
       null,
       null,
       null,
-      limit
+      limit,
     );
   }
 
@@ -435,7 +436,7 @@ export class SharedService {
       null,
       null,
       null,
-      limit
+      limit,
     );
   }
 
@@ -456,7 +457,7 @@ export class SharedService {
       null,
       null,
       null,
-      limit
+      limit,
     );
   }
 
@@ -486,7 +487,7 @@ export class SharedService {
       null,
       null,
       null,
-      limit
+      limit,
     );
   }
 
@@ -507,7 +508,7 @@ export class SharedService {
       null,
       null,
       null,
-      limit
+      limit,
     );
   }
 
@@ -528,7 +529,7 @@ export class SharedService {
       null,
       null,
       null,
-      limit
+      limit,
     );
   }
 
@@ -548,7 +549,7 @@ export class SharedService {
       null,
       null,
       null,
-      null
+      null,
     );
   }
 
@@ -566,7 +567,7 @@ export class SharedService {
       null,
       null,
       null,
-      null
+      null,
     );
   }
 
@@ -587,7 +588,7 @@ export class SharedService {
       null,
       null,
       null,
-      limit
+      limit,
     );
   }
 
@@ -608,7 +609,7 @@ export class SharedService {
       null,
       null,
       null,
-      limit
+      limit,
     );
   }
 
@@ -629,7 +630,7 @@ export class SharedService {
       null,
       null,
       null,
-      limit
+      limit,
     );
   }
 
