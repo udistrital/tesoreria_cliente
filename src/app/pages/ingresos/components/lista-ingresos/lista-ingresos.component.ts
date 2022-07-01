@@ -1,12 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {
-  CONF_INGRESOS,
-  TIPOS_INGRESOS,
-} from '../../interfaces/interfaces';
+import { CONF_INGRESOS, TIPOS_INGRESOS } from '../../interfaces/interfaces';
 import { Store } from '@ngrx/store';
-import { getAccionTabla } from '../../../../shared/selectors/shared.selectors';
-import { LoadAccionTabla } from '../../../../shared/actions/shared.actions';
+import {
+  getAccionTabla,
+  getFilaSeleccionada,
+} from '../../../../shared/selectors/shared.selectors';
+import {
+  LoadAccionTabla,
+  LoadFilaSeleccionada,
+} from '../../../../shared/actions/shared.actions';
 import { combineLatest } from 'rxjs';
 import { getTipoIngreso } from '../../selectors/ingresos.selectors';
 import { SharedService } from '../../../../shared/services/shared.service';
@@ -15,6 +18,11 @@ import { cargarTipoIngreso } from '../../actions/ingresos.actions';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateFormItemsService } from '../../../../shared/helpers/translate-form-items.service';
 import { DATOS_INGRESOS } from '../../../../../assets/mock/tiposIngresos';
+import { IngresoService } from '../../../../shared/services/ingresos/ingreso.service';
+import { Ingreso } from '../../../../shared/services/ingresos/dto/ingreso.dto';
+import { numeric } from '@rxweb/reactive-form-validators';
+import Swal from 'sweetalert2';
+import { PopUpManager } from '../../../../@core/managers/popUpManager';
 
 @Component({
   selector: 'ngx-lista-ingresos',
@@ -31,6 +39,7 @@ export class ListaIngresosComponent implements OnInit, OnDestroy {
   tablaIngresos: FormGroup;
   tipoIngresoSelect: any;
   selected: any;
+  $filaSeleccionada: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -39,8 +48,9 @@ export class ListaIngresosComponent implements OnInit, OnDestroy {
     private sharedService: SharedService,
     private translate: TranslateService,
     private translateHelper: TranslateFormItemsService,
+    private ingresoService: IngresoService,
+    private popUpManager: PopUpManager
   ) {
-    this.datosIngresos = DATOS_INGRESOS;
     this.tiposIngresos = TIPOS_INGRESOS;
     this.tablaIngresos = this.formBuilder.group({
       tipoIngreso: [''],
@@ -58,6 +68,7 @@ export class ListaIngresosComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.translateTableConfiguracion();
+    this.loadIngresos();
     this.store.select(getTipoIngreso).subscribe((res) => {
       if (res && res.tipoIngreso) {
         this.selected = {
@@ -88,6 +99,22 @@ export class ListaIngresosComponent implements OnInit, OnDestroy {
         }
       }
     });
+
+    this.$filaSeleccionada = this.store
+      .select(getFilaSeleccionada)
+      .subscribe((data: any) => {
+        if (this.sharedService.IfStore(data)) {
+          if (
+            data.accion.title ===
+            this.translate.instant('ACCION.TITULO.ver_ingreso')
+          ) {
+            this.router.navigate([
+              `pages/ingresos/detalle/${data.fila.consecutivo}`,
+            ]);
+            this.store.dispatch(LoadFilaSeleccionada(null));
+          }
+        }
+      });
   }
 
   cambioTipoIngreso() {
@@ -121,5 +148,26 @@ export class ListaIngresosComponent implements OnInit, OnDestroy {
   private translateTableConfiguracion(): void {
     this.configuration =
       this.translateHelper.translateItemTableConfiguration(CONF_INGRESOS);
+  }
+
+  private loadIngresos(): void {
+    this.ingresoService.getIngresos().subscribe((res) => {
+      if (res.Status === '200' && res.Data.length) {
+        this.datosIngresos = res.Data.map((ingreso: Ingreso) => {
+          return {
+            vigencia: ingreso.VigenciaId,
+            consecutivo: ingreso.Consecutivo,
+            centroGestor: 230,
+            areaFuncional: ingreso.AreaFuncional,
+            valorTotal: ingreso.ValorTotal,
+            fecha: new Date(ingreso.FechaCreacion).toLocaleDateString(),
+          };
+        });
+      } else {
+        this.popUpManager.showErrorAlert(
+          `No se pudieron cargar los ingresos - Error: ${res.Status}: ${res.Message}`
+        );
+      }
+    });
   }
 }

@@ -22,6 +22,10 @@ const routes: Routes = [
         component: ListaIngresosComponent,
       },
       {
+        path: 'detalle/:ingreso',
+        component: ListaIngresosComponent,
+      },
+      {
         path: '',
         redirectTo: 'lista',
         pathMatch: 'full',
