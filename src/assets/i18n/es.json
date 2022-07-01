@@ -562,7 +562,8 @@
     "numero_cuenta": "N° de la Cuenta",
     "nombre_cuenta": "Nombre de la Cuenta",
     "debito": "Débito",
-    "credito": "Crédito"
+    "credito": "Crédito",
+    "detalle": "Detalle"
   },
   "ACCION": {
     "NOMBRE": {
