@@ -21,7 +21,6 @@ import { DATOS_INGRESOS } from '../../../../../assets/mock/tiposIngresos';
 import { IngresoService } from '../../../../shared/services/ingresos/ingreso.service';
 import { Ingreso } from '../../../../shared/services/ingresos/dto/ingreso.dto';
 import { numeric } from '@rxweb/reactive-form-validators';
-import Swal from 'sweetalert2';
 import { PopUpManager } from '../../../../@core/managers/popUpManager';
 
 @Component({
