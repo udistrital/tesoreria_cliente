@@ -66,10 +66,16 @@ const routes: Routes = [{
       path: 'informacionexogena',
       loadChildren: () => import('./informacion-exogena/informacion-exogena.module')
       .then(m => m.InformacionExogenaModule),
-    }, {
-      path: 'ingresos/:tipo',
+    },
+    {
+      path: 'ingresos',
       loadChildren: () => import('./ingresos/ingresos.module')
       .then(m => m.IngresosModule),
+    },
+    {
+      path: 'conceptos',
+      loadChildren: () => import('./conceptos/conceptos.module')
+      .then(m => m.ConceptosModule),
     },
   ],
 }];

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12 bg-white px-3 py-3 pt-3 pb-3">
             <h5 class="card-title text-center text-primary">
-                CREAR SUCURSAL
+                {{ tituloAccion.toUpperCase() }} SUCURSAL
             </h5>
         </div>
     </div>
@@ -15,11 +15,13 @@
 
                         <div class="col-md-6">
                             <label>Nombre del Banco</label>
-                            <select class="custom-select" formControlName="nombreBanco" [class.is-invalid]="isInvalid('nombreBanco')">
-                                <option selected disabled>Seleccione...</option>
-                                <option>Banco de la Republica</option>
-                                <option>Banco de Bogotá</option>
-                            </select>
+                            <mat-select class="form-control" placeholder="Seleccione..." formControlName="nombreBanco">
+                                <cdk-virtual-scroll-viewport itemSize="10" minBufferPx="200" maxBufferPx="400" class="vs-viewport">
+                                    <mat-option *cdkVirtualFor="let banco of bancos" [value]="banco">
+                                        {{banco.TerceroId.NombreCompleto}}
+                                    </mat-option>
+                                </cdk-virtual-scroll-viewport>
+                            </mat-select>
                             <small *ngIf="isInvalid('nombreBanco')" class="text-danger">Seleccione un valor</small>
                         </div>
                         <div class="col-md-6">
@@ -28,15 +30,19 @@
                             <small *ngIf="isInvalid('nombreSucursal')" class="text-danger">Complete este campo</small>
                         </div>
                     </div>
-
+                    <div class="row px-5">
+                        <div class="col-md-6">
+                            <mat-slide-toggle formControlName="activo" [checked]="checked">Activo</mat-slide-toggle>
+                        </div>
+                    </div>
                     <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
 
                     <!-- Botones: Volver a registro, Siguiente -->
                     <div class="row pt-2 text-center">
                         <div class="col-md-6">
-                            <a href="#/pages/giros/sucursales/lista">
+                            <a>
                                 <button type="button" class="btn btn-primary mb-3 mt-3 text-white">
-                                    <div class="d-flex flex-row justify-content-around align-middle">
+                                    <div class="d-flex flex-row justify-content-around align-middle" [routerLink]="['/pages/giros/sucursales/lista']" routerLinkActive="router-link-active" >
                                         <span>Volver</span>
                                     </div>
                                 </button>
@@ -69,7 +75,7 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">Cancelar</button>
         <button type="button" class="btn btn-primary text-white" (click)="modal.close(true)">
-            <a routerLink="../lista" data-dismiss="modal">Guardar</a>
+            <a data-dismiss="modal">Guardar</a>
         </button>
     </div>
 </ng-template>

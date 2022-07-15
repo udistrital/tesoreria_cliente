@@ -1,8 +1,14 @@
 kind: pipeline
 name: oas_cliente_ci
 
+trigger:
+  event:
+    exclude:
+      - tag
+
 steps:
 - name: check_readme
+  failure: ignore
   image: jjvargass/qa_develoment:latest
   commands:
   - python /app/check_readme.py
@@ -16,6 +22,7 @@ steps:
     - push
 
 - name: check_branch
+  failure: ignore
   image: jjvargass/qa_develoment:latest
   commands:
   - python /app/check_branch.py -H ${DRONE_GIT_HTTP_URL}
@@ -28,7 +35,11 @@ steps:
     event:
     - push
 
+# SCRIPT NO OBJETIVO - Ver:
+# https://github.com/udistrital/arka_cliente/commit/37e3ece10d52cae1303d837ad0e8a6ca1fb7a549
+# Quedó habilitado solo permitiendo que falle
 - name: check_commits
+  failure: ignore
   image: jjvargass/qa_develoment:latest
   commands:
   - python /app/check_commits.py
@@ -41,19 +52,37 @@ steps:
     event:
     - push
 
-- name: prueba-unitarias
-  image: node:12.6.0
+- name: preparar npm
+  image: node:14
   commands:
-  - npm i
+    - npm ci # Instalación limpia
+    - node --version
+    - npm --version
+  when:
+    branch: # Colocar las ramas que requieran npm
+      - dependabot/**
+      - develop
+      - feature/*
+      - hotfix/*
+      - master
+      - release/*
+      - unitest
+
+- name: prueba-unitarias
+  failure: ignore
+  image: node:14
+  commands:
   - npm run test
   when:
     branch:
+    - develop
+    - feature/*
+    - hotfix/*
     - unitest
 
 - name:  pruebas-linter
-  image: node:12.6.0
+  image: node:14
   commands:
-  - npm i
   - npm run lint:ci
   when:
     branch:
@@ -74,19 +103,18 @@ steps:
     - develop
     - feature/*
     - hotfix/*
+    - master
     - release/*
     event:
     - push
 
 - name: nodejs_release
-  image: node:12.6.0
+  image: node:14
   commands:
-  - node --version
-  - npm cache clean --force
-  - npm i
   - npm run build:test
   when:
     branch:
+    - dependabot/**
     - feature/*
     - release/*
     - develop
@@ -94,10 +122,8 @@ steps:
     - push
 
 - name: nodejs_master
-  image: node:12.6.0
+  image: node:14
   commands:
-  - node --version
-  - npm i
   - npm run build:prod
   when:
     branch:
@@ -143,6 +169,7 @@ steps:
     - push
 
 - name: notify_telegram
+  failure: ignore
   image: appleboy/drone-telegram
   settings:
     token:
@@ -173,32 +200,3 @@ steps:
     status:
     - failure
     - success
-
-# - name: notify_slack
-#   image: plugins/slack
-#   settings:
-#     webhook:
-#       from_secret: slack_webhook
-#     channel: deploy
-#     template: >
-#       {{#success build.status}}
-#         :heavy_check_mark:  <{{ build.link }}|SUCCESS> Build #{{build.number}}
-#         type: {{ build.event }} - Repo: {{repo.name}}
-#         Commit: <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
-#         Branch: {{build.branch}} - Autor: {{build.author}}  :sunglasses:
-#       {{else}}
-#         :x: <{{ build.link }}|FAILURE> Build #{{build.number}}
-#         type: {{ build.event }} - Repo: {{repo.name}}
-#         Branch: {{build.branch}} - Autor: {{build.author}} :weary:
-#         Commit: <https://github.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
-#       {{/success}}
-#   when:
-#     branch:
-#     - develop
-#     - release
-#     - master
-#     event:
-#     - push
-#     status:
-#     - failure
-#     - success

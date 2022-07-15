@@ -2,45 +2,75 @@ export const CONFIGURACION_TABLABANCOS: any = {
     showColumnTitle: true,
     dataConfig: [
         {
-            key: 'codigoSuper',
+            key: 'ID',
             title: {
-                name: 'Código Super',
+                name_i18n: 'id',
                 class: 'text-center',
             },
             pipe: {
-                class: '',
+                class: 'center',
+            }
+        },
+        {
+            key: 'codigoSuper',
+            title: {
+                name_i18n: 'super',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'center',
             }
         },
         {
             key: 'codigoAch',
             title: {
-                name: 'Código ACH',
+                name_i18n: 'ach',
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                class: 'center',
             }
         },
         {
             key: 'nitBanco',
             title: {
-                name: 'NIT',
+                name_i18n: 'nit',
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                class: 'center',
             }
         },
         {
             key: 'nombreBanco',
             title: {
-                name: 'Nombre del Banco',
+                name_i18n: 'nombre_banco',
                 class: 'text-center',
             },
             pipe: {
-                class: 'text-justify',
+                class: 'center',
             }
         },
+        {
+            key: 'estado',
+            title: {
+                name_i18n: 'estado',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'center',
+            }
+        },
+        {
+            key: 'acciones',
+            title: {
+                name_i18n: 'acciones',
+                class: 'text-center',
+            },
+            pipe: {
+                class: 'icons'
+            }
+        }
     ],
     rowActions: {
         title: {

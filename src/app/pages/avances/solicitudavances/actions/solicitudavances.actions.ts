@@ -18,7 +18,7 @@ export const cargarSolicitudesAvance = createAction(
 
 export const obtenerSolicitudesAvance = createAction(
   '[Avances] Obtener solicitudes de avances del back',
-  props<{ id?: any, query?: any }>()
+  props<{ id?: any, query?: any, limit?: any }>()
 );
 
 export const crearSolicitudAvance = createAction(

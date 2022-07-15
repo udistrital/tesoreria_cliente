@@ -34,7 +34,7 @@ export class SolicitudAvancesEffects {
     getSolicitudesAvances$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(SolicitudAvanceActions.obtenerSolicitudesAvance),
-            mergeMap((accion) => this.servicio.getSolicitudesAvance(accion && accion.id ? accion.id : null, accion && accion.query ? accion.query : null)
+            mergeMap((accion) => this.servicio.getSolicitudesAvance()
                 .pipe(map(data => SolicitudAvanceActions.cargarSolicitudesAvance({
                     solicitudesAvance: (data && data.Data ? data.Data : data)
 
@@ -56,6 +56,7 @@ export class SolicitudAvancesEffects {
                     // })),
                     //     catchError(data => of(SharedActions.CatchError(data))));
                     .pipe(map(data => {
+                        // console.log("data ", data)
                        this.popupManager.showSuccessAlert('Guardado exitoso');
                        return SolicitudAvanceActions.cargarSolicitudesAvance({
                            solicitudesAvance: { creado: (data && data.Data ? data.Data : data) }

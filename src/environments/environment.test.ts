@@ -6,7 +6,12 @@
 export const environment = {
   production: true,
   NUXEO: {
-    PATH: 'https://documental.udistrital.edu.co/nuxeo/',
+
+    PATH: 'https://documental.portaloas.udistrital.edu.co/nuxeo/',
+    CREDENTIALS: {
+      USERNAME: 'desarrollooas',
+      PASS: 'desarrollooas2019',
+    },
   },
   AVANCES_CRUD: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/avances_crud/v1/',
   PARAMETROS_CRUD_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/parametros/',
@@ -26,7 +31,6 @@ export const environment = {
   ADMINISTRATIVA_PRUEBAS_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/administrativa_amazon_api/v1/',
   // PLAN_CUENTAS_MONGO_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/plan_cuentas_mongo_crud/v1/',
   PLAN_CUENTAS_MID_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/plan_cuentas_mid/v1/',
-  PLAN_ADQUISICION_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/bodega_jbpm/v1/',
   MOVIMIENTOS_CRUD_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/movimientos_crud/v1/',
   ADMINISTRATIVA_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/necesidades_crud/v1/',
   // OIKOS_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/oikos_crud_api/v2/',
@@ -35,6 +39,9 @@ export const environment = {
   CORE_AMAZON_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/core_amazon_crud/v1/',
   NOTIFICACION_SERVICE: 'wss://autenticacion.portaloas.udistrital.edu.co/apioas/notificacion_ws/v1/',
   CONF_MENU_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/configuracion_crud_api/v1/menu_opcion_padre/ArbolMenus/',
+  DOCUMENTO_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/documento_crud/v2/',
+  GIROS_CRUD_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/giros_crud/v1/',
+  CUENTAS_CONTABLES_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/cuentas_contables_crud/v1/',
   KNOWAGE: {
     PROTOCOL: 'https',
     HOST: 'tuleap.udistrital.edu.co',

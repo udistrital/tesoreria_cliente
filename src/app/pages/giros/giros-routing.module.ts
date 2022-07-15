@@ -39,6 +39,11 @@ const routes: Routes = [{
       .then(m => m.SucursalesModule),
     },
     {
+      path: 'cuentas',
+      loadChildren: () => import('./cuentas-bancarias/cuentas-bancarias.module')
+      .then(m => m.CuentasBancariasModule),
+    },
+    {
       path: 'seguridad',
       loadChildren: () => import('./seguridadsocial/seguridadsocial.module')
       .then(m => m.SeguridadsocialModule),

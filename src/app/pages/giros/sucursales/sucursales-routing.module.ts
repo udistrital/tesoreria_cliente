@@ -11,6 +11,10 @@ const routes: Routes = [  {
   path: 'crear',
   component: CreateSucursalComponent,
 },
+{
+  path: 'editar/:id',
+  component: CreateSucursalComponent,
+},
 ];
 
 @NgModule({

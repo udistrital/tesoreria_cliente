@@ -4,9 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { actualizarEspecificacion, cargarEspecificaciones, crearEspecificacion, obtenerEspecificaciones } from '../../../../../shared/actions/avances.actions';
-import { OPCIONES_AREA_FUNCIONAL } from '../../../../../shared/interfaces/interfaces';
 import { seleccionarEspecificaciones } from '../../../../../shared/selectors/avances.selectors';
-import { getEspecificacionSeleccionada } from '../../selectors/especificacionesavances.selectors';
+import { MockService } from '../../../../../shared/services/mock.service';
 
 @Component({
   selector: 'ngx-set-espeficicacionavances',
@@ -27,9 +26,9 @@ export class SetEspecificacionavancesComponent implements OnInit, OnDestroy {
     private modalService: NgbModal,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private store: Store<any>
+    private store: Store<any>,
+    private mockService: MockService,
   ) {
-    this.opcionesAreaFuncional = OPCIONES_AREA_FUNCIONAL;
     this.tituloAccion = this.activatedRoute.snapshot.url[0].path;
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.store.dispatch(cargarEspecificaciones(null));
@@ -39,6 +38,11 @@ export class SetEspecificacionavancesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.crearFormulario();
+
+    this.mockService.getAreasFuncionales().subscribe((res) => {
+      this.opcionesAreaFuncional = res;
+    });
+
     this.subscription$ = this.store.select(seleccionarEspecificaciones).subscribe((accion: any) => {
       if (accion && accion.especificaciones)
         if (accion.especificaciones.Id) {

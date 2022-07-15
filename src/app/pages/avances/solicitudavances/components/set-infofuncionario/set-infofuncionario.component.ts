@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { combineLatest } from 'rxjs';
 import { cargarDatosProvedor, getDatosID, getTiposID, getVigencias, obtenerDatosProvedor, obtenerTelefonosProvedores } from '../../../../../shared/actions/shared.actions';
-import { OPCIONES_AREA_FUNCIONAL } from '../../../../../shared/interfaces/interfaces';
 import { seleccionarProveedores, seleccionarTelefonosProveedores, selectDatosID, selectTiposID, selectVigencias } from '../../../../../shared/selectors/shared.selectors';
 import { cargarInfoFuncionario } from '../../actions/solicitudavances.actions';
+import { MockService } from '../../../../../shared/services/mock.service';
 
 @Component({
   selector: 'ngx-set-infofuncionario',
@@ -23,12 +24,14 @@ export class SetInfofuncionarioComponent implements OnInit, OnDestroy {
   subscriptionfilter$: any;
   subscriptionTel$: any;
   subInfoFuncionario$: any;
+  caracteres: any;
 
   constructor(
     private fb: FormBuilder,
     private store: Store<any>,
+    private translate: TranslateService,
+    private mockService: MockService,
   ) {
-    this.areasFuncionales = OPCIONES_AREA_FUNCIONAL;
     this.vigencias = [];
     this.tiposId = [];
     this.store.dispatch(getVigencias());
@@ -36,6 +39,11 @@ export class SetInfofuncionarioComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.createForm();
+
+    this.mockService.getAreasFuncionales().subscribe((res) => {
+      this.areasFuncionales = res;
+    });
+
     // Areas funcionales
     this.susVigencias$ = combineLatest([
       this.store.select(selectVigencias),
@@ -110,13 +118,13 @@ export class SetInfofuncionarioComponent implements OnInit, OnDestroy {
       if (numeroId && tipoId) {
         this.store.dispatch(cargarDatosProvedor(null));
         this.store.dispatch(getDatosID({ clave: 'beneficiario', numero: numeroId, tipo: tipoId.Id }));
-        this.store.dispatch(obtenerDatosProvedor({ query: { NumDocumento: numeroId } }));
       }
     });
     // Cambios generales
     this.subInfoFuncionario$ = this.infoFuncionarioGroup.valueChanges.subscribe((value) => {
       this.store.dispatch(cargarInfoFuncionario({ infoFuncionario: value }));
     });
+    this.caracteres = this.translate.instant('GLOBAL.validacion_caracteres', {caracteres: 3});
   }
 
   ngOnDestroy() {
@@ -149,6 +157,9 @@ export class SetInfofuncionarioComponent implements OnInit, OnDestroy {
   }
   get areaInvalid() {
     return this.infoFuncionarioGroup.get('areaFuncional').invalid && this.infoFuncionarioGroup.get('areaFuncional').touched;
+  }
+  get tipoIdSelected() {
+    return this.infoFuncionarioGroup.get('tipoId').valid;
   }
 
   createForm() {

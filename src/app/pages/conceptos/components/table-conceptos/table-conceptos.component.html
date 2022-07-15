@@ -1,0 +1,86 @@
+<nb-card status="warning">
+    <nb-card-header>
+      {{ 'CONCEPTOS.lista' | translate }}
+    </nb-card-header>
+    <nb-card-body>
+      <div *ngIf="showTree">
+        <div class="row">
+          <div *ngIf="tesoreria" class="col">
+            <a routerLink="../crear/padre">
+                <button type="button" class="btn btn-primary mb-3 mt-3 text-white">
+                    <div class="d-flex flex-row justify-content-around align-middle">
+                        <i class="fas fa-plus py-1 px-2"></i>
+                        <span>
+                            {{ 'CONCEPTOS.nuevo_grupo' | translate}}
+                        </span>
+                    </div>
+                </button>
+            </a>
+          </div>
+          <div *ngIf="selectedNodeData && tesoreria" class="col">
+              <button type="button" class="btn btn-primary mb-3 mt-3 text-white" (click)="sendMessage()">
+                  <div class="d-flex flex-row justify-content-around align-middle">
+                      <i class="fas fa-plus py-1 px-2"></i>
+                      <span>
+                        {{ 'CONCEPTOS.nuevo_nodo' | translate}}
+                      </span>
+                  </div>
+              </button>
+          </div>
+          <div *ngIf="selectedNodeData" class="col">
+              <button type="button" class="btn btn-primary mb-3 mt-3 text-white" (click)="verConcepto('ver')">
+                  <div class="d-flex flex-row justify-content-around align-middle">
+                      <i class="fas fa-plus py-1 px-2"></i>
+                      <span>
+                        {{ 'CONCEPTOS.ver' | translate}}
+                      </span>
+                  </div>
+              </button>
+          </div>
+          <div *ngIf="selectedNodeData" class="col">
+              <button type="button" class="btn btn-primary mb-3 mt-3 text-white" (click)="verConcepto('editar')">
+                  <div class="d-flex flex-row justify-content-around align-middle">
+                      <i class="fas fa-plus py-1 px-2"></i>
+                      <span>
+                        {{ 'CONCEPTOS.editar' | translate}}
+                      </span>
+                  </div>
+              </button>
+          </div>
+        </div>
+        <br>
+        <label class="search-label" for="search">{{ "GLOBAL.buscar" | translate }}</label>
+        <input nbInput [nbFilterInput]="dataSource" id="search" class="search-input" [(ngModel)]="searchValue">
+        <br>
+        <span *ngIf="!selectedNodeData" class="text-danger">{{ "CONCEPTOS.seleccione_concepto" | translate }}</span>
+        <table [nbTreeGrid]="dataSource" [nbSort]="dataSource" (sort)="updateSort($event)">
+          <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
+          <tr #nebularTree class="table-row" [class.highlight]="validHighlight(row, nebularTree)"
+            (click)="onSelect(row, nebularTree);" nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns"
+            [attr.data-picker]="row.data.Codigo"></tr>
+          <ng-container [nbTreeGridColumnDef]="customColumn">
+            <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(customColumn)" *nbTreeGridHeaderCellDef>
+              {{ customColumn }}
+            </th>
+            <td class="aligned-code" nbTreeGridCell *nbTreeGridCellDef="let row">
+              <!-- <ngx-nb-fs-icon [kind]="row.data.kind" [expanded]="row.expanded"></ngx-nb-fs-icon> -->
+              <span *ngIf="row.hasChildren()" class="fas" [ngClass]="{
+                  'fa-chevron-down': row.expanded,
+                  'fa-chevron-right': !row.expanded
+                }" aria-hidden="true">
+              </span>{{ row.data[customColumn] }}
+            </td>
+          </ng-container>
+          <ng-container *ngFor="let column of defaultColumns; let index = index" [nbTreeGridColumnDef]="column"
+            [showOn]="getShowOn(index)">
+            <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(column)" *nbTreeGridHeaderCellDef>
+              {{ column }}
+            </th>
+            <td nbTreeGridCell *nbTreeGridCellDef="let row">
+              {{ column === "Activo" ? (row.data[column] ? "Si" : "No" ): (row.data[column] || "-") }}
+            </td>
+          </ng-container>
+        </table>
+      </div>
+    </nb-card-body>
+  </nb-card>

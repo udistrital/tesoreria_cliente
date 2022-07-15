@@ -1,0 +1,260 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 bg-white px-3 py-3 pt-3 pb-3">
+            <h5 class="card-title text-center text-primary">
+                {{ 'CONCEPTOS.conceptos' | translate}}
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 bg-white">
+            <form [formGroup]="crearConceptosGroup" (ngSubmit)="saveForm()">
+                <div class="container">
+                    <div class="form-group row px-5">
+                        <h6 class="card-title col-md-4 bg-primary text-white text-center py-2 px-2 rounded">
+                            {{ 'CONCEPTOS.conceptos' | translate}}
+                        </h6>
+                    </div>
+                    <div class="form-group row px-5">
+                        <div class="col-md-6">
+                            <label>{{ 'GLOBAL.entidad' | translate}}</label>
+                            <mat-select [disabled]="ver || !tesoreria" class="form-control" placeholder="Seleccione..." formControlName="entidadPresupuestal" [class.is-invalid]="isInvalid('entidadPresupuestal')">
+                                <cdk-virtual-scroll-viewport itemSize="1" minBufferPx="100" maxBufferPx="200" class="vs-viewport-corto">
+                                    <mat-option *cdkVirtualFor="let opcion of opcionesEntidadPresupuestal" [value]="opcion">
+                                        {{opcion.Label}}
+                                    </mat-option>
+                                </cdk-virtual-scroll-viewport>
+                            </mat-select>
+                            <small *ngIf="isInvalid('entidadPresupuestal')" class="text-danger">{{ 'GLOBAL.seleccione' | translate}}</small>
+                        </div>
+                        <div class="col-md-6">
+                            <label>{{ 'GLOBAL.unidad-ejecutora' | translate}}</label>
+                            <mat-select [disabled]="ver || !tesoreria" class="form-control" placeholder="Seleccione..." formControlName="areaFuncional" [class.is-invalid]="isInvalid('areaFuncional')">
+                                <cdk-virtual-scroll-viewport itemSize="2" minBufferPx="100" maxBufferPx="200" class="vs-viewport-corto">
+                                    <mat-option *cdkVirtualFor="let opcion of opcionesAreaFuncional" [value]="opcion">
+                                        {{opcion.label}}
+                                    </mat-option>
+                                </cdk-virtual-scroll-viewport>
+                            </mat-select>
+                            <small *ngIf="isInvalid('areaFuncional')" class="text-danger">{{ 'GLOBAL.seleccione' | translate}}</small>
+                        </div>
+                    </div>
+                    <div class="form-group row px-5">
+                        <div [ngClass]="{'col-md-4': padre === false, 'col-md-6': padre === true}">
+                            <label>{{ 'GLOBAL.codigo' | translate}}</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span *ngIf="tituloAccion=='hijo'" class="form-control dark" >{{concepto ? concepto.Codigo : ''}}-</span>
+                                </div>
+                                <input [readonly]="ver || !tesoreria" type="text" class="form-control" formControlName="codigo" [class.is-invalid]="isInvalid('codigo')">
+                            </div>
+                            <small *ngIf="isInvalid('codigo')" class="text-danger">{{ 'GLOBAL.complete' | translate}}</small>
+                        </div>
+                        <div [ngClass]="{'col-md-4': padre === false, 'col-md-6': padre === true}">
+                            <label>{{ 'CONCEPTOS.clase_transaccion' | translate}}</label>
+                            <mat-select [disabled]="ver || !tesoreria" class="form-control" placeholder="Seleccione..." formControlName="claseTransaccion" [class.is-invalid]="isInvalid('claseTransaccion')" (selectionChange)="consultarTipoTransaccion(true)">
+                                <cdk-virtual-scroll-viewport itemSize="2" minBufferPx="100" maxBufferPx="200" class="vs-viewport-corto">
+                                    <mat-option *cdkVirtualFor="let claseTransaccion of clasesTransacciones" [value]="claseTransaccion">
+                                        {{claseTransaccion.Nombre}}
+                                    </mat-option>
+                                </cdk-virtual-scroll-viewport>
+                            </mat-select>
+                            <small *ngIf="isInvalid('claseTransaccion')" class="text-danger">{{ 'GLOBAL.seleccione' | translate}}</small>
+                        </div>
+                        <div class="col-md-4" *ngIf="!padre">
+                            <label>{{ 'CONCEPTOS.tipo_transaccion' | translate}}</label>
+                            <mat-select [disabled]="ver || !tesoreria" class="form-control" placeholder="Seleccione..." formControlName="tipoTransaccion" [class.is-invalid]="isInvalid('tipoTransaccion')">
+                                <cdk-virtual-scroll-viewport itemSize="2" minBufferPx="100" maxBufferPx="200" class="vs-viewport-corto">
+                                    <mat-option *cdkVirtualFor="let tipoTransaccion of tiposTransacciones" [value]="tipoTransaccion">
+                                        {{tipoTransaccion.Nombre}}
+                                    </mat-option>
+                                </cdk-virtual-scroll-viewport>
+                            </mat-select>
+                            <small *ngIf="isInvalid('claseTransaccion')" class="text-danger">{{ 'GLOBAL.seleccione' | translate}}</small>
+                        </div>
+                    </div>
+                    <div *ngIf="!padre" class="form-group row px-5">
+                        <div class="col-md-12">
+                            <label>{{ 'CONCEPTOS.concepto_padre' | translate}}</label>
+                            <input readonly="true" type="text" class="form-control" [value]="conceptoPadre">
+                        </div>
+                    </div>
+                    <div class="form-group row px-5">
+                        <div class="col-md-12">
+                            <label>{{ 'CONCEPTOS.nombre' | translate}}</label>
+                            <input [readonly]="ver || !tesoreria" type="text" class="form-control" formControlName="nombreConcepto" [class.is-invalid]="isInvalid('nombreConcepto')">
+                            <small *ngIf="isInvalid('nombreConcepto')" class="text-danger">{{ 'GLOBAL.complete' | translate}}</small>
+                        </div>
+                    </div>
+                    <div class="form-group row px-5">
+                        <div class="col-md-6">
+                            <label>{{ 'CONCEPTOS.tipo_documento' | translate}}</label>
+                            <mat-select [disabled]="ver || !tesoreria" class="form-control" placeholder="Seleccione..." formControlName="tipoDocumento" [class.is-invalid]="isInvalid('tipoDocumento')">
+                                <cdk-virtual-scroll-viewport itemSize="2" minBufferPx="100" maxBufferPx="200" class="vs-viewport-corto">
+                                    <mat-option *cdkVirtualFor="let tipoDocumento of tiposDocumento" [value]="tipoDocumento">
+                                        {{tipoDocumento.Nombre}}
+                                    </mat-option>
+                                </cdk-virtual-scroll-viewport>
+                            </mat-select>
+                            <small *ngIf="isInvalid('tipoDocumento')" class="text-danger">{{ 'GLOBAL.seleccione' | translate}}</small>
+                        </div>
+                        <div class="col-md-6" *ngIf="!padre">
+                            <label>{{ 'GLOBAL.rubro' | translate}}</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <!-- Button trigger modal -->
+                                    <button *ngIf="rubroBol" type="button" class="btn btn-primary" data-toggle="modal" (click)="openRubro()">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+
+                                </div>
+                                <span class="form-control overflow-ellipsis" >{{rubroSeleccionado ? rubroSeleccionado.data.Codigo : ''}} - {{rubroSeleccionado ?rubroSeleccionado.data.Nombre : ''}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row px-5" *ngIf="!padre">
+                        <div class="col-md-6">
+                            <label>{{ 'CONCEPTOS.codigo_bdata' | translate}}</label>
+                            <input [readonly]="ver || !tesoreria" type="text" class="form-control" formControlName="codigoBogData" [class.is-invalid]="isInvalid('codigoBogData')">
+                            <small *ngIf="isInvalid('codigoBogData')" class="text-danger">{{ 'GLOBAL.seleccione' | translate}}</small>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-checkbox class="example-margin" formControlName="activo" [disabled]="ver || !tesoreria">{{ 'GLOBAL.activo' | translate}}</mat-checkbox>
+                        </div>
+                    </div>
+                    <mat-divider class="col-md-12 py-2 border-warning"></mat-divider>
+                    <div class="form-group row px-5" *ngIf="verCuentas">
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <!-- Button trigger modal -->
+                                    <button *ngIf="!tesoreria && tituloAccion=='editar'" type="button" class="btn btn-primary" data-toggle="modal" data-target="#cuentaContableDebitoModal">
+                                        <i class="fas fa-plus">{{ 'CONCEPTOS.agregar_debito' | translate}}</i>
+                                    </button>
+                                </div>
+                            </div>
+                            <ngx-general-table [config]="configRequisitosDebito" [datos]="cuentasDebitoTabla">
+                            </ngx-general-table>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <!-- Button trigger modal -->
+                                    <button *ngIf="!tesoreria && tituloAccion=='editar'" type="button" class="btn btn-primary" data-toggle="modal" data-target="#cuentaContableCreditoModal">
+                                        <i class="fas fa-plus">{{ 'CONCEPTOS.agregar_credito' | translate}}</i>
+                                    </button>
+                                </div>
+                            </div>
+                            <ngx-general-table [config]="configRequisitosCredito" [datos]="cuentasCreditoTabla">
+                            </ngx-general-table>
+                        </div>
+                    </div>
+                    <!-- Botones: Volver a registro, Siguiente -->
+                    <div class="row pt-2 text-center">
+                        <div class="col-md-6">
+                            <a>
+                                <button type="button" class="btn btn-primary mb-3 mt-3 text-white">
+                                    <div class="d-flex flex-row justify-content-around align-middle" [routerLink]="['/pages/conceptos/lista']" routerLinkActive="router-link-active" >
+                                        <span>{{ 'GLOBAL.volver' | translate }}</span>
+                                    </div>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-success mb-3 mt-3" (click)="guardar()">
+                                {{ 'GLOBAL.guardar' | translate }}
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Fin Botones: Volver a registro, Siguiente -->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Guardar Sucursal -->
+ <ng-template #modalGuardar let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{ 'GLOBAL.guardar' | translate}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        {{ 'GLOBAL.guardar_cambios' | translate}}
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">{{ 'GLOBAL.cancelar' | translate}}</button>
+        <button type="button" class="btn btn-primary text-white" (click)="modal.close(true)">
+            <a data-dismiss="modal">{{ 'GLOBAL.guardar' | translate}}</a>
+        </button>
+    </div>
+</ng-template>
+<!-- Fin Modal -->
+
+<!-- Modal -->
+<ng-template #exampleModal let-modal>
+        <div class="modal-dialog modal-lg" role="document" tabindex="-1">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{ 'CONCEPTOS.rubro' | translate}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ngx-arbol-rubro [FuenteRecurso]="fuenteRecurso" [Raiz]="rubroCod"></ngx-arbol-rubro>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary mr-auto"(click)="modal.dismiss()">{{ 'GLOBAL.cerrar' | translate}}</button>
+                    <button type="button" class="btn btn-primary" (click)="modal.close(true)">{{ 'GLOBAL.continuar' | translate}}</button>
+                </div>
+            </div>
+        </div>
+</ng-template>
+
+<!-- Modal -->
+<div class="modal fade" id="cuentaContableDebitoModal" tabindex="-1" role="dialog" aria-labelledby="cuentaContableDebitoModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cuentaContableDebitoModalLabel">{{ 'CONCEPTOS.seleccione_debito' | translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ngx-arbol-cuentas-contables-debito [Naturaleza]="debito"></ngx-arbol-cuentas-contables-debito>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">{{ 'GLOBAL.cerrar' | translate}}</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="agregarCuentaDebito()">{{ 'GLOBAL.agregar' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="cuentaContableCreditoModal" tabindex="-1" role="dialog" aria-labelledby="cuentaContableCreditoModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cuentaContableCreditoModalLabel">{{ 'CONCEPTOS.seleccione_credito' | translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ngx-arbol-cuentas-contables-credito [Naturaleza]="credito"></ngx-arbol-cuentas-contables-credito>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">{{ 'GLOBAL.cerrar' | translate}}</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="agregarCuentaCredito()">{{ 'GLOBAL.agregar' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin Modal -->
