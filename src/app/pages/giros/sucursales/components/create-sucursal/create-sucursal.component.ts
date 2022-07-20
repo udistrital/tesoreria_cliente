@@ -36,7 +36,7 @@ export class CreateSucursalComponent implements OnInit, OnDestroy {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.createForm();
     this.bancos = [];
-    this.store.dispatch(obtenerBancos({}));
+    this.store.dispatch(obtenerBancos({query: {TipoTerceroId__CodigoAbreviacion: 'BANCO'}}));
     this.store.dispatch(obtenerIdSucursales({}));
     this.checked = true;
   }
