@@ -61,7 +61,7 @@ export class CreateCuentaComponent implements OnInit, OnDestroy {
     this.tipoCuentas = [];
     this.datosCuentaBancaria = [];
     this.touched = false;
-    this.store.dispatch(obtenerBancos({}));
+    this.store.dispatch(obtenerBancos({query: {TipoTerceroId__CodigoAbreviacion: 'BANCO'}}));
     this.store.dispatch(obtenerDivisas({}));
     this.store.dispatch(obtenerTipoCuenta({}));
     this.tituloAccion = this.activatedRoute.snapshot.url[0].path;
@@ -185,7 +185,7 @@ export class CreateCuentaComponent implements OnInit, OnDestroy {
         Pagadora: pagadora,
         CuatroPorMil: this.crearCuentaBancariaGroup.value.cuatropormil,
         RecursoId: this.crearCuentaBancariaGroup.value.recurso.data.Codigo,
-        AreaFuncional: this.crearCuentaBancariaGroup.value.areaFuncional.Id,
+        AreaFuncional: this.crearCuentaBancariaGroup.value.areaFuncional.id,
         DivisaId: this.crearCuentaBancariaGroup.value.divisa.Id
       };
       this.modalService.open(this.modalGuardar).result.then((result) => {
@@ -297,7 +297,7 @@ export class CreateCuentaComponent implements OnInit, OnDestroy {
           this.sucursales = this.sucursales.filter((e: any) => e.TerceroId.NombreCompleto === this.sucursal.TerceroId.NombreCompleto);
           if (this.recursos && this.sucursal && this.bancos)
           this.crearCuentaBancariaGroup.setValue({
-            areaFuncional: this.opcionesAreaFuncional[this.opcionesAreaFuncional.findIndex((e: any) => e.Id === this.datosCuentaBancaria.AreaFuncional)],
+            areaFuncional: this.opcionesAreaFuncional[this.opcionesAreaFuncional.findIndex((e: any) => e.id === this.datosCuentaBancaria.AreaFuncional)],
             recurso: this.recursos[this.recursos.findIndex((e: any) => e.Codigo === this.datosCuentaBancaria.RecursoId)],
             nombreCuenta: this.datosCuentaBancaria.NombreCuenta,
             numeroCuenta: this.datosCuentaBancaria.NumeroCuenta,
